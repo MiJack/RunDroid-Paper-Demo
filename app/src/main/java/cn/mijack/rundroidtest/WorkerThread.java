@@ -16,9 +16,9 @@ public class WorkerThread extends Thread {
 
     @Override
     public void run() {
-        Message message = Message.obtain();
+        com.mijack.Xlog.logMethodEnter("void cn.mijack.rundroidtest.WorkerThread.run()",this);try{Message message = Message.obtain();
         message.what = 1;
         message.obj = "some text";
-        handler.sendMessage(message);
+        handler.sendMessage(message);com.mijack.Xlog.logMethodExit("void cn.mijack.rundroidtest.WorkerThread.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void cn.mijack.rundroidtest.WorkerThread.run()",this,throwable);throw throwable;}
     }
 }
