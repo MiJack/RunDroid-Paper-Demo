@@ -23,46 +23,46 @@ public class WikiPage {
 	}
 
 	public String getPageUrl() {
-		return pageUrl;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getPageUrl()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getPageUrl()",this);return pageUrl;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getPageUrl()",this,throwable);throw throwable;}
 	}
 
 	public String getPageTitle() {
-		return pageTitle;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getPageTitle()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getPageTitle()",this);return pageTitle;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getPageTitle()",this,throwable);throw throwable;}
 	}
 
 	public String getHtmlString() {
-		return htmlString;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getHtmlString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getHtmlString()",this);return htmlString;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.getHtmlString()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("WikiPage{");
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.toString()",this);try{StringBuilder sb = new StringBuilder("WikiPage{");
 		sb.append("title='").append(pageTitle).append('\'');
 		sb.append('}');
-		return sb.toString();
+		{com.mijack.Xlog.logMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.toString()",this);return sb.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPage.toString()",this,throwable);throw throwable;}
 	}
 
 	public int getScrollPosition() {
-		return scrollPosition;
+		com.mijack.Xlog.logMethodEnter("int com.jtmcn.archwiki.viewer.data.WikiPage.getScrollPosition()",this);try{com.mijack.Xlog.logMethodExit("int com.jtmcn.archwiki.viewer.data.WikiPage.getScrollPosition()",this);return scrollPosition;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.jtmcn.archwiki.viewer.data.WikiPage.getScrollPosition()",this,throwable);throw throwable;}
 	}
 
 	public void setScrollPosition(int scrollPosition) {
-		this.scrollPosition = scrollPosition;
+		com.mijack.Xlog.logMethodEnter("void com.jtmcn.archwiki.viewer.data.WikiPage.setScrollPosition(int)",this,scrollPosition);try{this.scrollPosition = scrollPosition;com.mijack.Xlog.logMethodExit("void com.jtmcn.archwiki.viewer.data.WikiPage.setScrollPosition(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.jtmcn.archwiki.viewer.data.WikiPage.setScrollPosition(int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof WikiPage)) return false;
+		com.mijack.Xlog.logMethodEnter("boolean com.jtmcn.archwiki.viewer.data.WikiPage.equals(java.lang.Object)",this,o);try{if (this == o) {{com.mijack.Xlog.logMethodExit("boolean com.jtmcn.archwiki.viewer.data.WikiPage.equals(java.lang.Object)",this);return true;}}
+		if (!(o instanceof WikiPage)) {{com.mijack.Xlog.logMethodExit("boolean com.jtmcn.archwiki.viewer.data.WikiPage.equals(java.lang.Object)",this);return false;}}
 
 		WikiPage wikiPage = (WikiPage) o;
 
-		return getPageUrl() != null ? getPageUrl().equals(wikiPage.getPageUrl()) : wikiPage.getPageUrl() == null;
+		{com.mijack.Xlog.logMethodExit("boolean com.jtmcn.archwiki.viewer.data.WikiPage.equals(java.lang.Object)",this);return getPageUrl() != null ? getPageUrl().equals(wikiPage.getPageUrl()) : wikiPage.getPageUrl() == null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.jtmcn.archwiki.viewer.data.WikiPage.equals(java.lang.Object)",this,throwable);throw throwable;}
 
 	}
 
 	@Override
 	public int hashCode() {
-		return getPageUrl() != null ? getPageUrl().hashCode() : 0;
+		com.mijack.Xlog.logMethodEnter("int com.jtmcn.archwiki.viewer.data.WikiPage.hashCode()",this);try{com.mijack.Xlog.logMethodExit("int com.jtmcn.archwiki.viewer.data.WikiPage.hashCode()",this);return getPageUrl() != null ? getPageUrl().hashCode() : 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.jtmcn.archwiki.viewer.data.WikiPage.hashCode()",this,throwable);throw throwable;}
 	}
 }

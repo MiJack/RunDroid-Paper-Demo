@@ -37,20 +37,20 @@ public class FetchUrl<Result> extends AsyncTask<String, Void, Result> {
 
 	@Override
 	protected Result doInBackground(String... params) {
-		if (params.length >= 1) {
+		com.mijack.Xlog.logMethodEnter("Result com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.doInBackground([java.lang.String)",this,params);try{if (params.length >= 1) {
 			String url = params[0];
 			StringBuilder toAdd = getItem(url);
-			return mapper.mapTo(url, toAdd);
+			{com.mijack.Xlog.logMethodExit("Result com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.doInBackground([java.lang.String)",this);return mapper.mapTo(url, toAdd);}
 		}
-		return null;
+		{com.mijack.Xlog.logMethodExit("Result com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.doInBackground([java.lang.String)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("Result com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.doInBackground([java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected void onPostExecute(Result values) {
-		super.onPostExecute(values);
+		com.mijack.Xlog.logMethodEnter("void com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.onPostExecute(Result)",this,values);try{super.onPostExecute(values);
 		if (onFinish != null) {
 			onFinish.onFinish(values);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.onPostExecute(Result)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.onPostExecute(Result)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -59,15 +59,15 @@ public class FetchUrl<Result> extends AsyncTask<String, Void, Result> {
 	 * @param url to query
 	 */
 	private StringBuilder getItem(String url) {
-		StringBuilder toReturn;
+		com.mijack.Xlog.logMethodEnter("java.lang.StringBuilder com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.getItem(java.lang.String)",this,url);try{StringBuilder toReturn;
 		try {
 			toReturn = NetworkUtils.fetchURL(url, caching);
-		} catch (IOException e) { //network exception
+		} catch (IOException e) { /*//network exception*/
 			Log.w(TAG, "Could not connect to: " + url, e);
 			toReturn = new StringBuilder();
 		}
 
-		return toReturn;
+		{com.mijack.Xlog.logMethodExit("java.lang.StringBuilder com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.getItem(java.lang.String)",this);return toReturn;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.StringBuilder com.jtmcn.archwiki.viewer.tasks.FetchUrl<Result>.getItem(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	/**

@@ -7,7 +7,7 @@ import static com.jtmcn.archwiki.viewer.Constants.LOCAL_CSS;
  * html fetched from the ArchWiki.
  */
 public class WikiPageBuilder {
-	//NOTE: spaces are allowed in "<head>"/etc, but parsing this way should be fine
+	/*//NOTE: spaces are allowed in "<head>"/etc, but parsing this way should be fine*/
 	public static final String HTML_HEAD_OPEN = "<head>";
 	public static final String HTML_HEAD_CLOSE = "</head>";
 	public static final String HTML_TITLE_OPEN = "<title>";
@@ -28,9 +28,9 @@ public class WikiPageBuilder {
 	 * @return {@link WikiPage} containing downloaded page.
 	 */
 	public static WikiPage buildPage(String stringUrl, StringBuilder html) {
-		String pageTitle = getPageTitle(html);
+		com.mijack.Xlog.logStaticMethodEnter("com.jtmcn.archwiki.viewer.data.WikiPage com.jtmcn.archwiki.viewer.data.WikiPageBuilder.buildPage(java.lang.String,java.lang.StringBuilder)",stringUrl,html);try{String pageTitle = getPageTitle(html);
 		injectLocalCSS(html, LOCAL_CSS);
-		return new WikiPage(stringUrl, pageTitle, html.toString());
+		{com.mijack.Xlog.logStaticMethodExit("com.jtmcn.archwiki.viewer.data.WikiPage com.jtmcn.archwiki.viewer.data.WikiPageBuilder.buildPage(java.lang.String,java.lang.StringBuilder)");return new WikiPage(stringUrl, pageTitle, html.toString());}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.jtmcn.archwiki.viewer.data.WikiPage com.jtmcn.archwiki.viewer.data.WikiPageBuilder.buildPage(java.lang.String,java.lang.StringBuilder)",throwable);throw throwable;}
 	}
 
 	/**
@@ -41,14 +41,14 @@ public class WikiPageBuilder {
 	 * @return the extracted title from the page.
 	 */
 	public static String getPageTitle(StringBuilder htmlString) {
-		int titleStart = (htmlString.indexOf(HTML_TITLE_OPEN) + HTML_TITLE_OPEN.length());
+		com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPageBuilder.getPageTitle(java.lang.StringBuilder)",htmlString);try{int titleStart = (htmlString.indexOf(HTML_TITLE_OPEN) + HTML_TITLE_OPEN.length());
 		int titleEnd = htmlString.indexOf(HTML_TITLE_CLOSE, titleStart);
-		if (titleStart > 0 && titleEnd > titleStart) { // if there is an html title block
+		if (titleStart > 0 && titleEnd > titleStart) { /*// if there is an html title block*/
 			String title = htmlString.substring(titleStart, titleEnd);
-			return title.replace(DEFAULT_TITLE, ""); // drop DEFAULT_TITLE from page title
+			{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPageBuilder.getPageTitle(java.lang.StringBuilder)");return title.replace(DEFAULT_TITLE, "");} /*// drop DEFAULT_TITLE from page title*/
 		}
-		//todo should be handled somewhere else when no title is found
-		return "No title found";
+		/*//todo should be handled somewhere else when no title is found*/
+		{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPageBuilder.getPageTitle(java.lang.StringBuilder)");return "No title found";}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.WikiPageBuilder.getPageTitle(java.lang.StringBuilder)",throwable);throw throwable;}
 	}
 
 	/**
@@ -60,15 +60,15 @@ public class WikiPageBuilder {
 	 * @return true if the block was successfully replaced.
 	 */
 	public static boolean injectLocalCSS(StringBuilder htmlString, String localCSSFilePath) {
-		int headStart = htmlString.indexOf(HTML_HEAD_OPEN) + HTML_HEAD_OPEN.length();
+		com.mijack.Xlog.logStaticMethodEnter("boolean com.jtmcn.archwiki.viewer.data.WikiPageBuilder.injectLocalCSS(java.lang.StringBuilder,java.lang.String)",htmlString,localCSSFilePath);try{int headStart = htmlString.indexOf(HTML_HEAD_OPEN) + HTML_HEAD_OPEN.length();
 		int headEnd = htmlString.indexOf(HTML_HEAD_CLOSE, headStart);
 
 		if (headStart > 0 && headEnd >= headStart) {
 			String injectedHeadHtml = String.format(HEAD_TO_INJECT, localCSSFilePath);
 			htmlString.replace(headStart, headEnd, injectedHeadHtml);
-			return true;
+			{com.mijack.Xlog.logStaticMethodExit("boolean com.jtmcn.archwiki.viewer.data.WikiPageBuilder.injectLocalCSS(java.lang.StringBuilder,java.lang.String)");return true;}
 		}
 
-		return false;
+		{com.mijack.Xlog.logStaticMethodExit("boolean com.jtmcn.archwiki.viewer.data.WikiPageBuilder.injectLocalCSS(java.lang.StringBuilder,java.lang.String)");return false;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.jtmcn.archwiki.viewer.data.WikiPageBuilder.injectLocalCSS(java.lang.StringBuilder,java.lang.String)",throwable);throw throwable;}
 	}
 }

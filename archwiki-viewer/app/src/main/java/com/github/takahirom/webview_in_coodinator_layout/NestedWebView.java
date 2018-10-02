@@ -48,7 +48,7 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		boolean returnValue = false;
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.onTouchEvent(android.view.MotionEvent)",this,ev);try{boolean returnValue = false;
 
 		MotionEvent event = MotionEvent.obtain(ev);
 		final int action = MotionEventCompat.getActionMasked(event);
@@ -60,7 +60,7 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
 		switch (action) {
 			case MotionEvent.ACTION_MOVE:
 				int deltaY = mLastY - eventY;
-				// NestedPreScroll
+				/*// NestedPreScroll*/
 				if (dispatchNestedPreScroll(0, deltaY, mScrollConsumed, mScrollOffset)) {
 					deltaY -= mScrollConsumed[1];
 					mLastY = eventY - mScrollOffset[1];
@@ -69,7 +69,7 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
 				}
 				returnValue = super.onTouchEvent(event);
 
-				// NestedScroll
+				/*// NestedScroll*/
 				if (dispatchNestedScroll(0, mScrollOffset[1], 0, deltaY, mScrollOffset)) {
 					event.offsetLocation(0, mScrollOffset[1]);
 					mNestedOffsetY += mScrollOffset[1];
@@ -79,64 +79,64 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
 			case MotionEvent.ACTION_DOWN:
 				returnValue = super.onTouchEvent(event);
 				mLastY = eventY;
-				// start NestedScroll
+				/*// start NestedScroll*/
 				startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL);
 				break;
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_CANCEL:
 				returnValue = super.onTouchEvent(event);
-				// end NestedScroll
+				/*// end NestedScroll*/
 				stopNestedScroll();
 				break;
 		}
-		return returnValue;
+		{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.onTouchEvent(android.view.MotionEvent)",this);return returnValue;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean isNestedScrollingEnabled() {
-		return mChildHelper.isNestedScrollingEnabled();
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.isNestedScrollingEnabled()",this);try{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.isNestedScrollingEnabled()",this);return mChildHelper.isNestedScrollingEnabled();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.isNestedScrollingEnabled()",this,throwable);throw throwable;}
 	}
 
-	// Nested Scroll implements
+	/*// Nested Scroll implements*/
 	@Override
 	public void setNestedScrollingEnabled(boolean enabled) {
-		mChildHelper.setNestedScrollingEnabled(enabled);
+		com.mijack.Xlog.logMethodEnter("void com.github.takahirom.webview_in_coodinator_layout.NestedWebView.setNestedScrollingEnabled(boolean)",this,enabled);try{mChildHelper.setNestedScrollingEnabled(enabled);com.mijack.Xlog.logMethodExit("void com.github.takahirom.webview_in_coodinator_layout.NestedWebView.setNestedScrollingEnabled(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.github.takahirom.webview_in_coodinator_layout.NestedWebView.setNestedScrollingEnabled(boolean)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean startNestedScroll(int axes) {
-		return mChildHelper.startNestedScroll(axes);
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.startNestedScroll(int)",this,axes);try{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.startNestedScroll(int)",this);return mChildHelper.startNestedScroll(axes);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.startNestedScroll(int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void stopNestedScroll() {
-		mChildHelper.stopNestedScroll();
+		com.mijack.Xlog.logMethodEnter("void com.github.takahirom.webview_in_coodinator_layout.NestedWebView.stopNestedScroll()",this);try{mChildHelper.stopNestedScroll();com.mijack.Xlog.logMethodExit("void com.github.takahirom.webview_in_coodinator_layout.NestedWebView.stopNestedScroll()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.github.takahirom.webview_in_coodinator_layout.NestedWebView.stopNestedScroll()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean hasNestedScrollingParent() {
-		return mChildHelper.hasNestedScrollingParent();
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.hasNestedScrollingParent()",this);try{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.hasNestedScrollingParent()",this);return mChildHelper.hasNestedScrollingParent();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.hasNestedScrollingParent()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed,
 										int[] offsetInWindow) {
-		return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow);
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedScroll(int,int,int,int,[int)",this,dxConsumed,dyConsumed,dxUnconsumed,dyUnconsumed,offsetInWindow);try{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedScroll(int,int,int,int,[int)",this);return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedScroll(int,int,int,int,[int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed, int[] offsetInWindow) {
-		return mChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedPreScroll(int,int,[int,[int)",this,dx,dy,consumed,offsetInWindow);try{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedPreScroll(int,int,[int,[int)",this);return mChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedPreScroll(int,int,[int,[int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed) {
-		return mChildHelper.dispatchNestedFling(velocityX, velocityY, consumed);
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedFling(float,float,boolean)",this,velocityX,velocityY,consumed);try{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedFling(float,float,boolean)",this);return mChildHelper.dispatchNestedFling(velocityX, velocityY, consumed);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedFling(float,float,boolean)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean dispatchNestedPreFling(float velocityX, float velocityY) {
-		return mChildHelper.dispatchNestedPreFling(velocityX, velocityY);
+		com.mijack.Xlog.logMethodEnter("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedPreFling(float,float)",this,velocityX,velocityY);try{com.mijack.Xlog.logMethodExit("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedPreFling(float,float)",this);return mChildHelper.dispatchNestedPreFling(velocityX, velocityY);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.github.takahirom.webview_in_coodinator_layout.NestedWebView.dispatchNestedPreFling(float,float)",this,throwable);throw throwable;}
 	}
 
 }

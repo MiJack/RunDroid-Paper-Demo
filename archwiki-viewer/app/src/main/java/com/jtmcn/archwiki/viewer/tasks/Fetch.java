@@ -18,7 +18,7 @@ public class Fetch {
 			new FetchUrl.FetchUrlMapper<List<SearchResult>>() {
 				@Override
 				public List<SearchResult> mapTo(String url, StringBuilder stringBuilder) {
-					return SearchResultsBuilder.parseSearchResults(stringBuilder.toString());
+					com.mijack.Xlog.logMethodEnter("java.util.List com.jtmcn.archwiki.viewer.tasks.Fetch$1.mapTo(java.lang.String,java.lang.StringBuilder)",this,url,stringBuilder);try{com.mijack.Xlog.logMethodExit("java.util.List com.jtmcn.archwiki.viewer.tasks.Fetch$1.mapTo(java.lang.String,java.lang.StringBuilder)",this);return SearchResultsBuilder.parseSearchResults(stringBuilder.toString());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.List com.jtmcn.archwiki.viewer.tasks.Fetch$1.mapTo(java.lang.String,java.lang.StringBuilder)",this,throwable);throw throwable;}
 				}
 			};
 
@@ -26,7 +26,7 @@ public class Fetch {
 			new FetchUrl.FetchUrlMapper<WikiPage>() {
 				@Override
 				public WikiPage mapTo(String url, StringBuilder sb) {
-					return WikiPageBuilder.buildPage(url, sb);
+					com.mijack.Xlog.logMethodEnter("com.jtmcn.archwiki.viewer.data.WikiPage com.jtmcn.archwiki.viewer.tasks.Fetch$2.mapTo(java.lang.String,java.lang.StringBuilder)",this,url,sb);try{com.mijack.Xlog.logMethodExit("com.jtmcn.archwiki.viewer.data.WikiPage com.jtmcn.archwiki.viewer.tasks.Fetch$2.mapTo(java.lang.String,java.lang.StringBuilder)",this);return WikiPageBuilder.buildPage(url, sb);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.jtmcn.archwiki.viewer.data.WikiPage com.jtmcn.archwiki.viewer.tasks.Fetch$2.mapTo(java.lang.String,java.lang.StringBuilder)",this,throwable);throw throwable;}
 				}
 			};
 
@@ -45,7 +45,7 @@ public class Fetch {
 			FetchUrl.OnFinish<List<SearchResult>> onFinish,
 			String url
 	) {
-		return new FetchUrl<>(onFinish, SEARCH_RESULTS_MAPPER).execute(url);
+		com.mijack.Xlog.logStaticMethodEnter("android.os.AsyncTask com.jtmcn.archwiki.viewer.tasks.Fetch.search(FetchUrl.OnFinish,java.lang.String)",onFinish,url);try{com.mijack.Xlog.logStaticMethodExit("android.os.AsyncTask com.jtmcn.archwiki.viewer.tasks.Fetch.search(FetchUrl.OnFinish,java.lang.String)");return new FetchUrl<>(onFinish, SEARCH_RESULTS_MAPPER).execute(url);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.os.AsyncTask com.jtmcn.archwiki.viewer.tasks.Fetch.search(FetchUrl.OnFinish,java.lang.String)",throwable);throw throwable;}
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class Fetch {
 			String url,
 			boolean caching
 	) {
-		return new FetchUrl<>(onFinish, WIKIPAGE_MAPPER).execute(url);
+		com.mijack.Xlog.logStaticMethodEnter("android.os.AsyncTask com.jtmcn.archwiki.viewer.tasks.Fetch.page(FetchUrl.OnFinish,java.lang.String,boolean)",onFinish,url,caching);try{com.mijack.Xlog.logStaticMethodExit("android.os.AsyncTask com.jtmcn.archwiki.viewer.tasks.Fetch.page(FetchUrl.OnFinish,java.lang.String,boolean)");return new FetchUrl<>(onFinish, WIKIPAGE_MAPPER).execute(url);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.os.AsyncTask com.jtmcn.archwiki.viewer.tasks.Fetch.page(FetchUrl.OnFinish,java.lang.String,boolean)",throwable);throw throwable;}
 	}
 
 }

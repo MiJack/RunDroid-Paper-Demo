@@ -26,7 +26,7 @@ public class NetworkUtils {
 	 * @throws IOException on network failure.
 	 */
 	public static StringBuilder fetchURL(String stringUrl) throws IOException {
-		return fetchURL(stringUrl, true);
+		com.mijack.Xlog.logStaticMethodEnter("java.lang.StringBuilder com.jtmcn.archwiki.viewer.utils.NetworkUtils.fetchURL(java.lang.String)",stringUrl);try{com.mijack.Xlog.logStaticMethodExit("java.lang.StringBuilder com.jtmcn.archwiki.viewer.utils.NetworkUtils.fetchURL(java.lang.String)");return fetchURL(stringUrl, true);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.StringBuilder com.jtmcn.archwiki.viewer.utils.NetworkUtils.fetchURL(java.lang.String)",throwable);throw throwable;}
 	}
 
 	/**
@@ -38,20 +38,20 @@ public class NetworkUtils {
 	 * @throws IOException on network failure.
 	 */
 	public static StringBuilder fetchURL(String stringUrl, boolean useCache) throws IOException {
-		StringBuilder sb = new StringBuilder("");
+		com.mijack.Xlog.logStaticMethodEnter("java.lang.StringBuilder com.jtmcn.archwiki.viewer.utils.NetworkUtils.fetchURL(java.lang.String,boolean)",stringUrl,useCache);try{StringBuilder sb = new StringBuilder("");
 		URL url = new URL(stringUrl);
 		if (useCache && downloadCache.containsKey(url)) {
-			return new StringBuilder(downloadCache.get(url));
+			{com.mijack.Xlog.logStaticMethodExit("java.lang.StringBuilder com.jtmcn.archwiki.viewer.utils.NetworkUtils.fetchURL(java.lang.String,boolean)");return new StringBuilder(downloadCache.get(url));}
 		}
 		HttpURLConnection urlConnection = (HttpURLConnection) url
 				.openConnection();
 
-		urlConnection.setReadTimeout(10000); // milliseconds
-		urlConnection.setConnectTimeout(15000); // milliseconds
+		urlConnection.setReadTimeout(10000); /*// milliseconds*/
+		urlConnection.setConnectTimeout(15000); /*// milliseconds*/
 		urlConnection.setRequestMethod("GET");
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(
-				urlConnection.getInputStream()), 8);// buffer 8k
+				urlConnection.getInputStream()), 8);/*// buffer 8k*/
 
 		String line;
 		String lineSeparator = System.getProperty("line.separator");
@@ -64,6 +64,6 @@ public class NetworkUtils {
 		in.close();
 
 		downloadCache.put(url, new StringBuilder(sb));
-		return sb;
+		{com.mijack.Xlog.logStaticMethodExit("java.lang.StringBuilder com.jtmcn.archwiki.viewer.utils.NetworkUtils.fetchURL(java.lang.String,boolean)");return sb;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.StringBuilder com.jtmcn.archwiki.viewer.utils.NetworkUtils.fetchURL(java.lang.String,boolean)",throwable);throw throwable;}
 	}
 }

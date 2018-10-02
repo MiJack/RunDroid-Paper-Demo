@@ -28,24 +28,24 @@ public class SearchResultsAdapter {
 	 * @return the adapter.
 	 */
 	public static CursorAdapter getCursorAdapter(Context context, List<SearchResult> results) {
-		int id = 0;
+		com.mijack.Xlog.logStaticMethodEnter("android.support.v4.widget.CursorAdapter com.jtmcn.archwiki.viewer.SearchResultsAdapter.getCursorAdapter(android.content.Context,java.util.List)",context,results);try{int id = 0;
 		MatrixCursor cursor = new MatrixCursor(columnNames);
 		for (SearchResult item : results) {
 			String[] temp = new String[2];
-			temp[0] = String.valueOf(id); // "_id"
-			temp[1] = item.getPageName(); // "title"
+			temp[0] = String.valueOf(id); /*// "_id"*/
+			temp[1] = item.getPageName(); /*// "title"*/
 
 			cursor.addRow(temp);
 			id++;
 		}
 
-		return new SimpleCursorAdapter(
+		{com.mijack.Xlog.logStaticMethodExit("android.support.v4.widget.CursorAdapter com.jtmcn.archwiki.viewer.SearchResultsAdapter.getCursorAdapter(android.content.Context,java.util.List)");return new SimpleCursorAdapter(
 				context,
 				R.layout.search_suggestions_list_item,
 				cursor,
 				from,
 				to,
 				CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
-		);
+		);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.support.v4.widget.CursorAdapter com.jtmcn.archwiki.viewer.SearchResultsAdapter.getCursorAdapter(android.content.Context,java.util.List)",throwable);throw throwable;}
 	}
 }

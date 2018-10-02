@@ -30,7 +30,7 @@ public class SearchResultsBuilder {
 	 * @return a url to fetch.
 	 */
 	public static String getSearchQuery(String query) {
-		return getSearchQuery(query, DEFAULT_LIMIT);
+		com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getSearchQuery(java.lang.String)",query);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getSearchQuery(java.lang.String)");return getSearchQuery(query, DEFAULT_LIMIT);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getSearchQuery(java.lang.String)",throwable);throw throwable;}
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class SearchResultsBuilder {
 	 * @return a url to fetch.
 	 */
 	public static String getSearchQuery(String query, int limit) {
-		return String.format(SEARCH_URL, limit, query);
+		com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getSearchQuery(java.lang.String,int)",query,limit);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getSearchQuery(java.lang.String,int)");return String.format(SEARCH_URL, limit, query);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getSearchQuery(java.lang.String,int)",throwable);throw throwable;}
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class SearchResultsBuilder {
 	 * @return a parsed list of the results.
 	 */
 	public static List<SearchResult> parseSearchResults(String jsonResult) {
-		JsonParser jsonParser = new JsonParser();
+		com.mijack.Xlog.logStaticMethodEnter("java.util.ArrayList com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.parseSearchResults(java.lang.String)",jsonResult);try{JsonParser jsonParser = new JsonParser();
 		JsonElement jsonRoot = jsonParser.parse(jsonResult);
 		List<SearchResult> toReturn = new ArrayList<>();
 		if (jsonRoot.isJsonArray()) {
@@ -64,7 +64,7 @@ public class SearchResultsBuilder {
 				}
 			}
 		}
-		return toReturn;
+		{com.mijack.Xlog.logStaticMethodExit("java.util.ArrayList com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.parseSearchResults(java.lang.String)");return toReturn;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.ArrayList com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.parseSearchResults(java.lang.String)",throwable);throw throwable;}
 	}
 
 	/**
@@ -74,10 +74,10 @@ public class SearchResultsBuilder {
 	 * @return the string array which was parsed.
 	 */
 	private static String[] getJsonArrayAsStringArray(JsonArray jsonArray) {
-		String[] s2 = new String[jsonArray.size()];
+		com.mijack.Xlog.logStaticMethodEnter("[java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getJsonArrayAsStringArray(com.google.gson.JsonArray)",jsonArray);try{String[] s2 = new String[jsonArray.size()];
 		for (int i = 0; i < jsonArray.size(); i++) {
 			s2[i] = jsonArray.get(i).getAsString();
 		}
-		return s2;
+		{com.mijack.Xlog.logStaticMethodExit("[java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getJsonArrayAsStringArray(com.google.gson.JsonArray)");return s2;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[java.lang.String com.jtmcn.archwiki.viewer.data.SearchResultsBuilder.getJsonArrayAsStringArray(com.google.gson.JsonArray)",throwable);throw throwable;}
 	}
 }

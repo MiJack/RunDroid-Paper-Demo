@@ -17,13 +17,13 @@ public class PreferencesActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
+		com.mijack.Xlog.logMethodEnter("void com.jtmcn.archwiki.viewer.PreferencesActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
+		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);com.mijack.Xlog.logMethodExit("void com.jtmcn.archwiki.viewer.PreferencesActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.jtmcn.archwiki.viewer.PreferencesActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
+		com.mijack.Xlog.logMethodEnter("void com.jtmcn.archwiki.viewer.PreferencesActivity.onPostCreate(@Nullable Bundle)",this,savedInstanceState);try{super.onPostCreate(savedInstanceState);
 		setContentView(R.layout.activity_preferences);
 
 		getFragmentManager().beginTransaction()
@@ -37,17 +37,17 @@ public class PreferencesActivity extends AppCompatActivity {
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			getSupportActionBar().setHomeButtonEnabled(true);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.jtmcn.archwiki.viewer.PreferencesActivity.onPostCreate(@Nullable Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.jtmcn.archwiki.viewer.PreferencesActivity.onPostCreate(@Nullable Bundle)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+		com.mijack.Xlog.logMethodEnter("boolean com.jtmcn.archwiki.viewer.PreferencesActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
 				break;
 		}
-		return true;
+		{com.mijack.Xlog.logMethodExit("boolean com.jtmcn.archwiki.viewer.PreferencesActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.jtmcn.archwiki.viewer.PreferencesActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -56,8 +56,8 @@ public class PreferencesActivity extends AppCompatActivity {
 	public static class ApplicationPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle bundle) {
-			super.onCreate(bundle);
-			addPreferencesFromResource(R.xml.prefs);
+			com.mijack.Xlog.logMethodEnter("void com.jtmcn.archwiki.viewer.PreferencesActivity$ApplicationPreferenceFragment.onCreate(android.os.Bundle)",this,bundle);try{super.onCreate(bundle);
+			addPreferencesFromResource(R.xml.prefs);com.mijack.Xlog.logMethodExit("void com.jtmcn.archwiki.viewer.PreferencesActivity$ApplicationPreferenceFragment.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.jtmcn.archwiki.viewer.PreferencesActivity$ApplicationPreferenceFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
 		}
 	}
 }

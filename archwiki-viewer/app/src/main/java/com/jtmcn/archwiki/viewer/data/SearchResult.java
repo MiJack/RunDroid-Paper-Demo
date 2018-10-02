@@ -19,19 +19,19 @@ public class SearchResult {
 	}
 
 	public String getPageName() {
-		return pageName;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.getPageName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.getPageName()",this);return pageName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.getPageName()",this,throwable);throw throwable;}
 	}
 
 	public String getPageUrl() {
-		return pageUrl;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.getPageUrl()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.getPageUrl()",this);return pageUrl;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.getPageUrl()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("SearchResult{");
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.toString()",this);try{StringBuilder sb = new StringBuilder("SearchResult{");
 		sb.append("title='").append(pageName).append('\'');
 		sb.append(", url='").append(pageUrl).append('\'');
 		sb.append('}');
-		return sb.toString();
+		{com.mijack.Xlog.logMethodExit("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.toString()",this);return sb.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.jtmcn.archwiki.viewer.data.SearchResult.toString()",this,throwable);throw throwable;}
 	}
 }

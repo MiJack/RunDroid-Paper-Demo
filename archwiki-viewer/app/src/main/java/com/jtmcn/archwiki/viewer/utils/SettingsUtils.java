@@ -13,12 +13,12 @@ import com.jtmcn.archwiki.viewer.PreferencesActivity;
 public class SettingsUtils {
 
 	public static int getFontSize(Context context) {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		com.mijack.Xlog.logStaticMethodEnter("int com.jtmcn.archwiki.viewer.utils.SettingsUtils.getFontSize(android.content.Context)",context);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-		// https://stackoverflow.com/questions/11346916/listpreference-use-string-array-as-entry-and-integer-array-as-entry-values-does
-		// the value of this preference must be parsed as a string
+		/*// https://stackoverflow.com/questions/11346916/listpreference-use-string-array-as-entry-and-integer-array-as-entry-values-does*/
+		/*// the value of this preference must be parsed as a string*/
 		String fontSizePref = prefs.getString(PreferencesActivity.KEY_TEXT_SIZE, "2");
-		return Integer.valueOf(fontSizePref);
+		{com.mijack.Xlog.logStaticMethodExit("int com.jtmcn.archwiki.viewer.utils.SettingsUtils.getFontSize(android.content.Context)");return Integer.valueOf(fontSizePref);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.jtmcn.archwiki.viewer.utils.SettingsUtils.getFontSize(android.content.Context)",throwable);throw throwable;}
 
 	}
 }
