@@ -46,20 +46,20 @@ public class SaveDatabaseAsyncTask extends AsyncTask<PasswordDatabase, Void, Str
 
     @Override
     protected void onPreExecute() {
-        progressDialog = ProgressDialog.show(activity, "", activity.getString(R.string.saving_database));
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SaveDatabaseAsyncTask.onPreExecute()",this);try{progressDialog = ProgressDialog.show(activity, "", activity.getString(R.string.saving_database));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SaveDatabaseAsyncTask.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SaveDatabaseAsyncTask.onPreExecute()",this,throwable);throw throwable;}
     }
 
     @Override
     protected String doInBackground(PasswordDatabase... params) {
-        String message = null;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.SaveDatabaseAsyncTask.doInBackground([com.u17od.upm.database.PasswordDatabase)",this,params);try{String message = null;
 
         try {
             synchronized (UPMApplication.sDataLock) {
                 params[0].save();
             }
 
-            // Ask the BackupManager to backup the database using
-            // Google's cloud backup service.
+            /*// Ask the BackupManager to backup the database using*/
+            /*// Google's cloud backup service.*/
             Log.i("SaveDatabaseAsyncTask", "Calling BackupManager().dataChanged()");
             ((UPMApplication) activity.getApplication()).getBackupManager().dataChanged();
         } catch (IllegalBlockSizeException e) {
@@ -73,18 +73,18 @@ public class SaveDatabaseAsyncTask extends AsyncTask<PasswordDatabase, Void, Str
             message = String.format(activity.getString(R.string.problem_saving_db), e.getMessage());
         }
 
-        return message;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.SaveDatabaseAsyncTask.doInBackground([com.u17od.upm.database.PasswordDatabase)",this);return message;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.SaveDatabaseAsyncTask.doInBackground([com.u17od.upm.database.PasswordDatabase)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostExecute(String result) {
-        if (result != null) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SaveDatabaseAsyncTask.onPostExecute(java.lang.String)",this,result);try{if (result != null) {
             UIUtilities.showToast(activity, result, true);
         }
 
         progressDialog.dismiss();
         
-        callback.execute();
+        callback.execute();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SaveDatabaseAsyncTask.onPostExecute(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SaveDatabaseAsyncTask.onPostExecute(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

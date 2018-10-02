@@ -35,7 +35,7 @@ public class Revision extends FlatPackObject {
     
     
     public int increment() {
-        return ++revision;
+        com.mijack.Xlog.logMethodEnter("int com.u17od.upm.database.Revision.increment()",this);try{com.mijack.Xlog.logMethodExit("int com.u17od.upm.database.Revision.increment()",this);return ++revision;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.u17od.upm.database.Revision.increment()",this,throwable);throw throwable;}
     }
     
     public Revision(InputStream is) throws IOException, ProblemReadingDatabaseFile {
@@ -44,17 +44,17 @@ public class Revision extends FlatPackObject {
 
     
     public void flatPack(OutputStream os) throws IOException {
-        os.write(flatPack(String.valueOf(revision)));
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.Revision.flatPack(java.io.OutputStream)",this,os);try{os.write(flatPack(String.valueOf(revision)));com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.Revision.flatPack(java.io.OutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.Revision.flatPack(java.io.OutputStream)",this,throwable);throw throwable;}
     }
 
     
     public int getRevision() {
-        return revision;
+        com.mijack.Xlog.logMethodEnter("int com.u17od.upm.database.Revision.getRevision()",this);try{com.mijack.Xlog.logMethodExit("int com.u17od.upm.database.Revision.getRevision()",this);return revision;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.u17od.upm.database.Revision.getRevision()",this,throwable);throw throwable;}
     }
     
     
     public void setRevision(int revision) {
-        this.revision = revision;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.Revision.setRevision(int)",this,revision);try{this.revision = revision;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.Revision.setRevision(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.Revision.setRevision(int)",this,throwable);throw throwable;}
     }
 
 }

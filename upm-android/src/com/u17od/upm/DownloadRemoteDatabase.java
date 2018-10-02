@@ -51,7 +51,7 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
     private EditText password;
 
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.DownloadRemoteDatabase.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.download_remote_db);
 
         urlEditText = (EditText) findViewById(R.id.remote_db_url);
@@ -65,18 +65,18 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
         cancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                com.mijack.Xlog.logMethodEnter("void com.u17od.upm.DownloadRemoteDatabase$1.onClick(android.view.View)",this,v);try{finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.DownloadRemoteDatabase$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.DownloadRemoteDatabase$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.u17od.upm.DownloadRemoteDatabase.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.DownloadRemoteDatabase.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onClick(View v) {
-        new DownloadDatabase().execute();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.DownloadRemoteDatabase.onClick(android.view.View)",this,v);try{new DownloadDatabase().execute();com.mijack.Xlog.logMethodExit("void com.u17od.upm.DownloadRemoteDatabase.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.DownloadRemoteDatabase.onClick(android.view.View)",this,throwable);throw throwable;}
     }
 
     private UPMApplication getUPMApplication() {
-        return (UPMApplication) getApplication();
+        com.mijack.Xlog.logMethodEnter("com.u17od.upm.UPMApplication com.u17od.upm.DownloadRemoteDatabase.getUPMApplication()",this);try{com.mijack.Xlog.logMethodExit("com.u17od.upm.UPMApplication com.u17od.upm.DownloadRemoteDatabase.getUPMApplication()",this);return (UPMApplication) getApplication();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.u17od.upm.UPMApplication com.u17od.upm.DownloadRemoteDatabase.getUPMApplication()",this,throwable);throw throwable;}
     }
 
     /**
@@ -85,15 +85,15 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (resultCode == Activity.RESULT_CANCELED) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.DownloadRemoteDatabase.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,intent);try{if (resultCode == Activity.RESULT_CANCELED) {
             UIUtilities.showToast(this, R.string.enter_password_cancalled);
         } else {
             if (requestCode == ENTER_PW_REQUEST_CODE) {
-                // Setting the DatabaseFileName preference effectively says
-                // that this is the db to open when the app starts
+                /*// Setting the DatabaseFileName preference effectively says*/
+                /*// that this is the db to open when the app starts*/
                 Utilities.setDatabaseFileName(getDatabaseFileNameFromURL(), DownloadRemoteDatabase.this);
                 
-                // Put a reference to the decrypted database on the Application object
+                /*// Put a reference to the decrypted database on the Application object*/
                 UPMApplication app = (UPMApplication) getApplication();
                 app.setPasswordDatabase(EnterMasterPassword.decryptedPasswordDatabase);
                 app.setTimeOfLastSync(new Date());
@@ -101,16 +101,16 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
                 setResult(RESULT_OK);
                 finish();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.DownloadRemoteDatabase.onActivityResult(int,int,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.DownloadRemoteDatabase.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     private String getDatabaseFileNameFromURL() {
-        // We need to store the database file name so that we know 
-        // the name of the db to open when starting up
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.DownloadRemoteDatabase.getDatabaseFileNameFromURL()",this);try{/*// We need to store the database file name so that we know */
+        /*// the name of the db to open when starting up*/
         String url = urlEditText.getText().toString();
         int slashIndex = url.lastIndexOf('/');
         String fileName = url.substring(slashIndex + 1);
-        return fileName;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.DownloadRemoteDatabase.getDatabaseFileNameFromURL()",this);return fileName;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.DownloadRemoteDatabase.getDatabaseFileNameFromURL()",this,throwable);throw throwable;}
     }
 
     private class DownloadDatabase extends AsyncTask<Void, Void, Integer> {
@@ -123,7 +123,7 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
         private ProgressDialog progressDialog;
 
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(DownloadRemoteDatabase.this, "", getString(R.string.downloading_db));
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.onPreExecute()",this);try{progressDialog = ProgressDialog.show(DownloadRemoteDatabase.this, "", getString(R.string.downloading_db));com.mijack.Xlog.logMethodExit("void com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.onPreExecute()",this,throwable);throw throwable;}
         }
 
         /**
@@ -133,7 +133,7 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
          */
         @Override
         protected Integer doInBackground(Void... params) {
-            int errorCode = 0;
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.doInBackground([java.lang.Void)",this,params);try{int errorCode = 0;
 
             SharedPreferences settings = getSharedPreferences(Prefs.PREFS_NAME, 0);
             String trustedHostname = settings.getString(Prefs.PREF_TRUSTED_HOSTNAME, "");
@@ -148,9 +148,9 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
                         password.getText().toString());
 
                 if (PasswordDatabase.isPasswordDatabase(passwordDBBytes)) {
-                    // Copy the downloaded bytes to the app's files dir.
-                    // We retain the file name so that we know what file to delete
-                    // on the server when doing a sync.
+                    /*// Copy the downloaded bytes to the app's files dir.*/
+                    /*// We retain the file name so that we know what file to delete*/
+                    /*// on the server when doing a sync.*/
                     File destFile = new File(getFilesDir(), getDatabaseFileNameFromURL());
 
                     BufferedOutputStream buf = new BufferedOutputStream(
@@ -160,8 +160,8 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
 
                     EnterMasterPassword.databaseFileToDecrypt = destFile;
 
-                    // Ask the BackupManager to backup the database using
-                    // Google's cloud backup service.
+                    /*// Ask the BackupManager to backup the database using*/
+                    /*// Google's cloud backup service.*/
                     Log.i("DownloadRemoteDatabase", "Calling BackupManager().dataChanged()");
                     getUPMApplication().getBackupManager().dataChanged();
                 } else {
@@ -177,7 +177,7 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
                 errorCode = PROBLEM_SAVING_DB;
             }
 
-            return errorCode;
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.doInBackground([java.lang.Void)",this);return errorCode;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.doInBackground([java.lang.Void)",this,throwable);throw throwable;}
         }
 
         /*
@@ -185,13 +185,13 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
          * Otherwise launch the EnterMasterPassword activity. 
          */
         protected void onPostExecute(Integer result) {
-            progressDialog.dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.onPostExecute(java.lang.Integer)",this,result);try{progressDialog.dismiss();
 
             Intent i = null;
             switch (result) {
                 case 0:
-                    // Call up the EnterMasterPassword activity
-                    // When it returns we'll pick up in the method onActivityResult
+                    /*// Call up the EnterMasterPassword activity*/
+                    /*// When it returns we'll pick up in the method onActivityResult*/
                     i = new Intent(DownloadRemoteDatabase.this, EnterMasterPassword.class);
                     startActivityForResult(i, ENTER_PW_REQUEST_CODE);
                     break;
@@ -208,7 +208,7 @@ public class DownloadRemoteDatabase extends Activity implements OnClickListener 
                             String.format(getString(R.string.problem_saving_db), errorMessage),
                             true);
                     break;
-            }
+            }com.mijack.Xlog.logMethodExit("void com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.DownloadRemoteDatabase$DownloadDatabase.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
 
     }

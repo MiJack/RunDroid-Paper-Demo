@@ -81,46 +81,46 @@ public class EncryptionService {
 
 
     private void initCiphers() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
-        PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, SALT_GEN_ITER_COUNT);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.crypto.EncryptionService.initCiphers()",this);try{PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, SALT_GEN_ITER_COUNT);
 
         encryptionCipher = Cipher.getInstance(PBEWithSHA256And256BitAES);
         decryptionCipher = Cipher.getInstance(PBEWithSHA256And256BitAES);
 
         encryptionCipher.init(Cipher.ENCRYPT_MODE, secretKey, pbeParamSpec);
-        decryptionCipher.init(Cipher.DECRYPT_MODE, secretKey, pbeParamSpec);
+        decryptionCipher.init(Cipher.DECRYPT_MODE, secretKey, pbeParamSpec);com.mijack.Xlog.logMethodExit("void com.u17od.upm.crypto.EncryptionService.initCiphers()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.crypto.EncryptionService.initCiphers()",this,throwable);throw throwable;}
     }
 
 
     public byte[] encrypt(byte[] cleartext) throws IllegalBlockSizeException, BadPaddingException {
-        return encryptionCipher.doFinal(cleartext);
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.crypto.EncryptionService.encrypt([byte)",this,cleartext);try{com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.crypto.EncryptionService.encrypt([byte)",this);return encryptionCipher.doFinal(cleartext);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.crypto.EncryptionService.encrypt([byte)",this,throwable);throw throwable;}
     }
 
 
     public byte[] decrypt(byte[] ciphertext) throws IllegalBlockSizeException, InvalidPasswordException {
-        byte[] retVal;
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.crypto.EncryptionService.decrypt([byte)",this,ciphertext);try{byte[] retVal;
         try {
             retVal = decryptionCipher.doFinal(ciphertext);
         } catch (BadPaddingException e) {
             throw new InvalidPasswordException(); 
         }
-        return retVal;
+        {com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.crypto.EncryptionService.decrypt([byte)",this);return retVal;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.crypto.EncryptionService.decrypt([byte)",this,throwable);throw throwable;}
     }
 
 
     public byte[] getSalt() {
-        return salt;
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.crypto.EncryptionService.getSalt()",this);try{com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.crypto.EncryptionService.getSalt()",this);return salt;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.crypto.EncryptionService.getSalt()",this,throwable);throw throwable;}
     }
 
 
     public SecretKey getSecretKey() {
-        return secretKey;
+        com.mijack.Xlog.logMethodEnter("javax.crypto.SecretKey com.u17od.upm.crypto.EncryptionService.getSecretKey()",this);try{com.mijack.Xlog.logMethodExit("javax.crypto.SecretKey com.u17od.upm.crypto.EncryptionService.getSecretKey()",this);return secretKey;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("javax.crypto.SecretKey com.u17od.upm.crypto.EncryptionService.getSecretKey()",this,throwable);throw throwable;}
     }
 
     
     public static SecretKey createSecretKey(char[] password) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        PBEKeySpec pbeKeySpec = new PBEKeySpec(password);
+        com.mijack.Xlog.logStaticMethodEnter("javax.crypto.SecretKey com.u17od.upm.crypto.EncryptionService.createSecretKey([char)",password);try{PBEKeySpec pbeKeySpec = new PBEKeySpec(password);
         SecretKeyFactory keyFac = SecretKeyFactory.getInstance(PBEWithSHA256And256BitAES);
-        return keyFac.generateSecret(pbeKeySpec);
+        {com.mijack.Xlog.logStaticMethodExit("javax.crypto.SecretKey com.u17od.upm.crypto.EncryptionService.createSecretKey([char)");return keyFac.generateSecret(pbeKeySpec);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("javax.crypto.SecretKey com.u17od.upm.crypto.EncryptionService.createSecretKey([char)",throwable);throw throwable;}
     }
 
 }

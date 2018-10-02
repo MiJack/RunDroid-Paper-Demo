@@ -19,18 +19,18 @@ public class SyncDatabaseViaHttpActivity extends SyncDatabaseActivity {
 
     @Override
     protected void onResume() {
-        super.onResume();
-        downloadDatabase();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaHttpActivity.onResume()",this);try{super.onResume();
+        downloadDatabase();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaHttpActivity.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaHttpActivity.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void downloadDatabase() {
-        new RetrieveRemoteDatabaseFromHTTP().execute();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaHttpActivity.downloadDatabase()",this);try{new RetrieveRemoteDatabaseFromHTTP().execute();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaHttpActivity.downloadDatabase()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaHttpActivity.downloadDatabase()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void uploadDatabase() {
-        new UploadDatabase().execute();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaHttpActivity.uploadDatabase()",this);try{new UploadDatabase().execute();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaHttpActivity.uploadDatabase()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaHttpActivity.uploadDatabase()",this,throwable);throw throwable;}
     }
 
     private class RetrieveRemoteDatabaseFromHTTP extends AsyncTask<Void, Void, Integer> {
@@ -42,12 +42,12 @@ public class SyncDatabaseViaHttpActivity extends SyncDatabaseActivity {
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(SyncDatabaseViaHttpActivity.this, "", getString(R.string.syncing_database));
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.onPreExecute()",this);try{progressDialog = ProgressDialog.show(SyncDatabaseViaHttpActivity.this, "", getString(R.string.syncing_database));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected Integer doInBackground(Void... params) {
-            int errorCode = 0;
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.doInBackground([java.lang.Void)",this,params);try{int errorCode = 0;
 
             String remoteURL = getPasswordDatabase().getDbOptions().getRemoteLocation();
             if (remoteURL.trim().equals("")) {
@@ -76,12 +76,12 @@ public class SyncDatabaseViaHttpActivity extends SyncDatabaseActivity {
                 }
             }
 
-            return errorCode;
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.doInBackground([java.lang.Void)",this);return errorCode;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.doInBackground([java.lang.Void)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            progressDialog.dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.onPostExecute(java.lang.Integer)",this,result);try{progressDialog.dismiss();
 
             switch (result) {
                 case 0:
@@ -97,7 +97,7 @@ public class SyncDatabaseViaHttpActivity extends SyncDatabaseActivity {
                             R.string.no_remote_db);
                     finish();
                     break;
-            }
+            }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaHttpActivity$RetrieveRemoteDatabaseFromHTTP.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
 
     }
@@ -111,12 +111,12 @@ public class SyncDatabaseViaHttpActivity extends SyncDatabaseActivity {
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(SyncDatabaseViaHttpActivity.this, "", getString(R.string.uploading_database));
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.onPreExecute()",this);try{progressDialog = ProgressDialog.show(SyncDatabaseViaHttpActivity.this, "", getString(R.string.uploading_database));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected Integer doInBackground(Void... params) {
-            int result = UPLOAD_OK;
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.doInBackground([java.lang.Void)",this,params);try{int result = UPLOAD_OK;
 
             String remoteURL = getPasswordDatabase().getDbOptions().getRemoteLocation();
             String remoteURLUsername = null, remoteURLPassword = null;
@@ -142,18 +142,18 @@ public class SyncDatabaseViaHttpActivity extends SyncDatabaseActivity {
                 result = UPLOAD_ERROR;
             }
 
-            return result;
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.doInBackground([java.lang.Void)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.doInBackground([java.lang.Void)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            progressDialog.dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.onPostExecute(java.lang.Integer)",this,result);try{progressDialog.dismiss();
             if (result == UPLOAD_OK) {
                 UIUtilities.showToast(SyncDatabaseViaHttpActivity.this, R.string.db_sync_complete);
             } else {
                 UIUtilities.showToast(SyncDatabaseViaHttpActivity.this, R.string.problem_uploading);
             }
-            finish();
+            finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaHttpActivity$UploadDatabase.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
 
     }

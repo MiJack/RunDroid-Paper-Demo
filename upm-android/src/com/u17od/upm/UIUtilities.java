@@ -26,15 +26,15 @@ import android.widget.Toast;
 public class UIUtilities {
 
     public static void showToast(Context context, int id) {
-        showToast(context, id, false);
+        com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.UIUtilities.showToast(android.content.Context,int)",context,id);try{showToast(context, id, false);com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.UIUtilities.showToast(android.content.Context,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.UIUtilities.showToast(android.content.Context,int)",throwable);throw throwable;}
     }
 
     public static void showToast(Context context, int id, boolean longToast) {
-        Toast.makeText(context, id, longToast ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();
+        com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.UIUtilities.showToast(android.content.Context,int,boolean)",context,id,longToast);try{Toast.makeText(context, id, longToast ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.UIUtilities.showToast(android.content.Context,int,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.UIUtilities.showToast(android.content.Context,int,boolean)",throwable);throw throwable;}
     }
 
     public static void showToast(Context context, String message, boolean longToast) {
-        Toast.makeText(context, message, longToast ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();
+        com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.UIUtilities.showToast(android.content.Context,java.lang.String,boolean)",context,message,longToast);try{Toast.makeText(context, message, longToast ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.UIUtilities.showToast(android.content.Context,java.lang.String,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.UIUtilities.showToast(android.content.Context,java.lang.String,boolean)",throwable);throw throwable;}
     }
 
 }

@@ -48,31 +48,31 @@ public abstract class FlatPackObject {
      * @throws UnsupportedEncodingException 
      */
     protected byte[] flatPack(String s) throws UnsupportedEncodingException {
-        return flatPack(s.getBytes("UTF-8"));
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.database.FlatPackObject.flatPack(java.lang.String)",this,s);try{com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.database.FlatPackObject.flatPack(java.lang.String)",this);return flatPack(s.getBytes("UTF-8"));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.database.FlatPackObject.flatPack(java.lang.String)",this,throwable);throw throwable;}
     }
     
 
     protected byte[] flatPack(byte[] bytesToFlatPack) throws UnsupportedEncodingException {
-        //Create a byte array populated with the field length 
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.database.FlatPackObject.flatPack([byte)",this,bytesToFlatPack);try{/*//Create a byte array populated with the field length */
         String l = Util.lpad(bytesToFlatPack.length, LENGTH_FIELD_NUM_CHARS, '0');
         byte[] fieldLengthBytes = l.getBytes("UTF-8");
         
-        //Declare the buffer we're going to return
+        /*//Declare the buffer we're going to return*/
         byte[] returnBuffer = new byte[fieldLengthBytes.length + bytesToFlatPack.length];
 
-        //Populate the return buffer with the 'field length' bytes and 'field contents' bytes
+        /*//Populate the return buffer with the 'field length' bytes and 'field contents' bytes*/
         System.arraycopy(fieldLengthBytes, 0, returnBuffer, 0, fieldLengthBytes.length);
         System.arraycopy(bytesToFlatPack, 0, returnBuffer, fieldLengthBytes.length, bytesToFlatPack.length);
 
-        return returnBuffer;
+        {com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.database.FlatPackObject.flatPack([byte)",this);return returnBuffer;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.database.FlatPackObject.flatPack([byte)",this,throwable);throw throwable;}
     }
 
 
     public byte[] getBytes(InputStream is) throws IOException, ProblemReadingDatabaseFile {
-        
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.database.FlatPackObject.getBytes(java.io.InputStream)",this,is);try{
         byte[] fieldContents = null;
         
-        //Get the length of the next field
+        /*//Get the length of the next field*/
         byte[] fieldLength = new byte[LENGTH_FIELD_NUM_CHARS];
         int bytesRead = is.read(fieldLength);
         if (bytesRead == -1 || bytesRead != LENGTH_FIELD_NUM_CHARS) {
@@ -82,11 +82,11 @@ public abstract class FlatPackObject {
         try {
             int i = Integer.parseInt(s);
 
-            //Read the field
+            /*//Read the field*/
             fieldContents = new byte[i];
             
-            //Had to do it this way because the next section (commented out)
-            //didn't read in the correct number of bytes
+            /*//Had to do it this way because the next section (commented out)*/
+            /*//didn't read in the correct number of bytes*/
             for (int j=0; j<i; j++) {
                 fieldContents[j] = (byte) is.read();
                 if (fieldContents[j] == -1) {
@@ -109,23 +109,23 @@ public abstract class FlatPackObject {
             throw new ProblemReadingDatabaseFile("A field length had invalid characters", e);
         }
                 
-        return fieldContents;
+        {com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.database.FlatPackObject.getBytes(java.io.InputStream)",this);return fieldContents;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.database.FlatPackObject.getBytes(java.io.InputStream)",this,throwable);throw throwable;}
         
     }
     
     
     public int getInt(InputStream is) throws IOException, ProblemReadingDatabaseFile {
-        return Integer.parseInt(getString(is));
+        com.mijack.Xlog.logMethodEnter("int com.u17od.upm.database.FlatPackObject.getInt(java.io.InputStream)",this,is);try{com.mijack.Xlog.logMethodExit("int com.u17od.upm.database.FlatPackObject.getInt(java.io.InputStream)",this);return Integer.parseInt(getString(is));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.u17od.upm.database.FlatPackObject.getInt(java.io.InputStream)",this,throwable);throw throwable;}
     }
 
 
     public String getString(InputStream is) throws IOException, ProblemReadingDatabaseFile {
-        return new String(getBytes(is), "UTF-8");
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.FlatPackObject.getString(java.io.InputStream)",this,is);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.FlatPackObject.getString(java.io.InputStream)",this);return new String(getBytes(is), "UTF-8");}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.FlatPackObject.getString(java.io.InputStream)",this,throwable);throw throwable;}
     }
 
 
     public String getString(InputStream is, Charset charset) throws IOException, ProblemReadingDatabaseFile {
-        return new String(getBytes(is), charset.name());
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.FlatPackObject.getString(java.io.InputStream,java.nio.charset.Charset)",this,is,charset);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.FlatPackObject.getString(java.io.InputStream,java.nio.charset.Charset)",this);return new String(getBytes(is), charset.name());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.FlatPackObject.getString(java.io.InputStream,java.nio.charset.Charset)",this,throwable);throw throwable;}
     }
 
     public abstract void flatPack(OutputStream os) throws IOException;

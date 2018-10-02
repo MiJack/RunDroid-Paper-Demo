@@ -35,7 +35,7 @@ public abstract class SyncDatabaseActivity extends Activity {
     protected abstract void downloadDatabase();
 
     protected void decryptDatabase() {
-        SecretKey existingDBSecretKey = getPasswordDatabase().getEncryptionService().getSecretKey();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseActivity.decryptDatabase()",this);try{SecretKey existingDBSecretKey = getPasswordDatabase().getEncryptionService().getSecretKey();
         try {
             PasswordDatabase passwordDatabase = null;
             if (downloadedDatabaseFile != null) {
@@ -58,12 +58,12 @@ public abstract class SyncDatabaseActivity extends Activity {
             EnterMasterPassword.databaseFileToDecrypt = downloadedDatabaseFile;
             Intent i = new Intent(SyncDatabaseActivity.this, EnterMasterPassword.class);
             startActivityForResult(i, ENTER_PW_REQUEST_CODE);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseActivity.decryptDatabase()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseActivity.decryptDatabase()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch(requestCode) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseActivity.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,intent);try{switch(requestCode) {
             case ENTER_PW_REQUEST_CODE:
                 if (resultCode == Activity.RESULT_CANCELED) {
                     UIUtilities.showToast(this, R.string.enter_password_cancalled);
@@ -72,7 +72,7 @@ public abstract class SyncDatabaseActivity extends Activity {
                     syncDb(EnterMasterPassword.decryptedPasswordDatabase);
                 }
                 break;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseActivity.onActivityResult(int,int,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseActivity.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     /**
@@ -81,7 +81,7 @@ public abstract class SyncDatabaseActivity extends Activity {
      * the accounts listview
      */
     protected int syncDb(PasswordDatabase dbDownloadedOnSync) {
-        int syncResult = SyncResult.IN_SYNC;
+        com.mijack.Xlog.logMethodEnter("int com.u17od.upm.SyncDatabaseActivity.syncDb(com.u17od.upm.database.PasswordDatabase)",this,dbDownloadedOnSync);try{int syncResult = SyncResult.IN_SYNC;
         UPMApplication app = (UPMApplication) getApplication();
         if (dbDownloadedOnSync == null || dbDownloadedOnSync.getRevision() < app.getPasswordDatabase().getRevision()) {
             uploadDatabase();
@@ -94,8 +94,8 @@ public abstract class SyncDatabaseActivity extends Activity {
             syncResult = SyncResult.KEEP_REMOTE;
             UIUtilities.showToast(this, R.string.new_db_downloaded);
 
-            // Ask the BackupManager to backup the database using
-            // Google's cloud backup service.
+            /*// Ask the BackupManager to backup the database using*/
+            /*// Google's cloud backup service.*/
             Log.i("SyncDatabaseActivity", "Calling BackupManager().dataChanged()");
             app.getBackupManager().dataChanged();
 
@@ -108,11 +108,11 @@ public abstract class SyncDatabaseActivity extends Activity {
         if (downloadedDatabaseFile != null) {
             downloadedDatabaseFile.delete();
         }
-        return syncResult;
+        {com.mijack.Xlog.logMethodExit("int com.u17od.upm.SyncDatabaseActivity.syncDb(com.u17od.upm.database.PasswordDatabase)",this);return syncResult;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.u17od.upm.SyncDatabaseActivity.syncDb(com.u17od.upm.database.PasswordDatabase)",this,throwable);throw throwable;}
     }
 
     protected PasswordDatabase getPasswordDatabase() {
-        return ((UPMApplication) getApplication()).getPasswordDatabase();
+        com.mijack.Xlog.logMethodEnter("com.u17od.upm.database.PasswordDatabase com.u17od.upm.SyncDatabaseActivity.getPasswordDatabase()",this);try{com.mijack.Xlog.logMethodExit("com.u17od.upm.database.PasswordDatabase com.u17od.upm.SyncDatabaseActivity.getPasswordDatabase()",this);return ((UPMApplication) getApplication()).getPasswordDatabase();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.u17od.upm.database.PasswordDatabase com.u17od.upm.SyncDatabaseActivity.getPasswordDatabase()",this,throwable);throw throwable;}
     }
 
 }

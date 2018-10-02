@@ -42,12 +42,12 @@ public abstract class Transport {
     public abstract File getRemoteFile(String remoteLocation, String username, String password) throws TransportException;
 
     public static boolean isASupportedProtocol(String protocol) {
-        boolean supported = false;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.u17od.upm.transport.Transport.isASupportedProtocol(java.lang.String)",protocol);try{boolean supported = false;
         if (protocol.equals("http")) {
             supported = true;
         } else if (protocol.equals("file")) {
             supported = true;
         }
-        return supported;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.u17od.upm.transport.Transport.isASupportedProtocol(java.lang.String)");return supported;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.u17od.upm.transport.Transport.isASupportedProtocol(java.lang.String)",throwable);throw throwable;}
     }
 }

@@ -31,50 +31,50 @@ public class SearchResults extends AccountsList {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SearchResults.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.search_results);
-        registerForContextMenu(getListView());
+        registerForContextMenu(getListView());com.mijack.Xlog.logMethodExit("void com.u17od.upm.SearchResults.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SearchResults.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onSearchRequested() {
-        // Returning false here means that if the user can't initiate a search
-        // while on the SearchResults page
-        return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.SearchResults.onSearchRequested()",this);try{/*// Returning false here means that if the user can't initiate a search*/
+        /*// while on the SearchResults page*/
+        {com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.SearchResults.onSearchRequested()",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.SearchResults.onSearchRequested()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onResume() {
-        super.onResume();
-        // If the pw database is null then just close the activity.
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SearchResults.onResume()",this);try{super.onResume();
+        /*// If the pw database is null then just close the activity.*/
         if (getPasswordDatabase() == null) {
             finish();
         } else {
             doSearch();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SearchResults.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SearchResults.onResume()",this,throwable);throw throwable;}
     }
 
     private void doSearch() {
-        final Intent queryIntent = getIntent();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SearchResults.doSearch()",this);try{final Intent queryIntent = getIntent();
         final String queryAction = queryIntent.getAction();
         if (Intent.ACTION_SEARCH.equals(queryAction)) {
             filterAccountsList(queryIntent.getStringExtra(SearchManager.QUERY));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SearchResults.doSearch()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SearchResults.doSearch()",this,throwable);throw throwable;}
     }
 
     private void filterAccountsList(String textToFilterOn) {
-        ArrayList<String> allAccountNames = getPasswordDatabase().getAccountNames(); 
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SearchResults.filterAccountsList(java.lang.String)",this,textToFilterOn);try{ArrayList<String> allAccountNames = getPasswordDatabase().getAccountNames(); 
         ArrayList<String> filteredAccountNames = new ArrayList<String>();
         String textToFilterOnLC = textToFilterOn.toLowerCase();
         
-        // Loop through all the accounts and pick out those that match the search string
+        /*// Loop through all the accounts and pick out those that match the search string*/
         for (String accountName : allAccountNames) {
             if (accountName.toLowerCase().indexOf(textToFilterOnLC) > -1) {
                 filteredAccountNames.add(accountName);
             }
         }
 
-        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filteredAccountNames));
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, filteredAccountNames));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SearchResults.filterAccountsList(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SearchResults.filterAccountsList(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

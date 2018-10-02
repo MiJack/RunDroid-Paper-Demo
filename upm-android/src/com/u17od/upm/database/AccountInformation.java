@@ -65,59 +65,59 @@ public class AccountInformation extends FlatPackObject {
     
     
     public void flatPack(OutputStream os) throws IOException {
-        os.write(flatPack(accountName));
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.AccountInformation.flatPack(java.io.OutputStream)",this,os);try{os.write(flatPack(accountName));
         os.write(flatPack(userId));
         os.write(flatPack(password));
         os.write(flatPack(url));
-        os.write(flatPack(notes));
+        os.write(flatPack(notes));com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.AccountInformation.flatPack(java.io.OutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.AccountInformation.flatPack(java.io.OutputStream)",this,throwable);throw throwable;}
     }
 
     private void assemble(InputStream is, Charset charset) throws IOException, ProblemReadingDatabaseFile {
-        accountName = getString(is, charset);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.AccountInformation.assemble(java.io.InputStream,java.nio.charset.Charset)",this,is,charset);try{accountName = getString(is, charset);
         userId = getString(is, charset);
         password = getString(is, charset);
         url = getString(is, charset);
-        notes = getString(is, charset);
+        notes = getString(is, charset);com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.AccountInformation.assemble(java.io.InputStream,java.nio.charset.Charset)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.AccountInformation.assemble(java.io.InputStream,java.nio.charset.Charset)",this,throwable);throw throwable;}
     }
     
     public String getAccountName() {
-        return accountName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.AccountInformation.getAccountName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.AccountInformation.getAccountName()",this);return accountName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.AccountInformation.getAccountName()",this,throwable);throw throwable;}
     }
 
     public void setAccountName(String accountName) {
-        this.accountName = accountName;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.AccountInformation.setAccountName(java.lang.String)",this,accountName);try{this.accountName = accountName;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.AccountInformation.setAccountName(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.AccountInformation.setAccountName(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public String getNotes() {
-        return notes;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.AccountInformation.getNotes()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.AccountInformation.getNotes()",this);return notes;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.AccountInformation.getNotes()",this,throwable);throw throwable;}
     }
 
     public void setNotes(String notes) {
-        this.notes = notes;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.AccountInformation.setNotes(java.lang.String)",this,notes);try{this.notes = notes;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.AccountInformation.setNotes(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.AccountInformation.setNotes(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public String getPassword() {
-        return password;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.AccountInformation.getPassword()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.AccountInformation.getPassword()",this);return password;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.AccountInformation.getPassword()",this,throwable);throw throwable;}
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.AccountInformation.setPassword(java.lang.String)",this,password);try{this.password = password;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.AccountInformation.setPassword(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.AccountInformation.setPassword(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public String getUrl() {
-        return url;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.AccountInformation.getUrl()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.AccountInformation.getUrl()",this);return url;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.AccountInformation.getUrl()",this,throwable);throw throwable;}
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.AccountInformation.setUrl(java.lang.String)",this,url);try{this.url = url;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.AccountInformation.setUrl(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.AccountInformation.setUrl(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public String getUserId() {
-        return userId;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.AccountInformation.getUserId()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.AccountInformation.getUserId()",this);return userId;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.AccountInformation.getUserId()",this,throwable);throw throwable;}
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.AccountInformation.setUserId(java.lang.String)",this,userId);try{this.userId = userId;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.AccountInformation.setUserId(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.AccountInformation.setUserId(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

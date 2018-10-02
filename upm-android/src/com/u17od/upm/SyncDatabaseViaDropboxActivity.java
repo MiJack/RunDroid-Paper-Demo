@@ -28,7 +28,7 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         prefs = getSharedPreferences(Utilities.DROPBOX_PREFS, MODE_PRIVATE);
         String dropboxAccessToken = prefs.getString(DROPBOX_ACCESS_TOKEN, null);
@@ -36,12 +36,12 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
 
         if (dropboxAccessToken == null) {
             Auth.startOAuth2Authentication(SyncDatabaseViaDropboxActivity.this, DropboxConstants.APP_KEY);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity.onResume()",this);try{super.onResume();
 
         String dropboxAccessToken = prefs.getString(DROPBOX_ACCESS_TOKEN, null);
         Log.i("onResume", "dropboxAccessToken=" + dropboxAccessToken);
@@ -57,17 +57,17 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
         } else {
             DropboxClientFactory.init(dropboxAccessToken);
             downloadDatabase();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void uploadDatabase() {
-        new UploadDatabaseTask().execute();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity.uploadDatabase()",this);try{new UploadDatabaseTask().execute();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity.uploadDatabase()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity.uploadDatabase()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void downloadDatabase() {
-        new DownloadDatabaseTask().execute();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity.downloadDatabase()",this);try{new DownloadDatabaseTask().execute();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity.downloadDatabase()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity.downloadDatabase()",this,throwable);throw throwable;}
     }
 
     private class DownloadDatabaseTask extends AsyncTask<Void, Void, Integer> {
@@ -81,15 +81,15 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
         private ProgressDialog progressDialog;
 
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(SyncDatabaseViaDropboxActivity.this,
-                    "", getString(R.string.downloading_db));
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.onPreExecute()",this);try{progressDialog = ProgressDialog.show(SyncDatabaseViaDropboxActivity.this,
+                    "", getString(R.string.downloading_db));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected Integer doInBackground(Void... params) {
-            FileOutputStream outputStream = null;
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this,params);try{FileOutputStream outputStream = null;
             try {
-                // Download the file and save it to a temp file
+                /*// Download the file and save it to a temp file*/
                 String remoteFileName = Utilities.getDatabaseFileName(SyncDatabaseViaDropboxActivity.this);
                 downloadedDatabaseFile = new File(getCacheDir(), remoteFileName);
                 outputStream = new FileOutputStream(downloadedDatabaseFile);
@@ -97,7 +97,7 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
                 SearchResult searchResults = DropboxClientFactory.getClient()
                         .files().search("", remoteFileName);
                 if (searchResults.getMatches().size() == 0) {
-                    return REMOTE_FILE_DOESNT_EXIST;
+                    {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this);return REMOTE_FILE_DOESNT_EXIST;}
                 }
 
                 FileMetadata metadata = DropboxClientFactory.getClient()
@@ -105,39 +105,39 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
                         .download("/" + remoteFileName)
                         .download(outputStream);
 
-                // Store the db file rev for use in the UploadDatabaseTask
-                // Prefs is used instead of the activity instance because the
-                // activity could be recreate between now and then meaning the
-                // instance variables are reset.
+                /*// Store the db file rev for use in the UploadDatabaseTask*/
+                /*// Prefs is used instead of the activity instance because the*/
+                /*// activity could be recreate between now and then meaning the*/
+                /*// instance variables are reset.*/
                 Utilities.setConfig(SyncDatabaseViaDropboxActivity.this,
                         Utilities.DROPBOX_PREFS, Utilities.DROPBOX_DB_REV,
                         metadata.getRev());
 
-                return 0;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this);return 0;}
             } catch (IOException e) {
                 Log.e(TAG, "IOException downloading database", e);
-                return ERROR_IO;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this);return ERROR_IO;}
             } catch (InvalidAccessTokenException e) {
                 Log.e(TAG, "InvalidAccessTokenException downloading database", e);
-                return ERROR_DROPBOX_INVALID_TOKEN;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this);return ERROR_DROPBOX_INVALID_TOKEN;}
             } catch (DbxException e) {
                 Log.e(TAG, "DbxException downloading database", e);
-                return ERROR_DROPBOX;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this);return ERROR_DROPBOX;}
             } finally {
                 if (outputStream != null) {
                     try {
                         outputStream.close();
                     } catch (IOException e) {
                         Log.e(TAG, "IOException closing database file stream", e);
-                        return ERROR_IO;
+                        {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this);return ERROR_IO;}
                     }
                 }
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.Void)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            progressDialog.dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.onPostExecute(java.lang.Integer)",this,result);try{progressDialog.dismiss();
 
             switch (result) {
                 case 0:
@@ -162,7 +162,7 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
                 case REMOTE_FILE_DOESNT_EXIST:
                     syncDb(null);
                     break;
-            }
+            }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity$DownloadDatabaseTask.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
     }
 
@@ -177,14 +177,14 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.onPreExecute()",this);try{progressDialog = ProgressDialog.show(
                     SyncDatabaseViaDropboxActivity.this, "",
-                    getString(R.string.uploading_database));
+                    getString(R.string.uploading_database));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected Integer doInBackground(Void... params) {
-            int result = UPLOAD_OK;
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.doInBackground([java.lang.Void)",this,params);try{int result = UPLOAD_OK;
 
             FileInputStream inputStream = null;
             try {
@@ -199,24 +199,24 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
                 result = ERROR_IO;
             } catch (DbxException e) {
                 Log.e(TAG, "DbxException downloading database", e);
-                return ERROR_DROPBOX;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.doInBackground([java.lang.Void)",this);return ERROR_DROPBOX;}
             } finally {
                 if (inputStream != null) {
                     try {
                         inputStream.close();
                     } catch (IOException e) {
                         Log.e(TAG, "IOException during database upload", e);
-                        return ERROR_IO;
+                        {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.doInBackground([java.lang.Void)",this);return ERROR_IO;}
                     }
                 }
             }
 
-            return result;
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.doInBackground([java.lang.Void)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.doInBackground([java.lang.Void)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            progressDialog.dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.onPostExecute(java.lang.Integer)",this,result);try{progressDialog.dismiss();
             switch (result) {
             case ERROR_IO:
                 UIUtilities.showToast(SyncDatabaseViaDropboxActivity.this, R.string.problem_reading_upm_db);
@@ -228,7 +228,7 @@ public class SyncDatabaseViaDropboxActivity extends SyncDatabaseActivity {
                 UIUtilities.showToast(SyncDatabaseViaDropboxActivity.this, R.string.db_sync_complete);
                 break;
             }
-            finish();
+            finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SyncDatabaseViaDropboxActivity$UploadDatabaseTask.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
 
     }

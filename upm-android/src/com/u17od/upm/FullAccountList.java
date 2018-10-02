@@ -63,15 +63,15 @@ public class FullAccountList extends AccountsList {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         registerForContextMenu(getListView());
-        populateAccountList();
+        populateAccountList();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch(requestCode) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,intent);try{switch(requestCode) {
             case AddEditAccount.EDIT_ACCOUNT_REQUEST_CODE:
             case ViewAccountDetails.VIEW_ACCOUNT_REQUEST_CODE:
                 if (resultCode == AddEditAccount.EDIT_ACCOUNT_RESULT_CODE_TRUE) {
@@ -83,36 +83,36 @@ public class FullAccountList extends AccountsList {
                     populateAccountList();
                 }
                 break;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.onActivityResult(int,int,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     private void populateAccountList() {
-        if (getPasswordDatabase() == null) {
-            // If the UPM process was restarted since AppEntryActivity was last
-            // run then databaseFileToDecrypt won't be set so set it here.
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.populateAccountList()",this);try{if (getPasswordDatabase() == null) {
+            /*// If the UPM process was restarted since AppEntryActivity was last*/
+            /*// run then databaseFileToDecrypt won't be set so set it here.*/
             EnterMasterPassword.databaseFileToDecrypt = Utilities.getDatabaseFile(this);
 
             setResult(RESULT_ENTER_PW);
             finish();
         } else {
             setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getPasswordDatabase().getAccountNames()));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.populateAccountList()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.populateAccountList()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
+        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.FullAccountList.onCreateOptionsMenu(android.view.Menu)",this,menu);try{super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.FullAccountList.onCreateOptionsMenu(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.FullAccountList.onCreateOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onPrepareOptionsMenu (Menu menu) {
-        super.onPrepareOptionsMenu(menu);
+        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.FullAccountList.onPrepareOptionsMenu(android.view.Menu)",this,menu);try{super.onPrepareOptionsMenu(menu);
         if (getPasswordDatabase() == null) {
-            // If the UPM process was restarted since AppEntryActivity was last
-            // run then databaseFileToDecrypt won't be set so set it here.
+            /*// If the UPM process was restarted since AppEntryActivity was last*/
+            /*// run then databaseFileToDecrypt won't be set so set it here.*/
             EnterMasterPassword.databaseFileToDecrypt = Utilities.getDatabaseFile(this);
 
             setResult(RESULT_ENTER_PW);
@@ -124,12 +124,12 @@ public class FullAccountList extends AccountsList {
                 menu.findItem(R.id.sync).setEnabled(true);
             }
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.FullAccountList.onPrepareOptionsMenu(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.FullAccountList.onPrepareOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.FullAccountList.onKeyDown(int,android.view.KeyEvent)",this,keyCode,event);try{if (keyCode == KeyEvent.KEYCODE_BACK) {
             new AlertDialog.Builder(this)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .setTitle(R.string.confirm_exit_title)
@@ -137,21 +137,21 @@ public class FullAccountList extends AccountsList {
             .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    FullAccountList.this.setResult(RESULT_EXIT);
-                    FullAccountList.this.finish();
+                    com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{FullAccountList.this.setResult(RESULT_EXIT);
+                    FullAccountList.this.finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                 }
             })
             .setNegativeButton(R.string.no, null)
             .show();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.FullAccountList.onKeyDown(int,android.view.KeyEvent)",this);return true;}
         } else {
-            return super.onKeyDown(keyCode, event);
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.FullAccountList.onKeyDown(int,android.view.KeyEvent)",this);return super.onKeyDown(keyCode, event);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.FullAccountList.onKeyDown(int,android.view.KeyEvent)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        boolean optionConsumed = false;
+        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.FullAccountList.onOptionsItemSelected(android.view.MenuItem)",this,item);try{boolean optionConsumed = false;
 
         switch (item.getItemId()) {
             case R.id.search:
@@ -175,7 +175,7 @@ public class FullAccountList extends AccountsList {
                 }
                 break;
             case R.id.restore:
-                // Check to ensure there's a file to restore
+                /*// Check to ensure there's a file to restore*/
                 File restoreFile = new File(Environment.getExternalStorageDirectory(), Utilities.DEFAULT_DATABASE_FILE);
                 if (restoreFile.exists()) {
                     showDialog(CONFIRM_RESTORE_DIALOG);
@@ -186,7 +186,7 @@ public class FullAccountList extends AccountsList {
                 }
                 break;
             case R.id.backup:
-                // If there's already a backup file prompt the user if they want to overwrite
+                /*// If there's already a backup file prompt the user if they want to overwrite*/
                 File backupFile = new File(Environment.getExternalStorageDirectory(), Utilities.DEFAULT_DATABASE_FILE);
                 if (backupFile.exists()) {
                     showDialog(CONFIRM_OVERWRITE_BACKUP_FILE);
@@ -223,12 +223,12 @@ public class FullAccountList extends AccountsList {
                 break;
         }
 
-        return optionConsumed;
+        {com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.FullAccountList.onOptionsItemSelected(android.view.MenuItem)",this);return optionConsumed;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.FullAccountList.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.u17od.upm.FullAccountList.onCreateDialog(int)",this,id);try{AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         switch(id) {
         case CONFIRM_RESTORE_DIALOG:
@@ -236,18 +236,18 @@ public class FullAccountList extends AccountsList {
                .setCancelable(false)
                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                       ((UPMApplication) getApplication()).restoreDatabase(FullAccountList.this);
-                       // Clear the activity stack and bring up AppEntryActivity
-                       // This is effectively restarting the application
+                       com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$2.onClick(android.content.DialogInterface,int)",this,dialog,id);try{((UPMApplication) getApplication()).restoreDatabase(FullAccountList.this);
+                       /*// Clear the activity stack and bring up AppEntryActivity*/
+                       /*// This is effectively restarting the application*/
                        Intent i = new Intent(FullAccountList.this, AppEntryActivity.class);
                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                        startActivity(i);
-                       finish();
+                       finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                    }
                })
                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$3.onClick(android.content.DialogInterface,int)",this,dialog,id);try{dialog.cancel();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$3.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$3.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                    }
                });
             break;
@@ -260,12 +260,12 @@ public class FullAccountList extends AccountsList {
                .setCancelable(false)
                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                       backupDatabase();
+                       com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$4.onClick(android.content.DialogInterface,int)",this,dialog,id);try{backupDatabase();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$4.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$4.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                    }
                })
                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$5.onClick(android.content.DialogInterface,int)",this,dialog,id);try{dialog.cancel();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$5.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$5.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                    }
                });
             break;
@@ -290,13 +290,13 @@ public class FullAccountList extends AccountsList {
                 .setIcon(android.R.drawable.ic_menu_info_details)
                 .setPositiveButton(R.string.homepage, new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Uri uri = Uri.parse(getString(R.string.homepageUrl));
-                        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$6.onClick(android.content.DialogInterface,int)",this,dialog,which);try{Uri uri = Uri.parse(getString(R.string.homepageUrl));
+                        startActivity(new Intent(Intent.ACTION_VIEW, uri));com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$6.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$6.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
                 .setNeutralButton(R.string.donate, new OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        launchDonatePage();
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$7.onClick(android.content.DialogInterface,int)",this,arg0,arg1);try{launchDonatePage();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$7.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$7.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
                 .setNegativeButton(R.string.close, null)
@@ -306,18 +306,18 @@ public class FullAccountList extends AccountsList {
             dialogBuilder.setMessage(getString(R.string.confirm_delete_db))
             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    deleteDatabase();
-                    // Clear the activity stack and bring up AppEntryActivity
-                    // This is effectively restarting the application
+                    com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$8.onClick(android.content.DialogInterface,int)",this,dialog,id);try{deleteDatabase();
+                    /*// Clear the activity stack and bring up AppEntryActivity*/
+                    /*// This is effectively restarting the application*/
                     Intent i = new Intent(FullAccountList.this, AppEntryActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
-                    finish();
+                    finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$8.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$8.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                 }
             })
             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                     dialog.cancel();
+                     com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$9.onClick(android.content.DialogInterface,int)",this,dialog,id);try{dialog.cancel();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$9.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$9.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                 }
             });
             break;
@@ -331,47 +331,47 @@ public class FullAccountList extends AccountsList {
                 .setMessage(importCertMessage)
                 .setPositiveButton(R.string.import_cert, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        importCert();
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$10.onClick(android.content.DialogInterface,int)",this,dialog,id);try{importCert();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$10.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$10.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList$11.onClick(android.content.DialogInterface,int)",this,dialog,id);try{dialog.cancel();com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList$11.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList$11.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 });
             break;
         }
 
-        return dialogBuilder.create();
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.u17od.upm.FullAccountList.onCreateDialog(int)",this);return dialogBuilder.create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.u17od.upm.FullAccountList.onCreateDialog(int)",this,throwable);throw throwable;}
     }
 
     private void deleteDatabase() {
-        Utilities.getDatabaseFile(this).delete();
-        Utilities.setDatabaseFileName(null, this);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.deleteDatabase()",this);try{Utilities.getDatabaseFile(this).delete();
+        Utilities.setDatabaseFileName(null, this);com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.deleteDatabase()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.deleteDatabase()",this,throwable);throw throwable;}
     }
 
     private void backupDatabase() {
-        File fileOnSDCard = new File(Environment.getExternalStorageDirectory(), Utilities.DEFAULT_DATABASE_FILE);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.backupDatabase()",this);try{File fileOnSDCard = new File(Environment.getExternalStorageDirectory(), Utilities.DEFAULT_DATABASE_FILE);
         File databaseFile = Utilities.getDatabaseFile(this);
         if (((UPMApplication) getApplication()).copyFile(databaseFile, fileOnSDCard, this)) {
             String message = String.format(getString(R.string.backup_complete), fileOnSDCard.getAbsolutePath());
             UIUtilities.showToast(this, message, false);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.backupDatabase()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.backupDatabase()",this,throwable);throw throwable;}
     }
 
     private void launchDonatePage() {
-        Uri uri = Uri.parse(getString(R.string.donateURL));
-        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.launchDonatePage()",this);try{Uri uri = Uri.parse(getString(R.string.donateURL));
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.launchDonatePage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.launchDonatePage()",this,throwable);throw throwable;}
     }
 
     private void deleteCertificate() {
-        File privateCertFile = getFileStreamPath(CERT_FILE_NAME);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.deleteCertificate()",this);try{File privateCertFile = getFileStreamPath(CERT_FILE_NAME);
         if (privateCertFile.exists()) {
             privateCertFile.delete();
             UIUtilities.showToast(this, R.string.cert_deleted, false);
         } else {
             UIUtilities.showToast(this, R.string.no_cert_available, false);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.deleteCertificate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.deleteCertificate()",this,throwable);throw throwable;}
     }
 
     /*
@@ -379,7 +379,7 @@ public class FullAccountList extends AccountsList {
      * This file will be used in the HTTPTransport.
      */
     private void importCert() {
-        File certFile = new File(Environment.getExternalStorageDirectory(), CERT_FILE_NAME);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.importCert()",this);try{File certFile = new File(Environment.getExternalStorageDirectory(), CERT_FILE_NAME);
         File privateCertFile = getFileStreamPath(CERT_FILE_NAME);
 
         try {
@@ -388,11 +388,11 @@ public class FullAccountList extends AccountsList {
         } catch (IOException e) {
             Log.e(this.getClass().getName(), e.toString(), e);
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.importCert()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.importCert()",this,throwable);throw throwable;}
     }
 
     private void copyFile(File source, File dest) throws IOException {
-        FileChannel sourceChannel = null;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.FullAccountList.copyFile(java.io.File,java.io.File)",this,source,dest);try{FileChannel sourceChannel = null;
         FileChannel destinationChannel = null;
         FileInputStream is = null;
         FileOutputStream os = null;
@@ -423,7 +423,7 @@ public class FullAccountList extends AccountsList {
             if (os != null) {
                 os.close();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.FullAccountList.copyFile(java.io.File,java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.FullAccountList.copyFile(java.io.File,java.io.File)",this,throwable);throw throwable;}
     }
 
 }

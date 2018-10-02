@@ -51,7 +51,7 @@ public class CreateNewDatabase extends Activity implements OnClickListener {
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.CreateNewDatabase.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.new_master_password_dialog);
         
         password1 = (EditText) findViewById(R.id.password1);
@@ -63,18 +63,18 @@ public class CreateNewDatabase extends Activity implements OnClickListener {
         cancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                com.mijack.Xlog.logMethodEnter("void com.u17od.upm.CreateNewDatabase$1.onClick(android.view.View)",this,v);try{finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.CreateNewDatabase$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.CreateNewDatabase$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.u17od.upm.CreateNewDatabase.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.CreateNewDatabase.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     private UPMApplication getUPMApplication() {
-        return (UPMApplication) getApplication();
+        com.mijack.Xlog.logMethodEnter("com.u17od.upm.UPMApplication com.u17od.upm.CreateNewDatabase.getUPMApplication()",this);try{com.mijack.Xlog.logMethodExit("com.u17od.upm.UPMApplication com.u17od.upm.CreateNewDatabase.getUPMApplication()",this);return (UPMApplication) getApplication();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.u17od.upm.UPMApplication com.u17od.upm.CreateNewDatabase.getUPMApplication()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onClick(View v) {
-        if (!password1.getText().toString().equals(password2.getText().toString())) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.CreateNewDatabase.onClick(android.view.View)",this,v);try{if (!password1.getText().toString().equals(password2.getText().toString())) {
             Toast toast = Toast.makeText(CreateNewDatabase.this, R.string.passwords_dont_match, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.show();
@@ -84,24 +84,24 @@ public class CreateNewDatabase extends Activity implements OnClickListener {
             Toast.makeText(this, resultsText, Toast.LENGTH_SHORT).show();
         } else {
             try {
-                // Create a new database and then launch the AccountsList activity
+                /*// Create a new database and then launch the AccountsList activity*/
                 String password = password1.getText().toString();
                 final PasswordDatabase passwordDatabase = new PasswordDatabase(Utilities.getDatabaseFile(this), password.toCharArray());
 
                 new SaveDatabaseAsyncTask(this, new Callback() {
                     @Override
                     public void execute() {
-                        // Make the database available to the rest of the application by 
-                        // putting a reference to it on the application
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.CreateNewDatabase$2.execute()",this);try{/*// Make the database available to the rest of the application by */
+                        /*// putting a reference to it on the application*/
                         getUPMApplication().setPasswordDatabase(passwordDatabase);
 
-                        // Ask the BackupManager to backup the database using
-                        // Google's cloud backup service.
+                        /*// Ask the BackupManager to backup the database using*/
+                        /*// Google's cloud backup service.*/
                         Log.i("CreateNewDatabase", "Calling BackupManager().dataChanged()");
                         getUPMApplication().getBackupManager().dataChanged();
 
                         setResult(RESULT_OK);
-                        finish();
+                        finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.CreateNewDatabase$2.execute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.CreateNewDatabase$2.execute()",this,throwable);throw throwable;}
                     }
                 }).execute(passwordDatabase);
 
@@ -118,12 +118,12 @@ public class CreateNewDatabase extends Activity implements OnClickListener {
                 Log.e("CreateNewDatabase", "Error encountered while creating a new database", e);
                 showDialog(GENERIC_ERROR_DIALOG);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.CreateNewDatabase.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.CreateNewDatabase.onClick(android.view.View)",this,throwable);throw throwable;}
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        Dialog dialog = null;
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.u17od.upm.CreateNewDatabase.onCreateDialog(int)",this,id);try{Dialog dialog = null;
 
         switch(id) {
             case GENERIC_ERROR_DIALOG:
@@ -132,14 +132,14 @@ public class CreateNewDatabase extends Activity implements OnClickListener {
                     .setNeutralButton(R.string.ok_label, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            finish();
+                            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.CreateNewDatabase$3.onClick(android.content.DialogInterface,int)",this,dialog,which);try{finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.CreateNewDatabase$3.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.CreateNewDatabase$3.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                         }
                 });
                 dialog = builder.create();
                 break;
         }
         
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.u17od.upm.CreateNewDatabase.onCreateDialog(int)",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.u17od.upm.CreateNewDatabase.onCreateDialog(int)",this,throwable);throw throwable;}
     }
 
 }

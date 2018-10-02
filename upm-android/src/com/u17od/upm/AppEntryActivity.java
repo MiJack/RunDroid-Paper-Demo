@@ -46,23 +46,23 @@ public class AppEntryActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.AppEntryActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         if (databaseFileExists()) {
-            // If databaseFileToDecrypt is null then UPM is just starting so
-            // show the EnterMasterPassword activity
+            /*// If databaseFileToDecrypt is null then UPM is just starting so*/
+            /*// show the EnterMasterPassword activity*/
             if (EnterMasterPassword.databaseFileToDecrypt == null) {
                 EnterMasterPassword.databaseFileToDecrypt = Utilities.getDatabaseFile(this);
             }
-            // savedInstanceState will be null if the app is just starting so
-            // in this case we should display the EnterMasterPassword activity
+            /*// savedInstanceState will be null if the app is just starting so*/
+            /*// in this case we should display the EnterMasterPassword activity*/
             if (savedInstanceState == null) {
                 Intent i = new Intent(AppEntryActivity.this, EnterMasterPassword.class);
                 startActivityForResult(i, REQ_CODE_ENTER_PASSWORD);
             }
         } else {
             showDialog(NEW_DATABASE_DIALOG);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.AppEntryActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.AppEntryActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 
@@ -75,14 +75,14 @@ public class AppEntryActivity extends Activity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (requestCode) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.AppEntryActivity.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,intent);try{switch (requestCode) {
         case REQ_CODE_ENTER_PASSWORD:
             if (resultCode == RESULT_OK) {
                 ((UPMApplication) getApplication()).setPasswordDatabase(EnterMasterPassword.decryptedPasswordDatabase);
                 Intent i = new Intent(AppEntryActivity.this, FullAccountList.class);
                 startActivityForResult(i, REQ_CODE_OPEN_DB);
             } else {
-                // User clicked Back from the EnterMasterPassword activity so quit
+                /*// User clicked Back from the EnterMasterPassword activity so quit*/
                 finish();
             }
             break;
@@ -105,17 +105,17 @@ public class AppEntryActivity extends Activity {
                 Intent i = new Intent(AppEntryActivity.this, EnterMasterPassword.class);
                 startActivityForResult(i, REQ_CODE_ENTER_PASSWORD);
             } else if (resultCode == FullAccountList.RESULT_EXIT) {
-                // databaseFileToDecrypt is used in AppEntryActivity to indicate
-                // weather EnterMasterPassword needs to be shown.
+                /*// databaseFileToDecrypt is used in AppEntryActivity to indicate*/
+                /*// weather EnterMasterPassword needs to be shown.*/
                 EnterMasterPassword.databaseFileToDecrypt = null;
                 finish();
             }
             break;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.AppEntryActivity.onActivityResult(int,int,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.AppEntryActivity.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     protected Dialog onCreateDialog(int id) {
-        Dialog dialog = null;
+        com.mijack.Xlog.logMethodEnter("android.app.Dialog com.u17od.upm.AppEntryActivity.onCreateDialog(int)",this,id);try{Dialog dialog = null;
 
         switch(id) {
             case NEW_DATABASE_DIALOG:
@@ -127,8 +127,8 @@ public class AppEntryActivity extends Activity {
                 newDatabase.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(AppEntryActivity.this, CreateNewDatabase.class);
-                        startActivityForResult(i, REQ_CODE_CREATE_DB);
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.AppEntryActivity$1.onClick(android.view.View)",this,v);try{Intent i = new Intent(AppEntryActivity.this, CreateNewDatabase.class);
+                        startActivityForResult(i, REQ_CODE_CREATE_DB);com.mijack.Xlog.logMethodExit("void com.u17od.upm.AppEntryActivity$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.AppEntryActivity$1.onClick(android.view.View)",this,throwable);throw throwable;}
                     }
                 });
 
@@ -136,11 +136,11 @@ public class AppEntryActivity extends Activity {
                 restoreDatabase.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        File restoreFile = new File(Environment.getExternalStorageDirectory(), Utilities.DEFAULT_DATABASE_FILE);
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.AppEntryActivity$2.onClick(android.view.View)",this,v);try{File restoreFile = new File(Environment.getExternalStorageDirectory(), Utilities.DEFAULT_DATABASE_FILE);
                         if (restoreFile.exists()) {
                             ((UPMApplication) getApplication()).restoreDatabase(AppEntryActivity.this);
-                            // Clear the activity stack and bring up AppEntryActivity
-                            // This is effectively restarting the application
+                            /*// Clear the activity stack and bring up AppEntryActivity*/
+                            /*// This is effectively restarting the application*/
                             Intent i = new Intent(AppEntryActivity.this, AppEntryActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(i);
@@ -149,7 +149,7 @@ public class AppEntryActivity extends Activity {
                             String messageRes = getString(R.string.restore_file_doesnt_exist);
                             String message = String.format(messageRes, restoreFile.getAbsolutePath());
                             Toast.makeText(AppEntryActivity.this, message, Toast.LENGTH_LONG).show();
-                        }
+                        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.AppEntryActivity$2.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.AppEntryActivity$2.onClick(android.view.View)",this,throwable);throw throwable;}
                     }
                 });
 
@@ -157,8 +157,8 @@ public class AppEntryActivity extends Activity {
                 openRemoteDatabase.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(AppEntryActivity.this, DownloadRemoteDatabase.class);
-                        startActivityForResult(i, REQ_CODE_DOWNLOAD_DB);
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.AppEntryActivity$3.onClick(android.view.View)",this,v);try{Intent i = new Intent(AppEntryActivity.this, DownloadRemoteDatabase.class);
+                        startActivityForResult(i, REQ_CODE_DOWNLOAD_DB);com.mijack.Xlog.logMethodExit("void com.u17od.upm.AppEntryActivity$3.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.AppEntryActivity$3.onClick(android.view.View)",this,throwable);throw throwable;}
                     }
                 });
 
@@ -166,25 +166,25 @@ public class AppEntryActivity extends Activity {
                 retrieveFromDropboxButton.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(AppEntryActivity.this, SelectDatabaseFromDropboxActivity.class);
-                        startActivityForResult(i, REQ_CODE_GET_DB_FILE);
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.AppEntryActivity$4.onClick(android.view.View)",this,v);try{Intent i = new Intent(AppEntryActivity.this, SelectDatabaseFromDropboxActivity.class);
+                        startActivityForResult(i, REQ_CODE_GET_DB_FILE);com.mijack.Xlog.logMethodExit("void com.u17od.upm.AppEntryActivity$4.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.AppEntryActivity$4.onClick(android.view.View)",this,throwable);throw throwable;}
                     }
                 });
 
-                // Close this Activity if the dialog is cancelled 
+                /*// Close this Activity if the dialog is cancelled */
                 dialog.setOnCancelListener(new OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        finish();
+                        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.AppEntryActivity$5.onCancel(android.content.DialogInterface)",this,dialog);try{finish();com.mijack.Xlog.logMethodExit("void com.u17od.upm.AppEntryActivity$5.onCancel(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.AppEntryActivity$5.onCancel(android.content.DialogInterface)",this,throwable);throw throwable;}
                     }
                 });
                 break;
         }
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.app.Dialog com.u17od.upm.AppEntryActivity.onCreateDialog(int)",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.Dialog com.u17od.upm.AppEntryActivity.onCreateDialog(int)",this,throwable);throw throwable;}
     }
 
     private boolean databaseFileExists() {
-        return Utilities.getDatabaseFile(this).exists();
+        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.AppEntryActivity.databaseFileExists()",this);try{com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.AppEntryActivity.databaseFileExists()",this);return Utilities.getDatabaseFile(this).exists();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.AppEntryActivity.databaseFileExists()",this,throwable);throw throwable;}
     }
 
 }

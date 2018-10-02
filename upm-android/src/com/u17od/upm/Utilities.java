@@ -56,24 +56,24 @@ public class Utilities {
     }
 
     public static File getDatabaseFile(Activity activity) {
-        String dbFileName = getDatabaseFileName(activity);
+        com.mijack.Xlog.logStaticMethodEnter("java.io.File com.u17od.upm.Utilities.getDatabaseFile(android.app.Activity)",activity);try{String dbFileName = getDatabaseFileName(activity);
         if (dbFileName == null || dbFileName.equals("")) {
-            return new File(activity.getFilesDir(), DEFAULT_DATABASE_FILE);
+            {com.mijack.Xlog.logStaticMethodExit("java.io.File com.u17od.upm.Utilities.getDatabaseFile(android.app.Activity)");return new File(activity.getFilesDir(), DEFAULT_DATABASE_FILE);}
         } else {
-            return new File(activity.getFilesDir(), dbFileName);
-        }
+            {com.mijack.Xlog.logStaticMethodExit("java.io.File com.u17od.upm.Utilities.getDatabaseFile(android.app.Activity)");return new File(activity.getFilesDir(), dbFileName);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.io.File com.u17od.upm.Utilities.getDatabaseFile(android.app.Activity)",throwable);throw throwable;}
     }
 
     public static String getDatabaseFileName(Context context) {
-        SharedPreferences settings = context.getSharedPreferences(Prefs.PREFS_NAME, Activity.MODE_PRIVATE);
-        return settings.getString(PREFS_DB_FILE_NAME, DEFAULT_DATABASE_FILE);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.u17od.upm.Utilities.getDatabaseFileName(android.content.Context)",context);try{SharedPreferences settings = context.getSharedPreferences(Prefs.PREFS_NAME, Activity.MODE_PRIVATE);
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.u17od.upm.Utilities.getDatabaseFileName(android.content.Context)");return settings.getString(PREFS_DB_FILE_NAME, DEFAULT_DATABASE_FILE);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.u17od.upm.Utilities.getDatabaseFileName(android.content.Context)",throwable);throw throwable;}
     }
 
     public static String getSyncMethod(Activity activity) {
-        UPMApplication app = (UPMApplication) activity.getApplication();
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.u17od.upm.Utilities.getSyncMethod(android.app.Activity)",activity);try{UPMApplication app = (UPMApplication) activity.getApplication();
         String remoteHTTPLocation = app.getPasswordDatabase().getDbOptions().getRemoteLocation();
         SharedPreferences settings = activity.getSharedPreferences(Prefs.PREFS_NAME, Activity.MODE_PRIVATE);
-        return getSyncMethod(settings, remoteHTTPLocation);
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.u17od.upm.Utilities.getSyncMethod(android.app.Activity)");return getSyncMethod(settings, remoteHTTPLocation);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.u17od.upm.Utilities.getSyncMethod(android.app.Activity)",throwable);throw throwable;}
     }
 
     /**
@@ -86,7 +86,7 @@ public class Utilities {
      * @return
      */
     public static String getSyncMethod(SharedPreferences settings, String remoteHTTPLocation) {
-        String syncMethod = settings.getString(Prefs.SYNC_METHOD, null);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.u17od.upm.Utilities.getSyncMethod(android.content.SharedPreferences,java.lang.String)",settings,remoteHTTPLocation);try{String syncMethod = settings.getString(Prefs.SYNC_METHOD, null);
 
         if (syncMethod == null) {
             if (remoteHTTPLocation != null) {
@@ -96,25 +96,25 @@ public class Utilities {
             }
         }
 
-        return syncMethod;
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.u17od.upm.Utilities.getSyncMethod(android.content.SharedPreferences,java.lang.String)");return syncMethod;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.u17od.upm.Utilities.getSyncMethod(android.content.SharedPreferences,java.lang.String)",throwable);throw throwable;}
     }
 
     public static void setDatabaseFileName(String dbFileName, Activity activity) {
-        SharedPreferences settings = activity.getSharedPreferences(Prefs.PREFS_NAME, Activity.MODE_PRIVATE);
+        com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.Utilities.setDatabaseFileName(java.lang.String,android.app.Activity)",dbFileName,activity);try{SharedPreferences settings = activity.getSharedPreferences(Prefs.PREFS_NAME, Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(PREFS_DB_FILE_NAME, dbFileName);
-        editor.commit();
+        editor.commit();com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.Utilities.setDatabaseFileName(java.lang.String,android.app.Activity)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.Utilities.setDatabaseFileName(java.lang.String,android.app.Activity)",throwable);throw throwable;}
     }
 
     public static void setSyncMethod(String syncMethod, Activity activity) {
-        SharedPreferences settings = activity.getSharedPreferences(Prefs.PREFS_NAME, Activity.MODE_PRIVATE);
+        com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.Utilities.setSyncMethod(java.lang.String,android.app.Activity)",syncMethod,activity);try{SharedPreferences settings = activity.getSharedPreferences(Prefs.PREFS_NAME, Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Prefs.SYNC_METHOD, syncMethod);
-        editor.commit();
+        editor.commit();com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.Utilities.setSyncMethod(java.lang.String,android.app.Activity)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.Utilities.setSyncMethod(java.lang.String,android.app.Activity)",throwable);throw throwable;}
     }
 
     public static boolean isSyncRequired(Activity activity) {
-        UPMApplication app = (UPMApplication) activity.getApplication();
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.u17od.upm.Utilities.isSyncRequired(android.app.Activity)",activity);try{UPMApplication app = (UPMApplication) activity.getApplication();
         PasswordDatabase db = app.getPasswordDatabase();
         Date timeOfLastSync = app.getTimeOfLastSync();
 
@@ -126,11 +126,11 @@ public class Utilities {
             }
         }
 
-        return syncRequired;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.u17od.upm.Utilities.isSyncRequired(android.app.Activity)");return syncRequired;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.u17od.upm.Utilities.isSyncRequired(android.app.Activity)",throwable);throw throwable;}
     }
 
     public static AccessTokenPair getDropboxAccessTokenPair(Context context) {
-        SharedPreferences settings =
+        com.mijack.Xlog.logStaticMethodEnter("com.dropbox.client2.session.AccessTokenPair com.u17od.upm.Utilities.getDropboxAccessTokenPair(android.content.Context)",context);try{SharedPreferences settings =
             context.getSharedPreferences(DROPBOX_PREFS, Context.MODE_PRIVATE);
         String dropboxKey = settings.getString(DROPBOX_KEY, null);
         String dropboxSecret = settings.getString(DROPBOX_SECRET, null);
@@ -138,36 +138,36 @@ public class Utilities {
         if (dropboxKey != null && dropboxSecret != null) {
             accessTokenPair = new AccessTokenPair(dropboxKey, dropboxSecret);
         }
-        return accessTokenPair;
+        {com.mijack.Xlog.logStaticMethodExit("com.dropbox.client2.session.AccessTokenPair com.u17od.upm.Utilities.getDropboxAccessTokenPair(android.content.Context)");return accessTokenPair;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.dropbox.client2.session.AccessTokenPair com.u17od.upm.Utilities.getDropboxAccessTokenPair(android.content.Context)",throwable);throw throwable;}
     }
 
     public static void setDropboxAccessTokenPair(Context context, AccessTokenPair accessTokenPair) {
-       SharedPreferences settings = context.getSharedPreferences(DROPBOX_PREFS, Context.MODE_PRIVATE);
+       com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.Utilities.setDropboxAccessTokenPair(android.content.Context,com.dropbox.client2.session.AccessTokenPair)",context,accessTokenPair);try{SharedPreferences settings = context.getSharedPreferences(DROPBOX_PREFS, Context.MODE_PRIVATE);
        SharedPreferences.Editor editor = settings.edit();
        editor.putString(DROPBOX_KEY, accessTokenPair.key);
        editor.putString(DROPBOX_SECRET, accessTokenPair.secret);
-       editor.commit();
+       editor.commit();com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.Utilities.setDropboxAccessTokenPair(android.content.Context,com.dropbox.client2.session.AccessTokenPair)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.Utilities.setDropboxAccessTokenPair(android.content.Context,com.dropbox.client2.session.AccessTokenPair)",throwable);throw throwable;}
      }
 
     public static void clearDropboxAccessTokenPair(Context context) {
-        SharedPreferences settings = context.getSharedPreferences(DROPBOX_PREFS, Context.MODE_PRIVATE);
+        com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.Utilities.clearDropboxAccessTokenPair(android.content.Context)",context);try{SharedPreferences settings = context.getSharedPreferences(DROPBOX_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.remove(DROPBOX_KEY);
         editor.remove(DROPBOX_SECRET);
-        editor.commit();
+        editor.commit();com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.Utilities.clearDropboxAccessTokenPair(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.Utilities.clearDropboxAccessTokenPair(android.content.Context)",throwable);throw throwable;}
       }
 
     public static void setConfig(Context context, String fileName, String keyName, String value) {
-        SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        com.mijack.Xlog.logStaticMethodEnter("void com.u17od.upm.Utilities.setConfig(android.content.Context,java.lang.String,java.lang.String,java.lang.String)",context,fileName,keyName,value);try{SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(keyName, value);
-        editor.commit();
+        editor.commit();com.mijack.Xlog.logStaticMethodExit("void com.u17od.upm.Utilities.setConfig(android.content.Context,java.lang.String,java.lang.String,java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.u17od.upm.Utilities.setConfig(android.content.Context,java.lang.String,java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
     public static String getConfig(Context context, String fileName, String keyName) {
-        SharedPreferences settings =
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.u17od.upm.Utilities.getConfig(android.content.Context,java.lang.String,java.lang.String)",context,fileName,keyName);try{SharedPreferences settings =
             context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
-        return settings.getString(keyName, null);
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.u17od.upm.Utilities.getConfig(android.content.Context,java.lang.String,java.lang.String)");return settings.getString(keyName, null);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.u17od.upm.Utilities.getConfig(android.content.Context,java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
 }

@@ -43,34 +43,34 @@ public class DatabaseOptions extends FlatPackObject {
     
     
     public void setRemoteLocation(String remoteLocation) {
-        if (remoteLocation == null) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseOptions.setRemoteLocation(java.lang.String)",this,remoteLocation);try{if (remoteLocation == null) {
             remoteLocation = "";
         }
-        this.remoteLocation = remoteLocation;
+        this.remoteLocation = remoteLocation;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseOptions.setRemoteLocation(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseOptions.setRemoteLocation(java.lang.String)",this,throwable);throw throwable;}
     }
     
     
     public String getRemoteLocation() {
-        return remoteLocation;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.DatabaseOptions.getRemoteLocation()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.DatabaseOptions.getRemoteLocation()",this);return remoteLocation;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.DatabaseOptions.getRemoteLocation()",this,throwable);throw throwable;}
     }
     
     
     public void flatPack(OutputStream os) throws IOException {
-        os.write(flatPack(remoteLocation));
-        os.write(flatPack(authDBEntry));
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseOptions.flatPack(java.io.OutputStream)",this,os);try{os.write(flatPack(remoteLocation));
+        os.write(flatPack(authDBEntry));com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseOptions.flatPack(java.io.OutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseOptions.flatPack(java.io.OutputStream)",this,throwable);throw throwable;}
     }
 
 
     public String getAuthDBEntry() {
-        return authDBEntry;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.DatabaseOptions.getAuthDBEntry()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.DatabaseOptions.getAuthDBEntry()",this);return authDBEntry;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.DatabaseOptions.getAuthDBEntry()",this,throwable);throw throwable;}
     }
 
 
     public void setAuthDBEntry(String authDBEntry) {
-        if (authDBEntry == null) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseOptions.setAuthDBEntry(java.lang.String)",this,authDBEntry);try{if (authDBEntry == null) {
             authDBEntry = "";
         }
-        this.authDBEntry = authDBEntry;
+        this.authDBEntry = authDBEntry;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseOptions.setAuthDBEntry(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseOptions.setAuthDBEntry(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

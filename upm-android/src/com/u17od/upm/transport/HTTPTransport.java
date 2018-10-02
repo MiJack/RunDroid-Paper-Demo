@@ -67,21 +67,21 @@ public class HTTPTransport extends Transport {
     }
 
     public void put(String targetLocation, File file) throws TransportException {
-        put(targetLocation, file, null, null);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.transport.HTTPTransport.put(java.lang.String,java.io.File)",this,targetLocation,file);try{put(targetLocation, file, null, null);com.mijack.Xlog.logMethodExit("void com.u17od.upm.transport.HTTPTransport.put(java.lang.String,java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.transport.HTTPTransport.put(java.lang.String,java.io.File)",this,throwable);throw throwable;}
     }    
     
     public void put(String targetLocation, File file, String username, String password) throws TransportException {
 
-        HttpURLConnection conn = null; 
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.transport.HTTPTransport.put(java.lang.String,java.io.File,java.lang.String,java.lang.String)",this,targetLocation,file,username,password);try{HttpURLConnection conn = null; 
 
         try {
             targetLocation = addTrailingSlash(targetLocation) + "upload.php";
 
-            // These strings are sent in the request body. They provide information about the file being uploaded
+            /*// These strings are sent in the request body. They provide information about the file being uploaded*/
             String contentDisposition = "Content-Disposition: form-data; name=\"userfile\"; filename=\"" + file.getName() + "\"";
             String contentType = "Content-Type: application/octet-stream";
 
-            // This is the standard format for a multipart request
+            /*// This is the standard format for a multipart request*/
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             baos.write("--".getBytes());
             baos.write(BOUNDRY.getBytes());
@@ -97,11 +97,11 @@ public class HTTPTransport extends Transport {
             baos.write(BOUNDRY.getBytes());
             baos.write("--".getBytes());
 
-            // Make a connect to the server
+            /*// Make a connect to the server*/
             URL url = new URL(targetLocation);
             conn = getConnection(url);
 
-            // Put the authentication details in the request
+            /*// Put the authentication details in the request*/
             if (username != null) {
                 conn.setRequestProperty ("Authorization", createAuthenticationString(username, password));
             }
@@ -112,19 +112,19 @@ public class HTTPTransport extends Transport {
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDRY);
 
-            // Send the body
+            /*// Send the body*/
             DataOutputStream dataOS = new DataOutputStream(conn.getOutputStream());
             baos.writeTo(dataOS);
             dataOS.flush();
             dataOS.close();
 
-            // Ensure we got the HTTP 200 response code
+            /*// Ensure we got the HTTP 200 response code*/
             int responseCode = conn.getResponseCode();
             if (responseCode != 200) {
                 throw new TransportException(String.format("Received the response code %d from the URL %s", responseCode, url));
             }
 
-            // Read the response
+            /*// Read the response*/
             InputStream is = conn.getInputStream();
             byte[] bytesReceived = readFromResponseStream(is);
             is.close();
@@ -140,28 +140,28 @@ public class HTTPTransport extends Transport {
             if (conn != null) {
                 conn.disconnect();
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.transport.HTTPTransport.put(java.lang.String,java.io.File,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
 
     }
 
 
     public byte[] get(String urlToGet) throws TransportException {
-        return get(urlToGet, null, null);
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.transport.HTTPTransport.get(java.lang.String)",this,urlToGet);try{com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.transport.HTTPTransport.get(java.lang.String)",this);return get(urlToGet, null, null);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.transport.HTTPTransport.get(java.lang.String)",this,throwable);throw throwable;}
     }
     
     
     public byte[] get(String urlToGet, String username, String password) throws TransportException {
 
-        byte[] bytesReceived = null;
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.transport.HTTPTransport.get(java.lang.String,java.lang.String,java.lang.String)",this,urlToGet,username,password);try{byte[] bytesReceived = null;
 
         HttpURLConnection conn = null; 
 
         try {
-            // Make a connect to the server
+            /*// Make a connect to the server*/
             URL url = new URL(urlToGet);
             conn = getConnection(url);
 
-            // Put the authentication details in the request
+            /*// Put the authentication details in the request*/
             if (username != null && !username.trim().equals("")) {
                 conn.setRequestProperty ("Authorization", createAuthenticationString(username, password));
             }
@@ -171,12 +171,12 @@ public class HTTPTransport extends Transport {
             conn.setUseCaches(false);
             conn.setRequestMethod("GET");
 
-            // Ensure we get the either 200 or 404
-            // 200 is OK
-            // 404 means file doesn't exist. This is a valid result so we just return null
+            /*// Ensure we get the either 200 or 404*/
+            /*// 200 is OK*/
+            /*// 404 means file doesn't exist. This is a valid result so we just return null*/
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
-                // Read the response
+                /*// Read the response*/
                 InputStream is = conn.getInputStream();
                 bytesReceived = readFromResponseStream(is);
                 is.close();
@@ -195,20 +195,20 @@ public class HTTPTransport extends Transport {
             }
         }
 
-        return bytesReceived;
+        {com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.transport.HTTPTransport.get(java.lang.String,java.lang.String,java.lang.String)",this);return bytesReceived;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.transport.HTTPTransport.get(java.lang.String,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
 
     }
 
     
     private HttpURLConnection getConnection(URL url) throws TransportException {
-        HttpURLConnection conn;
+        com.mijack.Xlog.logMethodEnter("java.net.HttpURLConnection com.u17od.upm.transport.HTTPTransport.getConnection(java.net.URL)",this,url);try{HttpURLConnection conn;
         try {
             conn = (HttpURLConnection) url.openConnection();
             
-            // This is for testing purposes. Setting http.proxyHost and http.proxyPort
-            // doesn't seem to work but this does.
-//            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", 8888));
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection(proxy);
+            /*// This is for testing purposes. Setting http.proxyHost and http.proxyPort*/
+            /*// doesn't seem to work but this does.*/
+/*//            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", 8888));*/
+/*//            HttpURLConnection conn = (HttpURLConnection) url.openConnection(proxy);*/
 
             if(conn instanceof HttpsURLConnection) {
                 if (certFile.exists() && sslFactory == null) {
@@ -216,14 +216,14 @@ public class HTTPTransport extends Transport {
                 }
                 if (sslFactory != null) {
                     ((HttpsURLConnection) conn).setSSLSocketFactory(sslFactory);
-                    // If we've been provided with a hostname we should always
-                    // trust then add a HostnameVerifier for that hostname
+                    /*// If we've been provided with a hostname we should always*/
+                    /*// trust then add a HostnameVerifier for that hostname*/
                     if (trustedHost != null) {
                         ((HttpsURLConnection) conn).setHostnameVerifier(
                                 new HostnameVerifier() {
                                     @Override
                                     public boolean verify(String hostname, SSLSession session) {
-                                        return hostname.equals(trustedHost);
+                                        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.transport.HTTPTransport$1.verify(java.lang.String,javax.net.ssl.SSLSession)",this,hostname,session);try{com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.transport.HTTPTransport$1.verify(java.lang.String,javax.net.ssl.SSLSession)",this);{com.mijack.Xlog.logMethodExit("java.net.HttpURLConnection com.u17od.upm.transport.HTTPTransport.getConnection(java.net.URL)",this);return hostname.equals(trustedHost);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.transport.HTTPTransport$1.verify(java.lang.String,javax.net.ssl.SSLSession)",this,throwable);throw throwable;}
                                     }
                                 }
                         );
@@ -242,11 +242,11 @@ public class HTTPTransport extends Transport {
             throw new TransportException(e);
         }
 
-        return conn;
+        {com.mijack.Xlog.logMethodExit("java.net.HttpURLConnection com.u17od.upm.transport.HTTPTransport.getConnection(java.net.URL)",this);return conn;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.HttpURLConnection com.u17od.upm.transport.HTTPTransport.getConnection(java.net.URL)",this,throwable);throw throwable;}
     }
 
     private void buildSSLFactory() throws CertificateException, KeyStoreException, NoSuchAlgorithmException, IOException, KeyManagementException {
-        FileInputStream fileStream = new FileInputStream(certFile);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.transport.HTTPTransport.buildSSLFactory()",this);try{FileInputStream fileStream = new FileInputStream(certFile);
 
         CertificateFactory certFactory  = CertificateFactory.getInstance("X.509");
         Certificate cert = certFactory.generateCertificate(fileStream);
@@ -261,11 +261,11 @@ public class HTTPTransport extends Transport {
         SSLContext context = SSLContext.getInstance("TLS");
         context.init(null, trustManager.getTrustManagers(), null);
 
-        sslFactory = context.getSocketFactory();
+        sslFactory = context.getSocketFactory();com.mijack.Xlog.logMethodExit("void com.u17od.upm.transport.HTTPTransport.buildSSLFactory()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.transport.HTTPTransport.buildSSLFactory()",this,throwable);throw throwable;}
     }
 
     private byte[] readFromResponseStream(InputStream is) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        com.mijack.Xlog.logMethodEnter("[byte com.u17od.upm.transport.HTTPTransport.readFromResponseStream(java.io.FileInputStream)",this,is);try{ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] bytes = new byte[1024];
         int bytesRead;
         while((bytesRead = is.read(bytes)) != -1) {
@@ -273,23 +273,23 @@ public class HTTPTransport extends Transport {
         }
         byte[] bytesToReturn = baos.toByteArray();
         baos.close();
-        return bytesToReturn;
+        {com.mijack.Xlog.logMethodExit("[byte com.u17od.upm.transport.HTTPTransport.readFromResponseStream(java.io.FileInputStream)",this);return bytesToReturn;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.u17od.upm.transport.HTTPTransport.readFromResponseStream(java.io.FileInputStream)",this,throwable);throw throwable;}
     }
 
 
     public File getRemoteFile(String remoteLocation) throws TransportException {
-        return getRemoteFile(remoteLocation, null, null);
+        com.mijack.Xlog.logMethodEnter("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String)",this,remoteLocation);try{com.mijack.Xlog.logMethodExit("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String)",this);return getRemoteFile(remoteLocation, null, null);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String)",this,throwable);throw throwable;}
     }
 
 
     public File getRemoteFile(String remoteLocation, String fileName, String httpUsername, String httpPassword) throws TransportException {
-        remoteLocation = addTrailingSlash(remoteLocation);
-        return getRemoteFile(remoteLocation + fileName, httpUsername, httpPassword);
+        com.mijack.Xlog.logMethodEnter("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String,java.lang.String,java.lang.String,java.lang.String)",this,remoteLocation,fileName,httpUsername,httpPassword);try{remoteLocation = addTrailingSlash(remoteLocation);
+        {com.mijack.Xlog.logMethodExit("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String,java.lang.String,java.lang.String,java.lang.String)",this);return getRemoteFile(remoteLocation + fileName, httpUsername, httpPassword);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String,java.lang.String,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
 
     public File getRemoteFile(String remoteLocation, String httpUsername, String httpPassword) throws TransportException {
-        try {
+        com.mijack.Xlog.logMethodEnter("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String,java.lang.String,java.lang.String)",this,remoteLocation,httpUsername,httpPassword);try{try {
             File downloadedFile = null;
             byte[] remoteFile = get(remoteLocation, httpUsername, httpPassword);
             if (remoteFile != null) {
@@ -298,26 +298,26 @@ public class HTTPTransport extends Transport {
                 fos.write(remoteFile);
                 fos.close();
             }
-            return downloadedFile;
+            {com.mijack.Xlog.logMethodExit("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String,java.lang.String,java.lang.String)",this);return downloadedFile;}
         } catch (IOException e) {
             throw new TransportException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.u17od.upm.transport.HTTPTransport.getRemoteFile(java.lang.String,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
 
     public void delete(String sharedDbURL, String fileToDelete, String username, String password) throws TransportException {
 
-        HttpURLConnection conn = null;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.transport.HTTPTransport.delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String)",this,sharedDbURL,fileToDelete,username,password);try{HttpURLConnection conn = null;
         String targetURL = addTrailingSlash(sharedDbURL) + "deletefile.php";
 
         String requestBody = String.format("fileToDelete=%s&Delete=Submit+Query", fileToDelete);
 
         try {
-            // Make a connect to the server
+            /*// Make a connect to the server*/
             URL url = new URL(targetURL);
             conn = getConnection(url);
 
-            // Put the authentication details in the request
+            /*// Put the authentication details in the request*/
             if (username != null) {
                 conn.setRequestProperty ("Authorization", createAuthenticationString(username, password));
             }
@@ -332,25 +332,25 @@ public class HTTPTransport extends Transport {
             conn.setRequestMethod("POST");
             conn.setFixedLengthStreamingMode(contentLength);
 
-            // Send the body
+            /*// Send the body*/
             OutputStreamWriter dataOS = new OutputStreamWriter(conn.getOutputStream());
             dataOS.write(requestBody);
             dataOS.flush();
             dataOS.close();
 
-            // Ensure we got the HTTP 200 response code
+            /*// Ensure we got the HTTP 200 response code*/
             int responseCode = conn.getResponseCode();
             if (responseCode != 200) {
                 throw new TransportException(String.format("Received the response code %d from the URL %s", responseCode, url));
             }
 
-            // Read the response
+            /*// Read the response*/
             InputStream is = conn.getInputStream();
             byte[] bytesReceived = readFromResponseStream(is);
             is.close();
             String response = new String(bytesReceived);
 
-            // If we don't get OK or FILE_DOESNT_EXIST then thrown an error
+            /*// If we don't get OK or FILE_DOESNT_EXIST then thrown an error*/
             if (!response.toString().equals("OK") && !response.toString().equals("FILE_DOESNT_EXIST")) {
                 throw new TransportException(String.format("Received the response code %s from the URL %s", response, url));
             }
@@ -361,28 +361,28 @@ public class HTTPTransport extends Transport {
             if (conn != null) {
                 conn.disconnect();
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.transport.HTTPTransport.delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
 
     }
 
 
     public void delete(String targetLocation, String fileToDelete) throws TransportException {
-        delete(targetLocation, fileToDelete, null, null);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.transport.HTTPTransport.delete(java.lang.String,java.lang.String)",this,targetLocation,fileToDelete);try{delete(targetLocation, fileToDelete, null, null);com.mijack.Xlog.logMethodExit("void com.u17od.upm.transport.HTTPTransport.delete(java.lang.String,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.transport.HTTPTransport.delete(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
 
     private String addTrailingSlash(String url) {
-        if (url.charAt(url.length() - 1) != '/') {
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.transport.HTTPTransport.addTrailingSlash(java.lang.String)",this,url);try{if (url.charAt(url.length() - 1) != '/') {
             url = url + '/';
         }
-        return url;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.transport.HTTPTransport.addTrailingSlash(java.lang.String)",this);return url;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.transport.HTTPTransport.addTrailingSlash(java.lang.String)",this,throwable);throw throwable;}
     }
 
 
     private String createAuthenticationString(String username, String password) {
-        String usernamePassword = username + ":" + password;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.transport.HTTPTransport.createAuthenticationString(java.lang.String,java.lang.String)",this,username,password);try{String usernamePassword = username + ":" + password;
         String encodedUsernamePassword = Base64.encodeBytes(usernamePassword.getBytes());
-        return "Basic " + encodedUsernamePassword;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.transport.HTTPTransport.createAuthenticationString(java.lang.String,java.lang.String)",this);return "Basic " + encodedUsernamePassword;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.transport.HTTPTransport.createAuthenticationString(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

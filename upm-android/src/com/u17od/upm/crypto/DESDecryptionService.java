@@ -56,27 +56,27 @@ public class DESDecryptionService {
      * @throws InvalidPasswordException 
      */
     public static byte[] decrypt(char[] password, byte[] salt, byte[] ciphertext) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, InvalidPasswordException {
-        PBEKeySpec pbeKeySpec = new PBEKeySpec(password);
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.u17od.upm.crypto.DESDecryptionService.decrypt([char,[byte,[byte)",password,salt,ciphertext);try{PBEKeySpec pbeKeySpec = new PBEKeySpec(password);
         SecretKeyFactory keyFac = SecretKeyFactory.getInstance(PBEWithMD5AndDES);
         SecretKey secretKey = keyFac.generateSecret(pbeKeySpec);
 
-        return decrypt(secretKey, salt, ciphertext);
+        {com.mijack.Xlog.logStaticMethodExit("[byte com.u17od.upm.crypto.DESDecryptionService.decrypt([char,[byte,[byte)");return decrypt(secretKey, salt, ciphertext);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.u17od.upm.crypto.DESDecryptionService.decrypt([char,[byte,[byte)",throwable);throw throwable;}
     }
 
     
     public static byte[] decrypt(SecretKey secretKey, byte[] salt, byte[] ciphertext) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, InvalidPasswordException {
-        PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 20);
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.u17od.upm.crypto.DESDecryptionService.decrypt(javax.crypto.SecretKey,[byte,[byte)",secretKey,salt,ciphertext);try{PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 20);
         Cipher desDecryptionCipher = Cipher.getInstance(PBEWithMD5AndDES);
         desDecryptionCipher.init(Cipher.DECRYPT_MODE, secretKey, pbeParamSpec);
 
-        // Do the decryption
+        /*// Do the decryption*/
         byte[] retVal;
         try {
             retVal = desDecryptionCipher.doFinal(ciphertext);
         } catch (BadPaddingException e) {
             throw new InvalidPasswordException(); 
         }
-        return retVal;
+        {com.mijack.Xlog.logStaticMethodExit("[byte com.u17od.upm.crypto.DESDecryptionService.decrypt(javax.crypto.SecretKey,[byte,[byte)");return retVal;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.u17od.upm.crypto.DESDecryptionService.decrypt(javax.crypto.SecretKey,[byte,[byte)",throwable);throw throwable;}
     }
 
 }

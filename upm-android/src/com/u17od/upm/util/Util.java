@@ -40,25 +40,25 @@ public class Util {
      * @return A padded version of the integer
      */
     public static String lpad(int i, int length, char c) {
-        StringBuffer buf = new StringBuffer(String.valueOf(i));
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.u17od.upm.util.Util.lpad(int,int,char)",i,length,c);try{StringBuffer buf = new StringBuffer(String.valueOf(i));
         while (buf.length() < length) {
             buf.insert(0, c);
         }
-        return buf.toString();
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.u17od.upm.util.Util.lpad(int,int,char)");return buf.toString();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.u17od.upm.util.Util.lpad(int,int,char)",throwable);throw throwable;}
     }
 
 
     public static byte[] getBytesFromFile(File file) throws IOException {
-        return getBytesFromFile(file, file.length());
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.u17od.upm.util.Util.getBytesFromFile(java.io.File)",file);try{com.mijack.Xlog.logStaticMethodExit("[byte com.u17od.upm.util.Util.getBytesFromFile(java.io.File)");return getBytesFromFile(file, file.length());}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.u17od.upm.util.Util.getBytesFromFile(java.io.File)",throwable);throw throwable;}
     }
 
     public static byte[] getBytesFromFile(File file, long numBytesToRead) throws IOException {
-        InputStream is = new FileInputStream(file);
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.u17od.upm.util.Util.getBytesFromFile(java.io.File,long)",file,numBytesToRead);try{InputStream is = new FileInputStream(file);
     
-        // Create the byte array to hold the data
+        /*// Create the byte array to hold the data*/
         byte[] bytes = new byte[(int) numBytesToRead];
     
-        // Read in the bytes
+        /*// Read in the bytes*/
         int offset = 0;
         int numRead = 0;
         while (offset < bytes.length
@@ -66,7 +66,7 @@ public class Util {
             offset += numRead;
         }
     
-        // Ensure all the bytes have been read in
+        /*// Ensure all the bytes have been read in*/
         if (offset < bytes.length) {
             is.close();
             throw new IOException("Could not completely read file " + file.getName());
@@ -74,13 +74,13 @@ public class Util {
 
         is.close();
 
-        return bytes;
+        {com.mijack.Xlog.logStaticMethodExit("[byte com.u17od.upm.util.Util.getBytesFromFile(java.io.File,long)");return bytes;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.u17od.upm.util.Util.getBytesFromFile(java.io.File,long)",throwable);throw throwable;}
     }
 
     public static Charset defaultCharset() {
-        return Charset.forName(
+        com.mijack.Xlog.logStaticMethodEnter("java.nio.charset.Charset com.u17od.upm.util.Util.defaultCharset()");try{com.mijack.Xlog.logStaticMethodExit("java.nio.charset.Charset com.u17od.upm.util.Util.defaultCharset()");return Charset.forName(
                 new OutputStreamWriter(
-                        new ByteArrayOutputStream()).getEncoding());
+                        new ByteArrayOutputStream()).getEncoding());}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.nio.charset.Charset com.u17od.upm.util.Util.defaultCharset()",throwable);throw throwable;}
     }
 
 }

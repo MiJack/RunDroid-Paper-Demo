@@ -49,32 +49,32 @@ public class UPMApplication extends Application {
 
     @Override
     public void onCreate() {
-        super.onCreate();
-        backupManager = new BackupManager(this);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.UPMApplication.onCreate()",this);try{super.onCreate();
+        backupManager = new BackupManager(this);com.mijack.Xlog.logMethodExit("void com.u17od.upm.UPMApplication.onCreate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.UPMApplication.onCreate()",this,throwable);throw throwable;}
     }
 
     public BackupManager getBackupManager() {
-        return backupManager;
+        com.mijack.Xlog.logMethodEnter("android.app.backup.BackupManager com.u17od.upm.UPMApplication.getBackupManager()",this);try{com.mijack.Xlog.logMethodExit("android.app.backup.BackupManager com.u17od.upm.UPMApplication.getBackupManager()",this);return backupManager;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.backup.BackupManager com.u17od.upm.UPMApplication.getBackupManager()",this,throwable);throw throwable;}
     }
 
     public Date getTimeOfLastSync() {
-        return timeOfLastSync;
+        com.mijack.Xlog.logMethodEnter("java.util.Date com.u17od.upm.UPMApplication.getTimeOfLastSync()",this);try{com.mijack.Xlog.logMethodExit("java.util.Date com.u17od.upm.UPMApplication.getTimeOfLastSync()",this);return timeOfLastSync;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Date com.u17od.upm.UPMApplication.getTimeOfLastSync()",this,throwable);throw throwable;}
     }
 
     public void setTimeOfLastSync(Date timeOfLastSync) {
-        this.timeOfLastSync = timeOfLastSync;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.UPMApplication.setTimeOfLastSync(java.util.Date)",this,timeOfLastSync);try{this.timeOfLastSync = timeOfLastSync;com.mijack.Xlog.logMethodExit("void com.u17od.upm.UPMApplication.setTimeOfLastSync(java.util.Date)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.UPMApplication.setTimeOfLastSync(java.util.Date)",this,throwable);throw throwable;}
     }
 
     public void setPasswordDatabase(PasswordDatabase passwordDatabase) {
-        this.passwordDatabase = passwordDatabase;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.UPMApplication.setPasswordDatabase(com.u17od.upm.database.PasswordDatabase)",this,passwordDatabase);try{this.passwordDatabase = passwordDatabase;com.mijack.Xlog.logMethodExit("void com.u17od.upm.UPMApplication.setPasswordDatabase(com.u17od.upm.database.PasswordDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.UPMApplication.setPasswordDatabase(com.u17od.upm.database.PasswordDatabase)",this,throwable);throw throwable;}
     }
 
     public PasswordDatabase getPasswordDatabase() {
-        return passwordDatabase;
+        com.mijack.Xlog.logMethodEnter("com.u17od.upm.database.PasswordDatabase com.u17od.upm.UPMApplication.getPasswordDatabase()",this);try{com.mijack.Xlog.logMethodExit("com.u17od.upm.database.PasswordDatabase com.u17od.upm.UPMApplication.getPasswordDatabase()",this);return passwordDatabase;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.u17od.upm.database.PasswordDatabase com.u17od.upm.UPMApplication.getPasswordDatabase()",this,throwable);throw throwable;}
     }
 
     protected boolean copyFile(File source, File dest, Activity activity) {
-        boolean successful = false;
+        com.mijack.Xlog.logMethodEnter("boolean com.u17od.upm.UPMApplication.copyFile(java.io.File,java.io.File,android.app.Activity)",this,source,dest,activity);try{boolean successful = false;
 
         FileChannel sourceChannel = null;
         FileChannel destinationChannel = null;
@@ -119,19 +119,19 @@ public class UPMApplication extends Application {
             }
         }
 
-        return successful;
+        {com.mijack.Xlog.logMethodExit("boolean com.u17od.upm.UPMApplication.copyFile(java.io.File,java.io.File,android.app.Activity)",this);return successful;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.u17od.upm.UPMApplication.copyFile(java.io.File,java.io.File,android.app.Activity)",this,throwable);throw throwable;}
     }
 
     protected void restoreDatabase(Activity activity) {
-        deleteDatabase(activity);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.UPMApplication.restoreDatabase(android.app.Activity)",this,activity);try{deleteDatabase(activity);
         File fileOnSDCard = new File(Environment.getExternalStorageDirectory(), Utilities.DEFAULT_DATABASE_FILE);
         File databaseFile = Utilities.getDatabaseFile(activity);
-        ((UPMApplication) activity.getApplication()).copyFile(fileOnSDCard, databaseFile, activity);
+        ((UPMApplication) activity.getApplication()).copyFile(fileOnSDCard, databaseFile, activity);com.mijack.Xlog.logMethodExit("void com.u17od.upm.UPMApplication.restoreDatabase(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.UPMApplication.restoreDatabase(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     protected void deleteDatabase(Activity activity) {
-        Utilities.getDatabaseFile(activity).delete();
-        Utilities.setDatabaseFileName(null, activity);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.UPMApplication.deleteDatabase(android.app.Activity)",this,activity);try{Utilities.getDatabaseFile(activity).delete();
+        Utilities.setDatabaseFileName(null, activity);com.mijack.Xlog.logMethodExit("void com.u17od.upm.UPMApplication.deleteDatabase(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.UPMApplication.deleteDatabase(android.app.Activity)",this,throwable);throw throwable;}
     }
 
 }

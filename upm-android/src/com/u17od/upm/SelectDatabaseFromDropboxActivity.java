@@ -43,7 +43,7 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         prefs = getSharedPreferences(Utilities.DROPBOX_PREFS, MODE_PRIVATE);
         String dropboxAccessToken = prefs.getString(DROPBOX_ACCESS_TOKEN, null);
@@ -51,12 +51,12 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
 
         if (dropboxAccessToken == null) {
             Auth.startOAuth2Authentication(SelectDatabaseFromDropboxActivity.this, DropboxConstants.APP_KEY);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onResume()",this);try{super.onResume();
 
         String dropboxAccessToken = prefs.getString(DROPBOX_ACCESS_TOKEN, null);
         Log.i("onResume", "dropboxAccessToken=" + dropboxAccessToken);
@@ -67,24 +67,24 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
             if (dropboxAccessToken != null) {
                 prefs.edit().putString(DROPBOX_ACCESS_TOKEN, dropboxAccessToken).commit();
                 DropboxClientFactory.init(dropboxAccessToken);
-                // Launch the async task where we'll download database filenames from
-                // Dropbox and populate the ListView
+                /*// Launch the async task where we'll download database filenames from*/
+                /*// Dropbox and populate the ListView*/
                 new DownloadListOfFilesTask().execute();
             }
         } else {
             DropboxClientFactory.init(dropboxAccessToken);
-            // Launch the async task where we'll download database filenames from
-            // Dropbox and populate the ListView
+            /*// Launch the async task where we'll download database filenames from*/
+            /*// Dropbox and populate the ListView*/
             new DownloadListOfFilesTask().execute();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onStop()",this);try{super.onStop();
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onStop()",this,throwable);throw throwable;}
     }
 
     /**
@@ -93,12 +93,12 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (resultCode == Activity.RESULT_CANCELED) {
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,intent);try{if (resultCode == Activity.RESULT_CANCELED) {
             UIUtilities.showToast(this, R.string.enter_password_cancalled);
         } else {
             if (requestCode == ENTER_PW_REQUEST_CODE) {
-                // Setting the DatabaseFileName preference effectively says
-                // that this is the db to open when the app starts
+                /*// Setting the DatabaseFileName preference effectively says*/
+                /*// that this is the db to open when the app starts*/
                 Utilities.setSyncMethod(Prefs.SyncMethod.DROPBOX, this);
                 String selectedDropboxFilename =
                         Utilities.getConfig(this, Utilities.DROPBOX_PREFS,
@@ -106,7 +106,7 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
                 Utilities.setDatabaseFileName(selectedDropboxFilename,
                         SelectDatabaseFromDropboxActivity.this);
 
-                // Put a reference to the decrypted database on the Application object
+                /*// Put a reference to the decrypted database on the Application object*/
                 UPMApplication app = (UPMApplication) getApplication();
                 app.setPasswordDatabase(EnterMasterPassword.decryptedPasswordDatabase);
                 app.setTimeOfLastSync(new Date());
@@ -114,7 +114,7 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
                 setResult(RESULT_OK);
                 finish();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onActivityResult(int,int,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     /**
@@ -122,10 +122,10 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
      */
     @Override
     protected void onListItemClick(ListView lv, View v, int position, long id) {
-        String selectedFileName = (String) lv.getItemAtPosition(position);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onListItemClick(android.widget.ListView,android.view.View,int,long)",this,lv,v,position,id);try{String selectedFileName = (String) lv.getItemAtPosition(position);
         Utilities.setConfig(this, Utilities.DROPBOX_PREFS,
                 Utilities.DROPBOX_SELECTED_FILENAME, selectedFileName);
-        new DownloadDatabaseTask().execute(selectedFileName);
+        new DownloadDatabaseTask().execute(selectedFileName);com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onListItemClick(android.widget.ListView,android.view.View,int,long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity.onListItemClick(android.widget.ListView,android.view.View,int,long)",this,throwable);throw throwable;}
     }
 
     private class DownloadListOfFilesTask extends AsyncTask<Void, Void, Integer> {
@@ -136,29 +136,29 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
         private List<Metadata> dropBoxEntries;
 
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(SelectDatabaseFromDropboxActivity.this,
-                    "", getString(R.string.dropbox_get_file_list));
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.onPreExecute()",this);try{progressDialog = ProgressDialog.show(SelectDatabaseFromDropboxActivity.this,
+                    "", getString(R.string.dropbox_get_file_list));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected Integer doInBackground(Void... params) {
-            try {
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.doInBackground([java.lang.Void)",this,params);try{try {
                 ListFolderResult filderContents =
                         DropboxClientFactory.getClient().files().listFolder("");
                 dropBoxEntries = filderContents.getEntries();
-                return 0;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.doInBackground([java.lang.Void)",this);return 0;}
             } catch (InvalidAccessTokenException e) {
                 Log.e(TAG, "InvalidAccessTokenException downloading database", e);
-                return ERROR_DROPBOX_INVALID_TOKEN;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.doInBackground([java.lang.Void)",this);return ERROR_DROPBOX_INVALID_TOKEN;}
             } catch (DbxException e) {
                 Log.e(TAG, "DbxException downloading database", e);
-                return ERROR_DROPBOX;
-            }
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.doInBackground([java.lang.Void)",this);return ERROR_DROPBOX;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.doInBackground([java.lang.Void)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            progressDialog.dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.onPostExecute(java.lang.Integer)",this,result);try{progressDialog.dismiss();
 
             switch (result) {
                 case 0:
@@ -178,7 +178,7 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
                             R.string.dropbox_problem, true);
                     finish();
                     break;
-            }
+            }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
 
 
@@ -187,11 +187,11 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
          * a simple String array.
          */
         private List<String> dropboxFiles(List<Metadata> dpEntries) {
-            List<String> fileNames = new ArrayList<String>();
+            com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.dropboxFiles(java.util.ArrayList)",this,dpEntries);try{List<String> fileNames = new ArrayList<String>();
             for (Metadata entry : dpEntries) {
                 fileNames.add(entry.getName());
             }
-            return fileNames;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.dropboxFiles(java.util.ArrayList)",this);return fileNames;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadListOfFilesTask.dropboxFiles(java.util.ArrayList)",this,throwable);throw throwable;}
         }
 
     }
@@ -208,15 +208,15 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
         private ProgressDialog progressDialog;
 
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(SelectDatabaseFromDropboxActivity.this,
-                    "", getString(R.string.downloading_db));
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.onPreExecute()",this);try{progressDialog = ProgressDialog.show(SelectDatabaseFromDropboxActivity.this,
+                    "", getString(R.string.downloading_db));com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected Integer doInBackground(String... fileName) {
-            FileOutputStream outputStream = null;
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this,fileName);try{FileOutputStream outputStream = null;
             try {
-                // Download the file and save it to UPM's internal files area
+                /*// Download the file and save it to UPM's internal files area*/
                 File file = new File(getFilesDir(), fileName[0]);
                 outputStream = new FileOutputStream(file);
                 DropboxClientFactory.getClient()
@@ -224,43 +224,43 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
                         .download("/" + fileName[0])
                         .download(outputStream);
 
-                // Check this is a UPM database file
+                /*// Check this is a UPM database file*/
                 if (!PasswordDatabase.isPasswordDatabase(file)) {
-                    return NOT_UPM_DB;
+                    {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this);return NOT_UPM_DB;}
                 }
                 EnterMasterPassword.databaseFileToDecrypt = file;
 
-                return 0;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this);return 0;}
             } catch (IOException e) {
                 Log.e(TAG, "IOException downloading database", e);
-                return ERROR_IO;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this);return ERROR_IO;}
             } catch (InvalidAccessTokenException e) {
                 Log.e(TAG, "InvalidAccessTokenException downloading database", e);
-                return ERROR_DROPBOX_INVALID_TOKEN;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this);return ERROR_DROPBOX_INVALID_TOKEN;}
             } catch (DbxException e) {
                 Log.e(TAG, "DbxException downloading database", e);
-                return ERROR_DROPBOX;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this);return ERROR_DROPBOX;}
             } finally {
                 if (outputStream != null) {
                     try {
                         outputStream.close();
                     } catch (IOException e) {
                         Log.e(TAG, "IOException closing database file stream", e);
-                        return ERROR_IO;
+                        {com.mijack.Xlog.logMethodExit("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this);return ERROR_IO;}
                     }
                 }
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.doInBackground([java.lang.String)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            progressDialog.dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.onPostExecute(java.lang.Integer)",this,result);try{progressDialog.dismiss();
 
             Intent i = null;
             switch (result) {
                 case 0:
-                    // Call up the EnterMasterPassword activity
-                    // When it returns we'll pick up in the method onActivityResult
+                    /*// Call up the EnterMasterPassword activity*/
+                    /*// When it returns we'll pick up in the method onActivityResult*/
                     i = new Intent(SelectDatabaseFromDropboxActivity.this, EnterMasterPassword.class);
                     startActivityForResult(i, ENTER_PW_REQUEST_CODE);
                     break;
@@ -285,7 +285,7 @@ public class SelectDatabaseFromDropboxActivity extends ListActivity {
                             R.string.not_password_database, true);
                     finish();
                     break;
-            }
+            }com.mijack.Xlog.logMethodExit("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.SelectDatabaseFromDropboxActivity$DownloadDatabaseTask.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
     }
 

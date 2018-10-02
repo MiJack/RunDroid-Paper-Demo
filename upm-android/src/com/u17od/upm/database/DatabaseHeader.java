@@ -45,56 +45,56 @@ public class DatabaseHeader extends FlatPackObject {
     
     
     public void flatPack(OutputStream os) throws IOException {
-        os.write(flatPack(String.valueOf(majorVersion)));
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseHeader.flatPack(java.io.OutputStream)",this,os);try{os.write(flatPack(String.valueOf(majorVersion)));
         os.write(flatPack(String.valueOf(minorVersion)));
-        os.write(flatPack(String.valueOf(patchVersion)));
+        os.write(flatPack(String.valueOf(patchVersion)));com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseHeader.flatPack(java.io.OutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseHeader.flatPack(java.io.OutputStream)",this,throwable);throw throwable;}
     }
 
     
     private void assemble(InputStream is) throws IOException, ProblemReadingDatabaseFile {
-        majorVersion = getInt(is);
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseHeader.assemble(java.io.InputStream)",this,is);try{majorVersion = getInt(is);
         minorVersion = getInt(is);
-        patchVersion = getInt(is);
+        patchVersion = getInt(is);com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseHeader.assemble(java.io.InputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseHeader.assemble(java.io.InputStream)",this,throwable);throw throwable;}
     }    
 
     public String getVersion() {
-        StringBuffer buf = new StringBuffer();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.u17od.upm.database.DatabaseHeader.getVersion()",this);try{StringBuffer buf = new StringBuffer();
         buf.append(majorVersion);
         buf.append('.');
         buf.append(minorVersion);
         buf.append('.');
         buf.append(patchVersion);
-        return buf.toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.u17od.upm.database.DatabaseHeader.getVersion()",this);return buf.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.u17od.upm.database.DatabaseHeader.getVersion()",this,throwable);throw throwable;}
     }
 
 
     public int getMajorVersion() {
-        return majorVersion;
+        com.mijack.Xlog.logMethodEnter("int com.u17od.upm.database.DatabaseHeader.getMajorVersion()",this);try{com.mijack.Xlog.logMethodExit("int com.u17od.upm.database.DatabaseHeader.getMajorVersion()",this);return majorVersion;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.u17od.upm.database.DatabaseHeader.getMajorVersion()",this,throwable);throw throwable;}
     }
 
 
     public void setMajorVersion(int majorVersion) {
-        this.majorVersion = majorVersion;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseHeader.setMajorVersion(int)",this,majorVersion);try{this.majorVersion = majorVersion;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseHeader.setMajorVersion(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseHeader.setMajorVersion(int)",this,throwable);throw throwable;}
     }
 
 
     public int getMinorVersion() {
-        return minorVersion;
+        com.mijack.Xlog.logMethodEnter("int com.u17od.upm.database.DatabaseHeader.getMinorVersion()",this);try{com.mijack.Xlog.logMethodExit("int com.u17od.upm.database.DatabaseHeader.getMinorVersion()",this);return minorVersion;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.u17od.upm.database.DatabaseHeader.getMinorVersion()",this,throwable);throw throwable;}
     }
 
 
     public void setMinorVersion(int minorVersion) {
-        this.minorVersion = minorVersion;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseHeader.setMinorVersion(int)",this,minorVersion);try{this.minorVersion = minorVersion;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseHeader.setMinorVersion(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseHeader.setMinorVersion(int)",this,throwable);throw throwable;}
     }
 
 
     public int getPatchVersion() {
-        return patchVersion;
+        com.mijack.Xlog.logMethodEnter("int com.u17od.upm.database.DatabaseHeader.getPatchVersion()",this);try{com.mijack.Xlog.logMethodExit("int com.u17od.upm.database.DatabaseHeader.getPatchVersion()",this);return patchVersion;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.u17od.upm.database.DatabaseHeader.getPatchVersion()",this,throwable);throw throwable;}
     }
 
 
     public void setPatchVersion(int patchVersion) {
-        this.patchVersion = patchVersion;
+        com.mijack.Xlog.logMethodEnter("void com.u17od.upm.database.DatabaseHeader.setPatchVersion(int)",this,patchVersion);try{this.patchVersion = patchVersion;com.mijack.Xlog.logMethodExit("void com.u17od.upm.database.DatabaseHeader.setPatchVersion(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.u17od.upm.database.DatabaseHeader.setPatchVersion(int)",this,throwable);throw throwable;}
     }
 
 }
