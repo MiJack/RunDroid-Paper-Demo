@@ -30,7 +30,7 @@ public abstract class MatchTask extends Task implements Serializable {
     MatchTask(Context ctx, Game g, Progress p, Progress.ProgressCallback pc) {
         super(ctx, g, p, pc);
         this.input = new MatchInput(getContext());
-        this.collumns = Arrays.asList(
+        this.collumns = Arrays.<Collumn>asList(
                 new MatchCollumn(getContext(), true),
                 new MatchCollumn(getContext(), false)
         );

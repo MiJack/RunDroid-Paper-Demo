@@ -21,6 +21,7 @@ import com.phikal.regex.models.Progress;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Set;
 
 import static com.phikal.regex.Util.CHAR_BAR_ON;
 import static com.phikal.regex.Util.FEEDBACK_ON;
@@ -43,52 +44,59 @@ public class SettingsActivity extends Activity {
         // find views
         roundsText = (TextView) findViewById(R.id.round);
         difficultyText = (TextView) findViewById(R.id.diff);
-        Button resetButton = (Button) findViewById(R.id.reset);
-        Button charmButton = (Button) findViewById(R.id.charm);
-        Button notifButton = (Button) findViewById(R.id.notif);
+        final Button resetButton = (Button) findViewById(R.id.reset);
+        final Button charmButton = (Button) findViewById(R.id.charm);
+        final Button notifButton = (Button) findViewById(R.id.notif);
         Spinner gameSpinner = (Spinner) findViewById(R.id.mode_selector);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         stats();
 
         // reset when pressed twice
-        resetButton.setOnClickListener(v -> {
-            if (v.getTag() != null && (Boolean) v.getTag()) {
-                resetButton.setText(R.string.clear);
-                p.clear();
-                v.setTag(false);
-                GameActivity.reload = true;
-                stats();
-            } else {
-                resetButton.setText(R.string.confirm);
-                v.setTag(true);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getTag() != null && (Boolean) v.getTag()) {
+                    resetButton.setText(R.string.clear);
+                    p.clear();
+                    v.setTag(false);
+                    GameActivity.reload = true;
+                    stats();
+                } else {
+                    resetButton.setText(R.string.confirm);
+                    v.setTag(true);
+                }
             }
         });
 
         // turn character bar on or off
-        charmButton.setOnClickListener(v -> {
+        charmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             prefs.edit().putBoolean(CHAR_BAR_ON,
                     !prefs.getBoolean(CHAR_BAR_ON, true))
                     .apply();
             charmButton.setText(prefs.getBoolean(CHAR_BAR_ON, true) ?
                     R.string.char_off :
                     R.string.char_on);
-            notif(this);
-        });
+            notif(SettingsActivity.this);
+        }});
         charmButton.setText(prefs.getBoolean(CHAR_BAR_ON, true) ?
                 R.string.char_off :
                 R.string.char_on);
 
         // turn notifications on or off
-        notifButton.setOnClickListener((v) -> {
+        notifButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             prefs.edit().putBoolean(FEEDBACK_ON,
                     !prefs.getBoolean(FEEDBACK_ON, true))
                     .apply();
             notifButton.setText(prefs.getBoolean(FEEDBACK_ON, false) ?
                     R.string.notif_off :
                     R.string.notif_on);
-            notif(this);
-        });
+            notif(SettingsActivity.this);
+        }});
         notifButton.setText(prefs.getBoolean(FEEDBACK_ON, false) ?
                 R.string.notif_off :
                 R.string.notif_on);

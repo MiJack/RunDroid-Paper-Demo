@@ -24,6 +24,8 @@ import com.phikal.regex.R;
 import com.phikal.regex.adapters.WordAdapter;
 import com.phikal.regex.games.Game;
 import com.phikal.regex.models.Collumn;
+import com.phikal.regex.models.Input;
+import com.phikal.regex.models.Progress;
 import com.phikal.regex.models.Task;
 
 import java.util.ArrayList;
@@ -64,13 +66,17 @@ public class GameActivity extends Activity {
             if (savedInstanceState != null)
                 task = (Task) savedInstanceState.getSerializable(CURRENT_TASK);
             if (task == null)
-                task = game.nextTask(getApplicationContext(), p -> {
-                    prefs.edit()
-                            .putFloat(game.name() + PROGRESS, (float) p.getDifficutly())
-                            .putInt(game.name() + COUNT, p.getRound())
-                            .apply();
-                    input.getEditableText().clear();
-                    task = null;
+                task = game.nextTask(getApplicationContext(), new Progress.ProgressCallback() {
+                    @Override
+                    public void progress(Progress p) {
+                        prefs.edit()
+                                .putFloat(game.name() + PROGRESS, (float) p.getDifficutly())
+                                .putInt(game.name() + COUNT, p.getRound())
+                                .apply();
+                        input.getEditableText().clear();
+                        task = null;
+
+                    }
                 });
         } catch (ClassCastException cce) {
             new AlertDialog.Builder(getApplicationContext())
@@ -86,14 +92,14 @@ public class GameActivity extends Activity {
         // find and setup views
         colums = (LinearLayout) findViewById(R.id.columns);
         RelativeLayout input_box = (RelativeLayout) findViewById(R.id.input_box);
-        Button status = (Button) input_box.findViewById(R.id.status);
+        final Button status = (Button) input_box.findViewById(R.id.status);
         input = (EditText) input_box.findViewById(R.id.input);
         ImageButton settings = (ImageButton) input_box.findViewById(R.id.settings);
         LinearLayout charmb = (LinearLayout) findViewById(R.id.chars);
 
         colums.setWeightSum(task.getCollumns().size());
         LayoutInflater inf = LayoutInflater.from(getApplicationContext());
-        List<WordAdapter> adapters = new ArrayList<>(task.getCollumns().size());
+        final List<WordAdapter> adapters = new ArrayList<>(task.getCollumns().size());
         for (Collumn c : task.getCollumns()) {
             View v = inf.inflate(R.layout.column_layout, colums, false);
 
@@ -112,38 +118,52 @@ public class GameActivity extends Activity {
         input.setHint(getString(game.name));
         input.addTextChangedListener(task.getInput());
 
-        task.getInput().setStatusCallback((resp, msg) -> {
-            int res;
-            switch (resp) {
-                case ERROR:
-                    res = R.color.orange;
-                    break;
-                default:
-                case OK:
-                    res = R.color.text;
+        task.getInput().setStatusCallback(new Input.StatusCallback() {
+            @Override
+            public void status(Input.Response resp, String msg) {
+                int res;
+                switch (resp) {
+                    case ERROR:
+                        res = R.color.orange;
+                        break;
+                    default:
+                    case OK:
+                        res = R.color.text;
+                }
+                status.setTextColor(ContextCompat.getColor(GameActivity.this, res));
+                status.setText(msg);
+                for (WordAdapter wa : adapters)
+                    wa.notifyDataSetChanged();
             }
-            status.setTextColor(ContextCompat.getColor(this, res));
-            status.setText(msg);
-            for (WordAdapter wa : adapters)
-                wa.notifyDataSetChanged();
         });
 
-        settings.setOnClickListener($ -> {
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View $) {
+                Intent i = new Intent(GameActivity.this, SettingsActivity.class);
+                GameActivity.this.startActivity(i);
+            }
         });
-        settings.setOnLongClickListener($ -> {
-            task = null;
-            notif(this);
-            recreate();
-            return true;
+        settings.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View $) {
+                task = null;
+                notif(GameActivity.this);
+                GameActivity.this.recreate();
+                return true;
+            }
         });
 
-        for (String c : CHARS) {
+        for (final String c : CHARS) {
             TextView v = new TextView(getApplicationContext());
 
             v.setText(c);
-            v.setOnClickListener($ -> input.append(c));
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View $) {
+                    input.append(c);
+                }
+            });
             v.setHeight(getResources().getDimensionPixelSize(R.dimen.std));
             v.setWidth(getResources().getDimensionPixelSize(R.dimen.std));
             v.setGravity(Gravity.CENTER);

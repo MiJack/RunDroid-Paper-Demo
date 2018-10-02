@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import com.phikal.regex.R;
 
@@ -19,16 +20,35 @@ public class HelloActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello);
 
-        findViewById(R.id.close).setOnClickListener(v -> onBackPressed());
+        findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
-        findViewById(R.id.help).setOnClickListener(v ->
-                startActivity(new Intent(Intent.ACTION_VIEW, cheatsheet)));
+        findViewById(R.id.help).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        findViewById(R.id.show_new).setOnClickListener(v ->
-                startActivity(new Intent(Intent.ACTION_VIEW, changelog)));
+                startActivity(new Intent(Intent.ACTION_VIEW, cheatsheet));
+            }
+        });
 
-        findViewById(R.id.source).setOnClickListener(v ->
-                startActivity(new Intent(Intent.ACTION_VIEW, source)));
+        findViewById(R.id.show_new).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(Intent.ACTION_VIEW, changelog));
+            }
+        });
+
+        findViewById(R.id.source).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, source));
+            }
+        });
     }
 
 }
