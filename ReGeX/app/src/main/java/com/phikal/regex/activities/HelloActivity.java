@@ -17,13 +17,13 @@ public class HelloActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.phikal.regex.activities.HelloActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello);
 
         findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                com.mijack.Xlog.logMethodEnter("void com.phikal.regex.activities.HelloActivity$1.onClick(android.view.View)",this,v);try{onBackPressed();com.mijack.Xlog.logMethodExit("void com.phikal.regex.activities.HelloActivity$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.activities.HelloActivity$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
@@ -31,7 +31,7 @@ public class HelloActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(Intent.ACTION_VIEW, cheatsheet));
+                com.mijack.Xlog.logMethodEnter("void com.phikal.regex.activities.HelloActivity$2.onClick(android.view.View)",this,v);try{startActivity(new Intent(Intent.ACTION_VIEW, cheatsheet));com.mijack.Xlog.logMethodExit("void com.phikal.regex.activities.HelloActivity$2.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.activities.HelloActivity$2.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
@@ -39,16 +39,16 @@ public class HelloActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(Intent.ACTION_VIEW, changelog));
+                com.mijack.Xlog.logMethodEnter("void com.phikal.regex.activities.HelloActivity$3.onClick(android.view.View)",this,v);try{startActivity(new Intent(Intent.ACTION_VIEW, changelog));com.mijack.Xlog.logMethodExit("void com.phikal.regex.activities.HelloActivity$3.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.activities.HelloActivity$3.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
         findViewById(R.id.source).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, source));
+                com.mijack.Xlog.logMethodEnter("void com.phikal.regex.activities.HelloActivity$4.onClick(android.view.View)",this,v);try{startActivity(new Intent(Intent.ACTION_VIEW, source));com.mijack.Xlog.logMethodExit("void com.phikal.regex.activities.HelloActivity$4.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.activities.HelloActivity$4.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.phikal.regex.activities.HelloActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.activities.HelloActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 }

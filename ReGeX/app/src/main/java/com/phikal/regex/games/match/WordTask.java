@@ -27,13 +27,13 @@ public class WordTask extends SimpleMatchTask {
 
     @Override
     String randString() {
-        if (words == null) {
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.phikal.regex.games.match.WordTask.randString()",this);try{if (words == null) {
             try {
-                words = new ArrayList<>(8711); // current length
+                words = new ArrayList<>(8711); /*// current length*/
                 BufferedReader bis = new BufferedReader(new InputStreamReader(new GZIPInputStream(
                         getContext().getResources().openRawResource(R.raw.words))));
                 for (String line; (line = bis.readLine()) != null; )
-                    words.add(line);
+                    {words.add(line);}
                 Collections.shuffle(words, rnd);
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -41,6 +41,6 @@ public class WordTask extends SimpleMatchTask {
             }
         }
 
-        return words.get(request++);
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.phikal.regex.games.match.WordTask.randString()",this);return words.get(request++);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.phikal.regex.games.match.WordTask.randString()",this,throwable);throw throwable;}
     }
 }

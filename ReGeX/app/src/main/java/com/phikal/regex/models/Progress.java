@@ -36,24 +36,24 @@ public class Progress {
     }
 
     public Progress next(double factor) {
-        return new Progress(name, ctx,
+        com.mijack.Xlog.logMethodEnter("com.phikal.regex.models.Progress com.phikal.regex.models.Progress.next(double)",this,factor);try{com.mijack.Xlog.logMethodExit("com.phikal.regex.models.Progress com.phikal.regex.models.Progress.next(double)",this);return new Progress(name, ctx,
                 difficulty + factor * Q * Math.pow(1 / (Q + 1), rounds),
-                rounds + 1);
+                rounds + 1);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.phikal.regex.models.Progress com.phikal.regex.models.Progress.next(double)",this,throwable);throw throwable;}
     }
 
     public double getDifficutly() {
-        return difficulty;
+        com.mijack.Xlog.logMethodEnter("double com.phikal.regex.models.Progress.getDifficutly()",this);try{com.mijack.Xlog.logMethodExit("double com.phikal.regex.models.Progress.getDifficutly()",this);return difficulty;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("double com.phikal.regex.models.Progress.getDifficutly()",this,throwable);throw throwable;}
     }
 
     public int getRound() {
-        return rounds;
+        com.mijack.Xlog.logMethodEnter("int com.phikal.regex.models.Progress.getRound()",this);try{com.mijack.Xlog.logMethodExit("int com.phikal.regex.models.Progress.getRound()",this);return rounds;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.phikal.regex.models.Progress.getRound()",this,throwable);throw throwable;}
     }
 
     public void clear() {
-        PreferenceManager.getDefaultSharedPreferences(ctx).edit()
+        com.mijack.Xlog.logMethodEnter("void com.phikal.regex.models.Progress.clear()",this);try{PreferenceManager.getDefaultSharedPreferences(ctx).edit()
                 .remove(name + PROGRESS)
                 .remove(name + COUNT)
-                .apply();
+                .apply();com.mijack.Xlog.logMethodExit("void com.phikal.regex.models.Progress.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.models.Progress.clear()",this,throwable);throw throwable;}
     }
 
     public interface ProgressCallback {

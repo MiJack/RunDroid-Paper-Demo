@@ -40,12 +40,12 @@ public abstract class MatchTask extends Task implements Serializable {
 
     @Override
     public List<Collumn> getCollumns() {
-        return collumns;
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.phikal.regex.games.match.MatchTask.getCollumns()",this);try{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.phikal.regex.games.match.MatchTask.getCollumns()",this);return collumns;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.phikal.regex.games.match.MatchTask.getCollumns()",this,throwable);throw throwable;}
     }
 
     @Override
     public Input getInput() {
-        return input;
+        com.mijack.Xlog.logMethodEnter("com.phikal.regex.models.Input com.phikal.regex.games.match.MatchTask.getInput()",this);try{com.mijack.Xlog.logMethodExit("com.phikal.regex.models.Input com.phikal.regex.games.match.MatchTask.getInput()",this);return input;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.phikal.regex.models.Input com.phikal.regex.games.match.MatchTask.getInput()",this,throwable);throw throwable;}
     }
 
     protected class MatchWord extends Word implements Serializable {
@@ -60,7 +60,7 @@ public abstract class MatchTask extends Task implements Serializable {
 
         @Override
         public String getString() {
-            return word;
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.phikal.regex.games.match.MatchTask$MatchWord.getString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.phikal.regex.games.match.MatchTask$MatchWord.getString()",this);return word;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.phikal.regex.games.match.MatchTask$MatchWord.getString()",this,throwable);throw throwable;}
         }
 
     }
@@ -77,16 +77,16 @@ public abstract class MatchTask extends Task implements Serializable {
 
         @Override
         public String getHeader() {
-            return ctx.getString(match ? R.string.match : R.string.dmactch);
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.phikal.regex.games.match.MatchTask$MatchCollumn.getHeader()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.phikal.regex.games.match.MatchTask$MatchCollumn.getHeader()",this);return ctx.getString(match ? R.string.match : R.string.dmactch);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.phikal.regex.games.match.MatchTask$MatchCollumn.getHeader()",this,throwable);throw throwable;}
         }
 
         @Override
         public List<? extends Word> getWords() {
-            if (words == null) {
+            com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.phikal.regex.games.match.MatchTask$MatchCollumn.getWords()",this);try{if (words == null) {
                 words = genWords(match);
                 allWords.addAll(words);
             }
-            return words;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.phikal.regex.games.match.MatchTask$MatchCollumn.getWords()",this);return words;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.phikal.regex.games.match.MatchTask$MatchCollumn.getWords()",this,throwable);throw throwable;}
         }
     }
 
@@ -99,7 +99,7 @@ public abstract class MatchTask extends Task implements Serializable {
 
         public void afterTextChanged(Editable pat) {
 
-            Input.Response res = Input.Response.OK;
+            com.mijack.Xlog.logMethodEnter("void com.phikal.regex.games.match.MatchTask$MatchInput.afterTextChanged(android.text.Editable)",this,pat);try{Input.Response res = Input.Response.OK;
 
             int maxLength = (int) ((0.8 * Math.pow(getProgress().getDifficutly(), 1.5) + 0.2) * 24);
             int charsLeft = maxLength - pat.length();
@@ -125,11 +125,11 @@ public abstract class MatchTask extends Task implements Serializable {
                 }
             } catch (PatternSyntaxException pse) {
                 for (MatchWord w : allWords)
-                    w.setMatch(Word.Matches.NONE);
+                    {w.setMatch(Word.Matches.NONE);}
                 res = Input.Response.ERROR;
             }
 
-            updateStatus(res, String.valueOf(charsLeft));
+            updateStatus(res, String.valueOf(charsLeft));com.mijack.Xlog.logMethodExit("void com.phikal.regex.games.match.MatchTask$MatchInput.afterTextChanged(android.text.Editable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.games.match.MatchTask$MatchInput.afterTextChanged(android.text.Editable)",this,throwable);throw throwable;}
         }
     }
 }

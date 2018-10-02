@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 public class Util {
-    public static final String // preference names
+    public static final String /*// preference names*/
             GAME_MODE = "game_",
             CURRENT_TASK = "task_",
             CHAR_BAR_ON = "charm",
@@ -29,14 +29,14 @@ public class Util {
     }
 
     public static void notif(Context ctx) {
-        Ringtone r = RingtoneManager.getRingtone(ctx, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        com.mijack.Xlog.logStaticMethodEnter("void com.phikal.regex.Util.notif(android.content.Context)",ctx);try{Ringtone r = RingtoneManager.getRingtone(ctx, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         Vibrator v = (Vibrator) ctx.getSystemService(Context.VIBRATOR_SERVICE);
 
         if (PreferenceManager.getDefaultSharedPreferences(ctx)
                 .getBoolean(FEEDBACK_ON, false)) {
-            if (r != null) r.play();
-            if (v != null) v.vibrate(250);
-        }
+            if (r != null) {r.play();}
+            if (v != null) {v.vibrate(250);}
+        }com.mijack.Xlog.logStaticMethodExit("void com.phikal.regex.Util.notif(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.phikal.regex.Util.notif(android.content.Context)",throwable);throw throwable;}
     }
 
 

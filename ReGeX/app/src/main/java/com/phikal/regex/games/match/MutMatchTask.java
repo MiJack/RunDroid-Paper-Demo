@@ -19,7 +19,7 @@ public class MutMatchTask extends SimpleMatchTask {
 
     @Override
     String randString() {
-        if (mutateOn == null) {
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.phikal.regex.games.match.MutMatchTask.randString()",this);try{if (mutateOn == null) {
             mutateOn = super.randString();
         }
         char[] c = mutateOn.toCharArray();
@@ -27,9 +27,9 @@ public class MutMatchTask extends SimpleMatchTask {
         for (int i = 0; i < c.length; i++) {
             double chance = (getProgress().getDifficutly() * getProgress().getDifficutly()) * (1 - GAMMA) + GAMMA;
             if (rnd.nextDouble() > chance)
-                c[i] = CHARS[rnd.nextInt(CHARS.length)];
+                {c[i] = CHARS[rnd.nextInt(CHARS.length)];}
         }
 
-        return String.valueOf(c);
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.phikal.regex.games.match.MutMatchTask.randString()",this);return String.valueOf(c);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.phikal.regex.games.match.MutMatchTask.randString()",this,throwable);throw throwable;}
     }
 }

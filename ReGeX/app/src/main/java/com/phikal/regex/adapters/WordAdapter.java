@@ -25,7 +25,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View v, @NonNull ViewGroup parent) {
-        // if (v != null) return v;
+        com.mijack.Xlog.logMethodEnter("android.view.View com.phikal.regex.adapters.WordAdapter.getView(int,@Nullable View,@NonNull ViewGroup)",this,position,v,parent);try{/*// if (v != null) return v;*/
 
         final Word w = getItem(position);
         assert w != null;
@@ -60,6 +60,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        return tv;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.phikal.regex.adapters.WordAdapter.getView(int,@Nullable View,@NonNull ViewGroup)",this);return tv;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.phikal.regex.adapters.WordAdapter.getView(int,@Nullable View,@NonNull ViewGroup)",this,throwable);throw throwable;}
     }
 }

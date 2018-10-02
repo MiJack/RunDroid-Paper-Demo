@@ -11,21 +11,17 @@ public abstract class Input implements TextWatcher {
     public abstract void afterTextChanged(Editable text);
 
     public void setStatusCallback(StatusCallback sc) {
-        this.statusCallback = sc;
+        com.mijack.Xlog.logMethodEnter("void com.phikal.regex.models.Input.setStatusCallback(StatusCallback)",this,sc);try{this.statusCallback = sc;com.mijack.Xlog.logMethodExit("void com.phikal.regex.models.Input.setStatusCallback(StatusCallback)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.models.Input.setStatusCallback(StatusCallback)",this,throwable);throw throwable;}
     }
 
     protected void updateStatus(Response resp, String msg) {
-        if (statusCallback != null)
-            statusCallback.status(resp, msg);
+        com.mijack.Xlog.logMethodEnter("void com.phikal.regex.models.Input.updateStatus(Response,java.lang.String)",this,resp,msg);try{if (statusCallback != null)
+            {statusCallback.status(resp, msg);}com.mijack.Xlog.logMethodExit("void com.phikal.regex.models.Input.updateStatus(Response,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.phikal.regex.models.Input.updateStatus(Response,java.lang.String)",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.phikal.regex.models.Input.beforeTextChanged(java.lang.CharSequence,int,int,int)",this,charSequence,i,i1,i2);com.mijack.Xlog.logMethodExit("void com.phikal.regex.models.Input.beforeTextChanged(java.lang.CharSequence,int,int,int)",this);}
 
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.phikal.regex.models.Input.onTextChanged(java.lang.CharSequence,int,int,int)",this,charSequence,i,i1,i2);com.mijack.Xlog.logMethodExit("void com.phikal.regex.models.Input.onTextChanged(java.lang.CharSequence,int,int,int)",this);}
 
     public enum Response {OK, ERROR}
 
