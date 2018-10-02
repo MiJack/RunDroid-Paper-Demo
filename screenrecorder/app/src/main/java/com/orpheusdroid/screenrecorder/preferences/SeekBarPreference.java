@@ -53,36 +53,36 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     public SeekBarPreference(Context context, AttributeSet attrs) {
         super(context,attrs);
 
-        //Set the preferenceto be persistent
+        /*//Set the preferenceto be persistent*/
         setPersistent(true);
 
-        //Set custom preferece layout
+        /*//Set custom preferece layout*/
         setDialogLayoutResource(R.layout.layout_floating_control_preview);
 
-        //Get default values from xml
+        /*//Get default values from xml*/
         mSuffix = attrs.getAttributeValue(androidns,"text");
         mDefault = attrs.getAttributeIntValue(androidns,"defaultValue", 100);
         mMax = attrs.getAttributeIntValue(androidns,"max", 200);
     }
 
     private void init(){
-        mSeekBar.setOnSeekBarChangeListener(this);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.init()",this);try{mSeekBar.setOnSeekBarChangeListener(this);
 
-        //Get the default layout params of the image view to change layout parameters later
+        /*//Get the default layout params of the image view to change layout parameters later*/
         mIV_pararams = mFloatingTogglePreview.getLayoutParams();
 
-        //Change height and width of imageview with value saved previously
+        /*//Change height and width of imageview with value saved previously*/
         mFloatingTogglePreview.setLayoutParams(generateLayoutParams(mValue));
 
-        //Display the size in a textview
+        /*//Display the size in a textview*/
         mValueText.setText(mSuffix == null ? String.valueOf(mValue) : String.valueOf(mValue).concat(mSuffix));
 
-        Log.d(Const.TAG, "Max: " + mMax + "     ,Progress: " + mValue);
+        Log.d(Const.TAG, "Max: " + mMax + "     ,Progress: " + mValue);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.init()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.init()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onBindDialogView(View v) {
-        super.onBindDialogView(v);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onBindDialogView(android.view.View)",this,v);try{super.onBindDialogView(v);
         mValue = getPersistedInt(mDefault);
         Log.d(Const.TAG, "size is: " + mValue);
         mSeekBar = v.findViewById(R.id.seekBar);
@@ -92,59 +92,59 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
         mSeekBar.setMax(mMax);
         mSeekBar.setProgress(mValue);
 
-        init();
+        init();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onBindDialogView(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onBindDialogView(android.view.View)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onSetInitialValue(boolean restore, Object defaultValue)
     {
-        super.onSetInitialValue(restore, defaultValue);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onSetInitialValue(boolean,java.lang.Object)",this,restore,defaultValue);try{super.onSetInitialValue(restore, defaultValue);
         if (restore)
-            mValue = shouldPersist() ? getPersistedInt(mDefault) : 100;
+            {mValue = shouldPersist() ? getPersistedInt(mDefault) : 100;}
         else
-            mValue = (Integer)defaultValue;
+            {mValue = (Integer)defaultValue;}com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onSetInitialValue(boolean,java.lang.Object)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onSetInitialValue(boolean,java.lang.Object)",this,throwable);throw throwable;}
     }
 
     public void onProgressChanged(SeekBar seek, int value, boolean fromTouch)
     {
-        //Set the min value of seekbar to 70.
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onProgressChanged(android.widget.SeekBar,int,boolean)",this,seek,value,fromTouch);try{/*//Set the min value of seekbar to 70.*/
         if (value < 70)
-            mValueText.setTextColor(Color.RED);
+            {mValueText.setTextColor(Color.RED);}
         else
-            mValueText.setTextColor(defaultColor);
+            {mValueText.setTextColor(defaultColor);}
 
         if (value < 25){
             mSeekBar.setProgress(25);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onProgressChanged(android.widget.SeekBar,int,boolean)",this);return;}
         }
 
-        //Display selected value in textview
+        /*//Display selected value in textview*/
         String t = String.valueOf(value);
         mValueText.setText(mSuffix == null ? t : t.concat(mSuffix));
 
-        //Update imageview size
+        /*//Update imageview size*/
         mFloatingTogglePreview.setLayoutParams(generateLayoutParams(value));
 
-        //Save the value to preference
+        /*//Save the value to preference*/
         if (shouldPersist())
-            persistInt(value);
-        callChangeListener(value);
+            {persistInt(value);}
+        callChangeListener(value);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onProgressChanged(android.widget.SeekBar,int,boolean)",this,throwable);throw throwable;}
     }
-    public void onStartTrackingTouch(SeekBar seek) {}
-    public void onStopTrackingTouch(SeekBar seek) {}
+    {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onStartTrackingTouch(android.widget.SeekBar)",this,seek);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onStartTrackingTouch(android.widget.SeekBar)",this);}
+    {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onStopTrackingTouch(android.widget.SeekBar)",this,seek);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.onStopTrackingTouch(android.widget.SeekBar)",this);}
 
-    //Method to generate updated LayoutParams from default LayoutParams
+    /*//Method to generate updated LayoutParams from default LayoutParams*/
     private ViewGroup.LayoutParams generateLayoutParams(int value){
-        int px = dpToPx(value);
+        com.mijack.Xlog.logMethodEnter("ViewGroup.LayoutParams com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.generateLayoutParams(int)",this,value);try{int px = dpToPx(value);
         mIV_pararams.height = px;
         mIV_pararams.width = px;
-        return mIV_pararams;
+        {com.mijack.Xlog.logMethodExit("ViewGroup.LayoutParams com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.generateLayoutParams(int)",this);return mIV_pararams;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("ViewGroup.LayoutParams com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.generateLayoutParams(int)",this,throwable);throw throwable;}
     }
 
 
-    //Method to convert dp to px
+    /*//Method to convert dp to px*/
     private int dpToPx(int dp) {
-        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.dpToPx(int)",this,dp);try{DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+        {com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.dpToPx(int)",this);return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.preferences.SeekBarPreference.dpToPx(int)",this,throwable);throw throwable;}
     }
 }

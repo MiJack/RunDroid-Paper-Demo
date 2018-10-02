@@ -24,7 +24,7 @@ import java.util.Map;
  * Created by vijai on 12-10-2016.
  */
 
-// POJO class for bunch of statics used across the app
+/*// POJO class for bunch of statics used across the app*/
 public class Const {
 
     public enum ASPECT_RATIO {
@@ -45,7 +45,7 @@ public class Const {
         }
 
         public static ASPECT_RATIO valueOf(float val) {
-            return map.get(val) == null ? AR16_9 : map.get(val);
+            com.mijack.Xlog.logStaticMethodEnter("ASPECT_RATIO com.orpheusdroid.screenrecorder.Const.valueOf(float)",val);try{com.mijack.Xlog.logStaticMethodExit("ASPECT_RATIO com.orpheusdroid.screenrecorder.Const.valueOf(float)");return map.get(val) == null ? AR16_9 : map.get(val);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("ASPECT_RATIO com.orpheusdroid.screenrecorder.Const.valueOf(float)",throwable);throw throwable;}
         }
     }
 

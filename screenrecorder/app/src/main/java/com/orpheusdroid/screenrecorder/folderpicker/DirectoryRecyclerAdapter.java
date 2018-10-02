@@ -50,25 +50,25 @@ class DirectoryRecyclerAdapter extends RecyclerView.Adapter<DirectoryRecyclerAda
 
     @Override
     public DirectoryRecyclerAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_directory_chooser, parent, false);
-        return new ItemViewHolder(view);
+        com.mijack.Xlog.logMethodEnter("DirectoryRecyclerAdapter.ItemViewHolder com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.onCreateViewHolder(android.view.ViewGroup,int)",this,parent,viewType);try{View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_directory_chooser, parent, false);
+        {com.mijack.Xlog.logMethodExit("DirectoryRecyclerAdapter.ItemViewHolder com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.onCreateViewHolder(android.view.ViewGroup,int)",this);return new ItemViewHolder(view);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("DirectoryRecyclerAdapter.ItemViewHolder com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.onCreateViewHolder(android.view.ViewGroup,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onBindViewHolder(final DirectoryRecyclerAdapter.ItemViewHolder holder, int position) {
-        holder.dir.setText(directories.get(position).getName());
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.onBindViewHolder(DirectoryRecyclerAdapter.ItemViewHolder,int)",this,holder,position);try{holder.dir.setText(directories.get(position).getName());
         holder.dir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(Const.TAG, "Item clicked: " + directories.get(holder.getAdapterPosition()));
-                onDirectoryClickedListerner.OnDirectoryClicked(directories.get(holder.getAdapterPosition()));
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter$1.onClick(android.view.View)",this,view);try{Log.d(Const.TAG, "Item clicked: " + directories.get(holder.getAdapterPosition()));
+                onDirectoryClickedListerner.OnDirectoryClicked(directories.get(holder.getAdapterPosition()));com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.onBindViewHolder(DirectoryRecyclerAdapter.ItemViewHolder,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.onBindViewHolder(DirectoryRecyclerAdapter.ItemViewHolder,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getItemCount() {
-        return directories.size();
+        com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.getItemCount()",this);try{com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.getItemCount()",this);return directories.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.folderpicker.DirectoryRecyclerAdapter.getItemCount()",this,throwable);throw throwable;}
     }
 
     interface OnDirectoryClickedListerner {

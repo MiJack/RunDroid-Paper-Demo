@@ -40,14 +40,14 @@ public class QuickRecordTile extends TileService {
 
     @Override
     public void onStartListening() {
-        super.onStartListening();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.onStartListening()",this);try{super.onStartListening();
         isTileActive = isServiceRunning(RecorderService.class);
-        changeTileState();
+        changeTileState();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.onStartListening()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.onStartListening()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onClick() {
-        Tile tile = getQsTile();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.onClick()",this);try{Tile tile = getQsTile();
         isTileActive = !(tile.getState() == Tile.STATE_ACTIVE);
         changeTileState();
         if (isTileActive) {
@@ -55,31 +55,31 @@ public class QuickRecordTile extends TileService {
         } else {
             startService(new Intent(this, RecorderService.class).setAction(Const.SCREEN_RECORDING_STOP));
         }
-        isTileActive = !isTileActive;
+        isTileActive = !isTileActive;com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.onClick()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.onClick()",this,throwable);throw throwable;}
     }
 
     private void changeTileState() {
-        Tile tile = super.getQsTile();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.changeTileState()",this);try{Tile tile = super.getQsTile();
         int activeState = isTileActive ?
                 Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
 
         if (!isTileActive)
-            tile.setLabel(getString(R.string.quick_settings_tile_start_title));
+            {tile.setLabel(getString(R.string.quick_settings_tile_start_title));}
         else
-            tile.setLabel(getString(R.string.quick_settings_tile_stop_title));
+            {tile.setLabel(getString(R.string.quick_settings_tile_stop_title));}
 
         tile.setState(activeState);
-        tile.updateTile();
+        tile.updateTile();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.changeTileState()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.QuickRecordTile.changeTileState()",this,throwable);throw throwable;}
 
     }
 
     private boolean isServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.services.QuickRecordTile.isServiceRunning(java.lang.Class)",this,serviceClass);try{ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.services.QuickRecordTile.isServiceRunning(java.lang.Class)",this);return true;}
             }
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.services.QuickRecordTile.isServiceRunning(java.lang.Class)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.services.QuickRecordTile.isServiceRunning(java.lang.Class)",this,throwable);throw throwable;}
     }
 }

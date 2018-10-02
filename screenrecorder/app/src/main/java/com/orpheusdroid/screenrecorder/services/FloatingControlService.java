@@ -90,14 +90,14 @@ public class FloatingControlService extends Service implements View.OnClickListe
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.services.FloatingControlService.onStartCommand(android.content.Intent,int,int)",this,intent,flags,startId);try{windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
-        //Inflate the layout using LayoutInflater
+        /*//Inflate the layout using LayoutInflater*/
         LayoutInflater li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         floatingControls = (LinearLayout) li.inflate(R.layout.layout_floating_controls, null);
         controls = floatingControls.findViewById(R.id.controls);
 
-        //Initialize imageButtons
+        /*//Initialize imageButtons*/
         ImageButton stopIB = controls.findViewById(R.id.stop);
         pauseIB = controls.findViewById(R.id.pause);
         resumeIB = controls.findViewById(R.id.resume);
@@ -105,10 +105,10 @@ public class FloatingControlService extends Service implements View.OnClickListe
 
         stopIB.setOnClickListener(this);
 
-        //Get floating control icon size from sharedpreference
+        /*//Get floating control icon size from sharedpreference*/
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //Pause/Resume doesnt work below SDK version 24. Remove them
+        /*//Pause/Resume doesnt work below SDK version 24. Remove them*/
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             pauseIB.setVisibility(View.GONE);
             resumeIB.setVisibility(View.GONE);
@@ -119,7 +119,7 @@ public class FloatingControlService extends Service implements View.OnClickListe
             resumeIB.setOnClickListener(this);
         }
 
-        //Set layout params to display the controls over any screen.
+        /*//Set layout params to display the controls over any screen.*/
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 dpToPx(pref.getInt(getString(R.string.preference_floating_control_size_key), 100)),
@@ -127,19 +127,19 @@ public class FloatingControlService extends Service implements View.OnClickListe
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
 
-        // From API26, TYPE_PHONE depricated. Use TYPE_APPLICATION_OVERLAY for O
+        /*// From API26, TYPE_PHONE depricated. Use TYPE_APPLICATION_OVERLAY for O*/
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
-            params.type = WindowManager.LayoutParams.TYPE_PHONE;
+            {params.type = WindowManager.LayoutParams.TYPE_PHONE;}
 
-        //Initial position of the floating controls
+        /*//Initial position of the floating controls*/
         params.gravity = Gravity.TOP | Gravity.START;
         params.x = 0;
         params.y = 100;
 
-        //Add the controls view to windowmanager
+        /*//Add the controls view to windowmanager*/
         windowManager.addView(floatingControls, params);
 
-        //Add touch listerner to floating controls view to move/close/expand the controls
+        /*//Add touch listerner to floating controls view to move/close/expand the controls*/
         try {
             floatingControls.setOnTouchListener(new View.OnTouchListener() {
                 boolean isMoving = false;
@@ -152,7 +152,7 @@ public class FloatingControlService extends Service implements View.OnClickListe
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
 
-                    switch (event.getAction()) {
+                    com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.services.FloatingControlService$1.onTouch(android.view.View,android.view.MotionEvent)",this,v,event);try{switch (event.getAction()) {
                         case MotionEvent.ACTION_DOWN:
                             isMoving = false;
                             initialX = paramsF.x;
@@ -177,89 +177,80 @@ public class FloatingControlService extends Service implements View.OnClickListe
                             /* Set an offset of 10 pixels to determine controls moving. Else, normal touches
                              * could react as moving the control window around */
                             if (Math.abs(xDiff) > 10 || Math.abs(yDiff) > 10)
-                                isMoving = true;
+                                {isMoving = true;}
                             windowManager.updateViewLayout(floatingControls, paramsF);
                             break;
                     }
-                    return false;
+                    {com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.services.FloatingControlService.onStartCommand(android.content.Intent,int,int)",this);{com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.services.FloatingControlService$1.onTouch(android.view.View,android.view.MotionEvent)",this);return false;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.services.FloatingControlService$1.onTouch(android.view.View,android.view.MotionEvent)",this,throwable);throw throwable;}
                 }
             });
         } catch (Exception e) {
-            // TODO: handle exception
+            /*// TODO: handle exception*/
         }
-        return START_STICKY;
+        {com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.services.FloatingControlService.onStartCommand(android.content.Intent,int,int)",this);return START_STICKY;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.services.FloatingControlService.onStartCommand(android.content.Intent,int,int)",this,throwable);throw throwable;}
     }
 
     /**
      * Expand the floating window on touch of the logo
      */
     private void expandFloatingControls() {
-        controls.setVisibility(View.VISIBLE);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.expandFloatingControls()",this);try{controls.setVisibility(View.VISIBLE);
 
         final int widthSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         final int heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         controls.measure(widthSpec, heightSpec);
 
-        //Animate the expanding floating window
+        /*//Animate the expanding floating window*/
         ValueAnimator mAnimator = slideAnimator(0, controls.getMeasuredWidth());
-        mAnimator.start();
+        mAnimator.start();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.expandFloatingControls()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.expandFloatingControls()",this,throwable);throw throwable;}
     }
 
     /**
      * Collapse the floating control if expanded
      */
     private void collapseFloatingControls() {
-        int finalHeight = controls.getWidth();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.collapseFloatingControls()",this);try{int finalHeight = controls.getWidth();
 
         ValueAnimator mAnimator = slideAnimator(finalHeight, 0);
 
         mAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
+            {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationStart(android.animation.Animator)",this,animation);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationStart(android.animation.Animator)",this);}
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                //Height=0, but it set visibility to INVISIBLE at the end of animation
-                controls.setVisibility(View.INVISIBLE);
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationEnd(android.animation.Animator)",this,animator);try{/*//Height=0, but it set visibility to INVISIBLE at the end of animation*/
+                controls.setVisibility(View.INVISIBLE);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationEnd(android.animation.Animator)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationEnd(android.animation.Animator)",this,throwable);throw throwable;}
             }
 
-            @Override
-            public void onAnimationCancel(Animator animation) {
+            {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationCancel(android.animation.Animator)",this,animation);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationCancel(android.animation.Animator)",this);}
 
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
+            {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationRepeat(android.animation.Animator)",this,animation);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService$2.onAnimationRepeat(android.animation.Animator)",this);}
 
         });
-        mAnimator.start();
+        mAnimator.start();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.collapseFloatingControls()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.collapseFloatingControls()",this,throwable);throw throwable;}
     }
 
     private ValueAnimator slideAnimator(int start, int end) {
 
-        ValueAnimator animator = ValueAnimator.ofInt(start, end);
+        com.mijack.Xlog.logMethodEnter("android.animation.ValueAnimator com.orpheusdroid.screenrecorder.services.FloatingControlService.slideAnimator(int,int)",this,start,end);try{ValueAnimator animator = ValueAnimator.ofInt(start, end);
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                //Update width
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService$3.onAnimationUpdate(android.animation.ValueAnimator)",this,valueAnimator);try{/*//Update width*/
                 int value = (Integer) valueAnimator.getAnimatedValue();
                 ViewGroup.LayoutParams layoutParams = controls.getLayoutParams();
                 layoutParams.width = value;
-                controls.setLayoutParams(layoutParams);
+                controls.setLayoutParams(layoutParams);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService$3.onAnimationUpdate(android.animation.ValueAnimator)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService$3.onAnimationUpdate(android.animation.ValueAnimator)",this,throwable);throw throwable;}
             }
         });
-        return animator;
+        {com.mijack.Xlog.logMethodExit("android.animation.ValueAnimator com.orpheusdroid.screenrecorder.services.FloatingControlService.slideAnimator(int,int)",this);return animator;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.animation.ValueAnimator com.orpheusdroid.screenrecorder.services.FloatingControlService.slideAnimator(int,int)",this,throwable);throw throwable;}
     }
 
-    //Onclick override to handle button clicks
+    /*//Onclick override to handle button clicks*/
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.onClick(android.view.View)",this,view);try{switch (view.getId()) {
             case R.id.stop:
                 stopScreenSharing();
                 break;
@@ -271,9 +262,9 @@ public class FloatingControlService extends Service implements View.OnClickListe
                 break;
         }
 
-        //Provide an haptic feedback on button press
+        /*//Provide an haptic feedback on button press*/
         Vibrator vibrate = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        vibrate.vibrate(100);
+        vibrate.vibrate(100);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.onClick(android.view.View)",this,throwable);throw throwable;}
     }
 
     /**
@@ -282,27 +273,27 @@ public class FloatingControlService extends Service implements View.OnClickListe
      * if any by calling onStartCommand
      */
     private void resumeScreenRecording() {
-        Intent resumeIntent = new Intent(this, RecorderService.class);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.resumeScreenRecording()",this);try{Intent resumeIntent = new Intent(this, RecorderService.class);
         resumeIntent.setAction(Const.SCREEN_RECORDING_RESUME);
-        startService(resumeIntent);
+        startService(resumeIntent);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.resumeScreenRecording()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.resumeScreenRecording()",this,throwable);throw throwable;}
     }
 
     /**
      * Set pause intent and start the recording service
      */
     private void pauseScreenRecording() {
-        Intent pauseIntent = new Intent(this, RecorderService.class);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.pauseScreenRecording()",this);try{Intent pauseIntent = new Intent(this, RecorderService.class);
         pauseIntent.setAction(Const.SCREEN_RECORDING_PAUSE);
-        startService(pauseIntent);
+        startService(pauseIntent);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.pauseScreenRecording()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.pauseScreenRecording()",this,throwable);throw throwable;}
     }
 
     /**
      * Set stop intent and start the recording service
      */
     private void stopScreenSharing() {
-        Intent stopIntent = new Intent(this, RecorderService.class);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.stopScreenSharing()",this);try{Intent stopIntent = new Intent(this, RecorderService.class);
         stopIntent.setAction(Const.SCREEN_RECORDING_STOP);
-        startService(stopIntent);
+        startService(stopIntent);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.stopScreenSharing()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.stopScreenSharing()",this,throwable);throw throwable;}
     }
 
     /**
@@ -310,7 +301,7 @@ public class FloatingControlService extends Service implements View.OnClickListe
      * @param state {@link RecordingState}
      */
     public void setRecordingState(RecordingState state) {
-        switch (state) {
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.setRecordingState(com.orpheusdroid.screenrecorder.Const.RecordingState)",this,state);try{switch (state) {
             case PAUSED:
                 pauseIB.setEnabled(false);
                 resumeIB.setEnabled(true);
@@ -319,29 +310,29 @@ public class FloatingControlService extends Service implements View.OnClickListe
                 pauseIB.setEnabled(true);
                 resumeIB.setEnabled(false);
                 break;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.setRecordingState(com.orpheusdroid.screenrecorder.Const.RecordingState)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.setRecordingState(com.orpheusdroid.screenrecorder.Const.RecordingState)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDestroy() {
-        if (floatingControls != null) windowManager.removeView(floatingControls);
-        super.onDestroy();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.services.FloatingControlService.onDestroy()",this);try{if (floatingControls != null) {windowManager.removeView(floatingControls);}
+        super.onDestroy();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.services.FloatingControlService.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.services.FloatingControlService.onDestroy()",this,throwable);throw throwable;}
     }
 
-    //Return ServiceBinder instance on successful binding
+    /*//Return ServiceBinder instance on successful binding*/
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(Const.TAG, "Binding successful!");
-        return binder;
+        com.mijack.Xlog.logMethodEnter("android.os.IBinder com.orpheusdroid.screenrecorder.services.FloatingControlService.onBind(android.content.Intent)",this,intent);try{Log.d(Const.TAG, "Binding successful!");
+        {com.mijack.Xlog.logMethodExit("android.os.IBinder com.orpheusdroid.screenrecorder.services.FloatingControlService.onBind(android.content.Intent)",this);return binder;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.IBinder com.orpheusdroid.screenrecorder.services.FloatingControlService.onBind(android.content.Intent)",this,throwable);throw throwable;}
     }
 
-    //Stop the service once the service is unbinded from recording service
+    /*//Stop the service once the service is unbinded from recording service*/
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.d(Const.TAG, "Unbinding and stopping service");
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.services.FloatingControlService.onUnbind(android.content.Intent)",this,intent);try{Log.d(Const.TAG, "Unbinding and stopping service");
         stopSelf();
-        return super.onUnbind(intent);
+        {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.services.FloatingControlService.onUnbind(android.content.Intent)",this);return super.onUnbind(intent);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.services.FloatingControlService.onUnbind(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     /**
@@ -350,8 +341,8 @@ public class FloatingControlService extends Service implements View.OnClickListe
      * @return int
      */
     private int dpToPx(int dp) {
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.services.FloatingControlService.dpToPx(int)",this,dp);try{DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        {com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.services.FloatingControlService.dpToPx(int)",this);return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.services.FloatingControlService.dpToPx(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -359,7 +350,7 @@ public class FloatingControlService extends Service implements View.OnClickListe
      */
     public class ServiceBinder extends Binder {
         FloatingControlService getService() {
-            return FloatingControlService.this;
+            com.mijack.Xlog.logMethodEnter("com.orpheusdroid.screenrecorder.services.FloatingControlService com.orpheusdroid.screenrecorder.services.FloatingControlService$ServiceBinder.getService()",this);try{com.mijack.Xlog.logMethodExit("com.orpheusdroid.screenrecorder.services.FloatingControlService com.orpheusdroid.screenrecorder.services.FloatingControlService$ServiceBinder.getService()",this);return FloatingControlService.this;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.orpheusdroid.screenrecorder.services.FloatingControlService com.orpheusdroid.screenrecorder.services.FloatingControlService$ServiceBinder.getService()",this,throwable);throw throwable;}
         }
     }
 }

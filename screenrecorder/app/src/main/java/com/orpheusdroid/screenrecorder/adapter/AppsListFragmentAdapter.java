@@ -44,44 +44,44 @@ public class AppsListFragmentAdapter extends RecyclerView.Adapter<AppsListFragme
 
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_apps_list_preference, parent, false);
-        return new SimpleViewHolder(view);
+        com.mijack.Xlog.logMethodEnter("com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$SimpleViewHolder com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.onCreateViewHolder(android.view.ViewGroup,int)",this,parent,viewType);try{View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_apps_list_preference, parent, false);
+        {com.mijack.Xlog.logMethodExit("com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$SimpleViewHolder com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.onCreateViewHolder(android.view.ViewGroup,int)",this);return new SimpleViewHolder(view);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$SimpleViewHolder com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.onCreateViewHolder(android.view.ViewGroup,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onBindViewHolder(final SimpleViewHolder holder, final int position) {
-        Apps app = apps.get(holder.getAdapterPosition());
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.onBindViewHolder(com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$SimpleViewHolder,int)",this,holder,position);try{Apps app = apps.get(holder.getAdapterPosition());
         holder.textView.setText("" + app.getAppName());
         holder.appIcon.setImageDrawable(app.getAppIcon());
 
-        // Show a visible tick mark for the selected app
+        /*// Show a visible tick mark for the selected app*/
         if (app.isSelectedApp())
-            holder.selectedApp.setVisibility(View.VISIBLE);
+            {holder.selectedApp.setVisibility(View.VISIBLE);}
         else
-            holder.selectedApp.setVisibility(View.INVISIBLE);
+            {holder.selectedApp.setVisibility(View.INVISIBLE);}
         holder.app.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClick.onItemClick(holder.getAdapterPosition());
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$1.onClick(android.view.View)",this,view);try{onClick.onItemClick(holder.getAdapterPosition());com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.onBindViewHolder(com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$SimpleViewHolder,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.onBindViewHolder(com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter$SimpleViewHolder,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getItemCount() {
-        return apps.size();
+        com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.getItemCount()",this);try{com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.getItemCount()",this);return apps.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.getItemCount()",this,throwable);throw throwable;}
     }
 
     public void setOnClick(OnItemClicked onClick) {
-        this.onClick = onClick;
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.setOnClick(OnItemClicked)",this,onClick);try{this.onClick = onClick;com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.setOnClick(OnItemClicked)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.adapter.AppsListFragmentAdapter.setOnClick(OnItemClicked)",this,throwable);throw throwable;}
     }
 
-    // Interface to handle recycler view item click
+    /*// Interface to handle recycler view item click*/
     public interface OnItemClicked {
         void onItemClick(int position);
     }
 
-    // A static view holder class to hold the view items used by the recycler view
+    /*// A static view holder class to hold the view items used by the recycler view*/
     static class SimpleViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView appIcon;

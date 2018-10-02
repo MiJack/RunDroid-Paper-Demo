@@ -137,10 +137,10 @@ public class MainActivity extends AppCompatActivity {
      * Static method to create the app's default directory in the external storage
      */
     public static void createDir() {
-        File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Const.APPDIR);
+        com.mijack.Xlog.logStaticMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.createDir()");try{File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Const.APPDIR);
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) && !appDir.isDirectory()) {
             appDir.mkdirs();
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.createDir()");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.createDir()",throwable);throw throwable;}
     }
 
     /**
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        String theme = PreferenceManager.getDefaultSharedPreferences(this)
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{String theme = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(getString(R.string.preference_theme_key), Const.PREFS_LIGHT_THEME);
         int popupOverlayTheme = 0;
         int toolBarColor = 0;
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setBackgroundColor(toolBarColor);
 
         if (popupOverlayTheme != 0)
-            toolbar.setPopupTheme(popupOverlayTheme);
+            {toolbar.setPopupTheme(popupOverlayTheme);}
 
         setSupportActionBar(toolbar);
 
@@ -191,19 +191,19 @@ public class MainActivity extends AppCompatActivity {
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //Arbitrary "Write to external storage" permission since this permission is most important for the app
+        /*//Arbitrary "Write to external storage" permission since this permission is most important for the app*/
         requestPermissionStorage();
 
         fab = findViewById(R.id.fab);
 
-        //Acquiring media projection service to start screen mirroring
+        /*//Acquiring media projection service to start screen mirroring*/
         mProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
 
-        //Respond to app shortcut
+        /*//Respond to app shortcut*/
         if (getIntent().getAction() != null) {
             if (getIntent().getAction().equals(getString(R.string.app_shortcut_action))) {
                 startActivityForResult(mProjectionManager.createScreenCaptureIntent(), Const.SCREEN_RECORD_REQUEST_CODE);
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onCreate(android.os.Bundle)",this);return;}
             } else if (getIntent().getAction().equals(Const.SCREEN_RECORDER_VIDEOS_LIST_FRAGMENT_INTENT)) {
                 viewPager.setCurrentItem(1);
             }
@@ -215,26 +215,26 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mMediaProjection == null && !isServiceRunning(RecorderService.class)) {
-                    //Request Screen recording permission
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$1.onClick(android.view.View)",this,view);try{if (mMediaProjection == null && !isServiceRunning(RecorderService.class)) {
+                    /*//Request Screen recording permission*/
                     startActivityForResult(mProjectionManager.createScreenCaptureIntent(), Const.SCREEN_RECORD_REQUEST_CODE);
                 } else if (isServiceRunning(RecorderService.class)) {
-                    //stop recording if the service is already active and recording
+                    /*//stop recording if the service is already active and recording*/
                     Toast.makeText(MainActivity.this, "Screen already recording", Toast.LENGTH_SHORT).show();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
         fab.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Toast.makeText(MainActivity.this, R.string.fab_record_hint, Toast.LENGTH_SHORT).show();
-                return true;
+                com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.MainActivity$2.onLongClick(android.view.View)",this,view);try{Toast.makeText(MainActivity.this, R.string.fab_record_hint, Toast.LENGTH_SHORT).show();
+                {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onCreate(android.os.Bundle)",this);{com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity$2.onLongClick(android.view.View)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.MainActivity$2.onLongClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
         if (!BuildConfig.DEBUG)
-            requestAnalyticsPermission();
+            {requestAnalyticsPermission();}
 
-        Countly.onCreate(this);
+        Countly.onCreate(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -243,10 +243,10 @@ public class MainActivity extends AppCompatActivity {
      * on the settings chosen by the user which is saved to the shared preference
      */
     public void setupAnalytics() {
-        if (!prefs.getBoolean(getString(R.string.preference_crash_reporting_key), false) &&
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.setupAnalytics()",this);try{if (!prefs.getBoolean(getString(R.string.preference_crash_reporting_key), false) &&
                 !prefs.getBoolean(getString(R.string.preference_anonymous_statistics_key), false)) {
             Log.d(Const.TAG, "Analytics disabled by user");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.setupAnalytics()",this);return;}
         }
         Countly.sharedInstance().init(this, Const.ANALYTICS_URL, Const.ANALYTICS_API_KEY,
                 null, DeviceId.Type.OPEN_UDID, 3, null, null, null, null);
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
             Countly.sharedInstance().setIfStarRatingShownAutomatically(true);
             Log.d(Const.TAG, "Enabling countly statistics");
         }
-        Countly.sharedInstance().onStart(this);
+        Countly.sharedInstance().onStart(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.setupAnalytics()",this,throwable);throw throwable;}
     }
 
     /**
@@ -274,33 +274,27 @@ public class MainActivity extends AppCompatActivity {
      * @param viewPager viewpager instance from the layout
      */
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.setupViewPager(androidx.viewpager.widget.ViewPager)",this,viewPager);try{ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
         adapter.addFragment(new SettingsPreferenceFragment(), getString(R.string.tab_settings_title));
         adapter.addFragment(new VideosListFragment(), getString(R.string.tab_videos_title));
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+            {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$3.onPageScrolled(int,float,int)",this,position,positionOffset,positionOffsetPixels);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$3.onPageScrolled(int,float,int)",this);}
 
             @Override
             public void onPageSelected(int position) {
-                switch (position) {
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$3.onPageSelected(int)",this,position);try{switch (position) {
                     case 0:
                         fab.show();
                         break;
                     case 1:
                         fab.hide();
                         break;
-                }
+                }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$3.onPageSelected(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity$3.onPageSelected(int)",this,throwable);throw throwable;}
             }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+            {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$3.onPageScrollStateChanged(int)",this,state);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$3.onPageScrollStateChanged(int)",this);}
+        });com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.setupViewPager(androidx.viewpager.widget.ViewPager)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.setupViewPager(androidx.viewpager.widget.ViewPager)",this,throwable);throw throwable;}
     }
 
     /**
@@ -311,13 +305,13 @@ public class MainActivity extends AppCompatActivity {
      * @throws NullPointerException May throw NullPointerException
      */
     private boolean isServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.isServiceRunning(java.lang.Class)",this,serviceClass);try{ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.isServiceRunning(java.lang.Class)",this);return true;}
             }
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.isServiceRunning(java.lang.Class)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.isServiceRunning(java.lang.Class)",this,throwable);throw throwable;}
     }
 
 
@@ -332,20 +326,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        //Result for system windows permission required to show floating controls
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,data);try{/*//Result for system windows permission required to show floating controls*/
         if (requestCode == Const.FLOATING_CONTROLS_SYSTEM_WINDOWS_CODE || requestCode == Const.CAMERA_SYSTEM_WINDOWS_CODE) {
             setSystemWindowsPermissionResult(requestCode);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onActivityResult(int,int,android.content.Intent)",this);return;}
         }
 
-        //The user has denied permission for screen mirroring. Let's notify the user
+        /*//The user has denied permission for screen mirroring. Let's notify the user*/
         if (resultCode == RESULT_CANCELED && requestCode == Const.SCREEN_RECORD_REQUEST_CODE) {
             Toast.makeText(this,
                     getString(R.string.screen_recording_permission_denied), Toast.LENGTH_SHORT).show();
-            //Return to home screen if the app was started from app shortcut
+            /*//Return to home screen if the app was started from app shortcut*/
             if (getIntent().getAction().equals(getString(R.string.app_shortcut_action)))
-                this.finish();
-            return;
+                {this.finish();}
+            {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onActivityResult(int,int,android.content.Intent)",this);return;}
 
         }
 
@@ -355,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
         recorderService.setAction(Const.SCREEN_RECORDING_START);
         recorderService.putExtra(Const.RECORDER_INTENT_DATA, data);
         recorderService.putExtra(Const.RECORDER_INTENT_RESULT, resultCode);
-        startService(recorderService);
+        startService(recorderService);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
 
@@ -363,9 +357,9 @@ public class MainActivity extends AppCompatActivity {
      * Method to remove and recreate the {@link VideosListFragment} when the save location changes
      */
     public void onDirectoryChanged() {
-        ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.onDirectoryChanged()",this);try{ViewPagerAdapter adapter = (ViewPagerAdapter) viewPager.getAdapter();
         ((VideosListFragment) adapter.getItem(1)).removeVideosList();
-        Log.d(Const.TAG, "reached main act");
+        Log.d(Const.TAG, "reached main act");com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onDirectoryChanged()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.onDirectoryChanged()",this,throwable);throw throwable;}
     }
 
 
@@ -375,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
      * @return boolean
      */
     public boolean requestPermissionStorage() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionStorage()",this);try{if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.storage_permission_request_title))
@@ -383,17 +377,17 @@ public class MainActivity extends AppCompatActivity {
                     .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            ActivityCompat.requestPermissions(MainActivity.this,
+                            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$4.onClick(android.content.DialogInterface,int)",this,dialogInterface,i);try{ActivityCompat.requestPermissions(MainActivity.this,
                                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    Const.EXTDIR_REQUEST_CODE);
+                                    Const.EXTDIR_REQUEST_CODE);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$4.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity$4.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                         }
                     })
                     .setCancelable(false);
 
             alert.create().show();
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionStorage()",this);return false;}
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionStorage()",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionStorage()",this,throwable);throw throwable;}
     }
 
 
@@ -402,11 +396,11 @@ public class MainActivity extends AppCompatActivity {
      */
     @TargetApi(23)
     public void requestSystemWindowsPermission(int code) {
-        if (!Settings.canDrawOverlays(this)) {
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestSystemWindowsPermission(int)",this,code);try{if (!Settings.canDrawOverlays(this)) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, code);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestSystemWindowsPermission(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestSystemWindowsPermission(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -415,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @TargetApi(23)
     private void setSystemWindowsPermissionResult(int requestCode) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.setSystemWindowsPermissionResult(int)",this,requestCode);try{if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (Settings.canDrawOverlays(this)) {
                 mPermissionResultListener.onPermissionResult(requestCode,
                         new String[]{"System Windows Permission"},
@@ -429,28 +423,28 @@ public class MainActivity extends AppCompatActivity {
             mPermissionResultListener.onPermissionResult(requestCode,
                     new String[]{"System Windows Permission"},
                     new int[]{PackageManager.PERMISSION_GRANTED});
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.setSystemWindowsPermissionResult(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.setSystemWindowsPermissionResult(int)",this,throwable);throw throwable;}
     }
 
     public void requestPermissionCamera() {
-        if (ContextCompat.checkSelfPermission(this,
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionCamera()",this);try{if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},
                     Const.CAMERA_REQUEST_CODE);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionCamera()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionCamera()",this,throwable);throw throwable;}
     }
 
     /**
      * Method to request audio permission
      */
     public void requestPermissionAudio(int requestCode) {
-        if (ContextCompat.checkSelfPermission(this,
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionAudio(int)",this,requestCode);try{if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.RECORD_AUDIO},
                     requestCode);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionAudio(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestPermissionAudio(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -463,7 +457,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.onRequestPermissionsResult(int,[@NonNullString,[@NonNullint)",this,requestCode,permissions,grantResults);try{super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         switch (requestCode) {
             case Const.EXTDIR_REQUEST_CODE:
@@ -481,10 +475,10 @@ public class MainActivity extends AppCompatActivity {
                 }
         }
 
-        // Let's also pass the result data to SettingsPreferenceFragment using the callback interface
+        /*// Let's also pass the result data to SettingsPreferenceFragment using the callback interface*/
         if (mPermissionResultListener != null) {
             mPermissionResultListener.onPermissionResult(requestCode, permissions, grantResults);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onRequestPermissionsResult(int,[@NonNullString,[@NonNullint)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.onRequestPermissionsResult(int,[@NonNullString,[@NonNullint)",this,throwable);throw throwable;}
     }
 
 
@@ -495,8 +489,8 @@ public class MainActivity extends AppCompatActivity {
      * <br />3. Disable everything
      */
     private void requestAnalyticsPermission() {
-        if (!prefs.getBoolean(Const.PREFS_REQUEST_ANALYTICS_PERMISSION, true))
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestAnalyticsPermission()",this);try{if (!prefs.getBoolean(Const.PREFS_REQUEST_ANALYTICS_PERMISSION, true))
+            {{com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestAnalyticsPermission()",this);return;}}
 
         new AlertDialog.Builder(this)
                 .setTitle("Allow anonymous analytics")
@@ -505,32 +499,32 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Enable analytics", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        analyticsSettingsListerner.updateAnalyticsSettings(Const.analytics.CRASHREPORTING);
+                        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$5.onClick(android.content.DialogInterface,int)",this,dialogInterface,i);try{analyticsSettingsListerner.updateAnalyticsSettings(Const.analytics.CRASHREPORTING);
                         analyticsSettingsListerner.updateAnalyticsSettings(Const.analytics.USAGESTATS);
                         prefs.edit()
                                 .putBoolean(Const.PREFS_REQUEST_ANALYTICS_PERMISSION, false)
-                                .apply();
+                                .apply();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$5.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity$5.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
                 .setNeutralButton("Enable Crash reporting only", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        analyticsSettingsListerner.updateAnalyticsSettings(Const.analytics.CRASHREPORTING);
+                        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$6.onClick(android.content.DialogInterface,int)",this,dialogInterface,i);try{analyticsSettingsListerner.updateAnalyticsSettings(Const.analytics.CRASHREPORTING);
                         prefs.edit()
                                 .putBoolean(Const.PREFS_REQUEST_ANALYTICS_PERMISSION, false)
-                                .apply();
+                                .apply();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$6.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity$6.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
                 .setNegativeButton("Disable everything", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        prefs.edit()
+                        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$7.onClick(android.content.DialogInterface,int)",this,dialogInterface,i);try{prefs.edit()
                                 .putBoolean(Const.PREFS_REQUEST_ANALYTICS_PERMISSION, false)
-                                .apply();
+                                .apply();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$7.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity$7.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
                 .setCancelable(false)
-                .create().show();
+                .create().show();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.requestAnalyticsPermission()",this,throwable);throw throwable;}
     }
 
     /**
@@ -539,7 +533,7 @@ public class MainActivity extends AppCompatActivity {
      * @param mPermissionResultListener {@link PermissionResultListener} object
      */
     public void setPermissionResultListener(PermissionResultListener mPermissionResultListener) {
-        this.mPermissionResultListener = mPermissionResultListener;
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.setPermissionResultListener(com.orpheusdroid.screenrecorder.interfaces.PermissionResultListener)",this,mPermissionResultListener);try{this.mPermissionResultListener = mPermissionResultListener;com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.setPermissionResultListener(com.orpheusdroid.screenrecorder.interfaces.PermissionResultListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.setPermissionResultListener(com.orpheusdroid.screenrecorder.interfaces.PermissionResultListener)",this,throwable);throw throwable;}
     }
 
     /**
@@ -548,50 +542,50 @@ public class MainActivity extends AppCompatActivity {
      * @param analyticsSettingsListerner {@link AnalyticsSettingsListerner} object
      */
     public void setAnalyticsSettingsListerner(AnalyticsSettingsListerner analyticsSettingsListerner) {
-        this.analyticsSettingsListerner = analyticsSettingsListerner;
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.setAnalyticsSettingsListerner(AnalyticsSettingsListerner)",this,analyticsSettingsListerner);try{this.analyticsSettingsListerner = analyticsSettingsListerner;com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.setAnalyticsSettingsListerner(AnalyticsSettingsListerner)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.setAnalyticsSettingsListerner(AnalyticsSettingsListerner)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.onStart()",this);try{super.onStart();
         ((ScreenCamApp) getApplication()).setupAnalytics();
-        Countly.sharedInstance().onStart(this);
+        Countly.sharedInstance().onStart(this);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.onStart()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onStop() {
-        Countly.sharedInstance().onStop();
-        super.onStop();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity.onStop()",this);try{Countly.sharedInstance().onStop();
+        super.onStop();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity.onStop()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.overflow_menu, menu);
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onCreateOptionsMenu(android.view.Menu)",this,menu);try{getMenuInflater().inflate(R.menu.overflow_menu, menu);
+        {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onCreateOptionsMenu(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onCreateOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
             case R.id.about:
                 startActivity(new Intent(this, AboutActivity.class));
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
             case R.id.privacy_policy:
                 startActivity(new Intent(this, PrivacyPolicy.class));
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
             case R.id.donate:
                 startActivity(new Intent(this, DonateActivity.class));
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
             case R.id.help:
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/joinchat/C_ZSIUKiqUCI5NsPMAv0eA")));
                 } catch (ActivityNotFoundException e) {
                     Toast.makeText(this, "No browser app installed!", Toast.LENGTH_SHORT).show();
                 }
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
             default:
-                return super.onOptionsItemSelected(item);
-        }
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this);return super.onOptionsItemSelected(item);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     public interface AnalyticsSettingsListerner {
@@ -617,7 +611,7 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+            com.mijack.Xlog.logMethodEnter("android.app.Fragment com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getItem(int)",this,position);try{com.mijack.Xlog.logMethodExit("android.app.Fragment com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getItem(int)",this);return mFragmentList.get(position);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.Fragment com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getItem(int)",this,throwable);throw throwable;}
         }
 
         /**
@@ -628,7 +622,7 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public int getItemPosition(Object object) {
-            return super.getItemPosition(object);
+            com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getItemPosition(java.lang.Object)",this,object);try{com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getItemPosition(java.lang.Object)",this);return super.getItemPosition(object);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getItemPosition(java.lang.Object)",this,throwable);throw throwable;}
         }
 
         /**
@@ -638,7 +632,7 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public int getCount() {
-            return mFragmentList.size();
+            com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getCount()",this);try{com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getCount()",this);return mFragmentList.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getCount()",this,throwable);throw throwable;}
         }
 
         /**
@@ -648,8 +642,8 @@ public class MainActivity extends AppCompatActivity {
          * @param title    title of the fragment tab
          */
         void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.addFragment(android.app.Fragment,java.lang.String)",this,fragment,title);try{mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.addFragment(android.app.Fragment,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.addFragment(android.app.Fragment,java.lang.String)",this,throwable);throw throwable;}
         }
 
         /**
@@ -660,7 +654,7 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+            com.mijack.Xlog.logMethodEnter("java.lang.CharSequence com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getPageTitle(int)",this,position);try{com.mijack.Xlog.logMethodExit("java.lang.CharSequence com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getPageTitle(int)",this);return mFragmentTitleList.get(position);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.CharSequence com.orpheusdroid.screenrecorder.ui.MainActivity$ViewPagerAdapter.getPageTitle(int)",this,throwable);throw throwable;}
         }
     }
 }

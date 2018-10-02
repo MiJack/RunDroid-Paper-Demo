@@ -108,13 +108,13 @@ public class VideosListFragment extends Fragment implements PermissionResultList
      * @return boolean
      */
     private static boolean isVideoFile(String path) {
-        String mimeType = URLConnection.guessContentTypeFromName(path);
-        return mimeType != null && mimeType.startsWith("video");
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment.isVideoFile(java.lang.String)",path);try{String mimeType = URLConnection.guessContentTypeFromName(path);
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment.isVideoFile(java.lang.String)");return mimeType != null && mimeType.startsWith("video");}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment.isVideoFile(java.lang.String)",throwable);throw throwable;}
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_videos, container, false);
+        com.mijack.Xlog.logMethodEnter("android.view.View com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this,inflater,container,savedInstanceState);try{View view = inflater.inflate(R.layout.fragment_videos, container, false);
         message = view.findViewById(R.id.message_tv);
         videoRV = view.findViewById(R.id.videos_rv);
 
@@ -128,66 +128,66 @@ public class VideosListFragment extends Fragment implements PermissionResultList
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         if (loadInOnCreate)
-            checkPermission();
+            {checkPermission();}
 
-        return view;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this);return view;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
-    //Load videos from the directory only when the fragment is visible to the screen
+    /*//Load videos from the directory only when the fragment is visible to the screen*/
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.setUserVisibleHint(boolean)",this,isVisibleToUser);try{super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && getActivity() != null) {
             Log.d(Const.TAG, "Videos fragment is visible load the videos");
             checkPermission();
         } else if (isVisibleToUser && getActivity() == null)
-            loadInOnCreate = true;
+            {loadInOnCreate = true;}com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.setUserVisibleHint(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.setUserVisibleHint(boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater)",this,menu,inflater);try{super.onCreateOptionsMenu(menu, inflater);
         MenuItem refresh = menu.add("Refresh");
         refresh.setIcon(R.drawable.ic_refresh_white_24dp);
         refresh.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
         refresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                // Prevent repeated refresh requests
+                com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment$1.onMenuItemClick(android.view.MenuItem)",this,menuItem);try{/*// Prevent repeated refresh requests*/
                 if (swipeRefreshLayout.isRefreshing())
-                        return false;
+                        {{com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater)",this);{com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment$1.onMenuItemClick(android.view.MenuItem)",this);return false;}}}
                 videosList.clear();
                 checkPermission();
                 Log.d(Const.TAG, "Refreshing");
-                return false;
+                {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater)",this);{com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment$1.onMenuItemClick(android.view.MenuItem)",this);return false;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment$1.onMenuItemClick(android.view.MenuItem)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater)",this,throwable);throw throwable;}
     }
 
     /**
      * Check if we have permission to read the external storage and load the videos into ArrayList<Video>
      */
     private void checkPermission() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.checkPermission()",this);try{if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             if (getActivity() instanceof MainActivity) {
                 ((MainActivity) getActivity()).setPermissionResultListener(this);
                 ((MainActivity) getActivity()).requestPermissionStorage();
             }
         } else {
-            //We have required permission now and lets populate the video from the selected
-            // directory if the arraylist holding videos is empty
+            /*//We have required permission now and lets populate the video from the selected*/
+            /*// directory if the arraylist holding videos is empty*/
             if (videosList.isEmpty()) {
                 File directory = new File(prefs.getString(getString(R.string.savelocation_key),
                         Environment.getExternalStorageDirectory()
                                 + File.separator + "screenrecorder"));
-                //Remove directory pointers and other files from the list
+                /*//Remove directory pointers and other files from the list*/
                 if (!directory.exists()){
                     MainActivity.createDir();
                     Log.d(Const.TAG, "Directory missing! Creating dir");
@@ -196,12 +196,12 @@ public class VideosListFragment extends Fragment implements PermissionResultList
                 if (directory.isDirectory() && directory.exists()) {
                     filesList.addAll(Arrays.asList(getVideos(directory.listFiles())));
                 }
-                //Read the videos and extract details from it in async.
-                // This is essential if the directory contains huge number of videos
+                /*//Read the videos and extract details from it in async.*/
+                /*// This is essential if the directory contains huge number of videos*/
 
                 new GetVideosAsync().execute(filesList.toArray(new File[filesList.size()]));
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.checkPermission()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.checkPermission()",this,throwable);throw throwable;}
     }
 
     /**
@@ -211,12 +211,12 @@ public class VideosListFragment extends Fragment implements PermissionResultList
      * @return File[] containing only video files
      */
     private File[] getVideos(File[] files) {
-        List<File> newFiles = new ArrayList<>();
+        com.mijack.Xlog.logMethodEnter("[java.io.File com.orpheusdroid.screenrecorder.ui.VideosListFragment.getVideos([java.io.File)",this,files);try{List<File> newFiles = new ArrayList<>();
         for (File file : files) {
             if (!file.isDirectory() && isVideoFile(file.getPath()))
-                newFiles.add(file);
+                {newFiles.add(file);}
         }
-        return newFiles.toArray(new File[newFiles.size()]);
+        {com.mijack.Xlog.logMethodExit("[java.io.File com.orpheusdroid.screenrecorder.ui.VideosListFragment.getVideos([java.io.File)",this);return newFiles.toArray(new File[newFiles.size()]);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[java.io.File com.orpheusdroid.screenrecorder.ui.VideosListFragment.getVideos([java.io.File)",this,throwable);throw throwable;}
     }
 
     /**
@@ -225,29 +225,29 @@ public class VideosListFragment extends Fragment implements PermissionResultList
      * @param videos ArrayList<Video>
      */
     private void setRecyclerView(ArrayList<Video> videos) {
-        videoRV.setHasFixedSize(true);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.setRecyclerView(java.util.ArrayList)",this,videos);try{videoRV.setHasFixedSize(true);
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         videoRV.setLayoutManager(layoutManager);
         final VideoRecyclerAdapter adapter = new VideoRecyclerAdapter(getActivity(), videos, this);
         videoRV.setAdapter(adapter);
-        //Set the span to 1 (width to match the screen) if the view type is section
+        /*//Set the span to 1 (width to match the screen) if the view type is section*/
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                return adapter.isSection(position) ? layoutManager.getSpanCount() : 1;
+                com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.ui.VideosListFragment$2.getSpanSize(int)",this,position);try{com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.ui.VideosListFragment$2.getSpanSize(int)",this);{com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.setRecyclerView(java.util.ArrayList)",this);return adapter.isSection(position) ? layoutManager.getSpanCount() : 1;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.ui.VideosListFragment$2.getSpanSize(int)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.setRecyclerView(java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
-    //Permission result callback method
+    /*//Permission result callback method*/
     @Override
     public void onPermissionResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onPermissionResult(int,[java.lang.String,[int)",this,requestCode,permissions,grantResults);try{switch (requestCode) {
             case Const.EXTDIR_REQUEST_CODE:
                 if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Log.d(Const.TAG, "Storage permission granted.");
-                    //Performing storage task immediately after granting permission sometimes causes
-                    //permission not taking effect.
+                    /*//Performing storage task immediately after granting permission sometimes causes*/
+                    /*//permission not taking effect.*/
                     checkPermission();
                 } else {
                     Log.d(Const.TAG, "Storage permission denied.");
@@ -255,30 +255,30 @@ public class VideosListFragment extends Fragment implements PermissionResultList
                     message.setText(R.string.video_list_permission_denied_message);
                 }
                 break;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onPermissionResult(int,[java.lang.String,[int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onPermissionResult(int,[java.lang.String,[int)",this,throwable);throw throwable;}
     }
 
     /**
      * Clear the videos ArrayList once the save directory is changed which forces reloading of videos from new directory
      */
     public void removeVideosList() {
-        videosList.clear();
-        Log.d(Const.TAG, "Reached video fragment");
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.removeVideosList()",this);try{videosList.clear();
+        Log.d(Const.TAG, "Reached video fragment");com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.removeVideosList()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.removeVideosList()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,data);try{super.onActivityResult(requestCode, resultCode, data);
         Log.d(Const.TAG, "Refresh data after edit!");
         removeVideosList();
-        checkPermission();
+        checkPermission();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onActivityResult(int,int,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onRefresh() {
-        videosList.clear();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onRefresh()",this);try{videosList.clear();
         checkPermission();
-        Log.d(Const.TAG, "Refreshing");
+        Log.d(Const.TAG, "Refreshing");com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onRefresh()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment.onRefresh()",this,throwable);throw throwable;}
     }
 
     /**
@@ -287,7 +287,7 @@ public class VideosListFragment extends Fragment implements PermissionResultList
      * @author Vijai Chandra Prasad .R
      */
     class GetVideosAsync extends AsyncTask<File[], Integer, ArrayList<Video>> {
-        //ProgressDialog progress;
+        /*//ProgressDialog progress;*/
         File[] files;
         ContentResolver resolver;
 
@@ -297,37 +297,37 @@ public class VideosListFragment extends Fragment implements PermissionResultList
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
-            //Set refreshing to true
-            swipeRefreshLayout.setRefreshing(true);
+            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onPreExecute()",this);try{super.onPreExecute();
+            /*//Set refreshing to true*/
+            swipeRefreshLayout.setRefreshing(true);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(ArrayList<Video> videos) {
-            //If the directory has no videos, remove recyclerview from rootview and show empty message.
-            // Else set recyclerview and remove message textview
+            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onPostExecute(java.util.ArrayList)",this,videos);try{/*//If the directory has no videos, remove recyclerview from rootview and show empty message.*/
+            /*// Else set recyclerview and remove message textview*/
             if (videos.isEmpty()) {
                 videoRV.setVisibility(View.GONE);
                 message.setVisibility(View.VISIBLE);
             } else {
-                //Sort the videos in a descending order
+                /*//Sort the videos in a descending order*/
                 Collections.sort(videos, Collections.<Video>reverseOrder());
                 setRecyclerView(addSections(videos));
                 videoRV.setVisibility(View.VISIBLE);
                 message.setVisibility(View.GONE);
             }
-            //Finish refreshing
-            swipeRefreshLayout.setRefreshing(false);
+            /*//Finish refreshing*/
+            swipeRefreshLayout.setRefreshing(false);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onPostExecute(java.util.ArrayList)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onPostExecute(java.util.ArrayList)",this,throwable);throw throwable;}
         }
 
-        //Add sections depending on the date the video is recorded to array list
+        /*//Add sections depending on the date the video is recorded to array list*/
         private ArrayList<Video> addSections(ArrayList<Video> videos) {
-            ArrayList<Video> videosWithSections = new ArrayList<>();
+            com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.addSections(java.util.ArrayList)",this,videos);try{ArrayList<Video> videosWithSections = new ArrayList<>();
             Date currentSection = new Date();
             Log.d(Const.TAG, "Original Length: " + videos.size());
             for (int i = 0; i < videos.size(); i++) {
                 Video video = videos.get(i);
-                //Add the first section arbitrarily
+                /*//Add the first section arbitrarily*/
                 if (i==0){
                     videosWithSections.add(new Video(true, video.getLastModified()));
                     videosWithSections.add(video);
@@ -341,7 +341,7 @@ public class VideosListFragment extends Fragment implements PermissionResultList
                 videosWithSections.add(video);
             }
             Log.d(Const.TAG, "Length with sections: " + videosWithSections.size());
-            return videosWithSections;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.addSections(java.util.ArrayList)",this);return videosWithSections;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.addSections(java.util.ArrayList)",this,throwable);throw throwable;}
         }
 
         /**
@@ -356,17 +356,17 @@ public class VideosListFragment extends Fragment implements PermissionResultList
          */
         private boolean addNewSection(Date current, Date next)
         {
-            Calendar currentSectionDate = toCalendar(current.getTime());
+            com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.addNewSection(java.util.Date,java.util.Date)",this,current,next);try{Calendar currentSectionDate = toCalendar(current.getTime());
             Calendar nextVideoDate = toCalendar(next.getTime());
 
-            // Get the represented date in milliseconds
+            /*// Get the represented date in milliseconds*/
             long milis1 = currentSectionDate.getTimeInMillis();
             long milis2 = nextVideoDate.getTimeInMillis();
 
-            // Calculate difference in milliseconds
+            /*// Calculate difference in milliseconds*/
             int dayDiff = (int)Math.abs((milis2 - milis1) / (24 * 60 * 60 * 1000));
             Log.d(Const.TAG, "Date diff is: " + (dayDiff));
-            return dayDiff > 0;
+            {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.addNewSection(java.util.Date,java.util.Date)",this);return dayDiff > 0;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.addNewSection(java.util.Date,java.util.Date)",this,throwable);throw throwable;}
         }
 
         /**
@@ -377,25 +377,25 @@ public class VideosListFragment extends Fragment implements PermissionResultList
          */
         private Calendar toCalendar(long timestamp)
         {
-            Calendar calendar = Calendar.getInstance();
+            com.mijack.Xlog.logMethodEnter("java.util.Calendar com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.toCalendar(long)",this,timestamp);try{Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(timestamp);
             calendar.set(Calendar.HOUR_OF_DAY, 0);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
-            return calendar;
+            {com.mijack.Xlog.logMethodExit("java.util.Calendar com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.toCalendar(long)",this);return calendar;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Calendar com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.toCalendar(long)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
+            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onProgressUpdate([java.lang.Integer)",this,values);try{super.onProgressUpdate(values);
 
-            Log.d(Const.TAG, "Progress is :" + values[0]);
+            Log.d(Const.TAG, "Progress is :" + values[0]);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onProgressUpdate([java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.onProgressUpdate([java.lang.Integer)",this,throwable);throw throwable;}
         }
 
         @Override
         protected ArrayList<Video> doInBackground(File[]... arg) {
-            //Get video file name, Uri and video thumbnail from mediastore
+            com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.doInBackground([File[])",this,arg);try{/*//Get video file name, Uri and video thumbnail from mediastore*/
             files = arg[0];
             for (int i = 0; i < files.length; i++) {
                 File file = files[i];
@@ -404,11 +404,11 @@ public class VideosListFragment extends Fragment implements PermissionResultList
                             file,
                             getBitmap(file),
                             new Date(file.lastModified())));
-                    //Update progress dialog
+                    /*//Update progress dialog*/
                     publishProgress(i);
                 }
             }
-            return videosList;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.doInBackground([File[])",this);return videosList;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.doInBackground([File[])",this,throwable);throw throwable;}
         }
 
         /**
@@ -418,7 +418,7 @@ public class VideosListFragment extends Fragment implements PermissionResultList
          * @return Bitmap
          */
         Bitmap getBitmap(File file) {
-            String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Media.BUCKET_ID,
+            com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.getBitmap(java.io.File)",this,file);try{String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Media.BUCKET_ID,
                     MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.Images.Media.DATA};
             Cursor cursor = resolver.query(MediaStore.Video.Media.getContentUri("external"),
                     projection,
@@ -432,9 +432,9 @@ public class VideosListFragment extends Fragment implements PermissionResultList
                         MediaStore.Video.Thumbnails.MINI_KIND, null);
                 Log.d(Const.TAG, "Retrieved thumbnail for file: " + file.getName());
                 cursor.close();
-                return thumbNail;
+                {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.getBitmap(java.io.File)",this);return thumbNail;}
             }
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.getBitmap(java.io.File)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.orpheusdroid.screenrecorder.ui.VideosListFragment$GetVideosAsync.getBitmap(java.io.File)",this,throwable);throw throwable;}
         }
     }
 }

@@ -29,11 +29,11 @@ import android.preference.Preference;
 public class SavedStateHandler extends Preference.BaseSavedState {
     public static final Parcelable.Creator<SavedStateHandler> CREATOR = new Parcelable.Creator<SavedStateHandler>() {
         public SavedStateHandler createFromParcel(Parcel in) {
-            return new SavedStateHandler(in);
+            com.mijack.Xlog.logMethodEnter("com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler$1.createFromParcel(android.os.Parcel)",this,in);try{com.mijack.Xlog.logMethodExit("com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler$1.createFromParcel(android.os.Parcel)",this);return new SavedStateHandler(in);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler$1.createFromParcel(android.os.Parcel)",this,throwable);throw throwable;}
         }
 
         public SavedStateHandler[] newArray(int size) {
-            return new SavedStateHandler[size];
+            com.mijack.Xlog.logMethodEnter("[com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler$1.newArray(int)",this,size);try{com.mijack.Xlog.logMethodExit("[com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler$1.newArray(int)",this);return new SavedStateHandler[size];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler$1.newArray(int)",this,throwable);throw throwable;}
         }
     };
     public final String selectedDir;
@@ -53,8 +53,8 @@ public class SavedStateHandler extends Preference.BaseSavedState {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        super.writeToParcel(dest, flags);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler.writeToParcel(android.os.Parcel,int)",this,dest,flags);try{super.writeToParcel(dest, flags);
         dest.writeString(selectedDir);
-        dest.writeBundle(dialogState);
+        dest.writeBundle(dialogState);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler.writeToParcel(android.os.Parcel,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.folderpicker.SavedStateHandler.writeToParcel(android.os.Parcel,int)",this,throwable);throw throwable;}
     }
 }

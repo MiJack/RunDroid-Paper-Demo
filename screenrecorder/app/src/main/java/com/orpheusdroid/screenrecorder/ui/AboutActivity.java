@@ -38,17 +38,17 @@ public class AboutActivity extends AppCompatActivity {
 
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String source) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY);
+        com.mijack.Xlog.logStaticMethodEnter("android.text.Spanned com.orpheusdroid.screenrecorder.ui.AboutActivity.fromHtml(java.lang.String)",source);try{if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            {com.mijack.Xlog.logStaticMethodExit("android.text.Spanned com.orpheusdroid.screenrecorder.ui.AboutActivity.fromHtml(java.lang.String)");return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY);}
         } else {
-            return Html.fromHtml(source);
-        }
+            {com.mijack.Xlog.logStaticMethodExit("android.text.Spanned com.orpheusdroid.screenrecorder.ui.AboutActivity.fromHtml(java.lang.String)");return Html.fromHtml(source);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.text.Spanned com.orpheusdroid.screenrecorder.ui.AboutActivity.fromHtml(java.lang.String)",throwable);throw throwable;}
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        String theme = PreferenceManager.getDefaultSharedPreferences(this)
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.AboutActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{String theme = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(getString(R.string.preference_theme_key), Const.PREFS_LIGHT_THEME);
         switch (theme){
             case Const.PREFS_WHITE_THEME:
@@ -64,14 +64,14 @@ public class AboutActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        // Set up arrow to close the activity
+        /*// Set up arrow to close the activity*/
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         setContentView(R.layout.activity_about);
 
-        //Let's set the copyright and app version dynamically
+        /*//Let's set the copyright and app version dynamically*/
         TextView appVersion = findViewById(R.id.versionTxt);
         TextView iconCredit = findViewById(R.id.icon_credit_tv);
         TextView videoEditorCredit = findViewById(R.id.video_editor_lib_credit_tv);
@@ -87,14 +87,14 @@ public class AboutActivity extends AppCompatActivity {
                 "MIT Opensource License"));
         openSourceInfo.setText(getString(R.string.opensource_info, "https://gitlab.com/vijai/screenrecorder", "GNU AGPLv3"));
 
-        //Let's build the copyright text using String builder
+        /*//Let's build the copyright text using String builder*/
         StringBuilder copyRight = new StringBuilder();
         copyRight.append("Copyright &copy; orpheusdroid 2014-")
                 .append(Calendar.getInstance().get(Calendar.YEAR))
                 .append("\n");
 
 
-        //If the apk is beta version include version code. Else ignore
+        /*//If the apk is beta version include version code. Else ignore*/
         if (BuildConfig.VERSION_NAME.contains("Beta")) {
             copyRight.append(getResources().getString(R.string.app_name))
                     .append(" Build")
@@ -102,26 +102,26 @@ public class AboutActivity extends AppCompatActivity {
                     .append(" V")
                     .append(BuildConfig.VERSION_NAME)
                     .append("\n Internal Build. Not to be released");
-            //set the text as html to get copyright symbol
+            /*//set the text as html to get copyright symbol*/
             appVersion.setText(fromHtml(copyRight.toString()));
         } else {
             copyRight.append(getResources().getString(R.string.app_name))
                     .append(" V")
                     .append(BuildConfig.VERSION_NAME);
-            //set the text as html to get copyright symbol
+            /*//set the text as html to get copyright symbol*/
             appVersion.setText(fromHtml(copyRight.toString()));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.AboutActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.AboutActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.AboutActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
+            /*// Respond to the action bar's Up/Home button*/
             case android.R.id.home:
-                //finish this activity and return to parent activity
+                /*//finish this activity and return to parent activity*/
                 this.finish();
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.AboutActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
         }
-        return super.onOptionsItemSelected(item);
+        {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.AboutActivity.onOptionsItemSelected(android.view.MenuItem)",this);return super.onOptionsItemSelected(item);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.AboutActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 }

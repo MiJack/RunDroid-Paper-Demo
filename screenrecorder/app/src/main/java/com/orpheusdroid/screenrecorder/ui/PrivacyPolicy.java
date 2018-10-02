@@ -33,7 +33,7 @@ public class PrivacyPolicy extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        String theme = PreferenceManager.getDefaultSharedPreferences(this)
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.PrivacyPolicy.onCreate(android.os.Bundle)",this,savedInstanceState);try{String theme = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(getString(R.string.preference_theme_key), Const.PREFS_LIGHT_THEME);
         switch (theme){
             case Const.PREFS_WHITE_THEME:
@@ -53,18 +53,18 @@ public class PrivacyPolicy extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        ((WebView) findViewById(R.id.wv_privacy_policy)).loadUrl("file:///android_asset/privacy_policy.html");
+        ((WebView) findViewById(R.id.wv_privacy_policy)).loadUrl("file:///android_asset/privacy_policy.html");com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.PrivacyPolicy.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.PrivacyPolicy.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.ui.PrivacyPolicy.onOptionsItemSelected(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
+            /*// Respond to the action bar's Up/Home button*/
             case android.R.id.home:
-                //finish this activity and return to parent activity
+                /*//finish this activity and return to parent activity*/
                 this.finish();
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.PrivacyPolicy.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
         }
-        return super.onOptionsItemSelected(item);
+        {com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.ui.PrivacyPolicy.onOptionsItemSelected(android.view.MenuItem)",this);return super.onOptionsItemSelected(item);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.ui.PrivacyPolicy.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 }

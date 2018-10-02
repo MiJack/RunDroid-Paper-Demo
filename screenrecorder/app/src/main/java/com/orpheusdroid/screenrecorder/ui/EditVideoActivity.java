@@ -40,13 +40,13 @@ public class EditVideoActivity extends AppCompatActivity implements OnTrimVideoL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_video);
 
         if(!getIntent().hasExtra(Const.VIDEO_EDIT_URI_KEY)) {
             Toast.makeText(this, getResources().getString(R.string.video_not_found), Toast.LENGTH_SHORT).show();
             finish();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.onCreate(android.os.Bundle)",this);return;}
         }
 
         Uri videoUri = Uri.parse(getIntent().getStringExtra(Const.VIDEO_EDIT_URI_KEY));
@@ -54,13 +54,13 @@ public class EditVideoActivity extends AppCompatActivity implements OnTrimVideoL
         if (!new File(videoUri.getPath()).exists()) {
             Toast.makeText(this, getResources().getString(R.string.video_not_found), Toast.LENGTH_SHORT).show();
             finish();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.onCreate(android.os.Bundle)",this);return;}
         }
 
         K4LVideoTrimmer videoTrimmer = findViewById(R.id.videoTimeLine);
 
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        //use one of overloaded setDataSource() functions to set your data source
+        /*//use one of overloaded setDataSource() functions to set your data source*/
         retriever.setDataSource(this, videoUri);
         String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
         int timeInMins = (((int)Long.parseLong(time)) / 1000)+1000;
@@ -72,49 +72,49 @@ public class EditVideoActivity extends AppCompatActivity implements OnTrimVideoL
         videoTrimmer.setVideoURI(videoUri);
         videoTrimmer.setMaxDuration(timeInMins);
         Log.d(Const.TAG, "Edited file save name: " + video.getAbsolutePath());
-        videoTrimmer.setDestinationPath(video.getParent()+"/");
+        videoTrimmer.setDestinationPath(video.getParent()+"/");}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void getResult(Uri uri) {
-        Log.d(Const.TAG, uri.getPath());
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.getResult(android.net.Uri)",this,uri);try{Log.d(Const.TAG, uri.getPath());
         indexFile(uri.getPath());
 
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                saveprogress = new ProgressDialog(EditVideoActivity.this);
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity$1.run()",this);try{saveprogress = new ProgressDialog(EditVideoActivity.this);
                 saveprogress.setMessage("Please wait while the video is being saved");
                 saveprogress.setTitle("Please wait");
                 saveprogress.setIndeterminate(true);
-                saveprogress.show();
+                saveprogress.show();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity$1.run()",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.getResult(android.net.Uri)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.getResult(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     public void cancelAction() {
-        finish();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.cancelAction()",this);try{finish();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.cancelAction()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.cancelAction()",this,throwable);throw throwable;}
     }
 
     private void indexFile(String SAVEPATH) {
-        //Create a new ArrayList and add the newly created video file path to it
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.indexFile(java.lang.String)",this,SAVEPATH);try{/*//Create a new ArrayList and add the newly created video file path to it*/
         ArrayList<String> toBeScanned = new ArrayList<>();
         toBeScanned.add(SAVEPATH);
         String[] toBeScannedStr = new String[toBeScanned.size()];
         toBeScannedStr = toBeScanned.toArray(toBeScannedStr);
 
-        //Request MediaScannerConnection to scan the new file and index it
+        /*//Request MediaScannerConnection to scan the new file and index it*/
         MediaScannerConnection.scanFile(this, toBeScannedStr, null, new MediaScannerConnection.OnScanCompletedListener() {
 
             @Override
             public void onScanCompleted(String path, Uri uri) {
-                Log.i(Const.TAG, "SCAN COMPLETED: " + path);
+                com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity$2.onScanCompleted(java.lang.String,android.net.Uri)",this,path,uri);try{Log.i(Const.TAG, "SCAN COMPLETED: " + path);
                 saveprogress.cancel();
                 setResult(Const.VIDEO_EDIT_RESULT_CODE);
-                finish();
+                finish();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity$2.onScanCompleted(java.lang.String,android.net.Uri)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity$2.onScanCompleted(java.lang.String,android.net.Uri)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.indexFile(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ui.EditVideoActivity.indexFile(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

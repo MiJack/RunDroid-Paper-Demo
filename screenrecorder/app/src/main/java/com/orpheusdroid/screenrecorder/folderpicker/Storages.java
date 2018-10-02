@@ -30,11 +30,11 @@ public class Storages {
     }
 
     public String getPath() {
-        return path;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.orpheusdroid.screenrecorder.folderpicker.Storages.getPath()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.orpheusdroid.screenrecorder.folderpicker.Storages.getPath()",this);return path;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.orpheusdroid.screenrecorder.folderpicker.Storages.getPath()",this,throwable);throw throwable;}
     }
 
     public StorageType getType() {
-        return type;
+        com.mijack.Xlog.logMethodEnter("StorageType com.orpheusdroid.screenrecorder.folderpicker.Storages.getType()",this);try{com.mijack.Xlog.logMethodExit("StorageType com.orpheusdroid.screenrecorder.folderpicker.Storages.getType()",this);return type;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("StorageType com.orpheusdroid.screenrecorder.folderpicker.Storages.getType()",this,throwable);throw throwable;}
     }
 
     public enum StorageType {Internal, External}

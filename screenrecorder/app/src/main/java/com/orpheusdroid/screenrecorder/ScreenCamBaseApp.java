@@ -35,11 +35,11 @@ import static com.orpheusdroid.screenrecorder.Const.ANALYTICS_URL;
 public class ScreenCamBaseApp extends Application {
     @Override
     public void onCreate() {
-        super.onCreate();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ScreenCamBaseApp.onCreate()",this);try{super.onCreate();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ScreenCamBaseApp.onCreate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ScreenCamBaseApp.onCreate()",this,throwable);throw throwable;}
     }
 
     public void setupAnalytics() {
-        Countly.sharedInstance()
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.ScreenCamBaseApp.setupAnalytics()",this);try{Countly.sharedInstance()
                 .setRequiresConsent(true)
                 .setLoggingEnabled(true)
                 .setHttpPostForced(true)
@@ -66,6 +66,6 @@ public class ScreenCamBaseApp extends Application {
         Countly.sharedInstance().setConsent(new String[]{Countly.CountlyFeatureNames.crashes}, isCrashesEnabled);
 
         Countly.sharedInstance().init(this, ANALYTICS_URL, ANALYTICS_API_KEY, null, DeviceId.Type.OPEN_UDID);
-        Log.d(Const.TAG, "Countly setup");
+        Log.d(Const.TAG, "Countly setup");com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.ScreenCamBaseApp.setupAnalytics()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.ScreenCamBaseApp.setupAnalytics()",this,throwable);throw throwable;}
     }
 }

@@ -47,35 +47,35 @@ public class Video implements Comparable<Video> {
     }
 
     public String getFileName() {
-        return FileName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.orpheusdroid.screenrecorder.adapter.Video.getFileName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.orpheusdroid.screenrecorder.adapter.Video.getFileName()",this);return FileName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.orpheusdroid.screenrecorder.adapter.Video.getFileName()",this,throwable);throw throwable;}
     }
 
     public File getFile() {
-        return file;
+        com.mijack.Xlog.logMethodEnter("java.io.File com.orpheusdroid.screenrecorder.adapter.Video.getFile()",this);try{com.mijack.Xlog.logMethodExit("java.io.File com.orpheusdroid.screenrecorder.adapter.Video.getFile()",this);return file;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.orpheusdroid.screenrecorder.adapter.Video.getFile()",this,throwable);throw throwable;}
     }
 
     public Bitmap getThumbnail() {
-        return thumbnail;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.orpheusdroid.screenrecorder.adapter.Video.getThumbnail()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.orpheusdroid.screenrecorder.adapter.Video.getThumbnail()",this);return thumbnail;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.orpheusdroid.screenrecorder.adapter.Video.getThumbnail()",this,throwable);throw throwable;}
     }
 
     public Date getLastModified() {
-        return lastModified;
+        com.mijack.Xlog.logMethodEnter("java.util.Date com.orpheusdroid.screenrecorder.adapter.Video.getLastModified()",this);try{com.mijack.Xlog.logMethodExit("java.util.Date com.orpheusdroid.screenrecorder.adapter.Video.getLastModified()",this);return lastModified;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Date com.orpheusdroid.screenrecorder.adapter.Video.getLastModified()",this,throwable);throw throwable;}
     }
 
     public boolean isSection() {
-        return isSection;
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.adapter.Video.isSection()",this);try{com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.adapter.Video.isSection()",this);return isSection;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.adapter.Video.isSection()",this,throwable);throw throwable;}
     }
 
     public boolean isSelected() {
-        return isSelected;
+        com.mijack.Xlog.logMethodEnter("boolean com.orpheusdroid.screenrecorder.adapter.Video.isSelected()",this);try{com.mijack.Xlog.logMethodExit("boolean com.orpheusdroid.screenrecorder.adapter.Video.isSelected()",this);return isSelected;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.orpheusdroid.screenrecorder.adapter.Video.isSelected()",this,throwable);throw throwable;}
     }
 
     public void setSelected(boolean selected) {
-        isSelected = selected;
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.adapter.Video.setSelected(boolean)",this,selected);try{isSelected = selected;com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.adapter.Video.setSelected(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.adapter.Video.setSelected(boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     public int compareTo(Video video) {
-        return getLastModified().compareTo(video.getLastModified());
+        com.mijack.Xlog.logMethodEnter("int com.orpheusdroid.screenrecorder.adapter.Video.compareTo(com.orpheusdroid.screenrecorder.adapter.Video)",this,video);try{com.mijack.Xlog.logMethodExit("int com.orpheusdroid.screenrecorder.adapter.Video.compareTo(com.orpheusdroid.screenrecorder.adapter.Video)",this);return getLastModified().compareTo(video.getLastModified());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.orpheusdroid.screenrecorder.adapter.Video.compareTo(com.orpheusdroid.screenrecorder.adapter.Video)",this,throwable);throw throwable;}
     }
 }

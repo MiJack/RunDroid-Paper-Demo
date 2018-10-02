@@ -56,16 +56,16 @@ public class Mp4toGIFConverter {
     }
 
     public void setVideoUri(Uri videoUri) {
-        this.videoUri = videoUri;
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter.setVideoUri(android.net.Uri)",this,videoUri);try{this.videoUri = videoUri;com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter.setVideoUri(android.net.Uri)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter.setVideoUri(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     public void convertToGif(){
-        //MediaMetadataRetriever tRetriever = new MediaMetadataRetriever();
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter.convertToGif()",this);try{/*//MediaMetadataRetriever tRetriever = new MediaMetadataRetriever();*/
 
         try{
             mediaMetadataRetriever.setDataSource(context, videoUri);
 
-            //extract duration in millisecond
+            /*//extract duration in millisecond*/
             String DURATION = mediaMetadataRetriever.extractMetadata(
                     MediaMetadataRetriever.METADATA_KEY_DURATION);
             maxDur = (long)(Double.parseDouble(DURATION));
@@ -79,22 +79,22 @@ public class Mp4toGIFConverter {
             Toast.makeText(context,
                     "Something Wrong!",
                     Toast.LENGTH_LONG).show();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter.convertToGif()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter.convertToGif()",this,throwable);throw throwable;}
     }
 
     public class TaskSaveGIF extends AsyncTask<Void, Integer, String> {
         ProgressDialog dialog = new ProgressDialog(context);
 
         private String getGifFIleName(){
-            String Filename = videoUri.getLastPathSegment();
-            return Filename.replace("mp4", "gif");
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.getGifFIleName()",this);try{String Filename = videoUri.getLastPathSegment();
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.getGifFIleName()",this);return Filename.replace("mp4", "gif");}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.getGifFIleName()",this,throwable);throw throwable;}
         }
 
 
 
         @Override
         protected String doInBackground(Void... params) {
-            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.doInBackground([java.lang.Void)",this,params);try{String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
             File outFile = new File(extStorageDirectory + File.separator + Const.APPDIR, getGifFIleName());
             try {
                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outFile));
@@ -103,50 +103,50 @@ public class Mp4toGIFConverter {
                 bos.close();
 
 
-                return(outFile.getAbsolutePath() + " Saved");
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.doInBackground([java.lang.Void)",this);return(outFile.getAbsolutePath() + " Saved");}
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                return e.getMessage();
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.doInBackground([java.lang.Void)",this);return e.getMessage();}
             } catch (IOException e) {
                 e.printStackTrace();
-                return e.getMessage();
-            }
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.doInBackground([java.lang.Void)",this);return e.getMessage();}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.doInBackground([java.lang.Void)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPreExecute() {
-            dialog.setTitle("Please wait. Saving GIF");
+            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onPreExecute()",this);try{dialog.setTitle("Please wait. Saving GIF");
             dialog.setCancelable(false);
             dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             dialog.setMax(100);
-            dialog.show();
+            dialog.show();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onPreExecute()",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(context,
+            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onPostExecute(java.lang.String)",this,result);try{Toast.makeText(context,
                     result,
                     Toast.LENGTH_LONG).show();
-            dialog.cancel();
+            dialog.cancel();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onPostExecute(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onPostExecute(java.lang.String)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            //bar.setProgress(values[0]);
-            //updateFrame();
+            com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onProgressUpdate([java.lang.Integer)",this,values);try{/*//bar.setProgress(values[0]);*/
+            /*//updateFrame();*/
             dialog.setProgress(values[0]);
 
-            Log.d(Const.TAG, "Gif save progress: " + values[0]);
+            Log.d(Const.TAG, "Gif save progress: " + values[0]);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onProgressUpdate([java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.onProgressUpdate([java.lang.Integer)",this,throwable);throw throwable;}
         }
 
         private byte[] genGIF(){
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            com.mijack.Xlog.logMethodEnter("[byte com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.genGIF()",this);try{ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
             GifEncoder animatedGifEncoder = new GifEncoder();
             animatedGifEncoder.setDelay(1000);
             animatedGifEncoder.setRepeat(0);
             animatedGifEncoder.setQuality(15);
-            //animatedGifEncoder.setSize(0,0);
+            /*//animatedGifEncoder.setSize(0,0);*/
             animatedGifEncoder.setFrameRate(20.0f);
 
             Bitmap bmFrame;
@@ -159,13 +159,13 @@ public class Mp4toGIFConverter {
                 publishProgress(i);
             }
 
-            //last from at end
+            /*//last from at end*/
             bmFrame = mediaMetadataRetriever.getFrameAtTime(maxDur);
             animatedGifEncoder.addFrame(bmFrame);
             publishProgress(100);
 
             animatedGifEncoder.finish();
-            return bos.toByteArray();
+            {com.mijack.Xlog.logMethodExit("[byte com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.genGIF()",this);return bos.toByteArray();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.orpheusdroid.screenrecorder.encoder.Mp4toGIFConverter$TaskSaveGIF.genGIF()",this,throwable);throw throwable;}
         }
     }
 }

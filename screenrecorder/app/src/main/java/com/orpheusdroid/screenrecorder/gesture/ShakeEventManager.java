@@ -35,10 +35,10 @@ public class ShakeEventManager implements SensorEventListener {
     private static final int MOV_COUNTS = 5;
     private static final int MOV_THRESHOLD = 4;
     private static final float ALPHA = 0.8F;
-    private static final int SHAKE_WINDOW_TIME_INTERVAL = 1000; // milliseconds
+    private static final int SHAKE_WINDOW_TIME_INTERVAL = 1000; /*// milliseconds*/
     private SensorManager sManager;
     private Sensor s;
-    // Gravity force on x,y,z axis
+    /*// Gravity force on x,y,z axis*/
     private float gravity[] = new float[3];
 
     private int counter;
@@ -51,18 +51,18 @@ public class ShakeEventManager implements SensorEventListener {
     }
 
     public void init(Context ctx) {
-        sManager = (SensorManager)  ctx.getSystemService(Context.SENSOR_SERVICE);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.init(android.content.Context)",this,ctx);try{sManager = (SensorManager)  ctx.getSystemService(Context.SENSOR_SERVICE);
         s = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        register();
+        register();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.init(android.content.Context)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.init(android.content.Context)",this,throwable);throw throwable;}
     }
 
     public void register() {
-        sManager.registerListener(this, s, SensorManager.SENSOR_DELAY_NORMAL);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.register()",this);try{sManager.registerListener(this, s, SensorManager.SENSOR_DELAY_NORMAL);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.register()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.register()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        float maxAcc = calcMaxAcceleration(sensorEvent);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.onSensorChanged(android.hardware.SensorEvent)",this,sensorEvent);try{float maxAcc = calcMaxAcceleration(sensorEvent);
         Log.d("SwA", "Max Acc ["+maxAcc+"]");
         if (maxAcc >= MOV_THRESHOLD) {
             if (counter == 0) {
@@ -72,36 +72,35 @@ public class ShakeEventManager implements SensorEventListener {
             } else {
                 long now = System.currentTimeMillis();
                 if ((now - firstMovTime) < SHAKE_WINDOW_TIME_INTERVAL)
-                    counter++;
+                    {counter++;}
                 else {
                     resetAllData();
-                    //counter++;
-                    return;
+                    /*//counter++;*/
+                    {com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.onSensorChanged(android.hardware.SensorEvent)",this);return;}
                 }
                 Log.d(Const.TAG, "Mov counter ["+counter+"]");
 
                 if (counter == MOV_COUNTS && (System.currentTimeMillis() - lastMoveTime) > 5000 )
-                    if (listener != null) {
+                    {if (listener != null) {
                         resetAllData();
                         Log.d(Const.TAG, "Shaked. count: " + counter);
                         listener.onShake();
                         lastMoveTime = System.currentTimeMillis();
-                    }
+                    }}
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.onSensorChanged(android.hardware.SensorEvent)",this,throwable);throw throwable;}
 
     }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {}
+    {com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.onAccuracyChanged(android.hardware.Sensor,int)",this,sensor,i);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.onAccuracyChanged(android.hardware.Sensor,int)",this);}
 
     public void stop()  {
-        sManager.unregisterListener(this);
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.stop()",this);try{sManager.unregisterListener(this);com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.stop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.stop()",this,throwable);throw throwable;}
     }
 
 
     private float calcMaxAcceleration(SensorEvent event) {
-        gravity[0] = calcGravityForce(event.values[0], 0);
+        com.mijack.Xlog.logMethodEnter("float com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.calcMaxAcceleration(android.hardware.SensorEvent)",this,event);try{gravity[0] = calcGravityForce(event.values[0], 0);
         gravity[1] = calcGravityForce(event.values[1], 1);
         gravity[2] = calcGravityForce(event.values[2], 2);
 
@@ -110,19 +109,19 @@ public class ShakeEventManager implements SensorEventListener {
         float accZ = event.values[2] - gravity[2];
 
         float max1 = Math.max(accX, accY);
-        return Math.max(max1, accZ);
+        {com.mijack.Xlog.logMethodExit("float com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.calcMaxAcceleration(android.hardware.SensorEvent)",this);return Math.max(max1, accZ);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.calcMaxAcceleration(android.hardware.SensorEvent)",this,throwable);throw throwable;}
     }
 
-    // Low pass filter
+    /*// Low pass filter*/
     private float calcGravityForce(float currentVal, int index) {
-        return  ALPHA * gravity[index] + (1 - ALPHA) * currentVal;
+        com.mijack.Xlog.logMethodEnter("float com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.calcGravityForce(float,int)",this,currentVal,index);try{com.mijack.Xlog.logMethodExit("float com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.calcGravityForce(float,int)",this);return  ALPHA * gravity[index] + (1 - ALPHA) * currentVal;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.calcGravityForce(float,int)",this,throwable);throw throwable;}
     }
 
 
     private void resetAllData() {
-        Log.d("SwA", "Reset all data");
+        com.mijack.Xlog.logMethodEnter("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.resetAllData()",this);try{Log.d("SwA", "Reset all data");
         counter = 0;
-        firstMovTime = System.currentTimeMillis();
+        firstMovTime = System.currentTimeMillis();com.mijack.Xlog.logMethodExit("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.resetAllData()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.orpheusdroid.screenrecorder.gesture.ShakeEventManager.resetAllData()",this,throwable);throw throwable;}
     }
 
 
