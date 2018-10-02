@@ -25,21 +25,21 @@ public class BoardSmallCursorAdapter extends AbstractBoardCursorAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        return TYPE_GRID_ITEM;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.adapter.BoardSmallCursorAdapter.getItemViewType(int)",this,position);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardSmallCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.adapter.BoardSmallCursorAdapter.getItemViewType(int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected View newView(ViewGroup parent, int tag, int position) {
-        if (DEBUG) Log.d(TAG, "Creating " + tag + " layout for " + position);
+        com.mijack.Xlog.logMethodEnter("android.view.View com.chanapps.four.adapter.BoardSmallCursorAdapter.newView(android.view.ViewGroup,int,int)",this,parent,tag,position);try{if (DEBUG) {Log.d(TAG, "Creating " + tag + " layout for " + position);}
         View v = mInflater.inflate(R.layout.board_grid_item_small, parent, false);
         BoardViewHolder viewHolder = new BoardViewHolder(v);
         v.setTag(R.id.VIEW_TAG_TYPE, tag);
         v.setTag(R.id.VIEW_HOLDER, viewHolder);
-        return v;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.chanapps.four.adapter.BoardSmallCursorAdapter.newView(android.view.ViewGroup,int,int)",this);return v;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.chanapps.four.adapter.BoardSmallCursorAdapter.newView(android.view.ViewGroup,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getViewTypeCount() {
-        return TYPE_MAX_COUNT;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.adapter.BoardSmallCursorAdapter.getViewTypeCount()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardSmallCursorAdapter.getViewTypeCount()",this);return TYPE_MAX_COUNT;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.adapter.BoardSmallCursorAdapter.getViewTypeCount()",this,throwable);throw throwable;}
     }
 }

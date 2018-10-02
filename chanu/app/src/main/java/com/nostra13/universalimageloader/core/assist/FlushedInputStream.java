@@ -16,19 +16,19 @@ public class FlushedInputStream extends FilterInputStream {
 
 	@Override
 	public long skip(long n) throws IOException {
-		long totalBytesSkipped = 0L;
+		com.mijack.Xlog.logMethodEnter("long com.nostra13.universalimageloader.core.assist.FlushedInputStream.skip(long)",this,n);try{long totalBytesSkipped = 0L;
 		while (totalBytesSkipped < n) {
 			long bytesSkipped = in.skip(n - totalBytesSkipped);
 			if (bytesSkipped == 0L) {
 				int by_te = read();
 				if (by_te < 0) {
-					break; // we reached EOF
+					break; /*// we reached EOF*/
 				} else {
-					bytesSkipped = 1; // we read one byte
+					bytesSkipped = 1; /*// we read one byte*/
 				}
 			}
 			totalBytesSkipped += bytesSkipped;
 		}
-		return totalBytesSkipped;
+		{com.mijack.Xlog.logMethodExit("long com.nostra13.universalimageloader.core.assist.FlushedInputStream.skip(long)",this);return totalBytesSkipped;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.nostra13.universalimageloader.core.assist.FlushedInputStream.skip(long)",this,throwable);throw throwable;}
 	}
 }

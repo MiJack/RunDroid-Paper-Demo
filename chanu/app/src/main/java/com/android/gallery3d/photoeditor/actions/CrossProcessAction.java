@@ -32,11 +32,9 @@ public class CrossProcessAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        notifyFilterChanged(new CrossProcessFilter(), true);
-        notifyDone();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CrossProcessAction.doBegin()",this);try{notifyFilterChanged(new CrossProcessFilter(), true);
+        notifyDone();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CrossProcessAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CrossProcessAction.doBegin()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void doEnd() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CrossProcessAction.doEnd()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CrossProcessAction.doEnd()",this);}
 }

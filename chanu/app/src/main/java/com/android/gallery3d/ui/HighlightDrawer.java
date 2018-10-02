@@ -29,7 +29,7 @@ public class HighlightDrawer extends IconDrawer {
     }
 
     public void setHighlightItem(Path item) {
-        mHighlightItem = item;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.HighlightDrawer.setHighlightItem(com.android.gallery3d.data.Path)",this,item);try{mHighlightItem = item;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.HighlightDrawer.setHighlightItem(com.android.gallery3d.data.Path)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.HighlightDrawer.setHighlightItem(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     @Override
@@ -37,7 +37,7 @@ public class HighlightDrawer extends IconDrawer {
             int height, int rotation, Path path,
             int dataSourceType, int mediaType, boolean isPanorama,
             int labelBackgroundHeight, boolean wantCache, boolean isCaching) {
-        int x = -width / 2;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.HighlightDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,canvas,content,width,height,rotation,path,dataSourceType,mediaType,isPanorama,labelBackgroundHeight,wantCache,isCaching);try{int x = -width / 2;
         int y = -height / 2;
 
         drawWithRotation(canvas, content, x, y, width, height, rotation);
@@ -58,6 +58,6 @@ public class HighlightDrawer extends IconDrawer {
             drawPressedFrame(canvas, x, y, width, height);
         } else if (path == mHighlightItem) {
             drawSelectedFrame(canvas, x, y, width, height);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.HighlightDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.HighlightDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,throwable);throw throwable;}
     }
 }

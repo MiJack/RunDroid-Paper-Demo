@@ -32,30 +32,30 @@ public class DownUpDetector {
     }
 
     private void setState(boolean down, MotionEvent e) {
-        if (down == mStillDown) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DownUpDetector.setState(boolean,android.view.MotionEvent)",this,down,e);try{if (down == mStillDown) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DownUpDetector.setState(boolean,android.view.MotionEvent)",this);return;}}
         mStillDown = down;
         if (down) {
             mListener.onDown(e);
         } else {
             mListener.onUp(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DownUpDetector.setState(boolean,android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     public void onTouchEvent(MotionEvent ev) {
-        switch (ev.getAction() & MotionEvent.ACTION_MASK) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DownUpDetector.onTouchEvent(android.view.MotionEvent)",this,ev);try{switch (ev.getAction() & MotionEvent.ACTION_MASK) {
         case MotionEvent.ACTION_DOWN:
             setState(true, ev);
             break;
 
         case MotionEvent.ACTION_UP:
         case MotionEvent.ACTION_CANCEL:
-        case MotionEvent.ACTION_POINTER_DOWN:  // Multitouch event - abort.
+        case MotionEvent.ACTION_POINTER_DOWN:  /*// Multitouch event - abort.*/
             setState(false, ev);
             break;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DownUpDetector.onTouchEvent(android.view.MotionEvent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DownUpDetector.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     public boolean isDown() {
-        return mStillDown;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.DownUpDetector.isDown()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.DownUpDetector.isDown()",this);return mStillDown;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.DownUpDetector.isDown()",this,throwable);throw throwable;}
     }
 }

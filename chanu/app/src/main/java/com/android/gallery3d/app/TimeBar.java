@@ -41,17 +41,17 @@ public class TimeBar extends View {
     void onScrubbingEnd(int time);
   }
 
-  // Padding around the scrubber to increase its touch target
+  /*// Padding around the scrubber to increase its touch target*/
   private static final int SCRUBBER_PADDING_IN_DP = 10;
 
-  // The total padding, top plus bottom
+  /*// The total padding, top plus bottom*/
   private static final int V_PADDING_IN_DP = 30;
 
   private static final int TEXT_SIZE_IN_DP = 14;
 
   private final Listener listener;
 
-  // the bars we use for displaying the progress
+  /*// the bars we use for displaying the progress*/
   private final Rect progressBar;
   private final Rect playedBar;
 
@@ -60,7 +60,7 @@ public class TimeBar extends View {
   private final Paint timeTextPaint;
 
   private final Bitmap scrubber;
-  private final int scrubberPadding; // adds some touch tolerance around the scrubber
+  private final int scrubberPadding; /*// adds some touch tolerance around the scrubber*/
 
   private int scrubberLeft;
   private int scrubberTop;
@@ -108,7 +108,7 @@ public class TimeBar extends View {
   }
 
   private void update() {
-    playedBar.set(progressBar);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.update()",this);try{playedBar.set(progressBar);
 
     if (totalTime > 0) {
       playedBar.right =
@@ -120,72 +120,72 @@ public class TimeBar extends View {
     if (!scrubbing) {
       scrubberLeft = playedBar.right - scrubber.getWidth() / 2;
     }
-    invalidate();
+    invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.update()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.update()",this,throwable);throw throwable;}
   }
 
   /**
    * @return the preferred height of this view, including invisible padding
    */
   public int getPreferredHeight() {
-    return timeBounds.height() + vPaddingInPx + scrubberPadding;
+    com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.TimeBar.getPreferredHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.TimeBar.getPreferredHeight()",this);return timeBounds.height() + vPaddingInPx + scrubberPadding;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.TimeBar.getPreferredHeight()",this,throwable);throw throwable;}
   }
 
   /**
    * @return the height of the time bar, excluding invisible padding
    */
   public int getBarHeight() {
-    return timeBounds.height() + vPaddingInPx;
+    com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.TimeBar.getBarHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.TimeBar.getBarHeight()",this);return timeBounds.height() + vPaddingInPx;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.TimeBar.getBarHeight()",this,throwable);throw throwable;}
   }
 
   public void setTime(int currentTime, int totalTime) {
-    if (this.currentTime == currentTime && this.totalTime == totalTime) {
-        return;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.setTime(int,int)",this,currentTime,totalTime);try{if (this.currentTime == currentTime && this.totalTime == totalTime) {
+        {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.setTime(int,int)",this);return;}
     }
     this.currentTime = currentTime;
     this.totalTime = totalTime;
-    update();
+    update();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.setTime(int,int)",this,throwable);throw throwable;}
   }
 
   public void setShowTimes(boolean showTimes) {
-    this.showTimes = showTimes;
-    requestLayout();
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.setShowTimes(boolean)",this,showTimes);try{this.showTimes = showTimes;
+    requestLayout();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.setShowTimes(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.setShowTimes(boolean)",this,throwable);throw throwable;}
   }
 
   public void resetTime() {
-    setTime(0, 0);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.resetTime()",this);try{setTime(0, 0);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.resetTime()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.resetTime()",this,throwable);throw throwable;}
   }
 
   public void setShowScrubber(boolean showScrubber) {
-    this.showScrubber = showScrubber;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.setShowScrubber(boolean)",this,showScrubber);try{this.showScrubber = showScrubber;
     if (!showScrubber && scrubbing) {
       listener.onScrubbingEnd(getScrubberTime());
       scrubbing = false;
     }
-    requestLayout();
+    requestLayout();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.setShowScrubber(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.setShowScrubber(boolean)",this,throwable);throw throwable;}
   }
 
   private boolean inScrubber(float x, float y) {
-    int scrubberRight = scrubberLeft + scrubber.getWidth();
+    com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.TimeBar.inScrubber(float,float)",this,x,y);try{int scrubberRight = scrubberLeft + scrubber.getWidth();
     int scrubberBottom = scrubberTop + scrubber.getHeight();
-    return scrubberLeft - scrubberPadding < x && x < scrubberRight + scrubberPadding
-        && scrubberTop - scrubberPadding < y && y < scrubberBottom + scrubberPadding;
+    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.TimeBar.inScrubber(float,float)",this);return scrubberLeft - scrubberPadding < x && x < scrubberRight + scrubberPadding
+        && scrubberTop - scrubberPadding < y && y < scrubberBottom + scrubberPadding;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.TimeBar.inScrubber(float,float)",this,throwable);throw throwable;}
   }
 
   private void clampScrubber() {
-    int half = scrubber.getWidth() / 2;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.clampScrubber()",this);try{int half = scrubber.getWidth() / 2;
     int max = progressBar.right - half;
     int min = progressBar.left - half;
-    scrubberLeft = Math.min(max, Math.max(min, scrubberLeft));
+    scrubberLeft = Math.min(max, Math.max(min, scrubberLeft));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.clampScrubber()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.clampScrubber()",this,throwable);throw throwable;}
   }
 
   private int getScrubberTime() {
-    return (int) ((long) (scrubberLeft + scrubber.getWidth() / 2 - progressBar.left)
-        * totalTime / progressBar.width());
+    com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.TimeBar.getScrubberTime()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.TimeBar.getScrubberTime()",this);return (int) ((long) (scrubberLeft + scrubber.getWidth() / 2 - progressBar.left)
+        * totalTime / progressBar.width());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.TimeBar.getScrubberTime()",this,throwable);throw throwable;}
   }
 
   @Override
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
-    int w = r - l;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.onLayout(boolean,int,int,int,int)",this,changed,l,t,r,b);try{int w = r - l;
     int h = b - t;
     if (!showTimes && !showScrubber) {
       progressBar.set(0, 0, w, h);
@@ -200,18 +200,18 @@ public class TimeBar extends View {
           getPaddingLeft() + margin, progressY,
           w - getPaddingRight() - margin, progressY + 4);
     }
-    update();
+    update();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.onLayout(boolean,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
   }
 
   @Override
   public void draw(Canvas canvas) {
-    super.draw(canvas);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.TimeBar.draw(android.graphics.Canvas)",this,canvas);try{super.draw(canvas);
 
-    // draw progress bars
+    /*// draw progress bars*/
     canvas.drawRect(progressBar, progressPaint);
     canvas.drawRect(playedBar, playedPaint);
 
-    // draw scrubber and timers
+    /*// draw scrubber and timers*/
     if (showScrubber) {
       canvas.drawBitmap(scrubber, scrubberLeft, scrubberTop, null);
     }
@@ -226,13 +226,13 @@ public class TimeBar extends View {
           getWidth() - getPaddingRight() - timeBounds.width() / 2,
           timeBounds.height() + vPaddingInPx / 2 + scrubberPadding + 1,
           timeTextPaint);
-    }
+    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.TimeBar.draw(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.TimeBar.draw(android.graphics.Canvas)",this,throwable);throw throwable;}
   }
 
   @Override
   public boolean onTouchEvent(MotionEvent event) {
 
-    if (showScrubber) {
+    com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.TimeBar.onTouchEvent(android.view.MotionEvent)",this,event);try{if (showScrubber) {
       int x = (int) event.getX();
       int y = (int) event.getY();
 
@@ -242,7 +242,7 @@ public class TimeBar extends View {
             scrubbing = true;
             scrubberCorrection = x - scrubberLeft;
             listener.onScrubbingStart();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.TimeBar.onTouchEvent(android.view.MotionEvent)",this);return true;}
           }
           break;
         case MotionEvent.ACTION_MOVE:
@@ -252,31 +252,31 @@ public class TimeBar extends View {
             currentTime = getScrubberTime();
             listener.onScrubbingMove(currentTime);
             invalidate();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.TimeBar.onTouchEvent(android.view.MotionEvent)",this);return true;}
           }
           break;
         case MotionEvent.ACTION_UP:
           if (scrubbing) {
             listener.onScrubbingEnd(getScrubberTime());
             scrubbing = false;
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.TimeBar.onTouchEvent(android.view.MotionEvent)",this);return true;}
           }
           break;
       }
     }
-    return false;
+    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.TimeBar.onTouchEvent(android.view.MotionEvent)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.TimeBar.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
   }
 
   private String stringForTime(long millis) {
-    int totalSeconds = (int) millis / 1000;
+    com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.app.TimeBar.stringForTime(long)",this,millis);try{int totalSeconds = (int) millis / 1000;
     int seconds = totalSeconds % 60;
     int minutes = (totalSeconds / 60) % 60;
     int hours = totalSeconds / 3600;
     if (hours > 0) {
-      return String.format("%d:%02d:%02d", hours, minutes, seconds).toString();
+      {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.app.TimeBar.stringForTime(long)",this);return String.format("%d:%02d:%02d", hours, minutes, seconds).toString();}
     } else {
-      return String.format("%02d:%02d", minutes, seconds).toString();
-    }
+      {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.app.TimeBar.stringForTime(long)",this);return String.format("%02d:%02d", minutes, seconds).toString();}
+    }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.TimeBar.stringForTime(long)",this,throwable);throw throwable;}
   }
 
 }

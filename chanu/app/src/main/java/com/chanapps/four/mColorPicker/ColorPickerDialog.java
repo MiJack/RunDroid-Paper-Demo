@@ -44,15 +44,15 @@ public class ColorPickerDialog extends AlertDialog implements
 	}
 
 	private void init(int color) {
-		// To fight color branding.
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerDialog.init(int)",this,color);try{/*// To fight color branding.*/
 		getWindow().setFormat(PixelFormat.RGBA_8888);
 
-		setUp(color);
+		setUp(color);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerDialog.init(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerDialog.init(int)",this,throwable);throw throwable;}
 
 	}
 
 	private void setUp(int color) {
-		LayoutInflater inflater = (LayoutInflater) getContext()
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerDialog.setUp(int)",this,color);try{LayoutInflater inflater = (LayoutInflater) getContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.dialog_color_picker, null);
 
@@ -70,27 +70,27 @@ public class ColorPickerDialog extends AlertDialog implements
 		mColorPicker.setOnColorChangedListener(this);
 
 		mOldColor.setColor(color);
-		mColorPicker.setColor(color, true);
+		mColorPicker.setColor(color, true);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerDialog.setUp(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerDialog.setUp(int)",this,throwable);throw throwable;}
 
 	}
 
 	@Override
 	public void onColorChanged(int color) {
 
-		mNewColor.setColor(color);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerDialog.onColorChanged(int)",this,color);try{mNewColor.setColor(color);
 
 		if (mListener != null) {
 			mListener.onColorChanged(color);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerDialog.onColorChanged(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerDialog.onColorChanged(int)",this,throwable);throw throwable;}
 
 	}
 
 	public void setAlphaSliderVisible(boolean visible) {
-		mColorPicker.setAlphaSliderVisible(visible);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerDialog.setAlphaSliderVisible(boolean)",this,visible);try{mColorPicker.setAlphaSliderVisible(visible);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerDialog.setAlphaSliderVisible(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerDialog.setAlphaSliderVisible(boolean)",this,throwable);throw throwable;}
 	}
 
 	public int getColor() {
-		return mColorPicker.getColor();
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.ColorPickerDialog.getColor()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.ColorPickerDialog.getColor()",this);return mColorPicker.getColor();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.ColorPickerDialog.getColor()",this,throwable);throw throwable;}
 	}
 
 }

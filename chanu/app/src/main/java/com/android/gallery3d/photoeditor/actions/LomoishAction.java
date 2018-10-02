@@ -32,11 +32,9 @@ public class LomoishAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        notifyFilterChanged(new LomoishFilter(), true);
-        notifyDone();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.LomoishAction.doBegin()",this);try{notifyFilterChanged(new LomoishFilter(), true);
+        notifyDone();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.LomoishAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.LomoishAction.doBegin()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void doEnd() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.LomoishAction.doEnd()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.LomoishAction.doEnd()",this);}
 }

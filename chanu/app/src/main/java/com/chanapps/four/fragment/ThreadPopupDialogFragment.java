@@ -72,10 +72,10 @@ public class ThreadPopupDialogFragment extends DialogFragment implements ThreadV
 
     public ThreadPopupDialogFragment() {
         super();
-        if (DEBUG) Log.i(TAG, "ThreadPopupDialogFragment()");
+        if (DEBUG) {Log.i(TAG, "ThreadPopupDialogFragment()");}
     }
 
-    //public ThreadPopupDialogFragment(Fragment parent, String boardCode, long threadNo, long postNo, int pos, PopupType popupType, String query) {
+    /*//public ThreadPopupDialogFragment(Fragment parent, String boardCode, long threadNo, long postNo, int pos, PopupType popupType, String query) {*/
     public ThreadPopupDialogFragment(Fragment parent, String boardCode, long threadNo, long postNo, PopupType popupType, String query) {
         super();
         this.parent = parent;
@@ -85,172 +85,172 @@ public class ThreadPopupDialogFragment extends DialogFragment implements ThreadV
         this.pos = -1;
         this.popupType = popupType;
         this.query = query;
-        if (DEBUG) Log.i(TAG, "ThreadPopupDialogFragment() /" + boardCode + "/" + threadNo + "#p" + postNo + " pos=" + pos + " query=" + query);
+        if (DEBUG) {Log.i(TAG, "ThreadPopupDialogFragment() /" + boardCode + "/" + threadNo + "#p" + postNo + " pos=" + pos + " query=" + query);}
     }
 
     protected void inflateLayout() {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.inflateLayout()",this);try{LayoutInflater inflater = getActivity().getLayoutInflater();
         if (popupType == PopupType.SELF)
-            layout = inflater.inflate(R.layout.thread_single_popup_dialog_fragment, null);
+            {layout = inflater.inflate(R.layout.thread_single_popup_dialog_fragment, null);}
         else
-            layout = inflater.inflate(R.layout.thread_popup_dialog_fragment, null);
+            {layout = inflater.inflate(R.layout.thread_popup_dialog_fragment, null);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.inflateLayout()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.inflateLayout()",this,throwable);throw throwable;}
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        if (savedInstanceState != null && savedInstanceState.containsKey(ChanBoard.BOARD_CODE)) {
+        com.mijack.Xlog.logMethodEnter("android.widget.Dialog com.chanapps.four.fragment.ThreadPopupDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{if (savedInstanceState != null && savedInstanceState.containsKey(ChanBoard.BOARD_CODE)) {
             boardCode = savedInstanceState.getString(ChanBoard.BOARD_CODE);
             threadNo = savedInstanceState.getLong(ChanThread.THREAD_NO);
             postNo = savedInstanceState.getLong(ChanPost.POST_NO);
-            //pos = savedInstanceState.getInt(LAST_POSITION);
+            /*//pos = savedInstanceState.getInt(LAST_POSITION);*/
             popupType = PopupType.valueOf(savedInstanceState.getString(POPUP_TYPE));
             query = savedInstanceState.getString(SearchManager.QUERY);
-            if (DEBUG) Log.i(TAG, "onCreateDialog() /" + boardCode + "/" + threadNo + " restored from bundle");
+            if (DEBUG) {Log.i(TAG, "onCreateDialog() /" + boardCode + "/" + threadNo + " restored from bundle");}
         }
         else {
-            if (DEBUG) Log.i(TAG, "onCreateDialog() /" + boardCode + "/" + threadNo + " null bundle");
+            if (DEBUG) {Log.i(TAG, "onCreateDialog() /" + boardCode + "/" + threadNo + " null bundle");}
         }
         if (popupType == null)
-            popupType = PopupType.SELF;
+            {popupType = PopupType.SELF;}
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         inflateLayout();
         init();
         setStyle(STYLE_NO_TITLE, 0);
-        if (DEBUG) Log.i(TAG, "creating dialog");
+        if (DEBUG) {Log.i(TAG, "creating dialog");}
         Dialog dialog = builder
                 .setView(layout)
                 .create();
         dialog.setCanceledOnTouchOutside(true);
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.widget.Dialog com.chanapps.four.fragment.ThreadPopupDialogFragment.onCreateDialog(android.os.Bundle)",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.Dialog com.chanapps.four.fragment.ThreadPopupDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     protected String popupTitle() {
-        switch (popupType) {
+        com.mijack.Xlog.logMethodEnter("android.widget.String com.chanapps.four.fragment.ThreadPopupDialogFragment.popupTitle()",this);try{switch (popupType) {
             case BACKLINKS:
-                return getString(R.string.thread_backlinks);
+                {com.mijack.Xlog.logMethodExit("android.widget.String com.chanapps.four.fragment.ThreadPopupDialogFragment.popupTitle()",this);return getString(R.string.thread_backlinks);}
             case REPLIES:
-                return getString(R.string.thread_replies);
+                {com.mijack.Xlog.logMethodExit("android.widget.String com.chanapps.four.fragment.ThreadPopupDialogFragment.popupTitle()",this);return getString(R.string.thread_replies);}
             case SAME_ID:
-                return getString(R.string.thread_same_id);
+                {com.mijack.Xlog.logMethodExit("android.widget.String com.chanapps.four.fragment.ThreadPopupDialogFragment.popupTitle()",this);return getString(R.string.thread_same_id);}
             default:
             case SELF:
-                return getString(R.string.thread_post);
-        }
+                {com.mijack.Xlog.logMethodExit("android.widget.String com.chanapps.four.fragment.ThreadPopupDialogFragment.popupTitle()",this);return getString(R.string.thread_post);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.String com.chanapps.four.fragment.ThreadPopupDialogFragment.popupTitle()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        if (DEBUG) Log.i(TAG, "onSaveInstanceState /" + boardCode + "/" + threadNo);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onSaveInstanceState(android.os.Bundle)",this,outState);try{if (DEBUG) {Log.i(TAG, "onSaveInstanceState /" + boardCode + "/" + threadNo);}
         outState.putString(ChanBoard.BOARD_CODE, boardCode);
         outState.putLong(ChanThread.THREAD_NO, threadNo);
         outState.putLong(ChanPost.POST_NO, postNo);
-        //outState.putInt(LAST_POSITION, pos);
+        /*//outState.putInt(LAST_POSITION, pos);*/
         outState.putString(POPUP_TYPE, popupType.toString());
-        outState.putString(SearchManager.QUERY, query);
+        outState.putString(SearchManager.QUERY, query);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onSaveInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onSaveInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onActivityCreated(Bundle bundle) {
-        super.onActivityCreated(bundle);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onActivityCreated(android.os.Bundle)",this,bundle);try{super.onActivityCreated(bundle);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onStart() {
-        super.onStart();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onStart()",this);try{super.onStart();
         if (handler == null)
-            handler = new Handler();
-        loadAdapter();
+            {handler = new Handler();}
+        loadAdapter();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onStart()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onResume() {
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onResume()",this);try{super.onResume();
         if (handler == null)
-            handler = new Handler();
+            {handler = new Handler();}com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onResume()",this,throwable);throw throwable;}
     }
 
     protected void loadAdapter() {
-        ThreadActivity activity = (ThreadActivity)getActivity();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadAdapter()",this);try{ThreadActivity activity = (ThreadActivity)getActivity();
         if (activity == null) {
-            if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null activity, exiting");
+            if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null activity, exiting");}
             dismiss();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadAdapter()",this);return;}
         }
         ThreadFragment fragment = activity.getCurrentFragment();
         if (fragment == null) {
-            if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null fragment, exiting");
+            if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null fragment, exiting");}
             dismiss();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadAdapter()",this);return;}
         }
-        if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " fragment=" + fragment + " query=" + query);
+        if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " fragment=" + fragment + " query=" + query);}
 
         ResourceCursorAdapter fragmentAdapter;
-        if (query == null || query.isEmpty()) { // load directly from fragment for empty queries
+        if (query == null || query.isEmpty()) { /*// load directly from fragment for empty queries*/
             if ((fragmentAdapter = fragment.getAdapter()) == null) {
-                if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null adapter, exiting");
+                if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null adapter, exiting");}
                 dismiss();
             }
             else {
-                if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo
-                        + " loading empty query cursor async count=" + fragmentAdapter.getCount());
+                if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo
+                        + " loading empty query cursor async count=" + fragmentAdapter.getCount());}
                 cursor = fragmentAdapter.getCursor();
                 loadCursorAsync();
             }
         }
-        else { // load from callback for non-empty queries
+        else { /*// load from callback for non-empty queries*/
             loadCursorFromFragmentCallback(fragment);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadAdapter()",this,throwable);throw throwable;}
     }
 
-    protected static final int CURSOR_LOADER_ID = 0x19; // arbitrary
+    protected static final int CURSOR_LOADER_ID = 0x19; /*// arbitrary*/
     
     protected void loadCursorFromFragmentCallback(ThreadFragment fragment) {
-        if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " doing cursor loader callback");
-        getLoaderManager().initLoader(CURSOR_LOADER_ID, null, loaderCallbacks);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorFromFragmentCallback(android.widget.ThreadFragment)",this,fragment);try{if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " doing cursor loader callback");}
+        getLoaderManager().initLoader(CURSOR_LOADER_ID, null, loaderCallbacks);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorFromFragmentCallback(android.widget.ThreadFragment)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorFromFragmentCallback(android.widget.ThreadFragment)",this,throwable);throw throwable;}
     }
 
     protected LoaderManager.LoaderCallbacks<Cursor> loaderCallbacks = new LoaderManager.LoaderCallbacks<Cursor>() {
         @Override
         public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-            if (DEBUG) Log.i(TAG, "onCreateLoader /" + boardCode + "/" + threadNo + " id=" + id);
-            return new ThreadCursorLoader(parent.getActivity(), boardCode, threadNo, "", false);
+            com.mijack.Xlog.logMethodEnter("android.support.v4.content.Loader com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onCreateLoader(int,android.os.Bundle)",this,id,args);try{if (DEBUG) {Log.i(TAG, "onCreateLoader /" + boardCode + "/" + threadNo + " id=" + id);}
+            {com.mijack.Xlog.logMethodExit("android.support.v4.content.Loader com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onCreateLoader(int,android.os.Bundle)",this);return new ThreadCursorLoader(parent.getActivity(), boardCode, threadNo, "", false);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.support.v4.content.Loader com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onCreateLoader(int,android.os.Bundle)",this,throwable);throw throwable;}
         }
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            if (DEBUG) Log.i(TAG, "onLoadFinished /" + boardCode + "/" + threadNo + " id=" + loader.getId()
-                    + " count=" + (data == null ? 0 : data.getCount()) + " loader=" + loader);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onLoadFinished(android.support.v4.content.Loader,android.database.Cursor)",this,loader,data);try{if (DEBUG) {Log.i(TAG, "onLoadFinished /" + boardCode + "/" + threadNo + " id=" + loader.getId()
+                    + " count=" + (data == null ? 0 : data.getCount()) + " loader=" + loader);}
             int count = data == null ? 0 : data.getCount();
             Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " callback returned " + count + " rows");
             cursor = data;
-            loadCursorAsync();
+            loadCursorAsync();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onLoadFinished(android.support.v4.content.Loader,android.database.Cursor)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onLoadFinished(android.support.v4.content.Loader,android.database.Cursor)",this,throwable);throw throwable;}
         }
         @Override
         public void onLoaderReset(Loader<Cursor> loader) {
-            if (DEBUG) Log.i(TAG, "onLoaderReset /" + boardCode + "/" + threadNo + " id=" + loader.getId());
-            //adapter.swapCursor(null);
-            adapter.changeCursor(null);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onLoaderReset(android.support.v4.content.Loader)",this,loader);try{if (DEBUG) {Log.i(TAG, "onLoaderReset /" + boardCode + "/" + threadNo + " id=" + loader.getId());}
+            /*//adapter.swapCursor(null);*/
+            adapter.changeCursor(null);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onLoaderReset(android.support.v4.content.Loader)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment$1.onLoaderReset(android.support.v4.content.Loader)",this,throwable);throw throwable;}
         }
     };
 
     protected void loadCursorAsync() {
-        if (cursor == null) {
-            if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null cursor, exiting");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorAsync()",this);try{if (cursor == null) {
+            if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " null cursor, exiting");}
             dismiss();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorAsync()",this);return;}
         }
         if (cursor.getCount() == 0) {
-            if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " empty cursor, exiting");
+            if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " empty cursor, exiting");}
             dismiss();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorAsync()",this);return;}
         }
-        if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " fragment cursor size=" + cursor.getCount());
+        if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " fragment cursor size=" + cursor.getCount());}
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //if (pos == 0 && postNo != threadNo && cursor.moveToFirst()) { // on multi-jump the original position is invalid, so re-scan position
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment$2.run()",this);try{/*//if (pos == 0 && postNo != threadNo && cursor.moveToFirst()) { // on multi-jump the original position is invalid, so re-scan position*/
                 pos = -1;
-                if (cursor.moveToFirst()) { // on multi-jump the original position is invalid, so re-scan position
+                if (cursor.moveToFirst()) { /*// on multi-jump the original position is invalid, so re-scan position*/
                     while (!cursor.isAfterLast()) {
                         long id = cursor.getLong(cursor.getColumnIndex(ChanPost.POST_ID));
                         if (id == postNo) {
@@ -262,39 +262,39 @@ public class ThreadPopupDialogFragment extends DialogFragment implements ThreadV
                 }
                 if (pos == -1) {
                     Log.e(TAG, "Couldn't find post position in cursor");
-                    return;
+                    {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorAsync()",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$2.run()",this);return;}}
                 }
                 final Cursor detailCursor = detailsCursor();
-                if (DEBUG) Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " detail cursor size=" + detailCursor.getCount());
+                if (DEBUG) {Log.i(TAG, "loadAdapter /" + boardCode + "/" + threadNo + " detail cursor size=" + detailCursor.getCount());}
                 if (handler != null)
-                    handler.post(new Runnable() {
+                    {handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            adapter.swapCursor(detailCursor);
+                            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment$2$1.run()",this);try{adapter.swapCursor(detailCursor);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$2$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment$2$1.run()",this,throwable);throw throwable;}
                         }
-                    });
+                    });}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment$2.run()",this,throwable);throw throwable;}
             }
-        }).start();
+        }).start();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.loadCursorAsync()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onPause() {
-        super.onPause();
-        handler = null;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onPause()",this);try{super.onPause();
+        handler = null;com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onPause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onPause()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onStop() {
-        super.onStop();
-        handler = null;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onStop()",this);try{super.onStop();
+        handler = null;com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.onStop()",this,throwable);throw throwable;}
     }
 
     protected void createAdapter() {
-        if (popupType == PopupType.SELF) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.createAdapter()",this);try{if (popupType == PopupType.SELF) {
             adapter = new ThreadSingleItemCursorAdapter(getActivity(), viewBinder, true, new Runnable() {
                 @Override
                 public void run() {
-                    dismiss();
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment$3.run()",this);try{dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$3.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment$3.run()",this,throwable);throw throwable;}
                 }
             });
         }
@@ -302,26 +302,26 @@ public class ThreadPopupDialogFragment extends DialogFragment implements ThreadV
         adapter = new ThreadCursorAdapter(getActivity(), viewBinder, true, new Runnable() {
             @Override
             public void run() {
-                dismiss();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment$4.run()",this);try{dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$4.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment$4.run()",this,throwable);throw throwable;}
             }
         });
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.createAdapter()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.createAdapter()",this,throwable);throw throwable;}
     }
 
     protected void init() {
-        createAdapter();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.init()",this);try{createAdapter();
         absListView = (ListView) layout.findViewById(R.id.thread_popup_list_view);
         absListView.setAdapter(adapter);
         absListView.setOnItemClickListener(itemListener);
         ImageLoader imageLoader = ChanImageLoader.getInstance(getActivity().getApplicationContext());
         absListView.setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true));
-        threadListener = new ThreadListener(this, ThemeSelector.instance(getActivity().getApplicationContext()).isDark());
+        threadListener = new ThreadListener(this, ThemeSelector.instance(getActivity().getApplicationContext()).isDark());com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.init()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.init()",this,throwable);throw throwable;}
     }
 
     protected AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (DEBUG) Log.i(TAG, "onItemClick() pos=" + position + " postNo=" + id);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment$5.onItemClick(android.widget.AdapterView,android.view.View,int,long)",this,parent,view,position,id);try{if (DEBUG) {Log.i(TAG, "onItemClick() pos=" + position + " postNo=" + id);}
             try {
                 dismiss();
             }
@@ -330,59 +330,59 @@ public class ThreadPopupDialogFragment extends DialogFragment implements ThreadV
             }
             Activity activity = getActivity();
             if (activity == null || !(activity instanceof ThreadActivity)) {
-                if (DEBUG) Log.i(TAG, "onItemClick() no activity");
-                return;
+                if (DEBUG) {Log.i(TAG, "onItemClick() no activity");}
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$5.onItemClick(android.widget.AdapterView,android.view.View,int,long)",this);return;}
             }
             ThreadFragment fragment = ((ThreadActivity) activity).getCurrentFragment();
             if (fragment == null) {
-                if (DEBUG) Log.i(TAG, "onItemClick() no thread fragment");
-                return;
+                if (DEBUG) {Log.i(TAG, "onItemClick() no thread fragment");}
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment$5.onItemClick(android.widget.AdapterView,android.view.View,int,long)",this);return;}
             }
-            if (DEBUG) Log.i(TAG, "onItemClick() scrolling to postNo=" + id);
-            fragment.scrollToPostAsync(id);
+            if (DEBUG) {Log.i(TAG, "onItemClick() scrolling to postNo=" + id);}
+            fragment.scrollToPostAsync(id);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment$5.onItemClick(android.widget.AdapterView,android.view.View,int,long)",this,throwable);throw throwable;}
         }
     };
 
     @Override
     public AbsListView getAbsListView() {
-        return absListView;
+        com.mijack.Xlog.logMethodEnter("android.widget.AbsListView com.chanapps.four.fragment.ThreadPopupDialogFragment.getAbsListView()",this);try{com.mijack.Xlog.logMethodExit("android.widget.AbsListView com.chanapps.four.fragment.ThreadPopupDialogFragment.getAbsListView()",this);return absListView;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.AbsListView com.chanapps.four.fragment.ThreadPopupDialogFragment.getAbsListView()",this,throwable);throw throwable;}
     }
 
     @Override
     public ResourceCursorAdapter getAdapter() {
-        Activity activity = getActivity();
+        com.mijack.Xlog.logMethodEnter("android.widget.ResourceCursorAdapter com.chanapps.four.fragment.ThreadPopupDialogFragment.getAdapter()",this);try{Activity activity = getActivity();
         if (activity == null || !(activity instanceof ThreadActivity)) {
-            if (DEBUG) Log.i(TAG, "getAdapter() no activity");
-            return adapter;
+            if (DEBUG) {Log.i(TAG, "getAdapter() no activity");}
+            {com.mijack.Xlog.logMethodExit("android.widget.ResourceCursorAdapter com.chanapps.four.fragment.ThreadPopupDialogFragment.getAdapter()",this);return adapter;}
         }
         ThreadFragment fragment = ((ThreadActivity) activity).getCurrentFragment();
         if (fragment == null) {
-            if (DEBUG) Log.i(TAG, "getAdapter() no thread fragment");
-            return adapter;
+            if (DEBUG) {Log.i(TAG, "getAdapter() no thread fragment");}
+            {com.mijack.Xlog.logMethodExit("android.widget.ResourceCursorAdapter com.chanapps.four.fragment.ThreadPopupDialogFragment.getAdapter()",this);return adapter;}
         }
         ResourceCursorAdapter fragmentAdapter = fragment.getAdapter();
         if (fragmentAdapter == null) {
-            if (DEBUG) Log.i(TAG, "getAdapter() no thread fragment adapter");
-            return adapter;
+            if (DEBUG) {Log.i(TAG, "getAdapter() no thread fragment adapter");}
+            {com.mijack.Xlog.logMethodExit("android.widget.ResourceCursorAdapter com.chanapps.four.fragment.ThreadPopupDialogFragment.getAdapter()",this);return adapter;}
         }
         if (query != null && !query.isEmpty()) {
-            if (DEBUG) Log.i(TAG, "getAdapter() has query so returing adpter");
-            return adapter;
+            if (DEBUG) {Log.i(TAG, "getAdapter() has query so returing adpter");}
+            {com.mijack.Xlog.logMethodExit("android.widget.ResourceCursorAdapter com.chanapps.four.fragment.ThreadPopupDialogFragment.getAdapter()",this);return adapter;}
         }
-        if (DEBUG) Log.i(TAG, "getAdapter() returning fragment adapter");
-        return fragmentAdapter;
+        if (DEBUG) {Log.i(TAG, "getAdapter() returning fragment adapter");}
+        {com.mijack.Xlog.logMethodExit("android.widget.ResourceCursorAdapter com.chanapps.four.fragment.ThreadPopupDialogFragment.getAdapter()",this);return fragmentAdapter;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.ResourceCursorAdapter com.chanapps.four.fragment.ThreadPopupDialogFragment.getAdapter()",this,throwable);throw throwable;}
     }
 
     @Override
     public Handler getHandler() {
-        return handler;
+        com.mijack.Xlog.logMethodEnter("android.os.Handler com.chanapps.four.fragment.ThreadPopupDialogFragment.getHandler()",this);try{com.mijack.Xlog.logMethodExit("android.os.Handler com.chanapps.four.fragment.ThreadPopupDialogFragment.getHandler()",this);return handler;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Handler com.chanapps.four.fragment.ThreadPopupDialogFragment.getHandler()",this,throwable);throw throwable;}
     }
 
     protected Cursor detailsCursor() {
-        MatrixCursor matrixCursor = ChanPost.buildMatrixCursor(0);
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.chanapps.four.fragment.ThreadPopupDialogFragment.detailsCursor()",this);try{MatrixCursor matrixCursor = ChanPost.buildMatrixCursor(0);
         if (pos == -1) {
             Log.e(TAG, "Error: invalid pos position pos=" + -1);
-            return matrixCursor;
+            {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.fragment.ThreadPopupDialogFragment.detailsCursor()",this);return matrixCursor;}
         }
         switch (popupType) {
             case BACKLINKS:
@@ -398,100 +398,100 @@ public class ThreadPopupDialogFragment extends DialogFragment implements ThreadV
                 addSelfRow(matrixCursor);
                 break;
         }
-        return matrixCursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.fragment.ThreadPopupDialogFragment.detailsCursor()",this);return matrixCursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.chanapps.four.fragment.ThreadPopupDialogFragment.detailsCursor()",this,throwable);throw throwable;}
     }
 
     protected int addBlobRows(MatrixCursor matrixCursor, String columnName) {
-        if (DEBUG) Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " popupType=" + popupType + " columnName=" + columnName);
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.fragment.ThreadPopupDialogFragment.addBlobRows(android.database.MatrixCursor,android.widget.String)",this,matrixCursor,columnName);try{if (DEBUG) {Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " popupType=" + popupType + " columnName=" + columnName);}
         if (!cursor.moveToPosition(pos)) {
-            if (DEBUG) Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " could not move to position");
-            return 0;
+            if (DEBUG) {Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " could not move to position");}
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.fragment.ThreadPopupDialogFragment.addBlobRows(android.database.MatrixCursor,android.widget.String)",this);return 0;}
         }
         byte[] b = cursor.getBlob(cursor.getColumnIndex(columnName));
         if (b == null || b.length == 0) {
-            if (DEBUG) Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " no blob found for columnName=" + columnName);
-            return 0;
+            if (DEBUG) {Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " no blob found for columnName=" + columnName);}
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.fragment.ThreadPopupDialogFragment.addBlobRows(android.database.MatrixCursor,android.widget.String)",this);return 0;}
         }
         HashSet<?> links = ChanPost.parseBlob(b);
         if (links == null || links.size() <= 0) {
-            if (DEBUG) Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " no links found in blob");
-            return 0;
+            if (DEBUG) {Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " no links found in blob");}
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.fragment.ThreadPopupDialogFragment.addBlobRows(android.database.MatrixCursor,android.widget.String)",this);return 0;}
         }
         int count = links.size();
-        if (DEBUG) Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " found links count=" + count);
+        if (DEBUG) {Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " found links count=" + count);}
         if (!cursor.moveToFirst()) {
-            if (DEBUG) Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " could not move to first");
-            return 0;
+            if (DEBUG) {Log.i(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " could not move to first");}
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.fragment.ThreadPopupDialogFragment.addBlobRows(android.database.MatrixCursor,android.widget.String)",this);return 0;}
         }
         while (!cursor.isAfterLast()) {
             long id = cursor.getLong(cursor.getColumnIndex(ChanPost.POST_ID));
-            if (DEBUG) Log.d(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " checking pos=" + cursor.getPosition() + " id=" + id);
+            if (DEBUG) {Log.d(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " checking pos=" + cursor.getPosition() + " id=" + id);}
             if (links.contains(id)) {
-                if (DEBUG) Log.d(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " found link at pos=" + cursor.getPosition());
+                if (DEBUG) {Log.d(TAG, "addBlobRows() /" + boardCode + "/" + threadNo + " pos=" + pos + " found link at pos=" + cursor.getPosition());}
                 Object[] row = ChanPost.extractPostRow(cursor);
                 if (row != null)
-                    matrixCursor.addRow(row);
+                    {matrixCursor.addRow(row);}
             }
             if (!cursor.moveToNext())
-                break;
+                {break;}
         }
-        return count;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.fragment.ThreadPopupDialogFragment.addBlobRows(android.database.MatrixCursor,android.widget.String)",this);return count;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.fragment.ThreadPopupDialogFragment.addBlobRows(android.database.MatrixCursor,android.widget.String)",this,throwable);throw throwable;}
     }
 
     protected void addSelfRow(MatrixCursor matrixCursor) {
-        if (!cursor.moveToPosition(pos)) {
-            if (DEBUG) Log.i(TAG, "addSelfRow() /" + boardCode + "/" + threadNo + " could not move to pos=" + pos);
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.addSelfRow(android.database.MatrixCursor)",this,matrixCursor);try{if (!cursor.moveToPosition(pos)) {
+            if (DEBUG) {Log.i(TAG, "addSelfRow() /" + boardCode + "/" + threadNo + " could not move to pos=" + pos);}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.addSelfRow(android.database.MatrixCursor)",this);return;}
         }
         Object[] row = ChanPost.extractPostRow(cursor);
         if (row == null) {
-            if (DEBUG) Log.i(TAG, "addSelfRow() /" + boardCode + "/" + threadNo + " null row from pos=" + pos);
-            return;
+            if (DEBUG) {Log.i(TAG, "addSelfRow() /" + boardCode + "/" + threadNo + " null row from pos=" + pos);}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.addSelfRow(android.database.MatrixCursor)",this);return;}
         }
-        if (DEBUG) Log.i(TAG, "addSelfRow() /" + boardCode + "/" + threadNo + " loaded row pos=" + pos);
-        matrixCursor.addRow(row);
+        if (DEBUG) {Log.i(TAG, "addSelfRow() /" + boardCode + "/" + threadNo + " loaded row pos=" + pos);}
+        matrixCursor.addRow(row);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.addSelfRow(android.database.MatrixCursor)",this,throwable);throw throwable;}
     }
 
     protected AbstractBoardCursorAdapter.ViewBinder viewBinder = new AbstractBoardCursorAdapter.ViewBinder() {
         @Override
         public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-            return ThreadViewer.setViewValue(view, cursor, boardCode,
+            com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.ThreadPopupDialogFragment$6.setViewValue(android.view.View,android.database.Cursor,int)",this,view,cursor,columnIndex);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.ThreadPopupDialogFragment$6.setViewValue(android.view.View,android.database.Cursor,int)",this);return ThreadViewer.setViewValue(view, cursor, boardCode,
                     false,
                     0,
                     0,
-                    null, //threadListener.thumbOnClickListener,
+                    null, /*//threadListener.thumbOnClickListener,*/
                     threadListener.backlinkOnClickListener,
                     null,
                     null,
                     threadListener.repliesOnClickListener,
-                    null, //threadListener.sameIdOnClickListener,
-                    null, //threadListener.exifOnClickListener,
+                    null, /*//threadListener.sameIdOnClickListener,*/
+                    null, /*//threadListener.exifOnClickListener,*/
                     null,
                     threadListener.expandedImageListener,
                     null,
                     null
-            );
+            );}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.ThreadPopupDialogFragment$6.setViewValue(android.view.View,android.database.Cursor,int)",this,throwable);throw throwable;}
         }
     };
 
     @Override
     public void showDialog(String boardCode, long threadNo, long postNo, int pos,
                            ThreadPopupDialogFragment.PopupType popupType) {
-        Activity activity = getActivity();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ThreadPopupDialogFragment.showDialog(android.widget.String,long,long,int,android.widget.ThreadPopupDialogFragment.PopupType)",this,boardCode,threadNo,postNo,pos,popupType);try{Activity activity = getActivity();
         if (activity == null || !(activity instanceof ThreadActivity)) {
-            if (DEBUG) Log.i(TAG, "onItemClick() no activity");
-            return;
+            if (DEBUG) {Log.i(TAG, "onItemClick() no activity");}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.showDialog(android.widget.String,long,long,int,android.widget.ThreadPopupDialogFragment.PopupType)",this);return;}
         }
         ThreadFragment fragment = ((ThreadActivity) activity).getCurrentFragment();
         if (fragment == null) {
-            if (DEBUG) Log.i(TAG, "onItemClick() no thread fragment");
-            return;
+            if (DEBUG) {Log.i(TAG, "onItemClick() no thread fragment");}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ThreadPopupDialogFragment.showDialog(android.widget.String,long,long,int,android.widget.ThreadPopupDialogFragment.PopupType)",this);return;}
         }
-        if (DEBUG) Log.i(TAG, "onItemClick() scrolling to postNo=" + postNo);
+        if (DEBUG) {Log.i(TAG, "onItemClick() scrolling to postNo=" + postNo);}
         dismiss();
-        //(new ThreadPopupDialogFragment(fragment, boardCode, threadNo, postNo, pos, popupType, query))
+        /*//(new ThreadPopupDialogFragment(fragment, boardCode, threadNo, postNo, pos, popupType, query))*/
         (new ThreadPopupDialogFragment(fragment, boardCode, threadNo, postNo, popupType, query))
-                .show(getFragmentManager(), ThreadPopupDialogFragment.TAG);
+                .show(getFragmentManager(), ThreadPopupDialogFragment.TAG);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ThreadPopupDialogFragment.showDialog(android.widget.String,long,long,int,android.widget.ThreadPopupDialogFragment.PopupType)",this,throwable);throw throwable;}
     }
 
 }

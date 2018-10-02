@@ -62,36 +62,36 @@ public class MtpDevice extends MediaSet {
     }
 
     private List<MtpObjectInfo> loadItems() {
-        ArrayList<MtpObjectInfo> result = new ArrayList<MtpObjectInfo>();
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.MtpDevice.loadItems()",this);try{ArrayList<MtpObjectInfo> result = new ArrayList<MtpObjectInfo>();
 
         List<MtpStorageInfo> storageList = mMtpContext.getMtpClient()
                  .getStorageList(mDeviceName);
-        if (storageList == null) return result;
+        if (storageList == null) {{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpDevice.loadItems()",this);return result;}}
 
         for (MtpStorageInfo info : storageList) {
             collectJpegChildren(info.getStorageId(), 0, result);
         }
 
-        return result;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpDevice.loadItems()",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.MtpDevice.loadItems()",this,throwable);throw throwable;}
     }
 
     private void collectJpegChildren(int storageId, int objectId,
             ArrayList<MtpObjectInfo> result) {
-        ArrayList<MtpObjectInfo> dirChildren = new ArrayList<MtpObjectInfo>();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpDevice.collectJpegChildren(int,int,java.util.ArrayList)",this,storageId,objectId,result);try{ArrayList<MtpObjectInfo> dirChildren = new ArrayList<MtpObjectInfo>();
 
         queryChildren(storageId, objectId, result, dirChildren);
 
         for (int i = 0, n = dirChildren.size(); i < n; i++) {
             MtpObjectInfo info = dirChildren.get(i);
             collectJpegChildren(storageId, info.getObjectHandle(), result);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpDevice.collectJpegChildren(int,int,java.util.ArrayList)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpDevice.collectJpegChildren(int,int,java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     private void queryChildren(int storageId, int objectId,
             ArrayList<MtpObjectInfo> jpeg, ArrayList<MtpObjectInfo> dir) {
-        List<MtpObjectInfo> children = mMtpContext.getMtpClient().getObjectList(
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpDevice.queryChildren(int,int,java.util.ArrayList,java.util.ArrayList)",this,storageId,objectId,jpeg,dir);try{List<MtpObjectInfo> children = mMtpContext.getMtpClient().getObjectList(
                 mDeviceName, storageId, objectId);
-        if (children == null) return;
+        if (children == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpDevice.queryChildren(int,int,java.util.ArrayList,java.util.ArrayList)",this);return;}}
 
         for (MtpObjectInfo obj : children) {
             int format = obj.getFormat();
@@ -107,18 +107,18 @@ public class MtpDevice extends MediaSet {
                     Log.w(TAG, "other type: name = " + obj.getName()
                             + ", format = " + format);
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpDevice.queryChildren(int,int,java.util.ArrayList,java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     public static MtpObjectInfo getObjectInfo(MtpContext mtpContext, int deviceId,
             int objectId) {
-        String deviceName = UsbDevice.getDeviceName(deviceId);
-        return mtpContext.getMtpClient().getObjectInfo(deviceName, objectId);
+        com.mijack.Xlog.logStaticMethodEnter("android.mtp.MtpObjectInfo com.android.gallery3d.data.MtpDevice.getObjectInfo(com.android.gallery3d.data.MtpContext,int,int)",mtpContext,deviceId,objectId);try{String deviceName = UsbDevice.getDeviceName(deviceId);
+        {com.mijack.Xlog.logStaticMethodExit("android.mtp.MtpObjectInfo com.android.gallery3d.data.MtpDevice.getObjectInfo(com.android.gallery3d.data.MtpContext,int,int)");return mtpContext.getMtpClient().getObjectInfo(deviceName, objectId);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.mtp.MtpObjectInfo com.android.gallery3d.data.MtpDevice.getObjectInfo(com.android.gallery3d.data.MtpContext,int,int)",throwable);throw throwable;}
     }
 
     @Override
     public ArrayList<MediaItem> getMediaItem(int start, int count) {
-        ArrayList<MediaItem> result = new ArrayList<MediaItem>();
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.MtpDevice.getMediaItem(int,int)",this,start,count);try{ArrayList<MediaItem> result = new ArrayList<MediaItem>();
         int begin = start;
         int end = Math.min(start + count, mJpegChildren.size());
 
@@ -135,40 +135,40 @@ public class MtpDevice extends MediaSet {
             }
             result.add(image);
         }
-        return result;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpDevice.getMediaItem(int,int)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.MtpDevice.getMediaItem(int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getMediaItemCount() {
-        return mJpegChildren.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MtpDevice.getMediaItemCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MtpDevice.getMediaItemCount()",this);return mJpegChildren.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MtpDevice.getMediaItemCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getName() {
-        return mName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.MtpDevice.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.MtpDevice.getName()",this);return mName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.MtpDevice.getName()",this,throwable);throw throwable;}
     }
 
     @Override
     public long reload() {
-        if (mNotifier.isDirty()) {
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MtpDevice.reload()",this);try{if (mNotifier.isDirty()) {
             mDataVersion = nextVersionNumber();
             mJpegChildren = loadItems();
         }
-        return mDataVersion;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MtpDevice.reload()",this);return mDataVersion;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MtpDevice.reload()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getSupportedOperations() {
-        return SUPPORT_IMPORT;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MtpDevice.getSupportedOperations()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MtpDevice.getSupportedOperations()",this);return SUPPORT_IMPORT;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MtpDevice.getSupportedOperations()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean Import() {
-        return mMtpContext.copyAlbum(mDeviceName, mName, mJpegChildren);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MtpDevice.Import()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MtpDevice.Import()",this);return mMtpContext.copyAlbum(mDeviceName, mName, mJpegChildren);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MtpDevice.Import()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean isLeafAlbum() {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MtpDevice.isLeafAlbum()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MtpDevice.isLeafAlbum()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MtpDevice.isLeafAlbum()",this,throwable);throw throwable;}
     }
 }

@@ -32,11 +32,9 @@ public class SepiaAction  extends EffectAction {
 
     @Override
     public void doBegin() {
-        notifyFilterChanged(new SepiaFilter(), true);
-        notifyDone();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SepiaAction.doBegin()",this);try{notifyFilterChanged(new SepiaFilter(), true);
+        notifyDone();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SepiaAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.SepiaAction.doBegin()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void doEnd() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SepiaAction.doEnd()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SepiaAction.doEnd()",this);}
 }

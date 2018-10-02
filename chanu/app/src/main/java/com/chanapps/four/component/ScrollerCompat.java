@@ -35,15 +35,15 @@ public class ScrollerCompat {
 
         @Override
         public float getCurrVelocity() {
-            return mScroller == null ? 0 : mScroller.getCurrVelocity();
+            com.mijack.Xlog.logMethodEnter("float com.chanapps.four.component.ScrollerCompat$ScrollerCompatImplICS2.getCurrVelocity()",this);try{com.mijack.Xlog.logMethodExit("float com.chanapps.four.component.ScrollerCompat$ScrollerCompatImplICS2.getCurrVelocity()",this);return mScroller == null ? 0 : mScroller.getCurrVelocity();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.chanapps.four.component.ScrollerCompat$ScrollerCompatImplICS2.getCurrVelocity()",this,throwable);throw throwable;}
         }
     }
 
     public static ScrollerCompat from(Context context) {
-        if (android.os.Build.VERSION.SDK_INT >= 14) {
-            return new ScrollerCompatImplICS2(context);
+        com.mijack.Xlog.logStaticMethodEnter("com.chanapps.four.component.ScrollerCompat com.chanapps.four.component.ScrollerCompat.from(android.content.Context)",context);try{if (android.os.Build.VERSION.SDK_INT >= 14) {
+            {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.component.ScrollerCompat com.chanapps.four.component.ScrollerCompat.from(android.content.Context)");return new ScrollerCompatImplICS2(context);}
         }
-        return new ScrollerCompat(context);
+        {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.component.ScrollerCompat com.chanapps.four.component.ScrollerCompat.from(android.content.Context)");return new ScrollerCompat(context);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.chanapps.four.component.ScrollerCompat com.chanapps.four.component.ScrollerCompat.from(android.content.Context)",throwable);throw throwable;}
     }
 
     ScrollerCompat(Context context) {
@@ -56,7 +56,7 @@ public class ScrollerCompat {
      * @return True if the scroller has finished scrolling, false otherwise.
      */
     public boolean isFinished() {
-        return mScroller.isFinished();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.ScrollerCompat.isFinished()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ScrollerCompat.isFinished()",this);return mScroller.isFinished();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.ScrollerCompat.isFinished()",this,throwable);throw throwable;}
     }
 
     /**
@@ -65,7 +65,7 @@ public class ScrollerCompat {
      * @return The duration of the scroll in milliseconds.
      */
     public int getDuration() {
-        return mScroller.getDuration();
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.component.ScrollerCompat.getDuration()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.ScrollerCompat.getDuration()",this);return mScroller.getDuration();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.component.ScrollerCompat.getDuration()",this,throwable);throw throwable;}
     }
 
     /**
@@ -74,7 +74,7 @@ public class ScrollerCompat {
      * @return The new X offset as an absolute distance from the origin.
      */
     public int getCurrX() {
-        return mScroller.getCurrX();
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.component.ScrollerCompat.getCurrX()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.ScrollerCompat.getCurrX()",this);return mScroller.getCurrX();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.component.ScrollerCompat.getCurrX()",this,throwable);throw throwable;}
     }
 
     /**
@@ -83,7 +83,7 @@ public class ScrollerCompat {
      * @return The new Y offset as an absolute distance from the origin.
      */
     public int getCurrY() {
-        return mScroller.getCurrY();
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.component.ScrollerCompat.getCurrY()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.ScrollerCompat.getCurrY()",this);return mScroller.getCurrY();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.component.ScrollerCompat.getCurrY()",this,throwable);throw throwable;}
     }
 
     /**
@@ -98,7 +98,7 @@ public class ScrollerCompat {
      * negative.
      */
     public float getCurrVelocity() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("float com.chanapps.four.component.ScrollerCompat.getCurrVelocity()",this);try{com.mijack.Xlog.logMethodExit("float com.chanapps.four.component.ScrollerCompat.getCurrVelocity()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.chanapps.four.component.ScrollerCompat.getCurrVelocity()",this,throwable);throw throwable;}
     }
 
     /**
@@ -107,7 +107,7 @@ public class ScrollerCompat {
      * new location.
      */
     public boolean computeScrollOffset() {
-        return mScroller.computeScrollOffset();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.ScrollerCompat.computeScrollOffset()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ScrollerCompat.computeScrollOffset()",this);return mScroller.computeScrollOffset();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.ScrollerCompat.computeScrollOffset()",this,throwable);throw throwable;}
     }
 
     /**
@@ -125,7 +125,7 @@ public class ScrollerCompat {
      *        content up.
      */
     public void startScroll(int startX, int startY, int dx, int dy) {
-        mScroller.startScroll(startX, startY, dx, dy);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ScrollerCompat.startScroll(int,int,int,int)",this,startX,startY,dx,dy);try{mScroller.startScroll(startX, startY, dx, dy);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerCompat.startScroll(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ScrollerCompat.startScroll(int,int,int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -142,7 +142,7 @@ public class ScrollerCompat {
      * @param duration Duration of the scroll in milliseconds.
      */
     public void startScroll(int startX, int startY, int dx, int dy, int duration) {
-        mScroller.startScroll(startX, startY, dx, dy, duration);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ScrollerCompat.startScroll(int,int,int,int,int)",this,startX,startY,dx,dy,duration);try{mScroller.startScroll(startX, startY, dx, dy, duration);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerCompat.startScroll(int,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ScrollerCompat.startScroll(int,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -166,7 +166,7 @@ public class ScrollerCompat {
      */
     public void fling(int startX, int startY, int velocityX, int velocityY,
                       int minX, int maxX, int minY, int maxY) {
-        mScroller.fling(startX, startY, velocityX, velocityY, minX, maxX, minY, maxY);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ScrollerCompat.fling(int,int,int,int,int,int,int,int)",this,startX,startY,velocityX,velocityY,minX,maxX,minY,maxY);try{mScroller.fling(startX, startY, velocityX, velocityY, minX, maxX, minY, maxY);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerCompat.fling(int,int,int,int,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ScrollerCompat.fling(int,int,int,int,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -175,6 +175,6 @@ public class ScrollerCompat {
      * position
      */
     public void abortAnimation() {
-        mScroller.abortAnimation();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ScrollerCompat.abortAnimation()",this);try{mScroller.abortAnimation();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerCompat.abortAnimation()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ScrollerCompat.abortAnimation()",this,throwable);throw throwable;}
     }
 }

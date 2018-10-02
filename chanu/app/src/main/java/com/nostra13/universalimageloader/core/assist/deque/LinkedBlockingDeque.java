@@ -147,7 +147,7 @@ public class LinkedBlockingDeque<E>
      * @throws IllegalArgumentException if {@code capacity} is less than 1
      */
     public LinkedBlockingDeque(int capacity) {
-        if (capacity <= 0) throw new IllegalArgumentException();
+        if (capacity <= 0) {throw new IllegalArgumentException();}
         this.capacity = capacity;
     }
 
@@ -164,13 +164,13 @@ public class LinkedBlockingDeque<E>
     public LinkedBlockingDeque(Collection<? extends E> c) {
         this(Integer.MAX_VALUE);
         final ReentrantLock lock = this.lock;
-        lock.lock(); // Never contended, but necessary for visibility
+        lock.lock(); /*// Never contended, but necessary for visibility*/
         try {
             for (E e : c) {
                 if (e == null)
-                    throw new NullPointerException();
+                    {throw new NullPointerException();}
                 if (!linkLast(new Node<E>(e)))
-                    throw new IllegalStateException("Deque full");
+                    {throw new IllegalStateException("Deque full");}
             }
         } finally {
             lock.unlock();
@@ -178,95 +178,95 @@ public class LinkedBlockingDeque<E>
     }
 
 
-    // Basic linking and unlinking operations, called only while holding lock
+    /*// Basic linking and unlinking operations, called only while holding lock*/
 
     /**
      * Links node as first element, or returns false if full.
      */
     private boolean linkFirst(Node<E> node) {
-        // assert lock.isHeldByCurrentThread();
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkFirst(Node)",this,node);try{/*// assert lock.isHeldByCurrentThread();*/
         if (count >= capacity)
-            return false;
+            {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkFirst(Node)",this);return false;}}
         Node<E> f = first;
         node.next = f;
         first = node;
         if (last == null)
-            last = node;
+            {last = node;}
         else
-            f.prev = node;
+            {f.prev = node;}
         ++count;
         notEmpty.signal();
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkFirst(Node)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkFirst(Node)",this,throwable);throw throwable;}
     }
 
     /**
      * Links node as last element, or returns false if full.
      */
     private boolean linkLast(Node<E> node) {
-        // assert lock.isHeldByCurrentThread();
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkLast(Node)",this,node);try{/*// assert lock.isHeldByCurrentThread();*/
         if (count >= capacity)
-            return false;
+            {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkLast(Node)",this);return false;}}
         Node<E> l = last;
         node.prev = l;
         last = node;
         if (first == null)
-            first = node;
+            {first = node;}
         else
-            l.next = node;
+            {l.next = node;}
         ++count;
         notEmpty.signal();
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkLast(Node)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.linkLast(Node)",this,throwable);throw throwable;}
     }
 
     /**
      * Removes and returns first element, or null if empty.
      */
     private E unlinkFirst() {
-        // assert lock.isHeldByCurrentThread();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkFirst()",this);try{/*// assert lock.isHeldByCurrentThread();*/
         Node<E> f = first;
         if (f == null)
-            return null;
+            {{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkFirst()",this);return null;}}
         Node<E> n = f.next;
         E item = f.item;
         f.item = null;
-        f.next = f; // help GC
+        f.next = f; /*// help GC*/
         first = n;
         if (n == null)
-            last = null;
+            {last = null;}
         else
-            n.prev = null;
+            {n.prev = null;}
         --count;
         notFull.signal();
-        return item;
+        {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkFirst()",this);return item;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkFirst()",this,throwable);throw throwable;}
     }
 
     /**
      * Removes and returns last element, or null if empty.
      */
     private E unlinkLast() {
-        // assert lock.isHeldByCurrentThread();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkLast()",this);try{/*// assert lock.isHeldByCurrentThread();*/
         Node<E> l = last;
         if (l == null)
-            return null;
+            {{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkLast()",this);return null;}}
         Node<E> p = l.prev;
         E item = l.item;
         l.item = null;
-        l.prev = l; // help GC
+        l.prev = l; /*// help GC*/
         last = p;
         if (p == null)
-            first = null;
+            {first = null;}
         else
-            p.next = null;
+            {p.next = null;}
         --count;
         notFull.signal();
-        return item;
+        {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkLast()",this);return item;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlinkLast()",this,throwable);throw throwable;}
     }
 
     /**
      * Unlinks x.
      */
     void unlink(Node<E> x) {
-        // assert lock.isHeldByCurrentThread();
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlink(Node)",this,x);try{/*// assert lock.isHeldByCurrentThread();*/
         Node<E> p = x.prev;
         Node<E> n = x.next;
         if (p == null) {
@@ -277,22 +277,22 @@ public class LinkedBlockingDeque<E>
             p.next = n;
             n.prev = p;
             x.item = null;
-            // Don't mess with x's links.  They may still be in use by
-            // an iterator.
+            /*// Don't mess with x's links.  They may still be in use by*/
+            /*// an iterator.*/
             --count;
             notFull.signal();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlink(Node)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.unlink(Node)",this,throwable);throw throwable;}
     }
 
-    // BlockingDeque methods
+    /*// BlockingDeque methods*/
 
     /**
      * @throws IllegalStateException {@inheritDoc}
      * @throws NullPointerException  {@inheritDoc}
      */
     public void addFirst(E e) {
-        if (!offerFirst(e))
-            throw new IllegalStateException("Deque full");
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.addFirst(E)",this,e);try{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.addFirst(E)",this);if (!offerFirst(e))
+            {throw new IllegalStateException("Deque full");}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.addFirst(E)",this,throwable);throw throwable;}
     }
 
     /**
@@ -300,38 +300,38 @@ public class LinkedBlockingDeque<E>
      * @throws NullPointerException  {@inheritDoc}
      */
     public void addLast(E e) {
-        if (!offerLast(e))
-            throw new IllegalStateException("Deque full");
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.addLast(E)",this,e);try{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.addLast(E)",this);if (!offerLast(e))
+            {throw new IllegalStateException("Deque full");}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.addLast(E)",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NullPointerException {@inheritDoc}
      */
     public boolean offerFirst(E e) {
-        if (e == null) throw new NullPointerException();
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerFirst(E)",this,e);try{if (e == null) {throw new NullPointerException();}
         Node<E> node = new Node<E>(e);
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return linkFirst(node);
+            {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerFirst(E)",this);return linkFirst(node);}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerFirst(E)",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NullPointerException {@inheritDoc}
      */
     public boolean offerLast(E e) {
-        if (e == null) throw new NullPointerException();
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerLast(E)",this,e);try{if (e == null) {throw new NullPointerException();}
         Node<E> node = new Node<E>(e);
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return linkLast(node);
+            {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerLast(E)",this);return linkLast(node);}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerLast(E)",this,throwable);throw throwable;}
     }
 
     /**
@@ -339,16 +339,16 @@ public class LinkedBlockingDeque<E>
      * @throws InterruptedException {@inheritDoc}
      */
     public void putFirst(E e) throws InterruptedException {
-        if (e == null) throw new NullPointerException();
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.putFirst(E)",this,e);try{if (e == null) {throw new NullPointerException();}
         Node<E> node = new Node<E>(e);
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             while (!linkFirst(node))
-                notFull.await();
+                {notFull.await();}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.putFirst(E)",this,throwable);throw throwable;}
     }
 
     /**
@@ -356,16 +356,16 @@ public class LinkedBlockingDeque<E>
      * @throws InterruptedException {@inheritDoc}
      */
     public void putLast(E e) throws InterruptedException {
-        if (e == null) throw new NullPointerException();
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.putLast(E)",this,e);try{if (e == null) {throw new NullPointerException();}
         Node<E> node = new Node<E>(e);
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             while (!linkLast(node))
-                notFull.await();
+                {notFull.await();}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.putLast(E)",this,throwable);throw throwable;}
     }
 
     /**
@@ -374,7 +374,7 @@ public class LinkedBlockingDeque<E>
      */
     public boolean offerFirst(E e, long timeout, TimeUnit unit)
         throws InterruptedException {
-        if (e == null) throw new NullPointerException();
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerFirst(E,long,java.util.concurrent.TimeUnit)",this,e,timeout,unit);try{if (e == null) {throw new NullPointerException();}
         Node<E> node = new Node<E>(e);
         long nanos = unit.toNanos(timeout);
         final ReentrantLock lock = this.lock;
@@ -382,13 +382,13 @@ public class LinkedBlockingDeque<E>
         try {
             while (!linkFirst(node)) {
                 if (nanos <= 0)
-                    return false;
+                    {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerFirst(E,long,java.util.concurrent.TimeUnit)",this);return false;}}
                 nanos = notFull.awaitNanos(nanos);
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerFirst(E,long,java.util.concurrent.TimeUnit)",this);return true;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerFirst(E,long,java.util.concurrent.TimeUnit)",this,throwable);throw throwable;}
     }
 
     /**
@@ -397,7 +397,7 @@ public class LinkedBlockingDeque<E>
      */
     public boolean offerLast(E e, long timeout, TimeUnit unit)
         throws InterruptedException {
-        if (e == null) throw new NullPointerException();
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerLast(E,long,java.util.concurrent.TimeUnit)",this,e,timeout,unit);try{if (e == null) {throw new NullPointerException();}
         Node<E> node = new Node<E>(e);
         long nanos = unit.toNanos(timeout);
         final ReentrantLock lock = this.lock;
@@ -405,188 +405,188 @@ public class LinkedBlockingDeque<E>
         try {
             while (!linkLast(node)) {
                 if (nanos <= 0)
-                    return false;
+                    {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerLast(E,long,java.util.concurrent.TimeUnit)",this);return false;}}
                 nanos = notFull.awaitNanos(nanos);
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerLast(E,long,java.util.concurrent.TimeUnit)",this);return true;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offerLast(E,long,java.util.concurrent.TimeUnit)",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NoSuchElementException {@inheritDoc}
      */
     public E removeFirst() {
-        E x = pollFirst();
-        if (x == null) throw new NoSuchElementException();
-        return x;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirst()",this);try{E x = pollFirst();
+        if (x == null) {throw new NoSuchElementException();}
+        {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirst()",this);return x;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirst()",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NoSuchElementException {@inheritDoc}
      */
     public E removeLast() {
-        E x = pollLast();
-        if (x == null) throw new NoSuchElementException();
-        return x;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLast()",this);try{E x = pollLast();
+        if (x == null) {throw new NoSuchElementException();}
+        {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLast()",this);return x;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLast()",this,throwable);throw throwable;}
     }
 
     public E pollFirst() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollFirst()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return unlinkFirst();
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollFirst()",this);return unlinkFirst();}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollFirst()",this,throwable);throw throwable;}
     }
 
     public E pollLast() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollLast()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return unlinkLast();
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollLast()",this);return unlinkLast();}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollLast()",this,throwable);throw throwable;}
     }
 
     public E takeFirst() throws InterruptedException {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.takeFirst()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             E x;
             while ( (x = unlinkFirst()) == null)
-                notEmpty.await();
-            return x;
+                {notEmpty.await();}
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.takeFirst()",this);return x;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.takeFirst()",this,throwable);throw throwable;}
     }
 
     public E takeLast() throws InterruptedException {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.takeLast()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             E x;
             while ( (x = unlinkLast()) == null)
-                notEmpty.await();
-            return x;
+                {notEmpty.await();}
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.takeLast()",this);return x;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.takeLast()",this,throwable);throw throwable;}
     }
 
     public E pollFirst(long timeout, TimeUnit unit)
         throws InterruptedException {
-        long nanos = unit.toNanos(timeout);
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollFirst(long,java.util.concurrent.TimeUnit)",this,timeout,unit);try{long nanos = unit.toNanos(timeout);
         final ReentrantLock lock = this.lock;
         lock.lockInterruptibly();
         try {
             E x;
             while ( (x = unlinkFirst()) == null) {
                 if (nanos <= 0)
-                    return null;
+                    {{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollFirst(long,java.util.concurrent.TimeUnit)",this);return null;}}
                 nanos = notEmpty.awaitNanos(nanos);
             }
-            return x;
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollFirst(long,java.util.concurrent.TimeUnit)",this);return x;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollFirst(long,java.util.concurrent.TimeUnit)",this,throwable);throw throwable;}
     }
 
     public E pollLast(long timeout, TimeUnit unit)
         throws InterruptedException {
-        long nanos = unit.toNanos(timeout);
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollLast(long,java.util.concurrent.TimeUnit)",this,timeout,unit);try{long nanos = unit.toNanos(timeout);
         final ReentrantLock lock = this.lock;
         lock.lockInterruptibly();
         try {
             E x;
             while ( (x = unlinkLast()) == null) {
                 if (nanos <= 0)
-                    return null;
+                    {{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollLast(long,java.util.concurrent.TimeUnit)",this);return null;}}
                 nanos = notEmpty.awaitNanos(nanos);
             }
-            return x;
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollLast(long,java.util.concurrent.TimeUnit)",this);return x;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pollLast(long,java.util.concurrent.TimeUnit)",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NoSuchElementException {@inheritDoc}
      */
     public E getFirst() {
-        E x = peekFirst();
-        if (x == null) throw new NoSuchElementException();
-        return x;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.getFirst()",this);try{E x = peekFirst();
+        if (x == null) {throw new NoSuchElementException();}
+        {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.getFirst()",this);return x;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.getFirst()",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NoSuchElementException {@inheritDoc}
      */
     public E getLast() {
-        E x = peekLast();
-        if (x == null) throw new NoSuchElementException();
-        return x;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.getLast()",this);try{E x = peekLast();
+        if (x == null) {throw new NoSuchElementException();}
+        {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.getLast()",this);return x;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.getLast()",this,throwable);throw throwable;}
     }
 
     public E peekFirst() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peekFirst()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return (first == null) ? null : first.item;
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peekFirst()",this);return (first == null) ? null : first.item;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peekFirst()",this,throwable);throw throwable;}
     }
 
     public E peekLast() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peekLast()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return (last == null) ? null : last.item;
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peekLast()",this);return (last == null) ? null : last.item;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peekLast()",this,throwable);throw throwable;}
     }
 
     public boolean removeFirstOccurrence(Object o) {
-        if (o == null) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirstOccurrence(java.lang.Object)",this,o);try{if (o == null) {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirstOccurrence(java.lang.Object)",this);return false;}}
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             for (Node<E> p = first; p != null; p = p.next) {
                 if (o.equals(p.item)) {
                     unlink(p);
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirstOccurrence(java.lang.Object)",this);return true;}
                 }
             }
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirstOccurrence(java.lang.Object)",this);return false;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeFirstOccurrence(java.lang.Object)",this,throwable);throw throwable;}
     }
 
     public boolean removeLastOccurrence(Object o) {
-        if (o == null) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLastOccurrence(java.lang.Object)",this,o);try{if (o == null) {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLastOccurrence(java.lang.Object)",this);return false;}}
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             for (Node<E> p = last; p != null; p = p.prev) {
                 if (o.equals(p.item)) {
                     unlink(p);
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLastOccurrence(java.lang.Object)",this);return true;}
                 }
             }
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLastOccurrence(java.lang.Object)",this);return false;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.removeLastOccurrence(java.lang.Object)",this,throwable);throw throwable;}
     }
 
-    // BlockingQueue methods
+    /*// BlockingQueue methods*/
 
     /**
      * Inserts the specified element at the end of this deque unless it would
@@ -600,15 +600,15 @@ public class LinkedBlockingDeque<E>
      * @throws NullPointerException if the specified element is null
      */
     public boolean add(E e) {
-        addLast(e);
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.add(E)",this,e);try{addLast(e);
+        {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.add(E)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.add(E)",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NullPointerException if the specified element is null
      */
     public boolean offer(E e) {
-        return offerLast(e);
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offer(E)",this,e);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offer(E)",this);return offerLast(e);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offer(E)",this,throwable);throw throwable;}
     }
 
     /**
@@ -616,7 +616,7 @@ public class LinkedBlockingDeque<E>
      * @throws InterruptedException {@inheritDoc}
      */
     public void put(E e) throws InterruptedException {
-        putLast(e);
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.put(E)",this,e);try{putLast(e);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.put(E)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.put(E)",this,throwable);throw throwable;}
     }
 
     /**
@@ -625,7 +625,7 @@ public class LinkedBlockingDeque<E>
      */
     public boolean offer(E e, long timeout, TimeUnit unit)
         throws InterruptedException {
-        return offerLast(e, timeout, unit);
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offer(E,long,java.util.concurrent.TimeUnit)",this,e,timeout,unit);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offer(E,long,java.util.concurrent.TimeUnit)",this);return offerLast(e, timeout, unit);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.offer(E,long,java.util.concurrent.TimeUnit)",this,throwable);throw throwable;}
     }
 
     /**
@@ -639,19 +639,19 @@ public class LinkedBlockingDeque<E>
      * @throws NoSuchElementException if this deque is empty
      */
     public E remove() {
-        return removeFirst();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remove()",this);try{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remove()",this);return removeFirst();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remove()",this,throwable);throw throwable;}
     }
 
     public E poll() {
-        return pollFirst();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.poll()",this);try{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.poll()",this);return pollFirst();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.poll()",this,throwable);throw throwable;}
     }
 
     public E take() throws InterruptedException {
-        return takeFirst();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.take()",this);try{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.take()",this);return takeFirst();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.take()",this,throwable);throw throwable;}
     }
 
     public E poll(long timeout, TimeUnit unit) throws InterruptedException {
-        return pollFirst(timeout, unit);
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.poll(long,java.util.concurrent.TimeUnit)",this,timeout,unit);try{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.poll(long,java.util.concurrent.TimeUnit)",this);return pollFirst(timeout, unit);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.poll(long,java.util.concurrent.TimeUnit)",this,throwable);throw throwable;}
     }
 
     /**
@@ -665,11 +665,11 @@ public class LinkedBlockingDeque<E>
      * @throws NoSuchElementException if this deque is empty
      */
     public E element() {
-        return getFirst();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.element()",this);try{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.element()",this);return getFirst();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.element()",this,throwable);throw throwable;}
     }
 
     public E peek() {
-        return peekFirst();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peek()",this);try{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peek()",this);return peekFirst();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.peek()",this,throwable);throw throwable;}
     }
 
     /**
@@ -684,13 +684,13 @@ public class LinkedBlockingDeque<E>
      * insert or remove an element.
      */
     public int remainingCapacity() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remainingCapacity()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return capacity - count;
+            {com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remainingCapacity()",this);return capacity - count;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remainingCapacity()",this,throwable);throw throwable;}
     }
 
     /**
@@ -700,7 +700,7 @@ public class LinkedBlockingDeque<E>
      * @throws IllegalArgumentException      {@inheritDoc}
      */
     public int drainTo(Collection<? super E> c) {
-        return drainTo(c, Integer.MAX_VALUE);
+        com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.drainTo(java.util.Collection)",this,c);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.drainTo(java.util.Collection)",this);return drainTo(c, Integer.MAX_VALUE);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.drainTo(java.util.Collection)",this,throwable);throw throwable;}
     }
 
     /**
@@ -710,42 +710,42 @@ public class LinkedBlockingDeque<E>
      * @throws IllegalArgumentException      {@inheritDoc}
      */
     public int drainTo(Collection<? super E> c, int maxElements) {
-        if (c == null)
-            throw new NullPointerException();
+        com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.drainTo(java.util.Collection,int)",this,c,maxElements);try{if (c == null)
+            {throw new NullPointerException();}
         if (c == this)
-            throw new IllegalArgumentException();
+            {throw new IllegalArgumentException();}
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             int n = Math.min(maxElements, count);
             for (int i = 0; i < n; i++) {
-                c.add(first.item);   // In this order, in case add() throws.
+                c.add(first.item);   /*// In this order, in case add() throws.*/
                 unlinkFirst();
             }
-            return n;
+            {com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.drainTo(java.util.Collection,int)",this);return n;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.drainTo(java.util.Collection,int)",this,throwable);throw throwable;}
     }
 
-    // Stack methods
+    /*// Stack methods*/
 
     /**
      * @throws IllegalStateException {@inheritDoc}
      * @throws NullPointerException  {@inheritDoc}
      */
     public void push(E e) {
-        addFirst(e);
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.push(E)",this,e);try{addFirst(e);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.push(E)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.push(E)",this,throwable);throw throwable;}
     }
 
     /**
      * @throws NoSuchElementException {@inheritDoc}
      */
     public E pop() {
-        return removeFirst();
+        com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pop()",this);try{com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pop()",this);return removeFirst();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.pop()",this,throwable);throw throwable;}
     }
 
-    // Collection methods
+    /*// Collection methods*/
 
     /**
      * Removes the first occurrence of the specified element from this deque.
@@ -762,7 +762,7 @@ public class LinkedBlockingDeque<E>
      * @return {@code true} if this deque changed as a result of the call
      */
     public boolean remove(Object o) {
-        return removeFirstOccurrence(o);
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remove(java.lang.Object)",this,o);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remove(java.lang.Object)",this);return removeFirstOccurrence(o);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.remove(java.lang.Object)",this,throwable);throw throwable;}
     }
 
     /**
@@ -771,13 +771,13 @@ public class LinkedBlockingDeque<E>
      * @return the number of elements in this deque
      */
     public int size() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.size()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            return count;
+            {com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.size()",this);return count;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.size()",this,throwable);throw throwable;}
     }
 
     /**
@@ -789,17 +789,17 @@ public class LinkedBlockingDeque<E>
      * @return {@code true} if this deque contains the specified element
      */
     public boolean contains(Object o) {
-        if (o == null) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.contains(java.lang.Object)",this,o);try{if (o == null) {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.contains(java.lang.Object)",this);return false;}}
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             for (Node<E> p = first; p != null; p = p.next)
-                if (o.equals(p.item))
-                    return true;
-            return false;
+                {if (o.equals(p.item))
+                    {{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.contains(java.lang.Object)",this);return true;}}}
+            {com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.contains(java.lang.Object)",this);return false;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.contains(java.lang.Object)",this,throwable);throw throwable;}
     }
 
     /*
@@ -810,38 +810,38 @@ public class LinkedBlockingDeque<E>
      * collection, especially when count is close to capacity.
      */
 
-//     /**
-//      * Adds all of the elements in the specified collection to this
-//      * queue.  Attempts to addAll of a queue to itself result in
-//      * {@code IllegalArgumentException}. Further, the behavior of
-//      * this operation is undefined if the specified collection is
-//      * modified while the operation is in progress.
-//      *
-//      * @param c collection containing elements to be added to this queue
-//      * @return {@code true} if this queue changed as a result of the call
-//      * @throws ClassCastException            {@inheritDoc}
-//      * @throws NullPointerException          {@inheritDoc}
-//      * @throws IllegalArgumentException      {@inheritDoc}
-//      * @throws IllegalStateException         {@inheritDoc}
-//      * @see #add(Object)
-//      */
-//     public boolean addAll(Collection<? extends E> c) {
-//         if (c == null)
-//             throw new NullPointerException();
-//         if (c == this)
-//             throw new IllegalArgumentException();
-//         final ReentrantLock lock = this.lock;
-//         lock.lock();
-//         try {
-//             boolean modified = false;
-//             for (E e : c)
-//                 if (linkLast(e))
-//                     modified = true;
-//             return modified;
-//         } finally {
-//             lock.unlock();
-//         }
-//     }
+/*//     /***/
+/*//      * Adds all of the elements in the specified collection to this*/
+/*//      * queue.  Attempts to addAll of a queue to itself result in*/
+/*//      * {@code IllegalArgumentException}. Further, the behavior of*/
+/*//      * this operation is undefined if the specified collection is*/
+/*//      * modified while the operation is in progress.*/
+/*//      **/
+/*//      * @param c collection containing elements to be added to this queue*/
+/*//      * @return {@code true} if this queue changed as a result of the call*/
+/*//      * @throws ClassCastException            {@inheritDoc}*/
+/*//      * @throws NullPointerException          {@inheritDoc}*/
+/*//      * @throws IllegalArgumentException      {@inheritDoc}*/
+/*//      * @throws IllegalStateException         {@inheritDoc}*/
+/*//      * @see #add(Object)*/
+/*//      */
+/*//     public boolean addAll(Collection<? extends E> c) {*/
+/*//         if (c == null)*/
+/*//             throw new NullPointerException();*/
+/*//         if (c == this)*/
+/*//             throw new IllegalArgumentException();*/
+/*//         final ReentrantLock lock = this.lock;*/
+/*//         lock.lock();*/
+/*//         try {*/
+/*//             boolean modified = false;*/
+/*//             for (E e : c)*/
+/*//                 if (linkLast(e))*/
+/*//                     modified = true;*/
+/*//             return modified;*/
+/*//         } finally {*/
+/*//             lock.unlock();*/
+/*//         }*/
+/*//     }*/
 
     /**
      * Returns an array containing all of the elements in this deque, in
@@ -857,17 +857,17 @@ public class LinkedBlockingDeque<E>
      * @return an array containing all of the elements in this deque
      */
     public Object[] toArray() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("[java.lang.Object com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toArray()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             Object[] a = new Object[count];
             int k = 0;
             for (Node<E> p = first; p != null; p = p.next)
-                a[k++] = p.item;
-            return a;
+                {a[k++] = p.item;}
+            {com.mijack.Xlog.logMethodExit("[java.lang.Object com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toArray()",this);return a;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[java.lang.Object com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toArray()",this,throwable);throw throwable;}
     }
 
     /**
@@ -908,31 +908,31 @@ public class LinkedBlockingDeque<E>
      */
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("[java.lang.Object com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toArray([java.lang.Object)",this,a);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             if (a.length < count)
-                a = (T[])java.lang.reflect.Array.newInstance
-                    (a.getClass().getComponentType(), count);
+                {a = (T[])java.lang.reflect.Array.newInstance
+                    (a.getClass().getComponentType(), count);}
 
             int k = 0;
             for (Node<E> p = first; p != null; p = p.next)
-                a[k++] = (T)p.item;
+                {a[k++] = (T)p.item;}
             if (a.length > k)
-                a[k] = null;
-            return a;
+                {a[k] = null;}
+            {com.mijack.Xlog.logMethodExit("[java.lang.Object com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toArray([java.lang.Object)",this);return a;}
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[java.lang.Object com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toArray([java.lang.Object)",this,throwable);throw throwable;}
     }
 
     public String toString() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toString()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             Node<E> p = first;
             if (p == null)
-                return "[]";
+                {{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toString()",this);return "[]";}}
 
             StringBuilder sb = new StringBuilder();
             sb.append('[');
@@ -941,12 +941,12 @@ public class LinkedBlockingDeque<E>
                 sb.append(e == this ? "(this Collection)" : e);
                 p = p.next;
                 if (p == null)
-                    return sb.append(']').toString();
+                    {{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toString()",this);return sb.append(']').toString();}}
                 sb.append(',').append(' ');
             }
         } finally {
             lock.unlock();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.toString()",this,throwable);throw throwable;}
     }
 
     /**
@@ -954,7 +954,7 @@ public class LinkedBlockingDeque<E>
      * The deque will be empty after this call returns.
      */
     public void clear() {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.clear()",this);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             for (Node<E> f = first; f != null; ) {
@@ -969,7 +969,7 @@ public class LinkedBlockingDeque<E>
             notFull.signalAll();
         } finally {
             lock.unlock();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.clear()",this,throwable);throw throwable;}
     }
 
     /**
@@ -986,7 +986,7 @@ public class LinkedBlockingDeque<E>
      * @return an iterator over the elements in this deque in proper sequence
      */
     public Iterator<E> iterator() {
-        return new Itr();
+        com.mijack.Xlog.logMethodEnter("java.util.Iterator com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.iterator()",this);try{com.mijack.Xlog.logMethodExit("java.util.Iterator com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.iterator()",this);return new Itr();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Iterator com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.iterator()",this,throwable);throw throwable;}
     }
 
     /**
@@ -1004,7 +1004,7 @@ public class LinkedBlockingDeque<E>
      * @return an iterator over the elements in this deque in reverse order
      */
     public Iterator<E> descendingIterator() {
-        return new DescendingItr();
+        com.mijack.Xlog.logMethodEnter("java.util.Iterator com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.descendingIterator()",this);try{com.mijack.Xlog.logMethodExit("java.util.Iterator com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.descendingIterator()",this);return new DescendingItr();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Iterator com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.descendingIterator()",this,throwable);throw throwable;}
     }
 
     /**
@@ -1034,7 +1034,7 @@ public class LinkedBlockingDeque<E>
         abstract Node<E> nextNode(Node<E> n);
 
         AbstractItr() {
-            // set to initial position
+            /*// set to initial position*/
             final ReentrantLock lock = LinkedBlockingDeque.this.lock;
             lock.lock();
             try {
@@ -1050,75 +1050,75 @@ public class LinkedBlockingDeque<E>
          * possibly previously deleted, node.
          */
         private Node<E> succ(Node<E> n) {
-            // Chains of deleted nodes ending in null or self-links
-            // are possible if multiple interior nodes are removed.
+            com.mijack.Xlog.logMethodEnter("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.succ(Node)",this,n);try{/*// Chains of deleted nodes ending in null or self-links*/
+            /*// are possible if multiple interior nodes are removed.*/
             for (;;) {
                 Node<E> s = nextNode(n);
                 if (s == null)
-                    return null;
+                    {{com.mijack.Xlog.logMethodExit("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.succ(Node)",this);return null;}}
                 else if (s.item != null)
-                    return s;
+                    {{com.mijack.Xlog.logMethodExit("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.succ(Node)",this);return s;}}
                 else if (s == n)
-                    return firstNode();
+                    {{com.mijack.Xlog.logMethodExit("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.succ(Node)",this);return firstNode();}}
                 else
-                    n = s;
-            }
+                    {n = s;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.succ(Node)",this,throwable);throw throwable;}
         }
 
         /**
          * Advances next.
          */
         void advance() {
-            final ReentrantLock lock = LinkedBlockingDeque.this.lock;
+            com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.advance()",this);try{final ReentrantLock lock = LinkedBlockingDeque.this.lock;
             lock.lock();
             try {
-                // assert next != null;
+                /*// assert next != null;*/
                 next = succ(next);
                 nextItem = (next == null) ? null : next.item;
             } finally {
                 lock.unlock();
-            }
+            }com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.advance()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.advance()",this,throwable);throw throwable;}
         }
 
         public boolean hasNext() {
-            return next != null;
+            com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.hasNext()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.hasNext()",this);return next != null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.hasNext()",this,throwable);throw throwable;}
         }
 
         public E next() {
-            if (next == null)
-                throw new NoSuchElementException();
+            com.mijack.Xlog.logMethodEnter("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.next()",this);try{if (next == null)
+                {throw new NoSuchElementException();}
             lastRet = next;
             E x = nextItem;
             advance();
-            return x;
+            {com.mijack.Xlog.logMethodExit("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.next()",this);return x;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("E com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.next()",this,throwable);throw throwable;}
         }
 
         public void remove() {
-            Node<E> n = lastRet;
+            com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.remove()",this);try{Node<E> n = lastRet;
             if (n == null)
-                throw new IllegalStateException();
+                {throw new IllegalStateException();}
             lastRet = null;
             final ReentrantLock lock = LinkedBlockingDeque.this.lock;
             lock.lock();
             try {
                 if (n.item != null)
-                    unlink(n);
+                    {unlink(n);}
             } finally {
                 lock.unlock();
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$AbstractItr.remove()",this,throwable);throw throwable;}
         }
     }
 
     /** Forward iterator */
     private class Itr extends AbstractItr {
-        Node<E> firstNode() { return first; }
-        Node<E> nextNode(Node<E> n) { return n.next; }
+        Node<E> firstNode() { com.mijack.Xlog.logMethodEnter("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$Itr.firstNode()",this);try{com.mijack.Xlog.logMethodExit("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$Itr.firstNode()",this);return first;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$Itr.firstNode()",this,throwable);throw throwable;} }
+        Node<E> nextNode(Node<E> n) { com.mijack.Xlog.logMethodEnter("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$Itr.nextNode(Node)",this,n);try{com.mijack.Xlog.logMethodExit("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$Itr.nextNode(Node)",this);return n.next;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$Itr.nextNode(Node)",this,throwable);throw throwable;} }
     }
 
     /** Descending iterator */
     private class DescendingItr extends AbstractItr {
-        Node<E> firstNode() { return last; }
-        Node<E> nextNode(Node<E> n) { return n.prev; }
+        Node<E> firstNode() { com.mijack.Xlog.logMethodEnter("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$DescendingItr.firstNode()",this);try{com.mijack.Xlog.logMethodExit("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$DescendingItr.firstNode()",this);return last;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$DescendingItr.firstNode()",this,throwable);throw throwable;} }
+        Node<E> nextNode(Node<E> n) { com.mijack.Xlog.logMethodEnter("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$DescendingItr.nextNode(Node)",this,n);try{com.mijack.Xlog.logMethodExit("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$DescendingItr.nextNode(Node)",this);return n.prev;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("Node com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>$DescendingItr.nextNode(Node)",this,throwable);throw throwable;} }
     }
 
     /**
@@ -1130,19 +1130,19 @@ public class LinkedBlockingDeque<E>
      */
     private void writeObject(java.io.ObjectOutputStream s)
         throws java.io.IOException {
-        final ReentrantLock lock = this.lock;
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.writeObject(java.io.ObjectOutputStream)",this,s);try{final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-            // Write out capacity and any hidden stuff
+            /*// Write out capacity and any hidden stuff*/
             s.defaultWriteObject();
-            // Write out all elements in the proper order.
+            /*// Write out all elements in the proper order.*/
             for (Node<E> p = first; p != null; p = p.next)
-                s.writeObject(p.item);
-            // Use trailing null as sentinel
+                {s.writeObject(p.item);}
+            /*// Use trailing null as sentinel*/
             s.writeObject(null);
         } finally {
             lock.unlock();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.writeObject(java.io.ObjectOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.writeObject(java.io.ObjectOutputStream)",this,throwable);throw throwable;}
     }
 
     /**
@@ -1152,18 +1152,18 @@ public class LinkedBlockingDeque<E>
      */
     private void readObject(java.io.ObjectInputStream s)
         throws java.io.IOException, ClassNotFoundException {
-        s.defaultReadObject();
+        com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.readObject(java.io.ObjectInputStream)",this,s);try{s.defaultReadObject();
         count = 0;
         first = null;
         last = null;
-        // Read in all elements and place in queue
+        /*// Read in all elements and place in queue*/
         for (;;) {
             @SuppressWarnings("unchecked")
             E item = (E)s.readObject();
             if (item == null)
-                break;
+                {break;}
             add(item);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.readObject(java.io.ObjectInputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque<E>.readObject(java.io.ObjectInputStream)",this,throwable);throw throwable;}
     }
 
 }

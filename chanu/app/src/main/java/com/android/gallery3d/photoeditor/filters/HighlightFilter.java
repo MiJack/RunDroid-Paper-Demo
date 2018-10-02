@@ -34,15 +34,15 @@ public class HighlightFilter extends Filter {
      * @param highlight ranges from 0 to 1.
      */
     public void setHighlight(float highlight) {
-        white = 1f - highlight * 0.5f;
-        validate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.HighlightFilter.setHighlight(float)",this,highlight);try{white = 1f - highlight * 0.5f;
+        validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.HighlightFilter.setHighlight(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.HighlightFilter.setHighlight(float)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        Effect effect = getEffect(EffectFactory.EFFECT_BLACKWHITE);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.HighlightFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{Effect effect = getEffect(EffectFactory.EFFECT_BLACKWHITE);
         effect.setParameter("black", 0f);
         effect.setParameter("white", white);
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.HighlightFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.HighlightFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

@@ -42,37 +42,37 @@ public class ChanOffLineSource extends MediaSource {
 
     @Override
     public MediaObject createMediaObject(Path path) {
-        if (SOURCE_PREFIX.equals(path.getPrefix())) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaObject com.chanapps.four.gallery.ChanOffLineSource.createMediaObject(com.android.gallery3d.data.Path)",this,path);try{if (SOURCE_PREFIX.equals(path.getPrefix())) {
         	String[] elems = path.split();
         	if (elems.length == 1) {
-        		return new ChanOffLineAlbumSet(path, mApplication);
+        		{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.chanapps.four.gallery.ChanOffLineSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new ChanOffLineAlbumSet(path, mApplication);}
         	} else if (elems.length == 2) {
-        		return new ChanOffLineAlbum(path, mApplication, elems[1]);
+        		{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.chanapps.four.gallery.ChanOffLineSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new ChanOffLineAlbum(path, mApplication, elems[1]);}
         	} else if (elems.length == 3) {
-        		return new ChanOffLineImage(mApplication, path, elems[1], elems[2]);
+        		{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.chanapps.four.gallery.ChanOffLineSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new ChanOffLineImage(mApplication, path, elems[1], elems[2]);}
         	}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.chanapps.four.gallery.ChanOffLineSource.createMediaObject(com.android.gallery3d.data.Path)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaObject com.chanapps.four.gallery.ChanOffLineSource.createMediaObject(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     @Override
     public Path findPathByUri(Uri uri) {
-        try {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.chanapps.four.gallery.ChanOffLineSource.findPathByUri(android.net.Uri)",this,uri);try{try {
         	String uriStr = uri != null ? uri.toString() : "";
         	if (uriStr.startsWith("/" + SOURCE_PREFIX + "/")) {
-        		return Path.fromString(uriStr);
+        		{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.chanapps.four.gallery.ChanOffLineSource.findPathByUri(android.net.Uri)",this);return Path.fromString(uriStr);}
         	}
         } catch (Exception e) {
             Log.w(TAG, "uri: " + uri.toString(), e);
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.chanapps.four.gallery.ChanOffLineSource.findPathByUri(android.net.Uri)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.chanapps.four.gallery.ChanOffLineSource.findPathByUri(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     public void pause() {
-    	if (mClient != null) {
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.ChanOffLineSource.pause()",this);try{if (mClient != null) {
     		mClient.release();
     		mClient = null;
-    	}
+    	}com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.ChanOffLineSource.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.ChanOffLineSource.pause()",this,throwable);throw throwable;}
     }
 }

@@ -53,26 +53,26 @@ public class ImageCacheService {
     }
 
     public ImageData getImageData(Path path, int type) {
-        byte[] key = makeKey(path, type);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.ImageCacheService$ImageData com.android.gallery3d.data.ImageCacheService.getImageData(com.android.gallery3d.data.Path,int)",this,path,type);try{byte[] key = makeKey(path, type);
         long cacheKey = Utils.crc64Long(key);
         try {
             byte[] value = null;
             synchronized (mCache) {
                 value = mCache.lookup(cacheKey);
             }
-            if (value == null) return null;
+            if (value == null) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.ImageCacheService$ImageData com.android.gallery3d.data.ImageCacheService.getImageData(com.android.gallery3d.data.Path,int)",this);return null;}}
             if (isSameKey(key, value)) {
                 int offset = key.length;
-                return new ImageData(value, offset);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.ImageCacheService$ImageData com.android.gallery3d.data.ImageCacheService.getImageData(com.android.gallery3d.data.Path,int)",this);return new ImageData(value, offset);}
             }
         } catch (IOException ex) {
-            // ignore.
+            /*// ignore.*/
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.ImageCacheService$ImageData com.android.gallery3d.data.ImageCacheService.getImageData(com.android.gallery3d.data.Path,int)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.ImageCacheService$ImageData com.android.gallery3d.data.ImageCacheService.getImageData(com.android.gallery3d.data.Path,int)",this,throwable);throw throwable;}
     }
 
     public void putImageData(Path path, int type, byte[] value) {
-        byte[] key = makeKey(path, type);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ImageCacheService.putImageData(com.android.gallery3d.data.Path,int,[byte)",this,path,type,value);try{byte[] key = makeKey(path, type);
         long cacheKey = Utils.crc64Long(key);
         ByteBuffer buffer = ByteBuffer.allocate(key.length + value.length);
         buffer.put(key);
@@ -81,25 +81,25 @@ public class ImageCacheService {
             try {
                 mCache.insert(cacheKey, buffer.array());
             } catch (IOException ex) {
-                // ignore.
+                /*// ignore.*/
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ImageCacheService.putImageData(com.android.gallery3d.data.Path,int,[byte)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ImageCacheService.putImageData(com.android.gallery3d.data.Path,int,[byte)",this,throwable);throw throwable;}
     }
 
     private static byte[] makeKey(Path path, int type) {
-        return GalleryUtils.getBytes(path.toString() + "+" + type);
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.android.gallery3d.data.ImageCacheService.makeKey(com.android.gallery3d.data.Path,int)",path,type);try{com.mijack.Xlog.logStaticMethodExit("[byte com.android.gallery3d.data.ImageCacheService.makeKey(com.android.gallery3d.data.Path,int)");return GalleryUtils.getBytes(path.toString() + "+" + type);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.android.gallery3d.data.ImageCacheService.makeKey(com.android.gallery3d.data.Path,int)",throwable);throw throwable;}
     }
 
     private static boolean isSameKey(byte[] key, byte[] buffer) {
-        int n = key.length;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.data.ImageCacheService.isSameKey([byte,[byte)",key,buffer);try{int n = key.length;
         if (buffer.length < n) {
-            return false;
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.ImageCacheService.isSameKey([byte,[byte)");return false;}
         }
         for (int i = 0; i < n; ++i) {
             if (key[i] != buffer[i]) {
-                return false;
+                {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.ImageCacheService.isSameKey([byte,[byte)");return false;}
             }
         }
-        return true;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.ImageCacheService.isSameKey([byte,[byte)");return true;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.data.ImageCacheService.isSameKey([byte,[byte)",throwable);throw throwable;}
     }
 }

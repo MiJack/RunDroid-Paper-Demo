@@ -51,20 +51,20 @@ public class BlocklistViewAllDialogFragment
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final Context context = getActivity();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{final Context context = getActivity();
         if (context == null)
-            return null;
-        //boolean useFriendlyIds = PreferenceManager
-        //        .getDefaultSharedPreferences(context)
-        //        .getBoolean(SettingsActivity.PREF_USE_FRIENDLY_IDS, true);
+            {{com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onCreateDialog(android.os.Bundle)",this);return null;}}
+        /*//boolean useFriendlyIds = PreferenceManager*/
+        /*//        .getDefaultSharedPreferences(context)*/
+        /*//        .getBoolean(SettingsActivity.PREF_USE_FRIENDLY_IDS, true);*/
         blocks = ChanBlocklist.getSorted(context);
-        return createFilledListDialog();
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onCreateDialog(android.os.Bundle)",this);return createFilledListDialog();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     protected static final int UNDO_HIDE_DELAY_MS = 2500;
 
     protected Dialog createFilledListDialog() {
-        setStyle(STYLE_NO_TITLE, 0);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.BlocklistViewAllDialogFragment.createFilledListDialog()",this);try{setStyle(STYLE_NO_TITLE, 0);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View layout = inflater.inflate(R.layout.blocklist_items_dialog_fragment, null);
         View empty = layout.findViewById(R.id.empty);
@@ -86,75 +86,75 @@ public class BlocklistViewAllDialogFragment
                 .setPositiveButton(R.string.dialog_add, onAddListener)
                 .create();
         dialog.setOnShowListener(onShowListener);
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.BlocklistViewAllDialogFragment.createFilledListDialog()",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.BlocklistViewAllDialogFragment.createFilledListDialog()",this,throwable);throw throwable;}
     }
 
     protected ListView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            if (adapter != null && position >= 0)
-                adapter.showEditTextDialog(position);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$1.onItemClick(android.widget.AdapterView,com.chanapps.four.component.EnhancedListView,int,long)",this,parent,v,position,id);try{if (adapter != null && position >= 0)
+                {adapter.showEditTextDialog(position);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$1.onItemClick(android.widget.AdapterView,com.chanapps.four.component.EnhancedListView,int,long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$1.onItemClick(android.widget.AdapterView,com.chanapps.four.component.EnhancedListView,int,long)",this,throwable);throw throwable;}
         }
     };
 
     protected DialogInterface.OnShowListener onShowListener = new DialogInterface.OnShowListener() {
         @Override
         public void onShow(DialogInterface d) {
-            Button add = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$2.onShow(android.content.DialogInterface)",this,d);try{Button add = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             Button close = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
             add.setOnClickListener(onAddButtonListener);
-            close.setOnClickListener(onCloseButtonListener);
+            close.setOnClickListener(onCloseButtonListener);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$2.onShow(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$2.onShow(android.content.DialogInterface)",this,throwable);throw throwable;}
         }
     };
 
     protected DialogInterface.OnClickListener onAddListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-                    // we do this in the onShowListener
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$3.onClick(android.content.DialogInterface,int)",this,dialog,which);try{/*// we do this in the onShowListener*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$3.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$3.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
         }
     };
 
     protected View.OnClickListener onAddButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            adapter.insert(adapter.getCount(), new Pair<String, ChanBlocklist.BlockType>("", ChanBlocklist.BlockType.TEXT));
-            ThreadViewer.jumpToBottom(listView, new Handler());
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$4.onClick(com.chanapps.four.component.EnhancedListView)",this,view);try{adapter.insert(adapter.getCount(), new Pair<String, ChanBlocklist.BlockType>("", ChanBlocklist.BlockType.TEXT));
+            ThreadViewer.jumpToBottom(listView, new Handler());com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$4.onClick(com.chanapps.four.component.EnhancedListView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$4.onClick(com.chanapps.four.component.EnhancedListView)",this,throwable);throw throwable;}
         }
     };
 
     protected View.OnClickListener onCloseButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (onDismissListener != null)
-                onDismissListener.onDismiss(dialog);
-            dismiss();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$5.onClick(com.chanapps.four.component.EnhancedListView)",this,view);try{if (onDismissListener != null)
+                {onDismissListener.onDismiss(dialog);}
+            dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$5.onClick(com.chanapps.four.component.EnhancedListView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$5.onClick(com.chanapps.four.component.EnhancedListView)",this,throwable);throw throwable;}
         }
     };
 
     protected DialogInterface.OnClickListener onCloseListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            // we do this in button click
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$6.onClick(android.content.DialogInterface,int)",this,dialog,which);try{/*// we do this in button click*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$6.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$6.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
         }
     };
 
     protected void save() {
-        if (listView != null)
-            listView.discardUndo();
-        ChanBlocklist.save(getActivity(), blocks);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.save()",this);try{if (listView != null)
+            {listView.discardUndo();}
+        ChanBlocklist.save(getActivity(), blocks);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.save()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.save()",this,throwable);throw throwable;}
     }
 
     protected EnhancedListView.OnDismissCallback dismissCallback = new EnhancedListView.OnDismissCallback() {
         @Override
         public EnhancedListView.Undoable onDismiss(final EnhancedListView listView, final int position) {
-            final Pair<String, ChanBlocklist.BlockType> item = (Pair<String, ChanBlocklist.BlockType>)adapter.getItem(position);
+            com.mijack.Xlog.logMethodEnter("android.widget.EnhancedListView.Undoable com.chanapps.four.fragment.BlocklistViewAllDialogFragment$7.onDismiss(com.chanapps.four.component.EnhancedListView,int)",this,listView,position);try{final Pair<String, ChanBlocklist.BlockType> item = (Pair<String, ChanBlocklist.BlockType>)adapter.getItem(position);
             adapter.remove(position);
-            return new EnhancedListView.Undoable() {
+            {com.mijack.Xlog.logMethodExit("android.widget.EnhancedListView.Undoable com.chanapps.four.fragment.BlocklistViewAllDialogFragment$7.onDismiss(com.chanapps.four.component.EnhancedListView,int)",this);return new EnhancedListView.Undoable() {
                 @Override
                 public void undo() {
-                    adapter.insert(position, item);
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$7$1.undo()",this);try{adapter.insert(position, item);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$7$1.undo()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$7$1.undo()",this,throwable);throw throwable;}
                 }
-            };
+            };}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.EnhancedListView.Undoable com.chanapps.four.fragment.BlocklistViewAllDialogFragment$7.onDismiss(com.chanapps.four.component.EnhancedListView,int)",this,throwable);throw throwable;}
         }
     };
 
@@ -163,19 +163,19 @@ public class BlocklistViewAllDialogFragment
         private List<Pair<String, ChanBlocklist.BlockType>> mItems = new ArrayList<Pair<String, ChanBlocklist.BlockType>>();
 
         void setItems(List<Pair<String, ChanBlocklist.BlockType>> items) {
-            mItems.clear();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.setItems(android.widget.List)",this,items);try{mItems.clear();
             mItems = items;
-            notifyDataSetChanged();
+            notifyDataSetChanged();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.setItems(android.widget.List)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.setItems(android.widget.List)",this,throwable);throw throwable;}
         }
 
         public void remove(int position) {
-            mItems.remove(position);
-            notifyDataSetChanged();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.remove(int)",this,position);try{mItems.remove(position);
+            notifyDataSetChanged();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.remove(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.remove(int)",this,throwable);throw throwable;}
         }
 
         public void insert(int position, Pair<String, ChanBlocklist.BlockType> item) {
-            mItems.add(position, item);
-            notifyDataSetChanged();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.insert(int,android.util.Pair)",this,position,item);try{mItems.add(position, item);
+            notifyDataSetChanged();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.insert(int,android.util.Pair)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.insert(int,android.util.Pair)",this,throwable);throw throwable;}
         }
 
         /**
@@ -185,7 +185,7 @@ public class BlocklistViewAllDialogFragment
          */
         @Override
         public int getCount() {
-            return mItems.size();
+            com.mijack.Xlog.logMethodEnter("int com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getCount()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getCount()",this);return mItems.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getCount()",this,throwable);throw throwable;}
         }
 
         /**
@@ -197,7 +197,7 @@ public class BlocklistViewAllDialogFragment
          */
         @Override
         public Object getItem(int position) {
-            return mItems.get(position);
+            com.mijack.Xlog.logMethodEnter("android.widget.Object com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getItem(int)",this,position);try{com.mijack.Xlog.logMethodExit("android.widget.Object com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getItem(int)",this);return mItems.get(position);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.Object com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getItem(int)",this,throwable);throw throwable;}
         }
 
         /**
@@ -208,7 +208,7 @@ public class BlocklistViewAllDialogFragment
          */
         @Override
         public long getItemId(int position) {
-            return position;
+            com.mijack.Xlog.logMethodEnter("long com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getItemId(int)",this,position);try{com.mijack.Xlog.logMethodExit("long com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getItemId(int)",this);return position;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getItemId(int)",this,throwable);throw throwable;}
         }
 
         /**
@@ -232,7 +232,7 @@ public class BlocklistViewAllDialogFragment
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            ViewHolder holder;
+            com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getView(int,com.chanapps.four.component.EnhancedListView,android.widget.ViewGroup)",this,position,convertView,parent);try{ViewHolder holder;
             if(convertView == null) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.blocklist_items_dialog_item, parent, false);
                 holder = new ViewHolder();
@@ -252,17 +252,17 @@ public class BlocklistViewAllDialogFragment
             String displayType = getResources().getStringArray(R.array.block_types)[pos];
             holder.mText2.setText(displayType);
 
-            return convertView;
+            {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getView(int,com.chanapps.four.component.EnhancedListView,android.widget.ViewGroup)",this);return convertView;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.getView(int,com.chanapps.four.component.EnhancedListView,android.widget.ViewGroup)",this,throwable);throw throwable;}
         }
 
         public void showEditTextDialog(final int pos) {
-            if (pos < 0)
-                return;
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this,pos);try{if (pos < 0)
+                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this);return;}}
             if (blocks == null)
-                return;
+                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this);return;}}
             Pair<String, ChanBlocklist.BlockType> b = blocks.get(pos);
             if (b == null)
-                return;
+                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this);return;}}
             View layout = getActivity().getLayoutInflater().inflate(R.layout.blocklist_items_single_dialog_item, null);
             final EditText input = (EditText)layout.findViewById(R.id.text1);
             input.setText(b.first);
@@ -281,13 +281,13 @@ public class BlocklistViewAllDialogFragment
                     .setNeutralButton(R.string.done, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (listView == null)
-                                return;
+                            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{if (listView == null)
+                                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$1.onClick(android.content.DialogInterface,int)",this);return;}}}
                             if (blocks == null)
-                                return;
+                                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$1.onClick(android.content.DialogInterface,int)",this);return;}}}
                             Pair<String, ChanBlocklist.BlockType> b = blocks.get(pos);
                             if (b == null)
-                                return;
+                                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$1.onClick(android.content.DialogInterface,int)",this);return;}}}
                             int sel = spinner.getSelectedItemPosition();
                             int spinnerPos = sel == AdapterView.INVALID_POSITION ? 0 : sel;
                             ChanBlocklist.BlockType newType = ChanBlocklist.BlockType.values()[spinnerPos];
@@ -295,7 +295,7 @@ public class BlocklistViewAllDialogFragment
                                     new Pair<String, ChanBlocklist.BlockType>(input.getText().toString(), newType);
                             blocks.set(pos, newBlock);
                             notifyDataSetChanged();
-                            closeKeyboard();
+                            closeKeyboard();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                         }
                     })
                     .create();
@@ -303,35 +303,33 @@ public class BlocklistViewAllDialogFragment
             dialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
-                    input.requestFocus();
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$2.onShow(android.content.DialogInterface)",this,dialog);try{input.requestFocus();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$2.onShow(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$2.onShow(android.content.DialogInterface)",this,throwable);throw throwable;}
                 }
             });
             dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
-                    closeKeyboard();
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$3.onDismiss(android.content.DialogInterface)",this,dialog);try{closeKeyboard();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$3.onDismiss(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$3.onDismiss(android.content.DialogInterface)",this,throwable);throw throwable;}
                 }
             });
-            dialog.show();
+            dialog.show();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter.showEditTextDialog(int)",this,throwable);throw throwable;}
         }
 
         private AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ChanBlocklist.BlockType newType = ChanBlocklist.BlockType.values()[position];
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$4.onItemSelected(android.widget.AdapterView,com.chanapps.four.component.EnhancedListView,int,long)",this,parent,view,position,id);try{ChanBlocklist.BlockType newType = ChanBlocklist.BlockType.values()[position];
                 int pos = listView.getPositionForView(view);
                 if (pos < 0)
-                    return;
+                    {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$4.onItemSelected(android.widget.AdapterView,com.chanapps.four.component.EnhancedListView,int,long)",this);return;}}
                 Pair<String, ChanBlocklist.BlockType> b = blocks.get(pos);
                 if (b == null)
-                    return;
+                    {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$4.onItemSelected(android.widget.AdapterView,com.chanapps.four.component.EnhancedListView,int,long)",this);return;}}
                 Pair<String, ChanBlocklist.BlockType> newBlock = new Pair<String, ChanBlocklist.BlockType>(b.first, newType);
                 blocks.set(pos, newBlock);
-                notifyDataSetChanged();
+                notifyDataSetChanged();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$4.onItemSelected(android.widget.AdapterView,com.chanapps.four.component.EnhancedListView,int,long)",this,throwable);throw throwable;}
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$4.onNothingSelected(android.widget.AdapterView)",this,parent);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment$EnhancedListAdapter$4.onNothingSelected(android.widget.AdapterView)",this);}
         };
 
         private class ViewHolder {
@@ -344,26 +342,26 @@ public class BlocklistViewAllDialogFragment
 
     @Override
     public void onStop() {
-        if(listView != null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onStop()",this);try{if(listView != null) {
             listView.discardUndo();
         }
-        super.onStop();
+        super.onStop();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onStop()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDismiss(DialogInterface dialogInterface) {
-        closeKeyboard();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onDismiss(android.content.DialogInterface)",this,dialogInterface);try{closeKeyboard();
         save();
         BoardActivity.updateBoard(getActivity());
-        dismiss();
+        dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onDismiss(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.onDismiss(android.content.DialogInterface)",this,throwable);throw throwable;}
     }
 
     private void closeKeyboard() {
-        IBinder windowToken = getActivity().getCurrentFocus() != null ? getActivity().getCurrentFocus().getWindowToken() : null;
-        if (windowToken != null) { // close the keyboard
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.closeKeyboard()",this);try{IBinder windowToken = getActivity().getCurrentFocus() != null ? getActivity().getCurrentFocus().getWindowToken() : null;
+        if (windowToken != null) { /*// close the keyboard*/
             InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(windowToken, 0);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.closeKeyboard()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BlocklistViewAllDialogFragment.closeKeyboard()",this,throwable);throw throwable;}
     }
 
 }

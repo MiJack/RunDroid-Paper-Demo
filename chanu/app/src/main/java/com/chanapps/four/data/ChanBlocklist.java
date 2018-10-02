@@ -37,10 +37,10 @@ public class ChanBlocklist {
             blockPref = t;
         }
         public String displayString() {
-            return displayString;
+            com.mijack.Xlog.logMethodEnter("java.util.String com.chanapps.four.data.ChanBlocklist.displayString()",this);try{com.mijack.Xlog.logMethodExit("java.util.String com.chanapps.four.data.ChanBlocklist.displayString()",this);return displayString;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.String com.chanapps.four.data.ChanBlocklist.displayString()",this,throwable);throw throwable;}
         }
         public String blockPref() {
-            return blockPref;
+            com.mijack.Xlog.logMethodEnter("java.util.String com.chanapps.four.data.ChanBlocklist.blockPref()",this);try{com.mijack.Xlog.logMethodExit("java.util.String com.chanapps.four.data.ChanBlocklist.blockPref()",this);return blockPref;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.String com.chanapps.four.data.ChanBlocklist.blockPref()",this,throwable);throw throwable;}
         }
     };
 
@@ -48,8 +48,8 @@ public class ChanBlocklist {
     private static Pattern testPattern = null;
 
      private static void initBlocklist(Context context) {
-        if (blocklist != null)
-            return;
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.initBlocklist(android.content.Context)",context);try{if (blocklist != null)
+            {{com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.initBlocklist(android.content.Context)");return;}}
         blocklist = new HashMap<BlockType, Set<String>>();
         synchronized (blocklist) {
             blocklist.clear();
@@ -58,115 +58,115 @@ public class ChanBlocklist {
                 Set<String> savedBlocks = PreferenceManager
                         .getDefaultSharedPreferences(context)
                         .getStringSet(blockType.blockPref(), new HashSet<String>());
-                // copy to avoid android getStringSet bug
+                /*// copy to avoid android getStringSet bug*/
                 Set<String> blocks = new HashSet<String>(savedBlocks.size());
                 blocks.addAll(savedBlocks);
                 blocklist.put(blockType, blocks);
             }
             compileTestPattern();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.initBlocklist(android.content.Context)",throwable);throw throwable;}
     }
 
     public static List<Pair<String, BlockType>> getSorted(Context context) {
-        if (blocklist == null)
-            initBlocklist(context);
+        com.mijack.Xlog.logStaticMethodEnter("java.util.List com.chanapps.four.data.ChanBlocklist.getSorted(android.content.Context)",context);try{if (blocklist == null)
+            {initBlocklist(context);}
         List<Pair<String, BlockType>> sorted = new ArrayList<Pair<String, BlockType>>();
         for (BlockType blockType : BlockType.values()) {
             Set<String> blocks = blocklist.get(blockType);
-            if (DEBUG) Log.i(TAG, "getSorted() type=" + blockType + " blocks=" + blocks);
+            if (DEBUG) {Log.i(TAG, "getSorted() type=" + blockType + " blocks=" + blocks);}
             if (blocks == null || blocks.isEmpty())
-                continue;
+                {continue;}
             for (String block : blocks) {
                 if (block != null && !block.isEmpty())
-                    sorted.add(new Pair<String, BlockType>(block, blockType));
+                    {sorted.add(new Pair<String, BlockType>(block, blockType));}
             }
         }
         Collections.sort(sorted, blocklistComparator);
-        return sorted;
+        {com.mijack.Xlog.logStaticMethodExit("java.util.List com.chanapps.four.data.ChanBlocklist.getSorted(android.content.Context)");return sorted;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.List com.chanapps.four.data.ChanBlocklist.getSorted(android.content.Context)",throwable);throw throwable;}
 
     }
 
     protected static Comparator<Pair<String, BlockType>> blocklistComparator = new Comparator<Pair<String, BlockType>>() {
         @Override
         public int compare(Pair<String, BlockType> lhs, Pair<String, BlockType> rhs) {
-            int comp1 = lhs.first.compareToIgnoreCase(rhs.first);
+            com.mijack.Xlog.logMethodEnter("int com.chanapps.four.data.ChanBlocklist$1.compare(android.util.Pair,android.util.Pair)",this,lhs,rhs);try{int comp1 = lhs.first.compareToIgnoreCase(rhs.first);
             if (comp1 != 0)
-                return comp1;
-            return lhs.second.compareTo(rhs.second);
+                {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.data.ChanBlocklist$1.compare(android.util.Pair,android.util.Pair)",this);return comp1;}}
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.data.ChanBlocklist$1.compare(android.util.Pair,android.util.Pair)",this);return lhs.second.compareTo(rhs.second);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.data.ChanBlocklist$1.compare(android.util.Pair,android.util.Pair)",this,throwable);throw throwable;}
         }
     };
 
     public static void removeAll(Context context, BlockType blockType, List<String> removeBlocks) {
-        if (blocklist == null)
-            initBlocklist(context);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.removeAll(android.content.Context,java.util.BlockType,java.util.List)",context,blockType,removeBlocks);try{if (blocklist == null)
+            {initBlocklist(context);}
         Set<String> blocks = blocklist.get(blockType);
         blocks.removeAll(removeBlocks);
-        saveBlocklist(context, blockType);
+        saveBlocklist(context, blockType);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.removeAll(android.content.Context,java.util.BlockType,java.util.List)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.removeAll(android.content.Context,java.util.BlockType,java.util.List)",throwable);throw throwable;}
     }
 
     public static void remove(Context context, BlockType blockType, String removeBlock) {
-        if (blocklist == null)
-            initBlocklist(context);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.remove(android.content.Context,java.util.BlockType,java.util.String)",context,blockType,removeBlock);try{if (blocklist == null)
+            {initBlocklist(context);}
         Set<String> blocks = blocklist.get(blockType);
         saveBlocklist(context, blockType);
         List<String> removeBlocks = new ArrayList<String>(1);
         removeBlocks.add(removeBlock);
         blocks.removeAll(removeBlocks);
-        removeAll(context, blockType, removeBlocks);
+        removeAll(context, blockType, removeBlocks);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.remove(android.content.Context,java.util.BlockType,java.util.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.remove(android.content.Context,java.util.BlockType,java.util.String)",throwable);throw throwable;}
     }
 
-    public static void removeMatching(Context context, BlockType blockType, String substring) { // substring non-regexp match
+    public static void removeMatching(Context context, BlockType blockType, String substring) { com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.removeMatching(android.content.Context,java.util.BlockType,java.util.String)",context,blockType,substring);try{/*// substring non-regexp match*/
         if (substring == null || substring.isEmpty())
-            return;
+            {{com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.removeMatching(android.content.Context,java.util.BlockType,java.util.String)");return;}}
         if (blocklist == null)
-            initBlocklist(context);
+            {initBlocklist(context);}
         Set<String> blocks = blocklist.get(blockType);
         List<String> removeBlocks = new ArrayList<String>();
         for (String b : blocks) {
             if (b != null && b.contains(substring))
-                removeBlocks.add(b);
+                {removeBlocks.add(b);}
         }
         blocks.removeAll(removeBlocks);
-        saveBlocklist(context, blockType);
+        saveBlocklist(context, blockType);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.removeMatching(android.content.Context,java.util.BlockType,java.util.String)",throwable);throw throwable;}
     }
 
-    public static boolean hasMatching(Context context, BlockType blockType, String substring) { // substring non-regexp match
+    public static boolean hasMatching(Context context, BlockType blockType, String substring) { com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.data.ChanBlocklist.hasMatching(android.content.Context,java.util.BlockType,java.util.String)",context,blockType,substring);try{/*// substring non-regexp match*/
         if (substring == null || substring.isEmpty())
-            return false;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.hasMatching(android.content.Context,java.util.BlockType,java.util.String)");return false;}}
         if (blocklist == null)
-            initBlocklist(context);
+            {initBlocklist(context);}
         Set<String> blocks = blocklist.get(blockType);
         if (blocks == null)
-            return false;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.hasMatching(android.content.Context,java.util.BlockType,java.util.String)");return false;}}
         for (String b : blocks) {
             if (b != null && b.contains(substring))
-                return true;
+                {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.hasMatching(android.content.Context,java.util.BlockType,java.util.String)");return true;}}
         }
-        return false;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.hasMatching(android.content.Context,java.util.BlockType,java.util.String)");return false;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.data.ChanBlocklist.hasMatching(android.content.Context,java.util.BlockType,java.util.String)",throwable);throw throwable;}
     }
 
     public static void add(Context context, BlockType blockType, String newBlock) {
-        if (blocklist == null)
-            initBlocklist(context);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.add(android.content.Context,java.util.BlockType,java.util.String)",context,blockType,newBlock);try{if (blocklist == null)
+            {initBlocklist(context);}
         Set<String> blocks = blocklist.get(blockType);
         List<String> newBlocks = new ArrayList<String>(1);
         newBlocks.add(newBlock);
         blocks.addAll(newBlocks);
-        saveBlocklist(context, blockType);
+        saveBlocklist(context, blockType);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.add(android.content.Context,java.util.BlockType,java.util.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.add(android.content.Context,java.util.BlockType,java.util.String)",throwable);throw throwable;}
     }
 
     public static boolean contains(Context context, BlockType blockType, String block) {
-        if (blocklist == null)
-            initBlocklist(context);
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.data.ChanBlocklist.contains(android.content.Context,java.util.BlockType,java.util.String)",context,blockType,block);try{if (blocklist == null)
+            {initBlocklist(context);}
         Set<String> typeList = blocklist.get(blockType);
         if (typeList == null)
-            return false;
-        return typeList.contains(block);
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.contains(android.content.Context,java.util.BlockType,java.util.String)");return false;}}
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.contains(android.content.Context,java.util.BlockType,java.util.String)");return typeList.contains(block);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.data.ChanBlocklist.contains(android.content.Context,java.util.BlockType,java.util.String)",throwable);throw throwable;}
     }
 
     public static boolean isBlocked(Context context, ChanPost post) {
-        if (blocklist == null)
-            initBlocklist(context);
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanPost)",context,post);try{if (blocklist == null)
+            {initBlocklist(context);}
         boolean simpleMatch =  contains(context, BlockType.THREAD, post.uniqueId())
                 || contains(context, BlockType.TRIPCODE, post.trip)
                 || contains(context, BlockType.NAME, post.name)
@@ -174,80 +174,80 @@ public class ChanBlocklist {
                 || contains(context, BlockType.ID, post.id)
                 ;
         if (simpleMatch)
-            return true;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanPost)");return true;}}
         if (testPattern == null)
-            return false;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanPost)");return false;}}
         if (post.sub != null && testPattern.matcher(post.sub).find())
-            return true;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanPost)");return true;}}
         if (post.com != null && testPattern.matcher(post.com).find())
-            return true;
-        return false;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanPost)");return true;}}
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanPost)");return false;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanPost)",throwable);throw throwable;}
     }
 
     public static boolean isBlocked(Context context, ChanThread thread) {
-        if (isBlocked(context, (ChanPost)thread))
-            return true;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanThread)",context,thread);try{if (isBlocked(context, (ChanPost)thread))
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanThread)");return true;}}
         if (thread.lastReplies == null)
-            return false;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanThread)");return false;}}
         for (ChanPost post : thread.lastReplies)
-            if (isBlocked(context, post))
-                return true;
-        return false;
+            {if (isBlocked(context, post))
+                {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanThread)");return true;}}}
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanThread)");return false;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.data.ChanBlocklist.isBlocked(android.content.Context,java.util.ChanThread)",throwable);throw throwable;}
     }
 
     private static void saveBlocklist(Context context, BlockType blockType) {
-        if (blockType == BlockType.TEXT) // precreate regex for efficient matching
-            compileTestPattern();
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.saveBlocklist(android.content.Context,java.util.BlockType)",context,blockType);try{if (blockType == BlockType.TEXT) /*// precreate regex for efficient matching*/
+            {compileTestPattern();}
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         Set<String> blocks = blocklist.get(blockType);
         Set<String> copy = new HashSet<String>(blocks.size());
         copy.addAll(blocks);
-        if (DEBUG) Log.i(TAG, "saveBlocklist() type=" + blockType + " blocks=" + copy);
-        editor.putStringSet(blockType.blockPref(), copy).apply();
+        if (DEBUG) {Log.i(TAG, "saveBlocklist() type=" + blockType + " blocks=" + copy);}
+        editor.putStringSet(blockType.blockPref(), copy).apply();com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.saveBlocklist(android.content.Context,java.util.BlockType)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.saveBlocklist(android.content.Context,java.util.BlockType)",throwable);throw throwable;}
     }
 
     private static void compileTestPattern() {
-        Set<String> blocks = blocklist.get(BlockType.TEXT);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.compileTestPattern()");try{Set<String> blocks = blocklist.get(BlockType.TEXT);
         if (blocks.isEmpty()) {
             testPattern = null;
-            return;
+            {com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.compileTestPattern()");return;}
         }
         List<String> regexList = new ArrayList<String>();
         for (String block : blocks) {
             if (block == null || block.isEmpty())
-                continue;
+                {continue;}
             String regex = block.replaceAll("[()|]", "");
             if (regex.isEmpty())
-                continue;
+                {continue;}
             regexList.add(regex);
         }
         if (regexList.isEmpty()) {
             testPattern = null;
-            return;
+            {com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.compileTestPattern()");return;}
         }
         String regex = "(" + StringUtils.join(regexList, "|") + ")";
-        testPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        testPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.compileTestPattern()",throwable);throw throwable;}
     }
 
     public static void save(Context context, List<Pair<String, BlockType>> newBlocks) {
-        if (blocklist == null)
-            initBlocklist(context);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanBlocklist.save(android.content.Context,java.util.List)",context,newBlocks);try{if (blocklist == null)
+            {initBlocklist(context);}
         synchronized (blocklist) {
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-            for (BlockType blockType : BlockType.values()) // out with the old
-                blocklist.get(blockType).clear();
-            for (Pair<String, BlockType> block : newBlocks) // and in with the new
-                if (block.first != null && !block.first.isEmpty() && block.second != null)
-                    blocklist.get(block.second).add(block.first);
+            for (BlockType blockType : BlockType.values()) /*// out with the old*/
+                {blocklist.get(blockType).clear();}
+            for (Pair<String, BlockType> block : newBlocks) /*// and in with the new*/
+                {if (block.first != null && !block.first.isEmpty() && block.second != null)
+                    {blocklist.get(block.second).add(block.first);}}
             for (BlockType blockType : BlockType.values()) {
-                if (blockType == BlockType.TEXT) // precreate regex for efficient matching
-                    compileTestPattern();
+                if (blockType == BlockType.TEXT) /*// precreate regex for efficient matching*/
+                    {compileTestPattern();}
                 Set<String> blocks = blocklist.get(blockType);
-                if (DEBUG) Log.i(TAG, "save() type=" + blockType + " blocks=" + blocks);
+                if (DEBUG) {Log.i(TAG, "save() type=" + blockType + " blocks=" + blocks);}
                 editor.putStringSet(blockType.blockPref(), blocks);
             }
             editor.apply();
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanBlocklist.save(android.content.Context,java.util.List)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanBlocklist.save(android.content.Context,java.util.List)",throwable);throw throwable;}
     }
 
 }

@@ -41,41 +41,35 @@ public class WidgetService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        int id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        com.mijack.Xlog.logMethodEnter("RemoteViewsFactory com.android.gallery3d.gadget.WidgetService.onGetViewFactory(android.content.Intent)",this,intent);try{int id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         int type = intent.getIntExtra(EXTRA_WIDGET_TYPE, 0);
         String albumPath = intent.getStringExtra(EXTRA_ALBUM_PATH);
 
-        return new PhotoRVFactory((GalleryApp) getApplicationContext(), id, type, albumPath);
+        {com.mijack.Xlog.logMethodExit("RemoteViewsFactory com.android.gallery3d.gadget.WidgetService.onGetViewFactory(android.content.Intent)",this);return new PhotoRVFactory((GalleryApp) getApplicationContext(), id, type, albumPath);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("RemoteViewsFactory com.android.gallery3d.gadget.WidgetService.onGetViewFactory(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     private static class EmptySource implements WidgetSource {
 
         @Override
         public int size() {
-            return 0;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.gadget.WidgetService$EmptySource.size()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.gadget.WidgetService$EmptySource.size()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.gadget.WidgetService$EmptySource.size()",this,throwable);throw throwable;}
         }
 
         @Override
         public Bitmap getImage(int index) {
-            throw new UnsupportedOperationException();
+            com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetService$EmptySource.getImage(int)",this,index);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetService$EmptySource.getImage(int)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetService$EmptySource.getImage(int)",this,throwable);throw throwable;}
         }
 
         @Override
         public Uri getContentUri(int index) {
-            throw new UnsupportedOperationException();
+            com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.gadget.WidgetService$EmptySource.getContentUri(int)",this,index);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.gadget.WidgetService$EmptySource.getContentUri(int)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.gadget.WidgetService$EmptySource.getContentUri(int)",this,throwable);throw throwable;}
         }
 
-        @Override
-        public void setContentListener(ContentListener listener) {
-        }
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetService$EmptySource.setContentListener(com.android.gallery3d.data.ContentListener)",this,listener);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetService$EmptySource.setContentListener(com.android.gallery3d.data.ContentListener)",this);}
 
-        @Override
-        public void reload() {
-        }
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetService$EmptySource.reload()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetService$EmptySource.reload()",this);}
 
-        @Override
-        public void close() {
-        }
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetService$EmptySource.close()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetService$EmptySource.close()",this);}
     }
 
     private static class PhotoRVFactory implements
@@ -97,7 +91,7 @@ public class WidgetService extends RemoteViewsService {
 
         @Override
         public void onCreate() {
-            if (mType == WidgetDatabaseHelper.TYPE_ALBUM) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onCreate()",this);try{if (mType == WidgetDatabaseHelper.TYPE_ALBUM) {
                 Path path = Path.fromString(mAlbumPath);
                 DataManager manager = mApp.getDataManager();
                 MediaSet mediaSet = (MediaSet) manager.getMediaObject(path);
@@ -110,42 +104,42 @@ public class WidgetService extends RemoteViewsService {
             mSource.setContentListener(this);
             AppWidgetManager.getInstance(mApp.getAndroidContext())
                     .notifyAppWidgetViewDataChanged(
-                            mAppWidgetId, R.id.appwidget_stack_view);
+                            mAppWidgetId, R.id.appwidget_stack_view);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onCreate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onCreate()",this,throwable);throw throwable;}
         }
 
         @Override
         public void onDestroy() {
-            mSource.close();
-            mSource = null;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onDestroy()",this);try{mSource.close();
+            mSource = null;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onDestroy()",this,throwable);throw throwable;}
         }
 
         public int getCount() {
-            return mSource.size();
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getCount()",this);return mSource.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getCount()",this,throwable);throw throwable;}
         }
 
         public long getItemId(int position) {
-            return position;
+            com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getItemId(int)",this,position);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getItemId(int)",this);return position;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getItemId(int)",this,throwable);throw throwable;}
         }
 
         public int getViewTypeCount() {
-            return 1;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getViewTypeCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getViewTypeCount()",this);return 1;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getViewTypeCount()",this,throwable);throw throwable;}
         }
 
         public boolean hasStableIds() {
-            return true;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.hasStableIds()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.hasStableIds()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.hasStableIds()",this,throwable);throw throwable;}
         }
 
         public RemoteViews getLoadingView() {
-            RemoteViews rv = new RemoteViews(
+            com.mijack.Xlog.logMethodEnter("android.widget.RemoteViews com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getLoadingView()",this);try{RemoteViews rv = new RemoteViews(
                     mApp.getAndroidContext().getPackageName(),
                     R.layout.appwidget_loading_item);
             rv.setProgressBar(R.id.appwidget_loading_item, 0, 0, true);
-            return rv;
+            {com.mijack.Xlog.logMethodExit("android.widget.RemoteViews com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getLoadingView()",this);return rv;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.RemoteViews com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getLoadingView()",this,throwable);throw throwable;}
         }
 
         public RemoteViews getViewAt(int position) {
-            Bitmap bitmap = mSource.getImage(position);
-            if (bitmap == null) return getLoadingView();
+            com.mijack.Xlog.logMethodEnter("android.widget.RemoteViews com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getViewAt(int)",this,position);try{Bitmap bitmap = mSource.getImage(position);
+            if (bitmap == null) {{com.mijack.Xlog.logMethodExit("android.widget.RemoteViews com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getViewAt(int)",this);return getLoadingView();}}
             RemoteViews views = new RemoteViews(
                     mApp.getAndroidContext().getPackageName(),
                     R.layout.appwidget_photo_item);
@@ -153,19 +147,19 @@ public class WidgetService extends RemoteViewsService {
             views.setOnClickFillInIntent(R.id.appwidget_photo_item, new Intent()
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     .setData(mSource.getContentUri(position)));
-            return views;
+            {com.mijack.Xlog.logMethodExit("android.widget.RemoteViews com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getViewAt(int)",this);return views;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.RemoteViews com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.getViewAt(int)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onDataSetChanged() {
-            mSource.reload();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onDataSetChanged()",this);try{mSource.reload();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onDataSetChanged()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onDataSetChanged()",this,throwable);throw throwable;}
         }
 
         @Override
         public void onContentDirty() {
-            AppWidgetManager.getInstance(mApp.getAndroidContext())
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onContentDirty()",this);try{AppWidgetManager.getInstance(mApp.getAndroidContext())
                     .notifyAppWidgetViewDataChanged(
-                            mAppWidgetId, R.id.appwidget_stack_view);
+                            mAppWidgetId, R.id.appwidget_stack_view);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onContentDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetService$PhotoRVFactory.onContentDirty()",this,throwable);throw throwable;}
         }
     }
 }

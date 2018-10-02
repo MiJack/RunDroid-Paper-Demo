@@ -49,11 +49,11 @@ public class MediaSetSource implements WidgetSource, ContentListener {
 
     @Override
     public void close() {
-        mSource.removeContentListener(this);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.MediaSetSource.close()",this);try{mSource.removeContentListener(this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.MediaSetSource.close()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.MediaSetSource.close()",this,throwable);throw throwable;}
     }
 
     private void ensureCacheRange(int index) {
-        if (index >= mCacheStart && index < mCacheEnd) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.MediaSetSource.ensureCacheRange(int)",this,index);try{if (index >= mCacheStart && index < mCacheEnd) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.MediaSetSource.ensureCacheRange(int)",this);return;}}
 
         long token = Binder.clearCallingIdentity();
         try {
@@ -63,51 +63,51 @@ public class MediaSetSource implements WidgetSource, ContentListener {
             items.toArray(mCache);
         } finally {
             Binder.restoreCallingIdentity(token);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.MediaSetSource.ensureCacheRange(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public synchronized Uri getContentUri(int index) {
-        ensureCacheRange(index);
-        if (index < mCacheStart || index >= mCacheEnd) return null;
-        return mCache[index - mCacheStart].getContentUri();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.gadget.MediaSetSource.getContentUri(int)",this,index);try{ensureCacheRange(index);
+        if (index < mCacheStart || index >= mCacheEnd) {{com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.gadget.MediaSetSource.getContentUri(int)",this);return null;}}
+        {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.gadget.MediaSetSource.getContentUri(int)",this);return mCache[index - mCacheStart].getContentUri();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.gadget.MediaSetSource.getContentUri(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public synchronized Bitmap getImage(int index) {
-        ensureCacheRange(index);
-        if (index < mCacheStart || index >= mCacheEnd) return null;
-        return WidgetUtils.createWidgetBitmap(mCache[index - mCacheStart]);
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.gadget.MediaSetSource.getImage(int)",this,index);try{ensureCacheRange(index);
+        if (index < mCacheStart || index >= mCacheEnd) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.MediaSetSource.getImage(int)",this);return null;}}
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.MediaSetSource.getImage(int)",this);return WidgetUtils.createWidgetBitmap(mCache[index - mCacheStart]);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.gadget.MediaSetSource.getImage(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void reload() {
-        long version = mSource.reload();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.MediaSetSource.reload()",this);try{long version = mSource.reload();
         if (mSourceVersion != version) {
             mSourceVersion = version;
             mCacheStart = 0;
             mCacheEnd = 0;
             Arrays.fill(mCache, null);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.MediaSetSource.reload()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.MediaSetSource.reload()",this,throwable);throw throwable;}
     }
 
     @Override
     public void setContentListener(ContentListener listener) {
-        mContentListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.MediaSetSource.setContentListener(com.android.gallery3d.data.ContentListener)",this,listener);try{mContentListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.MediaSetSource.setContentListener(com.android.gallery3d.data.ContentListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.MediaSetSource.setContentListener(com.android.gallery3d.data.ContentListener)",this,throwable);throw throwable;}
     }
 
     @Override
     public int size() {
-        long token = Binder.clearCallingIdentity();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.gadget.MediaSetSource.size()",this);try{long token = Binder.clearCallingIdentity();
         try {
-            return mSource.getMediaItemCount();
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.gadget.MediaSetSource.size()",this);return mSource.getMediaItemCount();}
         } finally {
             Binder.restoreCallingIdentity(token);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.gadget.MediaSetSource.size()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onContentDirty() {
-        if (mContentListener != null) mContentListener.onContentDirty();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.MediaSetSource.onContentDirty()",this);try{if (mContentListener != null) {mContentListener.onContentDirty();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.MediaSetSource.onContentDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.MediaSetSource.onContentDirty()",this,throwable);throw throwable;}
     }
 }

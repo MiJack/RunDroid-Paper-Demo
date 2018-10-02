@@ -35,18 +35,18 @@ public class Captcha {
     }
 
     public String getChallenge() {
-        return challenge;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.Captcha.getChallenge()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.Captcha.getChallenge()",this);return challenge;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.Captcha.getChallenge()",this,throwable);throw throwable;}
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.Captcha.getImageUrl()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.Captcha.getImageUrl()",this);return imageUrl;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.Captcha.getImageUrl()",this,throwable);throw throwable;}
     }
 
     public void setChallenge(String challenge) {
-        this.challenge = challenge;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.Captcha.setChallenge(java.lang.String)",this,challenge);try{this.challenge = challenge;com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.Captcha.setChallenge(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.Captcha.setChallenge(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.Captcha.setImageUrl(java.lang.String)",this,imageUrl);try{this.imageUrl = imageUrl;com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.Captcha.setImageUrl(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.Captcha.setImageUrl(java.lang.String)",this,throwable);throw throwable;}
     }
 }

@@ -128,7 +128,7 @@ public final class ImageLoaderConfiguration {
 	 * </ul>
 	 * */
 	public static ImageLoaderConfiguration createDefault(Context context) {
-		return new Builder(context).build();
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration.createDefault(android.content.Context)",context);try{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration.createDefault(android.content.Context)");return new Builder(context).build();}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration.createDefault(android.content.Context)",throwable);throw throwable;}
 	}
 
 	/**
@@ -196,9 +196,9 @@ public final class ImageLoaderConfiguration {
 		 *            an image to {@link android.graphics.Bitmap Bitmap}. <b>Default value</b> - device's screen height
 		 */
 		public Builder memoryCacheExtraOptions(int maxImageWidthForMemoryCache, int maxImageHeightForMemoryCache) {
-			this.maxImageWidthForMemoryCache = maxImageWidthForMemoryCache;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheExtraOptions(int,int)",this,maxImageWidthForMemoryCache,maxImageHeightForMemoryCache);try{this.maxImageWidthForMemoryCache = maxImageWidthForMemoryCache;
 			this.maxImageHeightForMemoryCache = maxImageHeightForMemoryCache;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheExtraOptions(int,int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheExtraOptions(int,int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -213,11 +213,11 @@ public final class ImageLoaderConfiguration {
 		 *            for max quality. Some formats, like PNG which is lossless, will ignore the quality setting
 		 */
 		public Builder discCacheExtraOptions(int maxImageWidthForDiscCache, int maxImageHeightForDiscCache, CompressFormat compressFormat, int compressQuality) {
-			this.maxImageWidthForDiscCache = maxImageWidthForDiscCache;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheExtraOptions(int,int,android.graphics.Bitmap.CompressFormat,int)",this,maxImageWidthForDiscCache,maxImageHeightForDiscCache,compressFormat,compressQuality);try{this.maxImageWidthForDiscCache = maxImageWidthForDiscCache;
 			this.maxImageHeightForDiscCache = maxImageHeightForDiscCache;
 			this.imageCompressFormatForDiscCache = compressFormat;
 			this.imageQualityForDiscCache = compressQuality;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheExtraOptions(int,int,android.graphics.Bitmap.CompressFormat,int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheExtraOptions(int,int,android.graphics.Bitmap.CompressFormat,int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -234,12 +234,12 @@ public final class ImageLoaderConfiguration {
 		 * @see #taskExecutorForCachedImages(Executor)
 		 */
 		public Builder taskExecutor(Executor executor) {
-			if (threadPoolSize != DEFAULT_THREAD_POOL_SIZE || threadPriority != DEFAULT_THREAD_PRIORITY || tasksProcessingType != DEFAULT_TASK_PROCESSING_TYPE) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.taskExecutor(java.util.concurrent.Executor)",this,executor);try{if (threadPoolSize != DEFAULT_THREAD_POOL_SIZE || threadPriority != DEFAULT_THREAD_PRIORITY || tasksProcessingType != DEFAULT_TASK_PROCESSING_TYPE) {
 				L.w(WARNING_OVERLAP_EXECUTOR);
 			}
 
 			this.taskExecutor = executor;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.taskExecutor(java.util.concurrent.Executor)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.taskExecutor(java.util.concurrent.Executor)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -261,12 +261,12 @@ public final class ImageLoaderConfiguration {
 		 * @see #taskExecutor(Executor)
 		 */
 		public Builder taskExecutorForCachedImages(Executor executorForCachedImages) {
-			if (threadPoolSize != DEFAULT_THREAD_POOL_SIZE || threadPriority != DEFAULT_THREAD_PRIORITY || tasksProcessingType != DEFAULT_TASK_PROCESSING_TYPE) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.taskExecutorForCachedImages(java.util.concurrent.Executor)",this,executorForCachedImages);try{if (threadPoolSize != DEFAULT_THREAD_POOL_SIZE || threadPriority != DEFAULT_THREAD_PRIORITY || tasksProcessingType != DEFAULT_TASK_PROCESSING_TYPE) {
 				L.w(WARNING_OVERLAP_EXECUTOR);
 			}
 
 			this.taskExecutorForCachedImages = executorForCachedImages;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.taskExecutorForCachedImages(java.util.concurrent.Executor)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.taskExecutorForCachedImages(java.util.concurrent.Executor)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -274,12 +274,12 @@ public final class ImageLoaderConfiguration {
 		 * Default value - {@link #DEFAULT_THREAD_POOL_SIZE this}
 		 * */
 		public Builder threadPoolSize(int threadPoolSize) {
-			if (taskExecutor != null || taskExecutorForCachedImages != null) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.threadPoolSize(int)",this,threadPoolSize);try{if (taskExecutor != null || taskExecutorForCachedImages != null) {
 				L.w(WARNING_OVERLAP_EXECUTOR);
 			}
 
 			this.threadPoolSize = threadPoolSize;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.threadPoolSize(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.threadPoolSize(int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -288,7 +288,7 @@ public final class ImageLoaderConfiguration {
 		 * Default value - {@link #DEFAULT_THREAD_PRIORITY this}
 		 * */
 		public Builder threadPriority(int threadPriority) {
-			if (taskExecutor != null || taskExecutorForCachedImages != null) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.threadPriority(int)",this,threadPriority);try{if (taskExecutor != null || taskExecutorForCachedImages != null) {
 				L.w(WARNING_OVERLAP_EXECUTOR);
 			}
 
@@ -301,7 +301,7 @@ public final class ImageLoaderConfiguration {
 					this.threadPriority = threadPriority;
 				}
 			}
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.threadPriority(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.threadPriority(int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -313,8 +313,8 @@ public final class ImageLoaderConfiguration {
 		 * cached size of this image (if it exists) will be removed from memory cache before.
 		 * */
 		public Builder denyCacheImageMultipleSizesInMemory() {
-			this.denyCacheImageMultipleSizesInMemory = true;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.denyCacheImageMultipleSizesInMemory()",this);try{this.denyCacheImageMultipleSizesInMemory = true;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.denyCacheImageMultipleSizesInMemory()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.denyCacheImageMultipleSizesInMemory()",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -322,12 +322,12 @@ public final class ImageLoaderConfiguration {
 		 * Default value - {@link QueueProcessingType#FIFO}
 		 */
 		public Builder tasksProcessingOrder(QueueProcessingType tasksProcessingType) {
-			if (taskExecutor != null || taskExecutorForCachedImages != null) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.tasksProcessingOrder(com.nostra13.universalimageloader.core.assist.QueueProcessingType)",this,tasksProcessingType);try{if (taskExecutor != null || taskExecutorForCachedImages != null) {
 				L.w(WARNING_OVERLAP_EXECUTOR);
 			}
 
 			this.tasksProcessingType = tasksProcessingType;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.tasksProcessingOrder(com.nostra13.universalimageloader.core.assist.QueueProcessingType)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.tasksProcessingOrder(com.nostra13.universalimageloader.core.assist.QueueProcessingType)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -339,14 +339,14 @@ public final class ImageLoaderConfiguration {
 		 * {@link MemoryCacheAware}.
 		 */
 		public Builder memoryCacheSize(int memoryCacheSize) {
-			if (memoryCacheSize <= 0) throw new IllegalArgumentException("memoryCacheSize must be a positive number");
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSize(int)",this,memoryCacheSize);try{if (memoryCacheSize <= 0) {throw new IllegalArgumentException("memoryCacheSize must be a positive number");}
 
 			if (memoryCache != null) {
 				L.w(WARNING_OVERLAP_MEMORY_CACHE);
 			}
 
 			this.memoryCacheSize = memoryCacheSize;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSize(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCacheSize(int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -360,12 +360,12 @@ public final class ImageLoaderConfiguration {
 		 * </ul>
 		 */
 		public Builder memoryCache(MemoryCacheAware<String, Bitmap> memoryCache) {
-			if (memoryCacheSize != 0) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCache(com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",this,memoryCache);try{if (memoryCacheSize != 0) {
 				L.w(WARNING_OVERLAP_MEMORY_CACHE);
 			}
 
 			this.memoryCache = memoryCache;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCache(com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.memoryCache(com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -377,14 +377,14 @@ public final class ImageLoaderConfiguration {
 		 * implementation of {@link DiscCacheAware}
 		 */
 		public Builder discCacheSize(int maxCacheSize) {
-			if (maxCacheSize <= 0) throw new IllegalArgumentException("maxCacheSize must be a positive number");
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheSize(int)",this,maxCacheSize);try{if (maxCacheSize <= 0) {throw new IllegalArgumentException("maxCacheSize must be a positive number");}
 
 			if (discCache != null || discCacheFileCount > 0) {
 				L.w(WARNING_OVERLAP_DISC_CACHE_PARAMS);
 			}
 
 			this.discCacheSize = maxCacheSize;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheSize(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheSize(int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -396,7 +396,7 @@ public final class ImageLoaderConfiguration {
 		 * implementation of {@link DiscCacheAware}
 		 */
 		public Builder discCacheFileCount(int maxFileCount) {
-			if (maxFileCount <= 0) throw new IllegalArgumentException("maxFileCount must be a positive number");
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheFileCount(int)",this,maxFileCount);try{if (maxFileCount <= 0) {throw new IllegalArgumentException("maxFileCount must be a positive number");}
 
 			if (discCache != null || discCacheSize > 0) {
 				L.w(WARNING_OVERLAP_DISC_CACHE_PARAMS);
@@ -404,7 +404,7 @@ public final class ImageLoaderConfiguration {
 
 			this.discCacheSize = 0;
 			this.discCacheFileCount = maxFileCount;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheFileCount(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheFileCount(int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -414,12 +414,12 @@ public final class ImageLoaderConfiguration {
 		 * DefaultConfigurationFactory.createFileNameGenerator()}
 		 */
 		public Builder discCacheFileNameGenerator(FileNameGenerator fileNameGenerator) {
-			if (discCache != null) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheFileNameGenerator(com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator)",this,fileNameGenerator);try{if (discCache != null) {
 				L.w(WARNING_OVERLAP_DISC_CACHE_NAME_GENERATOR);
 			}
 
 			this.discCacheFileNameGenerator = fileNameGenerator;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheFileNameGenerator(com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCacheFileNameGenerator(com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -429,8 +429,8 @@ public final class ImageLoaderConfiguration {
 		 * DefaultConfigurationFactory.createImageDownloader()}
 		 * */
 		public Builder imageDownloader(ImageDownloader imageDownloader) {
-			this.downloader = imageDownloader;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.imageDownloader(com.nostra13.universalimageloader.core.download.ImageDownloader)",this,imageDownloader);try{this.downloader = imageDownloader;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.imageDownloader(com.nostra13.universalimageloader.core.download.ImageDownloader)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.imageDownloader(com.nostra13.universalimageloader.core.download.ImageDownloader)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -440,8 +440,8 @@ public final class ImageLoaderConfiguration {
 		 * DefaultConfigurationFactory.createImageDecoder()}
 		 * */
 		public Builder imageDecoder(ImageDecoder imageDecoder) {
-			this.decoder = imageDecoder;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.imageDecoder(com.nostra13.universalimageloader.core.decode.ImageDecoder)",this,imageDecoder);try{this.decoder = imageDecoder;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.imageDecoder(com.nostra13.universalimageloader.core.decode.ImageDecoder)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.imageDecoder(com.nostra13.universalimageloader.core.decode.ImageDecoder)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -459,7 +459,7 @@ public final class ImageLoaderConfiguration {
 		 * </ul>
 		 */
 		public Builder discCache(DiscCacheAware discCache) {
-			if (discCacheSize > 0 || discCacheFileCount > 0) {
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCache(com.nostra13.universalimageloader.cache.disc.DiscCacheAware)",this,discCache);try{if (discCacheSize > 0 || discCacheFileCount > 0) {
 				L.w(WARNING_OVERLAP_DISC_CACHE_PARAMS);
 			}
 			if (discCacheFileNameGenerator != null) {
@@ -467,7 +467,7 @@ public final class ImageLoaderConfiguration {
 			}
 
 			this.discCache = discCache;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCache(com.nostra13.universalimageloader.cache.disc.DiscCacheAware)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.discCache(com.nostra13.universalimageloader.cache.disc.DiscCacheAware)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -477,24 +477,24 @@ public final class ImageLoaderConfiguration {
 		 * Default value - {@link DisplayImageOptions#createSimple() Simple options}
 		 */
 		public Builder defaultDisplayImageOptions(DisplayImageOptions defaultDisplayImageOptions) {
-			this.defaultDisplayImageOptions = defaultDisplayImageOptions;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.defaultDisplayImageOptions(com.nostra13.universalimageloader.core.DisplayImageOptions)",this,defaultDisplayImageOptions);try{this.defaultDisplayImageOptions = defaultDisplayImageOptions;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.defaultDisplayImageOptions(com.nostra13.universalimageloader.core.DisplayImageOptions)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.defaultDisplayImageOptions(com.nostra13.universalimageloader.core.DisplayImageOptions)",this,throwable);throw throwable;}
 		}
 
 		/** Enabled detail logging of {@link ImageLoader} work */
 		public Builder enableLogging() {
-			this.loggingEnabled = true;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.enableLogging()",this);try{this.loggingEnabled = true;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.enableLogging()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.enableLogging()",this,throwable);throw throwable;}
 		}
 
 		/** Builds configured {@link ImageLoaderConfiguration} object */
 		public ImageLoaderConfiguration build() {
-			initEmptyFiledsWithDefaultValues();
-			return new ImageLoaderConfiguration(this);
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build()",this);try{initEmptyFiledsWithDefaultValues();
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build()",this);return new ImageLoaderConfiguration(this);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoaderConfiguration com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.build()",this,throwable);throw throwable;}
 		}
 
 		private void initEmptyFiledsWithDefaultValues() {
-			if (taskExecutor == null) {
+			com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFiledsWithDefaultValues()",this);try{if (taskExecutor == null) {
 				taskExecutor = DefaultConfigurationFactory.createExecutor(threadPoolSize, threadPriority, tasksProcessingType);
 			} else {
 				customExecutor = true;
@@ -524,7 +524,7 @@ public final class ImageLoaderConfiguration {
 			}
 			if (defaultDisplayImageOptions == null) {
 				defaultDisplayImageOptions = DisplayImageOptions.createSimple();
-			}
+			}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFiledsWithDefaultValues()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderConfiguration$Builder.initEmptyFiledsWithDefaultValues()",this,throwable);throw throwable;}
 		}
 	}
 }

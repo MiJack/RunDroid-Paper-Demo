@@ -49,26 +49,26 @@ public final class ImageSizeUtils {
 	 * 5) Get device screen dimensions.
 	 */
 	public static ImageSize defineTargetSizeForView(ImageView imageView, int maxImageWidth, int maxImageHeight) {
-		final DisplayMetrics displayMetrics = imageView.getContext().getResources().getDisplayMetrics();
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.utils.ImageSizeUtils.defineTargetSizeForView(android.widget.ImageView,int,int)",imageView,maxImageWidth,maxImageHeight);try{final DisplayMetrics displayMetrics = imageView.getContext().getResources().getDisplayMetrics();
 
 		final LayoutParams params = imageView.getLayoutParams();
-		int width = params.width == LayoutParams.WRAP_CONTENT ? 0 : imageView.getWidth(); // Get actual image width
-		if (width <= 0) width = params.width; // Get layout width parameter
-		if (width <= 0) width = getImageViewFieldValue(imageView, "mMaxWidth"); // Check maxWidth parameter
-		if (width <= 0) width = maxImageWidth;
-		if (width <= 0) width = displayMetrics.widthPixels;
+		int width = params.width == LayoutParams.WRAP_CONTENT ? 0 : imageView.getWidth(); /*// Get actual image width*/
+		if (width <= 0) {width = params.width;} /*// Get layout width parameter*/
+		if (width <= 0) {width = getImageViewFieldValue(imageView, "mMaxWidth");} /*// Check maxWidth parameter*/
+		if (width <= 0) {width = maxImageWidth;}
+		if (width <= 0) {width = displayMetrics.widthPixels;}
 
-		int height = params.height == LayoutParams.WRAP_CONTENT ? 0 : imageView.getHeight(); // Get actual image height
-		if (height <= 0) height = params.height; // Get layout height parameter
-		if (height <= 0) height = getImageViewFieldValue(imageView, "mMaxHeight"); // Check maxHeight parameter
-		if (height <= 0) height = maxImageHeight;
-		if (height <= 0) height = displayMetrics.heightPixels;
+		int height = params.height == LayoutParams.WRAP_CONTENT ? 0 : imageView.getHeight(); /*// Get actual image height*/
+		if (height <= 0) {height = params.height;} /*// Get layout height parameter*/
+		if (height <= 0) {height = getImageViewFieldValue(imageView, "mMaxHeight");} /*// Check maxHeight parameter*/
+		if (height <= 0) {height = maxImageHeight;}
+		if (height <= 0) {height = displayMetrics.heightPixels;}
 
-		return new ImageSize(width, height);
+		{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.utils.ImageSizeUtils.defineTargetSizeForView(android.widget.ImageView,int,int)");return new ImageSize(width, height);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.utils.ImageSizeUtils.defineTargetSizeForView(android.widget.ImageView,int,int)",throwable);throw throwable;}
 	}
 
 	private static int getImageViewFieldValue(Object object, String fieldName) {
-		int value = 0;
+		com.mijack.Xlog.logStaticMethodEnter("int com.nostra13.universalimageloader.utils.ImageSizeUtils.getImageViewFieldValue(java.lang.Object,java.lang.String)",object,fieldName);try{int value = 0;
 		try {
 			Field field = ImageView.class.getDeclaredField(fieldName);
 			field.setAccessible(true);
@@ -79,7 +79,7 @@ public final class ImageSizeUtils {
 		} catch (Exception e) {
 			L.e(e);
 		}
-		return value;
+		{com.mijack.Xlog.logStaticMethodExit("int com.nostra13.universalimageloader.utils.ImageSizeUtils.getImageViewFieldValue(java.lang.Object,java.lang.String)");return value;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.nostra13.universalimageloader.utils.ImageSizeUtils.getImageViewFieldValue(java.lang.Object,java.lang.String)",throwable);throw throwable;}
 	}
 
 	/**
@@ -110,7 +110,7 @@ public final class ImageSizeUtils {
 	 * @return Computed sample size
 	 */
 	public static int computeImageSampleSize(ImageSize srcSize, ImageSize targetSize, ViewScaleType viewScaleType, boolean powerOf2Scale) {
-		int srcWidth = srcSize.getWidth();
+		com.mijack.Xlog.logStaticMethodEnter("int com.nostra13.universalimageloader.utils.ImageSizeUtils.computeImageSampleSize(com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ViewScaleType,boolean)",srcSize,targetSize,viewScaleType,powerOf2Scale);try{int srcWidth = srcSize.getWidth();
 		int srcHeight = srcSize.getHeight();
 		int targetWidth = targetSize.getWidth();
 		int targetHeight = targetSize.getHeight();
@@ -123,24 +123,24 @@ public final class ImageSizeUtils {
 		switch (viewScaleType) {
 			case FIT_INSIDE:
 				if (powerOf2Scale) {
-					while (srcWidth / 2 >= targetWidth || srcHeight / 2 >= targetHeight) { // ||
+					while (srcWidth / 2 >= targetWidth || srcHeight / 2 >= targetHeight) { /*// ||*/
 						srcWidth /= 2;
 						srcHeight /= 2;
 						scale *= 2;
 					}
 				} else {
-					scale = Math.max(widthScale, heightScale); // max
+					scale = Math.max(widthScale, heightScale); /*// max*/
 				}
 				break;
 			case CROP:
 				if (powerOf2Scale) {
-					while (srcWidth / 2 >= targetWidth && srcHeight / 2 >= targetHeight) { // &&
+					while (srcWidth / 2 >= targetWidth && srcHeight / 2 >= targetHeight) { /*// &&*/
 						srcWidth /= 2;
 						srcHeight /= 2;
 						scale *= 2;
 					}
 				} else {
-					scale = Math.min(widthScale, heightScale); // min
+					scale = Math.min(widthScale, heightScale); /*// min*/
 				}
 				break;
 		}
@@ -149,7 +149,7 @@ public final class ImageSizeUtils {
 			scale = 1;
 		}
 
-		return scale;
+		{com.mijack.Xlog.logStaticMethodExit("int com.nostra13.universalimageloader.utils.ImageSizeUtils.computeImageSampleSize(com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ViewScaleType,boolean)");return scale;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.nostra13.universalimageloader.utils.ImageSizeUtils.computeImageSampleSize(com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ViewScaleType,boolean)",throwable);throw throwable;}
 	}
 
 	/**
@@ -175,7 +175,7 @@ public final class ImageSizeUtils {
 	 * @return Computed scale
 	 */
 	public static float computeImageScale(ImageSize srcSize, ImageSize targetSize, ViewScaleType viewScaleType, boolean stretch) {
-		int srcWidth = srcSize.getWidth();
+		com.mijack.Xlog.logStaticMethodEnter("float com.nostra13.universalimageloader.utils.ImageSizeUtils.computeImageScale(com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ViewScaleType,boolean)",srcSize,targetSize,viewScaleType,stretch);try{int srcWidth = srcSize.getWidth();
 		int srcHeight = srcSize.getHeight();
 		int targetWidth = targetSize.getWidth();
 		int targetHeight = targetSize.getHeight();
@@ -198,6 +198,6 @@ public final class ImageSizeUtils {
 			scale = (float) destWidth / srcWidth;
 		}
 
-		return scale;
+		{com.mijack.Xlog.logStaticMethodExit("float com.nostra13.universalimageloader.utils.ImageSizeUtils.computeImageScale(com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ViewScaleType,boolean)");return scale;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("float com.nostra13.universalimageloader.utils.ImageSizeUtils.computeImageScale(com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ViewScaleType,boolean)",throwable);throw throwable;}
 	}
 }

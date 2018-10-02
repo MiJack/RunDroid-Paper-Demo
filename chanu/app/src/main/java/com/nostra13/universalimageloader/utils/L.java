@@ -33,31 +33,31 @@ public final class L {
 	}
 
 	public static void d(String message, Object... args) {
-		log(Log.DEBUG, null, message, args);
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.L.d(java.lang.String,[java.lang.Object)",message,args);try{log(Log.DEBUG, null, message, args);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.L.d(java.lang.String,[java.lang.Object)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.L.d(java.lang.String,[java.lang.Object)",throwable);throw throwable;}
 	}
 
 	public static void i(String message, Object... args) {
-		log(Log.INFO, null, message, args);
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.L.i(java.lang.String,[java.lang.Object)",message,args);try{log(Log.INFO, null, message, args);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.L.i(java.lang.String,[java.lang.Object)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.L.i(java.lang.String,[java.lang.Object)",throwable);throw throwable;}
 	}
 
 	public static void w(String message, Object... args) {
-		log(Log.WARN, null, message, args);
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.L.w(java.lang.String,[java.lang.Object)",message,args);try{log(Log.WARN, null, message, args);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.L.w(java.lang.String,[java.lang.Object)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.L.w(java.lang.String,[java.lang.Object)",throwable);throw throwable;}
 	}
 
 	public static void e(Throwable ex) {
-		log(Log.ERROR, ex, null);
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.L.e(java.lang.Throwable)",ex);try{log(Log.ERROR, ex, null);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.L.e(java.lang.Throwable)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.L.e(java.lang.Throwable)",throwable);throw throwable;}
 	}
 
 	public static void e(String message, Object... args) {
-		log(Log.ERROR, null, message, args);
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.L.e(java.lang.String,[java.lang.Object)",message,args);try{log(Log.ERROR, null, message, args);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.L.e(java.lang.String,[java.lang.Object)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.L.e(java.lang.String,[java.lang.Object)",throwable);throw throwable;}
 	}
 
 	public static void e(Throwable ex, String message, Object... args) {
-		log(Log.ERROR, ex, message, args);
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.L.e(java.lang.Throwable,java.lang.String,[java.lang.Object)",ex,message,args);try{log(Log.ERROR, ex, message, args);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.L.e(java.lang.Throwable,java.lang.String,[java.lang.Object)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.L.e(java.lang.Throwable,java.lang.String,[java.lang.Object)",throwable);throw throwable;}
 	}
 
 	private static void log(int priority, Throwable ex, String message, Object... args) {
-		if (args.length > 0) {
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.L.log(int,java.lang.Throwable,java.lang.String,[java.lang.Object)",priority,ex,message,args);try{if (args.length > 0) {
 			message = String.format(message, args);
 		}
 
@@ -69,6 +69,6 @@ public final class L {
 			String logBody = Log.getStackTraceString(ex);
 			log = String.format(LOG_FORMAT, logMessage, logBody);
 		}
-		Log.println(priority, ImageLoader.TAG, log);
+		Log.println(priority, ImageLoader.TAG, log);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.L.log(int,java.lang.Throwable,java.lang.String,[java.lang.Object)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.L.log(int,java.lang.Throwable,java.lang.String,[java.lang.Object)",throwable);throw throwable;}
 	}
 }

@@ -36,24 +36,24 @@ public class FillLightAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final FillLightFilter filter = new FillLightFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FillLightAction.doBegin()",this);try{final FillLightFilter filter = new FillLightFilter();
 
         scalePicker = factory.createScalePicker(EffectToolFactory.ScalePickerType.LIGHT);
         scalePicker.setOnScaleChangeListener(new ScaleSeekBar.OnScaleChangeListener() {
 
             @Override
             public void onProgressChanged(float progress, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FillLightAction$1.onProgressChanged(float,boolean)",this,progress,fromUser);try{if (fromUser) {
                     filter.setBacklight(progress);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FillLightAction$1.onProgressChanged(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FillLightAction$1.onProgressChanged(float,boolean)",this,throwable);throw throwable;}
             }
         });
-        scalePicker.setProgress(DEFAULT_SCALE);
+        scalePicker.setProgress(DEFAULT_SCALE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FillLightAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FillLightAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        scalePicker.setOnScaleChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FillLightAction.doEnd()",this);try{scalePicker.setOnScaleChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FillLightAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FillLightAction.doEnd()",this,throwable);throw throwable;}
     }
 }

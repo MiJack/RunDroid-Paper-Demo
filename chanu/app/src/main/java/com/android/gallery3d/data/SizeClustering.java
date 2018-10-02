@@ -50,11 +50,11 @@ public class SizeClustering extends Clustering {
 
     @Override
     public void run(MediaSet baseSet) {
-        final ArrayList<Path>[] group =
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.SizeClustering.run(com.android.gallery3d.data.MediaSet)",this,baseSet);try{final ArrayList<Path>[] group =
                 (ArrayList<Path>[]) new ArrayList[SIZE_LEVELS.length];
         baseSet.enumerateTotalMediaItems(new MediaSet.ItemConsumer() {
             public void consume(int index, MediaItem item) {
-                // Find the cluster this item belongs to.
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.SizeClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,index,item);try{/*// Find the cluster this item belongs to.*/
                 long size = item.getSize();
                 int i;
                 for (i = 0; i < SIZE_LEVELS.length - 1; i++) {
@@ -68,7 +68,7 @@ public class SizeClustering extends Clustering {
                     list = new ArrayList<Path>();
                     group[i] = list;
                 }
-                list.add(item.getPath());
+                list.add(item.getPath());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.SizeClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.SizeClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,throwable);throw throwable;}
             }
         });
 
@@ -85,10 +85,10 @@ public class SizeClustering extends Clustering {
 
         Resources res = mContext.getResources();
         int k = 0;
-        // Go through group in the reverse order, so the group with the largest
-        // size will show first.
+        /*// Go through group in the reverse order, so the group with the largest*/
+        /*// size will show first.*/
         for (int i = group.length - 1; i >= 0; i--) {
-            if (group[i] == null) continue;
+            if (group[i] == null) {continue;}
 
             mClusters[k] = group[i];
             if (i == 0) {
@@ -105,34 +105,34 @@ public class SizeClustering extends Clustering {
             }
             mMinSizes[k] = SIZE_LEVELS[i];
             k++;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.SizeClustering.run(com.android.gallery3d.data.MediaSet)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.SizeClustering.run(com.android.gallery3d.data.MediaSet)",this,throwable);throw throwable;}
     }
 
     private String getSizeString(int index) {
-        long bytes = SIZE_LEVELS[index];
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.SizeClustering.getSizeString(int)",this,index);try{long bytes = SIZE_LEVELS[index];
         if (bytes >= GIGA_BYTES) {
-            return (bytes / GIGA_BYTES) + "GB";
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.SizeClustering.getSizeString(int)",this);return (bytes / GIGA_BYTES) + "GB";}
         } else {
-            return (bytes / MEGA_BYTES) + "MB";
-        }
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.SizeClustering.getSizeString(int)",this);return (bytes / MEGA_BYTES) + "MB";}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.SizeClustering.getSizeString(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getNumberOfClusters() {
-        return mClusters.length;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.SizeClustering.getNumberOfClusters()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.SizeClustering.getNumberOfClusters()",this);return mClusters.length;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.SizeClustering.getNumberOfClusters()",this,throwable);throw throwable;}
     }
 
     @Override
     public ArrayList<Path> getCluster(int index) {
-        return mClusters[index];
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.SizeClustering.getCluster(int)",this,index);try{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.SizeClustering.getCluster(int)",this);return mClusters[index];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.SizeClustering.getCluster(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public String getClusterName(int index) {
-        return mNames[index];
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.SizeClustering.getClusterName(int)",this,index);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.SizeClustering.getClusterName(int)",this);return mNames[index];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.SizeClustering.getClusterName(int)",this,throwable);throw throwable;}
     }
 
     public long getMinSize(int index) {
-        return mMinSizes[index];
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.SizeClustering.getMinSize(int)",this,index);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.SizeClustering.getMinSize(int)",this);return mMinSizes[index];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.SizeClustering.getMinSize(int)",this,throwable);throw throwable;}
     }
 }

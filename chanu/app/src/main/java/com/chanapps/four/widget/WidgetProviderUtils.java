@@ -44,7 +44,7 @@ public final class WidgetProviderUtils {
     public static final String WIDGET_PROVIDER_UTILS = "com.chanapps.four.widget.WidgetProviderUtils";
 
     public static Set<String> getActiveWidgetPref(Context context) {
-        ComponentName widgetProvider = new ComponentName(context, AbstractBoardWidgetProvider.class);
+        com.mijack.Xlog.logStaticMethodEnter("java.util.Set com.chanapps.four.widget.WidgetProviderUtils.getActiveWidgetPref(android.content.Context)",context);try{ComponentName widgetProvider = new ComponentName(context, AbstractBoardWidgetProvider.class);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(widgetProvider);
         Set<Integer> activeWidgetIds = new HashSet<Integer>();
@@ -60,39 +60,39 @@ public final class WidgetProviderUtils {
             String[] components = widgetBoard.split(WidgetConf.DELIM);
             int widgetId = Integer.valueOf(components[0]);
             if (activeWidgetIds.contains(widgetId))
-                savedWidgetConf.add(widgetBoard);
+                {savedWidgetConf.add(widgetBoard);}
         }
 
         if (DEBUG) {
-            if (DEBUG) Log.i(WidgetProviderUtils.TAG, "Dumping active widget conf:");
+            if (DEBUG) {Log.i(WidgetProviderUtils.TAG, "Dumping active widget conf:");}
             for (String widgetBoard : savedWidgetConf) {
-                if (DEBUG) Log.i(WidgetProviderUtils.TAG, widgetBoard);
+                if (DEBUG) {Log.i(WidgetProviderUtils.TAG, widgetBoard);}
             }
         }
 
-        return savedWidgetConf;
+        {com.mijack.Xlog.logStaticMethodExit("java.util.Set com.chanapps.four.widget.WidgetProviderUtils.getActiveWidgetPref(android.content.Context)");return savedWidgetConf;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.Set com.chanapps.four.widget.WidgetProviderUtils.getActiveWidgetPref(android.content.Context)",throwable);throw throwable;}
     }
 
     public static void saveWidgetBoardPref(Context context, Set<String> savedWidgetConf) {
-        PreferenceManager.getDefaultSharedPreferences(context)
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.saveWidgetBoardPref(android.content.Context,java.util.Set)",context,savedWidgetConf);try{PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
                 .putStringSet(SettingsActivity.PREF_WIDGET_BOARDS, savedWidgetConf)
-                .commit();
+                .commit();com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.saveWidgetBoardPref(android.content.Context,java.util.Set)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.saveWidgetBoardPref(android.content.Context,java.util.Set)",throwable);throw throwable;}
     }
 
     public static WidgetConf loadWidgetConf(Context context, int appWidgetId) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        com.mijack.Xlog.logStaticMethodEnter("java.util.WidgetConf com.chanapps.four.widget.WidgetProviderUtils.loadWidgetConf(android.content.Context,int)",context,appWidgetId);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> widgetBoards = prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>());
         for (String widgetBoard : widgetBoards) {
             WidgetConf widgetConf = new WidgetConf(widgetBoard);
             if (widgetConf.appWidgetId == appWidgetId)
-                return widgetConf;
+                {{com.mijack.Xlog.logStaticMethodExit("java.util.WidgetConf com.chanapps.four.widget.WidgetProviderUtils.loadWidgetConf(android.content.Context,int)");return widgetConf;}}
         }
-        return null;
+        {com.mijack.Xlog.logStaticMethodExit("java.util.WidgetConf com.chanapps.four.widget.WidgetProviderUtils.loadWidgetConf(android.content.Context,int)");return null;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.WidgetConf com.chanapps.four.widget.WidgetProviderUtils.loadWidgetConf(android.content.Context,int)",throwable);throw throwable;}
     }
 
     public static void fetchAllWidgets(Context context) {
-        if (DEBUG) Log.i(WidgetProviderUtils.TAG, "fetchAllWidgets");
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.fetchAllWidgets(android.content.Context)",context);try{if (DEBUG) {Log.i(WidgetProviderUtils.TAG, "fetchAllWidgets");}
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> widgetBoards = prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>());
         Set<String> boardsToFetch = new HashSet<String>();
@@ -102,47 +102,47 @@ public final class WidgetProviderUtils {
             boardsToFetch.add(widgetBoardCode);
         }
         for (String boardCode : boardsToFetch) {
-            if (DEBUG) Log.i(WidgetProviderUtils.TAG, "fetchAllWidgets board=" + boardCode + " scheduling fetch");
-            //if (ChanBoard.WATCHLIST_BOARD_CODE.equals(boardCode))
-            //    GlobalAlarmReceiver.fetchWatchlistThreads(context);
-            //else
+            if (DEBUG) {Log.i(WidgetProviderUtils.TAG, "fetchAllWidgets board=" + boardCode + " scheduling fetch");}
+            /*//if (ChanBoard.WATCHLIST_BOARD_CODE.equals(boardCode))*/
+            /*//    GlobalAlarmReceiver.fetchWatchlistThreads(context);*/
+            /*//else*/
             if (ChanBoard.isPopularBoard(boardCode))
-                FetchPopularThreadsService.schedulePopularFetchService(context, false, true);
+                {FetchPopularThreadsService.schedulePopularFetchService(context, false, true);}
             else if (ChanBoard.isVirtualBoard(boardCode))
-                ;// skip
+                {;}/*// skip*/
             else
-                FetchChanDataService.scheduleBoardFetch(context, boardCode, false, true);
-        }
+                {FetchChanDataService.scheduleBoardFetch(context, boardCode, false, true);}
+        }com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.fetchAllWidgets(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.fetchAllWidgets(android.content.Context)",throwable);throw throwable;}
     }
 
     public static void update(Context context, int appWidgetId, String widgetType) {
-        WidgetConf widgetConf = loadWidgetConf(context, appWidgetId);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.update(android.content.Context,int,java.util.String)",context,appWidgetId,widgetType);try{WidgetConf widgetConf = loadWidgetConf(context, appWidgetId);
         if (widgetConf != null) {
-            if (DEBUG) Log.i(WidgetProviderUtils.TAG, "update() calling update widget service for widget=" + appWidgetId + " /" + widgetConf.boardCode + "/");
+            if (DEBUG) {Log.i(WidgetProviderUtils.TAG, "update() calling update widget service for widget=" + appWidgetId + " /" + widgetConf.boardCode + "/");}
             Intent updateIntent = new Intent(context, UpdateWidgetService.class);
             updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             updateIntent.putExtra(WIDGET_PROVIDER_UTILS, widgetType);
             context.startService(updateIntent);
         } else {
             if (DEBUG)
-                Log.i(WidgetProviderUtils.TAG, "update() widget conf not yet initialized, skipping update for widget=" + appWidgetId);
-        }
+                {Log.i(WidgetProviderUtils.TAG, "update() widget conf not yet initialized, skipping update for widget=" + appWidgetId);}
+        }com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.update(android.content.Context,int,java.util.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.update(android.content.Context,int,java.util.String)",throwable);throw throwable;}
     }
 
     public static void updateAll(Context context) {
-        if (DEBUG) Log.i(WidgetProviderUtils.TAG, "Updating all widgets");
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.updateAll(android.content.Context)",context);try{if (DEBUG) {Log.i(WidgetProviderUtils.TAG, "Updating all widgets");}
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> widgetBoards = prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>());
         for (String widgetBoard : widgetBoards) {
             String[] components = widgetBoard.split("/");
             int appWidgetId = Integer.valueOf(components[0]);
             update(context, appWidgetId, components.length > 7 ? components[7] : WidgetConstants.WIDGET_TYPE_EMPTY);
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.updateAll(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.updateAll(android.content.Context)",throwable);throw throwable;}
 
     }
 
     public static void updateAll(Context context, String boardCode) {
-        if (DEBUG) Log.i(TAG, "updateAll boardCode=" + boardCode);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.updateAll(android.content.Context,java.util.String)",context,boardCode);try{if (DEBUG) {Log.i(TAG, "updateAll boardCode=" + boardCode);}
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> widgetBoards = prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>());
         for (String widgetBoard : widgetBoards) {
@@ -150,17 +150,17 @@ public final class WidgetProviderUtils {
             int widgetId = Integer.valueOf(components[0]);
             String widgetBoardCode = components[1];
             if (widgetBoardCode.equals(boardCode))
-                update(context, widgetId, components.length > 7 ? components[7] : WidgetConstants.WIDGET_TYPE_EMPTY);
-        }
+                {update(context, widgetId, components.length > 7 ? components[7] : WidgetConstants.WIDGET_TYPE_EMPTY);}
+        }com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.updateAll(android.content.Context,java.util.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.updateAll(android.content.Context,java.util.String)",throwable);throw throwable;}
     }
 
     public static boolean storeWidgetConf(final Context context, final WidgetConf widgetConf) {
-        int appWidgetId = widgetConf.appWidgetId;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.widget.WidgetProviderUtils.storeWidgetConf(android.content.Context,java.util.WidgetConf)",context,widgetConf);try{int appWidgetId = widgetConf.appWidgetId;
         String boardCode = widgetConf.boardCode;
-        if (DEBUG) Log.i(WidgetProviderUtils.TAG, "Configuring widget=" + appWidgetId + " with board=" + boardCode);
+        if (DEBUG) {Log.i(WidgetProviderUtils.TAG, "Configuring widget=" + appWidgetId + " with board=" + boardCode);}
         if (boardCode == null || ChanBoard.getBoardByCode(context, boardCode) == null) {
             Log.e(WidgetProviderUtils.TAG, "Couldn't find board=" + boardCode + " for widget=" + appWidgetId + " not adding widget");
-            return false;
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.widget.WidgetProviderUtils.storeWidgetConf(android.content.Context,java.util.WidgetConf)");return false;}
         }
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> widgetBoards = prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>());
@@ -182,20 +182,20 @@ public final class WidgetProviderUtils {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putStringSet(SettingsActivity.PREF_WIDGET_BOARDS, newWidgetBoards);
         editor.commit();
-        return true;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.widget.WidgetProviderUtils.storeWidgetConf(android.content.Context,java.util.WidgetConf)");return true;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.widget.WidgetProviderUtils.storeWidgetConf(android.content.Context,java.util.WidgetConf)",throwable);throw throwable;}
     }
 
     public static boolean hasWidgets(final Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>()).size() > 0;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.widget.WidgetProviderUtils.hasWidgets(android.content.Context)",context);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.widget.WidgetProviderUtils.hasWidgets(android.content.Context)");return prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>()).size() > 0;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.widget.WidgetProviderUtils.hasWidgets(android.content.Context)",throwable);throw throwable;}
     }
 
     public static void asyncUpdateWidgetsAndWatchlist(final Context context) {
-        new Thread(new Runnable() {
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.asyncUpdateWidgetsAndWatchlist(android.content.Context)",context);try{new Thread(new Runnable() {
             @Override
             public void run() {
-               if (hasWidgets(context))
-                    fetchAllWidgets(context);
+               com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils$1.run()",this);try{if (hasWidgets(context))
+                    {fetchAllWidgets(context);}
 
                 /*
                 ChanBoard board = ChanFileStorage.loadBoardData(context, ChanBoard.WATCHLIST_BOARD_CODE);
@@ -208,29 +208,29 @@ public final class WidgetProviderUtils {
                     GlobalAlarmReceiver.fetchFavoriteBoards(context);
                 */
 
-                //if (hasWidgets) // || hasFavorites)
-                scheduleGlobalAlarm(context); // always schedule in case widgets are added in the future
+                /*//if (hasWidgets) // || hasFavorites)*/
+                scheduleGlobalAlarm(context); /*// always schedule in case widgets are added in the future*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetProviderUtils$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils$1.run()",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.asyncUpdateWidgetsAndWatchlist(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.asyncUpdateWidgetsAndWatchlist(android.content.Context)",throwable);throw throwable;}
     }
 
-    public static void scheduleGlobalAlarm(final Context context) { // will reschedule if not already scheduled
+    public static void scheduleGlobalAlarm(final Context context) { com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.scheduleGlobalAlarm(android.content.Context)",context);try{/*// will reschedule if not already scheduled*/
         GlobalAlarmReceiver.scheduleGlobalAlarm(context);
         /*
         Intent intent = new Intent(context, GlobalAlarmReceiver.class);
         intent.setAction(GlobalAlarmReceiver.GLOBAL_ALARM_RECEIVER_SCHEDULE_ACTION);
         context.startService(intent);
         */
-        if (DEBUG) Log.i(TAG, "Scheduled global alarm");
+        if (DEBUG) {Log.i(TAG, "Scheduled global alarm");}com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.scheduleGlobalAlarm(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.scheduleGlobalAlarm(android.content.Context)",throwable);throw throwable;}
     }
 
     public static ChanPost[] loadBestWidgetThreads(Context context, String boardCode, int numThreads) {
-        ChanPost[] widgetThreads = new ChanPost[numThreads];
+        com.mijack.Xlog.logStaticMethodEnter("[com.chanapps.four.data.ChanPost com.chanapps.four.widget.WidgetProviderUtils.loadBestWidgetThreads(android.content.Context,java.util.String,int)",context,boardCode,numThreads);try{ChanPost[] widgetThreads = new ChanPost[numThreads];
 
         ChanBoard board = ChanFileStorage.loadBoardData(context, boardCode);
         if (board == null) {
             Log.e(TAG, "Couldn't load widget null board for boardCode=" + boardCode);
-            return widgetThreads;
+            {com.mijack.Xlog.logStaticMethodExit("[com.chanapps.four.data.ChanPost com.chanapps.four.widget.WidgetProviderUtils.loadBestWidgetThreads(android.content.Context,java.util.String,int)");return widgetThreads;}
         }
 
         ChanPost[] boardThreads = board.loadedThreads != null && board.loadedThreads.length > 0
@@ -247,10 +247,10 @@ public final class WidgetProviderUtils {
                 p.com = board.getDescription(context);
                 widgetThreads[i] = p;
             }
-            return widgetThreads;
+            {com.mijack.Xlog.logStaticMethodExit("[com.chanapps.four.data.ChanPost com.chanapps.four.widget.WidgetProviderUtils.loadBestWidgetThreads(android.content.Context,java.util.String,int)");return widgetThreads;}
         }
 
-        // try to load what we can
+        /*// try to load what we can*/
         int threadIndex = 0;
         int filledCount = 0;
         Set<Integer> threadsUsed = new HashSet<Integer>(numThreads);
@@ -271,12 +271,12 @@ public final class WidgetProviderUtils {
             }
         }
 
-        // what if we are missing threads? for instance no images with latest threads
+        /*// what if we are missing threads? for instance no images with latest threads*/
         threadIndex = 0;
         if (filledCount < numThreads) {
             for (int i = 0; i < numThreads; i++) {
                 if (widgetThreads[i] != null)
-                    continue;
+                    {continue;}
                 ChanPost thread = null;
                 while (threadIndex < boardThreads.length) {
                     ChanPost test = boardThreads[threadIndex];
@@ -293,15 +293,15 @@ public final class WidgetProviderUtils {
             }
         }
 
-        return widgetThreads;
+        {com.mijack.Xlog.logStaticMethodExit("[com.chanapps.four.data.ChanPost com.chanapps.four.widget.WidgetProviderUtils.loadBestWidgetThreads(android.content.Context,java.util.String,int)");return widgetThreads;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[com.chanapps.four.data.ChanPost com.chanapps.four.widget.WidgetProviderUtils.loadBestWidgetThreads(android.content.Context,java.util.String,int)",throwable);throw throwable;}
     }
 
 
     public static List<String> preloadThumbnailURLs(final Context context, final String boardCode, final int maxThreads) {
-        ChanBoard board = ChanFileStorage.loadBoardData(context, boardCode);
+        com.mijack.Xlog.logStaticMethodEnter("java.util.List com.chanapps.four.widget.WidgetProviderUtils.preloadThumbnailURLs(android.content.Context,java.util.String,int)",context,boardCode,maxThreads);try{ChanBoard board = ChanFileStorage.loadBoardData(context, boardCode);
         if (board == null) {
             Log.e(TAG, "Couldn't load widget null board for boardCode=" + boardCode);
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("java.util.List com.chanapps.four.widget.WidgetProviderUtils.preloadThumbnailURLs(android.content.Context,java.util.String,int)");return null;}
         }
 
         ChanPost[] boardThreads = board.loadedThreads != null && board.loadedThreads.length > 0
@@ -309,10 +309,10 @@ public final class WidgetProviderUtils {
                 : board.threads;
         if (boardThreads == null || boardThreads.length == 0 || boardThreads[0] == null || boardThreads[0].defData) {
             Log.e(TAG, "Couldn't load widget no threads for boardCode=" + boardCode);
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("java.util.List com.chanapps.four.widget.WidgetProviderUtils.preloadThumbnailURLs(android.content.Context,java.util.String,int)");return null;}
         }
 
-        // try to load what we can
+        /*// try to load what we can*/
         int validThreads = 0;
         List<String> preloadURLs = new ArrayList<String>();
         for (int i = 0; i < boardThreads.length; i++) {
@@ -321,20 +321,20 @@ public final class WidgetProviderUtils {
                 String url = thread.thumbnailUrl(context);
                 File f = ChanImageLoader.getInstance(context).getDiscCache().get(url);
                 if (f == null || !f.canRead() || f.length() <= 0)
-                    preloadURLs.add(url);
+                    {preloadURLs.add(url);}
                 if (++validThreads >= maxThreads)
-                    break;
+                    {break;}
             }
         }
 
-        return preloadURLs;
+        {com.mijack.Xlog.logStaticMethodExit("java.util.List com.chanapps.four.widget.WidgetProviderUtils.preloadThumbnailURLs(android.content.Context,java.util.String,int)");return preloadURLs;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.List com.chanapps.four.widget.WidgetProviderUtils.preloadThumbnailURLs(android.content.Context,java.util.String,int)",throwable);throw throwable;}
     }
 
     public static List<ChanPost> viableThreads(final Context context, final String boardCode, final int maxThreads) {
-        ChanBoard board = ChanFileStorage.loadBoardData(context, boardCode);
+        com.mijack.Xlog.logStaticMethodEnter("java.util.List com.chanapps.four.widget.WidgetProviderUtils.viableThreads(android.content.Context,java.util.String,int)",context,boardCode,maxThreads);try{ChanBoard board = ChanFileStorage.loadBoardData(context, boardCode);
         if (board == null) {
             Log.e(TAG, "viableThreads() couldn't load widget null board for boardCode=" + boardCode);
-            return new ArrayList<ChanPost>();
+            {com.mijack.Xlog.logStaticMethodExit("java.util.List com.chanapps.four.widget.WidgetProviderUtils.viableThreads(android.content.Context,java.util.String,int)");return new ArrayList<ChanPost>();}
         }
 
         ChanPost[] boardThreads = board.loadedThreads != null && board.loadedThreads.length > 0
@@ -342,75 +342,75 @@ public final class WidgetProviderUtils {
                 : board.threads;
         if (boardThreads == null || boardThreads.length == 0) {
             Log.e(TAG, "viableThreads() couldn't load widget no threads for boardCode=" + boardCode);
-            return new ArrayList<ChanPost>();
+            {com.mijack.Xlog.logStaticMethodExit("java.util.List com.chanapps.four.widget.WidgetProviderUtils.viableThreads(android.content.Context,java.util.String,int)");return new ArrayList<ChanPost>();}
         }
 
-        // try to load what we can
-        if (DEBUG) Log.i(TAG, "viableThreads checking " + boardThreads.length + " threads");
+        /*// try to load what we can*/
+        if (DEBUG) {Log.i(TAG, "viableThreads checking " + boardThreads.length + " threads");}
         List<ChanPost> viableThreads = new ArrayList<ChanPost>();
         for (int i = 0; i < boardThreads.length; i++) {
             ChanPost thread = boardThreads[i];
             boolean viable;
             if (thread == null)
-                viable = false;
-            else if (board.isPopularBoard()) // never have images or sticky, so always viable
-                viable = true;
+                {viable = false;}
+            else if (board.isPopularBoard()) /*// never have images or sticky, so always viable*/
+                {viable = true;}
             else if (thread.sticky <= 0 && thread.tim > 0 && thread.no > 0)
-                viable = true;
+                {viable = true;}
             else
-                viable = false;
+                {viable = false;}
             if (!viable)
-                continue;
+                {continue;}
             String url = thread.thumbnailUrl(context);
             File f = ChanImageLoader.getInstance(context).getDiscCache().get(url);
             if (f == null || !f.canRead() || f.length() <= 0)
-                continue;
+                {continue;}
             if (viableThreads.size() < maxThreads) {
-                if (DEBUG) Log.i(TAG, "viableThreads adding " + thread);
+                if (DEBUG) {Log.i(TAG, "viableThreads adding " + thread);}
                 viableThreads.add(thread);
                 if (viableThreads.size() >= maxThreads)
-                    break;
+                    {break;}
             }
         }
 
-        return viableThreads;
+        {com.mijack.Xlog.logStaticMethodExit("java.util.List com.chanapps.four.widget.WidgetProviderUtils.viableThreads(android.content.Context,java.util.String,int)");return viableThreads;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.List com.chanapps.four.widget.WidgetProviderUtils.viableThreads(android.content.Context,java.util.String,int)",throwable);throw throwable;}
     }
 
     static public void asyncDownloadAndCacheUrl(final Context context, final String url, final Runnable downloadCallback) {
-        new Thread(new Runnable() {
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.asyncDownloadAndCacheUrl(android.content.Context,java.util.String,java.util.Runnable)",context,url,downloadCallback);try{new Thread(new Runnable() {
             @Override
             public void run() {
-                downloadAndCacheUrl(context, url, downloadCallback);
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils$2.run()",this);try{downloadAndCacheUrl(context, url, downloadCallback);com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetProviderUtils$2.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils$2.run()",this,throwable);throw throwable;}
             }
-        }).start();
+        }).start();com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.asyncDownloadAndCacheUrl(android.content.Context,java.util.String,java.util.Runnable)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.asyncDownloadAndCacheUrl(android.content.Context,java.util.String,java.util.Runnable)",throwable);throw throwable;}
     }
 
     static public void downloadAndCacheUrl(final Context context, final String url, final Runnable downloadCallback) {
-        Bitmap b = downloadBitmap(url);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.widget.WidgetProviderUtils.downloadAndCacheUrl(android.content.Context,java.util.String,java.util.Runnable)",context,url,downloadCallback);try{Bitmap b = downloadBitmap(url);
         if (b == null || b.getByteCount() <= 0)
-            return;
+            {{com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.downloadAndCacheUrl(android.content.Context,java.util.String,java.util.Runnable)");return;}}
         File f = ChanImageLoader.getInstance(context).getDiscCache().get(url);
         if (f == null)
-            return;
+            {{com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.widget.WidgetProviderUtils.downloadAndCacheUrl(android.content.Context,java.util.String,java.util.Runnable)");return;}}
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(f);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
-            if (DEBUG) Log.i(TAG, "downloadAndCacheUrl complete for url=" + url + " notifying callback");
+            if (DEBUG) {Log.i(TAG, "downloadAndCacheUrl complete for url=" + url + " notifying callback");}
             if (downloadCallback != null)
-                downloadCallback.run();
+                {downloadCallback.run();}
         }
         catch (IOException e) {
             Log.e(TAG, "Coludn't write file " + f.getAbsolutePath(), e);
         }
         finally {
             IOUtils.closeQuietly(fos);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.widget.WidgetProviderUtils.downloadAndCacheUrl(android.content.Context,java.util.String,java.util.Runnable)",throwable);throw throwable;}
     }
 
     static private Bitmap downloadBitmap(String url) {
-        final AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.chanapps.four.widget.WidgetProviderUtils.downloadBitmap(java.util.String)",url);try{final AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
         final HttpGet getRequest = new HttpGet(url);
 
         try {
@@ -418,7 +418,7 @@ public final class WidgetProviderUtils {
             final int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode != HttpStatus.SC_OK) {
                 Log.w("ImageDownloader", "Error " + statusCode + " while retrieving bitmap from " + url);
-                return null;
+                {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.chanapps.four.widget.WidgetProviderUtils.downloadBitmap(java.util.String)");return null;}
             }
 
             final HttpEntity entity = response.getEntity();
@@ -427,7 +427,7 @@ public final class WidgetProviderUtils {
                 try {
                     inputStream = entity.getContent();
                     final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                    return bitmap;
+                    {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.chanapps.four.widget.WidgetProviderUtils.downloadBitmap(java.util.String)");return bitmap;}
                 } finally {
                     if (inputStream != null) {
                         inputStream.close();
@@ -437,27 +437,27 @@ public final class WidgetProviderUtils {
             }
         } catch (Exception e) {
             getRequest.abort();
-            if (DEBUG) Log.i(TAG, "Exception while retrieving bitmap from " + url, e);
+            if (DEBUG) {Log.i(TAG, "Exception while retrieving bitmap from " + url, e);}
         } catch (Error e) {
             getRequest.abort();
-            if (DEBUG) Log.i(TAG, "Error while retrieving bitmap from " + url, e);
+            if (DEBUG) {Log.i(TAG, "Error while retrieving bitmap from " + url, e);}
         } finally {
             if (client != null) {
                 client.close();
             }
         }
-        return null;
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.chanapps.four.widget.WidgetProviderUtils.downloadBitmap(java.util.String)");return null;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.chanapps.four.widget.WidgetProviderUtils.downloadBitmap(java.util.String)",throwable);throw throwable;}
     }
 
     static protected boolean safeSetRemoteViewThumbnail(Context context, WidgetConf widgetConf, RemoteViews views, int imageId, String url, int i) {
-        File f = url == null || url.isEmpty() ? null : ChanImageLoader.getInstance(context).getDiscCache().get(url);
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.widget.WidgetProviderUtils.safeSetRemoteViewThumbnail(android.content.Context,java.util.WidgetConf,android.widget.RemoteViews,int,java.util.String,int)",context,widgetConf,views,imageId,url,i);try{File f = url == null || url.isEmpty() ? null : ChanImageLoader.getInstance(context).getDiscCache().get(url);
         boolean isCached = false;
         if (f != null && f.canRead() && f.length() > 0) {
             try {
                 Bitmap b = BitmapFactory.decodeFile(f.getAbsolutePath());
                 views.setImageViewBitmap(imageId, b);
                 isCached = true;
-                if (DEBUG) Log.i(TAG, "safeSetRemoteViewThumbnail() i=" + i + " url=" + url + " set image to file=" + f.getAbsolutePath());
+                if (DEBUG) {Log.i(TAG, "safeSetRemoteViewThumbnail() i=" + i + " url=" + url + " set image to file=" + f.getAbsolutePath());}
             }
             catch (Exception e) {
                 Log.e(TAG, "safeSetRemoteViewThumbnail() i=" + i + " url=" + url + " exception setting image to file=" + f.getAbsolutePath(), e);
@@ -466,8 +466,8 @@ public final class WidgetProviderUtils {
         if (!isCached && i > 0) {
             int defaultImageId = ChanBoard.getRandomImageResourceId(widgetConf.boardCode, i);
             views.setImageViewResource(imageId, defaultImageId);
-            if (DEBUG) Log.i(TAG, "safeSetRemoteViewThumbnail() i=" + i + " url=" + url + " no file, set image to default resource");
+            if (DEBUG) {Log.i(TAG, "safeSetRemoteViewThumbnail() i=" + i + " url=" + url + " no file, set image to default resource");}
         }
-        return isCached;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.widget.WidgetProviderUtils.safeSetRemoteViewThumbnail(android.content.Context,java.util.WidgetConf,android.widget.RemoteViews,int,java.util.String,int)");return isCached;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.widget.WidgetProviderUtils.safeSetRemoteViewThumbnail(android.content.Context,java.util.WidgetConf,android.widget.RemoteViews,int,java.util.String,int)",throwable);throw throwable;}
     }
 }

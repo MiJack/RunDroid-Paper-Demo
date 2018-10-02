@@ -57,7 +57,7 @@ public class AuthorizePassTask extends AsyncTask<AuthorizingPassDialogFragment, 
     }
 
     @Override
-    protected Integer doInBackground(AuthorizingPassDialogFragment... params) { // dialog is for callback
+    protected Integer doInBackground(AuthorizingPassDialogFragment... params) { com.mijack.Xlog.logMethodEnter("java.lang.Integer com.chanapps.four.task.AuthorizePassTask.doInBackground([com.chanapps.four.fragment.AuthorizingPassDialogFragment)",this,params);try{/*// dialog is for callback*/
         dialogFragment = params[0];
         int errorCode = 0;
         try {
@@ -77,147 +77,147 @@ public class AuthorizePassTask extends AsyncTask<AuthorizingPassDialogFragment, 
                     authorizePassResponse.processResponse();
 
                     if (!postSuccessful(authorizePassResponse))
-                        errorCode = R.string.authorize_pass_error;
+                        {errorCode = R.string.authorize_pass_error;}
                 }
             }
         }
         catch (Exception e) {
             Log.e(TAG, "Error posting", e);
-            return R.string.authorize_pass_error;
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.AuthorizePassTask.doInBackground([com.chanapps.four.fragment.AuthorizingPassDialogFragment)",this);return R.string.authorize_pass_error;}
         }
         finally {
             if (errorCode != 0) {
                 persistAuthorizedState(false);
-                if (DEBUG) Log.i(TAG, "Unable to authorize 4chan pass");
-                return errorCode;
+                if (DEBUG) {Log.i(TAG, "Unable to authorize 4chan pass");}
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.AuthorizePassTask.doInBackground([com.chanapps.four.fragment.AuthorizingPassDialogFragment)",this);return errorCode;}
             }
             else {
                 persistAuthorizedState(true);
-                if (DEBUG) Log.i(TAG, "4chan pass successfully authorized");
-                return 0;
+                if (DEBUG) {Log.i(TAG, "4chan pass successfully authorized");}
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.AuthorizePassTask.doInBackground([com.chanapps.four.fragment.AuthorizingPassDialogFragment)",this);return 0;}
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.chanapps.four.task.AuthorizePassTask.doInBackground([com.chanapps.four.fragment.AuthorizingPassDialogFragment)",this,throwable);throw throwable;}
     }
 
     protected MultipartEntity buildMultipartEntity() {
-        List<Part> partsList = new ArrayList<Part>();
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.task.AuthorizePassTask.buildMultipartEntity()",this);try{List<Part> partsList = new ArrayList<Part>();
         partsList.add(new StringPart("act", "do_login", PartBase.ASCII_CHARSET));
         partsList.add(new StringPart("id", passToken, PartBase.ASCII_CHARSET));
         partsList.add(new StringPart("pin", passPIN, PartBase.ASCII_CHARSET));
         partsList.add(new StringPart("long_login", "yes", PartBase.ASCII_CHARSET));
         Part[] parts = partsList.toArray(new Part[partsList.size()]);
         if (DEBUG)
-            dumpPartsList(partsList);
+            {dumpPartsList(partsList);}
         MultipartEntity entity = new MultipartEntity(parts);
-        return entity;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.task.AuthorizePassTask.buildMultipartEntity()",this);return entity;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.task.AuthorizePassTask.buildMultipartEntity()",this,throwable);throw throwable;}
     }
 
     protected void dumpPartsList(List<Part> partsList) {
-        if (DEBUG) Log.i(TAG, "Dumping mime parts list:");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.AuthorizePassTask.dumpPartsList(java.util.ArrayList)",this,partsList);try{if (DEBUG) {Log.i(TAG, "Dumping mime parts list:");}
         for (Part p : partsList) {
             if (!(p instanceof StringPart))
-                continue;
+                {continue;}
             StringPart s = (StringPart)p;
             String line = s.getName() + ": " + s.getValue() + ", ";
-            if (DEBUG) Log.i(TAG, line);
-        }
+            if (DEBUG) {Log.i(TAG, line);}
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.AuthorizePassTask.dumpPartsList(java.util.ArrayList)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.AuthorizePassTask.dumpPartsList(java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     protected String executeReportPost(MultipartEntity entity) {
-        String url = URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_AUTH_URL);
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.task.AuthorizePassTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this,entity);try{String url = URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_AUTH_URL);
         AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
         try {
-            // setup cookies
+            /*// setup cookies*/
             cookieStore = new PersistentCookieStore(context);
             HttpContext localContext = new BasicHttpContext();
             localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 
-            // do post
+            /*// do post*/
             HttpPost request = new HttpPost(url);
             entity.setContentEncoding(PartBase.ASCII_CHARSET);
             request.setEntity(entity);
             if (DEBUG)
-                dumpRequestContent(request.getEntity().getContent());
-            if (DEBUG) Log.i(TAG, "Calling URL: " + request.getURI());
+                {dumpRequestContent(request.getEntity().getContent());}
+            if (DEBUG) {Log.i(TAG, "Calling URL: " + request.getURI());}
             HttpResponse httpResponse = client.execute(request, localContext);
-            if (DEBUG) Log.i(TAG, "Response: " + (httpResponse == null ? "null" : "length: " + httpResponse.toString().length()));
-            if (DEBUG) Log.i(TAG, "Cookies: " + cookieStore.dump());
+            if (DEBUG) {Log.i(TAG, "Response: " + (httpResponse == null ? "null" : "length: " + httpResponse.toString().length()));}
+            if (DEBUG) {Log.i(TAG, "Cookies: " + cookieStore.dump());}
 
-            // check response
+            /*// check response*/
             if (httpResponse == null) {
                 Log.e(TAG, context.getString(R.string.authorize_pass_no_response));
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.AuthorizePassTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this);return null;}
             }
 
-            // read response
+            /*// read response*/
             BufferedReader r = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
             StringBuilder s = new StringBuilder();
             String line;
             while ((line = r.readLine()) != null) {
-                if (DEBUG) Log.i(TAG, "Response Line:" + line);
+                if (DEBUG) {Log.i(TAG, "Response Line:" + line);}
                 s.append(line);
             }
             String response = s.toString();
-            return response;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.AuthorizePassTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this);return response;}
         }
         catch (Exception e) {
             Log.e(TAG, "Exception while posting to url=" + url, e);
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.AuthorizePassTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this);return null;}
         }
         finally {
             if (client != null) {
                 client.close();
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.task.AuthorizePassTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this,throwable);throw throwable;}
     }
 
     protected void dumpRequestContent(InputStream is) {
-        if (DEBUG) Log.i(TAG, "Request Message Body:");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.AuthorizePassTask.dumpRequestContent(java.io.InputStream)",this,is);try{if (DEBUG) {Log.i(TAG, "Request Message Body:");}
         try {
             BufferedReader r = new BufferedReader(new InputStreamReader(is));
             String l;
             while ((l = r.readLine()) != null)
-                if (DEBUG) Log.i(TAG, l);
+                {if (DEBUG) {Log.i(TAG, l);}}
         }
         catch (IOException e) {
-            if (DEBUG) Log.i(TAG, "Exception reading message for logging", e);
-        }
+            if (DEBUG) {Log.i(TAG, "Exception reading message for logging", e);}
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.AuthorizePassTask.dumpRequestContent(java.io.InputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.AuthorizePassTask.dumpRequestContent(java.io.InputStream)",this,throwable);throw throwable;}
     }
 
     protected String errorMessage = null;
 
     protected boolean postSuccessful(AuthorizePassResponse authorizePassResponse) {
-        errorMessage = authorizePassResponse.getError(context);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.task.AuthorizePassTask.postSuccessful(com.chanapps.four.data.AuthorizePassResponse)",this,authorizePassResponse);try{errorMessage = authorizePassResponse.getError(context);
         if (errorMessage != null && !errorMessage.isEmpty()) {
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.task.AuthorizePassTask.postSuccessful(com.chanapps.four.data.AuthorizePassResponse)",this);return false;}
         }
 
-        if (DEBUG) Log.i(TAG, "isAuthorized:" + authorizePassResponse.isAuthorized());
+        if (DEBUG) {Log.i(TAG, "isAuthorized:" + authorizePassResponse.isAuthorized());}
         if (!authorizePassResponse.isAuthorized()) {
             Log.e(TAG, "Unable to post response=" + authorizePassResponse.getResponse());
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.task.AuthorizePassTask.postSuccessful(com.chanapps.four.data.AuthorizePassResponse)",this);return false;}
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.task.AuthorizePassTask.postSuccessful(com.chanapps.four.data.AuthorizePassResponse)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.task.AuthorizePassTask.postSuccessful(com.chanapps.four.data.AuthorizePassResponse)",this,throwable);throw throwable;}
     }
 
     protected void persistAuthorizedState(boolean authorized) {
-        PreferenceManager
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.AuthorizePassTask.persistAuthorizedState(boolean)",this,authorized);try{PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .edit()
                 .putBoolean(SettingsActivity.PREF_PASS_ENABLED, authorized)
-                .commit();
+                .commit();com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.AuthorizePassTask.persistAuthorizedState(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.AuthorizePassTask.persistAuthorizedState(boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onCancelled() {
-        Log.e(TAG, "Post cancelled");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.AuthorizePassTask.onCancelled()",this);try{Log.e(TAG, "Post cancelled");
         Toast.makeText(context, R.string.authorize_pass_cancelled, Toast.LENGTH_SHORT).show();
-        dialogFragment.dismiss();
+        dialogFragment.dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.AuthorizePassTask.onCancelled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.AuthorizePassTask.onCancelled()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostExecute(Integer result) {
-        if (result != 0) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.AuthorizePassTask.onPostExecute(java.lang.Integer)",this,result);try{if (result != 0) {
             String error = context.getString(result) + ("".equals(errorMessage) ? "" : ": " + errorMessage);
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
         }
@@ -225,7 +225,7 @@ public class AuthorizePassTask extends AsyncTask<AuthorizingPassDialogFragment, 
             Toast.makeText(context, R.string.authorize_pass_successful, Toast.LENGTH_SHORT).show();
         }
         dialogFragment.dismiss();
-        refreshableActivity.refresh();
+        refreshableActivity.refresh();com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.AuthorizePassTask.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.AuthorizePassTask.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
     }
 
 }

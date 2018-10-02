@@ -15,7 +15,7 @@ public class BoardInitializer
 
 
     public static String[][] initBoardCodes(Context ctx) {
-        String[][] boardCodesByType = {
+        com.mijack.Xlog.logStaticMethodEnter("[[java.lang.String com.chanapps.four.data.BoardInitializer.initBoardCodes(android.content.Context)",ctx);try{String[][] boardCodesByType = {
                 {   BoardType.WATCHLIST.toString(),
                         ChanBoard.WATCHLIST_BOARD_CODE, ctx.getString(R.string.board_watch),
                 },
@@ -191,11 +191,11 @@ public class BoardInitializer
                         "3", ctx.getString(R.string.board_3),
                 }
         };
-        return boardCodesByType;
+        {com.mijack.Xlog.logStaticMethodExit("[[java.lang.String com.chanapps.four.data.BoardInitializer.initBoardCodes(android.content.Context)");return boardCodesByType;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[[java.lang.String com.chanapps.four.data.BoardInitializer.initBoardCodes(android.content.Context)",throwable);throw throwable;}
     }
 
     public static HashMap<String, int[]> initBoardDrawables() {
-        HashMap<String, int[]> boardDrawables = new HashMap<String, int[]>();
+        com.mijack.Xlog.logStaticMethodEnter("java.util.HashMap com.chanapps.four.data.BoardInitializer.initBoardDrawables()");try{HashMap<String, int[]> boardDrawables = new HashMap<String, int[]>();
 
         boardDrawables.put("a", new int[]{ R.drawable.a, R.drawable.a_2, R.drawable.a_3 } );
         boardDrawables.put("aco", new int[]{ R.drawable.aco, R.drawable.aco, R.drawable.aco } );
@@ -239,7 +239,7 @@ public class BoardInitializer
         boardDrawables.put("pol", new int[]{ R.drawable.pol, R.drawable.pol_2, R.drawable.pol_3 } );
         boardDrawables.put("o", new int[]{ R.drawable.o, R.drawable.o_2, R.drawable.o_3 } );
         boardDrawables.put("out", new int[]{ R.drawable.out, R.drawable.out_2, R.drawable.out_3 } );
-        //boardDrawables.put("q", new int[]{ R.drawable.q, R.drawable.q_2, R.drawable.q_3 } );
+        /*//boardDrawables.put("q", new int[]{ R.drawable.q, R.drawable.q_2, R.drawable.q_3 } );*/
         boardDrawables.put("qa", new int[]{ R.drawable.q, R.drawable.q_2, R.drawable.q_3 } );
         boardDrawables.put("r", new int[]{ R.drawable.r, R.drawable.r_2, R.drawable.r_3 } );
         boardDrawables.put("r9k", new int[]{ R.drawable.r9k, R.drawable.r9k_2, R.drawable.r9k_3 } );
@@ -274,20 +274,20 @@ public class BoardInitializer
 
         for (String boardCode : ChanBoard.VIRTUAL_BOARDS) {
             if (ChanBoard.isPopularBoard(boardCode))
-                continue;
+                {continue;}
             if (ChanBoard.WATCHLIST_BOARD_CODE.equals(boardCode))
-                continue;
+                {continue;}
             BoardType type = BoardType.valueOfBoardCode(boardCode);
             if (type != null)
-                boardDrawables.put(boardCode, new int[]{ type.drawableId(), type.drawableId(), type.drawableId() });
+                {boardDrawables.put(boardCode, new int[]{ type.drawableId(), type.drawableId(), type.drawableId() });}
         }
 
-        return boardDrawables;
+        {com.mijack.Xlog.logStaticMethodExit("java.util.HashMap com.chanapps.four.data.BoardInitializer.initBoardDrawables()");return boardDrawables;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.HashMap com.chanapps.four.data.BoardInitializer.initBoardDrawables()",throwable);throw throwable;}
     }
 
 
     public static String[][] initRelatedBoards() {
-        String[][] relatedBoardCodes = {
+        com.mijack.Xlog.logStaticMethodEnter("[[java.lang.String com.chanapps.four.data.BoardInitializer.initRelatedBoards()");try{String[][] relatedBoardCodes = {
                 { "a", "c", "w", "m", "cgl", "cm", "jp", "vg", "vp", "co", "tv", "h", "d", "e", "y", "u", "d", "t" },
                 { "c", "a", "w", "cm", "vp", "mlp", "e", "u" },
                 { "w", "a", "wg", "p" },
@@ -350,6 +350,6 @@ public class BoardInitializer
                 { "soc", "adv", "r9k", "b", "trv" },
                 { "s4s", "pol", "b", "q" }
         };
-        return relatedBoardCodes;
+        {com.mijack.Xlog.logStaticMethodExit("[[java.lang.String com.chanapps.four.data.BoardInitializer.initRelatedBoards()");return relatedBoardCodes;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[[java.lang.String com.chanapps.four.data.BoardInitializer.initRelatedBoards()",throwable);throw throwable;}
     }
 }

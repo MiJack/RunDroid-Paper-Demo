@@ -27,24 +27,24 @@ import java.util.HashMap;
 import javax.microedition.khronos.opengles.GL11;
 import javax.microedition.khronos.opengles.GL11Ext;
 
-// UploadedTextures use a Bitmap for the content of the texture.
-//
-// Subclasses should implement onGetBitmap() to provide the Bitmap and
-// implement onFreeBitmap(mBitmap) which will be called when the Bitmap
-// is not needed anymore.
-//
-// isContentValid() is meaningful only when the isLoaded() returns true.
-// It means whether the content needs to be updated.
-//
-// The user of this class should call recycle() when the texture is not
-// needed anymore.
-//
-// By default an UploadedTexture is opaque (so it can be drawn faster without
-// blending). The user or subclass can override it using setOpaque().
+/*// UploadedTextures use a Bitmap for the content of the texture.*/
+/*//*/
+/*// Subclasses should implement onGetBitmap() to provide the Bitmap and*/
+/*// implement onFreeBitmap(mBitmap) which will be called when the Bitmap*/
+/*// is not needed anymore.*/
+/*//*/
+/*// isContentValid() is meaningful only when the isLoaded() returns true.*/
+/*// It means whether the content needs to be updated.*/
+/*//*/
+/*// The user of this class should call recycle() when the texture is not*/
+/*// needed anymore.*/
+/*//*/
+/*// By default an UploadedTexture is opaque (so it can be drawn faster without*/
+/*// blending). The user or subclass can override it using setOpaque().*/
 abstract class UploadedTexture extends BasicTexture {
 
-    // To prevent keeping allocation the borders, we store those used borders here.
-    // Since the length will be power of two, it won't use too much memory.
+    /*// To prevent keeping allocation the borders, we store those used borders here.*/
+    /*// Since the length will be power of two, it won't use too much memory.*/
     private static HashMap<BorderKey, Bitmap> sBorderLines =
             new HashMap<BorderKey, Bitmap>();
     private static BorderKey sBorderKey = new BorderKey();
@@ -80,35 +80,35 @@ abstract class UploadedTexture extends BasicTexture {
 
         @Override
         public int hashCode() {
-            int x = config.hashCode() ^ length;
-            return vertical ? x : -x;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.UploadedTexture$BorderKey.hashCode()",this);try{int x = config.hashCode() ^ length;
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.UploadedTexture$BorderKey.hashCode()",this);return vertical ? x : -x;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.UploadedTexture$BorderKey.hashCode()",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean equals(Object object) {
-            if (!(object instanceof BorderKey)) return false;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.UploadedTexture$BorderKey.equals(java.lang.Object)",this,object);try{if (!(object instanceof BorderKey)) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.UploadedTexture$BorderKey.equals(java.lang.Object)",this);return false;}}
             BorderKey o = (BorderKey) object;
-            return vertical == o.vertical
-                    && config == o.config && length == o.length;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.UploadedTexture$BorderKey.equals(java.lang.Object)",this);return vertical == o.vertical
+                    && config == o.config && length == o.length;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.UploadedTexture$BorderKey.equals(java.lang.Object)",this,throwable);throw throwable;}
         }
 
         @Override
         public BorderKey clone() {
-            try {
-                return (BorderKey) super.clone();
+            com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.UploadedTexture$BorderKey com.android.gallery3d.ui.UploadedTexture$BorderKey.clone()",this);try{try {
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.UploadedTexture$BorderKey com.android.gallery3d.ui.UploadedTexture$BorderKey.clone()",this);return (BorderKey) super.clone();}
             } catch (CloneNotSupportedException e) {
                 throw new AssertionError(e);
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.UploadedTexture$BorderKey com.android.gallery3d.ui.UploadedTexture$BorderKey.clone()",this,throwable);throw throwable;}
         }
     }
 
     protected void setThrottled(boolean throttled) {
-        mThrottled = throttled;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.setThrottled(boolean)",this,throttled);try{mThrottled = throttled;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.UploadedTexture.setThrottled(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.setThrottled(boolean)",this,throwable);throw throwable;}
     }
 
     private static Bitmap getBorderLine(
             boolean vertical, Config config, int length) {
-        BorderKey key = sBorderKey;
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.UploadedTexture.getBorderLine(boolean,android.graphics.Bitmap.Config,int)",vertical,config,length);try{BorderKey key = sBorderKey;
         key.vertical = vertical;
         key.config = config;
         key.length = length;
@@ -119,11 +119,11 @@ abstract class UploadedTexture extends BasicTexture {
                     : Bitmap.createBitmap(length, 1, config);
             sBorderLines.put(key.clone(), bitmap);
         }
-        return bitmap;
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.UploadedTexture.getBorderLine(boolean,android.graphics.Bitmap.Config,int)");return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.UploadedTexture.getBorderLine(boolean,android.graphics.Bitmap.Config,int)",throwable);throw throwable;}
     }
 
     private void getBitmapBounds() {
-        if (mBitmapOptions == null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.getBitmapBounds()",this);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.UploadedTexture.getBitmapBounds()",this);if (mBitmapOptions == null) {
             mBitmapOptions = onGetBitmapBounds();
             if (mBitmapOptions == null) {
                 Log.e(TAG, "Couldn't get bitmap bounds");
@@ -139,11 +139,11 @@ abstract class UploadedTexture extends BasicTexture {
                             toString(), mWidth, mHeight, w, h));
                 }
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.getBitmapBounds()",this,throwable);throw throwable;}
     }
 
     private Bitmap getBitmap() {
-        if (mBitmap == null) {
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.UploadedTexture.getBitmap()",this);try{if (mBitmap == null) {
             mBitmap = onGetBitmap();
             if (mBitmap == null) {
                 Log.e(TAG, "Couldn't get bitmap");
@@ -154,32 +154,32 @@ abstract class UploadedTexture extends BasicTexture {
                 if (mWidth == UNSPECIFIED) {
                     setSize(w, h);
                 }
-//                else if (mWidth != w || mHeight != h) {
-//                    throw new IllegalStateException(String.format(
-//                            "cannot change size: this = %s, orig = %sx%s, new = %sx%s",
-//                            toString(), mWidth, mHeight, w, h));
-//                }
+/*//                else if (mWidth != w || mHeight != h) {*/
+/*//                    throw new IllegalStateException(String.format(*/
+/*//                            "cannot change size: this = %s, orig = %sx%s, new = %sx%s",*/
+/*//                            toString(), mWidth, mHeight, w, h));*/
+/*//                }*/
             }
         }
-        return mBitmap;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.UploadedTexture.getBitmap()",this);return mBitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.UploadedTexture.getBitmap()",this,throwable);throw throwable;}
     }
 
     private void freeBitmap() {
-        Utils.assertTrue(mBitmap != null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.freeBitmap()",this);try{Utils.assertTrue(mBitmap != null);
         onFreeBitmap(mBitmap);
-        mBitmap = null;
+        mBitmap = null;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.UploadedTexture.freeBitmap()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.freeBitmap()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getWidth() {
-        if (mWidth == UNSPECIFIED) getBitmapBounds();
-        return mWidth;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.UploadedTexture.getWidth()",this);try{if (mWidth == UNSPECIFIED) {getBitmapBounds();}
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.UploadedTexture.getWidth()",this);return mWidth;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.UploadedTexture.getWidth()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getHeight() {
-        if (mWidth == UNSPECIFIED) getBitmapBounds();
-        return mHeight;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.UploadedTexture.getHeight()",this);try{if (mWidth == UNSPECIFIED) {getBitmapBounds();}
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.UploadedTexture.getHeight()",this);return mHeight;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.UploadedTexture.getHeight()",this,throwable);throw throwable;}
     }
 
     protected abstract Bitmap onGetBitmap();
@@ -188,15 +188,15 @@ abstract class UploadedTexture extends BasicTexture {
     protected abstract void onFreeBitmap(Bitmap bitmap);
 
     protected void invalidateContent() {
-        if (mBitmap != null) freeBitmap();
-        mContentValid = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.invalidateContent()",this);try{if (mBitmap != null) {freeBitmap();}
+        mContentValid = false;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.UploadedTexture.invalidateContent()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.invalidateContent()",this,throwable);throw throwable;}
     }
 
     /**
      * Whether the content on GPU is valid.
      */
     public boolean isContentValid(GLCanvas canvas) {
-        return isLoaded(canvas) && mContentValid;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.UploadedTexture.isContentValid(GLCanvas)",this,canvas);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.UploadedTexture.isContentValid(GLCanvas)",this);return isLoaded(canvas) && mContentValid;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.UploadedTexture.isContentValid(GLCanvas)",this,throwable);throw throwable;}
     }
 
     /**
@@ -204,7 +204,7 @@ abstract class UploadedTexture extends BasicTexture {
      * @param canvas
      */
     public void updateContent(GLCanvas canvas) {
-        if (!isLoaded(canvas)) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.updateContent(GLCanvas)",this,canvas);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.UploadedTexture.updateContent(GLCanvas)",this);if (!isLoaded(canvas)) {
             if (mThrottled && ++sUploadedCount > UPLOAD_LIMIT) {
                 return;
             }
@@ -223,25 +223,25 @@ abstract class UploadedTexture extends BasicTexture {
             catch (Error e) {
                 Log.e(TAG, "Error loading bitmap", e);
                 if (mBitmap != null)
-                    freeBitmap();
+                    {freeBitmap();}
                 mContentValid = false;
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.updateContent(GLCanvas)",this,throwable);throw throwable;}
     }
 
     public static void resetUploadLimit() {
-        sUploadedCount = 0;
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.UploadedTexture.resetUploadLimit()");try{sUploadedCount = 0;com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.UploadedTexture.resetUploadLimit()");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.resetUploadLimit()",throwable);throw throwable;}
     }
 
     public static boolean uploadLimitReached() {
-        return sUploadedCount > UPLOAD_LIMIT;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.ui.UploadedTexture.uploadLimitReached()");try{com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.ui.UploadedTexture.uploadLimitReached()");return sUploadedCount > UPLOAD_LIMIT;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.ui.UploadedTexture.uploadLimitReached()",throwable);throw throwable;}
     }
 
     static int[] sTextureId = new int[1];
     static float[] sCropRect = new float[4];
 
     private void uploadToCanvas(GLCanvas canvas) {
-        GL11 gl = canvas.getGLInstance();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.uploadToCanvas(GLCanvas)",this,canvas);try{GL11 gl = canvas.getGLInstance();
 
         Bitmap bitmap = getBitmap();
         if (bitmap != null) {
@@ -252,16 +252,16 @@ abstract class UploadedTexture extends BasicTexture {
                 int height = bHeight + mBorder * 2;
                 int texWidth = getTextureWidth();
                 int texHeight = getTextureHeight();
-                // Define a vertically flipped crop rectangle for
-                // OES_draw_texture.
-                // The four values in sCropRect are: left, bottom, width, and
-                // height. Negative value of width or height means flip.
+                /*// Define a vertically flipped crop rectangle for*/
+                /*// OES_draw_texture.*/
+                /*// The four values in sCropRect are: left, bottom, width, and*/
+                /*// height. Negative value of width or height means flip.*/
                 sCropRect[0] = mBorder;
                 sCropRect[1] = mBorder + bHeight;
                 sCropRect[2] = bWidth;
                 sCropRect[3] = -bHeight;
 
-                // Upload the bitmap to a new texture.
+                /*// Upload the bitmap to a new texture.*/
                 gl.glGenTextures(1, sTextureId, 0);
                 gl.glBindTexture(GL11.GL_TEXTURE_2D, sTextureId[0]);
                 gl.glTexParameterfv(GL11.GL_TEXTURE_2D,
@@ -287,25 +287,25 @@ abstract class UploadedTexture extends BasicTexture {
                             mBorder, mBorder, bitmap, format, type);
 
                     if (mBorder > 0) {
-                        // Left border
+                        /*// Left border*/
                         Bitmap line = getBorderLine(true, config, texHeight);
                         GLUtils.texSubImage2D(GL11.GL_TEXTURE_2D, 0,
                                 0, 0, line, format, type);
 
-                        // Top border
+                        /*// Top border*/
                         line = getBorderLine(false, config, texWidth);
                         GLUtils.texSubImage2D(GL11.GL_TEXTURE_2D, 0,
                                 0, 0, line, format, type);
                     }
 
-                    // Right border
+                    /*// Right border*/
                     if (mBorder + bWidth < texWidth) {
                         Bitmap line = getBorderLine(true, config, texHeight);
                         GLUtils.texSubImage2D(GL11.GL_TEXTURE_2D, 0,
                                 mBorder + bWidth, 0, line, format, type);
                     }
 
-                    // Bottom border
+                    /*// Bottom border*/
                     if (mBorder + bHeight < texHeight) {
                         Bitmap line = getBorderLine(false, config, texWidth);
                         GLUtils.texSubImage2D(GL11.GL_TEXTURE_2D, 0,
@@ -317,7 +317,7 @@ abstract class UploadedTexture extends BasicTexture {
             } finally {
                 freeBitmap();
             }
-            // Update texture state.
+            /*// Update texture state.*/
             setAssociatedCanvas(canvas);
             mId = sTextureId[0];
             mState = UploadedTexture.STATE_LOADED;
@@ -325,26 +325,26 @@ abstract class UploadedTexture extends BasicTexture {
         } else {
             mState = STATE_ERROR;
             throw new RuntimeException("Texture load fail, no bitmap");
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.uploadToCanvas(GLCanvas)",this,throwable);throw throwable;}
     }
 
     @Override
     protected boolean onBind(GLCanvas canvas) {
-        updateContent(canvas);
-        return isContentValid(canvas);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.UploadedTexture.onBind(GLCanvas)",this,canvas);try{updateContent(canvas);
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.UploadedTexture.onBind(GLCanvas)",this);return isContentValid(canvas);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.UploadedTexture.onBind(GLCanvas)",this,throwable);throw throwable;}
     }
 
     public void setOpaque(boolean isOpaque) {
-        mOpaque = isOpaque;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.setOpaque(boolean)",this,isOpaque);try{mOpaque = isOpaque;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.UploadedTexture.setOpaque(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.setOpaque(boolean)",this,throwable);throw throwable;}
     }
 
     public boolean isOpaque() {
-        return mOpaque;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.UploadedTexture.isOpaque()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.UploadedTexture.isOpaque()",this);return mOpaque;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.UploadedTexture.isOpaque()",this,throwable);throw throwable;}
     }
 
     @Override
     public void recycle() {
-        super.recycle();
-        if (mBitmap != null) freeBitmap();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.UploadedTexture.recycle()",this);try{super.recycle();
+        if (mBitmap != null) {freeBitmap();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.UploadedTexture.recycle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.UploadedTexture.recycle()",this,throwable);throw throwable;}
     }
 }

@@ -71,18 +71,18 @@ public class FileCache {
     }
 
     public static void deleteFiles(Context context, File rootDir, String dbName) {
-        try {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.FileCache.deleteFiles(android.content.Context,java.io.File,java.lang.String)",context,rootDir,dbName);try{com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.common.FileCache.deleteFiles(android.content.Context,java.io.File,java.lang.String)");try {
             context.getDatabasePath(dbName).delete();
             File[] files = rootDir.listFiles();
-            if (files == null) return;
+            if (files == null) {return;}
             for (File file : rootDir.listFiles()) {
                 String name = file.getName();
                 if (file.isFile() && name.startsWith(FILE_PREFIX)
-                        && name.endsWith(FILE_POSTFIX)) file.delete();
+                        && name.endsWith(FILE_POSTFIX)) {file.delete();}
             }
         } catch (Throwable t) {
             Log.w(TAG, "cannot reset database", t);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.FileCache.deleteFiles(android.content.Context,java.io.File,java.lang.String)",throwable);throw throwable;}
     }
 
     public FileCache(Context context, File rootDir, String dbName, long capacity) {
@@ -92,7 +92,7 @@ public class FileCache {
     }
 
     public void store(String downloadUrl, File file) {
-        if (!mInitialized) initialize();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.FileCache.store(java.lang.String,java.io.File)",this,downloadUrl,file);try{if (!mInitialized) {initialize();}
 
         Utils.assertTrue(file.getParentFile().equals(mRootDir));
         FileEntry entry = new FileEntry();
@@ -116,12 +116,12 @@ public class FileCache {
             }
             FileEntry.SCHEMA.insertOrReplace(
                     mDbHelper.getWritableDatabase(), entry);
-            if (mTotalBytes > mCapacity) freeSomeSpaceIfNeed(MAX_DELETE_COUNT);
-        }
+            if (mTotalBytes > mCapacity) {freeSomeSpaceIfNeed(MAX_DELETE_COUNT);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.FileCache.store(java.lang.String,java.io.File)",this,throwable);throw throwable;}
     }
 
     public CacheEntry lookup(String downloadUrl) {
-        if (!mInitialized) initialize();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.common.FileCache$CacheEntry com.android.gallery3d.common.FileCache.lookup(java.lang.String)",this,downloadUrl);try{if (!mInitialized) {initialize();}
         CacheEntry entry;
         synchronized (mEntryMap) {
             entry = mEntryMap.get(downloadUrl);
@@ -131,15 +131,15 @@ public class FileCache {
             synchronized (this) {
                 updateLastAccess(entry.id);
             }
-            return entry;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.common.FileCache$CacheEntry com.android.gallery3d.common.FileCache.lookup(java.lang.String)",this);return entry;}
         }
 
         synchronized (this) {
             FileEntry file = queryDatabase(downloadUrl);
-            if (file == null) return null;
+            if (file == null) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.common.FileCache$CacheEntry com.android.gallery3d.common.FileCache.lookup(java.lang.String)",this);return null;}}
             entry = new CacheEntry(
                     file.id, downloadUrl, new File(mRootDir, file.filename));
-            if (!entry.cacheFile.isFile()) { // file has been removed
+            if (!entry.cacheFile.isFile()) { /*// file has been removed*/
                 try {
                     mDbHelper.getWritableDatabase().delete(
                             TABLE_NAME, ID_WHERE, new String[] {String.valueOf(file.id)});
@@ -147,45 +147,45 @@ public class FileCache {
                 } catch (Throwable t) {
                     Log.w(TAG, "cannot delete entry: " + file.filename, t);
                 }
-                return null;
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.common.FileCache$CacheEntry com.android.gallery3d.common.FileCache.lookup(java.lang.String)",this);return null;}
             }
             synchronized (mEntryMap) {
                 mEntryMap.put(downloadUrl, entry);
             }
-            return entry;
-        }
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.common.FileCache$CacheEntry com.android.gallery3d.common.FileCache.lookup(java.lang.String)",this);return entry;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.common.FileCache$CacheEntry com.android.gallery3d.common.FileCache.lookup(java.lang.String)",this,throwable);throw throwable;}
     }
 
     private FileEntry queryDatabase(String downloadUrl) {
-        long hash = Utils.crc64Long(downloadUrl);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.common.FileCache$FileEntry com.android.gallery3d.common.FileCache.queryDatabase(java.lang.String)",this,downloadUrl);try{long hash = Utils.crc64Long(downloadUrl);
         String whereArgs[] = new String[] {String.valueOf(hash), downloadUrl};
         Cursor cursor = mDbHelper.getReadableDatabase().query(TABLE_NAME,
                 FileEntry.SCHEMA.getProjection(),
                 QUERY_WHERE, whereArgs, null, null, null);
         try {
-            if (!cursor.moveToNext()) return null;
+            if (!cursor.moveToNext()) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.common.FileCache$FileEntry com.android.gallery3d.common.FileCache.queryDatabase(java.lang.String)",this);return null;}}
             FileEntry entry = new FileEntry();
             FileEntry.SCHEMA.cursorToObject(cursor, entry);
             updateLastAccess(entry.id);
-            return entry;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.common.FileCache$FileEntry com.android.gallery3d.common.FileCache.queryDatabase(java.lang.String)",this);return entry;}
         } finally {
             cursor.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.common.FileCache$FileEntry com.android.gallery3d.common.FileCache.queryDatabase(java.lang.String)",this,throwable);throw throwable;}
     }
 
     private void updateLastAccess(long id) {
-        ContentValues values = new ContentValues();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.FileCache.updateLastAccess(long)",this,id);try{ContentValues values = new ContentValues();
         values.put(FileEntry.Columns.LAST_ACCESS, System.currentTimeMillis());
         mDbHelper.getWritableDatabase().update(TABLE_NAME,
-                values,  ID_WHERE, new String[] {String.valueOf(id)});
+                values,  ID_WHERE, new String[] {String.valueOf(id)});com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.FileCache.updateLastAccess(long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.FileCache.updateLastAccess(long)",this,throwable);throw throwable;}
     }
 
     public File createFile() throws IOException {
-        return File.createTempFile(FILE_PREFIX, FILE_POSTFIX, mRootDir);
+        com.mijack.Xlog.logMethodEnter("java.io.File com.android.gallery3d.common.FileCache.createFile()",this);try{com.mijack.Xlog.logMethodExit("java.io.File com.android.gallery3d.common.FileCache.createFile()",this);return File.createTempFile(FILE_PREFIX, FILE_POSTFIX, mRootDir);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.android.gallery3d.common.FileCache.createFile()",this,throwable);throw throwable;}
     }
 
     private synchronized void initialize() {
-        if (mInitialized) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.FileCache.initialize()",this);try{if (mInitialized) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.FileCache.initialize()",this);return;}}
         mInitialized = true;
 
         if (!mRootDir.isDirectory()) {
@@ -199,15 +199,15 @@ public class FileCache {
                 TABLE_NAME, PROJECTION_SIZE_SUM,
                 null, null, null, null, null);
         try {
-            if (cursor.moveToNext()) mTotalBytes = cursor.getLong(0);
+            if (cursor.moveToNext()) {mTotalBytes = cursor.getLong(0);}
         } finally {
             cursor.close();
         }
-        if (mTotalBytes > mCapacity) freeSomeSpaceIfNeed(MAX_DELETE_COUNT);
+        if (mTotalBytes > mCapacity) {freeSomeSpaceIfNeed(MAX_DELETE_COUNT);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.FileCache.initialize()",this,throwable);throw throwable;}
     }
 
     private void freeSomeSpaceIfNeed(int maxDeleteFileCount) {
-        Cursor cursor = mDbHelper.getReadableDatabase().query(
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.FileCache.freeSomeSpaceIfNeed(int)",this,maxDeleteFileCount);try{Cursor cursor = mDbHelper.getReadableDatabase().query(
                 TABLE_NAME, FREESPACE_PROJECTION,
                 null, null, null, null, FREESPACE_ORDER_BY);
         try {
@@ -219,8 +219,8 @@ public class FileCache {
                 long size = cursor.getLong(3);
 
                 synchronized (mEntryMap) {
-                    // if some one still uses it
-                    if (mEntryMap.containsKey(url)) continue;
+                    /*// if some one still uses it*/
+                    if (mEntryMap.containsKey(url)) {continue;}
                 }
 
                 --maxDeleteFileCount;
@@ -234,7 +234,7 @@ public class FileCache {
             }
         } finally {
             cursor.close();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.FileCache.freeSomeSpaceIfNeed(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.FileCache.freeSomeSpaceIfNeed(int)",this,throwable);throw throwable;}
     }
 
     @Table("files")
@@ -266,11 +266,11 @@ public class FileCache {
 
         @Override
         public String toString() {
-            return new StringBuilder()
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.common.FileCache$FileEntry.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.common.FileCache$FileEntry.toString()",this);return new StringBuilder()
                     .append("hash_code: ").append(hashCode).append(", ")
                     .append("content_url").append(contentUrl).append(", ")
                     .append("last_access").append(lastAccess).append(", ")
-                    .append("filename").append(filename).toString();
+                    .append("filename").append(filename).toString();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.common.FileCache$FileEntry.toString()",this,throwable);throw throwable;}
         }
     }
 
@@ -283,21 +283,21 @@ public class FileCache {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            FileEntry.SCHEMA.createTables(db);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.FileCache$DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,db);try{FileEntry.SCHEMA.createTables(db);
 
-            // delete old files
+            /*// delete old files*/
             for (File file : mRootDir.listFiles()) {
                 if (!file.delete()) {
                     Log.w(TAG, "fail to remove: " + file.getAbsolutePath());
                 }
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.FileCache$DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.FileCache$DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            //reset everything
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.FileCache$DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,db,oldVersion,newVersion);try{/*//reset everything*/
             FileEntry.SCHEMA.dropTables(db);
-            onCreate(db);
+            onCreate(db);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.FileCache$DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.FileCache$DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,throwable);throw throwable;}
         }
     }
 }

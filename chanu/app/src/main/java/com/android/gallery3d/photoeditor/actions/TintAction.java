@@ -36,27 +36,27 @@ public class TintAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final TintFilter filter = new TintFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.TintAction.doBegin()",this);try{final TintFilter filter = new TintFilter();
 
         colorPicker = factory.createColorPicker();
         colorPicker.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
 
             @Override
             public void onColorChanged(int color, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.TintAction$1.onColorChanged(int,boolean)",this,color,fromUser);try{if (fromUser) {
                     filter.setTint(color);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.TintAction$1.onColorChanged(int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.TintAction$1.onColorChanged(int,boolean)",this,throwable);throw throwable;}
             }
         });
-        // Tint photo with the default color.
+        /*// Tint photo with the default color.*/
         colorPicker.setColorIndex(DEFAULT_COLOR_INDEX);
         filter.setTint(colorPicker.getColor());
-        notifyFilterChanged(filter, true);
+        notifyFilterChanged(filter, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.TintAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.TintAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        colorPicker.setOnColorChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.TintAction.doEnd()",this);try{colorPicker.setOnColorChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.TintAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.TintAction.doEnd()",this,throwable);throw throwable;}
     }
 }

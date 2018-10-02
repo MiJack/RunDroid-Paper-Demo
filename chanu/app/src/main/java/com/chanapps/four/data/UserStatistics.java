@@ -23,34 +23,34 @@ public class UserStatistics {
 	
 	public static final int MIN_TOP_BOARDS = 5;
 	public static final int MAX_TOP_THREADS = 50;
-	private static final long MIN_STORE_DELAY = 5000;  // 15s
-	private static final long MIN_DELAY_FOR_TIPS = 5 * 60 * 1000; // 5min
+	private static final long MIN_STORE_DELAY = 5000;  /*// 15s*/
+	private static final long MIN_DELAY_FOR_TIPS = 5 * 60 * 1000; /*// 5min*/
 
 	public static enum ChanFeature {
 		NONE,
 	    INTRO_DESC
-        //,
-	    //SECTION_DESC,
-        //BOARD_DESC,
-        //THREAD_DESC,
-        //POST_DESC,
-        //FINISHED_DESC
-        //POPULAR_DESC,
-        //WATCHLIST_DESC,
-        //,WATCHLIST_CLEAN, WATCHLIST_DELETE,
-		//BOARD_SELECT, MANUAL_REFRESH, SEARCH_BOARD, SEARCH_THREAD, BOARD_LIST_VIEW, ADD_THREAD, POST,
-		//CACHED_BOARD_IMAGES, ALL_CACHED_IMAGES, BOARD_RULES, WATCH_THREAD, GALLERY_VIEW,
-		//PLAY_THREAD, PRELOAD_ALL_IMAGES, DOWNLOAD_ALL_IMAGES_TO_GALLERY,
-		//SETTINGS_NAMES, SETTINGS_4CHAN_PASS, SETTINGS_CACHE_SIZE, SETTINGS_WATCHLIST
+        /*//,*/
+	    /*//SECTION_DESC,*/
+        /*//BOARD_DESC,*/
+        /*//THREAD_DESC,*/
+        /*//POST_DESC,*/
+        /*//FINISHED_DESC*/
+        /*//POPULAR_DESC,*/
+        /*//WATCHLIST_DESC,*/
+        /*//,WATCHLIST_CLEAN, WATCHLIST_DELETE,*/
+		/*//BOARD_SELECT, MANUAL_REFRESH, SEARCH_BOARD, SEARCH_THREAD, BOARD_LIST_VIEW, ADD_THREAD, POST,*/
+		/*//CACHED_BOARD_IMAGES, ALL_CACHED_IMAGES, BOARD_RULES, WATCH_THREAD, GALLERY_VIEW,*/
+		/*//PLAY_THREAD, PRELOAD_ALL_IMAGES, DOWNLOAD_ALL_IMAGES_TO_GALLERY,*/
+		/*//SETTINGS_NAMES, SETTINGS_4CHAN_PASS, SETTINGS_CACHE_SIZE, SETTINGS_WATCHLIST*/
 	}
     public static ChanFeature[] MAIN_TUTORIAL_FEATURES = new ChanFeature[]{
             ChanFeature.INTRO_DESC
-            //,
-            //ChanFeature.SECTION_DESC,
-            //ChanFeature.BOARD_DESC,
-            //ChanFeature.THREAD_DESC,
-            //ChanFeature.POST_DESC,
-            //ChanFeature.FINISHED_DESC
+            /*//,*/
+            /*//ChanFeature.SECTION_DESC,*/
+            /*//ChanFeature.BOARD_DESC,*/
+            /*//ChanFeature.THREAD_DESC,*/
+            /*//ChanFeature.POST_DESC,*/
+            /*//ChanFeature.FINISHED_DESC*/
     };
 	/*
 	public static ChanFeature[] BOARDSELECTOR_FEATURES = new ChanFeature[]{
@@ -109,20 +109,20 @@ public class UserStatistics {
 	public long lastStored;
 	
 	public boolean convertThreadStats() {
-		if (threadStats.size() > 0) {
+		com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.data.UserStatistics.convertThreadStats()",this);try{if (threadStats.size() > 0) {
 			int threadsToConvert = threadStats.size();
 			for (ChanThreadStat stat : threadStats.values()) {
 				boardThreadStats.put(stat.board + "/" + stat.no, stat);
 			}
 			threadStats.clear();
-			if (DEBUG) Log.i(TAG, "" + threadsToConvert + " thread stats has been converted to new format.");
-			return true;
+			if (DEBUG) {Log.i(TAG, "" + threadsToConvert + " thread stats has been converted to new format.");}
+			{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.UserStatistics.convertThreadStats()",this);return true;}
 		}
-		return false;
+		{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.UserStatistics.convertThreadStats()",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.data.UserStatistics.convertThreadStats()",this,throwable);throw throwable;}
 	}
 	
 	public void registerActivity(ChanIdentifiedActivity activity) {
-		ChanActivityId activityId = activity.getChanActivityId();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.registerActivity(com.chanapps.four.activity.ChanIdentifiedActivity)",this,activity);try{ChanActivityId activityId = activity.getChanActivityId();
 		switch(activityId.activity) {
 		case BOARD_ACTIVITY:
 			boardUse(activityId.boardCode);
@@ -134,15 +134,15 @@ public class UserStatistics {
 			threadUse(activityId.boardCode, activityId.threadNo);
 			break;
 		default:
-			// we don't register other activities
+			/*// we don't register other activities*/
 		}
 		if (new Date().getTime() - lastStored > MIN_STORE_DELAY) {
 			FileSaverService.startService(activity.getBaseContext(), FileSaverService.FileType.USER_STATISTICS);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.registerActivity(com.chanapps.four.activity.ChanIdentifiedActivity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.registerActivity(com.chanapps.four.activity.ChanIdentifiedActivity)",this,throwable);throw throwable;}
 	}
 
     public void reset() {
-        boardStats.clear();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.reset()",this);try{boardStats.clear();
         threadStats.clear();
         boardThreadStats.clear();
         usedFeatures.clear();
@@ -151,47 +151,47 @@ public class UserStatistics {
         lastUpdate = 0;
         ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
         if (activity != null)
-            FileSaverService.startService(activity.getBaseContext(), FileSaverService.FileType.USER_STATISTICS);
+            {FileSaverService.startService(activity.getBaseContext(), FileSaverService.FileType.USER_STATISTICS);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.reset()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.reset()",this,throwable);throw throwable;}
     }
 
 	public void boardUse(String boardCode) {
-		if (boardCode == null) {
-			return;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.boardUse(java.util.String)",this,boardCode);try{if (boardCode == null) {
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.boardUse(java.util.String)",this);return;}
 		}
 		if (!boardStats.containsKey(boardCode)) {
 			boardStats.put(boardCode, new ChanBoardStat(boardCode));
 		}
-		lastUpdate = boardStats.get(boardCode).use();
+		lastUpdate = boardStats.get(boardCode).use();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.boardUse(java.util.String)",this,throwable);throw throwable;}
 	}
 	
 	public void threadUse(String boardCode, long threadNo) {
-		if (boardCode == null || threadNo <= 0) {
-			return;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.threadUse(java.util.String,long)",this,boardCode,threadNo);try{if (boardCode == null || threadNo <= 0) {
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.threadUse(java.util.String,long)",this);return;}
 		}
 		String threadKey = boardCode + "/" + threadNo;
 		if (!boardThreadStats.containsKey(threadKey)) {
 			boardThreadStats.put(threadKey, new ChanThreadStat(boardCode, threadNo));
 		}
 		ChanThreadStat stat = boardThreadStats.get(threadKey);
-		lastUpdate = stat.use();
+		lastUpdate = stat.use();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.threadUse(java.util.String,long)",this,throwable);throw throwable;}
 	}
 	
 	/**
 	 * Returns short list of top used boards.
 	 */
 	public List<ChanBoardStat> topBoards() {
-		List<ChanBoardStat> topBoards = new ArrayList<ChanBoardStat>(boardStats.values());
+		com.mijack.Xlog.logMethodEnter("java.util.List com.chanapps.four.data.UserStatistics.topBoards()",this);try{List<ChanBoardStat> topBoards = new ArrayList<ChanBoardStat>(boardStats.values());
 		int sumOfUsages = 0;
-		// sorting by last modification date desc order
+		/*// sorting by last modification date desc order*/
         Collections.sort(topBoards, new Comparator<ChanBoardStat>() {
             public int compare(ChanBoardStat o1, ChanBoardStat o2) {
-                return o1.usage > o2.usage ? 1
-                		: o1.usage < o2.usage ? -1 : 0;
+                com.mijack.Xlog.logMethodEnter("int com.chanapps.four.data.UserStatistics$1.compare(java.util.ChanBoardStat,java.util.ChanBoardStat)",this,o1,o2);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.data.UserStatistics$1.compare(java.util.ChanBoardStat,java.util.ChanBoardStat)",this);{com.mijack.Xlog.logMethodExit("java.util.List com.chanapps.four.data.UserStatistics.topBoards()",this);return o1.usage > o2.usage ? 1
+                		: o1.usage < o2.usage ? -1 : 0;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.data.UserStatistics$1.compare(java.util.ChanBoardStat,java.util.ChanBoardStat)",this,throwable);throw throwable;}
             }
         });
 		if (topBoards.size() < MIN_TOP_BOARDS) {
-			if (DEBUG) Log.d(TAG, "Top boards: " + logBoardStats(topBoards));
-			return topBoards;
+			if (DEBUG) {Log.d(TAG, "Top boards: " + logBoardStats(topBoards));}
+			{com.mijack.Xlog.logMethodExit("java.util.List com.chanapps.four.data.UserStatistics.topBoards()",this);return topBoards;}
 		}
 		int averageUsage = sumOfUsages / topBoards.size();
 		int numOfTopBoards = 0;
@@ -205,26 +205,26 @@ public class UserStatistics {
         	numOfTopBoards = topBoards.size() < MIN_TOP_BOARDS ? topBoards.size() : MIN_TOP_BOARDS;
         }
         topBoards = topBoards.subList(0, numOfTopBoards);
-        if (DEBUG) Log.d(TAG, "Top boards: " + logBoardStats(topBoards));
-		return topBoards;
+        if (DEBUG) {Log.d(TAG, "Top boards: " + logBoardStats(topBoards));}
+		{com.mijack.Xlog.logMethodExit("java.util.List com.chanapps.four.data.UserStatistics.topBoards()",this);return topBoards;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.List com.chanapps.four.data.UserStatistics.topBoards()",this,throwable);throw throwable;}
 	}
 	
 	/**
 	 * Returns short list of top used boards.
 	 */
 	public List<ChanThreadStat> topThreads() {
-		List<ChanThreadStat> topThreads = new ArrayList<ChanThreadStat>(boardThreadStats.values());
+		com.mijack.Xlog.logMethodEnter("java.util.List com.chanapps.four.data.UserStatistics.topThreads()",this);try{List<ChanThreadStat> topThreads = new ArrayList<ChanThreadStat>(boardThreadStats.values());
 		int sumOfUsages = 0;
-		// sorting by usage desc
+		/*// sorting by usage desc*/
         Collections.sort(topThreads, new Comparator<ChanThreadStat>() {
             public int compare(ChanThreadStat o1, ChanThreadStat o2) {
-                return o1.usage > o2.usage ? 1
-                		: o1.usage < o2.usage ? -1 : 0;
+                com.mijack.Xlog.logMethodEnter("int com.chanapps.four.data.UserStatistics$2.compare(java.util.ChanThreadStat,java.util.ChanThreadStat)",this,o1,o2);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.data.UserStatistics$2.compare(java.util.ChanThreadStat,java.util.ChanThreadStat)",this);{com.mijack.Xlog.logMethodExit("java.util.List com.chanapps.four.data.UserStatistics.topThreads()",this);return o1.usage > o2.usage ? 1
+                		: o1.usage < o2.usage ? -1 : 0;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.data.UserStatistics$2.compare(java.util.ChanThreadStat,java.util.ChanThreadStat)",this,throwable);throw throwable;}
             }
         });
 		if (topThreads.size() < MAX_TOP_THREADS) {
-			if (DEBUG) Log.d(TAG, "Top threads: " + logThreadStats(topThreads));
-			return topThreads;
+			if (DEBUG) {Log.d(TAG, "Top threads: " + logThreadStats(topThreads));}
+			{com.mijack.Xlog.logMethodExit("java.util.List com.chanapps.four.data.UserStatistics.topThreads()",this);return topThreads;}
 		}
 		int averageUsage = sumOfUsages / topThreads.size();
 		int numOfTopThreads = 0;
@@ -235,25 +235,25 @@ public class UserStatistics {
         	}
         }
         topThreads = topThreads.subList(0, numOfTopThreads);
-        if (DEBUG) Log.d(TAG, "Top threads: " + logThreadStats(topThreads));
-		return topThreads;
+        if (DEBUG) {Log.d(TAG, "Top threads: " + logThreadStats(topThreads));}
+		{com.mijack.Xlog.logMethodExit("java.util.List com.chanapps.four.data.UserStatistics.topThreads()",this);return topThreads;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.List com.chanapps.four.data.UserStatistics.topThreads()",this,throwable);throw throwable;}
 	}
 	
 	public void compactThreads() {
-		long weekAgo = Calendar.getInstance().getTimeInMillis() - 7 * 24 * 60 * 60 * 1000;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.compactThreads()",this);try{long weekAgo = Calendar.getInstance().getTimeInMillis() - 7 * 24 * 60 * 60 * 1000;
 		List<ChanThreadStat> topThreads = new ArrayList<ChanThreadStat>(boardThreadStats.values());
 		for (ChanThreadStat threadStat : topThreads) {
 			if (threadStat.lastUsage < weekAgo) {
 				boardThreadStats.remove(threadStat.no);
 			}
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.compactThreads()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.compactThreads()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Marks feature as used, tip for it won't be displayed
 	 */
 	public void featureUsed(ChanFeature feature) {
-		if (!usedFeatures.contains(feature)) {
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.featureUsed(java.util.ChanFeature)",this,feature);try{if (!usedFeatures.contains(feature)) {
 			Log.e(TAG, "Feature " + feature + " marked as used");
 			usedFeatures.add(feature);
 		}
@@ -261,7 +261,7 @@ public class UserStatistics {
 		for (ChanFeature f : usedFeatures) {
 			used += f + ", ";
 		}
-		if (DEBUG) Log.i(TAG, "Used features: " + used);
+		if (DEBUG) {Log.i(TAG, "Used features: " + used);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.featureUsed(java.util.ChanFeature)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.featureUsed(java.util.ChanFeature)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class UserStatistics {
 	 * If ChanFeature.NONE is returned then tip should not be displayed
 	 */
 	public ChanFeature nextTipForPage(TutorialOverlay.Page tutorialPage) {		
-		ChanFeature[] tipSet = null;
+		com.mijack.Xlog.logMethodEnter("java.util.ChanFeature com.chanapps.four.data.UserStatistics.nextTipForPage(java.util.TutorialOverlay.Page)",this,tutorialPage);try{ChanFeature[] tipSet = null;
 		switch (tutorialPage) {
 		    /*
             case BOARDLIST:
@@ -327,14 +327,14 @@ public class UserStatistics {
 			return ChanFeature.NONE;
 		}
         */
-        if (DEBUG) Log.i(TAG, "nextTipForPage tipSet=" + Arrays.toString(tipSet) + " displayedTips=" + Arrays.toString(displayedTips.toArray()));
+        if (DEBUG) {Log.i(TAG, "nextTipForPage tipSet=" + Arrays.toString(tipSet) + " displayedTips=" + Arrays.toString(displayedTips.toArray()));}
 		for (ChanFeature feature : tipSet) {
-			//if (!usedFeatures.contains(feature) && !displayedTips.contains(feature)) {
+			/*//if (!usedFeatures.contains(feature) && !displayedTips.contains(feature)) {*/
 			if (!displayedTips.contains(feature)) {
-				return feature;
+				{com.mijack.Xlog.logMethodExit("java.util.ChanFeature com.chanapps.four.data.UserStatistics.nextTipForPage(java.util.TutorialOverlay.Page)",this);return feature;}
 			}
 		}
-		return ChanFeature.NONE;
+		{com.mijack.Xlog.logMethodExit("java.util.ChanFeature com.chanapps.four.data.UserStatistics.nextTipForPage(java.util.TutorialOverlay.Page)",this);return ChanFeature.NONE;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ChanFeature com.chanapps.four.data.UserStatistics.nextTipForPage(java.util.TutorialOverlay.Page)",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -342,42 +342,42 @@ public class UserStatistics {
 	 * Tip for it won't be displayed anymore.
 	 */
 	public void tipDisplayed(ChanFeature feature) {
-		displayedTips.add(feature);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.tipDisplayed(java.util.ChanFeature)",this,feature);try{displayedTips.add(feature);
 		tipDisplayed = new Date().getTime();
 		
 		Log.e(TAG, "tipDisplayed " + feature);
 		ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
-		if (activity != null) { // && new Date().getTime() - lastStored > MIN_STORE_DELAY) {
+		if (activity != null) { /*// && new Date().getTime() - lastStored > MIN_STORE_DELAY) {*/
 			FileSaverService.startService(activity.getBaseContext(), FileSaverService.FileType.USER_STATISTICS);
 			Log.e(TAG, "User stats scheduled for save tip " + feature);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.tipDisplayed(java.util.ChanFeature)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.tipDisplayed(java.util.ChanFeature)",this,throwable);throw throwable;}
 	}
 
     public void disableTips() {
-        for (ChanFeature feature : ChanFeature.values()) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.UserStatistics.disableTips()",this);try{for (ChanFeature feature : ChanFeature.values()) {
             displayedTips.add(feature);
         }
         tipDisplayed = new Date().getTime();
         
 		ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
-		if (activity != null) { // && new Date().getTime() - lastStored > MIN_STORE_DELAY) {
+		if (activity != null) { /*// && new Date().getTime() - lastStored > MIN_STORE_DELAY) {*/
 			FileSaverService.startService(activity.getBaseContext(), FileSaverService.FileType.USER_STATISTICS);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.UserStatistics.disableTips()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.UserStatistics.disableTips()",this,throwable);throw throwable;}
     }
 
 	private String logBoardStats(List<ChanBoardStat> boards) {
-		StringBuffer buf = new StringBuffer();
+		com.mijack.Xlog.logMethodEnter("java.util.String com.chanapps.four.data.UserStatistics.logBoardStats(java.util.List)",this,boards);try{StringBuffer buf = new StringBuffer();
 		for(ChanBoardStat board : boards) {
 			buf.append(board.board + ": " + board.usage + ", ");
 		}
-		return buf.toString();
+		{com.mijack.Xlog.logMethodExit("java.util.String com.chanapps.four.data.UserStatistics.logBoardStats(java.util.List)",this);return buf.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.String com.chanapps.four.data.UserStatistics.logBoardStats(java.util.List)",this,throwable);throw throwable;}
 	}
 
 	private String logThreadStats(List<ChanThreadStat> threads) {
-		StringBuffer buf = new StringBuffer();
+		com.mijack.Xlog.logMethodEnter("java.util.String com.chanapps.four.data.UserStatistics.logThreadStats(java.util.List)",this,threads);try{StringBuffer buf = new StringBuffer();
 		for(ChanThreadStat thread : threads) {
 			buf.append(thread.board + "/" + thread.no + ": " + thread.usage + ", ");
 		}
-		return buf.toString();
+		{com.mijack.Xlog.logMethodExit("java.util.String com.chanapps.four.data.UserStatistics.logThreadStats(java.util.List)",this);return buf.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.String com.chanapps.four.data.UserStatistics.logThreadStats(java.util.List)",this,throwable);throw throwable;}
 	}
 }

@@ -44,8 +44,8 @@ public class DetailsAddressResolver {
         }
 
         public Address run(JobContext jc) {
-            ReverseGeocoder geocoder = new ReverseGeocoder(mContext.getAndroidContext());
-            return geocoder.lookupAddress(mLatlng[0], mLatlng[1], true);
+            com.mijack.Xlog.logMethodEnter("android.location.Address com.android.gallery3d.ui.DetailsAddressResolver$AddressLookupJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{ReverseGeocoder geocoder = new ReverseGeocoder(mContext.getAndroidContext());
+            {com.mijack.Xlog.logMethodExit("android.location.Address com.android.gallery3d.ui.DetailsAddressResolver$AddressLookupJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return geocoder.lookupAddress(mLatlng[0], mLatlng[1], true);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.location.Address com.android.gallery3d.ui.DetailsAddressResolver$AddressLookupJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 
@@ -59,26 +59,26 @@ public class DetailsAddressResolver {
     }
 
     public String resolveAddress(double[] latlng, AddressResolvingListener listener) {
-        mListener = listener;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.ui.DetailsAddressResolver.resolveAddress([double,AddressResolvingListener)",this,latlng,listener);try{mListener = listener;
         mAddressLookupJob = mContext.getThreadPool().submit(
                 new AddressLookupJob(latlng),
                 new FutureListener<Address>() {
                     public void onFutureDone(final Future<Address> future) {
-                        mAddressLookupJob = null;
+                        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsAddressResolver$1.onFutureDone(com.android.gallery3d.util.Future)",this,future);try{mAddressLookupJob = null;
                         if (!future.isCancelled()) {
                             mHandler.post(new Runnable() {
                                 public void run() {
-                                    updateLocation(future.get());
+                                    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsAddressResolver$1$1.run()",this);try{updateLocation(future.get());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsAddressResolver$1$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsAddressResolver$1$1.run()",this,throwable);throw throwable;}
                                 }
                             });
-                        }
+                        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsAddressResolver$1.onFutureDone(com.android.gallery3d.util.Future)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsAddressResolver$1.onFutureDone(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
                     }
                 });
-        return GalleryUtils.formatLatitudeLongitude("(%f,%f)", latlng[0], latlng[1]);
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.ui.DetailsAddressResolver.resolveAddress([double,AddressResolvingListener)",this);return GalleryUtils.formatLatitudeLongitude("(%f,%f)", latlng[0], latlng[1]);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.ui.DetailsAddressResolver.resolveAddress([double,AddressResolvingListener)",this,throwable);throw throwable;}
     }
 
     private void updateLocation(Address address) {
-        if (address != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsAddressResolver.updateLocation(android.location.Address)",this,address);try{if (address != null) {
             Context context = mContext.getAndroidContext();
             String parts[] = {
                 address.getAdminArea(),
@@ -94,7 +94,7 @@ public class DetailsAddressResolver {
 
             String addressText = "";
             for (int i = 0; i < parts.length; i++) {
-                if (parts[i] == null || parts[i].isEmpty()) continue;
+                if (parts[i] == null || parts[i].isEmpty()) {continue;}
                 if (!addressText.isEmpty()) {
                     addressText += ", ";
                 }
@@ -103,13 +103,13 @@ public class DetailsAddressResolver {
             String text = String.format("%s : %s", DetailsHelper.getDetailsName(
                     context, MediaDetails.INDEX_LOCATION), addressText);
             mListener.onAddressAvailable(text);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsAddressResolver.updateLocation(android.location.Address)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsAddressResolver.updateLocation(android.location.Address)",this,throwable);throw throwable;}
     }
 
     public void cancel() {
-        if (mAddressLookupJob != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsAddressResolver.cancel()",this);try{if (mAddressLookupJob != null) {
             mAddressLookupJob.cancel();
             mAddressLookupJob = null;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsAddressResolver.cancel()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsAddressResolver.cancel()",this,throwable);throw throwable;}
     }
 }

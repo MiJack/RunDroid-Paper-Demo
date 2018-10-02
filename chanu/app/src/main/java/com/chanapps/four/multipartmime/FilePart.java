@@ -187,7 +187,7 @@ public class FilePart extends PartBase {
     @Override
     protected void sendDispositionHeader(OutputStream out) 
     throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendDispositionHeader(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.FilePart.sendDispositionHeader(java.io.OutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendDispositionHeader(OutputStream out)");}
         super.sendDispositionHeader(out);
         String filename = this.source.getFileName();
         if (filename != null) {
@@ -195,7 +195,7 @@ public class FilePart extends PartBase {
             out.write(QUOTE_BYTES);
             out.write(EncodingUtils.getAsciiBytes(filename));
             out.write(QUOTE_BYTES);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.FilePart.sendDispositionHeader(java.io.OutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.FilePart.sendDispositionHeader(java.io.OutputStream)",this,throwable);throw throwable;}
     }
     
     /**
@@ -206,14 +206,14 @@ public class FilePart extends PartBase {
      */
     @Override
     protected void sendData(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendData(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.FilePart.sendData(java.io.OutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendData(OutputStream out)");}
         if (lengthOfData() == 0) {
             
-            // this file contains no data, so there is nothing to send.
-            // we don't want to create a zero length buffer as this will
-            // cause an infinite loop when reading.
-            if (DEBUG) Log.d(TAG, "No data to send.");
-            return;
+            /*// this file contains no data, so there is nothing to send.*/
+            /*// we don't want to create a zero length buffer as this will*/
+            /*// cause an infinite loop when reading.*/
+            if (DEBUG) {Log.d(TAG, "No data to send.");}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.FilePart.sendData(java.io.OutputStream)",this);return;}
         }
         
         byte[] tmp = new byte[4096];
@@ -224,9 +224,9 @@ public class FilePart extends PartBase {
                 out.write(tmp, 0, len);
             }
         } finally {
-            // we're done with the stream, close it
+            /*// we're done with the stream, close it*/
             instream.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.FilePart.sendData(java.io.OutputStream)",this,throwable);throw throwable;}
     }
 
     /** 
@@ -235,8 +235,8 @@ public class FilePart extends PartBase {
      * @return The source.
      */
     protected PartSource getSource() {
-        if (DEBUG) Log.d(TAG, "enter getSource()");
-        return this.source;
+        com.mijack.Xlog.logMethodEnter("PartSource com.chanapps.four.multipartmime.FilePart.getSource()",this);try{if (DEBUG) {Log.d(TAG, "enter getSource()");}
+        {com.mijack.Xlog.logMethodExit("PartSource com.chanapps.four.multipartmime.FilePart.getSource()",this);return this.source;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("PartSource com.chanapps.four.multipartmime.FilePart.getSource()",this,throwable);throw throwable;}
     }
 
     /**
@@ -246,8 +246,8 @@ public class FilePart extends PartBase {
      */    
     @Override
     protected long lengthOfData() {
-        if (DEBUG) Log.d(TAG, "enter lengthOfData()");
-        return source.getLength();
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.multipartmime.FilePart.lengthOfData()",this);try{if (DEBUG) {Log.d(TAG, "enter lengthOfData()");}
+        {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.FilePart.lengthOfData()",this);return source.getLength();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.multipartmime.FilePart.lengthOfData()",this,throwable);throw throwable;}
     }    
 
 }

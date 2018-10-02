@@ -24,6 +24,6 @@ package com.nostra13.universalimageloader.cache.disc.naming;
 public class HashCodeFileNameGenerator implements FileNameGenerator {
 	@Override
 	public String generate(String imageUri) {
-		return String.valueOf(imageUri.hashCode());
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator.generate(java.lang.String)",this,imageUri);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator.generate(java.lang.String)",this);return String.valueOf(imageUri.hashCode());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator.generate(java.lang.String)",this,throwable);throw throwable;}
 	}
 }

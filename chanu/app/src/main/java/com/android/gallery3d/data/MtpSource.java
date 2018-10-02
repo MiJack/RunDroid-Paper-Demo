@@ -41,31 +41,31 @@ class MtpSource extends MediaSource {
 
     @Override
     public MediaObject createMediaObject(Path path) {
-        switch (mMatcher.match(path)) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.MtpSource.createMediaObject(com.android.gallery3d.data.Path)",this,path);try{switch (mMatcher.match(path)) {
             case MTP_DEVICESET: {
-                return new MtpDeviceSet(path, mApplication, mMtpContext);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.MtpSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new MtpDeviceSet(path, mApplication, mMtpContext);}
             }
             case MTP_DEVICE: {
                 int deviceId = mMatcher.getIntVar(0);
-                return new MtpDevice(path, mApplication, deviceId, mMtpContext);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.MtpSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new MtpDevice(path, mApplication, deviceId, mMtpContext);}
             }
             case MTP_ITEM: {
                 int deviceId = mMatcher.getIntVar(0);
                 int objectId = mMatcher.getIntVar(1);
-                return new MtpImage(path, mApplication, deviceId, objectId, mMtpContext);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.MtpSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new MtpImage(path, mApplication, deviceId, objectId, mMtpContext);}
             }
             default:
                 throw new RuntimeException("bad path: " + path);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.MtpSource.createMediaObject(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     @Override
     public void pause() {
-        mMtpContext.pause();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpSource.pause()",this);try{mMtpContext.pause();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpSource.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpSource.pause()",this,throwable);throw throwable;}
     }
 
     @Override
     public void resume() {
-        mMtpContext.resume();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpSource.resume()",this);try{mMtpContext.resume();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpSource.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpSource.resume()",this,throwable);throw throwable;}
     }
 }

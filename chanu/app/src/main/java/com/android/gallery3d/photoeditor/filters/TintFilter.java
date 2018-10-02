@@ -29,14 +29,14 @@ public class TintFilter extends Filter {
     private int tint;
 
     public void setTint(int color) {
-        tint = color;
-        validate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.TintFilter.setTint(int)",this,color);try{tint = color;
+        validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.TintFilter.setTint(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.TintFilter.setTint(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        Effect effect = getEffect(EffectFactory.EFFECT_TINT);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.TintFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{Effect effect = getEffect(EffectFactory.EFFECT_TINT);
         effect.setParameter("tint", tint);
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.TintFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.TintFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

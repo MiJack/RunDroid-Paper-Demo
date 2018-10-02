@@ -44,19 +44,19 @@ public final class MemoryCacheUtil {
 	 * ([width]x[height]).
 	 */
 	public static String generateKey(String imageUri, ImageSize targetSize) {
-		return new StringBuilder(imageUri).append(URI_AND_SIZE_SEPARATOR).append(targetSize.getWidth()).append(WIDTH_AND_HEIGHT_SEPARATOR)
-				.append(targetSize.getHeight()).toString();
+		com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.generateKey(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize)",imageUri,targetSize);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.generateKey(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize)");return new StringBuilder(imageUri).append(URI_AND_SIZE_SEPARATOR).append(targetSize.getWidth()).append(WIDTH_AND_HEIGHT_SEPARATOR)
+				.append(targetSize.getHeight()).toString();}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.generateKey(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize)",throwable);throw throwable;}
 	}
 
 	public static Comparator<String> createFuzzyKeyComparator() {
-		return new Comparator<String>() {
+		com.mijack.Xlog.logStaticMethodEnter("java.util.Comparator com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.createFuzzyKeyComparator()");try{{com.mijack.Xlog.logStaticMethodExit("java.util.Comparator com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.createFuzzyKeyComparator()");return new Comparator<String>() {
 			@Override
 			public int compare(String key1, String key2) {
-				String imageUri1 = key1.substring(0, key1.lastIndexOf(URI_AND_SIZE_SEPARATOR));
+				com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.assist.MemoryCacheUtil$1.compare(java.lang.String,java.lang.String)",this,key1,key2);try{String imageUri1 = key1.substring(0, key1.lastIndexOf(URI_AND_SIZE_SEPARATOR));
 				String imageUri2 = key2.substring(0, key2.lastIndexOf(URI_AND_SIZE_SEPARATOR));
-				return imageUri1.compareTo(imageUri2);
+				{com.mijack.Xlog.logStaticMethodExit("java.util.Comparator com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.createFuzzyKeyComparator()");{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.assist.MemoryCacheUtil$1.compare(java.lang.String,java.lang.String)",this);return imageUri1.compareTo(imageUri2);}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.assist.MemoryCacheUtil$1.compare(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
 			}
-		};
+		};}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.Comparator com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.createFuzzyKeyComparator()",throwable);throw throwable;}
 	}
 
 	/**
@@ -66,13 +66,13 @@ public final class MemoryCacheUtil {
 	 * denyCacheImageMultipleSizesInMemory()} option in {@linkplain ImageLoaderConfiguration configuration}
 	 */
 	public static List<Bitmap> findCachedBitmapsForImageUri(String imageUri, MemoryCacheAware<String, Bitmap> memoryCache) {
-		List<Bitmap> values = new ArrayList<Bitmap>();
+		com.mijack.Xlog.logStaticMethodEnter("java.util.ArrayList com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.findCachedBitmapsForImageUri(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",imageUri,memoryCache);try{List<Bitmap> values = new ArrayList<Bitmap>();
 		for (String key : memoryCache.keys()) {
 			if (key.startsWith(imageUri)) {
 				values.add(memoryCache.get(key));
 			}
 		}
-		return values;
+		{com.mijack.Xlog.logStaticMethodExit("java.util.ArrayList com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.findCachedBitmapsForImageUri(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)");return values;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.ArrayList com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.findCachedBitmapsForImageUri(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",throwable);throw throwable;}
 	}
 
 	/**
@@ -82,13 +82,13 @@ public final class MemoryCacheUtil {
 	 * denyCacheImageMultipleSizesInMemory()} option in {@linkplain ImageLoaderConfiguration configuration}
 	 */
 	public static List<String> findCacheKeysForImageUri(String imageUri, MemoryCacheAware<String, Bitmap> memoryCache) {
-		List<String> values = new ArrayList<String>();
+		com.mijack.Xlog.logStaticMethodEnter("java.util.ArrayList com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.findCacheKeysForImageUri(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",imageUri,memoryCache);try{List<String> values = new ArrayList<String>();
 		for (String key : memoryCache.keys()) {
 			if (key.startsWith(imageUri)) {
 				values.add(key);
 			}
 		}
-		return values;
+		{com.mijack.Xlog.logStaticMethodExit("java.util.ArrayList com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.findCacheKeysForImageUri(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)");return values;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.ArrayList com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.findCacheKeysForImageUri(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",throwable);throw throwable;}
 	}
 
 	/**
@@ -98,7 +98,7 @@ public final class MemoryCacheUtil {
 	 * denyCacheImageMultipleSizesInMemory()} option in {@linkplain ImageLoaderConfiguration configuration}
 	 */
 	public static void removeFromCache(String imageUri, MemoryCacheAware<String, Bitmap> memoryCache) {
-		List<String> keysToRemove = new ArrayList<String>();
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.removeFromCache(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",imageUri,memoryCache);try{List<String> keysToRemove = new ArrayList<String>();
 		for (String key : memoryCache.keys()) {
 			if (key.startsWith(imageUri)) {
 				keysToRemove.add(key);
@@ -106,6 +106,6 @@ public final class MemoryCacheUtil {
 		}
 		for (String keyToRemove : keysToRemove) {
 			memoryCache.remove(keyToRemove);
-		}
+		}com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.removeFromCache(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.MemoryCacheUtil.removeFromCache(java.lang.String,com.nostra13.universalimageloader.cache.memory.MemoryCacheAware)",throwable);throw throwable;}
 	}
 }

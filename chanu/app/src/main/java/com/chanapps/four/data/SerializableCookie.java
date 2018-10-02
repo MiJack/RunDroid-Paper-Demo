@@ -23,26 +23,26 @@ public class SerializableCookie implements Serializable {
     }
 
     public Cookie getCookie() {
-        Cookie bestCookie = cookie;
+        com.mijack.Xlog.logMethodEnter("org.apache.http.cookie.Cookie com.chanapps.four.data.SerializableCookie.getCookie()",this);try{Cookie bestCookie = cookie;
         if(clientCookie != null) {
             bestCookie = clientCookie;
         }
-        return bestCookie;
+        {com.mijack.Xlog.logMethodExit("org.apache.http.cookie.Cookie com.chanapps.four.data.SerializableCookie.getCookie()",this);return bestCookie;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("org.apache.http.cookie.Cookie com.chanapps.four.data.SerializableCookie.getCookie()",this,throwable);throw throwable;}
     }
 
     private void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeObject(cookie.getName());
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.SerializableCookie.writeObject(java.io.ObjectOutputStream)",this,out);try{out.writeObject(cookie.getName());
         out.writeObject(cookie.getValue());
         out.writeObject(cookie.getComment());
         out.writeObject(cookie.getDomain());
         out.writeObject(cookie.getExpiryDate());
         out.writeObject(cookie.getPath());
         out.writeInt(cookie.getVersion());
-        out.writeBoolean(cookie.isSecure());
+        out.writeBoolean(cookie.isSecure());com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.SerializableCookie.writeObject(java.io.ObjectOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.SerializableCookie.writeObject(java.io.ObjectOutputStream)",this,throwable);throw throwable;}
     }
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        String name = (String)in.readObject();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.SerializableCookie.readObject(java.io.ObjectInputStream)",this,in);try{String name = (String)in.readObject();
         String value = (String)in.readObject();
         clientCookie = new BasicClientCookie(name, value);
         clientCookie.setComment((String)in.readObject());
@@ -50,6 +50,6 @@ public class SerializableCookie implements Serializable {
         clientCookie.setExpiryDate((Date)in.readObject());
         clientCookie.setPath((String)in.readObject());
         clientCookie.setVersion(in.readInt());
-        clientCookie.setSecure(in.readBoolean());
+        clientCookie.setSecure(in.readBoolean());com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.SerializableCookie.readObject(java.io.ObjectInputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.SerializableCookie.readObject(java.io.ObjectInputStream)",this,throwable);throw throwable;}
     }
 }

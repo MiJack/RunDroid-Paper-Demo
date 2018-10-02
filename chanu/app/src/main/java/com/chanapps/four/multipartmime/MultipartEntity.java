@@ -105,12 +105,12 @@ public class MultipartEntity extends AbstractHttpEntity {
      * Generates a random multipart boundary string.
     */
     private static byte[] generateMultipartBoundary() {
-        Random rand = new Random();
-        byte[] bytes = new byte[rand.nextInt(11) + 30]; // a random size from 30 to 40
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.chanapps.four.multipartmime.MultipartEntity.generateMultipartBoundary()");try{Random rand = new Random();
+        byte[] bytes = new byte[rand.nextInt(11) + 30]; /*// a random size from 30 to 40*/
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = MULTIPART_CHARS[rand.nextInt(MULTIPART_CHARS.length)];
         }
-        return bytes;
+        {com.mijack.Xlog.logStaticMethodExit("[byte com.chanapps.four.multipartmime.MultipartEntity.generateMultipartBoundary()");return bytes;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.chanapps.four.multipartmime.MultipartEntity.generateMultipartBoundary()",throwable);throw throwable;}
     }
     
     /** The MIME parts as set by the constructor */
@@ -157,7 +157,7 @@ public class MultipartEntity extends AbstractHttpEntity {
      * @return The boundary string of this entity in ASCII encoding.
      */
     protected byte[] getMultipartBoundary() {
-        if (multipartBoundary == null) {
+        com.mijack.Xlog.logMethodEnter("[byte com.chanapps.four.multipartmime.MultipartEntity.getMultipartBoundary()",this);try{if (multipartBoundary == null) {
             String temp = null;
             if (params != null) {
               temp = (String) params.getParameter(MULTIPART_BOUNDARY);
@@ -168,51 +168,51 @@ public class MultipartEntity extends AbstractHttpEntity {
                 multipartBoundary = generateMultipartBoundary();
             }
         }
-        return multipartBoundary;
+        {com.mijack.Xlog.logMethodExit("[byte com.chanapps.four.multipartmime.MultipartEntity.getMultipartBoundary()",this);return multipartBoundary;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.chanapps.four.multipartmime.MultipartEntity.getMultipartBoundary()",this,throwable);throw throwable;}
     }
 
     /**
      * Returns <code>true</code> if all parts are repeatable, <code>false</code> otherwise.
      */
     public boolean isRepeatable() {
-        for (int i = 0; i < parts.length; i++) {
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.multipartmime.MultipartEntity.isRepeatable()",this);try{for (int i = 0; i < parts.length; i++) {
             if (!parts[i].isRepeatable()) {
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.multipartmime.MultipartEntity.isRepeatable()",this);return false;}
             }
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.multipartmime.MultipartEntity.isRepeatable()",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.multipartmime.MultipartEntity.isRepeatable()",this,throwable);throw throwable;}
     }
 
     /* (non-Javadoc)
      */
     public void writeTo(OutputStream out) throws IOException {
-        Part.sendParts(out, parts, getMultipartBoundary());
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.MultipartEntity.writeTo(java.io.ByteArrayOutputStream)",this,out);try{Part.sendParts(out, parts, getMultipartBoundary());com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.MultipartEntity.writeTo(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.MultipartEntity.writeTo(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
     /* (non-Javadoc)
      * @see org.apache.commons.http.AbstractHttpEntity.#getContentType()
      */
     @Override
     public Header getContentType() {
-      StringBuffer buffer = new StringBuffer(MULTIPART_FORM_CONTENT_TYPE);
+      com.mijack.Xlog.logMethodEnter("org.apache.http.Header com.chanapps.four.multipartmime.MultipartEntity.getContentType()",this);try{StringBuffer buffer = new StringBuffer(MULTIPART_FORM_CONTENT_TYPE);
       buffer.append("; boundary=");
       buffer.append(EncodingUtils.getAsciiString(getMultipartBoundary()));
-      return new BasicHeader(HTTP.CONTENT_TYPE, buffer.toString());
+      {com.mijack.Xlog.logMethodExit("org.apache.http.Header com.chanapps.four.multipartmime.MultipartEntity.getContentType()",this);return new BasicHeader(HTTP.CONTENT_TYPE, buffer.toString());}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("org.apache.http.Header com.chanapps.four.multipartmime.MultipartEntity.getContentType()",this,throwable);throw throwable;}
 
     }
 
     /* (non-Javadoc)
      */
     public long getContentLength() {
-        try {
-            return Part.getLengthOfParts(parts, getMultipartBoundary());            
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.multipartmime.MultipartEntity.getContentLength()",this);try{try {
+            {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.MultipartEntity.getContentLength()",this);return Part.getLengthOfParts(parts, getMultipartBoundary());}            
         } catch (Exception e) {
             Log.e(TAG, "An exception occurred while getting the length of the parts", e);
-            return 0;
-        }
+            {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.MultipartEntity.getContentLength()",this);return 0;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.multipartmime.MultipartEntity.getContentLength()",this,throwable);throw throwable;}
     }    
  
     public InputStream getContent() throws IOException, IllegalStateException {
-          if(!isRepeatable() && this.contentConsumed ) {
+          com.mijack.Xlog.logMethodEnter("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.MultipartEntity.getContent()",this);try{if(!isRepeatable() && this.contentConsumed ) {
               throw new IllegalStateException("Content has been consumed");
           }
           this.contentConsumed = true;
@@ -220,10 +220,10 @@ public class MultipartEntity extends AbstractHttpEntity {
           ByteArrayOutputStream baos = new ByteArrayOutputStream();
           Part.sendParts(baos, this.parts, getMultipartBoundary());
           ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-          return bais;
+          {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.MultipartEntity.getContent()",this);return bais;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.MultipartEntity.getContent()",this,throwable);throw throwable;}
     }
   
     public boolean isStreaming() {
-        return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.multipartmime.MultipartEntity.isStreaming()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.multipartmime.MultipartEntity.isStreaming()",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.multipartmime.MultipartEntity.isStreaming()",this,throwable);throw throwable;}
     }
 }

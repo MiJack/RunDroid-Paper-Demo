@@ -37,7 +37,7 @@ public class FontSizeDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        array = getResources().getTextArray(R.array.font_sizes);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.FontSizeDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{array = getResources().getTextArray(R.array.font_sizes);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder
                 .setTitle(R.string.font_size_menu)
@@ -45,31 +45,31 @@ public class FontSizeDialogFragment extends DialogFragment {
         ;
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.FontSizeDialogFragment.onCreateDialog(android.os.Bundle)",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.FontSizeDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 
     public FontSizeDialogFragment setNotifySortOrderListener(NotifyFontSizeListener notifySortOrderListener) {
-        this.notifyFontSizeListener = notifySortOrderListener;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.fragment.FontSizeDialogFragment com.chanapps.four.fragment.FontSizeDialogFragment.setNotifySortOrderListener(NotifyFontSizeListener)",this,notifySortOrderListener);try{this.notifyFontSizeListener = notifySortOrderListener;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.fragment.FontSizeDialogFragment com.chanapps.four.fragment.FontSizeDialogFragment.setNotifySortOrderListener(NotifyFontSizeListener)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.fragment.FontSizeDialogFragment com.chanapps.four.fragment.FontSizeDialogFragment.setNotifySortOrderListener(NotifyFontSizeListener)",this,throwable);throw throwable;}
     }
 
 
     private DialogInterface.OnClickListener selectFontSizeListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            CharSequence item = array[which];
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.FontSizeDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{CharSequence item = array[which];
             fontSize = FontSize.valueOfDisplayString(getActivity(), item.toString());
             if (notifyFontSizeListener != null)
-                notifyFontSizeListener.onFontSizeChanged(fontSize);
-            dismiss();
+                {notifyFontSizeListener.onFontSizeChanged(fontSize);}
+            dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.FontSizeDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.FontSizeDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
         }
     };
 
     @Override
     public void onActivityCreated(Bundle bundle) {
-        super.onActivityCreated(bundle);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.FontSizeDialogFragment.onActivityCreated(android.os.Bundle)",this,bundle);try{super.onActivityCreated(bundle);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.FontSizeDialogFragment.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.FontSizeDialogFragment.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 }

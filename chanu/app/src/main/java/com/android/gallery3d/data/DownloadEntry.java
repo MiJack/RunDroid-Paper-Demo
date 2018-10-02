@@ -56,10 +56,10 @@ public class DownloadEntry extends Entry {
 
     @Override
     public String toString() {
-        // Note: THIS IS REQUIRED. We used all the fields here. Otherwise,
-        //       ProGuard will remove these UNUSED fields. However, these
-        //       fields are needed to generate database.
-        return new StringBuilder()
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.DownloadEntry.toString()",this);try{/*// Note: THIS IS REQUIRED. We used all the fields here. Otherwise,*/
+        /*//       ProGuard will remove these UNUSED fields. However, these*/
+        /*//       fields are needed to generate database.*/
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.DownloadEntry.toString()",this);return new StringBuilder()
                 .append("hash_code: ").append(hashCode).append(", ")
                 .append("content_url").append(contentUrl).append(", ")
                 .append("_size").append(contentSize).append(", ")
@@ -67,6 +67,6 @@ public class DownloadEntry extends Entry {
                 .append("last_access").append(lastAccessTime).append(", ")
                 .append("last_updated").append(lastUpdatedTime).append(",")
                 .append("_data").append(path)
-                .toString();
+                .toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.DownloadEntry.toString()",this,throwable);throw throwable;}
     }
 }

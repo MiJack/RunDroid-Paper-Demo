@@ -80,15 +80,15 @@ public enum BoardType {
 
     public static final BoardType valueOfDrawerString(Context context, String drawerString) {
         for (BoardType boardType : BoardType.values())
-            if (context.getString(boardType.drawerStringId).equals(drawerString))
-                return boardType;
+            {if (context.getString(boardType.drawerStringId).equals(drawerString))
+                {return boardType;}}
         return null;
     }
 
     public static final BoardType valueOfBoardCode(String boardCode) {
         for (BoardType boardType : BoardType.values())
-            if (boardType.boardCode.equals(boardCode))
-                return boardType;
+            {if (boardType.boardCode.equals(boardCode))
+                {return boardType;}}
         return null;
     }
 

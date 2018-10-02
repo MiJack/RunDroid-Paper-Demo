@@ -37,7 +37,7 @@ public class UriSource extends MediaSource {
 
     @Override
     public MediaObject createMediaObject(Path path) {
-        String segment[] = path.split();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.UriSource.createMediaObject(com.android.gallery3d.data.Path)",this,path);try{String segment[] = path.split();
         if (segment.length != 2) {
             throw new RuntimeException("bad path: " + path);
         }
@@ -49,14 +49,14 @@ public class UriSource extends MediaSource {
             Log.e(TAG, "Unsupported encoding for url:" + segment[1]);
             decoded = segment[1];
         }
-        return new UriImage(mApplication, path, Uri.parse(decoded));
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.UriSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new UriImage(mApplication, path, Uri.parse(decoded));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.UriSource.createMediaObject(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     @Override
     public Path findPathByUri(Uri uri) {
-        String type = mApplication.getContentResolver().getType(uri);
-        // Assume the type is image if the type cannot be resolved
-        // This could happen for "http" URI.
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.data.UriSource.findPathByUri(android.net.Uri)",this,uri);try{String type = mApplication.getContentResolver().getType(uri);
+        /*// Assume the type is image if the type cannot be resolved*/
+        /*// This could happen for "http" URI.*/
         if (type == null || type.startsWith("image/")) {
             String encoded;
             try {
@@ -66,8 +66,8 @@ public class UriSource extends MediaSource {
                 Log.e(TAG, "Unsupported encoding for url:" + uri.toString());
                 encoded = uri.toString();
             }
-            return Path.fromString("/uri/" + encoded);
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.UriSource.findPathByUri(android.net.Uri)",this);return Path.fromString("/uri/" + encoded);}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.UriSource.findPathByUri(android.net.Uri)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.data.UriSource.findPathByUri(android.net.Uri)",this,throwable);throw throwable;}
     }
 }

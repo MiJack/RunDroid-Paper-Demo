@@ -42,10 +42,10 @@ public class ReverseGeocoder {
     public static final int LON_MIN = -180;
     public static final int LON_MAX = 180;
     private static final int MAX_COUNTRY_NAME_LENGTH = 8;
-    // If two points are within 20 miles of each other, use
-    // "Around Palo Alto, CA" or "Around Mountain View, CA".
-    // instead of directly jumping to the next level and saying
-    // "California, US".
+    /*// If two points are within 20 miles of each other, use*/
+    /*// "Around Palo Alto, CA" or "Around Mountain View, CA".*/
+    /*// instead of directly jumping to the next level and saying*/
+    /*// "California, US".*/
     private static final int MAX_LOCALITY_MILE_RANGE = 20;
 
     private static final String GEO_CACHE_FILE = "rev_geocoding";
@@ -54,16 +54,16 @@ public class ReverseGeocoder {
     private static final int GEO_CACHE_VERSION = 0;
 
     public static class SetLatLong {
-        // The latitude and longitude of the min latitude point.
+        /*// The latitude and longitude of the min latitude point.*/
         public double mMinLatLatitude = LAT_MAX;
         public double mMinLatLongitude;
-        // The latitude and longitude of the max latitude point.
+        /*// The latitude and longitude of the max latitude point.*/
         public double mMaxLatLatitude = LAT_MIN;
         public double mMaxLatLongitude;
-        // The latitude and longitude of the min longitude point.
+        /*// The latitude and longitude of the min longitude point.*/
         public double mMinLonLatitude;
         public double mMinLonLongitude = LON_MAX;
-        // The latitude and longitude of the max longitude point.
+        /*// The latitude and longitude of the max longitude point.*/
         public double mMaxLonLatitude;
         public double mMaxLonLongitude = LON_MIN;
     }
@@ -72,7 +72,7 @@ public class ReverseGeocoder {
     private Geocoder mGeocoder;
     private BlobCache mGeoCache;
     private ConnectivityManager mConnectivityManager;
-    private static Address sCurrentAddress; // last known address
+    private static Address sCurrentAddress; /*// last known address*/
 
     public ReverseGeocoder(Context context) {
         mContext = context;
@@ -85,7 +85,7 @@ public class ReverseGeocoder {
     }
 
     public String computeAddress(SetLatLong set) {
-        // The overall min and max latitudes and longitudes of the set.
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this,set);try{/*// The overall min and max latitudes and longitudes of the set.*/
         double setMinLatitude = set.mMinLatLatitude;
         double setMinLongitude = set.mMinLatLongitude;
         double setMaxLatitude = set.mMaxLatLatitude;
@@ -100,15 +100,15 @@ public class ReverseGeocoder {
         Address addr1 = lookupAddress(setMinLatitude, setMinLongitude, true);
         Address addr2 = lookupAddress(setMaxLatitude, setMaxLongitude, true);
         if (addr1 == null)
-            addr1 = addr2;
+            {addr1 = addr2;}
         if (addr2 == null)
-            addr2 = addr1;
+            {addr2 = addr1;}
         if (addr1 == null || addr2 == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return null;}
         }
 
-        // Get current location, we decide the granularity of the string based
-        // on this.
+        /*// Get current location, we decide the granularity of the string based*/
+        /*// on this.*/
         LocationManager locationManager =
                 (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         Location location = null;
@@ -117,7 +117,7 @@ public class ReverseGeocoder {
             String provider = providers.get(i);
             location = (provider != null) ? locationManager.getLastKnownLocation(provider) : null;
             if (location != null)
-                break;
+                {break;}
         }
         String currentCity = "";
         String currentAdminArea = "";
@@ -175,17 +175,17 @@ public class ReverseGeocoder {
                 if (!currentCity.equals(otherCity)) {
                     closestCommonLocation += " - " + otherCity;
                 }
-                return closestCommonLocation;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
             }
 
-            // Compare thoroughfare (street address) next.
+            /*// Compare thoroughfare (street address) next.*/
             closestCommonLocation = valueIfEqual(addr1.getThoroughfare(), addr2.getThoroughfare());
             if (closestCommonLocation != null && !("null".equals(closestCommonLocation))) {
-                return closestCommonLocation;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
             }
         }
 
-        // Compare the locality.
+        /*// Compare the locality.*/
         closestCommonLocation = valueIfEqual(addr1Locality, addr2Locality);
         if (closestCommonLocation != null && !("".equals(closestCommonLocation))) {
             String adminArea = addr1AdminArea;
@@ -197,11 +197,11 @@ public class ReverseGeocoder {
                     closestCommonLocation += ", " + adminArea;
                 }
             }
-            return closestCommonLocation;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
         }
 
-        // If the admin area is the same as the current location, we hide it and
-        // instead show the city name.
+        /*// If the admin area is the same as the current location, we hide it and*/
+        /*// instead show the city name.*/
         if (currentAdminArea.equals(addr1AdminArea) && currentAdminArea.equals(addr2AdminArea)) {
             if ("".equals(addr1Locality)) {
                 addr1Locality = addr2Locality;
@@ -215,30 +215,30 @@ public class ReverseGeocoder {
                 } else {
                     closestCommonLocation = addr1Locality + " - " + addr2Locality;
                 }
-                return closestCommonLocation;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
             }
         }
 
-        // Just choose one of the localities if within a MAX_LOCALITY_MILE_RANGE
-        // mile radius.
+        /*// Just choose one of the localities if within a MAX_LOCALITY_MILE_RANGE*/
+        /*// mile radius.*/
         float[] distanceFloat = new float[1];
         Location.distanceBetween(setMinLatitude, setMinLongitude,
                 setMaxLatitude, setMaxLongitude, distanceFloat);
         int distance = (int) GalleryUtils.toMile(distanceFloat[0]);
         if (distance < MAX_LOCALITY_MILE_RANGE) {
-            // Try each of the points and just return the first one to have a
-            // valid address.
+            /*// Try each of the points and just return the first one to have a*/
+            /*// valid address.*/
             closestCommonLocation = getLocalityAdminForAddress(addr1, true);
             if (closestCommonLocation != null) {
-                return closestCommonLocation;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
             }
             closestCommonLocation = getLocalityAdminForAddress(addr2, true);
             if (closestCommonLocation != null) {
-                return closestCommonLocation;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
             }
         }
 
-        // Check the administrative area.
+        /*// Check the administrative area.*/
         closestCommonLocation = valueIfEqual(addr1AdminArea, addr2AdminArea);
         if (closestCommonLocation != null && !("".equals(closestCommonLocation))) {
             String countryCode = addr1CountryCode;
@@ -247,63 +247,63 @@ public class ReverseGeocoder {
                     closestCommonLocation += " " + countryCode;
                 }
             }
-            return closestCommonLocation;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
         }
 
-        // Check the country codes.
+        /*// Check the country codes.*/
         closestCommonLocation = valueIfEqual(addr1CountryCode, addr2CountryCode);
         if (closestCommonLocation != null && !("".equals(closestCommonLocation))) {
-            return closestCommonLocation;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}
         }
-        // There is no intersection, let's choose a nicer name.
+        /*// There is no intersection, let's choose a nicer name.*/
         String addr1Country = addr1.getCountryName();
         String addr2Country = addr2.getCountryName();
         if (addr1Country == null)
-            addr1Country = addr1CountryCode;
+            {addr1Country = addr1CountryCode;}
         if (addr2Country == null)
-            addr2Country = addr2CountryCode;
+            {addr2Country = addr2CountryCode;}
         if (addr1Country == null || addr2Country == null)
-            return null;
+            {{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return null;}}
         if (addr1Country.length() > MAX_COUNTRY_NAME_LENGTH || addr2Country.length() > MAX_COUNTRY_NAME_LENGTH) {
             closestCommonLocation = addr1CountryCode + " - " + addr2CountryCode;
         } else {
             closestCommonLocation = addr1Country + " - " + addr2Country;
         }
-        return closestCommonLocation;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this);return closestCommonLocation;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.util.ReverseGeocoder.computeAddress(com.android.gallery3d.util.ReverseGeocoder$SetLatLong)",this,throwable);throw throwable;}
     }
 
     private String checkNull(String locality) {
-        if (locality == null)
-            return "";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.util.ReverseGeocoder.checkNull(java.lang.String)",this,locality);try{if (locality == null)
+            {{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.checkNull(java.lang.String)",this);return "";}}
         if (locality.equals("null"))
-            return "";
-        return locality;
+            {{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.checkNull(java.lang.String)",this);return "";}}
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.checkNull(java.lang.String)",this);return locality;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.util.ReverseGeocoder.checkNull(java.lang.String)",this,throwable);throw throwable;}
     }
 
     private String getLocalityAdminForAddress(final Address addr, final boolean approxLocation) {
-        if (addr == null)
-            return "";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.util.ReverseGeocoder.getLocalityAdminForAddress(android.location.Address,boolean)",this,addr,approxLocation);try{if (addr == null)
+            {{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.getLocalityAdminForAddress(android.location.Address,boolean)",this);return "";}}
         String localityAdminStr = addr.getLocality();
         if (localityAdminStr != null && !("null".equals(localityAdminStr))) {
             if (approxLocation) {
-                // TODO: Uncomment these lines as soon as we may translations
-                // for Res.string.around.
-                // localityAdminStr =
-                // mContext.getResources().getString(Res.string.around) + " " +
-                // localityAdminStr;
+                /*// TODO: Uncomment these lines as soon as we may translations*/
+                /*// for Res.string.around.*/
+                /*// localityAdminStr =*/
+                /*// mContext.getResources().getString(Res.string.around) + " " +*/
+                /*// localityAdminStr;*/
             }
             String adminArea = addr.getAdminArea();
             if (adminArea != null && adminArea.length() > 0) {
                 localityAdminStr += ", " + adminArea;
             }
-            return localityAdminStr;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.getLocalityAdminForAddress(android.location.Address,boolean)",this);return localityAdminStr;}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.getLocalityAdminForAddress(android.location.Address,boolean)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.util.ReverseGeocoder.getLocalityAdminForAddress(android.location.Address,boolean)",this,throwable);throw throwable;}
     }
 
     public Address lookupAddress(final double latitude, final double longitude,
             boolean useCache) {
-        try {
+        com.mijack.Xlog.logMethodEnter("android.location.Address com.android.gallery3d.util.ReverseGeocoder.lookupAddress(double,double,boolean)",this,latitude,longitude,useCache);try{try {
             long locationKey = (long) (((latitude + LAT_MAX) * 2 * LAT_MAX
                     + (longitude + LON_MAX)) * EARTH_RADIUS_METERS);
             byte[] cachedLocation = null;
@@ -314,7 +314,7 @@ public class ReverseGeocoder {
             NetworkInfo networkInfo = mConnectivityManager.getActiveNetworkInfo();
             if (cachedLocation == null || cachedLocation.length == 0) {
                 if (networkInfo == null || !networkInfo.isConnected()) {
-                    return null;
+                    {com.mijack.Xlog.logMethodExit("android.location.Address com.android.gallery3d.util.ReverseGeocoder.lookupAddress(double,double,boolean)",this);return null;}
                 }
                 List<Address> addresses = mGeocoder.getFromLocation(latitude, longitude, 1);
                 if (!addresses.isEmpty()) {
@@ -350,7 +350,7 @@ public class ReverseGeocoder {
                     dos.close();
                 }
             } else {
-                // Parsing the address from the byte stream.
+                /*// Parsing the address from the byte stream.*/
                 DataInputStream dis = new DataInputStream(
                         new ByteArrayInputStream(cachedLocation));
                 String language = readUTF(dis);
@@ -368,7 +368,7 @@ public class ReverseGeocoder {
                 }
                 if (!locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
                     dis.close();
-                    return lookupAddress(latitude, longitude, false);
+                    {com.mijack.Xlog.logMethodExit("android.location.Address com.android.gallery3d.util.ReverseGeocoder.lookupAddress(double,double,boolean)",this);return lookupAddress(latitude, longitude, false);}
                 }
                 address = new Address(locale);
 
@@ -389,29 +389,29 @@ public class ReverseGeocoder {
                 address.setUrl(readUTF(dis));
                 dis.close();
             }
-            return address;
+            {com.mijack.Xlog.logMethodExit("android.location.Address com.android.gallery3d.util.ReverseGeocoder.lookupAddress(double,double,boolean)",this);return address;}
         } catch (Exception e) {
-            // Ignore.
+            /*// Ignore.*/
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("android.location.Address com.android.gallery3d.util.ReverseGeocoder.lookupAddress(double,double,boolean)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.location.Address com.android.gallery3d.util.ReverseGeocoder.lookupAddress(double,double,boolean)",this,throwable);throw throwable;}
     }
 
     private String valueIfEqual(String a, String b) {
-        return (a != null && b != null && a.equalsIgnoreCase(b)) ? a : null;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.util.ReverseGeocoder.valueIfEqual(java.lang.String,java.lang.String)",this,a,b);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.valueIfEqual(java.lang.String,java.lang.String)",this);return (a != null && b != null && a.equalsIgnoreCase(b)) ? a : null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.util.ReverseGeocoder.valueIfEqual(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     public static final void writeUTF(DataOutputStream dos, String string) throws IOException {
-        if (string == null) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.util.ReverseGeocoder.writeUTF(java.io.DataOutputStream,java.lang.String)",dos,string);try{if (string == null) {
             dos.writeUTF("");
         } else {
             dos.writeUTF(string);
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.util.ReverseGeocoder.writeUTF(java.io.DataOutputStream,java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.util.ReverseGeocoder.writeUTF(java.io.DataOutputStream,java.lang.String)",throwable);throw throwable;}
     }
 
     public static final String readUTF(DataInputStream dis) throws IOException {
-        String retVal = dis.readUTF();
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.util.ReverseGeocoder.readUTF(java.io.DataInputStream)",dis);try{String retVal = dis.readUTF();
         if (retVal.length() == 0)
-            return null;
-        return retVal;
+            {{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.readUTF(java.io.DataInputStream)");return null;}}
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.util.ReverseGeocoder.readUTF(java.io.DataInputStream)");return retVal;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.util.ReverseGeocoder.readUTF(java.io.DataInputStream)",throwable);throw throwable;}
     }
 }

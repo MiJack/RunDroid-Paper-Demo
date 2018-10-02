@@ -28,7 +28,7 @@ public class ChanImageLoader {
     static private ImageLoader imageLoader = null;
 
     static public synchronized ImageLoader getInstance(Context context) {
-        if (imageLoader == null) {
+        com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.ImageLoader com.chanapps.four.loader.ChanImageLoader.getInstance(android.content.Context)",context);try{if (imageLoader == null) {
             DisplayMetrics displayMetrics = new DisplayMetrics();
             WindowManager manager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
             manager.getDefaultDisplay().getMetrics(displayMetrics);
@@ -39,20 +39,20 @@ public class ChanImageLoader {
             imageLoader.init(
                     new ImageLoaderConfiguration
                             .Builder(context)
-                            //.memoryCacheExtraOptions(MAX_MEMORY_WIDTH, MAX_MEMORY_HEIGHT)
+                            /*//.memoryCacheExtraOptions(MAX_MEMORY_WIDTH, MAX_MEMORY_HEIGHT)*/
                             .discCacheExtraOptions(maxWidth, maxHeight, Bitmap.CompressFormat.JPEG, 85)
-                                    //.imageDownloader(new ExtendedImageDownloader(context))
-                                    //.threadPriority(Thread.MIN_PRIORITY+1)
+                                    /*//.imageDownloader(new ExtendedImageDownloader(context))*/
+                                    /*//.threadPriority(Thread.MIN_PRIORITY+1)*/
                             .threadPoolSize(5)
                             .discCacheFileNameGenerator(new FileNameGenerator() {
                                 @Override
                                 public String generate(String imageUri) {
-                                    return String.valueOf(Math.abs(imageUri.hashCode())) + ".jpg";
+                                    com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.loader.ChanImageLoader$1.generate(java.lang.String)",this,imageUri);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.loader.ChanImageLoader$1.generate(java.lang.String)",this);{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.ImageLoader com.chanapps.four.loader.ChanImageLoader.getInstance(android.content.Context)");return String.valueOf(Math.abs(imageUri.hashCode())) + ".jpg";}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.loader.ChanImageLoader$1.generate(java.lang.String)",this,throwable);throw throwable;}
                                 }
                             })
                             .build());
         }
-        return imageLoader;
+        {com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.ImageLoader com.chanapps.four.loader.ChanImageLoader.getInstance(android.content.Context)");return imageLoader;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoader com.chanapps.four.loader.ChanImageLoader.getInstance(android.content.Context)",throwable);throw throwable;}
     }
 
 }

@@ -16,41 +16,41 @@ public class ListViewKeyScroller {
     protected static final int PAGE_SCROLL_DURATION_MS = 1000;
 
     public static boolean dispatchKeyEvent(KeyEvent event, AbsListView absListView) {
-        if (absListView == null)
-            return false;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.component.ListViewKeyScroller.dispatchKeyEvent(android.view.KeyEvent,android.widget.AbsListView)",event,absListView);try{if (absListView == null)
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.ListViewKeyScroller.dispatchKeyEvent(android.view.KeyEvent,android.widget.AbsListView)");return false;}}
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_VOLUME_UP:
                     scrollToPrevious(absListView);
-                    return true;
+                    {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.ListViewKeyScroller.dispatchKeyEvent(android.view.KeyEvent,android.widget.AbsListView)");return true;}
                 case KeyEvent.KEYCODE_VOLUME_DOWN:
                     scrollToNext(absListView);
-                    return true;
+                    {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.ListViewKeyScroller.dispatchKeyEvent(android.view.KeyEvent,android.widget.AbsListView)");return true;}
             }
         }
         if (event.getAction() == KeyEvent.ACTION_UP
                 && (event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP
                 || event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_DOWN)) {
-            return true;
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.ListViewKeyScroller.dispatchKeyEvent(android.view.KeyEvent,android.widget.AbsListView)");return true;}
         }
-        return false;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.ListViewKeyScroller.dispatchKeyEvent(android.view.KeyEvent,android.widget.AbsListView)");return false;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.component.ListViewKeyScroller.dispatchKeyEvent(android.view.KeyEvent,android.widget.AbsListView)",throwable);throw throwable;}
     }
 
     private static void scrollToPrevious(AbsListView absListView) {
-        if (absListView == null)
-            return;
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.component.ListViewKeyScroller.scrollToPrevious(android.widget.AbsListView)",absListView);try{if (absListView == null)
+            {{com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.component.ListViewKeyScroller.scrollToPrevious(android.widget.AbsListView)");return;}}
         int height = absListView.getHeight() - PAGE_SCROLL_OFFSET_PX;
         if (height <= 0)
-            height = absListView.getHeight();
-        absListView.smoothScrollBy(-1 * height, PAGE_SCROLL_DURATION_MS);
+            {height = absListView.getHeight();}
+        absListView.smoothScrollBy(-1 * height, PAGE_SCROLL_DURATION_MS);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.component.ListViewKeyScroller.scrollToPrevious(android.widget.AbsListView)",throwable);throw throwable;}
     }
 
     private static void scrollToNext(AbsListView absListView) {
-        if (absListView == null)
-            return;
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.component.ListViewKeyScroller.scrollToNext(android.widget.AbsListView)",absListView);try{if (absListView == null)
+            {{com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.component.ListViewKeyScroller.scrollToNext(android.widget.AbsListView)");return;}}
         int height = absListView.getHeight() - PAGE_SCROLL_OFFSET_PX;
         if (height <= 0)
-            height = absListView.getHeight();
-        absListView.smoothScrollBy(height, PAGE_SCROLL_DURATION_MS);
+            {height = absListView.getHeight();}
+        absListView.smoothScrollBy(height, PAGE_SCROLL_DURATION_MS);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.component.ListViewKeyScroller.scrollToNext(android.widget.AbsListView)",throwable);throw throwable;}
     }
 }

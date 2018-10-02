@@ -33,13 +33,13 @@ import android.provider.MediaStore.Video.VideoColumns;
 
 import java.io.File;
 
-// LocalVideo represents a video in the local storage.
+/*// LocalVideo represents a video in the local storage.*/
 public class LocalVideo extends LocalMediaItem {
 
     static final Path ITEM_PATH = Path.fromString("/local/video/item");
 
-    // Must preserve order between these indices and the order of the terms in
-    // the following PROJECTION array.
+    /*// Must preserve order between these indices and the order of the terms in*/
+    /*// the following PROJECTION array.*/
     private static final int INDEX_ID = 0;
     private static final int INDEX_CAPTION = 1;
     private static final int INDEX_MIME_TYPE = 2;
@@ -100,7 +100,7 @@ public class LocalVideo extends LocalMediaItem {
     }
 
     private void loadFromCursor(Cursor cursor) {
-        id = cursor.getInt(INDEX_ID);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalVideo.loadFromCursor(android.database.Cursor)",this,cursor);try{id = cursor.getInt(INDEX_ID);
         caption = cursor.getString(INDEX_CAPTION);
         mimeType = cursor.getString(INDEX_MIME_TYPE);
         latitude = cursor.getDouble(INDEX_LATITUDE);
@@ -109,12 +109,12 @@ public class LocalVideo extends LocalMediaItem {
         filePath = cursor.getString(INDEX_DATA);
         durationInSec = cursor.getInt(INDEX_DURATION) / 1000;
         bucketId = cursor.getInt(INDEX_BUCKET_ID);
-        fileSize = cursor.getLong(INDEX_SIZE_ID);
+        fileSize = cursor.getLong(INDEX_SIZE_ID);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalVideo.loadFromCursor(android.database.Cursor)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalVideo.loadFromCursor(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     @Override
     protected boolean updateFromCursor(Cursor cursor) {
-        UpdateHelper uh = new UpdateHelper();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.LocalVideo.updateFromCursor(android.database.Cursor)",this,cursor);try{UpdateHelper uh = new UpdateHelper();
         id = uh.update(id, cursor.getInt(INDEX_ID));
         caption = uh.update(caption, cursor.getString(INDEX_CAPTION));
         mimeType = uh.update(mimeType, cursor.getString(INDEX_MIME_TYPE));
@@ -131,12 +131,12 @@ public class LocalVideo extends LocalMediaItem {
                 durationInSec, cursor.getInt(INDEX_DURATION) / 1000);
         bucketId = uh.update(bucketId, cursor.getInt(INDEX_BUCKET_ID));
         fileSize = uh.update(fileSize, cursor.getLong(INDEX_SIZE_ID));
-        return uh.isUpdated();
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.LocalVideo.updateFromCursor(android.database.Cursor)",this);return uh.isUpdated();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.LocalVideo.updateFromCursor(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     @Override
     public Job<Bitmap> requestImage(int type) {
-        return new LocalVideoRequest(mApplication, getPath(), type, filePath);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalVideo.requestImage(int)",this,type);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalVideo.requestImage(int)",this);return new LocalVideoRequest(mApplication, getPath(), type, filePath);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalVideo.requestImage(int)",this,throwable);throw throwable;}
     }
 
     public static class LocalVideoRequest extends ImageCacheRequest {
@@ -150,70 +150,70 @@ public class LocalVideo extends LocalMediaItem {
 
         @Override
         public Bitmap onDecodeOriginal(JobContext jc, int type) {
-            Bitmap bitmap = BitmapUtils.createVideoThumbnail(mLocalFilePath);
-            if (bitmap == null || jc.isCancelled()) return null;
-            return bitmap;
+            com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.LocalVideo$LocalVideoRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this,jc,type);try{Bitmap bitmap = BitmapUtils.createVideoThumbnail(mLocalFilePath);
+            if (bitmap == null || jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.LocalVideo$LocalVideoRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this);return null;}}
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.LocalVideo$LocalVideoRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.LocalVideo$LocalVideoRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this,throwable);throw throwable;}
         }
     }
 
     @Override
     public Job<BitmapRegionDecoder> requestLargeImage() {
-        throw new UnsupportedOperationException("Cannot regquest a large image"
-                + " to a local video!");
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalVideo.requestLargeImage()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalVideo.requestLargeImage()",this);throw new UnsupportedOperationException("Cannot regquest a large image"
+                + " to a local video!");}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalVideo.requestLargeImage()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getSupportedOperations() {
-        return SUPPORT_DELETE | SUPPORT_SHARE | SUPPORT_PLAY | SUPPORT_INFO;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalVideo.getSupportedOperations()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalVideo.getSupportedOperations()",this);return SUPPORT_DELETE | SUPPORT_SHARE | SUPPORT_PLAY | SUPPORT_INFO;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalVideo.getSupportedOperations()",this,throwable);throw throwable;}
     }
 
     @Override
     public void delete() {
-        GalleryUtils.assertNotInRenderThread();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalVideo.delete()",this);try{GalleryUtils.assertNotInRenderThread();
         Uri baseUri = Video.Media.EXTERNAL_CONTENT_URI;
         mApplication.getContentResolver().delete(baseUri, "_id=?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(id)});com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalVideo.delete()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalVideo.delete()",this,throwable);throw throwable;}
     }
 
     @Override
     public void rotate(int degrees) {
-        // TODO
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalVideo.rotate(int)",this,degrees);try{/*// TODO*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalVideo.rotate(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalVideo.rotate(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public Uri getContentUri() {
-        Uri baseUri = Video.Media.EXTERNAL_CONTENT_URI;
-        return baseUri.buildUpon().appendPath(String.valueOf(id)).build();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.data.LocalVideo.getContentUri()",this);try{Uri baseUri = Video.Media.EXTERNAL_CONTENT_URI;
+        {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.data.LocalVideo.getContentUri()",this);return baseUri.buildUpon().appendPath(String.valueOf(id)).build();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.data.LocalVideo.getContentUri()",this,throwable);throw throwable;}
     }
 
     @Override
     public Uri getPlayUri() {
-        return Uri.fromFile(new File(filePath));
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.data.LocalVideo.getPlayUri()",this);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.data.LocalVideo.getPlayUri()",this);return Uri.fromFile(new File(filePath));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.data.LocalVideo.getPlayUri()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getMediaType() {
-        return MEDIA_TYPE_VIDEO;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalVideo.getMediaType()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalVideo.getMediaType()",this);return MEDIA_TYPE_VIDEO;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalVideo.getMediaType()",this,throwable);throw throwable;}
     }
 
     @Override
     public MediaDetails getDetails() {
-        MediaDetails details = super.getDetails();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalVideo.getDetails()",this);try{MediaDetails details = super.getDetails();
         int s = durationInSec;
         if (s > 0) {
             details.addDetail(MediaDetails.INDEX_DURATION, GalleryUtils.formatDuration(
                     mApplication.getAndroidContext(), durationInSec));
         }
-        return details;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalVideo.getDetails()",this);return details;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalVideo.getDetails()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalVideo.getWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalVideo.getWidth()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalVideo.getWidth()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalVideo.getHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalVideo.getHeight()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalVideo.getHeight()",this,throwable);throw throwable;}
     }
 }

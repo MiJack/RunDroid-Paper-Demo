@@ -186,7 +186,7 @@ public class EnhancedListView extends ListView {
          * @return The title for a special string.
          */
         public String getTitle() {
-            return null;
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.component.EnhancedListView$Undoable.getTitle()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.component.EnhancedListView$Undoable.getTitle()",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.component.EnhancedListView$Undoable.getTitle()",this,throwable);throw throwable;}
         }
 
         /**
@@ -195,7 +195,7 @@ public class EnhancedListView extends ListView {
          * (whereas in {@link de.timroes.android.listview.EnhancedListView.OnDismissCallback#onKeyDown(int, android.view.KeyEvent)}
          * you should only remove it from the list adapter).
          */
-        public void discard() { }
+        {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$Undoable.discard()",this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$Undoable.discard()",this);}
 
     }
 
@@ -219,8 +219,8 @@ public class EnhancedListView extends ListView {
 
         @Override
         public int compareTo(PendingDismissData other) {
-            // Sort by descending position
-            return other.position - position;
+            com.mijack.Xlog.logMethodEnter("int com.chanapps.four.component.EnhancedListView$PendingDismissData.compareTo(com.chanapps.four.component.EnhancedListView$PendingDismissData)",this,other);try{/*// Sort by descending position*/
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.EnhancedListView$PendingDismissData.compareTo(com.chanapps.four.component.EnhancedListView$PendingDismissData)",this);return other.position - position;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.component.EnhancedListView$PendingDismissData.compareTo(com.chanapps.four.component.EnhancedListView$PendingDismissData)",this,throwable);throw throwable;}
         }
 
     }
@@ -234,7 +234,7 @@ public class EnhancedListView extends ListView {
          */
         @Override
         public void onClick(View v) {
-            if(!mUndoActions.isEmpty()) {
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$UndoClickListener.onClick(android.view.View)",this,v);try{if(!mUndoActions.isEmpty()) {
                 switch(mUndoStyle) {
                     case SINGLE_POPUP:
                         mUndoActions.get(0).undo();
@@ -254,7 +254,7 @@ public class EnhancedListView extends ListView {
                 }
             }
 
-            // Dismiss dialog or change text
+            /*// Dismiss dialog or change text*/
             if(mUndoActions.isEmpty()) {
                 mUndoPopup.dismiss();
             } else {
@@ -262,7 +262,7 @@ public class EnhancedListView extends ListView {
                 changeButtonLabel();
             }
 
-            mValidDelayedMsgId++;
+            mValidDelayedMsgId++;com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$UndoClickListener.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView$UndoClickListener.onClick(android.view.View)",this,throwable);throw throwable;}
         }
     }
 
@@ -273,17 +273,17 @@ public class EnhancedListView extends ListView {
          */
         @Override
         public void handleMessage(Message msg) {
-            if(msg.what == mValidDelayedMsgId) {
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$HideUndoPopupHandler.handleMessage(android.os.Message)",this,msg);try{if(msg.what == mValidDelayedMsgId) {
                 for(Undoable undo : mUndoActions) {
                     undo.discard();
                 }
                 mUndoActions.clear();
                 mUndoPopup.dismiss();
-            }
+            }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$HideUndoPopupHandler.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView$HideUndoPopupHandler.handleMessage(android.os.Message)",this,throwable);throw throwable;}
         }
     }
 
-    // Cached ViewConfiguration and system-wide constant values
+    /*// Cached ViewConfiguration and system-wide constant values*/
     private int mSlop;
     private int mMinFlingVelocity;
     private int mMaxFlingVelocity;
@@ -291,7 +291,7 @@ public class EnhancedListView extends ListView {
 
     private final Object[] mAnimationLock = new Object[0];
 
-    // Swipe-To-Dismiss
+    /*// Swipe-To-Dismiss*/
     private boolean mSwipeEnabled;
     private OnDismissCallback mDismissCallback;
     private UndoStyle mUndoStyle = UndoStyle.SINGLE_POPUP;
@@ -307,7 +307,7 @@ public class EnhancedListView extends ListView {
 
     private boolean mSwipePaused;
     private boolean mSwiping;
-    private int mViewWidth = 1; // 1 and not 0 to prevent dividing by zero
+    private int mViewWidth = 1; /*// 1 and not 0 to prevent dividing by zero*/
     private View mSwipeDownView;
     private View mSwipeDownChild;
     private TextView mUndoPopupTextView;
@@ -320,7 +320,7 @@ public class EnhancedListView extends ListView {
     private int mValidDelayedMsgId;
     private Handler mHideUndoHandler = new HideUndoPopupHandler();
     private Button mUndoButton;
-    // END Swipe-To-Dismiss
+    /*// END Swipe-To-Dismiss*/
 
     /**
      * {@inheritDoc}
@@ -348,9 +348,9 @@ public class EnhancedListView extends ListView {
 
     private void init(Context ctx) {
 
-        if(isInEditMode()) {
-            // Skip initializing when in edit mode (IDE preview).
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView.init(android.content.Context)",this,ctx);try{if(isInEditMode()) {
+            /*// Skip initializing when in edit mode (IDE preview).*/
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView.init(android.content.Context)",this);return;}
         }
         ViewConfiguration vc =ViewConfiguration.get(ctx);
         mSlop = vc.getScaledTouchSlop();
@@ -359,7 +359,7 @@ public class EnhancedListView extends ListView {
         mAnimationTime = ctx.getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
 
-        // Initialize undo popup
+        /*// Initialize undo popup*/
         LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View undoView = inflater.inflate(R.layout.undo_popup, null);
         mUndoButton = (Button)undoView.findViewById(R.id.undo);
@@ -367,10 +367,10 @@ public class EnhancedListView extends ListView {
         mUndoButton.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                // If the user touches the screen invalidate the current running delay by incrementing
-                // the valid message id. So this delay won't hide the undo popup anymore
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.EnhancedListView$1.onTouch(android.view.View,android.view.MotionEvent)",this,v,event);try{/*// If the user touches the screen invalidate the current running delay by incrementing*/
+                /*// the valid message id. So this delay won't hide the undo popup anymore*/
                 mValidDelayedMsgId++;
-                return false;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView.init(android.content.Context)",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView$1.onTouch(android.view.View,android.view.MotionEvent)",this);return false;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.EnhancedListView$1.onTouch(android.view.View,android.view.MotionEvent)",this,throwable);throw throwable;}
             }
         });
         mUndoPopupTextView = (TextView)undoView.findViewById(R.id.text);
@@ -380,9 +380,9 @@ public class EnhancedListView extends ListView {
 
         mScreenDensity = getResources().getDisplayMetrics().density;
         mUndoPopup.setHeight((int)(mScreenDensity * 56));
-        // END initialize undo popup
+        /*// END initialize undo popup*/
 
-        setOnScrollListener(makeScrollListener());
+        setOnScrollListener(makeScrollListener());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView.init(android.content.Context)",this,throwable);throw throwable;}
 
     }
 
@@ -403,13 +403,13 @@ public class EnhancedListView extends ListView {
      */
     public EnhancedListView enableSwipeToDismiss() {
 
-        if(mDismissCallback == null) {
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.enableSwipeToDismiss()",this);try{if(mDismissCallback == null) {
             throw new IllegalStateException("You must pass an OnDismissCallback to the list before enabling Swipe to Dismiss.");
         }
 
         mSwipeEnabled = true;
 
-        return this;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.enableSwipeToDismiss()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.enableSwipeToDismiss()",this,throwable);throw throwable;}
     }
 
     /**
@@ -418,8 +418,8 @@ public class EnhancedListView extends ListView {
      * @return This {@link de.timroes.android.listview.EnhancedListView}
      */
     public EnhancedListView disableSwipeToDismiss() {
-        mSwipeEnabled = false;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.disableSwipeToDismiss()",this);try{mSwipeEnabled = false;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.disableSwipeToDismiss()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.disableSwipeToDismiss()",this,throwable);throw throwable;}
     }
 
     /**
@@ -432,8 +432,8 @@ public class EnhancedListView extends ListView {
      * @return This {@link de.timroes.android.listview.EnhancedListView}
      */
     public EnhancedListView setDismissCallback(OnDismissCallback dismissCallback) {
-        mDismissCallback = dismissCallback;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setDismissCallback(OnDismissCallback)",this,dismissCallback);try{mDismissCallback = dismissCallback;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setDismissCallback(OnDismissCallback)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setDismissCallback(OnDismissCallback)",this,throwable);throw throwable;}
     }
 
     /**
@@ -445,8 +445,8 @@ public class EnhancedListView extends ListView {
      * @return This {@link de.timroes.android.listview.EnhancedListView}
      */
     public EnhancedListView setUndoStyle(UndoStyle undoStyle) {
-        mUndoStyle = undoStyle;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setUndoStyle(UndoStyle)",this,undoStyle);try{mUndoStyle = undoStyle;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setUndoStyle(UndoStyle)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setUndoStyle(UndoStyle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -459,8 +459,8 @@ public class EnhancedListView extends ListView {
      * @return This {@link de.timroes.android.listview.EnhancedListView}
      */
     public EnhancedListView setUndoHideDelay(int hideDelay) {
-        mUndoHideDelay = hideDelay;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setUndoHideDelay(int)",this,hideDelay);try{mUndoHideDelay = hideDelay;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setUndoHideDelay(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setUndoHideDelay(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -473,8 +473,8 @@ public class EnhancedListView extends ListView {
      * @see #setUndoHideDelay(int)
      */
     public EnhancedListView setRequireTouchBeforeDismiss(boolean touchBeforeDismiss) {
-        mTouchBeforeAutoHide = touchBeforeDismiss;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setRequireTouchBeforeDismiss(boolean)",this,touchBeforeDismiss);try{mTouchBeforeAutoHide = touchBeforeDismiss;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setRequireTouchBeforeDismiss(boolean)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setRequireTouchBeforeDismiss(boolean)",this,throwable);throw throwable;}
     }
 
     /**
@@ -489,8 +489,8 @@ public class EnhancedListView extends ListView {
      * @return This {@link de.timroes.android.listview.EnhancedListView}
      */
     public EnhancedListView setSwipeDirection(SwipeDirection direction) {
-        mSwipeDirection = direction;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setSwipeDirection(SwipeDirection)",this,direction);try{mSwipeDirection = direction;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setSwipeDirection(SwipeDirection)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setSwipeDirection(SwipeDirection)",this,throwable);throw throwable;}
     }
 
     /**
@@ -508,8 +508,8 @@ public class EnhancedListView extends ListView {
      * @return This {@link de.timroes.android.listview.EnhancedListView}
      */
     public EnhancedListView setSwipingLayout(int swipingLayoutId) {
-        mSwipingLayout = swipingLayoutId;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setSwipingLayout(int)",this,swipingLayoutId);try{mSwipingLayout = swipingLayoutId;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setSwipingLayout(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.EnhancedListView com.chanapps.four.component.EnhancedListView.setSwipingLayout(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -519,11 +519,11 @@ public class EnhancedListView extends ListView {
      * break your data consistency.
      */
     public void discardUndo() {
-        for(Undoable undoable : mUndoActions) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView.discardUndo()",this);try{for(Undoable undoable : mUndoActions) {
             undoable.discard();
         }
         mUndoActions.clear();
-        mUndoPopup.dismiss();
+        mUndoPopup.dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView.discardUndo()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView.discardUndo()",this,throwable);throw throwable;}
     }
 
     /**
@@ -542,7 +542,7 @@ public class EnhancedListView extends ListView {
      *      is set via {@link #setDismissCallback(de.timroes.android.listview.EnhancedListView.OnDismissCallback)}.
      * */
     public void delete(int position) {
-        if(mDismissCallback == null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView.delete(int)",this,position);try{if(mDismissCallback == null) {
             throw new IllegalStateException("You must set an OnDismissCallback, before deleting items.");
         }
         if(position < 0 || position >= getCount()) {
@@ -556,7 +556,7 @@ public class EnhancedListView extends ListView {
         if(view == null) {
             view = childView;
         }
-        slideOutView(view, childView, position, true);
+        slideOutView(view, childView, position, true);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView.delete(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -570,10 +570,10 @@ public class EnhancedListView extends ListView {
      */
     private void slideOutView(final View view, final View childView, final int position, boolean toRightSide) {
 
-        // Only start new animation, if this view isn't already animated (too fast swiping bug)
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView.slideOutView(android.view.View,android.view.View,int,boolean)",this,view,childView,position,toRightSide);try{/*// Only start new animation, if this view isn't already animated (too fast swiping bug)*/
         synchronized(mAnimationLock) {
             if(mAnimatedViews.contains(view)) {
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView.slideOutView(android.view.View,android.view.View,int,boolean)",this);return;}
             }
             ++mDismissAnimationRefCount;
             mAnimatedViews.add(view);
@@ -586,24 +586,24 @@ public class EnhancedListView extends ListView {
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        performDismiss(view, childView, position);
+                        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$2.onAnimationEnd(com.nineoldandroids.animation.Animator)",this,animation);try{performDismiss(view, childView, position);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$2.onAnimationEnd(com.nineoldandroids.animation.Animator)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView$2.onAnimationEnd(com.nineoldandroids.animation.Animator)",this,throwable);throw throwable;}
                     }
-                });
+                });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView.slideOutView(android.view.View,android.view.View,int,boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
 
-        if (!mSwipeEnabled) {
-            return super.onTouchEvent(ev);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.EnhancedListView.onTouchEvent(android.view.MotionEvent)",this,ev);try{if (!mSwipeEnabled) {
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.onTouchEvent(android.view.MotionEvent)",this);return super.onTouchEvent(ev);}
         }
 
-        // Send a delayed message to hide popup
+        /*// Send a delayed message to hide popup*/
         if(mTouchBeforeAutoHide && mUndoPopup.isShowing()) {
             mHideUndoHandler.sendMessageDelayed(mHideUndoHandler.obtainMessage(mValidDelayedMsgId), mUndoHideDelay);
         }
 
-        // Store width of this list for usage of swipe distance detection
+        /*// Store width of this list for usage of swipe distance detection*/
         if (mViewWidth < 2) {
             mViewWidth = getWidth();
         }
@@ -611,12 +611,12 @@ public class EnhancedListView extends ListView {
         switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
                 if (mSwipePaused) {
-                    return super.onTouchEvent(ev);
+                    {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.onTouchEvent(android.view.MotionEvent)",this);return super.onTouchEvent(ev);}
                 }
 
-                // TODO: ensure this is a finger, and set a flag
+                /*// TODO: ensure this is a finger, and set a flag*/
 
-                // Find the child view that was touched (perform a hit test)
+                /*// Find the child view that was touched (perform a hit test)*/
                 Rect rect = new Rect();
                 int childCount = getChildCount();
                 int[] listViewCoords = new int[2];
@@ -629,7 +629,7 @@ public class EnhancedListView extends ListView {
                     if(child != null) {
                         child.getHitRect(rect);
                         if (rect.contains(x, y)) {
-                            // if a specific swiping layout has been giving, use this to swipe.
+                            /*// if a specific swiping layout has been giving, use this to swipe.*/
                             if(mSwipingLayout > 0) {
                                 View swipingView = child.findViewById(mSwipingLayout);
                                 if(swipingView != null) {
@@ -638,7 +638,7 @@ public class EnhancedListView extends ListView {
                                     break;
                                 }
                             }
-                            // If no swiping layout has been found, swipe the whole child
+                            /*// If no swiping layout has been found, swipe the whole child*/
                             mSwipeDownView = mSwipeDownChild = child;
                             break;
                         }
@@ -653,7 +653,7 @@ public class EnhancedListView extends ListView {
                     mVelocityTracker.addMovement(ev);
                 }
                 super.onTouchEvent(ev);
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.onTouchEvent(android.view.MotionEvent)",this);return true;}
             }
 
             case MotionEvent.ACTION_UP: {
@@ -678,10 +678,10 @@ public class EnhancedListView extends ListView {
                     dismissRight = mVelocityTracker.getXVelocity() > 0;
                 }
                 if (dismiss) {
-                    // dismiss
+                    /*// dismiss*/
                     slideOutView(mSwipeDownView, mSwipeDownChild, mDownPosition, dismissRight);
                 } else if(mSwiping) {
-                    // Swipe back to regular position
+                    /*// Swipe back to regular position*/
                     ViewPropertyAnimator.animate(mSwipeDownView)
                             .translationX(0)
                             .alpha(1)
@@ -705,13 +705,13 @@ public class EnhancedListView extends ListView {
 
                 mVelocityTracker.addMovement(ev);
                 float deltaX = ev.getRawX() - mDownX;
-                // Only start swipe in correct direction
+                /*// Only start swipe in correct direction*/
                 if(isSwipeDirectionValid(deltaX)) {
                     if (Math.abs(deltaX) > mSlop) {
                         mSwiping = true;
                         requestDisallowInterceptTouchEvent(true);
 
-                        // Cancel ListView's touch (un-highlighting the item)
+                        /*// Cancel ListView's touch (un-highlighting the item)*/
                         MotionEvent cancelEvent = MotionEvent.obtain(ev);
                         cancelEvent.setAction(MotionEvent.ACTION_CANCEL
                                 | (ev.getActionIndex()
@@ -719,8 +719,8 @@ public class EnhancedListView extends ListView {
                         super.onTouchEvent(cancelEvent);
                     }
                 } else {
-                    // If we swiped into wrong direction, act like this was the new
-                    // touch down point
+                    /*// If we swiped into wrong direction, act like this was the new*/
+                    /*// touch down point*/
                     mDownX = ev.getRawX();
                     deltaX = 0;
                 }
@@ -729,12 +729,12 @@ public class EnhancedListView extends ListView {
                     ViewHelper.setTranslationX(mSwipeDownView, deltaX);
                     ViewHelper.setAlpha(mSwipeDownView, Math.max(0f, Math.min(1f,
                             1f - 2f * Math.abs(deltaX) / mViewWidth)));
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.onTouchEvent(android.view.MotionEvent)",this);return true;}
                 }
                 break;
             }
         }
-        return super.onTouchEvent(ev);
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.onTouchEvent(android.view.MotionEvent)",this);return super.onTouchEvent(ev);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.EnhancedListView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     /**
@@ -748,7 +748,7 @@ public class EnhancedListView extends ListView {
      */
     private void performDismiss(final View dismissView, final View listItemView, final int dismissPosition) {
 
-        final ViewGroup.LayoutParams lp = listItemView.getLayoutParams();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView.performDismiss(android.view.View,android.view.View,int)",this,dismissView,listItemView,dismissPosition);try{final ViewGroup.LayoutParams lp = listItemView.getLayoutParams();
         final int originalLayoutHeight = lp.height;
 
         int originalHeight = listItemView.getHeight();
@@ -758,7 +758,7 @@ public class EnhancedListView extends ListView {
             @Override
             public void onAnimationEnd(Animator animation) {
 
-                // Make sure no other animation is running. Remove animation from running list, that just finished
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$3.onAnimationEnd(com.nineoldandroids.animation.Animator)",this,animation);try{/*// Make sure no other animation is running. Remove animation from running list, that just finished*/
                 boolean noAnimationLeft;
                 synchronized(mAnimationLock) {
                     --mDismissAnimationRefCount;
@@ -767,7 +767,7 @@ public class EnhancedListView extends ListView {
                 }
 
                 if (noAnimationLeft) {
-                    // No active animations, process all pending dismisses.
+                    /*// No active animations, process all pending dismisses.*/
 
                     for(PendingDismissData dismiss : mPendingDismisses) {
                         if(mUndoStyle == UndoStyle.SINGLE_POPUP) {
@@ -787,15 +787,15 @@ public class EnhancedListView extends ListView {
                         changePopupText();
                         changeButtonLabel();
 
-                        // Show undo popup
+                        /*// Show undo popup*/
                         mUndoPopup.setWidth((int)Math.min(mScreenDensity * 400, getWidth() * 0.9f));
                         mUndoPopup.showAtLocation(EnhancedListView.this,
                                 Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
                                 0, (int)(mScreenDensity * 15));
 
-                        // Queue the dismiss only if required
+                        /*// Queue the dismiss only if required*/
                         if(!mTouchBeforeAutoHide) {
-                            // Send a delayed message to hide popup
+                            /*// Send a delayed message to hide popup*/
                             mHideUndoHandler.sendMessageDelayed(mHideUndoHandler.obtainMessage(mValidDelayedMsgId),
                                     mUndoHideDelay);
                         }
@@ -811,20 +811,20 @@ public class EnhancedListView extends ListView {
                     }
 
                     mPendingDismisses.clear();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$3.onAnimationEnd(com.nineoldandroids.animation.Animator)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView$3.onAnimationEnd(com.nineoldandroids.animation.Animator)",this,throwable);throw throwable;}
             }
         });
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                lp.height = (Integer) valueAnimator.getAnimatedValue();
-                listItemView.setLayoutParams(lp);
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$4.onAnimationUpdate(com.nineoldandroids.animation.ValueAnimator)",this,valueAnimator);try{lp.height = (Integer) valueAnimator.getAnimatedValue();
+                listItemView.setLayoutParams(lp);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$4.onAnimationUpdate(com.nineoldandroids.animation.ValueAnimator)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView$4.onAnimationUpdate(com.nineoldandroids.animation.ValueAnimator)",this,throwable);throw throwable;}
             }
         });
 
         mPendingDismisses.add(new PendingDismissData(dismissPosition, dismissView, listItemView));
-        animator.start();
+        animator.start();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView.performDismiss(android.view.View,android.view.View,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView.performDismiss(android.view.View,android.view.View,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -833,45 +833,43 @@ public class EnhancedListView extends ListView {
      * string in case the title is {@code null}) will be shown.
      */
     private void changePopupText() {
-        String msg = null;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView.changePopupText()",this);try{String msg = null;
         if(mUndoActions.size() > 1) {
             msg = getResources().getString(R.string.dialog_deleted_from_watchlist, mUndoActions.size());
         } else if(mUndoActions.size() >= 1) {
-            // Set title from single undoable or when no multiple deletion string
-            // is given
+            /*// Set title from single undoable or when no multiple deletion string*/
+            /*// is given*/
             msg = mUndoActions.get(mUndoActions.size() - 1).getTitle();
 
             if(msg == null) {
                 msg = getResources().getString(R.string.dialog_deleted_from_watchlist);
             }
         }
-        mUndoPopupTextView.setText(msg);
+        mUndoPopupTextView.setText(msg);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView.changePopupText()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView.changePopupText()",this,throwable);throw throwable;}
     }
 
     /**
      * Changes the label of the undo button.
      */
     private void changeButtonLabel() {
-        String msg;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView.changeButtonLabel()",this);try{String msg;
         if(mUndoActions.size() > 1 && mUndoStyle == UndoStyle.COLLAPSED_POPUP) {
             msg = getResources().getString(R.string.undo_all);
         } else {
             msg = getResources().getString(R.string.undo);
         }
-        mUndoButton.setText(msg);
+        mUndoButton.setText(msg);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView.changeButtonLabel()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView.changeButtonLabel()",this,throwable);throw throwable;}
     }
 
     public OnScrollListener makeScrollListener() {
-        return new OnScrollListener() {
+        com.mijack.Xlog.logMethodEnter("OnScrollListener com.chanapps.four.component.EnhancedListView.makeScrollListener()",this);try{com.mijack.Xlog.logMethodExit("OnScrollListener com.chanapps.four.component.EnhancedListView.makeScrollListener()",this);return new OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                mSwipePaused = scrollState == OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$5.onScrollStateChanged(android.widget.AbsListView,int)",this,view,scrollState);try{mSwipePaused = scrollState == OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$5.onScrollStateChanged(android.widget.AbsListView,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.EnhancedListView$5.onScrollStateChanged(android.widget.AbsListView,int)",this,throwable);throw throwable;}
             }
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            }
-        };
+            {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.EnhancedListView$5.onScroll(android.widget.AbsListView,int,int,int)",this,view,firstVisibleItem,visibleItemCount,totalItemCount);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.EnhancedListView$5.onScroll(android.widget.AbsListView,int,int,int)",this);}
+        };}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("OnScrollListener com.chanapps.four.component.EnhancedListView.makeScrollListener()",this,throwable);throw throwable;}
     }
 
     /**
@@ -884,24 +882,24 @@ public class EnhancedListView extends ListView {
      */
     private boolean isSwipeDirectionValid(float deltaX) {
 
-        int rtlSign = 1;
-        // On API level 17 and above, check if we are in a Right-To-Left layout
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.EnhancedListView.isSwipeDirectionValid(float)",this,deltaX);try{int rtlSign = 1;
+        /*// On API level 17 and above, check if we are in a Right-To-Left layout*/
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             if(getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
                 rtlSign = -1;
             }
         }
 
-        // Check if swipe has been done in the correct direction
+        /*// Check if swipe has been done in the correct direction*/
         switch(mSwipeDirection) {
             default:
             case BOTH:
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.isSwipeDirectionValid(float)",this);return true;}
             case START:
-                return rtlSign * deltaX < 0;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.isSwipeDirectionValid(float)",this);return rtlSign * deltaX < 0;}
             case END:
-                return rtlSign * deltaX > 0;
-        }
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.EnhancedListView.isSwipeDirectionValid(float)",this);return rtlSign * deltaX > 0;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.EnhancedListView.isSwipeDirectionValid(float)",this,throwable);throw throwable;}
 
     }
 }

@@ -35,21 +35,21 @@ public class RedEyeAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final RedEyeFilter filter = new RedEyeFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RedEyeAction.doBegin()",this);try{final RedEyeFilter filter = new RedEyeFilter();
 
         touchView = factory.createTouchView();
         touchView.setSingleTapListener(new TouchView.SingleTapListener() {
 
             @Override
             public void onSingleTap(PointF point) {
-                filter.addRedEyePosition(point);
-                notifyFilterChanged(filter, true);
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RedEyeAction$1.onSingleTap(android.graphics.PointF)",this,point);try{filter.addRedEyePosition(point);
+                notifyFilterChanged(filter, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RedEyeAction$1.onSingleTap(android.graphics.PointF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RedEyeAction$1.onSingleTap(android.graphics.PointF)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RedEyeAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RedEyeAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        touchView.setSingleTapListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RedEyeAction.doEnd()",this);try{touchView.setSingleTapListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RedEyeAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RedEyeAction.doEnd()",this,throwable);throw throwable;}
     }
 }

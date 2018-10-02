@@ -126,7 +126,7 @@ public abstract class Part {
      * @deprecated uses a constant string. Rather use {@link #getPartBoundary}
      */
     public static String getBoundary() {
-        return BOUNDARY;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.chanapps.four.multipartmime.Part.getBoundary()");try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.chanapps.four.multipartmime.Part.getBoundary()");return BOUNDARY;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.Part.getBoundary()",throwable);throw throwable;}
     }
 
     /**
@@ -166,12 +166,12 @@ public abstract class Part {
      * @since 3.0
      */
     protected byte[] getPartBoundary() {
-        if (boundaryBytes == null) {
-            // custom boundary bytes have not been set, use the default.
-            return DEFAULT_BOUNDARY_BYTES;
+        com.mijack.Xlog.logMethodEnter("[byte com.chanapps.four.multipartmime.Part.getPartBoundary()",this);try{if (boundaryBytes == null) {
+            /*// custom boundary bytes have not been set, use the default.*/
+            {com.mijack.Xlog.logMethodExit("[byte com.chanapps.four.multipartmime.Part.getPartBoundary()",this);return DEFAULT_BOUNDARY_BYTES;}
         } else {
-            return boundaryBytes;            
-        }
+            {com.mijack.Xlog.logMethodExit("[byte com.chanapps.four.multipartmime.Part.getPartBoundary()",this);return boundaryBytes;}            
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.chanapps.four.multipartmime.Part.getPartBoundary()",this,throwable);throw throwable;}
     }
     
     /**
@@ -182,7 +182,7 @@ public abstract class Part {
      * @since 3.0
      */
     void setPartBoundary(byte[] boundaryBytes) {
-        this.boundaryBytes = boundaryBytes;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.setPartBoundary([byte)",this,boundaryBytes);try{this.boundaryBytes = boundaryBytes;com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.setPartBoundary([byte)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.setPartBoundary([byte)",this,throwable);throw throwable;}
     }
     
     /**
@@ -192,7 +192,7 @@ public abstract class Part {
      * @since 3.0
      */
     public boolean isRepeatable() {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.multipartmime.Part.isRepeatable()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.multipartmime.Part.isRepeatable()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.multipartmime.Part.isRepeatable()",this,throwable);throw throwable;}
     }
     
     /**
@@ -201,10 +201,10 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs.
      */
     protected void sendStart(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendStart(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.sendStart(java.io.ByteArrayOutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendStart(OutputStream out)");}
         out.write(EXTRA_BYTES);
         out.write(getPartBoundary());
-        out.write(CRLF_BYTES);
+        out.write(CRLF_BYTES);com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.sendStart(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendStart(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
     
     /**
@@ -214,11 +214,11 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs.
      */
     protected void sendDispositionHeader(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendDispositionHeader(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.sendDispositionHeader(java.io.ByteArrayOutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendDispositionHeader(OutputStream out)");}
         out.write(CONTENT_DISPOSITION_BYTES);
         out.write(QUOTE_BYTES);
         out.write(EncodingUtils.getAsciiBytes(getName()));
-        out.write(QUOTE_BYTES);
+        out.write(QUOTE_BYTES);com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.sendDispositionHeader(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendDispositionHeader(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
     
     /**
@@ -227,7 +227,7 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs.
      */
      protected void sendContentTypeHeader(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendContentTypeHeader(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.sendContentTypeHeader(java.io.ByteArrayOutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendContentTypeHeader(OutputStream out)");}
         String contentType = getContentType();
         if (contentType != null) {
             out.write(CRLF_BYTES);
@@ -238,7 +238,7 @@ public abstract class Part {
                 out.write(CHARSET_BYTES);
                 out.write(EncodingUtils.getAsciiBytes(charSet));
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.sendContentTypeHeader(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendContentTypeHeader(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
 
     /**
@@ -249,13 +249,13 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs.
      */
      protected void sendTransferEncodingHeader(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendTransferEncodingHeader(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.sendTransferEncodingHeader(java.io.ByteArrayOutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendTransferEncodingHeader(OutputStream out)");}
         String transferEncoding = getTransferEncoding();
         if (transferEncoding != null) {
             out.write(CRLF_BYTES);
             out.write(CONTENT_TRANSFER_ENCODING_BYTES);
             out.write(EncodingUtils.getAsciiBytes(transferEncoding));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.sendTransferEncodingHeader(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendTransferEncodingHeader(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
 
     /**
@@ -264,9 +264,9 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs.
      */
     protected void sendEndOfHeader(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendEndOfHeader(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.sendEndOfHeader(java.io.ByteArrayOutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendEndOfHeader(OutputStream out)");}
         out.write(CRLF_BYTES);
-        out.write(CRLF_BYTES);
+        out.write(CRLF_BYTES);com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.sendEndOfHeader(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendEndOfHeader(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
     
     /**
@@ -290,8 +290,8 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs.
      */
     protected void sendEnd(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendEnd(OutputStream out)");
-        out.write(CRLF_BYTES);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.sendEnd(java.io.ByteArrayOutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendEnd(OutputStream out)");}
+        out.write(CRLF_BYTES);com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.sendEnd(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendEnd(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
     
     /**
@@ -303,14 +303,14 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs.
      */
     public void send(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter send(OutputStream out)");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.Part.send(java.io.ByteArrayOutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter send(OutputStream out)");}
         sendStart(out);
         sendDispositionHeader(out);
         sendContentTypeHeader(out);
         sendTransferEncodingHeader(out);
         sendEndOfHeader(out);
         sendData(out);
-        sendEnd(out);
+        sendEnd(out);com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.Part.send(java.io.ByteArrayOutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.send(java.io.ByteArrayOutputStream)",this,throwable);throw throwable;}
     }
 
 
@@ -323,9 +323,9 @@ public abstract class Part {
      * @throws IOException If an IO problem occurs
      */
     public long length() throws IOException {
-        if (DEBUG) Log.d(TAG, "enter length()");
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.multipartmime.Part.length()",this);try{if (DEBUG) {Log.d(TAG, "enter length()");}
         if (lengthOfData() < 0) {
-            return -1;
+            {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.Part.length()",this);return -1;}
         }
         ByteArrayOutputStream overhead = new ByteArrayOutputStream();
         sendStart(overhead);
@@ -334,7 +334,7 @@ public abstract class Part {
         sendTransferEncodingHeader(overhead);
         sendEndOfHeader(overhead);
         sendEnd(overhead);
-        return overhead.size() + lengthOfData();
+        {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.Part.length()",this);return overhead.size() + lengthOfData();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.multipartmime.Part.length()",this,throwable);throw throwable;}
     }
 
     /**
@@ -344,7 +344,7 @@ public abstract class Part {
      */    
     @Override
     public String toString() {
-        return this.getName();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.Part.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.Part.toString()",this);return this.getName();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.Part.toString()",this,throwable);throw throwable;}
     }
 
     /**
@@ -357,7 +357,7 @@ public abstract class Part {
      */
     public static void sendParts(OutputStream out, final Part[] parts)
         throws IOException {
-        sendParts(out, parts, DEFAULT_BOUNDARY_BYTES);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.multipartmime.Part.sendParts(java.io.ByteArrayOutputStream,[com.chanapps.four.multipartmime.Part)",out,parts);try{sendParts(out, parts, DEFAULT_BOUNDARY_BYTES);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.multipartmime.Part.sendParts(java.io.ByteArrayOutputStream,[com.chanapps.four.multipartmime.Part)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendParts(java.io.ByteArrayOutputStream,[com.chanapps.four.multipartmime.Part)",throwable);throw throwable;}
     }
 
     /**
@@ -373,7 +373,7 @@ public abstract class Part {
      */
     public static void sendParts(OutputStream out, Part[] parts, byte[] partBoundary)
         throws IOException {
-        
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.multipartmime.Part.sendParts(java.io.ByteArrayOutputStream,[com.chanapps.four.multipartmime.Part,[byte)",out,parts,partBoundary);try{
         if (parts == null) {
             throw new IllegalArgumentException("Parts may not be null"); 
         }
@@ -381,14 +381,14 @@ public abstract class Part {
             throw new IllegalArgumentException("partBoundary may not be empty");
         }
         for (int i = 0; i < parts.length; i++) {
-            // set the part boundary before the part is sent
+            /*// set the part boundary before the part is sent*/
             parts[i].setPartBoundary(partBoundary);
             parts[i].send(out);
         }
         out.write(EXTRA_BYTES);
         out.write(partBoundary);
         out.write(EXTRA_BYTES);
-        out.write(CRLF_BYTES);
+        out.write(CRLF_BYTES);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.multipartmime.Part.sendParts(java.io.ByteArrayOutputStream,[com.chanapps.four.multipartmime.Part,[byte)",throwable);throw throwable;}
     }
     
     /**
@@ -401,7 +401,7 @@ public abstract class Part {
      */
     public static long getLengthOfParts(Part[] parts)
     throws IOException {
-        return getLengthOfParts(parts, DEFAULT_BOUNDARY_BYTES);
+        com.mijack.Xlog.logStaticMethodEnter("long com.chanapps.four.multipartmime.Part.getLengthOfParts([com.chanapps.four.multipartmime.Part)",parts);try{com.mijack.Xlog.logStaticMethodExit("long com.chanapps.four.multipartmime.Part.getLengthOfParts([com.chanapps.four.multipartmime.Part)");return getLengthOfParts(parts, DEFAULT_BOUNDARY_BYTES);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("long com.chanapps.four.multipartmime.Part.getLengthOfParts([com.chanapps.four.multipartmime.Part)",throwable);throw throwable;}
     }
     
     /**
@@ -416,17 +416,17 @@ public abstract class Part {
      * @since 3.0
      */
     public static long getLengthOfParts(Part[] parts, byte[] partBoundary) throws IOException {
-        if (DEBUG) Log.d(TAG, "getLengthOfParts(Parts[])");
+        com.mijack.Xlog.logStaticMethodEnter("long com.chanapps.four.multipartmime.Part.getLengthOfParts([com.chanapps.four.multipartmime.Part,[byte)",parts,partBoundary);try{if (DEBUG) {Log.d(TAG, "getLengthOfParts(Parts[])");}
         if (parts == null) {
             throw new IllegalArgumentException("Parts may not be null"); 
         }
         long total = 0;
         for (int i = 0; i < parts.length; i++) {
-            // set the part boundary before we calculate the part's length
+            /*// set the part boundary before we calculate the part's length*/
             parts[i].setPartBoundary(partBoundary);
             long l = parts[i].length();
             if (l < 0) {
-                return -1;
+                {com.mijack.Xlog.logStaticMethodExit("long com.chanapps.four.multipartmime.Part.getLengthOfParts([com.chanapps.four.multipartmime.Part,[byte)");return -1;}
             }
             total += l;
         }
@@ -434,6 +434,6 @@ public abstract class Part {
         total += partBoundary.length;
         total += EXTRA_BYTES.length;
         total += CRLF_BYTES.length;
-        return total;
+        {com.mijack.Xlog.logStaticMethodExit("long com.chanapps.four.multipartmime.Part.getLengthOfParts([com.chanapps.four.multipartmime.Part,[byte)");return total;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("long com.chanapps.four.multipartmime.Part.getLengthOfParts([com.chanapps.four.multipartmime.Part,[byte)",throwable);throw throwable;}
     }        
 }

@@ -38,20 +38,20 @@ public class PhotoAppWidgetProvider extends AppWidgetProvider {
 
     static RemoteViews buildWidget(Context context, int id, Entry entry) {
 
-        switch (entry.type) {
+        com.mijack.Xlog.logStaticMethodEnter("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)",context,id,entry);try{switch (entry.type) {
             case WidgetDatabaseHelper.TYPE_ALBUM:
             case WidgetDatabaseHelper.TYPE_SHUFFLE:
-                return buildStackWidget(context, id, entry);
+                {com.mijack.Xlog.logStaticMethodExit("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)");return buildStackWidget(context, id, entry);}
             case WidgetDatabaseHelper.TYPE_SINGLE_PHOTO:
-                return buildFrameWidget(context, id, entry);
+                {com.mijack.Xlog.logStaticMethodExit("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)");return buildFrameWidget(context, id, entry);}
         }
-        throw new RuntimeException("invalid type - " + entry.type);
+        throw new RuntimeException("invalid type - " + entry.type);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)",throwable);throw throwable;}
     }
 
     @Override
     public void onUpdate(Context context,
             AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        WidgetDatabaseHelper helper = new WidgetDatabaseHelper(context);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.PhotoAppWidgetProvider.onUpdate(android.content.Context,android.appwidget.AppWidgetManager,[int)",this,context,appWidgetManager,appWidgetIds);try{WidgetDatabaseHelper helper = new WidgetDatabaseHelper(context);
         try {
             for (int id : appWidgetIds) {
                 Entry entry = helper.getEntry(id);
@@ -65,11 +65,11 @@ public class PhotoAppWidgetProvider extends AppWidgetProvider {
         } finally {
             helper.close();
         }
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
+        super.onUpdate(context, appWidgetManager, appWidgetIds);com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.PhotoAppWidgetProvider.onUpdate(android.content.Context,android.appwidget.AppWidgetManager,[int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.PhotoAppWidgetProvider.onUpdate(android.content.Context,android.appwidget.AppWidgetManager,[int)",this,throwable);throw throwable;}
     }
 
     private static RemoteViews buildStackWidget(Context context, int widgetId, Entry entry) {
-        RemoteViews views = new RemoteViews(
+        com.mijack.Xlog.logStaticMethodEnter("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildStackWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)",context,widgetId,entry);try{RemoteViews views = new RemoteViews(
                 context.getPackageName(), R.layout.appwidget_main);
 
         Intent intent = new Intent(context, WidgetService.class);
@@ -86,11 +86,11 @@ public class PhotoAppWidgetProvider extends AppWidgetProvider {
                 context, 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setPendingIntentTemplate(R.id.appwidget_stack_view, pendingIntent);
 
-        return views;
+        {com.mijack.Xlog.logStaticMethodExit("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildStackWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)");return views;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildStackWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)",throwable);throw throwable;}
     }
 
     static RemoteViews buildFrameWidget(Context context, int appWidgetId, Entry entry) {
-        RemoteViews views = new RemoteViews(
+        com.mijack.Xlog.logStaticMethodEnter("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildFrameWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)",context,appWidgetId,entry);try{RemoteViews views = new RemoteViews(
                 context.getPackageName(), R.layout.photo_frame);
         try {
             byte[] data = entry.imageData;
@@ -112,16 +112,16 @@ public class PhotoAppWidgetProvider extends AppWidgetProvider {
                 Log.w(TAG, "cannot load widget uri: " + appWidgetId, t);
             }
         }
-        return views;
+        {com.mijack.Xlog.logStaticMethodExit("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildFrameWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)");return views;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.widget.RemoteViews com.chanapps.four.widget.PhotoAppWidgetProvider.buildFrameWidget(android.content.Context,int,com.chanapps.four.widget.WidgetDatabaseHelper.Entry)",throwable);throw throwable;}
     }
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
-        // Clean deleted photos out of our database
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.PhotoAppWidgetProvider.onDeleted(android.content.Context,[int)",this,context,appWidgetIds);try{/*// Clean deleted photos out of our database*/
         WidgetDatabaseHelper helper = new WidgetDatabaseHelper(context);
         for (int appWidgetId : appWidgetIds) {
             helper.deleteEntry(appWidgetId);
         }
-        helper.close();
+        helper.close();com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.PhotoAppWidgetProvider.onDeleted(android.content.Context,[int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.PhotoAppWidgetProvider.onDeleted(android.content.Context,[int)",this,throwable);throw throwable;}
     }
 }

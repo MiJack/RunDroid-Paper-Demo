@@ -35,16 +35,14 @@ public class StripDrawer extends SelectionDrawer {
     }
 
     public void setPressedPath(Path path) {
-        mPressedPath = path;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StripDrawer.setPressedPath(com.android.gallery3d.data.Path)",this,path);try{mPressedPath = path;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StripDrawer.setPressedPath(com.android.gallery3d.data.Path)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.StripDrawer.setPressedPath(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     private boolean isPressedPath(Path path) {
-        return path != null && path == mPressedPath;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.StripDrawer.isPressedPath(com.android.gallery3d.data.Path)",this,path);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.StripDrawer.isPressedPath(com.android.gallery3d.data.Path)",this);return path != null && path == mPressedPath;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.StripDrawer.isPressedPath(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void prepareDrawing() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StripDrawer.prepareDrawing()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StripDrawer.prepareDrawing()",this);}
 
     @Override
     public void draw(GLCanvas canvas, Texture content,
@@ -52,22 +50,22 @@ public class StripDrawer extends SelectionDrawer {
             int dataSourceType, int mediaType, boolean isPanorama,
             int labelBackgroundHeight, boolean wantCache, boolean isCaching) {
 
-        int x = -width / 2;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StripDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,canvas,content,width,height,rotation,path,dataSourceType,mediaType,isPanorama,labelBackgroundHeight,wantCache,isCaching);try{int x = -width / 2;
         int y = -height / 2;
 
         drawWithRotation(canvas, content, x, y, width, height, rotation);
 
         if (isPressedPath(path)) {
             drawFrame(canvas, mFramePressed, x, y, width, height);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StripDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.StripDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     public void drawFocus(GLCanvas canvas, int width, int height) {
-        int x = -width / 2;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StripDrawer.drawFocus(GLCanvas,int,int)",this,canvas,width,height);try{int x = -width / 2;
         int y = -height / 2;
         Rect p = mFocusBoxPadding;
         mFocusBox.draw(canvas, x - p.left, y - p.top,
-                width + p.left + p.right, height + p.top + p.bottom);
+                width + p.left + p.right, height + p.top + p.bottom);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StripDrawer.drawFocus(GLCanvas,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.StripDrawer.drawFocus(GLCanvas,int,int)",this,throwable);throw throwable;}
     }
 }

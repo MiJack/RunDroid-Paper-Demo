@@ -38,18 +38,18 @@ public class FaceClustering extends Clustering {
 
     @Override
     public void run(MediaSet baseSet) {
-        final TreeMap<Face, ArrayList<Path>> map =
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.FaceClustering.run(com.android.gallery3d.data.MediaSet)",this,baseSet);try{final TreeMap<Face, ArrayList<Path>> map =
                 new TreeMap<Face, ArrayList<Path>>();
         final ArrayList<Path> untagged = new ArrayList<Path>();
 
         baseSet.enumerateTotalMediaItems(new MediaSet.ItemConsumer() {
             public void consume(int index, MediaItem item) {
-                Path path = item.getPath();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.FaceClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,index,item);try{Path path = item.getPath();
 
                 Face[] faces = item.getFaces();
                 if (faces == null || faces.length == 0) {
                     untagged.add(path);
-                    return;
+                    {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.FaceClustering.run(com.android.gallery3d.data.MediaSet)",this);{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.FaceClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this);return;}}
                 }
                 for (int j = 0; j < faces.length; j++) {
                     Face key = faces[j];
@@ -59,7 +59,7 @@ public class FaceClustering extends Clustering {
                         map.put(key, list);
                     }
                     list.add(path);
-                }
+                }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.FaceClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,throwable);throw throwable;}
             }
         });
 
@@ -74,21 +74,21 @@ public class FaceClustering extends Clustering {
         if (untagged.size() > 0) {
             mNames[i++] = mUntaggedString;
             mClusters.add(untagged);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.FaceClustering.run(com.android.gallery3d.data.MediaSet)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getNumberOfClusters() {
-        return mClusters.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.FaceClustering.getNumberOfClusters()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.FaceClustering.getNumberOfClusters()",this);return mClusters.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.FaceClustering.getNumberOfClusters()",this,throwable);throw throwable;}
     }
 
     @Override
     public ArrayList<Path> getCluster(int index) {
-        return mClusters.get(index);
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.FaceClustering.getCluster(int)",this,index);try{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.FaceClustering.getCluster(int)",this);return mClusters.get(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.FaceClustering.getCluster(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public String getClusterName(int index) {
-        return mNames[index];
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.FaceClustering.getClusterName(int)",this,index);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.FaceClustering.getClusterName(int)",this);return mNames[index];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.FaceClustering.getClusterName(int)",this,throwable);throw throwable;}
     }
 }

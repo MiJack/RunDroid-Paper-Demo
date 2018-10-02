@@ -54,14 +54,14 @@ public class MoviePlayer implements
     private static final String KEY_VIDEO_POSITION = "video-position";
     private static final String KEY_RESUMEABLE_TIME = "resumeable-timeout";
 
-    // Copied from MediaPlaybackService in the Music Player app.
+    /*// Copied from MediaPlaybackService in the Music Player app.*/
     private static final String SERVICECMD = "com.android.music.musicservicecommand";
     private static final String CMDNAME = "command";
     private static final String CMDPAUSE = "pause";
 
-    // If we resume the acitivty with in RESUMEABLE_TIMEOUT, we will keep playing.
-    // Otherwise, we pause the player.
-    private static final long RESUMEABLE_TIMEOUT = 3 * 60 * 1000; // 3 mins
+    /*// If we resume the acitivty with in RESUMEABLE_TIMEOUT, we will keep playing.*/
+    /*// Otherwise, we pause the player.*/
+    private static final long RESUMEABLE_TIMEOUT = 3 * 60 * 1000; /*// 3 mins*/
 
     private Context mContext;
     private final VideoView mVideoView;
@@ -76,28 +76,28 @@ public class MoviePlayer implements
     private int mVideoPosition = 0;
     private boolean mHasPaused = false;
 
-    // If the time bar is being dragged.
+    /*// If the time bar is being dragged.*/
     private boolean mDragging;
 
-    // If the time bar is visible.
+    /*// If the time bar is visible.*/
     private boolean mShowing;
 
     private final Runnable mPlayingChecker = new Runnable() {
         @Override
         public void run() {
-            if (mVideoView.isPlaying()) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$1.run()",this);try{if (mVideoView.isPlaying()) {
                 mController.showPlaying();
             } else {
                 mHandler.postDelayed(mPlayingChecker, 250);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$1.run()",this,throwable);throw throwable;}
         }
     };
 
     private final Runnable mProgressChecker = new Runnable() {
         @Override
         public void run() {
-            int pos = setProgress();
-            mHandler.postDelayed(mProgressChecker, 1000 - (pos % 1000));
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$2.run()",this);try{int pos = setProgress();
+            mHandler.postDelayed(mProgressChecker, 1000 - (pos % 1000));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$2.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$2.run()",this,throwable);throw throwable;}
         }
     };
 
@@ -119,20 +119,20 @@ public class MoviePlayer implements
         mVideoView.setVideoURI(mUri);
         mVideoView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
-                mController.show();
-                return true;
+                com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.MoviePlayer$3.onTouch(android.view.View,android.view.MotionEvent)",this,v,event);try{mController.show();
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MoviePlayer$3.onTouch(android.view.View,android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.MoviePlayer$3.onTouch(android.view.View,android.view.MotionEvent)",this,throwable);throw throwable;}
             }
         });
 
-        // When the user touches the screen or uses some hard key, the framework
-        // will change system ui visibility from invisible to visible. We show
-        // the media control at this point.
+        /*// When the user touches the screen or uses some hard key, the framework*/
+        /*// will change system ui visibility from invisible to visible. We show*/
+        /*// the media control at this point.*/
         mVideoView.setOnSystemUiVisibilityChangeListener(
                 new View.OnSystemUiVisibilityChangeListener() {
             public void onSystemUiVisibilityChange(int visibility) {
-                if ((visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$4.onSystemUiVisibilityChange(int)",this,visibility);try{if ((visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
                     mController.show();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$4.onSystemUiVisibilityChange(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$4.onSystemUiVisibilityChange(int)",this,throwable);throw throwable;}
             }
         });
 
@@ -143,7 +143,7 @@ public class MoviePlayer implements
         i.putExtra(CMDNAME, CMDPAUSE);
         movieActivity.sendBroadcast(i);
 
-        if (savedInstance != null) { // this is a resumed activity
+        if (savedInstance != null) { /*// this is a resumed activity*/
             mVideoPosition = savedInstance.getInt(KEY_VIDEO_POSITION, 0);
             mResumeableTime = savedInstance.getLong(KEY_RESUMEABLE_TIME, Long.MAX_VALUE);
             mVideoView.start();
@@ -160,17 +160,17 @@ public class MoviePlayer implements
     }
 
     private void showSystemUi(boolean visible) {
-        int flag = visible ? 0 : View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-        mVideoView.setSystemUiVisibility(flag);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.showSystemUi(boolean)",this,visible);try{int flag = visible ? 0 : View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        mVideoView.setSystemUiVisibility(flag);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.showSystemUi(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.showSystemUi(boolean)",this,throwable);throw throwable;}
     }
 
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(KEY_VIDEO_POSITION, mVideoPosition);
-        outState.putLong(KEY_RESUMEABLE_TIME, mResumeableTime);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onSaveInstanceState(android.os.Bundle)",this,outState);try{outState.putInt(KEY_VIDEO_POSITION, mVideoPosition);
+        outState.putLong(KEY_RESUMEABLE_TIME, mResumeableTime);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onSaveInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onSaveInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     private void showResumeDialog(Context context, final int bookmark) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.showResumeDialog(android.content.Context,int)",this,context,bookmark);try{AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.resume_playing_title);
         builder.setMessage(String.format(
                 context.getString(R.string.resume_playing_message),
@@ -178,70 +178,70 @@ public class MoviePlayer implements
         builder.setOnCancelListener(new OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                onCompletion();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$5.onCancel(android.content.DialogInterface)",this,dialog);try{onCompletion();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$5.onCancel(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$5.onCancel(android.content.DialogInterface)",this,throwable);throw throwable;}
             }
         });
         builder.setPositiveButton(
                 R.string.resume_playing_resume, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mVideoView.seekTo(bookmark);
-                startVideo();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$6.onClick(android.content.DialogInterface,int)",this,dialog,which);try{mVideoView.seekTo(bookmark);
+                startVideo();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$6.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$6.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
             }
         });
         builder.setNegativeButton(
                 R.string.resume_playing_restart, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startVideo();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$7.onClick(android.content.DialogInterface,int)",this,dialog,which);try{startVideo();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$7.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$7.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
             }
         });
-        builder.show();
+        builder.show();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.showResumeDialog(android.content.Context,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.showResumeDialog(android.content.Context,int)",this,throwable);throw throwable;}
     }
 
     public void onPause() {
-        mHasPaused = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onPause()",this);try{mHasPaused = true;
         mHandler.removeCallbacksAndMessages(null);
         mVideoPosition = mVideoView.getCurrentPosition();
         mBookmarker.setBookmark(mUri, mVideoPosition, mVideoView.getDuration());
         mVideoView.suspend();
-        mResumeableTime = System.currentTimeMillis() + RESUMEABLE_TIMEOUT;
+        mResumeableTime = System.currentTimeMillis() + RESUMEABLE_TIMEOUT;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onPause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onPause()",this,throwable);throw throwable;}
     }
 
     public void onResume() {
-        if (mHasPaused) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onResume()",this);try{if (mHasPaused) {
             mVideoView.seekTo(mVideoPosition);
             mVideoView.resume();
 
-            // If we have slept for too long, pause the play
+            /*// If we have slept for too long, pause the play*/
             if (System.currentTimeMillis() > mResumeableTime) {
                 pauseVideo();
             }
         }
-        mHandler.post(mProgressChecker);
+        mHandler.post(mProgressChecker);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onResume()",this,throwable);throw throwable;}
     }
 
     public void onDestroy() {
-        mVideoView.stopPlayback();
-        mAudioBecomingNoisyReceiver.unregister();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onDestroy()",this);try{mVideoView.stopPlayback();
+        mAudioBecomingNoisyReceiver.unregister();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onDestroy()",this,throwable);throw throwable;}
     }
 
-    // This updates the time bar display (if necessary). It is called every
-    // second by mProgressChecker and also from places where the time bar needs
-    // to be updated immediately.
+    /*// This updates the time bar display (if necessary). It is called every*/
+    /*// second by mProgressChecker and also from places where the time bar needs*/
+    /*// to be updated immediately.*/
     private int setProgress() {
-        if (mDragging || !mShowing) {
-            return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.MoviePlayer.setProgress()",this);try{if (mDragging || !mShowing) {
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.MoviePlayer.setProgress()",this);return 0;}
         }
         int position = mVideoView.getCurrentPosition();
         int duration = mVideoView.getDuration();
         mController.setTimes(position, duration);
-        return position;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.MoviePlayer.setProgress()",this);return position;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.MoviePlayer.setProgress()",this,throwable);throw throwable;}
     }
 
     private void startVideo() {
-        // For streams that we expect to be slow to start up, show a
-        // progress spinner until playback starts.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.startVideo()",this);try{/*// For streams that we expect to be slow to start up, show a*/
+        /*// progress spinner until playback starts.*/
         String scheme = mUri.getScheme();
         if ("http".equalsIgnoreCase(scheme) || "rtsp".equalsIgnoreCase(scheme)) {
             mController.showLoading();
@@ -252,103 +252,102 @@ public class MoviePlayer implements
         }
 
         mVideoView.start();
-        setProgress();
+        setProgress();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.startVideo()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.startVideo()",this,throwable);throw throwable;}
     }
 
     private void playVideo() {
-        mVideoView.start();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.playVideo()",this);try{mVideoView.start();
         mController.showPlaying();
-        setProgress();
+        setProgress();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.playVideo()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.playVideo()",this,throwable);throw throwable;}
     }
 
     private void pauseVideo() {
-        mVideoView.pause();
-        mController.showPaused();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.pauseVideo()",this);try{mVideoView.pause();
+        mController.showPaused();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.pauseVideo()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.pauseVideo()",this,throwable);throw throwable;}
     }
 
-    // Below are notifications from VideoView
+    /*// Below are notifications from VideoView*/
     @Override
     public boolean onError(MediaPlayer player, int arg1, int arg2) {
-        mHandler.removeCallbacksAndMessages(null);
-        // VideoView will show an error dialog if we return false, so no need
-        // to show more message.
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.MoviePlayer.onError(android.media.MediaPlayer,int,int)",this,player,arg1,arg2);try{mHandler.removeCallbacksAndMessages(null);
+        /*// VideoView will show an error dialog if we return false, so no need*/
+        /*// to show more message.*/
         mController.showErrorMessage("");
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MoviePlayer.onError(android.media.MediaPlayer,int,int)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.MoviePlayer.onError(android.media.MediaPlayer,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        mController.showEnded();
-        onCompletion();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onCompletion(android.media.MediaPlayer)",this,mp);try{mController.showEnded();
+        onCompletion();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onCompletion(android.media.MediaPlayer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onCompletion(android.media.MediaPlayer)",this,throwable);throw throwable;}
     }
 
-    public void onCompletion() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onCompletion()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onCompletion()",this);}
 
-    // Below are notifications from ControllerOverlay
+    /*// Below are notifications from ControllerOverlay*/
     @Override
     public void onPlayPause() {
-        if (mVideoView.isPlaying()) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onPlayPause()",this);try{if (mVideoView.isPlaying()) {
             pauseVideo();
         } else {
             playVideo();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onPlayPause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onPlayPause()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSeekStart() {
-        mDragging = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onSeekStart()",this);try{mDragging = true;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onSeekStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onSeekStart()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSeekMove(int time) {
-        mVideoView.seekTo(time);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onSeekMove(int)",this,time);try{mVideoView.seekTo(time);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onSeekMove(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onSeekMove(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSeekEnd(int time) {
-        mDragging = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onSeekEnd(int)",this,time);try{mDragging = false;
         mVideoView.seekTo(time);
-        setProgress();
+        setProgress();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onSeekEnd(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onSeekEnd(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onShown() {
-        mShowing = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onShown()",this);try{mShowing = true;
         mActionBar.show();
         showSystemUi(true);
-        setProgress();
+        setProgress();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onShown()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onShown()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onHidden() {
-        mShowing = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onHidden()",this);try{mShowing = false;
         mActionBar.hide();
-        showSystemUi(false);
+        showSystemUi(false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onHidden()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onHidden()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onReplay() {
-        startVideo();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer.onReplay()",this);try{startVideo();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer.onReplay()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer.onReplay()",this,throwable);throw throwable;}
     }
 
-    // We want to pause when the headset is unplugged.
+    /*// We want to pause when the headset is unplugged.*/
     private class AudioBecomingNoisyReceiver extends BroadcastReceiver {
 
         public void register() {
-            mContext.registerReceiver(this,
-                    new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.register()",this);try{mContext.registerReceiver(this,
+                    new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.register()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.register()",this,throwable);throw throwable;}
         }
 
         public void unregister() {
-            mContext.unregisterReceiver(this);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.unregister()",this);try{mContext.unregisterReceiver(this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.unregister()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.unregister()",this,throwable);throw throwable;}
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (mVideoView.isPlaying()) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.onReceive(android.content.Context,android.content.Intent)",this,context,intent);try{if (mVideoView.isPlaying()) {
                 mVideoView.pause();
-          }
+          }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.onReceive(android.content.Context,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MoviePlayer$AudioBecomingNoisyReceiver.onReceive(android.content.Context,android.content.Intent)",this,throwable);throw throwable;}
         }
     }
 }
@@ -371,7 +370,7 @@ class Bookmarker {
     }
 
     public void setBookmark(Uri uri, int bookmark, int duration) {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Bookmarker.setBookmark(android.net.Uri,int,int)",this,uri,bookmark,duration);try{try {
             BlobCache cache = CacheManager.getCache(mContext,
                     BOOKMARK_CACHE_FILE, BOOKMARK_CACHE_MAX_ENTRIES,
                     BOOKMARK_CACHE_MAX_BYTES, BOOKMARK_CACHE_VERSION);
@@ -385,17 +384,17 @@ class Bookmarker {
             cache.insert(uri.hashCode(), bos.toByteArray());
         } catch (Throwable t) {
             Log.w(TAG, "setBookmark failed", t);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Bookmarker.setBookmark(android.net.Uri,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Bookmarker.setBookmark(android.net.Uri,int,int)",this,throwable);throw throwable;}
     }
 
     public Integer getBookmark(Uri uri) {
-        try {
+        com.mijack.Xlog.logMethodEnter("java.lang.Integer com.android.gallery3d.app.Bookmarker.getBookmark(android.net.Uri)",this,uri);try{try {
             BlobCache cache = CacheManager.getCache(mContext,
                     BOOKMARK_CACHE_FILE, BOOKMARK_CACHE_MAX_ENTRIES,
                     BOOKMARK_CACHE_MAX_BYTES, BOOKMARK_CACHE_VERSION);
 
             byte[] data = cache.lookup(uri.hashCode());
-            if (data == null) return null;
+            if (data == null) {{com.mijack.Xlog.logMethodExit("java.lang.Integer com.android.gallery3d.app.Bookmarker.getBookmark(android.net.Uri)",this);return null;}}
 
             DataInputStream dis = new DataInputStream(
                     new ByteArrayInputStream(data));
@@ -405,17 +404,17 @@ class Bookmarker {
             int duration = dis.readInt();
 
             if (!uriString.equals(uri.toString())) {
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.android.gallery3d.app.Bookmarker.getBookmark(android.net.Uri)",this);return null;}
             }
 
             if ((bookmark < HALF_MINUTE) || (duration < TWO_MINUTES)
                     || (bookmark > (duration - HALF_MINUTE))) {
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.android.gallery3d.app.Bookmarker.getBookmark(android.net.Uri)",this);return null;}
             }
-            return Integer.valueOf(bookmark);
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.android.gallery3d.app.Bookmarker.getBookmark(android.net.Uri)",this);return Integer.valueOf(bookmark);}
         } catch (Throwable t) {
             Log.w(TAG, "getBookmark failed", t);
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("java.lang.Integer com.android.gallery3d.app.Bookmarker.getBookmark(android.net.Uri)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.android.gallery3d.app.Bookmarker.getBookmark(android.net.Uri)",this,throwable);throw throwable;}
     }
 }

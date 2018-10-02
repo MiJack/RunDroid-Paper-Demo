@@ -19,8 +19,8 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
     protected static final String TAG = BoardCursorLoader.class.getSimpleName();
     protected static final boolean DEBUG = false;
 
-    //protected static final double AD_PROBABILITY = 0.20;
-    //protected static final int MINIMUM_AD_SPACING = 4;
+    /*//protected static final double AD_PROBABILITY = 0.20;*/
+    /*//protected static final int MINIMUM_AD_SPACING = 4;*/
 
     protected final ForceLoadContentObserver mObserver;
 
@@ -51,7 +51,7 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
         this.abbrev = abbrev;
         this.header = header;
         this.boardSortType = boardSortType != null ? boardSortType : BoardSortType.BUMP_ORDER;
-        //initRandomGenerator();
+        /*//initRandomGenerator();*/
         ChanBoard.initBoards(context);
     }
 
@@ -67,45 +67,45 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
     /* Runs on a worker thread */
     @Override
     public Cursor loadInBackground() {
-        if (DEBUG) Log.i(TAG, "loadInBackground /" + boardName + "/");
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadInBackground()",this);try{if (DEBUG) {Log.i(TAG, "loadInBackground /" + boardName + "/");}
         Cursor cursor;
-        //if (ChanBoard.META_BOARD_CODE.equals(boardName))
-        //    cursor = loadMetaBoard();
-        //else
+        /*//if (ChanBoard.META_BOARD_CODE.equals(boardName))*/
+        /*//    cursor = loadMetaBoard();*/
+        /*//else*/
         if (ChanBoard.isMetaBoard(boardName))
-            cursor = loadMetaTypeBoard();
+            {cursor = loadMetaTypeBoard();}
         else if (ChanBoard.FAVORITES_BOARD_CODE.equals(boardName))
-            cursor = loadFavoritesBoard();
+            {cursor = loadFavoritesBoard();}
         else
-            cursor = loadBoard();
+            {cursor = loadBoard();}
         registerContentObserver(cursor, mObserver);
-        return cursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadInBackground()",this);return cursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadInBackground()",this,throwable);throw throwable;}
     }
 
     protected Cursor loadMetaTypeBoard() {
-        boolean showNSFWBoards = ChanBoard.showNSFW(context);
-        if (DEBUG) Log.i(TAG, "loadMetaTypeBoard showNSFWBoards=" + showNSFWBoards);
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadMetaTypeBoard()",this);try{boolean showNSFWBoards = ChanBoard.showNSFW(context);
+        if (DEBUG) {Log.i(TAG, "loadMetaTypeBoard showNSFWBoards=" + showNSFWBoards);}
         List<ChanBoard> sorted = new ArrayList<ChanBoard>();
         for (BoardType boardType : BoardType.values()) {
             if (BoardType.ALL_BOARDS == boardType)
-                continue;
+                {continue;}
             if (!boardType.isCategory())
-                continue;
+                {continue;}
             if (!boardType.isSFW() && !showNSFWBoards)
-                continue;
+                {continue;}
             if (!ChanBoard.isMetaBoard(boardType.boardCode()))
-                continue;
+                {continue;}
             if (!boardName.equals(boardType.boardCode()) && !boardName.equals(ChanBoard.ALL_BOARDS_BOARD_CODE))
-                continue;
+                {continue;}
             List<ChanBoard> boards = ChanBoard.getBoardsByType(context, boardType);
             if (boards == null || boards.isEmpty())
-                continue;
-            if (DEBUG) Log.i(TAG, "Found " + boards.size() + " boards = " + Arrays.toString(boards.toArray()));
+                {continue;}
+            if (DEBUG) {Log.i(TAG, "Found " + boards.size() + " boards = " + Arrays.toString(boards.toArray()));}
             for (ChanBoard board : boards) {
                 if (board.isMetaBoard())
-                    continue;
+                    {continue;}
                 if (ChanBoard.isRemoved(board.link)) {
-                    if (DEBUG) Log.i(TAG, "Board /" + board.link + "/ has been removed from 4chan");
+                    if (DEBUG) {Log.i(TAG, "Board /" + board.link + "/ has been removed from 4chan");}
                     continue;
                 }
                 sorted.add(board);
@@ -116,7 +116,7 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
         Collections.sort(sorted, new Comparator<ChanBoard>() {
             @Override
             public int compare(ChanBoard lhs, ChanBoard rhs) {
-                return comparator.compare(lhs.link, rhs.link);
+                com.mijack.Xlog.logMethodEnter("int com.chanapps.four.loader.BoardCursorLoader$1.compare(com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanBoard)",this,lhs,rhs);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.loader.BoardCursorLoader$1.compare(com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanBoard)",this);{com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadMetaTypeBoard()",this);return comparator.compare(lhs.link, rhs.link);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.loader.BoardCursorLoader$1.compare(com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanBoard)",this,throwable);throw throwable;}
             }
         });
 
@@ -125,15 +125,15 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
         for (ChanBoard board : sorted) {
             Object[] row = board.makeRow(context);
             matrixCursor.addRow(row);
-            if (DEBUG) Log.i(TAG, "Added board row: " + Arrays.toString(row));
+            if (DEBUG) {Log.i(TAG, "Added board row: " + Arrays.toString(row));}
         }
-        if (DEBUG) Log.i(TAG, "Loading boards complete");
+        if (DEBUG) {Log.i(TAG, "Loading boards complete");}
 
-        return matrixCursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadMetaTypeBoard()",this);return matrixCursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadMetaTypeBoard()",this,throwable);throw throwable;}
     }
 
     protected Cursor loadFavoritesBoard() {
-        ChanBoard board = ChanFileStorage.loadBoardData(getContext(), boardName);
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadFavoritesBoard()",this);try{ChanBoard board = ChanFileStorage.loadBoardData(getContext(), boardName);
         if (DEBUG)  {
             Log.i(TAG, "loadFavoritesBoard /" + boardName + "/");
             Log.i(TAG, "threadcount=" + (board.threads != null ? board.threads.length : 0
@@ -143,30 +143,30 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
         MatrixCursor matrixCursor = ChanThread.buildMatrixCursor(board.threads == null ? 0 : board.threads.length);
         if (!board.hasData()) {
             Log.i(TAG, "Favorites board doesn't have data, exiting");
-            return matrixCursor;
+            {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadFavoritesBoard()",this);return matrixCursor;}
         }
 
-        if (DEBUG) Log.i(TAG, "Loading " + board.threads.length + " favorite boards");
+        if (DEBUG) {Log.i(TAG, "Loading " + board.threads.length + " favorite boards");}
         List<ChanPost> sorted = new ArrayList<ChanPost>();
         for (ChanPost thread : board.threads) {
-            if (DEBUG) Log.i(TAG, "Loading favorite board " + thread);
+            if (DEBUG) {Log.i(TAG, "Loading favorite board " + thread);}
             if (!ChanBoard.FAVORITES_BOARD_CODE.equals(board.link) && thread.no <= 0) {
-                if (DEBUG) Log.i(TAG, "Skipped zero thread " + thread);
+                if (DEBUG) {Log.i(TAG, "Skipped zero thread " + thread);}
                 continue;
             }
             if (ChanBoard.isRemoved(thread.board)) {
-                if (DEBUG) Log.i(TAG, "Board /" + thread.board + "/ has been removed from 4chan");
+                if (DEBUG) {Log.i(TAG, "Board /" + thread.board + "/ has been removed from 4chan");}
                 continue;
             }
             if (thread.no <= 0)
-                sorted.add(thread);
+                {sorted.add(thread);}
         }
 
         final AlphanumComparator comparator = new AlphanumComparator();
         Collections.sort(sorted, new Comparator<ChanPost>() {
             @Override
             public int compare(ChanPost lhs, ChanPost rhs) {
-                return comparator.compare(lhs.board, rhs.board);
+                com.mijack.Xlog.logMethodEnter("int com.chanapps.four.loader.BoardCursorLoader$2.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this,lhs,rhs);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.loader.BoardCursorLoader$2.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this);{com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadFavoritesBoard()",this);return comparator.compare(lhs.board, rhs.board);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.loader.BoardCursorLoader$2.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this,throwable);throw throwable;}
             }
         });
 
@@ -175,21 +175,21 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
             String boardCode = thread.board;
             String name = ChanBoard.getName(context, boardCode);
             int imageId = ChanBoard.getImageResourceId(boardCode, 0, 0);
-            if (DEBUG) Log.i(TAG, "loadBoard adding board link row /" + boardCode
+            if (DEBUG) {Log.i(TAG, "loadBoard adding board link row /" + boardCode
                     + "/ name=" + name
-                    + " resourceId=" + imageId);
+                    + " resourceId=" + imageId);}
             Object[] row = ChanThread.makeBoardRow(context, boardCode, name, imageId, 0);
             matrixCursor.addRow(row);
-            if (DEBUG) Log.v(TAG, "Added board row: " + Arrays.toString(row));
+            if (DEBUG) {Log.v(TAG, "Added board row: " + Arrays.toString(row));}
         }
         i++;
-        if (DEBUG) Log.i(TAG, "Loaded " + i + " favorite boards");
+        if (DEBUG) {Log.i(TAG, "Loaded " + i + " favorite boards");}
 
-        return matrixCursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadFavoritesBoard()",this);return matrixCursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadFavoritesBoard()",this,throwable);throw throwable;}
     }
 
     protected <T> Cursor loadBoard() {
-        ChanBoard board = ChanFileStorage.loadBoardData(getContext(), boardName);
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadBoard()",this);try{ChanBoard board = ChanFileStorage.loadBoardData(getContext(), boardName);
         if (DEBUG)  {
             Log.i(TAG, "loadBoard /" + boardName + "/");
             Log.i(TAG, "boardSortType=" + boardSortType + " ");
@@ -198,8 +198,8 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
         }
 
         if (board.shouldSwapThreads())
-        { // auto-update if we have no threads to show
-            if (DEBUG) Log.i(TAG, "auto-swapping /" + boardName + "/");
+        { /*// auto-update if we have no threads to show*/
+            if (DEBUG) {Log.i(TAG, "auto-swapping /" + boardName + "/");}
             board.swapLoadedThreads();
         }
 
@@ -207,8 +207,8 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
         MatrixCursor matrixCursor = ChanThread.buildMatrixCursor(capacity);
 
         if (!board.hasData()) {
-            if (DEBUG) Log.i(TAG, "board /" + boardName + "/ has no data, exiting cursor load");
-            return matrixCursor;
+            if (DEBUG) {Log.i(TAG, "board /" + boardName + "/ has no data, exiting cursor load");}
+            {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadBoard()",this);return matrixCursor;}
         }
 
         if (!board.isVirtualBoard() && header && query.isEmpty()) {
@@ -216,58 +216,58 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
             matrixCursor.addRow(headerRow);
         }
 
-        if (DEBUG) Log.i(TAG, "Loading " + board.threads.length + " threads");
-        if (boardSortType == BoardSortType.BUMP_ORDER) { // load immediate
+        if (DEBUG) {Log.i(TAG, "Loading " + board.threads.length + " threads");}
+        if (boardSortType == BoardSortType.BUMP_ORDER) { /*// load immediate*/
             for (ChanThread thread : board.threads)
-                loadThread(matrixCursor, board, thread);
+                {loadThread(matrixCursor, board, thread);}
         }
         else {
             loadSorted(matrixCursor, board, board.threads);
         }
-        if (DEBUG) Log.i(TAG, "Loaded " + board.threads.length + " threads");
+        if (DEBUG) {Log.i(TAG, "Loaded " + board.threads.length + " threads");}
 
-        return matrixCursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadBoard()",this);return matrixCursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.chanapps.four.loader.BoardCursorLoader.loadBoard()",this,throwable);throw throwable;}
     }
 
-    //protected boolean loadThread(MatrixCursor matrixCursor, ChanBoard board, ChanThread thread, int i) {
+    /*//protected boolean loadThread(MatrixCursor matrixCursor, ChanBoard board, ChanThread thread, int i) {*/
     protected void loadThread(MatrixCursor matrixCursor, ChanBoard board, ChanThread thread) {
-        if (DEBUG) Log.i(TAG, "Loading thread " + thread);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.loadThread(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanThread)",this,matrixCursor,board,thread);try{if (DEBUG) {Log.i(TAG, "Loading thread " + thread);}
         if (ChanBlocklist.isBlocked(context, thread)) {
-            if (DEBUG) Log.i(TAG, "Skipped blocked thread " + thread);
-            //return false;
-            return;
+            if (DEBUG) {Log.i(TAG, "Skipped blocked thread " + thread);}
+            /*//return false;*/
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.loadThread(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanThread)",this);return;}
         }
         if (!ChanBoard.FAVORITES_BOARD_CODE.equals(board.link) && thread.no <= 0) {
-            if (DEBUG) Log.i(TAG, "Skipped zero thread " + thread);
-            //return false;
-            return;
+            if (DEBUG) {Log.i(TAG, "Skipped zero thread " + thread);}
+            /*//return false;*/
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.loadThread(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanThread)",this);return;}
         }
         if (!thread.matchesQuery(query)) {
-            if (DEBUG) Log.i(TAG, "Skipped non-matching to query thread " + thread);
-            return;
+            if (DEBUG) {Log.i(TAG, "Skipped non-matching to query thread " + thread);}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.loadThread(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanThread)",this);return;}
         }
         if (ChanBoard.isRemoved(thread.board)) {
-            if (DEBUG) Log.i(TAG, "Board /" + thread.board + "/ has been removed from 4chan");
-            //return false;
-            return;
+            if (DEBUG) {Log.i(TAG, "Board /" + thread.board + "/ has been removed from 4chan");}
+            /*//return false;*/
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.loadThread(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanThread)",this);return;}
         }
-        //boolean matchedQuery = !query.isEmpty();
+        /*//boolean matchedQuery = !query.isEmpty();*/
         Object row[];
         if (thread.no <= 0) {
             String name = ChanBoard.getName(context, thread.board);
             int imageId = ChanBoard.getImageResourceId(thread.board, 0, 0);
-            if (DEBUG) Log.i(TAG, "loadBoard adding board link row /" + thread.board
+            if (DEBUG) {Log.i(TAG, "loadBoard adding board link row /" + thread.board
                     + "/ name=" + name
-                    + " resourceId=" + imageId);
+                    + " resourceId=" + imageId);}
             row = ChanThread.makeBoardRow(context, thread.board, name, imageId, 0);
         }
         else {
-            if (DEBUG) Log.i(TAG, "loadBoard adding thread row " + thread);
+            if (DEBUG) {Log.i(TAG, "loadBoard adding thread row " + thread);}
             row = ChanThread.makeRow(context, thread, query, 0, !board.isVirtualBoard(), abbrev);
         }
 
         matrixCursor.addRow(row);
-        if (DEBUG) Log.v(TAG, "Added board row: " + Arrays.toString(row));
+        if (DEBUG) {Log.v(TAG, "Added board row: " + Arrays.toString(row));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.loadThread(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,com.chanapps.four.data.ChanThread)",this,throwable);throw throwable;}
     }
 
     /**
@@ -275,19 +275,19 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
      * when the cursor needs to be refreshed.
      */
     void registerContentObserver(Cursor cursor, ContentObserver observer) {
-        cursor.registerContentObserver(mObserver);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.registerContentObserver(android.database.Cursor,android.database.ContentObserver)",this,cursor,observer);try{cursor.registerContentObserver(mObserver);com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.registerContentObserver(android.database.Cursor,android.database.ContentObserver)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.registerContentObserver(android.database.Cursor,android.database.ContentObserver)",this,throwable);throw throwable;}
     }
 
     /* Runs on the UI thread */
     @Override
     public void deliverResult(Cursor cursor) {
-		if (DEBUG) Log.i(TAG, "deliverResult isReset(): " + isReset());
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.deliverResult(android.database.Cursor)",this,cursor);try{if (DEBUG) {Log.i(TAG, "deliverResult isReset(): " + isReset());}
         if (isReset()) {
-            // An async query came in while the loader is stopped
+            /*// An async query came in while the loader is stopped*/
             if (cursor != null) {
                 cursor.close();
             }
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.deliverResult(android.database.Cursor)",this);return;}
         }
         Cursor oldCursor = mCursor;
         mCursor = cursor;
@@ -298,7 +298,7 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
 
         if (oldCursor != null && oldCursor != cursor && !oldCursor.isClosed()) {
             oldCursor.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.deliverResult(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     /**
@@ -310,13 +310,13 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
      */
     @Override
     protected void onStartLoading() {
-    	if (DEBUG) Log.i(TAG, "onStartLoading mCursor: " + mCursor);
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.onStartLoading()",this);try{if (DEBUG) {Log.i(TAG, "onStartLoading mCursor: " + mCursor);}
         if (mCursor != null) {
             deliverResult(mCursor);
         }
         if (takeContentChanged() || mCursor == null) {
             forceLoad();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.onStartLoading()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.onStartLoading()",this,throwable);throw throwable;}
     }
 
     /**
@@ -324,41 +324,41 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
      */
     @Override
     protected void onStopLoading() {
-    	if (DEBUG) Log.i(TAG, "onStopLoading");
-        // Attempt to cancel the current load task if possible.
-        cancelLoad();
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.onStopLoading()",this);try{if (DEBUG) {Log.i(TAG, "onStopLoading");}
+        /*// Attempt to cancel the current load task if possible.*/
+        cancelLoad();com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.onStopLoading()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.onStopLoading()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCanceled(Cursor cursor) {
-    	if (DEBUG) Log.i(TAG, "onCanceled cursor: " + cursor);
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.onCanceled(android.database.Cursor)",this,cursor);try{if (DEBUG) {Log.i(TAG, "onCanceled cursor: " + cursor);}
         if (cursor != null && !cursor.isClosed()) {
             cursor.close();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.onCanceled(android.database.Cursor)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.onCanceled(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onReset() {
-        super.onReset();
-        if (DEBUG) Log.i(TAG, "onReset cursor: " + mCursor);
-        // Ensure the loader is stopped
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.onReset()",this);try{super.onReset();
+        if (DEBUG) {Log.i(TAG, "onReset cursor: " + mCursor);}
+        /*// Ensure the loader is stopped*/
         onStopLoading();
 
         if (mCursor != null && !mCursor.isClosed()) {
             mCursor.close();
         }
-        mCursor = null;
+        mCursor = null;com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.onReset()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.onReset()",this,throwable);throw throwable;}
     }
 
     @Override
     public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
-        super.dump(prefix, fd, writer, args);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.dump(com.chanapps.four.data.String,java.io.FileDescriptor,java.io.PrintWriter,[com.chanapps.four.data.String)",this,prefix,fd,writer,args);try{super.dump(prefix, fd, writer, args);
         writer.print(prefix); writer.print("boardName="); writer.println(boardName);
-        writer.print(prefix); writer.print("mCursor="); writer.println(mCursor);
+        writer.print(prefix); writer.print("mCursor="); writer.println(mCursor);com.mijack.Xlog.logMethodExit("void com.chanapps.four.loader.BoardCursorLoader.dump(com.chanapps.four.data.String,java.io.FileDescriptor,java.io.PrintWriter,[com.chanapps.four.data.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.dump(com.chanapps.four.data.String,java.io.FileDescriptor,java.io.PrintWriter,[com.chanapps.four.data.String)",this,throwable);throw throwable;}
     }
 
     protected void loadSorted(MatrixCursor cursor, ChanBoard board, ChanThread[] threads) {
-        Map<Long, List<Integer>> positionMap = new HashMap<Long, List<Integer>>(threads.length);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.loader.BoardCursorLoader.loadSorted(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,[com.chanapps.four.data.ChanThread)",this,cursor,board,threads);try{Map<Long, List<Integer>> positionMap = new HashMap<Long, List<Integer>>(threads.length);
         Set<Long> valueSet = new HashSet<Long>(threads.length);
         for (int pos = 0; pos < threads.length; pos++) {
             ChanThread thread = threads[pos];
@@ -381,13 +381,13 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
                     throw new AssertionError("board sort type = " + boardSortType + " should have been handled elsewhere");
             }
             if (!positionMap.containsKey(value))
-                positionMap.put(value, new ArrayList<Integer>(1));
+                {positionMap.put(value, new ArrayList<Integer>(1));}
             positionMap.get(value).add(pos);
             valueSet.add(value);
         }
 
         List<Long> values = new ArrayList<Long>(valueSet);
-        Collections.sort(values); // natural order
+        Collections.sort(values); /*// natural order*/
         Collections.reverse(values);
         for (Long value : values) {
             if (positionMap.containsKey(value)) {
@@ -396,19 +396,19 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
                     loadThread(cursor, board, thread);
                 }
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.loader.BoardCursorLoader.loadSorted(android.database.MatrixCursor,com.chanapps.four.data.ChanBoard,[com.chanapps.four.data.ChanThread)",this,throwable);throw throwable;}
 
     }
 
     public static ChanBoard loadBoardSorted(Context context, String boardCode) {
-        BoardSortType boardSortType = BoardSortType.loadFromPrefs(context);
+        com.mijack.Xlog.logStaticMethodEnter("com.chanapps.four.data.ChanBoard com.chanapps.four.loader.BoardCursorLoader.loadBoardSorted(android.content.Context,com.chanapps.four.data.String)",context,boardCode);try{BoardSortType boardSortType = BoardSortType.loadFromPrefs(context);
         final ChanBoard bumpOrderBoard = ChanFileStorage.loadBoardData(context, boardCode);
-        return BoardCursorLoader.copyBoardSorted(bumpOrderBoard, boardSortType);
+        {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.data.ChanBoard com.chanapps.four.loader.BoardCursorLoader.loadBoardSorted(android.content.Context,com.chanapps.four.data.String)");return BoardCursorLoader.copyBoardSorted(bumpOrderBoard, boardSortType);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.chanapps.four.data.ChanBoard com.chanapps.four.loader.BoardCursorLoader.loadBoardSorted(android.content.Context,com.chanapps.four.data.String)",throwable);throw throwable;}
     }
 
     private static ChanBoard copyBoardSorted(ChanBoard board, BoardSortType boardSortType) {
-        if (boardSortType == BoardSortType.BUMP_ORDER)
-            return board;
+        com.mijack.Xlog.logStaticMethodEnter("com.chanapps.four.data.ChanBoard com.chanapps.four.loader.BoardCursorLoader.copyBoardSorted(com.chanapps.four.data.ChanBoard,com.chanapps.four.data.BoardSortType)",board,boardSortType);try{if (boardSortType == BoardSortType.BUMP_ORDER)
+            {{com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.data.ChanBoard com.chanapps.four.loader.BoardCursorLoader.copyBoardSorted(com.chanapps.four.data.ChanBoard,com.chanapps.four.data.BoardSortType)");return board;}}
 
         ChanThread[] threads = board.threads;
         Map<Long, List<Integer>> positionMap = new HashMap<Long, List<Integer>>(threads.length);
@@ -434,13 +434,13 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
                     throw new AssertionError("board sort type = " + boardSortType + " should have been handled elsewhere");
             }
             if (!positionMap.containsKey(value))
-                positionMap.put(value, new ArrayList<Integer>(1));
+                {positionMap.put(value, new ArrayList<Integer>(1));}
             positionMap.get(value).add(pos);
             valueSet.add(value);
         }
 
         List<Long> values = new ArrayList<Long>(valueSet);
-        Collections.sort(values); // natural order
+        Collections.sort(values); /*// natural order*/
         Collections.reverse(values);
 
         ChanThread[] sortedThreads = new ChanThread[threads.length];
@@ -455,7 +455,7 @@ public class BoardCursorLoader extends AsyncTaskLoader<Cursor> {
 
         ChanBoard sortedBoard = board.copy();
         sortedBoard.threads = sortedThreads;
-        return sortedBoard;
+        {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.data.ChanBoard com.chanapps.four.loader.BoardCursorLoader.copyBoardSorted(com.chanapps.four.data.ChanBoard,com.chanapps.four.data.BoardSortType)");return sortedBoard;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.chanapps.four.data.ChanBoard com.chanapps.four.loader.BoardCursorLoader.copyBoardSorted(com.chanapps.four.data.ChanBoard,com.chanapps.four.data.BoardSortType)",throwable);throw throwable;}
     }
 
 }

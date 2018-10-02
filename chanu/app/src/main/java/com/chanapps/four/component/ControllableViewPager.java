@@ -23,24 +23,24 @@ public class ControllableViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (this.enabled) {
-            return super.onTouchEvent(event);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.ControllableViewPager.onTouchEvent(android.view.MotionEvent)",this,event);try{if (this.enabled) {
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ControllableViewPager.onTouchEvent(android.view.MotionEvent)",this);return super.onTouchEvent(event);}
         }
 
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ControllableViewPager.onTouchEvent(android.view.MotionEvent)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.ControllableViewPager.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (this.enabled) {
-            return super.onInterceptTouchEvent(event);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.ControllableViewPager.onInterceptTouchEvent(android.view.MotionEvent)",this,event);try{if (this.enabled) {
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ControllableViewPager.onInterceptTouchEvent(android.view.MotionEvent)",this);return super.onInterceptTouchEvent(event);}
         }
 
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ControllableViewPager.onInterceptTouchEvent(android.view.MotionEvent)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.ControllableViewPager.onInterceptTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     public void setPagingEnabled(boolean enabled) {
-        this.enabled = enabled;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ControllableViewPager.setPagingEnabled(boolean)",this,enabled);try{this.enabled = enabled;com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ControllableViewPager.setPagingEnabled(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ControllableViewPager.setPagingEnabled(boolean)",this,throwable);throw throwable;}
     }
 
 }

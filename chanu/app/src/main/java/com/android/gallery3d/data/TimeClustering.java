@@ -30,40 +30,40 @@ import java.util.Comparator;
 public class TimeClustering extends Clustering {
     private static final String TAG = "TimeClustering";
 
-    // If 2 items are greater than 25 miles apart, they will be in different
-    // clusters.
+    /*// If 2 items are greater than 25 miles apart, they will be in different*/
+    /*// clusters.*/
     private static final int GEOGRAPHIC_DISTANCE_CUTOFF_IN_MILES = 20;
 
-    // Do not want to split based on anything under 1 min.
+    /*// Do not want to split based on anything under 1 min.*/
     private static final long MIN_CLUSTER_SPLIT_TIME_IN_MS = 60000L;
 
-    // Disregard a cluster split time of anything over 2 hours.
+    /*// Disregard a cluster split time of anything over 2 hours.*/
     private static final long MAX_CLUSTER_SPLIT_TIME_IN_MS = 7200000L;
 
-    // Try and get around 9 clusters (best-effort for the common case).
+    /*// Try and get around 9 clusters (best-effort for the common case).*/
     private static final int NUM_CLUSTERS_TARGETED = 9;
 
-    // Try and merge 2 clusters if they are both smaller than min cluster size.
-    // The min cluster size can range from 8 to 15.
+    /*// Try and merge 2 clusters if they are both smaller than min cluster size.*/
+    /*// The min cluster size can range from 8 to 15.*/
     private static final int MIN_MIN_CLUSTER_SIZE = 8;
     private static final int MAX_MIN_CLUSTER_SIZE = 15;
 
-    // Try and split a cluster if it is bigger than max cluster size.
-    // The max cluster size can range from 20 to 50.
+    /*// Try and split a cluster if it is bigger than max cluster size.*/
+    /*// The max cluster size can range from 20 to 50.*/
     private static final int MIN_MAX_CLUSTER_SIZE = 20;
     private static final int MAX_MAX_CLUSTER_SIZE = 50;
 
-    // Initially put 2 items in the same cluster as long as they are within
-    // 3 cluster frequencies of each other.
+    /*// Initially put 2 items in the same cluster as long as they are within*/
+    /*// 3 cluster frequencies of each other.*/
     private static int CLUSTER_SPLIT_MULTIPLIER = 3;
 
-    // The minimum change factor in the time between items to consider a
-    // partition.
-    // Example: (Item 3 - Item 2) / (Item 2 - Item 1).
+    /*// The minimum change factor in the time between items to consider a*/
+    /*// partition.*/
+    /*// Example: (Item 3 - Item 2) / (Item 2 - Item 1).*/
     private static final int MIN_PARTITION_CHANGE_FACTOR = 2;
 
-    // Make the cluster split time of a large cluster half that of a regular
-    // cluster.
+    /*// Make the cluster split time of a large cluster half that of a regular*/
+    /*// cluster.*/
     private static final int PARTITION_CLUSTER_SPLIT_TIME_FACTOR = 2;
 
     private Context mContext;
@@ -84,7 +84,7 @@ public class TimeClustering extends Clustering {
 
     private static class DateComparator implements Comparator<SmallItem> {
         public int compare(SmallItem item1, SmallItem item2) {
-            return -Utils.compare(item1.dateInMs, item2.dateInMs);
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.TimeClustering$DateComparator.compare(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)",this,item1,item2);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.TimeClustering$DateComparator.compare(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)",this);return -Utils.compare(item1.dateInMs, item2.dateInMs);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.TimeClustering$DateComparator.compare(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)",this,throwable);throw throwable;}
         }
     }
 
@@ -96,20 +96,20 @@ public class TimeClustering extends Clustering {
 
     @Override
     public void run(MediaSet baseSet) {
-        final int total = baseSet.getTotalMediaItemCount();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.TimeClustering.run(com.android.gallery3d.data.MediaSet)",this,baseSet);try{final int total = baseSet.getTotalMediaItemCount();
         final SmallItem[] buf = new SmallItem[total];
         final double[] latLng = new double[2];
 
         baseSet.enumerateTotalMediaItems(new MediaSet.ItemConsumer() {
             public void consume(int index, MediaItem item) {
-                if (index < 0 || index >= total) return;
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.TimeClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,index,item);try{if (index < 0 || index >= total) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.TimeClustering.run(com.android.gallery3d.data.MediaSet)",this);{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.TimeClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this);return;}}}
                 SmallItem s = new SmallItem();
                 s.path = item.getPath();
                 s.dateInMs = item.getDateInMs();
                 item.getLatLong(latLng);
                 s.lat = latLng[0];
                 s.lng = latLng[1];
-                buf[index] = s;
+                buf[index] = s;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.TimeClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,throwable);throw throwable;}
             }
         });
 
@@ -127,7 +127,7 @@ public class TimeClustering extends Clustering {
         long maxTime = 0;
         for (int i = 0; i < n; i++) {
             long t = items.get(i).dateInMs;
-            if (t == 0) continue;
+            if (t == 0) {continue;}
             if (minTime == 0) {
                 minTime = maxTime = t;
             } else {
@@ -148,34 +148,34 @@ public class TimeClustering extends Clustering {
         mNames = new String[m];
         for (int i = 0; i < m; i++) {
             mNames[i] = mClusters.get(i).generateCaption(mContext);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.TimeClustering.run(com.android.gallery3d.data.MediaSet)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getNumberOfClusters() {
-        return mClusters.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.TimeClustering.getNumberOfClusters()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.TimeClustering.getNumberOfClusters()",this);return mClusters.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.TimeClustering.getNumberOfClusters()",this,throwable);throw throwable;}
     }
 
     @Override
     public ArrayList<Path> getCluster(int index) {
-        ArrayList<SmallItem> items = mClusters.get(index).getItems();
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.TimeClustering.getCluster(int)",this,index);try{ArrayList<SmallItem> items = mClusters.get(index).getItems();
         ArrayList<Path> result = new ArrayList<Path>(items.size());
         for (int i = 0, n = items.size(); i < n; i++) {
             result.add(items.get(i).path);
         }
-        return result;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.TimeClustering.getCluster(int)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.TimeClustering.getCluster(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public String getClusterName(int index) {
-        return mNames[index];
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.TimeClustering.getClusterName(int)",this,index);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.TimeClustering.getClusterName(int)",this);return mNames[index];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.TimeClustering.getClusterName(int)",this,throwable);throw throwable;}
     }
 
     private void setTimeRange(long timeRange, int numItems) {
-        if (numItems != 0) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.TimeClustering.setTimeRange(long,int)",this,timeRange,numItems);try{if (numItems != 0) {
             int meanItemsPerCluster = numItems / NUM_CLUSTERS_TARGETED;
-            // Heuristic to get min and max cluster size - half and double the
-            // desired items per cluster.
+            /*// Heuristic to get min and max cluster size - half and double the*/
+            /*// desired items per cluster.*/
             mMinClusterSize = meanItemsPerCluster / 2;
             mMaxClusterSize = meanItemsPerCluster * 2;
             mClusterSplitTime = timeRange / numItems * CLUSTER_SPLIT_MULTIPLIER;
@@ -183,18 +183,18 @@ public class TimeClustering extends Clustering {
         mClusterSplitTime = Utils.clamp(mClusterSplitTime, MIN_CLUSTER_SPLIT_TIME_IN_MS, MAX_CLUSTER_SPLIT_TIME_IN_MS);
         mLargeClusterSplitTime = mClusterSplitTime / PARTITION_CLUSTER_SPLIT_TIME_FACTOR;
         mMinClusterSize = Utils.clamp(mMinClusterSize, MIN_MIN_CLUSTER_SIZE, MAX_MIN_CLUSTER_SIZE);
-        mMaxClusterSize = Utils.clamp(mMaxClusterSize, MIN_MAX_CLUSTER_SIZE, MAX_MAX_CLUSTER_SIZE);
+        mMaxClusterSize = Utils.clamp(mMaxClusterSize, MIN_MAX_CLUSTER_SIZE, MAX_MAX_CLUSTER_SIZE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.TimeClustering.setTimeRange(long,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.TimeClustering.setTimeRange(long,int)",this,throwable);throw throwable;}
     }
 
     private void compute(SmallItem currentItem) {
-        if (currentItem != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.TimeClustering.compute(com.android.gallery3d.data.SmallItem)",this,currentItem);try{if (currentItem != null) {
             int numClusters = mClusters.size();
             int numCurrClusterItems = mCurrCluster.size();
             boolean geographicallySeparateItem = false;
             boolean itemAddedToCurrentCluster = false;
 
-            // Determine if this item should go in the current cluster or be the
-            // start of a new cluster.
+            /*// Determine if this item should go in the current cluster or be the*/
+            /*// start of a new cluster.*/
             if (numCurrClusterItems == 0) {
                 mCurrCluster.addItem(currentItem);
             } else {
@@ -214,7 +214,7 @@ public class TimeClustering extends Clustering {
                     mClusters.add(mCurrCluster);
                 }
 
-                // Creating a new cluster and adding the current item to it.
+                /*// Creating a new cluster and adding the current item to it.*/
                 if (!itemAddedToCurrentCluster) {
                     mCurrCluster = new Cluster();
                     if (geographicallySeparateItem) {
@@ -228,7 +228,7 @@ public class TimeClustering extends Clustering {
                 int numClusters = mClusters.size();
                 int numCurrClusterItems = mCurrCluster.size();
 
-                // The last cluster may potentially be too big or too small.
+                /*// The last cluster may potentially be too big or too small.*/
                 if (numCurrClusterItems > mMaxClusterSize) {
                     splitAndAddCurrentCluster();
                 } else if (numClusters > 0 && numCurrClusterItems < mMinClusterSize
@@ -239,11 +239,11 @@ public class TimeClustering extends Clustering {
                 }
                 mCurrCluster = new Cluster();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.TimeClustering.compute(com.android.gallery3d.data.SmallItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.TimeClustering.compute(com.android.gallery3d.data.SmallItem)",this,throwable);throw throwable;}
     }
 
     private void splitAndAddCurrentCluster() {
-        ArrayList<SmallItem> currClusterItems = mCurrCluster.getItems();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.TimeClustering.splitAndAddCurrentCluster()",this);try{ArrayList<SmallItem> currClusterItems = mCurrCluster.getItems();
         int numCurrClusterItems = mCurrCluster.size();
         int secondPartitionStartIndex = getPartitionIndexForCurrentCluster();
         if (secondPartitionStartIndex != -1) {
@@ -259,17 +259,17 @@ public class TimeClustering extends Clustering {
             mClusters.add(partitionedCluster);
         } else {
             mClusters.add(mCurrCluster);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.TimeClustering.splitAndAddCurrentCluster()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.TimeClustering.splitAndAddCurrentCluster()",this,throwable);throw throwable;}
     }
 
     private int getPartitionIndexForCurrentCluster() {
-        int partitionIndex = -1;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.TimeClustering.getPartitionIndexForCurrentCluster()",this);try{int partitionIndex = -1;
         float largestChange = MIN_PARTITION_CHANGE_FACTOR;
         ArrayList<SmallItem> currClusterItems = mCurrCluster.getItems();
         int numCurrClusterItems = mCurrCluster.size();
         int minClusterSize = mMinClusterSize;
 
-        // Could be slightly more efficient here but this code seems cleaner.
+        /*// Could be slightly more efficient here but this code seems cleaner.*/
         if (numCurrClusterItems > minClusterSize + 1) {
             for (int i = minClusterSize; i < numCurrClusterItems - minClusterSize; i++) {
                 SmallItem prevItem = currClusterItems.get(i - 1);
@@ -280,7 +280,7 @@ public class TimeClustering extends Clustering {
                 long timeCurr = currItem.dateInMs;
                 long timePrev = prevItem.dateInMs;
 
-                if (timeNext == 0 || timeCurr == 0 || timePrev == 0) continue;
+                if (timeNext == 0 || timeCurr == 0 || timePrev == 0) {continue;}
 
                 long diff1 = Math.abs(timeNext - timeCurr);
                 long diff2 = Math.abs(timeCurr - timePrev);
@@ -297,11 +297,11 @@ public class TimeClustering extends Clustering {
                 }
             }
         }
-        return partitionIndex;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.TimeClustering.getPartitionIndexForCurrentCluster()",this);return partitionIndex;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.TimeClustering.getPartitionIndexForCurrentCluster()",this,throwable);throw throwable;}
     }
 
     private void mergeAndAddCurrentCluster() {
-        int numClusters = mClusters.size();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.TimeClustering.mergeAndAddCurrentCluster()",this);try{int numClusters = mClusters.size();
         Cluster prevCluster = mClusters.get(numClusters - 1);
         ArrayList<SmallItem> currClusterItems = mCurrCluster.getItems();
         int numCurrClusterItems = mCurrCluster.size();
@@ -312,14 +312,14 @@ public class TimeClustering extends Clustering {
             mClusters.set(numClusters - 1, prevCluster);
         } else {
             mClusters.add(mCurrCluster);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.TimeClustering.mergeAndAddCurrentCluster()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.TimeClustering.mergeAndAddCurrentCluster()",this,throwable);throw throwable;}
     }
 
-    // Returns true if a, b are sufficiently geographically separated.
+    /*// Returns true if a, b are sufficiently geographically separated.*/
     private static boolean isGeographicallySeparated(SmallItem itemA, SmallItem itemB) {
-        if (!GalleryUtils.isValidLocation(itemA.lat, itemA.lng)
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.data.TimeClustering.isGeographicallySeparated(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)",itemA,itemB);try{if (!GalleryUtils.isValidLocation(itemA.lat, itemA.lng)
                 || !GalleryUtils.isValidLocation(itemB.lat, itemB.lng)) {
-            return false;
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.TimeClustering.isGeographicallySeparated(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)");return false;}
         }
 
         double distance = GalleryUtils.fastDistanceMeters(
@@ -327,12 +327,12 @@ public class TimeClustering extends Clustering {
             Math.toRadians(itemA.lng),
             Math.toRadians(itemB.lat),
             Math.toRadians(itemB.lng));
-        return (GalleryUtils.toMile(distance) > GEOGRAPHIC_DISTANCE_CUTOFF_IN_MILES);
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.TimeClustering.isGeographicallySeparated(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)");return (GalleryUtils.toMile(distance) > GEOGRAPHIC_DISTANCE_CUTOFF_IN_MILES);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.data.TimeClustering.isGeographicallySeparated(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)",throwable);throw throwable;}
     }
 
-    // Returns the time interval between the two items in milliseconds.
+    /*// Returns the time interval between the two items in milliseconds.*/
     private static long timeDistance(SmallItem a, SmallItem b) {
-        return Math.abs(a.dateInMs - b.dateInMs);
+        com.mijack.Xlog.logStaticMethodEnter("long com.android.gallery3d.data.TimeClustering.timeDistance(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)",a,b);try{com.mijack.Xlog.logStaticMethodExit("long com.android.gallery3d.data.TimeClustering.timeDistance(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)");return Math.abs(a.dateInMs - b.dateInMs);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("long com.android.gallery3d.data.TimeClustering.timeDistance(com.android.gallery3d.data.SmallItem,com.android.gallery3d.data.SmallItem)",throwable);throw throwable;}
     }
 }
 
@@ -347,7 +347,7 @@ class Cluster {
     private static final String TAG = "Cluster";
     private static final String MMDDYY_FORMAT = "MMddyy";
 
-    // This is for TimeClustering only.
+    /*// This is for TimeClustering only.*/
     public boolean mGeographicallySeparatedFromPrevCluster = false;
 
     private ArrayList<SmallItem> mItems = new ArrayList<SmallItem>();
@@ -356,30 +356,30 @@ class Cluster {
     }
 
     public void addItem(SmallItem item) {
-        mItems.add(item);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.Cluster.addItem(com.android.gallery3d.data.SmallItem)",this,item);try{mItems.add(item);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.Cluster.addItem(com.android.gallery3d.data.SmallItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.Cluster.addItem(com.android.gallery3d.data.SmallItem)",this,throwable);throw throwable;}
     }
 
     public int size() {
-        return mItems.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.Cluster.size()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.Cluster.size()",this);return mItems.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.Cluster.size()",this,throwable);throw throwable;}
     }
 
     public SmallItem getLastItem() {
-        int n = mItems.size();
-        return (n == 0) ? null : mItems.get(n - 1);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.SmallItem com.android.gallery3d.data.Cluster.getLastItem()",this);try{int n = mItems.size();
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.SmallItem com.android.gallery3d.data.Cluster.getLastItem()",this);return (n == 0) ? null : mItems.get(n - 1);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.SmallItem com.android.gallery3d.data.Cluster.getLastItem()",this,throwable);throw throwable;}
     }
 
     public ArrayList<SmallItem> getItems() {
-        return mItems;
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.Cluster.getItems()",this);try{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.Cluster.getItems()",this);return mItems;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.Cluster.getItems()",this,throwable);throw throwable;}
     }
 
     public String generateCaption(Context context) {
-        int n = mItems.size();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.Cluster.generateCaption(android.content.Context)",this,context);try{int n = mItems.size();
         long minTimestamp = 0;
         long maxTimestamp = 0;
 
         for (int i = 0; i < n; i++) {
             long t = mItems.get(i).dateInMs;
-            if (t == 0) continue;
+            if (t == 0) {continue;}
             if (minTimestamp == 0) {
                 minTimestamp = maxTimestamp = t;
             } else {
@@ -387,7 +387,7 @@ class Cluster {
                 maxTimestamp = Math.max(maxTimestamp, t);
             }
         }
-        if (minTimestamp == 0) return "";
+        if (minTimestamp == 0) {{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.Cluster.generateCaption(android.content.Context)",this);return "";}}
 
         String caption;
         String minDay = DateFormat.format(MMDDYY_FORMAT, minTimestamp)
@@ -396,41 +396,41 @@ class Cluster {
                 .toString();
 
         if (minDay.substring(4).equals(maxDay.substring(4))) {
-            // The items are from the same year - show at least as
-            // much granularity as abbrev_all allows.
+            /*// The items are from the same year - show at least as*/
+            /*// much granularity as abbrev_all allows.*/
             caption = DateUtils.formatDateRange(context, minTimestamp,
                     maxTimestamp, DateUtils.FORMAT_ABBREV_ALL);
 
-            // Get a more granular date range string if the min and
-            // max timestamp are on the same day and from the
-            // current year.
+            /*// Get a more granular date range string if the min and*/
+            /*// max timestamp are on the same day and from the*/
+            /*// current year.*/
             if (minDay.equals(maxDay)) {
                 int flags = DateUtils.FORMAT_ABBREV_MONTH | DateUtils.FORMAT_SHOW_DATE;
-                // Contains the year only if the date does not
-                // correspond to the current year.
+                /*// Contains the year only if the date does not*/
+                /*// correspond to the current year.*/
                 String dateRangeWithOptionalYear = DateUtils.formatDateTime(
                         context, minTimestamp, flags);
                 String dateRangeWithYear = DateUtils.formatDateTime(
                         context, minTimestamp, flags | DateUtils.FORMAT_SHOW_YEAR);
                 if (!dateRangeWithOptionalYear.equals(dateRangeWithYear)) {
-                    // This means both dates are from the same year
-                    // - show the time.
-                    // Not enough room to display the time range.
-                    // Pick the mid-point.
+                    /*// This means both dates are from the same year*/
+                    /*// - show the time.*/
+                    /*// Not enough room to display the time range.*/
+                    /*// Pick the mid-point.*/
                     long midTimestamp = (minTimestamp + maxTimestamp) / 2;
                     caption = DateUtils.formatDateRange(context, midTimestamp,
                             midTimestamp, DateUtils.FORMAT_SHOW_TIME | flags);
                 }
             }
         } else {
-            // The items are not from the same year - only show
-            // month and year.
+            /*// The items are not from the same year - only show*/
+            /*// month and year.*/
             int flags = DateUtils.FORMAT_NO_MONTH_DAY
                     | DateUtils.FORMAT_ABBREV_MONTH | DateUtils.FORMAT_SHOW_DATE;
             caption = DateUtils.formatDateRange(context, minTimestamp,
                     maxTimestamp, flags);
         }
 
-        return caption;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.Cluster.generateCaption(android.content.Context)",this);return caption;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.Cluster.generateCaption(android.content.Context)",this,throwable);throw throwable;}
     }
 }

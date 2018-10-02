@@ -84,20 +84,20 @@ public class WidgetDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_WIDGETS + " ("
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,db);try{db.execSQL("CREATE TABLE " + TABLE_WIDGETS + " ("
                 + FIELD_APPWIDGET_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_WIDGET_TYPE + " INTEGER DEFAULT 0, "
                 + FIELD_IMAGE_URI + " TEXT, "
                 + FIELD_ALBUM_PATH + " TEXT, "
-                + FIELD_PHOTO_BLOB + " BLOB)");
+                + FIELD_PHOTO_BLOB + " BLOB)");com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
     }
 
     private void saveData(SQLiteDatabase db, int oldVersion, ArrayList<Entry> data) {
-        if (oldVersion <= 2) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetDatabaseHelper.saveData(android.database.sqlite.SQLiteDatabase,int,java.util.ArrayList)",this,db,oldVersion,data);try{if (oldVersion <= 2) {
             Cursor cursor = db.query("photos",
                     new String[] {FIELD_APPWIDGET_ID, FIELD_PHOTO_BLOB},
                     null, null, null, null, null);
-            if (cursor == null) return;
+            if (cursor == null) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetDatabaseHelper.saveData(android.database.sqlite.SQLiteDatabase,int,java.util.ArrayList)",this);return;}}
             try {
                 while (cursor.moveToNext()) {
                     Entry entry = new Entry();
@@ -113,7 +113,7 @@ public class WidgetDatabaseHelper extends SQLiteOpenHelper {
             Cursor cursor = db.query("photos",
                     new String[] {FIELD_APPWIDGET_ID, FIELD_PHOTO_BLOB, FIELD_IMAGE_URI},
                     null, null, null, null, null);
-            if (cursor == null) return;
+            if (cursor == null) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetDatabaseHelper.saveData(android.database.sqlite.SQLiteDatabase,int,java.util.ArrayList)",this);return;}}
             try {
                 while (cursor.moveToNext()) {
                     Entry entry = new Entry();
@@ -126,11 +126,11 @@ public class WidgetDatabaseHelper extends SQLiteOpenHelper {
             } finally {
                 cursor.close();
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetDatabaseHelper.saveData(android.database.sqlite.SQLiteDatabase,int,java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     private void restoreData(SQLiteDatabase db, ArrayList<Entry> data) {
-        db.beginTransaction();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetDatabaseHelper.restoreData(android.database.sqlite.SQLiteDatabase,java.util.ArrayList)",this,db,data);try{db.beginTransaction();
         try {
             for (Entry entry : data) {
                 ContentValues values = new ContentValues();
@@ -144,35 +144,35 @@ public class WidgetDatabaseHelper extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetDatabaseHelper.restoreData(android.database.sqlite.SQLiteDatabase,java.util.ArrayList)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetDatabaseHelper.restoreData(android.database.sqlite.SQLiteDatabase,java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        int version = oldVersion;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,db,oldVersion,newVersion);try{int version = oldVersion;
 
         if (version != DATABASE_VERSION) {
             ArrayList<Entry> data = new ArrayList<Entry>();
             saveData(db, oldVersion, data);
 
             Log.w(TAG, "destroying all old data.");
-            // Table "photos" is renamed to "widget" in version 4
+            /*// Table "photos" is renamed to "widget" in version 4*/
             db.execSQL("DROP TABLE IF EXISTS photos");
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_WIDGETS);
             onCreate(db);
 
             restoreData(db, data);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,throwable);throw throwable;}
     }
 
     /**
      * Store the given bitmap in this database for the given appWidgetId.
      */
     public boolean setPhoto(int appWidgetId, Uri imageUri, Bitmap bitmap) {
-        try {
-            // Try go guesstimate how much space the icon will take when
-            // serialized to avoid unnecessary allocations/copies during
-            // the write.
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setPhoto(int,android.net.Uri,android.graphics.Bitmap)",this,appWidgetId,imageUri,bitmap);try{try {
+            /*// Try go guesstimate how much space the icon will take when*/
+            /*// serialized to avoid unnecessary allocations/copies during*/
+            /*// the write.*/
             int size = bitmap.getWidth() * bitmap.getHeight() * 4;
             ByteArrayOutputStream out = new ByteArrayOutputStream(size);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -186,29 +186,29 @@ public class WidgetDatabaseHelper extends SQLiteOpenHelper {
 
             SQLiteDatabase db = getWritableDatabase();
             db.replaceOrThrow(TABLE_WIDGETS, null, values);
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setPhoto(int,android.net.Uri,android.graphics.Bitmap)",this);return true;}
         } catch (Throwable e) {
             Log.e(TAG, "set widget photo fail", e);
-            return false;
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setPhoto(int,android.net.Uri,android.graphics.Bitmap)",this);return false;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setPhoto(int,android.net.Uri,android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     public boolean setWidget(int id, int type, String albumPath) {
-        try {
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setWidget(int,int,java.lang.String)",this,id,type,albumPath);try{try {
             ContentValues values = new ContentValues();
             values.put(FIELD_APPWIDGET_ID, id);
             values.put(FIELD_WIDGET_TYPE, type);
             values.put(FIELD_ALBUM_PATH, Utils.ensureNotNull(albumPath));
             getWritableDatabase().replaceOrThrow(TABLE_WIDGETS, null, values);
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setWidget(int,int,java.lang.String)",this);return true;}
         } catch (Throwable e) {
             Log.e(TAG, "set widget fail", e);
-            return false;
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setWidget(int,int,java.lang.String)",this);return false;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.widget.WidgetDatabaseHelper.setWidget(int,int,java.lang.String)",this,throwable);throw throwable;}
     }
 
     public Entry getEntry(int appWidgetId) {
-        Cursor cursor = null;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.widget.WidgetDatabaseHelper$Entry com.chanapps.four.widget.WidgetDatabaseHelper.getEntry(int)",this,appWidgetId);try{Cursor cursor = null;
         try {
             SQLiteDatabase db = getReadableDatabase();
             cursor = db.query(TABLE_WIDGETS, PROJECTION,
@@ -216,27 +216,27 @@ public class WidgetDatabaseHelper extends SQLiteOpenHelper {
                     null, null, null);
             if (cursor == null || !cursor.moveToNext()) {
                 Log.e(TAG, "query fail: empty cursor: " + cursor, new Exception("location"));
-                return null;
+                {com.mijack.Xlog.logMethodExit("com.chanapps.four.widget.WidgetDatabaseHelper$Entry com.chanapps.four.widget.WidgetDatabaseHelper.getEntry(int)",this);return null;}
             }
-            return new Entry(appWidgetId, cursor);
+            {com.mijack.Xlog.logMethodExit("com.chanapps.four.widget.WidgetDatabaseHelper$Entry com.chanapps.four.widget.WidgetDatabaseHelper.getEntry(int)",this);return new Entry(appWidgetId, cursor);}
         } catch (Throwable e) {
             Log.e(TAG, "Could not load photo from database", e);
-            return null;
+            {com.mijack.Xlog.logMethodExit("com.chanapps.four.widget.WidgetDatabaseHelper$Entry com.chanapps.four.widget.WidgetDatabaseHelper.getEntry(int)",this);return null;}
         } finally {
             Utils.closeSilently(cursor);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.widget.WidgetDatabaseHelper$Entry com.chanapps.four.widget.WidgetDatabaseHelper.getEntry(int)",this,throwable);throw throwable;}
     }
 
     /**
      * Remove any bitmap associated with the given appWidgetId.
      */
     public void deleteEntry(int appWidgetId) {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetDatabaseHelper.deleteEntry(int)",this,appWidgetId);try{try {
             SQLiteDatabase db = getWritableDatabase();
             db.delete(TABLE_WIDGETS, WHERE_CLAUSE,
                     new String[] {String.valueOf(appWidgetId)});
         } catch (SQLiteException e) {
             Log.e(TAG, "Could not delete photo from database", e);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetDatabaseHelper.deleteEntry(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetDatabaseHelper.deleteEntry(int)",this,throwable);throw throwable;}
     }
 }

@@ -33,63 +33,63 @@ public class DownloadUtils {
     private static final String TAG = "DownloadService";
 
     public static boolean requestDownload(JobContext jc, URL url, File file) {
-        FileOutputStream fos = null;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.File)",jc,url,file);try{FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file);
-            return download(jc, url, fos);
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.File)");return download(jc, url, fos);}
         } catch (Throwable t) {
-            return false;
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.File)");return false;}
         } finally {
             Utils.closeSilently(fos);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.File)",throwable);throw throwable;}
     }
 
     public static byte[] requestDownload(JobContext jc, URL url) {
-        ByteArrayOutputStream baos = null;
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)",jc,url);try{ByteArrayOutputStream baos = null;
         try {
             baos = new ByteArrayOutputStream();
             if (!download(jc, url, baos)) {
-                return null;
+                {com.mijack.Xlog.logStaticMethodExit("[byte com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)");return null;}
             }
-            return baos.toByteArray();
+            {com.mijack.Xlog.logStaticMethodExit("[byte com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)");return baos.toByteArray();}
         } catch (Throwable t) {
             Log.w(TAG, t);
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("[byte com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)");return null;}
         } finally {
             Utils.closeSilently(baos);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.android.gallery3d.data.DownloadUtils.requestDownload(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)",throwable);throw throwable;}
     }
 
     public static void dump(JobContext jc, InputStream is, OutputStream os)
             throws IOException {
-        byte buffer[] = new byte[4096];
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.data.DownloadUtils.dump(com.android.gallery3d.util.ThreadPool.JobContext,java.io.InputStream,java.io.ByteArrayOutputStream)",jc,is,os);try{byte buffer[] = new byte[4096];
         int rc = is.read(buffer, 0, buffer.length);
         final Thread thread = Thread.currentThread();
         jc.setCancelListener(new CancelListener() {
             public void onCancel() {
-                thread.interrupt();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadUtils$1.onCancel()",this);try{thread.interrupt();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadUtils$1.onCancel()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadUtils$1.onCancel()",this,throwable);throw throwable;}
             }
         });
         while (rc > 0) {
-            if (jc.isCancelled()) throw new InterruptedIOException();
+            if (jc.isCancelled()) {throw new InterruptedIOException();}
             os.write(buffer, 0, rc);
             rc = is.read(buffer, 0, buffer.length);
         }
         jc.setCancelListener(null);
-        Thread.interrupted(); // consume the interrupt signal
+        Thread.interrupted(); /*// consume the interrupt signal*/}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.data.DownloadUtils.dump(com.android.gallery3d.util.ThreadPool.JobContext,java.io.InputStream,java.io.ByteArrayOutputStream)",throwable);throw throwable;}
     }
 
     public static boolean download(JobContext jc, URL url, OutputStream output) {
-        InputStream input = null;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.data.DownloadUtils.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.ByteArrayOutputStream)",jc,url,output);try{InputStream input = null;
         try {
             input = url.openStream();
             dump(jc, input, output);
-            return true;
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.DownloadUtils.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.ByteArrayOutputStream)");return true;}
         } catch (Throwable t) {
             Log.w(TAG, "fail to download", t);
-            return false;
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.DownloadUtils.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.ByteArrayOutputStream)");return false;}
         } finally {
             Utils.closeSilently(input);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.data.DownloadUtils.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL,java.io.ByteArrayOutputStream)",throwable);throw throwable;}
     }
 }

@@ -50,7 +50,7 @@ public final class Gallery extends AbstractGalleryActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -62,24 +62,24 @@ public final class Gallery extends AbstractGalleryActivity {
             getStateManager().restoreFromState(savedInstanceState);
         } else {
             initializeByIntent();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     private void initializeByIntent() {
-        Intent intent = getIntent();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.initializeByIntent()",this);try{Intent intent = getIntent();
         String action = intent.getAction();
 
         if (Intent.ACTION_GET_CONTENT.equalsIgnoreCase(action)) {
             startGetContent(intent);
         } else if (Intent.ACTION_PICK.equalsIgnoreCase(action)) {
-            // We do NOT really support the PICK intent. Handle it as
-            // the GET_CONTENT. However, we need to translate the type
-            // in the intent here.
+            /*// We do NOT really support the PICK intent. Handle it as*/
+            /*// the GET_CONTENT. However, we need to translate the type*/
+            /*// in the intent here.*/
             Log.w(TAG, "action PICK is not supported");
             String type = Utils.ensureNotNull(intent.getType());
             if (type.startsWith("vnd.android.cursor.dir/")) {
-                if (type.endsWith("/image")) intent.setType("image/*");
-                if (type.endsWith("/video")) intent.setType("video/*");
+                if (type.endsWith("/image")) {intent.setType("image/*");}
+                if (type.endsWith("/video")) {intent.setType("video/*");}
             }
             startGetContent(intent);
         } else if (Intent.ACTION_VIEW.equalsIgnoreCase(action)
@@ -87,19 +87,19 @@ public final class Gallery extends AbstractGalleryActivity {
             startViewAction(intent);
         } else {
             startDefaultPage();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.initializeByIntent()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.initializeByIntent()",this,throwable);throw throwable;}
     }
 
     public void startDefaultPage() {
-        PicasaSource.showSignInReminder(this);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.startDefaultPage()",this);try{PicasaSource.showSignInReminder(this);
         Bundle data = new Bundle();
         data.putString(AlbumSetPage.KEY_MEDIA_PATH,
                 getDataManager().getTopSetPath(DataManager.INCLUDE_ALL));
-        getStateManager().startState(AlbumSetPage.class, data);
+        getStateManager().startState(AlbumSetPage.class, data);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.startDefaultPage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.startDefaultPage()",this,throwable);throw throwable;}
     }
 
     private void startGetContent(Intent intent) {
-        Bundle data = intent.getExtras() != null
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.startGetContent(android.content.Intent)",this,intent);try{Bundle data = intent.getExtras() != null
                 ? new Bundle(intent.getExtras())
                 : new Bundle();
         data.putBoolean(KEY_GET_CONTENT, true);
@@ -108,24 +108,24 @@ public final class Gallery extends AbstractGalleryActivity {
         data.putString(AlbumSetPage.KEY_MEDIA_PATH,
                 getDataManager().getTopSetPath(typeBits));
         getStateManager().setLaunchGalleryOnTop(true);
-        getStateManager().startState(AlbumSetPage.class, data);
+        getStateManager().startState(AlbumSetPage.class, data);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.startGetContent(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.startGetContent(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     private String getContentType(Intent intent) {
-        String type = intent.getType();
-        if (type != null) return type;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.app.Gallery.getContentType(android.content.Intent)",this,intent);try{String type = intent.getType();
+        if (type != null) {{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.app.Gallery.getContentType(android.content.Intent)",this);return type;}}
 
         Uri uri = intent.getData();
         try {
-            return getContentResolver().getType(uri);
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.app.Gallery.getContentType(android.content.Intent)",this);return getContentResolver().getType(uri);}
         } catch (Throwable t) {
             Log.w(TAG, "get type fail", t);
-            return null;
-        }
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.app.Gallery.getContentType(android.content.Intent)",this);return null;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.Gallery.getContentType(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     private void startViewAction(Intent intent) {
-        Boolean slideshow = intent.getBooleanExtra(EXTRA_SLIDESHOW, false);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.startViewAction(android.content.Intent)",this,intent);try{Boolean slideshow = intent.getBooleanExtra(EXTRA_SLIDESHOW, false);
         getStateManager().setLaunchGalleryOnTop(true);
         if (slideshow) {
             getActionBar().hide();
@@ -150,7 +150,7 @@ public final class Gallery extends AbstractGalleryActivity {
                 Toast.makeText(this,
                         R.string.no_such_item, Toast.LENGTH_LONG).show();
                 finish();
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.startViewAction(android.content.Intent)",this);return;}
             }
             if (uri == null) {
                 int typeBits = GalleryUtils.determineTypeBits(this, intent);
@@ -186,7 +186,7 @@ public final class Gallery extends AbstractGalleryActivity {
             } else {
                 Path itemPath = dm.findPathByUri(uri);
                 Path albumPath = dm.getDefaultSetOf(itemPath);
-                // TODO: Make this parameter public so other activities can reference it.
+                /*// TODO: Make this parameter public so other activities can reference it.*/
                 boolean singleItemOnly = intent.getBooleanExtra("SingleItemOnly", false);
                 if (!singleItemOnly && albumPath != null) {
                     data.putString(PhotoPage.KEY_MEDIA_SET_PATH,
@@ -195,58 +195,58 @@ public final class Gallery extends AbstractGalleryActivity {
                 data.putString(PhotoPage.KEY_MEDIA_ITEM_PATH, itemPath.toString());
                 getStateManager().startState(PhotoPage.class, data);
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.startViewAction(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        return getStateManager().createOptionsMenu(menu);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.Gallery.onCreateOptionsMenu(android.view.Menu)",this,menu);try{super.onCreateOptionsMenu(menu);
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.Gallery.onCreateOptionsMenu(android.view.Menu)",this);return getStateManager().createOptionsMenu(menu);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.Gallery.onCreateOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        GLRoot root = getGLRoot();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.Gallery.onOptionsItemSelected(android.view.MenuItem)",this,item);try{GLRoot root = getGLRoot();
         root.lockRenderThread();
         try {
-            return getStateManager().itemSelected(item);
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.Gallery.onOptionsItemSelected(android.view.MenuItem)",this);return getStateManager().itemSelected(item);}
         } finally {
             root.unlockRenderThread();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.Gallery.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onBackPressed() {
-        // send the back event to the top sub-state
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.onBackPressed()",this);try{/*// send the back event to the top sub-state*/
         GLRoot root = getGLRoot();
         root.lockRenderThread();
         try {
             getStateManager().onBackPressed();
         } finally {
             root.unlockRenderThread();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.onBackPressed()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.onBackPressed()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.onDestroy()",this);try{super.onDestroy();
         GLRoot root = getGLRoot();
         root.lockRenderThread();
         try {
             getStateManager().destroy();
         } finally {
             root.unlockRenderThread();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.onDestroy()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onResume() {
-        Utils.assertTrue(getStateManager().getStateCount() > 0);
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Gallery.onResume()",this);try{Utils.assertTrue(getStateManager().getStateCount() > 0);
+        super.onResume();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Gallery.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Gallery.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     public GalleryActionBar getGalleryActionBar() {
-        return mActionBar;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.app.GalleryActionBar com.android.gallery3d.app.Gallery.getGalleryActionBar()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.app.GalleryActionBar com.android.gallery3d.app.Gallery.getGalleryActionBar()",this);return mActionBar;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.app.GalleryActionBar com.android.gallery3d.app.Gallery.getGalleryActionBar()",this,throwable);throw throwable;}
     }
 }

@@ -12,7 +12,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-// This works around the issue described here: http ://stackoverflow.com/a/12675430/265521
+/*// This works around the issue described here: http ://stackoverflow.com/a/12675430/265521*/
 public class StretchyImageView extends ImageView
 {
 
@@ -34,12 +34,12 @@ public class StretchyImageView extends ImageView
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
-        // Call super() so that resolveUri() is called.
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.StretchyImageView.onMeasure(int,int)",this,widthMeasureSpec,heightMeasureSpec);try{/*// Call super() so that resolveUri() is called.*/
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        // If there's no drawable we can just use the result from super.
+        /*// If there's no drawable we can just use the result from super.*/
         if (getDrawable() == null)
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.StretchyImageView.onMeasure(int,int)",this);return;}}
 
         final int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
         final int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
@@ -47,17 +47,17 @@ public class StretchyImageView extends ImageView
         int w = getDrawable().getIntrinsicWidth();
         int h = getDrawable().getIntrinsicHeight();
         if (w <= 0)
-            w = 1;
+            {w = 1;}
         if (h <= 0)
-            h = 1;
+            {h = 1;}
 
-        // Desired aspect ratio of the view's contents (not including padding)
+        /*// Desired aspect ratio of the view's contents (not including padding)*/
         float desiredAspect = (float) w / (float) h;
 
-        // We are allowed to change the view's width
+        /*// We are allowed to change the view's width*/
         boolean resizeWidth = widthSpecMode != MeasureSpec.EXACTLY;
 
-        // We are allowed to change the view's height
+        /*// We are allowed to change the view's height*/
         boolean resizeHeight = heightSpecMode != MeasureSpec.EXACTLY;
 
         int pleft = getPaddingLeft();
@@ -65,13 +65,13 @@ public class StretchyImageView extends ImageView
         int ptop = getPaddingTop();
         int pbottom = getPaddingBottom();
 
-        // Get the sizes that ImageView decided on.
+        /*// Get the sizes that ImageView decided on.*/
         int widthSize = getMeasuredWidth();
         int heightSize = getMeasuredHeight();
 
         if (resizeWidth && !resizeHeight)
         {
-            // Resize the width to the height, maintaining aspect ratio.
+            /*// Resize the width to the height, maintaining aspect ratio.*/
             int newWidth = (int) (desiredAspect * (heightSize - ptop - pbottom)) + pleft + pright;
             setMeasuredDimension(newWidth, heightSize);
         }
@@ -79,6 +79,6 @@ public class StretchyImageView extends ImageView
         {
             int newHeight = (int) ((widthSize - pleft - pright) / desiredAspect) + ptop + pbottom;
             setMeasuredDimension(widthSize, newHeight);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.StretchyImageView.onMeasure(int,int)",this,throwable);throw throwable;}
     }
 }

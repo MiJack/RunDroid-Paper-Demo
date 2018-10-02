@@ -38,7 +38,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.IOException;
 
-// LocalImage represents an image in the local storage.
+/*// LocalImage represents an image in the local storage.*/
 public class LocalImage extends LocalMediaItem {
     private static final int THUMBNAIL_TARGET_SIZE = 640;
     private static final int MICROTHUMBNAIL_TARGET_SIZE = 200;
@@ -47,8 +47,8 @@ public class LocalImage extends LocalMediaItem {
 
     static final Path ITEM_PATH = Path.fromString("/local/image/item");
 
-    // Must preserve order between these indices and the order of the terms in
-    // the following PROJECTION array.
+    /*// Must preserve order between these indices and the order of the terms in*/
+    /*// the following PROJECTION array.*/
     private static final int INDEX_ID = 0;
     private static final int INDEX_CAPTION = 1;
     private static final int INDEX_MIME_TYPE = 2;
@@ -65,21 +65,21 @@ public class LocalImage extends LocalMediaItem {
     private static final int INDEX_HEIGHT = 13;
 
     static final String[] PROJECTION =  {
-            ImageColumns._ID,           // 0
-            ImageColumns.TITLE,         // 1
-            ImageColumns.MIME_TYPE,     // 2
-            ImageColumns.LATITUDE,      // 3
-            ImageColumns.LONGITUDE,     // 4
-            ImageColumns.DATE_TAKEN,    // 5
-            ImageColumns.DATE_ADDED,    // 6
-            ImageColumns.DATE_MODIFIED, // 7
-            ImageColumns.DATA,          // 8
-            ImageColumns.ORIENTATION,   // 9
-            ImageColumns.BUCKET_ID,     // 10
-            ImageColumns.SIZE,          // 11
-            // These should be changed to proper names after they are made public.
-            "width", // ImageColumns.WIDTH,         // 12
-            "height", // ImageColumns.HEIGHT         // 13
+            ImageColumns._ID,           /*// 0*/
+            ImageColumns.TITLE,         /*// 1*/
+            ImageColumns.MIME_TYPE,     /*// 2*/
+            ImageColumns.LATITUDE,      /*// 3*/
+            ImageColumns.LONGITUDE,     /*// 4*/
+            ImageColumns.DATE_TAKEN,    /*// 5*/
+            ImageColumns.DATE_ADDED,    /*// 6*/
+            ImageColumns.DATE_MODIFIED, /*// 7*/
+            ImageColumns.DATA,          /*// 8*/
+            ImageColumns.ORIENTATION,   /*// 9*/
+            ImageColumns.BUCKET_ID,     /*// 10*/
+            ImageColumns.SIZE,          /*// 11*/
+            /*// These should be changed to proper names after they are made public.*/
+            "width", /*// ImageColumns.WIDTH,         // 12*/
+            "height", /*// ImageColumns.HEIGHT         // 13*/
     };
 
     private final GalleryApp mApplication;
@@ -115,7 +115,7 @@ public class LocalImage extends LocalMediaItem {
     }
 
     private void loadFromCursor(Cursor cursor) {
-        id = cursor.getInt(INDEX_ID);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalImage.loadFromCursor(android.database.Cursor)",this,cursor);try{id = cursor.getInt(INDEX_ID);
         caption = cursor.getString(INDEX_CAPTION);
         mimeType = cursor.getString(INDEX_MIME_TYPE);
         latitude = cursor.getDouble(INDEX_LATITUDE);
@@ -126,12 +126,12 @@ public class LocalImage extends LocalMediaItem {
         bucketId = cursor.getInt(INDEX_BUCKET_ID);
         fileSize = cursor.getLong(INDEX_SIZE_ID);
         width = cursor.getInt(INDEX_WIDTH);
-        height = cursor.getInt(INDEX_HEIGHT);
+        height = cursor.getInt(INDEX_HEIGHT);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalImage.loadFromCursor(android.database.Cursor)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalImage.loadFromCursor(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     @Override
     protected boolean updateFromCursor(Cursor cursor) {
-        UpdateHelper uh = new UpdateHelper();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.LocalImage.updateFromCursor(android.database.Cursor)",this,cursor);try{UpdateHelper uh = new UpdateHelper();
         id = uh.update(id, cursor.getInt(INDEX_ID));
         caption = uh.update(caption, cursor.getString(INDEX_CAPTION));
         mimeType = uh.update(mimeType, cursor.getString(INDEX_MIME_TYPE));
@@ -149,12 +149,12 @@ public class LocalImage extends LocalMediaItem {
         fileSize = uh.update(fileSize, cursor.getLong(INDEX_SIZE_ID));
         width = uh.update(width, cursor.getInt(INDEX_WIDTH));
         height = uh.update(height, cursor.getInt(INDEX_HEIGHT));
-        return uh.isUpdated();
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.LocalImage.updateFromCursor(android.database.Cursor)",this);return uh.isUpdated();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.LocalImage.updateFromCursor(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     @Override
     public Job<Bitmap> requestImage(int type) {
-        return new LocalImageRequest(mApplication, mPath, type, filePath);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalImage.requestImage(int)",this,type);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalImage.requestImage(int)",this);return new LocalImageRequest(mApplication, mPath, type, filePath);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalImage.requestImage(int)",this,throwable);throw throwable;}
     }
 
     public static class LocalImageRequest extends ImageCacheRequest {
@@ -168,10 +168,10 @@ public class LocalImage extends LocalMediaItem {
 
         @Override
         public Bitmap onDecodeOriginal(JobContext jc, int type) {
-            BitmapFactory.Options options = new BitmapFactory.Options();
+            com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.LocalImage$LocalImageRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this,jc,type);try{BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
-            // try to decode from JPEG EXIF
+            /*// try to decode from JPEG EXIF*/
             if (type == MediaItem.TYPE_MICROTHUMBNAIL) {
                 ExifInterface exif = null;
                 byte [] thumbData = null;
@@ -186,29 +186,29 @@ public class LocalImage extends LocalMediaItem {
                 if (thumbData != null) {
                     Bitmap bitmap = DecodeUtils.requestDecodeIfBigEnough(
                             jc, thumbData, options, getTargetSize(type));
-                    if (bitmap != null) return bitmap;
+                    if (bitmap != null) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.LocalImage$LocalImageRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this);return bitmap;}}
                 }
             }
-            return DecodeUtils.requestDecode(
-                    jc, mLocalFilePath, options, getTargetSize(type));
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.LocalImage$LocalImageRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this);return DecodeUtils.requestDecode(
+                    jc, mLocalFilePath, options, getTargetSize(type));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.LocalImage$LocalImageRequest.onDecodeOriginal(com.android.gallery3d.util.ThreadPool.JobContext,int)",this,throwable);throw throwable;}
         }
     }
 
     static int getTargetSize(int type) {
-        switch (type) {
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.data.LocalImage.getTargetSize(int)",type);try{switch (type) {
             case TYPE_THUMBNAIL:
-                return THUMBNAIL_TARGET_SIZE;
+                {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalImage.getTargetSize(int)");return THUMBNAIL_TARGET_SIZE;}
             case TYPE_MICROTHUMBNAIL:
-                return MICROTHUMBNAIL_TARGET_SIZE;
+                {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalImage.getTargetSize(int)");return MICROTHUMBNAIL_TARGET_SIZE;}
             default:
                 throw new RuntimeException(
                     "should only request thumb/microthumb from cache");
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.data.LocalImage.getTargetSize(int)",throwable);throw throwable;}
     }
 
     @Override
     public Job<BitmapRegionDecoder> requestLargeImage() {
-        return new LocalLargeImageRequest(filePath);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalImage.requestLargeImage()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalImage.requestLargeImage()",this);return new LocalLargeImageRequest(filePath);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.LocalImage.requestLargeImage()",this,throwable);throw throwable;}
     }
 
     public static class LocalLargeImageRequest
@@ -220,14 +220,14 @@ public class LocalImage extends LocalMediaItem {
         }
 
         public BitmapRegionDecoder run(JobContext jc) {
-            return DecodeUtils.requestCreateBitmapRegionDecoder(
-                    jc, mLocalFilePath, false);
+            com.mijack.Xlog.logMethodEnter("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.LocalImage$LocalLargeImageRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{com.mijack.Xlog.logMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.LocalImage$LocalLargeImageRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return DecodeUtils.requestCreateBitmapRegionDecoder(
+                    jc, mLocalFilePath, false);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.LocalImage$LocalLargeImageRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 
     @Override
     public int getSupportedOperations() {
-        int operation = SUPPORT_DELETE | SUPPORT_SHARE | SUPPORT_CROP
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalImage.getSupportedOperations()",this);try{int operation = SUPPORT_DELETE | SUPPORT_SHARE | SUPPORT_CROP
                 | SUPPORT_SETAS | SUPPORT_EDIT | SUPPORT_INFO;
         if (BitmapUtils.isSupportedByRegionDecoder(mimeType)) {
             operation |= SUPPORT_FULL_IMAGE;
@@ -240,39 +240,39 @@ public class LocalImage extends LocalMediaItem {
         if (GalleryUtils.isValidLocation(latitude, longitude)) {
             operation |= SUPPORT_SHOW_ON_MAP;
         }
-        return operation;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalImage.getSupportedOperations()",this);return operation;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalImage.getSupportedOperations()",this,throwable);throw throwable;}
     }
 
     @Override
     public void delete() {
-        GalleryUtils.assertNotInRenderThread();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalImage.delete()",this);try{GalleryUtils.assertNotInRenderThread();
         Uri baseUri = Images.Media.EXTERNAL_CONTENT_URI;
         mApplication.getContentResolver().delete(baseUri, "_id=?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(id)});com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalImage.delete()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalImage.delete()",this,throwable);throw throwable;}
     }
 
     private static String getExifOrientation(int orientation) {
-        switch (orientation) {
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.data.LocalImage.getExifOrientation(int)",orientation);try{switch (orientation) {
             case 0:
-                return String.valueOf(ExifInterface.ORIENTATION_NORMAL);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.LocalImage.getExifOrientation(int)");return String.valueOf(ExifInterface.ORIENTATION_NORMAL);}
             case 90:
-                return String.valueOf(ExifInterface.ORIENTATION_ROTATE_90);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.LocalImage.getExifOrientation(int)");return String.valueOf(ExifInterface.ORIENTATION_ROTATE_90);}
             case 180:
-                return String.valueOf(ExifInterface.ORIENTATION_ROTATE_180);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.LocalImage.getExifOrientation(int)");return String.valueOf(ExifInterface.ORIENTATION_ROTATE_180);}
             case 270:
-                return String.valueOf(ExifInterface.ORIENTATION_ROTATE_270);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.LocalImage.getExifOrientation(int)");return String.valueOf(ExifInterface.ORIENTATION_ROTATE_270);}
             default:
                 throw new AssertionError("invalid: " + orientation);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.LocalImage.getExifOrientation(int)",throwable);throw throwable;}
     }
 
     @Override
     public void rotate(int degrees) {
-        GalleryUtils.assertNotInRenderThread();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalImage.rotate(int)",this,degrees);try{GalleryUtils.assertNotInRenderThread();
         Uri baseUri = Images.Media.EXTERNAL_CONTENT_URI;
         ContentValues values = new ContentValues();
         int rotation = (this.rotation + degrees) % 360;
-        if (rotation < 0) rotation += 360;
+        if (rotation < 0) {rotation += 360;}
 
         if (mimeType.equalsIgnoreCase("image/jpeg")) {
             try {
@@ -284,47 +284,47 @@ public class LocalImage extends LocalMediaItem {
                 Log.w(TAG, "cannot set exif data: " + filePath);
             }
 
-            // We need to update the filesize as well
+            /*// We need to update the filesize as well*/
             fileSize = new File(filePath).length();
             values.put(Images.Media.SIZE, fileSize);
         }
 
         values.put(Images.Media.ORIENTATION, rotation);
         mApplication.getContentResolver().update(baseUri, values, "_id=?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(id)});com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalImage.rotate(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalImage.rotate(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public Uri getContentUri() {
-        Uri baseUri = Images.Media.EXTERNAL_CONTENT_URI;
-        return baseUri.buildUpon().appendPath(String.valueOf(id)).build();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.data.LocalImage.getContentUri()",this);try{Uri baseUri = Images.Media.EXTERNAL_CONTENT_URI;
+        {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.data.LocalImage.getContentUri()",this);return baseUri.buildUpon().appendPath(String.valueOf(id)).build();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.data.LocalImage.getContentUri()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getMediaType() {
-        return MEDIA_TYPE_IMAGE;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalImage.getMediaType()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalImage.getMediaType()",this);return MEDIA_TYPE_IMAGE;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalImage.getMediaType()",this,throwable);throw throwable;}
     }
 
     @Override
     public MediaDetails getDetails() {
-        MediaDetails details = super.getDetails();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalImage.getDetails()",this);try{MediaDetails details = super.getDetails();
         details.addDetail(MediaDetails.INDEX_ORIENTATION, Integer.valueOf(rotation));
         MediaDetails.extractExifInfo(details, filePath);
-        return details;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalImage.getDetails()",this);return details;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalImage.getDetails()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getRotation() {
-        return rotation;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalImage.getRotation()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalImage.getRotation()",this);return rotation;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalImage.getRotation()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getWidth() {
-        return width;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalImage.getWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalImage.getWidth()",this);return width;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalImage.getWidth()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getHeight() {
-        return height;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalImage.getHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalImage.getHeight()",this);return height;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalImage.getHeight()",this,throwable);throw throwable;}
     }
 }

@@ -32,21 +32,21 @@ class FilterSource extends MediaSource {
         mMatcher.add("/filter/mediatype/*/*", FILTER_BY_MEDIATYPE);
     }
 
-    // The name we accept is:
-    // /filter/mediatype/k/{set}
-    // where k is the media type we want.
+    /*// The name we accept is:*/
+    /*// /filter/mediatype/k/{set}*/
+    /*// where k is the media type we want.*/
     @Override
     public MediaObject createMediaObject(Path path) {
-        int matchType = mMatcher.match(path);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.FilterSource.createMediaObject(com.android.gallery3d.data.Path)",this,path);try{int matchType = mMatcher.match(path);
         int mediaType = mMatcher.getIntVar(0);
         String setsName = mMatcher.getVar(1);
         DataManager dataManager = mApplication.getDataManager();
         MediaSet[] sets = dataManager.getMediaSetsFromString(setsName);
         switch (matchType) {
             case FILTER_BY_MEDIATYPE:
-                return new FilterSet(path, dataManager, sets[0], mediaType);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.FilterSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new FilterSet(path, dataManager, sets[0], mediaType);}
             default:
                 throw new RuntimeException("bad path: " + path);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.FilterSource.createMediaObject(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 }

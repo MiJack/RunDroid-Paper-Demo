@@ -33,6 +33,6 @@ import com.nostra13.universalimageloader.cache.memory.BaseMemoryCache;
 public class WeakMemoryCache extends BaseMemoryCache<String, Bitmap> {
 	@Override
 	protected Reference<Bitmap> createReference(Bitmap value) {
-		return new WeakReference<Bitmap>(value);
+		com.mijack.Xlog.logMethodEnter("java.lang.ref.Reference com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache.createReference(android.graphics.Bitmap)",this,value);try{com.mijack.Xlog.logMethodExit("java.lang.ref.Reference com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache.createReference(android.graphics.Bitmap)",this);return new WeakReference<Bitmap>(value);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.ref.Reference com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache.createReference(android.graphics.Bitmap)",this,throwable);throw throwable;}
 	}
 }

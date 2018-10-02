@@ -33,13 +33,13 @@ public class CropFilter extends Filter {
      * The rect coordinates used here should range from 0 to 1.
      */
     public void setCropBounds(RectF bounds) {
-        this.bounds = bounds;
-        validate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.CropFilter.setCropBounds(android.graphics.RectF)",this,bounds);try{this.bounds = bounds;
+        validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.CropFilter.setCropBounds(android.graphics.RectF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.CropFilter.setCropBounds(android.graphics.RectF)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        dst.changeDimension(Math.round(bounds.width() * src.width()),
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.CropFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{dst.changeDimension(Math.round(bounds.width() * src.width()),
                 Math.round(bounds.height() * src.height()));
 
         Effect effect = getEffect(EffectFactory.EFFECT_CROP);
@@ -47,6 +47,6 @@ public class CropFilter extends Filter {
         effect.setParameter("yorigin", Math.round(bounds.top * src.height()));
         effect.setParameter("width", dst.width());
         effect.setParameter("height", dst.height());
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.CropFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.CropFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

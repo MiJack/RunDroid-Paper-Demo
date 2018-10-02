@@ -37,36 +37,36 @@ public class StraightenAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final StraightenFilter filter = new StraightenFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.StraightenAction.doBegin()",this);try{final StraightenFilter filter = new StraightenFilter();
 
         rotateView = factory.createRotateView();
         rotateView.setOnRotateChangeListener(new RotateView.OnRotateChangeListener() {
 
             @Override
             public void onAngleChanged(float degrees, boolean fromUser){
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onAngleChanged(float,boolean)",this,degrees,fromUser);try{if (fromUser) {
                     filter.setAngle(degrees);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onAngleChanged(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onAngleChanged(float,boolean)",this,throwable);throw throwable;}
             }
 
             @Override
             public void onStartTrackingTouch() {
-                // no-op
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onStartTrackingTouch()",this);try{/*// no-op*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onStartTrackingTouch()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onStartTrackingTouch()",this,throwable);throw throwable;}
             }
 
             @Override
             public void onStopTrackingTouch() {
-                // no-op
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onStopTrackingTouch()",this);try{/*// no-op*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onStopTrackingTouch()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.StraightenAction$1.onStopTrackingTouch()",this,throwable);throw throwable;}
             }
         });
         rotateView.setDrawGrids(true);
         rotateView.setRotatedAngle(DEFAULT_ANGLE);
-        rotateView.setRotateSpan(DEFAULT_ROTATE_SPAN);
+        rotateView.setRotateSpan(DEFAULT_ROTATE_SPAN);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.StraightenAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.StraightenAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        rotateView.setOnRotateChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.StraightenAction.doEnd()",this);try{rotateView.setOnRotateChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.StraightenAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.StraightenAction.doEnd()",this,throwable);throw throwable;}
     }
 }

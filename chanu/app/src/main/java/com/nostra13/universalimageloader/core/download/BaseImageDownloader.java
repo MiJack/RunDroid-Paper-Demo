@@ -46,12 +46,12 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
  */
 public class BaseImageDownloader implements ImageDownloader {
 	/** {@value} */
-	public static final int DEFAULT_HTTP_CONNECT_TIMEOUT = 5 * 1000; // milliseconds
+	public static final int DEFAULT_HTTP_CONNECT_TIMEOUT = 5 * 1000; /*// milliseconds*/
 	/** {@value} */
-	public static final int DEFAULT_HTTP_READ_TIMEOUT = 20 * 1000; // milliseconds
+	public static final int DEFAULT_HTTP_READ_TIMEOUT = 20 * 1000; /*// milliseconds*/
 
 	/** {@value} */
-	protected static final int BUFFER_SIZE = 8 * 1024; // 8 Kb
+	protected static final int BUFFER_SIZE = 8 * 1024; /*// 8 Kb*/
 	/** {@value} */
 	protected static final String ALLOWED_URI_CHARS = "@#&=*+-_.,:!?()/~'%";
 
@@ -78,22 +78,22 @@ public class BaseImageDownloader implements ImageDownloader {
 
 	@Override
 	public InputStream getStream(String imageUri, Object extra) throws IOException {
-		switch (Scheme.ofUri(imageUri)) {
+		com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this,imageUri,extra);try{switch (Scheme.ofUri(imageUri)) {
 			case HTTP:
 			case HTTPS:
-				return getStreamFromNetwork(imageUri, extra);
+				{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return getStreamFromNetwork(imageUri, extra);}
 			case FILE:
-				return getStreamFromFile(imageUri, extra);
+				{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return getStreamFromFile(imageUri, extra);}
 			case CONTENT:
-				return getStreamFromContent(imageUri, extra);
+				{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return getStreamFromContent(imageUri, extra);}
 			case ASSETS:
-				return getStreamFromAssets(imageUri, extra);
+				{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return getStreamFromAssets(imageUri, extra);}
 			case DRAWABLE:
-				return getStreamFromDrawable(imageUri, extra);
+				{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return getStreamFromDrawable(imageUri, extra);}
 			case UNKNOWN:
 			default:
-				return getStreamFromOtherSource(imageUri, extra);
-		}
+				{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return getStreamFromOtherSource(imageUri, extra);}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStream(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class BaseImageDownloader implements ImageDownloader {
 	 *             URI.
 	 */
 	protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
-		HttpURLConnection conn = connectTo(imageUri);
+		com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this,imageUri,extra);try{HttpURLConnection conn = connectTo(imageUri);
 
 		int redirectCount = 0;
 		while (conn.getResponseCode() / 100 == 3 && redirectCount < MAX_REDIRECT_COUNT) {
@@ -115,16 +115,16 @@ public class BaseImageDownloader implements ImageDownloader {
 			redirectCount++;
 		}
 
-		return new BufferedInputStream(conn.getInputStream(), BUFFER_SIZE);
+		{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this);return new BufferedInputStream(conn.getInputStream(), BUFFER_SIZE);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 
 	private HttpURLConnection connectTo(String url) throws IOException {
-		String encodedUrl = Uri.encode(url, ALLOWED_URI_CHARS);
+		com.mijack.Xlog.logMethodEnter("java.net.HttpURLConnection com.nostra13.universalimageloader.core.download.BaseImageDownloader.connectTo(java.lang.String)",this,url);try{String encodedUrl = Uri.encode(url, ALLOWED_URI_CHARS);
 		HttpURLConnection conn = (HttpURLConnection) new URL(encodedUrl).openConnection();
 		conn.setConnectTimeout(connectTimeout);
 		conn.setReadTimeout(readTimeout);
 		conn.connect();
-		return conn;
+		{com.mijack.Xlog.logMethodExit("java.net.HttpURLConnection com.nostra13.universalimageloader.core.download.BaseImageDownloader.connectTo(java.lang.String)",this);return conn;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.HttpURLConnection com.nostra13.universalimageloader.core.download.BaseImageDownloader.connectTo(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -137,8 +137,8 @@ public class BaseImageDownloader implements ImageDownloader {
 	 * @throws IOException if some I/O error occurs reading from file system
 	 */
 	protected InputStream getStreamFromFile(String imageUri, Object extra) throws IOException {
-		String filePath = Scheme.FILE.crop(imageUri);
-		return new BufferedInputStream(new FileInputStream(filePath), BUFFER_SIZE);
+		com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromFile(java.lang.String,java.lang.Object)",this,imageUri,extra);try{String filePath = Scheme.FILE.crop(imageUri);
+		{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromFile(java.lang.String,java.lang.Object)",this);return new BufferedInputStream(new FileInputStream(filePath), BUFFER_SIZE);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromFile(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -151,9 +151,9 @@ public class BaseImageDownloader implements ImageDownloader {
 	 * @throws FileNotFoundException if the provided URI could not be opened
 	 */
 	protected InputStream getStreamFromContent(String imageUri, Object extra) throws FileNotFoundException {
-		ContentResolver res = context.getContentResolver();
+		com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromContent(java.lang.String,java.lang.Object)",this,imageUri,extra);try{ContentResolver res = context.getContentResolver();
 		Uri uri = Uri.parse(imageUri);
-		return res.openInputStream(uri);
+		{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromContent(java.lang.String,java.lang.Object)",this);return res.openInputStream(uri);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromContent(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -166,8 +166,8 @@ public class BaseImageDownloader implements ImageDownloader {
 	 * @throws IOException if some I/O error occurs file reading
 	 */
 	protected InputStream getStreamFromAssets(String imageUri, Object extra) throws IOException {
-		String filePath = Scheme.ASSETS.crop(imageUri);
-		return context.getAssets().open(filePath);
+		com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromAssets(java.lang.String,java.lang.Object)",this,imageUri,extra);try{String filePath = Scheme.ASSETS.crop(imageUri);
+		{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromAssets(java.lang.String,java.lang.Object)",this);return context.getAssets().open(filePath);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromAssets(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -179,14 +179,14 @@ public class BaseImageDownloader implements ImageDownloader {
 	 * @return {@link InputStream} of image
 	 */
 	protected InputStream getStreamFromDrawable(String imageUri, Object extra) {
-		String drawableIdString = Scheme.DRAWABLE.crop(imageUri);
+		com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromDrawable(java.lang.String,java.lang.Object)",this,imageUri,extra);try{String drawableIdString = Scheme.DRAWABLE.crop(imageUri);
 		int drawableId = Integer.parseInt(drawableIdString);
 		BitmapDrawable drawable = (BitmapDrawable) context.getResources().getDrawable(drawableId);
 		Bitmap bitmap = drawable.getBitmap();
 
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		bitmap.compress(CompressFormat.PNG, 0, os);
-		return new ByteArrayInputStream(os.toByteArray());
+		{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromDrawable(java.lang.String,java.lang.Object)",this);return new ByteArrayInputStream(os.toByteArray());}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromDrawable(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -203,6 +203,6 @@ public class BaseImageDownloader implements ImageDownloader {
 	 * @throws UnsupportedOperationException if image URI has unsupported scheme(protocol)
 	 */
 	protected InputStream getStreamFromOtherSource(String imageUri, Object extra) throws IOException {
-		throw new UnsupportedOperationException(String.format(ERROR_UNSUPPORTED_SCHEME, imageUri));
+		com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this,imageUri,extra);try{com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this);throw new UnsupportedOperationException(String.format(ERROR_UNSUPPORTED_SCHEME, imageUri));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.BaseImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 }

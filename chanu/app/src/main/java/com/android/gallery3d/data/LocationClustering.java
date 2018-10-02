@@ -34,7 +34,7 @@ class LocationClustering extends Clustering {
     private static final int MAX_GROUPS = 20;
     private static final int MAX_ITERATIONS = 30;
 
-    // If the total distance change is less than this ratio, stop iterating.
+    /*// If the total distance change is less than this ratio, stop iterating.*/
     private static final float STOP_CHANGE_RATIO = 0.01f;
     private Context mContext;
     private ArrayList<ArrayList<SmallItem>> mClusters;
@@ -64,19 +64,19 @@ class LocationClustering extends Clustering {
 
     @Override
     public void run(MediaSet baseSet) {
-        final int total = baseSet.getTotalMediaItemCount();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocationClustering.run(com.android.gallery3d.data.MediaSet)",this,baseSet);try{final int total = baseSet.getTotalMediaItemCount();
         final SmallItem[] buf = new SmallItem[total];
-        // Separate items to two sets: with or without lat-long.
+        /*// Separate items to two sets: with or without lat-long.*/
         final double[] latLong = new double[2];
         baseSet.enumerateTotalMediaItems(new MediaSet.ItemConsumer() {
             public void consume(int index, MediaItem item) {
-                if (index < 0 || index >= total) return;
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocationClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,index,item);try{if (index < 0 || index >= total) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocationClustering.run(com.android.gallery3d.data.MediaSet)",this);{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocationClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this);return;}}}
                 SmallItem s = new SmallItem();
                 s.path = item.getPath();
                 item.getLatLong(latLong);
                 s.lat = latLong[0];
                 s.lng = latLong[1];
-                buf[index] = s;
+                buf[index] = s;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocationClustering$1.consume(int,com.android.gallery3d.data.MediaItem)",this,throwable);throw throwable;}
             }
         });
 
@@ -85,7 +85,7 @@ class LocationClustering extends Clustering {
         final ArrayList<Point> points = new ArrayList<Point>();
         for (int i = 0; i < total; i++) {
             SmallItem s = buf[i];
-            if (s == null) continue;
+            if (s == null) {continue;}
             if (GalleryUtils.isValidLocation(s.lat, s.lng)) {
                 withLatLong.add(s);
                 points.add(new Point(s.lat, s.lng));
@@ -98,7 +98,7 @@ class LocationClustering extends Clustering {
 
         int m = withLatLong.size();
         if (m > 0) {
-            // cluster the items with lat-long
+            /*// cluster the items with lat-long*/
             Point[] pointsArray = new Point[m];
             pointsArray = points.toArray(pointsArray);
             int[] bestK = new int[1];
@@ -123,7 +123,7 @@ class LocationClustering extends Clustering {
                 mNames.add(name);
                 mClusters.add(cluster);
             } else {
-                // move cluster-i to no location cluster
+                /*// move cluster-i to no location cluster*/
                 withoutLatLong.addAll(cluster);
                 hasUnresolvedAddress = true;
             }
@@ -137,16 +137,16 @@ class LocationClustering extends Clustering {
         if (hasUnresolvedAddress) {
             mHandler.post(new Runnable() {
                 public void run() {
-                    Toast.makeText(mContext, R.string.no_connectivity,
-                            Toast.LENGTH_LONG).show();
+                    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocationClustering$2.run()",this);try{Toast.makeText(mContext, R.string.no_connectivity,
+                            Toast.LENGTH_LONG).show();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocationClustering$2.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocationClustering$2.run()",this,throwable);throw throwable;}
                 }
             });
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocationClustering.run(com.android.gallery3d.data.MediaSet)",this,throwable);throw throwable;}
     }
 
     private static String generateName(ArrayList<SmallItem> items,
             ReverseGeocoder geocoder) {
-        ReverseGeocoder.SetLatLong set = new ReverseGeocoder.SetLatLong();
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.data.LocationClustering.generateName(java.util.ArrayList,com.android.gallery3d.util.ReverseGeocoder)",items,geocoder);try{ReverseGeocoder.SetLatLong set = new ReverseGeocoder.SetLatLong();
 
         int n = items.size();
         for (int i = 0; i < n; i++) {
@@ -172,62 +172,62 @@ class LocationClustering extends Clustering {
             }
         }
 
-        return geocoder.computeAddress(set);
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.LocationClustering.generateName(java.util.ArrayList,com.android.gallery3d.util.ReverseGeocoder)");return geocoder.computeAddress(set);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.LocationClustering.generateName(java.util.ArrayList,com.android.gallery3d.util.ReverseGeocoder)",throwable);throw throwable;}
     }
 
     @Override
     public int getNumberOfClusters() {
-        return mClusters.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocationClustering.getNumberOfClusters()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocationClustering.getNumberOfClusters()",this);return mClusters.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocationClustering.getNumberOfClusters()",this,throwable);throw throwable;}
     }
 
     @Override
     public ArrayList<Path> getCluster(int index) {
-        ArrayList<SmallItem> items = mClusters.get(index);
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.LocationClustering.getCluster(int)",this,index);try{ArrayList<SmallItem> items = mClusters.get(index);
         ArrayList<Path> result = new ArrayList<Path>(items.size());
         for (int i = 0, n = items.size(); i < n; i++) {
             result.add(items.get(i).path);
         }
-        return result;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.LocationClustering.getCluster(int)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.LocationClustering.getCluster(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public String getClusterName(int index) {
-        return mNames.get(index);
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.LocationClustering.getClusterName(int)",this,index);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.LocationClustering.getClusterName(int)",this);return mNames.get(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.LocationClustering.getClusterName(int)",this,throwable);throw throwable;}
     }
 
-    // Input: n points
-    // Output: the best k is stored in bestK[0], and the return value is the
-    // an array which specifies the group that each point belongs (0 to k - 1).
+    /*// Input: n points*/
+    /*// Output: the best k is stored in bestK[0], and the return value is the*/
+    /*// an array which specifies the group that each point belongs (0 to k - 1).*/
     private static int[] kMeans(Point points[], int[] bestK) {
-        int n = points.length;
+        com.mijack.Xlog.logStaticMethodEnter("[int com.android.gallery3d.data.LocationClustering.kMeans(com.android.gallery3d.data.LocationClustering$Point,[int)",points[],bestK);try{int n = points.length;
 
-        // min and max number of groups wanted
+        /*// min and max number of groups wanted*/
         int minK = Math.min(n, MIN_GROUPS);
         int maxK = Math.min(n, MAX_GROUPS);
 
-        Point[] center = new Point[maxK];  // center of each group.
-        Point[] groupSum = new Point[maxK];  // sum of points in each group.
-        int[] groupCount = new int[maxK];  // number of points in each group.
-        int[] grouping = new int[n]; // The group assignment for each point.
+        Point[] center = new Point[maxK];  /*// center of each group.*/
+        Point[] groupSum = new Point[maxK];  /*// sum of points in each group.*/
+        int[] groupCount = new int[maxK];  /*// number of points in each group.*/
+        int[] grouping = new int[n]; /*// The group assignment for each point.*/
 
         for (int i = 0; i < maxK; i++) {
             center[i] = new Point();
             groupSum[i] = new Point();
         }
 
-        // The score we want to minimize is:
-        //   (sum of distance from each point to its group center) * sqrt(k).
+        /*// The score we want to minimize is:*/
+        /*//   (sum of distance from each point to its group center) * sqrt(k).*/
         float bestScore = Float.MAX_VALUE;
-        // The best group assignment up to now.
+        /*// The best group assignment up to now.*/
         int[] bestGrouping = new int[n];
-        // The best K up to now.
+        /*// The best K up to now.*/
         bestK[0] = 1;
 
         float lastDistance = 0;
         float totalDistance = 0;
 
         for (int k = minK; k <= maxK; k++) {
-            // step 1: (arbitrarily) pick k points as the initial centers.
+            /*// step 1: (arbitrarily) pick k points as the initial centers.*/
             int delta = n / k;
             for (int i = 0; i < k; i++) {
                 Point p = points[i * delta];
@@ -236,7 +236,7 @@ class LocationClustering extends Clustering {
             }
 
             for (int iter = 0; iter < MAX_ITERATIONS; iter++) {
-                // step 2: assign each point to the nearest center.
+                /*// step 2: assign each point to the nearest center.*/
                 for (int i = 0; i < k; i++) {
                     groupSum[i].latRad = 0;
                     groupSum[i].lngRad = 0;
@@ -251,9 +251,9 @@ class LocationClustering extends Clustering {
                     for (int j = 0; j < k; j++) {
                         float distance = (float) GalleryUtils.fastDistanceMeters(
                                 p.latRad, p.lngRad, center[j].latRad, center[j].lngRad);
-                        // We may have small non-zero distance introduced by
-                        // floating point calculation, so zero out small
-                        // distances less than 1 meter.
+                        /*// We may have small non-zero distance introduced by*/
+                        /*// floating point calculation, so zero out small*/
+                        /*// distances less than 1 meter.*/
                         if (distance < 1) {
                             distance = 0;
                         }
@@ -269,7 +269,7 @@ class LocationClustering extends Clustering {
                     totalDistance += bestDistance;
                 }
 
-                // step 3: calculate new centers
+                /*// step 3: calculate new centers*/
                 for (int i = 0; i < k; i++) {
                     if (groupCount[i] > 0) {
                         center[i].latRad = groupSum[i].latRad / groupCount[i];
@@ -284,7 +284,7 @@ class LocationClustering extends Clustering {
                 lastDistance = totalDistance;
             }
 
-            // step 4: remove empty groups and reassign group number
+            /*// step 4: remove empty groups and reassign group number*/
             int reassign[] = new int[k];
             int realK = 0;
             for (int i = 0; i < k; i++) {
@@ -293,7 +293,7 @@ class LocationClustering extends Clustering {
                 }
             }
 
-            // step 5: calculate the final score
+            /*// step 5: calculate the final score*/
             float score = totalDistance * (float) Math.sqrt(realK);
 
             if (score < bestScore) {
@@ -307,6 +307,6 @@ class LocationClustering extends Clustering {
                 }
             }
         }
-        return bestGrouping;
+        {com.mijack.Xlog.logStaticMethodExit("[int com.android.gallery3d.data.LocationClustering.kMeans(com.android.gallery3d.data.LocationClustering$Point,[int)");return bestGrouping;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[int com.android.gallery3d.data.LocationClustering.kMeans(com.android.gallery3d.data.LocationClustering$Point,[int)",throwable);throw throwable;}
     }
 }

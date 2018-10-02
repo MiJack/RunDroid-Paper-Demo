@@ -40,15 +40,15 @@ public class SpinnerVisibilitySetter {
     private static final int SHOW_SPINNER_DELAY_REACHED = 2;
     private static final int HIDE_SPINNER_DELAY_REACHED = 3;
 
-    // Amount of time after a show request that the progress spinner is actually
-    // made visible.
-    // This means that any show/hide requests that happen subsequently within
-    // this period
-    // of time will be ignored.
+    /*// Amount of time after a show request that the progress spinner is actually*/
+    /*// made visible.*/
+    /*// This means that any show/hide requests that happen subsequently within*/
+    /*// this period*/
+    /*// of time will be ignored.*/
     private static final long SPINNER_DISPLAY_DELAY = 1000;
 
-    // The minimum amount of time the progress spinner must be visible before it
-    // can be hidden.
+    /*// The minimum amount of time the progress spinner must be visible before it*/
+    /*// can be hidden.*/
     private static final long MIN_SPINNER_DISPLAY_TIME = 2000;
 
     private boolean mPendingVisibilityRequest = false;
@@ -59,7 +59,7 @@ public class SpinnerVisibilitySetter {
 
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.SpinnerVisibilitySetter$1.handleMessage(android.os.Message)",this,msg);try{switch (msg.what) {
             case SHOW_SPINNER_REQUESTED:
                 mPendingVisibilityRequest = true;
                 sendEmptyMessageDelayed(SHOW_SPINNER_DELAY_REACHED,
@@ -68,22 +68,22 @@ public class SpinnerVisibilitySetter {
             case HIDE_SPINNER_REQUESTED:
                 mPendingVisibilityRequest = false;
                 if (!mActiveVisibilityRequest) {
-                    // We haven't requested to show the spinner so no need to
-                    // decide
-                    // when to hide it.
+                    /*// We haven't requested to show the spinner so no need to*/
+                    /*// decide*/
+                    /*// when to hide it.*/
                     break;
                 }
 
                 long currTime = SystemClock.uptimeMillis();
                 if (currTime - mSpinnerVisibilityStartTime > MIN_SPINNER_DISPLAY_TIME) {
-                    // The spinner has already been visible longer than the
-                    // requisite min
-                    // display time. Send the hide message immediately.
+                    /*// The spinner has already been visible longer than the*/
+                    /*// requisite min*/
+                    /*// display time. Send the hide message immediately.*/
                     sendEmptyMessage(HIDE_SPINNER_DELAY_REACHED);
                 } else {
-                    // The spinner is visible but hasn't been visible for long
-                    // enough yet.
-                    // Send a delayed hide message.
+                    /*// The spinner is visible but hasn't been visible for long*/
+                    /*// enough yet.*/
+                    /*// Send a delayed hide message.*/
                     sendEmptyMessageAtTime(HIDE_SPINNER_DELAY_REACHED,
                             mSpinnerVisibilityStartTime
                                     + MIN_SPINNER_DISPLAY_TIME);
@@ -94,16 +94,16 @@ public class SpinnerVisibilitySetter {
                     mPendingVisibilityRequest = false;
                     mActiveVisibilityRequest = true;
 
-                    // Even though the spinner isn't visible quite yet, lets set
-                    // this
-                    // here to avoid possible cross-thread synchronization
-                    // issues.
+                    /*// Even though the spinner isn't visible quite yet, lets set*/
+                    /*// this*/
+                    /*// here to avoid possible cross-thread synchronization*/
+                    /*// issues.*/
                     mSpinnerVisibilityStartTime = SystemClock.uptimeMillis();
                     if (mActivity instanceof GalleryActivity) {
                         Handler handler = ((GalleryActivity) mActivity)
                                 .getHandler();
                         if (handler != null)
-                            handler.post(new SetProgressVisibilityRunnable(true));
+                            {handler.post(new SetProgressVisibilityRunnable(true));}
                     }
                 }
                 break;
@@ -113,10 +113,10 @@ public class SpinnerVisibilitySetter {
                     Handler handler = ((GalleryActivity) mActivity)
                             .getHandler();
                     if (handler != null)
-                        handler.post(new SetProgressVisibilityRunnable(false));
+                        {handler.post(new SetProgressVisibilityRunnable(false));}
                 }
                 break;
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.SpinnerVisibilitySetter$1.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.SpinnerVisibilitySetter$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
         }
     };
     static final Map<Activity, SpinnerVisibilitySetter> sInstanceMap = new HashMap<Activity, SpinnerVisibilitySetter>();
@@ -127,18 +127,18 @@ public class SpinnerVisibilitySetter {
     }
 
     public static SpinnerVisibilitySetter getInstance(Activity activity) {
-        synchronized (sInstanceMap) {
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.util.SpinnerVisibilitySetter com.android.gallery3d.util.SpinnerVisibilitySetter.getInstance(android.app.Activity)",activity);try{com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.util.SpinnerVisibilitySetter com.android.gallery3d.util.SpinnerVisibilitySetter.getInstance(android.app.Activity)");synchronized (sInstanceMap) {
             if (sInstanceMap.get(activity) == null) {
                 sInstanceMap.put(activity,
                         new SpinnerVisibilitySetter(activity));
             }
             return sInstanceMap.get(activity);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.util.SpinnerVisibilitySetter com.android.gallery3d.util.SpinnerVisibilitySetter.getInstance(android.app.Activity)",throwable);throw throwable;}
     }
 
     public void setSpinnerVisibility(boolean visible) {
-        mHandler.sendEmptyMessage(visible ? SHOW_SPINNER_REQUESTED
-                : HIDE_SPINNER_REQUESTED);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.SpinnerVisibilitySetter.setSpinnerVisibility(boolean)",this,visible);try{mHandler.sendEmptyMessage(visible ? SHOW_SPINNER_REQUESTED
+                : HIDE_SPINNER_REQUESTED);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.SpinnerVisibilitySetter.setSpinnerVisibility(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.SpinnerVisibilitySetter.setSpinnerVisibility(boolean)",this,throwable);throw throwable;}
     }
 
     private class SetProgressVisibilityRunnable implements Runnable {
@@ -150,15 +150,15 @@ public class SpinnerVisibilitySetter {
 
         @Override
         public void run() {
-            mActivity.setProgressBarIndeterminateVisibility(mVisible);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.SpinnerVisibilitySetter$SetProgressVisibilityRunnable.run()",this);try{mActivity.setProgressBarIndeterminateVisibility(mVisible);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.SpinnerVisibilitySetter$SetProgressVisibilityRunnable.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.SpinnerVisibilitySetter$SetProgressVisibilityRunnable.run()",this,throwable);throw throwable;}
         }
     }
 
     public static void removeInstance(GalleryActivity activity) {
-        synchronized (sInstanceMap) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.util.SpinnerVisibilitySetter.removeInstance(com.android.gallery3d.app.GalleryActivity)",activity);try{synchronized (sInstanceMap) {
             if (sInstanceMap.get(activity) != null) {
                 sInstanceMap.remove(activity);
             }
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.util.SpinnerVisibilitySetter.removeInstance(com.android.gallery3d.app.GalleryActivity)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.util.SpinnerVisibilitySetter.removeInstance(com.android.gallery3d.app.GalleryActivity)",throwable);throw throwable;}
     }
 }

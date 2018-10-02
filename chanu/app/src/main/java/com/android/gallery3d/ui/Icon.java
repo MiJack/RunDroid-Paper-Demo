@@ -22,7 +22,7 @@ import android.graphics.Rect;
 public class Icon extends GLView {
     private final BasicTexture mIcon;
 
-    // The width and height requested by the user.
+    /*// The width and height requested by the user.*/
     private int mReqWidth;
     private int mReqHeight;
 
@@ -38,22 +38,22 @@ public class Icon extends GLView {
 
     @Override
     protected void onMeasure(int widthSpec, int heightSpec) {
-        MeasureHelper.getInstance(this)
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.Icon.onMeasure(int,int)",this,widthSpec,heightSpec);try{MeasureHelper.getInstance(this)
                 .setPreferredContentSize(mReqWidth, mReqHeight)
-                .measure(widthSpec, heightSpec);
+                .measure(widthSpec, heightSpec);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.Icon.onMeasure(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.Icon.onMeasure(int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        Rect p = mPaddings;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.Icon.render(GLCanvas)",this,canvas);try{Rect p = mPaddings;
 
         int width = getWidth() - p.left - p.right;
         int height = getHeight() - p.top - p.bottom;
 
-        // Draw the icon in the center of the space
+        /*// Draw the icon in the center of the space*/
         int xoffset = p.left + (width - mReqWidth) / 2;
         int yoffset = p.top + (height - mReqHeight) / 2;
 
-        mIcon.draw(canvas, xoffset, yoffset, mReqWidth, mReqHeight);
+        mIcon.draw(canvas, xoffset, yoffset, mReqWidth, mReqHeight);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.Icon.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.Icon.render(GLCanvas)",this,throwable);throw throwable;}
     }
 }

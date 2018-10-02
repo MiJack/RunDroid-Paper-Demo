@@ -28,13 +28,13 @@ public class PackagesMonitor extends BroadcastReceiver {
     public static final String KEY_PACKAGES_VERSION  = "packages-version";
 
     public synchronized static int getPackagesVersion(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getInt(KEY_PACKAGES_VERSION, 1);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.PackagesMonitor.getPackagesVersion(android.content.Context)",context);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.PackagesMonitor.getPackagesVersion(android.content.Context)");return prefs.getInt(KEY_PACKAGES_VERSION, 1);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.PackagesMonitor.getPackagesVersion(android.content.Context)",throwable);throw throwable;}
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PackagesMonitor.onReceive(android.content.Context,android.content.Intent)",this,context,intent);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         int version = prefs.getInt(KEY_PACKAGES_VERSION, 1);
         prefs.edit().putInt(KEY_PACKAGES_VERSION, version + 1).commit();
@@ -45,6 +45,6 @@ public class PackagesMonitor extends BroadcastReceiver {
             PicasaSource.onPackageAdded(context, packageName);
         } else if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
             PicasaSource.onPackageRemoved(context, packageName);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PackagesMonitor.onReceive(android.content.Context,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PackagesMonitor.onReceive(android.content.Context,android.content.Intent)",this,throwable);throw throwable;}
     }
 }

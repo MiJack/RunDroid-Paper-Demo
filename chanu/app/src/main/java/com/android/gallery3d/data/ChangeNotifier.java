@@ -22,7 +22,7 @@ import android.net.Uri;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-// This handles change notification for media sets.
+/*// This handles change notification for media sets.*/
 public class ChangeNotifier {
 
     private MediaSet mMediaSet;
@@ -33,22 +33,22 @@ public class ChangeNotifier {
         application.getDataManager().registerChangeNotifier(uri, this);
     }
 
-    // Returns the dirty flag and clear it.
+    /*// Returns the dirty flag and clear it.*/
     public boolean isDirty() {
-        return mContentDirty.compareAndSet(true, false);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.ChangeNotifier.isDirty()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.ChangeNotifier.isDirty()",this);return mContentDirty.compareAndSet(true, false);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.ChangeNotifier.isDirty()",this,throwable);throw throwable;}
     }
 
     public void fakeChange() {
-        onChange(false);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ChangeNotifier.fakeChange()",this);try{onChange(false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ChangeNotifier.fakeChange()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ChangeNotifier.fakeChange()",this,throwable);throw throwable;}
     }
 
     public void clearDirty() {
-        mContentDirty.set(false);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ChangeNotifier.clearDirty()",this);try{mContentDirty.set(false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ChangeNotifier.clearDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ChangeNotifier.clearDirty()",this,throwable);throw throwable;}
     }
 
     protected void onChange(boolean selfChange) {
-        if (mContentDirty.compareAndSet(false, true)) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ChangeNotifier.onChange(boolean)",this,selfChange);try{if (mContentDirty.compareAndSet(false, true)) {
             mMediaSet.notifyContentChanged();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ChangeNotifier.onChange(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ChangeNotifier.onChange(boolean)",this,throwable);throw throwable;}
     }
 }

@@ -41,30 +41,30 @@ public class ProgressSpinner {
     }
 
     public int getWidth() {
-        return mWidth;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.ProgressSpinner.getWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.ProgressSpinner.getWidth()",this);return mWidth;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.ProgressSpinner.getWidth()",this,throwable);throw throwable;}
     }
 
     public int getHeight() {
-        return mHeight;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.ProgressSpinner.getHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.ProgressSpinner.getHeight()",this);return mHeight;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.ProgressSpinner.getHeight()",this,throwable);throw throwable;}
     }
 
     public void startAnimation() {
-        mAnimationTimestamp = -1;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ProgressSpinner.startAnimation()",this);try{mAnimationTimestamp = -1;
         mOuterDegree = 0;
-        mInnerDegree = 0;
+        mInnerDegree = 0;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ProgressSpinner.startAnimation()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ProgressSpinner.startAnimation()",this,throwable);throw throwable;}
     }
 
     public void draw(GLCanvas canvas, int x, int y) {
-        long now = canvas.currentAnimationTimeMillis();
-        if (mAnimationTimestamp == -1) mAnimationTimestamp = now;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ProgressSpinner.draw(GLCanvas,int,int)",this,canvas,x,y);try{long now = canvas.currentAnimationTimeMillis();
+        if (mAnimationTimestamp == -1) {mAnimationTimestamp = now;}
         mOuterDegree += (now - mAnimationTimestamp) * ROTATE_SPEED_OUTER;
         mInnerDegree += (now - mAnimationTimestamp) * ROTATE_SPEED_INNER;
 
         mAnimationTimestamp = now;
 
-        // just preventing overflow
-        if (mOuterDegree > 360) mOuterDegree -= 360f;
-        if (mInnerDegree < 0) mInnerDegree += 360f;
+        /*// just preventing overflow*/
+        if (mOuterDegree > 360) {mOuterDegree -= 360f;}
+        if (mInnerDegree < 0) {mInnerDegree += 360f;}
 
         canvas.save(GLCanvas.SAVE_FLAG_MATRIX);
 
@@ -73,6 +73,6 @@ public class ProgressSpinner {
         mOuter.draw(canvas, -mOuter.getWidth() / 2, -mOuter.getHeight() / 2);
         canvas.rotate(mOuterDegree - mInnerDegree, 0, 0, 1);
         mInner.draw(canvas, -mInner.getWidth() / 2, -mInner.getHeight() / 2);
-        canvas.restore();
+        canvas.restore();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ProgressSpinner.draw(GLCanvas,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ProgressSpinner.draw(GLCanvas,int,int)",this,throwable);throw throwable;}
     }
 }

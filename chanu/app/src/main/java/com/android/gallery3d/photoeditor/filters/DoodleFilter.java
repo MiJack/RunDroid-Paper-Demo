@@ -52,19 +52,19 @@ public class DoodleFilter extends Filter {
      * (no-op on the photo) until not all its doodling is out of bounds.
      */
     public void setDoodledInPhotoBounds() {
-        validate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.DoodleFilter.setDoodledInPhotoBounds()",this);try{validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.DoodleFilter.setDoodledInPhotoBounds()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.DoodleFilter.setDoodledInPhotoBounds()",this,throwable);throw throwable;}
     }
 
     /**
      * The path coordinates used here should range from 0 to 1.
      */
     public void addPath(Path path, int color) {
-        doodles.add(new ColorPath(color, path));
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.DoodleFilter.addPath(android.graphics.Path,int)",this,path,color);try{doodles.add(new ColorPath(color, path));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.DoodleFilter.addPath(android.graphics.Path,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.DoodleFilter.addPath(android.graphics.Path,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        Bitmap bitmap = Bitmap.createBitmap(src.width(), src.height(), Bitmap.Config.ARGB_8888);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.DoodleFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{Bitmap bitmap = Bitmap.createBitmap(src.width(), src.height(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 
         Matrix matrix = new Matrix();
@@ -82,6 +82,6 @@ public class DoodleFilter extends Filter {
 
         Effect effect = getEffect(EffectFactory.EFFECT_BITMAPOVERLAY);
         effect.setParameter("bitmap", bitmap);
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.DoodleFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.DoodleFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

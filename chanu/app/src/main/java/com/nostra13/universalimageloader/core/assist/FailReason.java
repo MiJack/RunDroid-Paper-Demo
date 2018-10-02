@@ -36,14 +36,14 @@ public class FailReason {
 	 * @return {@linkplain FailType Fail type}
 	 */
 	public FailType getType() {
-		return type;
+		com.mijack.Xlog.logMethodEnter("FailType com.nostra13.universalimageloader.core.assist.FailReason.getType()",this);try{com.mijack.Xlog.logMethodExit("FailType com.nostra13.universalimageloader.core.assist.FailReason.getType()",this);return type;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("FailType com.nostra13.universalimageloader.core.assist.FailReason.getType()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return Thrown exception/error, can be <b>null</b>
 	 */
 	public Throwable getCause() {
-		return cause;
+		com.mijack.Xlog.logMethodEnter("java.lang.Throwable com.nostra13.universalimageloader.core.assist.FailReason.getCause()",this);try{com.mijack.Xlog.logMethodExit("java.lang.Throwable com.nostra13.universalimageloader.core.assist.FailReason.getCause()",this);return cause;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Throwable com.nostra13.universalimageloader.core.assist.FailReason.getCause()",this,throwable);throw throwable;}
 	}
 
 	/** Presents type of fail while image loading */

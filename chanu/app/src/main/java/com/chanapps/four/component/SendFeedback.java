@@ -15,12 +15,12 @@ import com.chanapps.four.activity.R;
 public class SendFeedback {
     
     public static boolean email(final Activity activity) {
-        String email = activity.getString(R.string.pref_about_contact_email);
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.component.SendFeedback.email(android.app.Activity)",activity);try{String email = activity.getString(R.string.pref_about_contact_email);
         Uri uri = Uri.fromParts("mailto", email, null);
         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
         intent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.app_name));
         activity.startActivity(
                 Intent.createChooser(intent, activity.getString(R.string.pref_about_send_email)));
-        return true;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.SendFeedback.email(android.app.Activity)");return true;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.component.SendFeedback.email(android.app.Activity)",throwable);throw throwable;}
     }
 }

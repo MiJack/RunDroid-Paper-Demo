@@ -53,26 +53,26 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
     private ChanThread thread;
 
     public static boolean scheduleBoardFetch(Context context, String boardCode, boolean priority, boolean backgroundLoad) {
-        return scheduleBoardFetch(context, boardCode, priority, backgroundLoad, 0);
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean)",context,boardCode,priority,backgroundLoad);try{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean)");return scheduleBoardFetch(context, boardCode, priority, backgroundLoad, 0);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean)",throwable);throw throwable;}
     }
 
     public static boolean scheduleBoardFetch(Context context, String boardCode, boolean priority, boolean backgroundLoad,
                                              long threadNo) {
-        if (ChanBoard.isPopularBoard(boardCode)) {
-            if (DEBUG) Log.i(TAG, "Redirecting refresh request for /" + boardCode + "/ to popular fetch service");
-            return FetchPopularThreadsService.schedulePopularFetchService(context, priority, backgroundLoad);
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean,long)",context,boardCode,priority,backgroundLoad,threadNo);try{if (ChanBoard.isPopularBoard(boardCode)) {
+            if (DEBUG) {Log.i(TAG, "Redirecting refresh request for /" + boardCode + "/ to popular fetch service");}
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean,long)");return FetchPopularThreadsService.schedulePopularFetchService(context, priority, backgroundLoad);}
         }
         else if (ChanBoard.isVirtualBoard(boardCode)) {
-            if (DEBUG) Log.i(TAG, "non-popular virtual board /" + boardCode + "/ received, skipping");
-            return false;
+            if (DEBUG) {Log.i(TAG, "non-popular virtual board /" + boardCode + "/ received, skipping");}
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean,long)");return false;}
         }
 
     	if (!ChanBoard.boardNeedsRefresh(context, boardCode, priority)) {
-            if (DEBUG) Log.i(TAG, "Skipping not needing refresh normal board fetch service for "
-                    + boardCode + " priority=" + priority);
-            return false;
+            if (DEBUG) {Log.i(TAG, "Skipping not needing refresh normal board fetch service for "
+                    + boardCode + " priority=" + priority);}
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean,long)");return false;}
         }
-        if (DEBUG) Log.i(TAG, "Start chan fetch board service /" + boardCode + "/ priority=" + priority);
+        if (DEBUG) {Log.i(TAG, "Start chan fetch board service /" + boardCode + "/ priority=" + priority);}
         Intent intent = new Intent(context, FetchChanDataService.class);
         intent.putExtra(ChanBoard.BOARD_CODE, boardCode);
         intent.putExtra(ChanBoard.PAGE, -1);
@@ -85,21 +85,21 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
             intent.putExtra(SECONDARY_THREAD_NO, threadNo);
         }
         context.startService(intent);
-        return true;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean,long)");return true;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.service.FetchChanDataService.scheduleBoardFetch(android.content.Context,java.lang.String,boolean,boolean,long)",throwable);throw throwable;}
     }
 
     public static boolean scheduleThreadFetch(Context context, String boardCode, long threadNo, boolean priority, boolean backgroundLoad) {
-    	if (!ChanThread.threadNeedsRefresh(context, boardCode, threadNo, priority)) {
-            if (DEBUG) Log.i(TAG, "skipping refresh, thread doesn't need it for /" + boardCode + "/" + threadNo);
-        	return false;
+    	com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.service.FetchChanDataService.scheduleThreadFetch(android.content.Context,java.lang.String,long,boolean,boolean)",context,boardCode,threadNo,priority,backgroundLoad);try{if (!ChanThread.threadNeedsRefresh(context, boardCode, threadNo, priority)) {
+            if (DEBUG) {Log.i(TAG, "skipping refresh, thread doesn't need it for /" + boardCode + "/" + threadNo);}
+        	{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleThreadFetch(android.content.Context,java.lang.String,long,boolean,boolean)");return false;}
         }
         ChanThread thread = ChanFileStorage.loadThreadData(context, boardCode, threadNo);
         if (thread != null && thread.isDead) {
-            if (DEBUG) Log.i(TAG, "scheduleThreadFetch /" + boardCode + "/" + threadNo + " exiting due to dead thread");
-            return false;
+            if (DEBUG) {Log.i(TAG, "scheduleThreadFetch /" + boardCode + "/" + threadNo + " exiting due to dead thread");}
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleThreadFetch(android.content.Context,java.lang.String,long,boolean,boolean)");return false;}
         }
-        if (DEBUG) Log.i(TAG, "Start chan fetch thread service for " + boardCode + "/" + threadNo
-                + " priority=" + priority + " background=" + backgroundLoad);
+        if (DEBUG) {Log.i(TAG, "Start chan fetch thread service for " + boardCode + "/" + threadNo
+                + " priority=" + priority + " background=" + backgroundLoad);}
         if (boardCode == null || threadNo == 0) {
         	Log.e(TAG, "Wrong params passed, boardCode: " + boardCode + " threadNo: " + threadNo,
         			new Exception("Locate caller and fix issue!"));
@@ -113,8 +113,8 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
         }
         context.startService(intent);
 
-        //optionallyDownloadAllImages(context, boardCode, threadNo); // really slow on large image threads
-        return true;
+        /*//optionallyDownloadAllImages(context, boardCode, threadNo); // really slow on large image threads*/
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchChanDataService.scheduleThreadFetch(android.content.Context,java.lang.String,long,boolean,boolean)");return true;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.service.FetchChanDataService.scheduleThreadFetch(android.content.Context,java.lang.String,long,boolean,boolean)",throwable);throw throwable;}
     }
 
     /*
@@ -136,10 +136,10 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
     */
 
     public static void clearServiceQueue(Context context) {
-        if (DEBUG) Log.i(TAG, "Clearing chan fetch service queue");
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.FetchChanDataService.clearServiceQueue(android.content.Context)",context);try{if (DEBUG) {Log.i(TAG, "Clearing chan fetch service queue");}
         Intent intent = new Intent(context, FetchChanDataService.class);
         intent.putExtra(CLEAR_FETCH_QUEUE, 1);
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.FetchChanDataService.clearServiceQueue(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.FetchChanDataService.clearServiceQueue(android.content.Context)",throwable);throw throwable;}
     }
 
     public FetchChanDataService() {
@@ -152,20 +152,20 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
     
 	@Override
 	protected void onHandleIntent(Intent intent) {
-        backgroundLoad = intent.getBooleanExtra(BACKGROUND_LOAD, false);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchChanDataService.onHandleIntent(android.content.Intent)",this,intent);try{backgroundLoad = intent.getBooleanExtra(BACKGROUND_LOAD, false);
 		if (!isChanForegroundActivity() && !backgroundLoad) {
             if (DEBUG)
-                Log.i(TAG, "Not foreground activity, exiting");
-			return;
+                {Log.i(TAG, "Not foreground activity, exiting");}
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.onHandleIntent(android.content.Intent)",this);return;}
 		}
 
         NetworkProfileManager.NetworkBroadcastReceiver.checkNetwork(this.getBaseContext());
         NetworkProfile profile = NetworkProfileManager.instance().getCurrentProfile();
         if (profile.getConnectionType() == NetworkProfile.Type.NO_CONNECTION
                 || profile.getConnectionHealth() == NetworkProfile.Health.NO_CONNECTION) {
-            if (DEBUG) Log.i(TAG, "No network connection, exiting");
+            if (DEBUG) {Log.i(TAG, "No network connection, exiting");}
             profile.onDataFetchFailure(this, Failure.NETWORK);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.onHandleIntent(android.content.Intent)",this);return;}
         }
 
 		boardCode = intent.getStringExtra(ChanBoard.BOARD_CODE);
@@ -177,26 +177,26 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
 		priority = intent.getIntExtra(PRIORITY_MESSAGE_FETCH, 0) > 0;
 
         if (boardHandling) {
-			if (DEBUG) Log.i(TAG, "Handling board " + boardCode + (boardCatalog ? " catalog" : " page=" + pageNo) + " priority=" + priority);
+			if (DEBUG) {Log.i(TAG, "Handling board " + boardCode + (boardCatalog ? " catalog" : " page=" + pageNo) + " priority=" + priority);}
 			handleBoard();
 		} else {
-			if (DEBUG) Log.i(TAG, "Handling thread " + boardCode + "/" + threadNo + " priority=" + priority);
+			if (DEBUG) {Log.i(TAG, "Handling thread " + boardCode + "/" + threadNo + " priority=" + priority);}
 			handleThread();
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchChanDataService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
 	}
 	
 	private boolean isChanForegroundActivity() {
-        return ActivityDispatcher.safeGetIsChanForegroundActivity(this);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.service.FetchChanDataService.isChanForegroundActivity()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.FetchChanDataService.isChanForegroundActivity()",this);return ActivityDispatcher.safeGetIsChanForegroundActivity(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.service.FetchChanDataService.isChanForegroundActivity()",this,throwable);throw throwable;}
 	}
 
 	private void handleBoard() {
-        if (ChanBoard.WATCHLIST_BOARD_CODE.equals(boardCode)) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchChanDataService.handleBoard()",this);try{if (ChanBoard.WATCHLIST_BOARD_CODE.equals(boardCode)) {
             Log.e(TAG, "Watchlist cannot be fetched from external site, only added and removed within the program");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleBoard()",this);return;}
         }
         else if (ChanBoard.FAVORITES_BOARD_CODE.equals(boardCode)) {
             Log.e(TAG, "Favorites cannot be fetched from external site, only added and removed within the program");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleBoard()",this);return;}
         }
 
         HttpURLConnection tc = null;
@@ -210,8 +210,8 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
 			if (board != null && !board.defData
                     && boardFile != null && boardFile.exists()
                     && (new Date().getTime() - boardFile.lastModified() < 10000) ) {
-				if (DEBUG) Log.i(TAG, "Board file exists within last modified time, quiting fetch");
-				return;
+				if (DEBUG) {Log.i(TAG, "Board file exists within last modified time, quiting fetch");}
+				{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleBoard()",this);return;}
 			}
 		
             String apiUrl;
@@ -223,7 +223,7 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
                         URLFormatComponent.CHAN_PAGE_API_URL_FORMAT), boardCode, pageNo);
 			}
 			URL chanApi = new URL(apiUrl);
-        	if (DEBUG) Log.i(TAG, "Fetching " + apiUrl + " priority=" + priority);
+        	if (DEBUG) {Log.i(TAG, "Fetching " + apiUrl + " priority=" + priority);}
 			
     		final long startTime = new Date().getTime();
             tc = (HttpURLConnection) chanApi.openConnection();
@@ -232,29 +232,29 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
             tc.setConnectTimeout(fetchParams.connectTimeout);
             
             if (board != null && board.lastFetched > 0 && !priority) {
-            	if (DEBUG) Log.i(TAG, "IfModifiedSince set as last fetch happened "
-        				+ ((startTime - board.lastFetched) / 1000) + "s ago");
+            	if (DEBUG) {Log.i(TAG, "IfModifiedSince set as last fetch happened "
+        				+ ((startTime - board.lastFetched) / 1000) + "s ago");}
                 tc.setIfModifiedSince(board.lastFetched);
             }
             String contentType = tc.getContentType();
-            if (DEBUG) Log.i(TAG, "handleBoard() Called API " + tc.getURL() + " response length=" + tc.getContentLength()
-            		+ " code=" + tc.getResponseCode() + " type=" + contentType);
+            if (DEBUG) {Log.i(TAG, "handleBoard() Called API " + tc.getURL() + " response length=" + tc.getContentLength()
+            		+ " code=" + tc.getResponseCode() + " type=" + contentType);}
             if (tc.getResponseCode() == 304) {
-            	if (DEBUG) Log.i(TAG, "Got 304 for " + chanApi + " so was not modified since " + board.lastFetched);
+            	if (DEBUG) {Log.i(TAG, "Got 304 for " + chanApi + " so was not modified since " + board.lastFetched);}
                 int fetchTime = (int)(new Date().getTime() - startTime);
                 NetworkProfileManager.instance().finishedFetchingData(this, fetchTime, 0);
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleBoard()",this);return;}
             }
 
             if (pageNo > 0 && tc.getResponseCode() == HttpURLConnection.HTTP_NOT_FOUND) {
-                if (DEBUG) Log.i(TAG, "Got 404 on next page, assuming last page at pageNo=" + pageNo);
+                if (DEBUG) {Log.i(TAG, "Got 404 on next page, assuming last page at pageNo=" + pageNo);}
                 board.lastFetched = new Date().getTime();
                 ChanFileStorage.storeBoardData(getBaseContext(), board);
             }
             else if (contentType == null || !contentType.contains("json")) {
-                // happens if 4chan is temporarily down or when access requires authentication to wifi router
-                if (DEBUG) Log.i(TAG, "Wrong content type returned board=" + board + " contentType='" + contentType
-                        + "' responseCode=" + tc.getResponseCode() + " content=" + tc.getContent().toString());
+                /*// happens if 4chan is temporarily down or when access requires authentication to wifi router*/
+                if (DEBUG) {Log.i(TAG, "Wrong content type returned board=" + board + " contentType='" + contentType
+                        + "' responseCode=" + tc.getResponseCode() + " content=" + tc.getContent().toString());}
             }
             else {
                 board.lastFetched = new Date().getTime();
@@ -262,9 +262,9 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
             	long fetchTime = board.lastFetched - startTime;
                 long storeTime = new Date().getTime() - board.lastFetched;
                 
-                if (DEBUG) Log.w(TAG, "Fetched " + chanApi + " in " + fetchTime + "ms, stored in " + storeTime + "ms, "
-                        + "stored fileSize=" + fileSize/1024 + "KB");
-                if (DEBUG) Log.i(TAG, "Calling finishedFetchingData priority=" + priority);
+                if (DEBUG) {Log.w(TAG, "Fetched " + chanApi + " in " + fetchTime + "ms, stored in " + storeTime + "ms, "
+                        + "stored fileSize=" + fileSize/1024 + "KB");}
+                if (DEBUG) {Log.i(TAG, "Calling finishedFetchingData priority=" + priority);}
                 /*
                 final ChanActivityId activityId = getChanActivityId();
                 final Context context = getApplicationContext();
@@ -289,30 +289,30 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
 			Log.e(TAG, "Error fetching Chan board json", e);
 		} finally {
 			closeConnection(tc);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchChanDataService.handleBoard()",this,throwable);throw throwable;}
 	}
 
 	private void handleThread() {
-        HttpURLConnection tc = null;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);try{HttpURLConnection tc = null;
         if (threadNo == 0) {
             Log.e(TAG, "Board-level loading must be done via the BoardLoadService");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
         }
         else if (boardCode.equals(ChanBoard.WATCHLIST_BOARD_CODE)) {
             Log.e(TAG, "Watchlist should not be fetched");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
         }
         else if (boardCode.equals(ChanBoard.FAVORITES_BOARD_CODE)) {
             Log.e(TAG, "Favorites should not be fetched");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
         }
 
 		try {
             thread = ChanFileStorage.loadThreadData(this, boardCode, threadNo);
             long now = (new Date()).getTime();
             if (thread == null) {
-            	if (DEBUG) Log.i(TAG, "Load thread data returned null, therefore service is terminating");
-            	return;
+            	if (DEBUG) {Log.i(TAG, "Load thread data returned null, therefore service is terminating");}
+            	{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
             } else if (thread.defData) {
                 thread = new ChanThread();
                 thread.board = boardCode;
@@ -322,8 +322,8 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
             } else {
                 if (thread.isDead && thread.posts.length == thread.replies) {
                     updateAfterDeadThread();
-                    if (DEBUG) Log.i(TAG, "Dead thread retrieved from storage, therefore service is terminating");
-                    return;
+                    if (DEBUG) {Log.i(TAG, "Dead thread retrieved from storage, therefore service is terminating");}
+                    {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
                 }
             }
 
@@ -331,43 +331,43 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
             String apiUrl = String.format(
                     URLFormatComponent.getUrl(getApplicationContext(), URLFormatComponent.CHAN_THREAD_URL_FORMAT), boardCode, threadNo);
             URL chanApi = new URL(apiUrl);
-            if (DEBUG) Log.i(TAG, "Fetching " + apiUrl);
+            if (DEBUG) {Log.i(TAG, "Fetching " + apiUrl);}
             tc = (HttpURLConnection) chanApi.openConnection();
             tc.setReadTimeout(NetworkProfileManager.instance().getFetchParams().readTimeout);
             if (thread.lastFetched > 0 && !priority) {
-            	if (DEBUG) Log.i(TAG, "IfModifiedSince set as last fetch happened "
-        				+ ((startTime - thread.lastFetched) / 1000) + "s ago");
+            	if (DEBUG) {Log.i(TAG, "IfModifiedSince set as last fetch happened "
+        				+ ((startTime - thread.lastFetched) / 1000) + "s ago");}
                 tc.setIfModifiedSince(thread.lastFetched);
             }
             String contentType = tc.getContentType();
-            if (DEBUG) Log.i(TAG, "handleThread() Called API " + tc.getURL() + " response length=" + tc.getContentLength()
-            		+ " code=" + tc.getResponseCode() + " type=" + contentType);
+            if (DEBUG) {Log.i(TAG, "handleThread() Called API " + tc.getURL() + " response length=" + tc.getContentLength()
+            		+ " code=" + tc.getResponseCode() + " type=" + contentType);}
             if (tc.getResponseCode() == 304) {
-            	if (DEBUG) Log.i(TAG, "Got 304 for " + chanApi + " so was not modified since " + thread.lastFetched);
+            	if (DEBUG) {Log.i(TAG, "Got 304 for " + chanApi + " so was not modified since " + thread.lastFetched);}
                 NetworkProfileManager.instance().failedFetchingData(this, Failure.THREAD_UNMODIFIED);
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
             }
 
             thread.lastFetched = now;
             if (tc.getResponseCode() == HttpURLConnection.HTTP_NOT_FOUND) {
-                if (DEBUG) Log.i(TAG, "Got 404 on thread, thread no longer exists, setting dead thread");
+                if (DEBUG) {Log.i(TAG, "Got 404 on thread, thread no longer exists, setting dead thread");}
 
-                // store dead status for thread
+                /*// store dead status for thread*/
                 thread.isDead = true;
                 if (thread.posts != null && thread.posts.length > 0 && thread.posts[0] != null)
-                    thread.posts[0].isDead = true;
-                if (DEBUG) Log.i(TAG, "After handleBoard dead thread calling storeThreadData for /" + thread.board + "/" + thread.no);
+                    {thread.posts[0].isDead = true;}
+                if (DEBUG) {Log.i(TAG, "After handleBoard dead thread calling storeThreadData for /" + thread.board + "/" + thread.no);}
                 ChanFileStorage.storeThreadData(getBaseContext(), thread);
                 updateAfterDeadThread();
                 NetworkProfileManager.instance().failedFetchingData(this, Failure.DEAD_THREAD);
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
             } else if (contentType == null || !contentType.contains("json")) {
-                if (DEBUG) Log.i(TAG, "Failed fetching data, contentType = " + contentType);
+                if (DEBUG) {Log.i(TAG, "Failed fetching data, contentType = " + contentType);}
                 NetworkProfileManager.instance().failedFetchingData(this, Failure.NETWORK);
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return;}
             }
             else {
-                if (DEBUG) Log.i(TAG, "Fetch succeeded, storing thread file");
+                if (DEBUG) {Log.i(TAG, "Fetch succeeded, storing thread file");}
                 long fileSize = ChanFileStorage.storeThreadFile(getBaseContext(), boardCode, threadNo, new BufferedInputStream(tc.getInputStream()));
                 int fetchTime = (int)(new Date().getTime() - startTime);
                 final ChanActivityId activityId = getChanActivityId();
@@ -375,14 +375,14 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
                 final ChanIdentifiedService service = new ChanIdentifiedService() {
                     @Override
                     public ChanActivityId getChanActivityId() {
-                        return activityId;
+                        com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchChanDataService$1.getChanActivityId()",this);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchChanDataService$1.getChanActivityId()",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return activityId;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchChanDataService$1.getChanActivityId()",this,throwable);throw throwable;}
                     }
                     @Override
                     public Context getApplicationContext() {
-                        return context;
+                        com.mijack.Xlog.logMethodEnter("android.content.Context com.chanapps.four.service.FetchChanDataService$1.getApplicationContext()",this);try{com.mijack.Xlog.logMethodExit("android.content.Context com.chanapps.four.service.FetchChanDataService$1.getApplicationContext()",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.handleThread()",this);return context;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.Context com.chanapps.four.service.FetchChanDataService$1.getApplicationContext()",this,throwable);throw throwable;}
                     }
                 };
-                if (DEBUG) Log.i(TAG, "Thread file store succeeded, calling profile manager finished fetching data");
+                if (DEBUG) {Log.i(TAG, "Thread file store succeeded, calling profile manager finished fetching data");}
                 NetworkProfileManager.instance().finishedFetchingData(service, fetchTime, (int)fileSize);
             }
 
@@ -394,30 +394,30 @@ public class FetchChanDataService extends BaseChanService implements ChanIdentif
 			Log.e(TAG, "Error parsing Chan thread json. " + e.getMessage(), e);
 		} finally {
 			closeConnection(tc);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchChanDataService.handleThread()",this,throwable);throw throwable;}
 	}
 
     private void updateAfterDeadThread() throws IOException {
-        Context context = getBaseContext();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchChanDataService.updateAfterDeadThread()",this);try{Context context = getBaseContext();
         if (PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getBoolean(SettingsActivity.PREF_AUTOMATICALLY_MANAGE_WATCHLIST, true)) {
             ChanFileStorage.cleanDeadWatchedThreads(context);
             BoardActivity.refreshWatchlist(context);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchChanDataService.updateAfterDeadThread()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchChanDataService.updateAfterDeadThread()",this,throwable);throw throwable;}
     }
 
 	@Override
 	public ChanActivityId getChanActivityId() {
-        ChanActivityId id;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchChanDataService.getChanActivityId()",this);try{ChanActivityId id;
 		if (threadNo > 0) {
 			id = new ChanActivityId(boardCode, threadNo, priority);
 		} else {
 			id = new ChanActivityId(boardCode, pageNo, priority);
 		}
         if (secondaryThreadNo > 0)
-            id.secondaryThreadNo = secondaryThreadNo;
-        return id;
+            {id.secondaryThreadNo = secondaryThreadNo;}
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchChanDataService.getChanActivityId()",this);return id;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchChanDataService.getChanActivityId()",this,throwable);throw throwable;}
 	}
 
 }

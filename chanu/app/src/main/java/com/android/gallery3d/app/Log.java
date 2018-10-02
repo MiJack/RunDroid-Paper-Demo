@@ -18,36 +18,36 @@ package com.android.gallery3d.app;
 
 public class Log {
     public static int v(String tag, String msg) {
-        return android.util.Log.v(tag, msg);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.v(java.lang.String,java.lang.String)",tag,msg);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.v(java.lang.String,java.lang.String)");return android.util.Log.v(tag, msg);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.v(java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
     public static int v(String tag, String msg, Throwable tr) {
-        return android.util.Log.v(tag, msg, tr);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.v(java.lang.String,java.lang.String,java.lang.Throwable)",tag,msg,tr);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.v(java.lang.String,java.lang.String,java.lang.Throwable)");return android.util.Log.v(tag, msg, tr);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.v(java.lang.String,java.lang.String,java.lang.Throwable)",throwable);throw throwable;}
     }
     public static int d(String tag, String msg) {
-        return android.util.Log.d(tag, msg);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.d(java.lang.String,java.lang.String)",tag,msg);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.d(java.lang.String,java.lang.String)");return android.util.Log.d(tag, msg);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.d(java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
     public static int d(String tag, String msg, Throwable tr) {
-        return android.util.Log.d(tag, msg, tr);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.d(java.lang.String,java.lang.String,java.lang.Throwable)",tag,msg,tr);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.d(java.lang.String,java.lang.String,java.lang.Throwable)");return android.util.Log.d(tag, msg, tr);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.d(java.lang.String,java.lang.String,java.lang.Throwable)",throwable);throw throwable;}
     }
     public static int i(String tag, String msg) {
-        return android.util.Log.i(tag, msg);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.i(java.lang.String,java.lang.String)",tag,msg);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.i(java.lang.String,java.lang.String)");return android.util.Log.i(tag, msg);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.i(java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
     public static int i(String tag, String msg, Throwable tr) {
-        return android.util.Log.i(tag, msg, tr);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.i(java.lang.String,java.lang.String,java.lang.Throwable)",tag,msg,tr);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.i(java.lang.String,java.lang.String,java.lang.Throwable)");return android.util.Log.i(tag, msg, tr);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.i(java.lang.String,java.lang.String,java.lang.Throwable)",throwable);throw throwable;}
     }
     public static int w(String tag, String msg) {
-        return android.util.Log.w(tag, msg);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.String)",tag,msg);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.String)");return android.util.Log.w(tag, msg);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
     public static int w(String tag, String msg, Throwable tr) {
-        return android.util.Log.w(tag, msg, tr);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.String,java.lang.Throwable)",tag,msg,tr);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.String,java.lang.Throwable)");return android.util.Log.w(tag, msg, tr);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.String,java.lang.Throwable)",throwable);throw throwable;}
     }
     public static int w(String tag, Throwable tr) {
-        return android.util.Log.w(tag, tr);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.Throwable)",tag,tr);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.Throwable)");return android.util.Log.w(tag, tr);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.w(java.lang.String,java.lang.Throwable)",throwable);throw throwable;}
     }
     public static int e(String tag, String msg) {
-        return android.util.Log.e(tag, msg);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.e(java.lang.String,java.lang.String)",tag,msg);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.e(java.lang.String,java.lang.String)");return android.util.Log.e(tag, msg);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.e(java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
     public static int e(String tag, String msg, Throwable tr) {
-        return android.util.Log.e(tag, msg, tr);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.Log.e(java.lang.String,java.lang.String,java.lang.Throwable)",tag,msg,tr);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.Log.e(java.lang.String,java.lang.String,java.lang.Throwable)");return android.util.Log.e(tag, msg, tr);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.Log.e(java.lang.String,java.lang.String,java.lang.Throwable)",throwable);throw throwable;}
     }
 }

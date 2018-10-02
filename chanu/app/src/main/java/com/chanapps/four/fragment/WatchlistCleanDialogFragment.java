@@ -35,7 +35,7 @@ public class WatchlistCleanDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        //NetworkProfileManager.instance().getUserStatistics().featureUsed(UserStatistics.ChanFeature.WATCHLIST_DELETE);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.WatchlistCleanDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{/*//NetworkProfileManager.instance().getUserStatistics().featureUsed(UserStatistics.ChanFeature.WATCHLIST_DELETE);*/
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View layout = inflater.inflate(R.layout.message_dialog_fragment, null);
         TextView title = (TextView)layout.findViewById(R.id.title);
@@ -43,35 +43,35 @@ public class WatchlistCleanDialogFragment extends DialogFragment {
         title.setText(R.string.board_watch);
         message.setText(R.string.dialog_clean_watchlist);
         setStyle(STYLE_NO_TITLE, 0);
-        return (new AlertDialog.Builder(getActivity()))
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.WatchlistCleanDialogFragment.onCreateDialog(android.os.Bundle)",this);return (new AlertDialog.Builder(getActivity()))
                 .setView(layout)
                 .setPositiveButton(R.string.dialog_clean,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                try {
-                                    if (DEBUG) Log.i(TAG, "Cleaning watchlist...");
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.WatchlistCleanDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{try {
+                                    if (DEBUG) {Log.i(TAG, "Cleaning watchlist...");}
                                     Context context = getActivity().getApplicationContext();
                                     ChanFileStorage.cleanDeadWatchedThreads(context);
                                     BoardActivity.refreshWatchlist(context);
-                                    //Toast.makeText(getActivity().getApplicationContext(),
-                                    //        R.string.thread_watchlist_cleared, Toast.LENGTH_SHORT).show();
+                                    /*//Toast.makeText(getActivity().getApplicationContext(),*/
+                                    /*//        R.string.thread_watchlist_cleared, Toast.LENGTH_SHORT).show();*/
                                 }
                                 catch (IOException e) {
                                     Log.e(TAG, "Couldn't clear watchlist", e);
                                     Toast.makeText(getActivity().getApplicationContext(),
                                             R.string.thread_watchlist_not_cleared, Toast.LENGTH_SHORT).show();
                                 }
-                                dismiss();
+                                dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.WatchlistCleanDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.WatchlistCleanDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
                 .setNegativeButton(R.string.dialog_cancel,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dismiss();
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.WatchlistCleanDialogFragment$2.onClick(android.content.DialogInterface,int)",this,dialog,which);try{dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.WatchlistCleanDialogFragment$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.WatchlistCleanDialogFragment$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.WatchlistCleanDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

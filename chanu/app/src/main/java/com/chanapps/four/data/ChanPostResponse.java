@@ -27,7 +27,7 @@ public class ChanPostResponse {
     private String error = null;
 
     private static final Pattern SUCCESS_REG = Pattern.compile("(<title.*)(Post successful)");
-    private static final Pattern POST_REG = Pattern.compile("thread:([0-9]*),no:([0-9]*)"); // <!-- thread:44593688,no:44595010 -->
+    private static final Pattern POST_REG = Pattern.compile("thread:([0-9]*),no:([0-9]*)"); /*// <!-- thread:44593688,no:44595010 -->*/
     private static final Pattern BAN_REG = Pattern.compile("<h2>([^<]*)<span class=\"banType\">([^<]*)</span>([^<\\[]*)</h2>");
     private static final Pattern ERROR_REG = Pattern.compile("(id=\"errmsg\"[^>]*>)([^<\\[]*)");
 
@@ -37,10 +37,10 @@ public class ChanPostResponse {
     }
 
     public void processResponse() {
-        isPosted = false;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.ChanPostResponse.processResponse()",this);try{isPosted = false;
         try {
             error = ctx.getString(R.string.post_reply_response_error);
-            if (DEBUG) Log.i(TAG, "Received response: " + response);
+            if (DEBUG) {Log.i(TAG, "Received response: " + response);}
             Matcher successMatch = SUCCESS_REG.matcher(response);
             Matcher banMatch = BAN_REG.matcher(response);
             Matcher errorMatch = ERROR_REG.matcher(response);
@@ -52,11 +52,11 @@ public class ChanPostResponse {
                     if (threadMatch.find()) {
                         threadNo = Long.valueOf(threadMatch.group(1));
                         postNo = Long.valueOf(threadMatch.group(2));
-                        if (threadNo == 0) { // API strangely uses postNo instead of threadNo when you post a new thread
+                        if (threadNo == 0) { /*// API strangely uses postNo instead of threadNo when you post a new thread*/
                             threadNo = postNo;
                             postNo = 0;
                         }
-                        if (DEBUG) Log.i(TAG, "Found threadNo:" + threadNo + " postNo:" + postNo);
+                        if (DEBUG) {Log.i(TAG, "Found threadNo:" + threadNo + " postNo:" + postNo);}
                     }
                 }
                 catch (Exception e) {
@@ -74,26 +74,26 @@ public class ChanPostResponse {
         catch (Exception e) {
             error = e.getLocalizedMessage();
             isPosted = false;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.ChanPostResponse.processResponse()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.ChanPostResponse.processResponse()",this,throwable);throw throwable;}
     }
 
     public String getResponse() {
-        return response;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.ChanPostResponse.getResponse()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.ChanPostResponse.getResponse()",this);return response;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.ChanPostResponse.getResponse()",this,throwable);throw throwable;}
     }
 
     public boolean isPosted() {
-        return isPosted;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.data.ChanPostResponse.isPosted()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanPostResponse.isPosted()",this);return isPosted;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.data.ChanPostResponse.isPosted()",this,throwable);throw throwable;}
     }
 
     public String getError(Context ctx) {
-        return error;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.ChanPostResponse.getError(android.content.Context)",this,ctx);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.ChanPostResponse.getError(android.content.Context)",this);return error;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.ChanPostResponse.getError(android.content.Context)",this,throwable);throw throwable;}
     }
 
     public long getThreadNo() {
-        return threadNo;
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.data.ChanPostResponse.getThreadNo()",this);try{com.mijack.Xlog.logMethodExit("long com.chanapps.four.data.ChanPostResponse.getThreadNo()",this);return threadNo;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.data.ChanPostResponse.getThreadNo()",this,throwable);throw throwable;}
     }
 
     public long getPostNo() {
-        return postNo;
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.data.ChanPostResponse.getPostNo()",this);try{com.mijack.Xlog.logMethodExit("long com.chanapps.four.data.ChanPostResponse.getPostNo()",this);return postNo;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.data.ChanPostResponse.getPostNo()",this,throwable);throw throwable;}
     }
 }

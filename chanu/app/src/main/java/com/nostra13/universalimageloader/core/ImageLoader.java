@@ -66,14 +66,14 @@ public class ImageLoader {
 
 	/** Returns singleton class instance */
 	public static ImageLoader getInstance() {
-		if (instance == null) {
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.ImageLoader com.nostra13.universalimageloader.core.ImageLoader.getInstance()");try{if (instance == null) {
 			synchronized (ImageLoader.class) {
 				if (instance == null) {
 					instance = new ImageLoader();
 				}
 			}
 		}
-		return instance;
+		{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.ImageLoader com.nostra13.universalimageloader.core.ImageLoader.getInstance()");return instance;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.ImageLoader com.nostra13.universalimageloader.core.ImageLoader.getInstance()",throwable);throw throwable;}
 	}
 
 	protected ImageLoader() {
@@ -88,16 +88,16 @@ public class ImageLoader {
 	 * @throws IllegalArgumentException if <b>configuration</b> parameter is null
 	 */
 	public synchronized void init(ImageLoaderConfiguration configuration) {
-		if (configuration == null) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration)",this,configuration);try{if (configuration == null) {
 			throw new IllegalArgumentException(ERROR_INIT_CONFIG_WITH_NULL);
 		}
 		if (this.configuration == null) {
-			if (configuration.loggingEnabled) L.d(LOG_INIT_CONFIG);
+			if (configuration.loggingEnabled) {L.d(LOG_INIT_CONFIG);}
 			engine = new ImageLoaderEngine(configuration);
 			this.configuration = configuration;
 		} else {
 			L.w(WARNING_RE_INIT_CONFIG);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.init(com.nostra13.universalimageloader.core.ImageLoaderConfiguration)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class ImageLoader {
 	 * configuration}; <b>false</b> - otherwise
 	 */
 	public boolean isInited() {
-		return configuration != null;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.ImageLoader.isInited()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.ImageLoader.isInited()",this);return configuration != null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.ImageLoader.isInited()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class ImageLoader {
 	 * @throws IllegalArgumentException if passed <b>imageView</b> is null
 	 */
 	public void displayImage(String uri, ImageView imageView) {
-		displayImage(uri, imageView, null, null);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView)",this,uri,imageView);try{displayImage(uri, imageView, null, null);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class ImageLoader {
 	 * @throws IllegalArgumentException if passed <b>imageView</b> is null
 	 */
 	public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
-		displayImage(uri, imageView, options, null);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.DisplayImageOptions)",this,uri,imageView,options);try{displayImage(uri, imageView, options, null);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.DisplayImageOptions)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.DisplayImageOptions)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class ImageLoader {
 	 * @throws IllegalArgumentException if passed <b>imageView</b> is null
 	 */
 	public void displayImage(String uri, ImageView imageView, ImageLoadingListener listener) {
-		displayImage(uri, imageView, null, listener);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,uri,imageView,listener);try{displayImage(uri, imageView, null, listener);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class ImageLoader {
 	 * @throws IllegalArgumentException if passed <b>imageView</b> is null
 	 */
 	public void displayImage(String uri, ImageView imageView, DisplayImageOptions options, ImageLoadingListener listener) {
-		checkConfiguration();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,uri,imageView,options,listener);try{checkConfiguration();
 		if (imageView == null) {
 			throw new IllegalArgumentException(ERROR_WRONG_ARGUMENTS);
 		}
@@ -197,7 +197,7 @@ public class ImageLoader {
 				imageView.setImageBitmap(null);
 			}
 			listener.onLoadingComplete(uri, imageView, null);
-			return;
+			{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this);return;}
 		}
 
 		ImageSize targetSize = ImageSizeUtils.defineTargetSizeForView(imageView, configuration.maxImageWidthForMemoryCache,
@@ -208,7 +208,7 @@ public class ImageLoader {
 		listener.onLoadingStarted(uri, imageView);
 		Bitmap bmp = configuration.memoryCache.get(memoryCacheKey);
 		if (bmp != null && !bmp.isRecycled()) {
-			if (configuration.loggingEnabled) L.i(LOG_LOAD_IMAGE_FROM_MEMORY_CACHE, memoryCacheKey);
+			if (configuration.loggingEnabled) {L.i(LOG_LOAD_IMAGE_FROM_MEMORY_CACHE, memoryCacheKey);}
 
 			if (options.shouldPostProcess()) {
 				ImageLoadingInfo imageLoadingInfo = new ImageLoadingInfo(uri, imageView, targetSize, memoryCacheKey, options, listener,
@@ -231,7 +231,7 @@ public class ImageLoader {
 			ImageLoadingInfo imageLoadingInfo = new ImageLoadingInfo(uri, imageView, targetSize, memoryCacheKey, options, listener, engine.getLockForUri(uri));
 			LoadAndDisplayImageTask displayTask = new LoadAndDisplayImageTask(engine, imageLoadingInfo, options.getHandler());
 			engine.submit(displayTask);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.displayImage(java.lang.String,android.widget.ImageView,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public void loadImage(String uri, ImageLoadingListener listener) {
-		loadImage(uri, null, null, listener);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,uri,listener);try{loadImage(uri, null, null, listener);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public void loadImage(String uri, ImageSize minImageSize, ImageLoadingListener listener) {
-		loadImage(uri, minImageSize, null, listener);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,uri,minImageSize,listener);try{loadImage(uri, minImageSize, null, listener);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -285,7 +285,7 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public void loadImage(String uri, DisplayImageOptions options, ImageLoadingListener listener) {
-		loadImage(uri, null, options, listener);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,uri,options,listener);try{loadImage(uri, null, options, listener);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -309,7 +309,7 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public void loadImage(String uri, ImageSize targetImageSize, DisplayImageOptions options, ImageLoadingListener listener) {
-		checkConfiguration();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,uri,targetImageSize,options,listener);try{checkConfiguration();
 		if (targetImageSize == null) {
 			targetImageSize = new ImageSize(configuration.maxImageWidthForMemoryCache, configuration.maxImageHeightForMemoryCache);
 		}
@@ -328,7 +328,7 @@ public class ImageLoader {
 		fakeImage.setLayoutParams(new LayoutParams(targetImageSize.getWidth(), targetImageSize.getHeight()));
 		fakeImage.setScaleType(ScaleType.CENTER_CROP);
 
-		displayImage(uri, fakeImage, optionsWithFakeDisplayer, listener);
+		displayImage(uri, fakeImage, optionsWithFakeDisplayer, listener);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.loadImage(java.lang.String,com.nostra13.universalimageloader.core.assist.ImageSize,com.nostra13.universalimageloader.core.DisplayImageOptions,com.nostra13.universalimageloader.core.assist.ImageLoadingListener)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -337,9 +337,9 @@ public class ImageLoader {
 	 * @throws IllegalStateException if configuration wasn't initialized
 	 */
 	private void checkConfiguration() {
-		if (configuration == null) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.checkConfiguration()",this);try{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.checkConfiguration()",this);if (configuration == null) {
 			throw new IllegalStateException(ERROR_NOT_INIT);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.checkConfiguration()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -348,8 +348,8 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public MemoryCacheAware<String, Bitmap> getMemoryCache() {
-		checkConfiguration();
-		return configuration.memoryCache;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.cache.memory.MemoryCacheAware com.nostra13.universalimageloader.core.ImageLoader.getMemoryCache()",this);try{checkConfiguration();
+		{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.cache.memory.MemoryCacheAware com.nostra13.universalimageloader.core.ImageLoader.getMemoryCache()",this);return configuration.memoryCache;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.cache.memory.MemoryCacheAware com.nostra13.universalimageloader.core.ImageLoader.getMemoryCache()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -358,8 +358,8 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public void clearMemoryCache() {
-		checkConfiguration();
-		configuration.memoryCache.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.clearMemoryCache()",this);try{checkConfiguration();
+		configuration.memoryCache.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.clearMemoryCache()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.clearMemoryCache()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -368,8 +368,8 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public DiscCacheAware getDiscCache() {
-		checkConfiguration();
-		return configuration.discCache;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.ImageLoader.getDiscCache()",this);try{checkConfiguration();
+		{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.ImageLoader.getDiscCache()",this);return configuration.discCache;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.ImageLoader.getDiscCache()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -378,13 +378,13 @@ public class ImageLoader {
 	 * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called before
 	 */
 	public void clearDiscCache() {
-		checkConfiguration();
-		configuration.discCache.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.clearDiscCache()",this);try{checkConfiguration();
+		configuration.discCache.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.clearDiscCache()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.clearDiscCache()",this,throwable);throw throwable;}
 	}
 
 	/** Returns URI of image which is loading at this moment into passed {@link ImageView} */
 	public String getLoadingUriForView(ImageView imageView) {
-		return engine.getLoadingUriForView(imageView);
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.ImageLoader.getLoadingUriForView(android.widget.ImageView)",this,imageView);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.ImageLoader.getLoadingUriForView(android.widget.ImageView)",this);return engine.getLoadingUriForView(imageView);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.ImageLoader.getLoadingUriForView(android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -393,7 +393,7 @@ public class ImageLoader {
 	 * @param imageView {@link ImageView} for which display task will be cancelled
 	 */
 	public void cancelDisplayTask(ImageView imageView) {
-		engine.cancelDisplayTaskFor(imageView);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.cancelDisplayTask(android.widget.ImageView)",this,imageView);try{engine.cancelDisplayTaskFor(imageView);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.cancelDisplayTask(android.widget.ImageView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.cancelDisplayTask(android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -407,7 +407,7 @@ public class ImageLoader {
 	 *            to allow engine to download images from network.
 	 */
 	public void denyNetworkDownloads(boolean denyNetworkDownloads) {
-		engine.denyNetworkDownloads(denyNetworkDownloads);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.denyNetworkDownloads(boolean)",this,denyNetworkDownloads);try{engine.denyNetworkDownloads(denyNetworkDownloads);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.denyNetworkDownloads(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.denyNetworkDownloads(boolean)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -418,7 +418,7 @@ public class ImageLoader {
 	 *            - otherwise.
 	 */
 	public void handleSlowNetwork(boolean handleSlowNetwork) {
-		engine.handleSlowNetwork(handleSlowNetwork);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.handleSlowNetwork(boolean)",this,handleSlowNetwork);try{engine.handleSlowNetwork(handleSlowNetwork);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.handleSlowNetwork(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.handleSlowNetwork(boolean)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -426,12 +426,12 @@ public class ImageLoader {
 	 * Already running tasks are not paused.
 	 */
 	public void pause() {
-		engine.pause();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.pause()",this);try{engine.pause();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.pause()",this,throwable);throw throwable;}
 	}
 
 	/** Resumes waiting "load&display" tasks */
 	public void resume() {
-		engine.resume();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.resume()",this);try{engine.resume();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.resume()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -439,7 +439,7 @@ public class ImageLoader {
 	 * ImageLoader still can be used after calling this method.
 	 */
 	public void stop() {
-		engine.stop();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.stop()",this);try{engine.stop();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.stop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.stop()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -448,9 +448,9 @@ public class ImageLoader {
 	 * method.
 	 */
 	public void destroy() {
-		if (configuration != null && configuration.loggingEnabled) L.d(LOG_DESTROY);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoader.destroy()",this);try{if (configuration != null && configuration.loggingEnabled) {L.d(LOG_DESTROY);}
 		stop();
 		engine = null;
-		configuration = null;
+		configuration = null;com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoader.destroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoader.destroy()",this,throwable);throw throwable;}
 	}
 }

@@ -32,9 +32,9 @@ public final class UsbDeviceActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.UsbDeviceActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
-        //
+        /*//*/
         Intent intent = new Intent(this, Gallery.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         try {
@@ -42,6 +42,6 @@ public final class UsbDeviceActivity extends Activity {
         } catch (ActivityNotFoundException e) {
             Log.e(TAG, "unable to start Gallery activity", e);
         }
-        finish();
+        finish();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.UsbDeviceActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.UsbDeviceActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

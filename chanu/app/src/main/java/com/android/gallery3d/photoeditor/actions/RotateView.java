@@ -43,7 +43,7 @@ class RotateView extends FullscreenToolView {
         void onStopTrackingTouch();
     }
 
-    // All angles used are defined between PI and -PI.
+    /*// All angles used are defined between PI and -PI.*/
     private static final float MATH_PI = (float) Math.PI;
     private static final float MATH_HALF_PI = MATH_PI / 2;
     private static final float RADIAN_TO_DEGREE = 180f / MATH_PI;
@@ -77,38 +77,38 @@ class RotateView extends FullscreenToolView {
     }
 
     public void setRotatedAngle(float degrees) {
-        refreshAngle(degrees, false);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RotateView.setRotatedAngle(float)",this,degrees);try{refreshAngle(degrees, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RotateView.setRotatedAngle(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RotateView.setRotatedAngle(float)",this,throwable);throw throwable;}
     }
 
     /**
      * Sets allowed degrees for rotation span before rotating the view.
      */
     public void setRotateSpan(float degrees) {
-        if (degrees >= 360f) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RotateView.setRotateSpan(float)",this,degrees);try{if (degrees >= 360f) {
             maxRotatedAngle = Float.POSITIVE_INFINITY;
         } else {
             maxRotatedAngle = (degrees / RADIAN_TO_DEGREE) / 2;
         }
-        minRotatedAngle = -maxRotatedAngle;
+        minRotatedAngle = -maxRotatedAngle;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RotateView.setRotateSpan(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RotateView.setRotateSpan(float)",this,throwable);throw throwable;}
     }
 
     public void setOnRotateChangeListener(OnRotateChangeListener listener) {
-        this.listener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RotateView.setOnRotateChangeListener(OnRotateChangeListener)",this,listener);try{this.listener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RotateView.setOnRotateChangeListener(OnRotateChangeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RotateView.setOnRotateChangeListener(OnRotateChangeListener)",this,throwable);throw throwable;}
     }
 
     public void setDrawGrids(boolean drawGrids) {
-        this.drawGrids = drawGrids;
-        invalidate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RotateView.setDrawGrids(boolean)",this,drawGrids);try{this.drawGrids = drawGrids;
+        invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RotateView.setDrawGrids(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RotateView.setDrawGrids(boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RotateView.onSizeChanged(int,int,int,int)",this,w,h,oldw,oldh);try{super.onSizeChanged(w, h, oldw, oldh);
 
         centerX = w / 2;
         centerY = h / 2;
 
-        // Make reference line long enough to cross the bounds diagonally after being rotated.
+        /*// Make reference line long enough to cross the bounds diagonally after being rotated.*/
         referenceLine.reset();
         float radius = (float) Math.hypot(centerX, centerY);
         float delta = radius - centerX;
@@ -118,7 +118,7 @@ class RotateView extends FullscreenToolView {
         referenceLine.moveTo(centerX, -delta);
         referenceLine.lineTo(centerX, getHeight() + delta);
 
-        // Set grids inside photo display bounds.
+        /*// Set grids inside photo display bounds.*/
         grids.reset();
         delta = displayBounds.width() / 4.0f;
         for (float x = displayBounds.left + delta; x < displayBounds.right; x += delta) {
@@ -129,12 +129,12 @@ class RotateView extends FullscreenToolView {
         for (float y = displayBounds.top + delta; y < displayBounds.bottom; y += delta) {
             grids.moveTo(displayBounds.left, y);
             grids.lineTo(displayBounds.right, y);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RotateView.onSizeChanged(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RotateView.onSizeChanged(int,int,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RotateView.onDraw(android.graphics.Canvas)",this,canvas);try{super.onDraw(canvas);
 
         if (drawGrids) {
             canvas.save();
@@ -146,11 +146,11 @@ class RotateView extends FullscreenToolView {
             dashStrokePaint.setColor(referenceColor);
             canvas.drawPath(referenceLine, dashStrokePaint);
             canvas.restore();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RotateView.onDraw(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RotateView.onDraw(android.graphics.Canvas)",this,throwable);throw throwable;}
     }
 
     private float calculateAngle(MotionEvent ev) {
-        float x = ev.getX() - centerX;
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.photoeditor.actions.RotateView.calculateAngle(android.view.MotionEvent)",this,ev);try{float x = ev.getX() - centerX;
         float y = centerY - ev.getY();
 
         float angle;
@@ -165,12 +165,12 @@ class RotateView extends FullscreenToolView {
         } else if ((angle < 0) && (x < 0)) {
             angle = MATH_PI + angle;
         }
-        return angle;
+        {com.mijack.Xlog.logMethodExit("float com.android.gallery3d.photoeditor.actions.RotateView.calculateAngle(android.view.MotionEvent)",this);return angle;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.photoeditor.actions.RotateView.calculateAngle(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        super.onTouchEvent(ev);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.RotateView.onTouchEvent(android.view.MotionEvent)",this,ev);try{super.onTouchEvent(ev);
 
         if (isEnabled()) {
             switch (ev.getAction()) {
@@ -188,8 +188,8 @@ class RotateView extends FullscreenToolView {
                     float rotatedAngle = touchAngle - touchStartAngle + lastRotatedAngle;
 
                     if ((rotatedAngle > maxRotatedAngle) || (rotatedAngle < minRotatedAngle)) {
-                        // Angles are out of range; restart rotating.
-                        // TODO: Fix discontinuity around boundary.
+                        /*// Angles are out of range; restart rotating.*/
+                        /*// TODO: Fix discontinuity around boundary.*/
                         lastRotatedAngle = currentRotatedAngle;
                         touchStartAngle = touchAngle;
                     } else {
@@ -205,14 +205,14 @@ class RotateView extends FullscreenToolView {
                     break;
             }
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.RotateView.onTouchEvent(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.RotateView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     private void refreshAngle(float degrees, boolean fromUser) {
-        currentRotatedAngle = -degrees / RADIAN_TO_DEGREE;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.RotateView.refreshAngle(float,boolean)",this,degrees,fromUser);try{currentRotatedAngle = -degrees / RADIAN_TO_DEGREE;
         if (listener != null) {
             listener.onAngleChanged(degrees, fromUser);
         }
-        invalidate();
+        invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.RotateView.refreshAngle(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.RotateView.refreshAngle(float,boolean)",this,throwable);throw throwable;}
     }
 }

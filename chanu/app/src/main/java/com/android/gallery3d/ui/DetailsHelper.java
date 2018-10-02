@@ -52,91 +52,91 @@ public class DetailsHelper {
     }
 
     public void layout(int left, int top, int right, int bottom) {
-        if (mContainer instanceof GLView) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsHelper.layout(int,int,int,int)",this,left,top,right,bottom);try{if (mContainer instanceof GLView) {
             GLView view = (GLView) mContainer;
             view.measure(MeasureSpec.UNSPECIFIED,
                     MeasureSpec.makeMeasureSpec(bottom - top, MeasureSpec.AT_MOST));
             view.layout(0, top, view.getMeasuredWidth(), top + view.getMeasuredHeight());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsHelper.layout(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsHelper.layout(int,int,int,int)",this,throwable);throw throwable;}
     }
 
     public void reloadDetails(int indexHint) {
-        mContainer.reloadDetails(indexHint);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsHelper.reloadDetails(int)",this,indexHint);try{mContainer.reloadDetails(indexHint);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsHelper.reloadDetails(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsHelper.reloadDetails(int)",this,throwable);throw throwable;}
     }
 
     public void setClickListener(int stringId, DialogInterface.OnClickListener listener) {
-        mContainer.setClickListener(stringId, listener);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsHelper.setClickListener(int,DialogInterface.OnClickListener)",this,stringId,listener);try{mContainer.setClickListener(stringId, listener);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsHelper.setClickListener(int,DialogInterface.OnClickListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsHelper.setClickListener(int,DialogInterface.OnClickListener)",this,throwable);throw throwable;}
     }
 
     public void setCloseListener(CloseListener listener) {
-        mContainer.setCloseListener(listener);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsHelper.setCloseListener(CloseListener)",this,listener);try{mContainer.setCloseListener(listener);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsHelper.setCloseListener(CloseListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsHelper.setCloseListener(CloseListener)",this,throwable);throw throwable;}
     }
 
     public static String resolveAddress(GalleryActivity activity, double[] latlng,
             AddressResolvingListener listener) {
-        if (sAddressResolver == null) {
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.ui.DetailsHelper.resolveAddress(com.android.gallery3d.app.GalleryActivity,[double,com.android.gallery3d.ui.DetailsAddressResolver.AddressResolvingListener)",activity,latlng,listener);try{if (sAddressResolver == null) {
             sAddressResolver = new DetailsAddressResolver(activity);
         } else {
             sAddressResolver.cancel();
         }
-        return sAddressResolver.resolveAddress(latlng, listener);
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.resolveAddress(com.android.gallery3d.app.GalleryActivity,[double,com.android.gallery3d.ui.DetailsAddressResolver.AddressResolvingListener)");return sAddressResolver.resolveAddress(latlng, listener);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.ui.DetailsHelper.resolveAddress(com.android.gallery3d.app.GalleryActivity,[double,com.android.gallery3d.ui.DetailsAddressResolver.AddressResolvingListener)",throwable);throw throwable;}
     }
 
     public static void pause() {
-        if (sAddressResolver != null) sAddressResolver.cancel();
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.DetailsHelper.pause()");try{if (sAddressResolver != null) {sAddressResolver.cancel();}com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.DetailsHelper.pause()");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsHelper.pause()",throwable);throw throwable;}
     }
 
     public void show() {
-        mContainer.show();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsHelper.show()",this);try{mContainer.show();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsHelper.show()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsHelper.show()",this,throwable);throw throwable;}
     }
 
     public void hide() {
-        mContainer.hide();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DetailsHelper.hide()",this);try{mContainer.hide();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DetailsHelper.hide()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DetailsHelper.hide()",this,throwable);throw throwable;}
     }
 
     public static String getDetailsName(Context context, int key) {
-        switch (key) {
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)",context,key);try{switch (key) {
             case MediaDetails.INDEX_TITLE:
-                return context.getString(R.string.title);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.title);}
             case MediaDetails.INDEX_DESCRIPTION:
-                return context.getString(R.string.description);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.description);}
             case MediaDetails.INDEX_DATETIME:
-                return context.getString(R.string.time);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.time);}
             case MediaDetails.INDEX_LOCATION:
-                return context.getString(R.string.location);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.location);}
             case MediaDetails.INDEX_PATH:
-                return context.getString(R.string.path);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.path);}
             case MediaDetails.INDEX_WIDTH:
-                return context.getString(R.string.width);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.width);}
             case MediaDetails.INDEX_HEIGHT:
-                return context.getString(R.string.height);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.height);}
             case MediaDetails.INDEX_ORIENTATION:
-                return context.getString(R.string.orientation);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.orientation);}
             case MediaDetails.INDEX_DURATION:
-                return context.getString(R.string.duration);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.duration);}
             case MediaDetails.INDEX_MIMETYPE:
-                return context.getString(R.string.mimetype);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.mimetype);}
             case MediaDetails.INDEX_SIZE:
-                return context.getString(R.string.file_size);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.file_size);}
             case MediaDetails.INDEX_MAKE:
-                return context.getString(R.string.maker);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.maker);}
             case MediaDetails.INDEX_MODEL:
-                return context.getString(R.string.model);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.model);}
             case MediaDetails.INDEX_FLASH:
-                return context.getString(R.string.flash);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.flash);}
             case MediaDetails.INDEX_APERTURE:
-                return context.getString(R.string.aperture);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.aperture);}
             case MediaDetails.INDEX_FOCAL_LENGTH:
-                return context.getString(R.string.focal_length);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.focal_length);}
             case MediaDetails.INDEX_WHITE_BALANCE:
-                return context.getString(R.string.white_balance);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.white_balance);}
             case MediaDetails.INDEX_EXPOSURE_TIME:
-                return context.getString(R.string.exposure_time);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.exposure_time);}
             case MediaDetails.INDEX_ISO:
-                return context.getString(R.string.iso);
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return context.getString(R.string.iso);}
             default:
-                return "Unknown key" + key;
-        }
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)");return "Unknown key" + key;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.ui.DetailsHelper.getDetailsName(android.content.Context,int)",throwable);throw throwable;}
     }
 }
 

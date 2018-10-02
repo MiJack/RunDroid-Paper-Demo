@@ -60,7 +60,7 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
     }
 
 	private void init(GalleryApp application, String dir, File imageFile) {
-		mApplication = application;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.ChanOffLineImage.init(com.android.gallery3d.app.GalleryApp,java.lang.String,java.io.File)",this,application,dir,imageFile);try{mApplication = application;
         activityId = new ChanActivityId(dir, 0, false);
         this.dir = dir;
         this.imageFile = imageFile;
@@ -72,30 +72,30 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
         name = "Cached /" + dir + "/" + imageFile.getName();
         mApplication = Utils.checkNotNull(application);
         contentType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
-        size = imageFile.length();
+        size = imageFile.length();com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.ChanOffLineImage.init(com.android.gallery3d.app.GalleryApp,java.lang.String,java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.ChanOffLineImage.init(com.android.gallery3d.app.GalleryApp,java.lang.String,java.io.File)",this,throwable);throw throwable;}
 	}
 
     @Override
     public Job<Bitmap> requestImage(int type) {
-    	if (DEBUG) Log.i(TAG, "requestImage " + imageFile.getName() + " " + (type == TYPE_THUMBNAIL ? "TYPE_THUMBNAIL" : "TYPE_MICROTHUMBNAIL"));
-        return new BitmapJob(type);
+    	com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.chanapps.four.gallery.ChanOffLineImage.requestImage(int)",this,type);try{if (DEBUG) {Log.i(TAG, "requestImage " + imageFile.getName() + " " + (type == TYPE_THUMBNAIL ? "TYPE_THUMBNAIL" : "TYPE_MICROTHUMBNAIL"));}
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.chanapps.four.gallery.ChanOffLineImage.requestImage(int)",this);return new BitmapJob(type);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.chanapps.four.gallery.ChanOffLineImage.requestImage(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public Job<BitmapRegionDecoder> requestLargeImage() {
-    	if (DEBUG) Log.i(TAG, "requestLargeImage " + imageFile.getName());
-        return new RegionDecoderJob();
+    	com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.chanapps.four.gallery.ChanOffLineImage.requestLargeImage()",this);try{if (DEBUG) {Log.i(TAG, "requestLargeImage " + imageFile.getName());}
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.chanapps.four.gallery.ChanOffLineImage.requestLargeImage()",this);return new RegionDecoderJob();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.chanapps.four.gallery.ChanOffLineImage.requestLargeImage()",this,throwable);throw throwable;}
     }
 
     private class RegionDecoderJob implements Job<BitmapRegionDecoder> {
         public BitmapRegionDecoder run(JobContext jc) {
-        	if (DEBUG) Log.i(TAG, "Large image exists " + imageFile.getAbsolutePath());
+        	com.mijack.Xlog.logMethodEnter("android.graphics.BitmapRegionDecoder com.chanapps.four.gallery.ChanOffLineImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{if (DEBUG) {Log.i(TAG, "Large image exists " + imageFile.getAbsolutePath());}
     		try {
-				return BitmapRegionDecoder.newInstance(imageFile.getAbsolutePath(), false);
+				{com.mijack.Xlog.logMethodExit("android.graphics.BitmapRegionDecoder com.chanapps.four.gallery.ChanOffLineImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return BitmapRegionDecoder.newInstance(imageFile.getAbsolutePath(), false);}
 			} catch (IOException e) {
 				Log.e(TAG, "BitmapRegionDecoder error for " + imageFile.getAbsolutePath(), e);
 			}
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.graphics.BitmapRegionDecoder com.chanapps.four.gallery.ChanOffLineImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.chanapps.four.gallery.ChanOffLineImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
     
@@ -107,21 +107,21 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
         }
 
         public Bitmap run(JobContext jc) {
-            //Bitmap srcBmp = null;
+            com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{/*//Bitmap srcBmp = null;*/
     		try {
     			Bitmap bmp = getBitmap();
         		if (bmp != null && type == TYPE_MICROTHUMBNAIL) {
         			bmp = centerCrop(bmp);
         		}
-        		return bmp;
+        		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return bmp;}
 			} catch (Throwable e) {
 				Log.e(TAG, "Bitmap docode error for " + imageFile.getName(), e);
-				return null;
-			}
+				{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}
+			}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
 
 		private Bitmap getBitmap() throws IOException {
-			Bitmap dstBmp = null;
+			com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.getBitmap()",this);try{Bitmap dstBmp = null;
 			Options options = new Options();
 			options.inPreferredConfig = Config.ARGB_8888;
 			switch (type) {
@@ -139,7 +139,7 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
 			}
 			catch (Exception e) {
 			    Log.e(TAG, "Couldn't load image file " + imageFile, e);
-			    return null;
+			    {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.getBitmap()",this);return null;}
 			}
 
 			try {
@@ -158,23 +158,23 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
 						Log.w(TAG, imageFile.getName() + (dstBmp == null ? " not" : "") + " loaded via BitmapFactor");
 					}
 				} else {
-					// center crop
+					/*// center crop*/
 					dstBmp = BitmapFactory.decodeStream(imageStream, null, options);
 				}
 			}
 			catch (Exception e) {
 			    Log.e(TAG, "Couldn't decode bitmap file " + imageFile, e);
-			    return null;
+			    {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.getBitmap()",this);return null;}
 			}
 			finally {
 				IOUtils.closeQuietly(imageStream);
 			}
-			//return ensureGLCompatibleBitmap(bitmap);
-			return dstBmp;
+			/*//return ensureGLCompatibleBitmap(bitmap);*/
+			{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.getBitmap()",this);return dstBmp;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.getBitmap()",this,throwable);throw throwable;}
 		}
         
         private Bitmap centerCrop(Bitmap srcBmp) {
-			Bitmap dstBmp = null;
+			com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.centerCrop(android.graphics.Bitmap)",this,srcBmp);try{Bitmap dstBmp = null;
 			if (srcBmp.getWidth() >= srcBmp.getHeight()) {
 				dstBmp = Bitmap.createBitmap(srcBmp, srcBmp.getWidth() / 2 - srcBmp.getHeight() / 2, 0,
 						srcBmp.getHeight(), srcBmp.getHeight());
@@ -182,11 +182,11 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
 				dstBmp = Bitmap.createBitmap(srcBmp, 0, srcBmp.getHeight() / 2 - srcBmp.getWidth() / 2,
 						srcBmp.getWidth(), srcBmp.getWidth());
 			}
-			return dstBmp;
+			{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.centerCrop(android.graphics.Bitmap)",this);return dstBmp;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.centerCrop(android.graphics.Bitmap)",this,throwable);throw throwable;}
         }
 
 		private int computeImageScale(int targetWidth, int targetHeight) throws IOException {
-			// decode image size
+			com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.computeImageScale(int,int)",this,targetWidth,targetHeight);try{/*// decode image size*/
 			Options options = new Options();
 			options.inJustDecodeBounds = true;
 
@@ -196,16 +196,16 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
             }
             catch (Exception e) {
                 Log.e(TAG, "Couldn't open image file " + imageFile, e);
-                return 1;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.computeImageScale(int,int)",this);return 1;}
             }
             if (imageStream == null)
-                return 1;
+                {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.computeImageScale(int,int)",this);return 1;}}
 
 			try {
 				BitmapFactory.decodeStream(imageStream, null, options);
 			} catch(Exception e) {
                 Log.e(TAG, "Couldn't decode image file " + imageFile, e);
-                return 1;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.computeImageScale(int,int)",this);return 1;}
             }
             finally {
             	IOUtils.closeQuietly(imageStream);
@@ -215,7 +215,7 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
 			int imageWidth = width = options.outWidth;
 			int imageHeight = height = options.outHeight;
 
-			while (imageWidth / 2 >= targetWidth && imageHeight / 2 >= targetHeight) { // &&
+			while (imageWidth / 2 >= targetWidth && imageHeight / 2 >= targetHeight) { /*// &&*/
 				imageWidth /= 2;
 				imageHeight /= 2;
 				scale *= 2;
@@ -225,14 +225,14 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
 				scale = 1;
 			}
 
-			return scale;
+			{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.computeImageScale(int,int)",this);return scale;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.ChanOffLineImage$BitmapJob.computeImageScale(int,int)",this,throwable);throw throwable;}
 		}
     }
 
     @Override
     public int getSupportedOperations() {
-        int supported = SUPPORT_SETAS | SUPPORT_INFO;
-        if (isSharable()) supported |= SUPPORT_SHARE;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.ChanOffLineImage.getSupportedOperations()",this);try{int supported = SUPPORT_SETAS | SUPPORT_INFO;
+        if (isSharable()) {supported |= SUPPORT_SHARE;}
         if ("jpg".equals(ext) || "jpeg".equals(ext) || "png".equals(ext)) {
             supported |= SUPPORT_FULL_IMAGE;
         }
@@ -247,41 +247,41 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
         	buf.append((supported & SUPPORT_ANIMATED_GIF) > 0? "SUPPORT_ANIMATED_GIF " : "");
         	Log.i(TAG, "Supported operations for " + this.name + " " + buf.toString());
         }
-        return supported;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage.getSupportedOperations()",this);return supported;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.ChanOffLineImage.getSupportedOperations()",this,throwable);throw throwable;}
     }
 
     private boolean isSharable() {
-    	return true;
+    	com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.gallery.ChanOffLineImage.isSharable()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.ChanOffLineImage.isSharable()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.gallery.ChanOffLineImage.isSharable()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getMediaType() {
-		return MEDIA_TYPE_IMAGE;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.ChanOffLineImage.getMediaType()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage.getMediaType()",this);return MEDIA_TYPE_IMAGE;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.ChanOffLineImage.getMediaType()",this,throwable);throw throwable;}
     }
     
     private boolean isAnimatedGif() {
-    	if ("gif".equals(ext)) {
+    	com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.gallery.ChanOffLineImage.isAnimatedGif()",this);try{if ("gif".equals(ext)) {
     		if (width > 0 && height > 0) {
-    			return size > width * height * 8 / 10;
+    			{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.ChanOffLineImage.isAnimatedGif()",this);return size > width * height * 8 / 10;}
     		} else {
-    			return size > 128000;
+    			{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.ChanOffLineImage.isAnimatedGif()",this);return size > 128000;}
     		}
     	}
-    	return false;
+    	{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.ChanOffLineImage.isAnimatedGif()",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.gallery.ChanOffLineImage.isAnimatedGif()",this,throwable);throw throwable;}
     }
     
     @Override
 	public Uri getPlayUri() {
-    	return Uri.fromFile(imageFile);
+    	com.mijack.Xlog.logMethodEnter("android.net.Uri com.chanapps.four.gallery.ChanOffLineImage.getPlayUri()",this);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.chanapps.four.gallery.ChanOffLineImage.getPlayUri()",this);return Uri.fromFile(imageFile);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.chanapps.four.gallery.ChanOffLineImage.getPlayUri()",this,throwable);throw throwable;}
 	}
 
 	@Override
     public Uri getContentUri() {
-        return getPlayUri();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.chanapps.four.gallery.ChanOffLineImage.getContentUri()",this);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.chanapps.four.gallery.ChanOffLineImage.getContentUri()",this);return getPlayUri();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.chanapps.four.gallery.ChanOffLineImage.getContentUri()",this,throwable);throw throwable;}
     }
 	
 	public void updateImageBounds(File imageFile) {
-		// decode image size
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.ChanOffLineImage.updateImageBounds(java.io.File)",this,imageFile);try{/*// decode image size*/
 		Options options = new Options();
 		options.inJustDecodeBounds = true;
 		InputStream imageStream = null;
@@ -294,12 +294,12 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
 			Log.e(TAG, "Error while decoding image bounds", e);
 		} finally {
 			IOUtils.closeQuietly(imageStream);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.ChanOffLineImage.updateImageBounds(java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.ChanOffLineImage.updateImageBounds(java.io.File)",this,throwable);throw throwable;}
 	}
 
     @Override
     public MediaDetails getDetails() {
-    	updateImageBounds(imageFile);
+    	com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaDetails com.chanapps.four.gallery.ChanOffLineImage.getDetails()",this);try{updateImageBounds(imageFile);
         MediaDetails details = super.getDetails();
         if (width != 0 && height != 0) {
             details.addDetail(MediaDetails.INDEX_WIDTH, width);
@@ -307,45 +307,45 @@ public class ChanOffLineImage extends MediaItem implements ChanIdentifiedService
         }
         details.addDetail(MediaDetails.INDEX_PATH, this.imageFile.getAbsoluteFile());
         details.addDetail(MediaDetails.INDEX_MIMETYPE, contentType);
-        return details;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaDetails com.chanapps.four.gallery.ChanOffLineImage.getDetails()",this);return details;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaDetails com.chanapps.four.gallery.ChanOffLineImage.getDetails()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getMimeType() {
-        return contentType;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.gallery.ChanOffLineImage.getMimeType()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.gallery.ChanOffLineImage.getMimeType()",this);return contentType;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.gallery.ChanOffLineImage.getMimeType()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void finalize() throws Throwable {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.ChanOffLineImage.finalize()",this);try{try {
         	mApplication = null;
         } finally {
             super.finalize();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.ChanOffLineImage.finalize()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.ChanOffLineImage.finalize()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getWidth() {
-        return width;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.ChanOffLineImage.getWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage.getWidth()",this);return width;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.ChanOffLineImage.getWidth()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getHeight() {
-        return height;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.ChanOffLineImage.getHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineImage.getHeight()",this);return height;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.ChanOffLineImage.getHeight()",this,throwable);throw throwable;}
     }
 
 	@Override
 	public String getName() {
-		return name;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.gallery.ChanOffLineImage.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.gallery.ChanOffLineImage.getName()",this);return name;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.gallery.ChanOffLineImage.getName()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public ChanActivityId getChanActivityId() {
-		return activityId;
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.gallery.ChanOffLineImage.getChanActivityId()",this);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.gallery.ChanOffLineImage.getChanActivityId()",this);return activityId;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.gallery.ChanOffLineImage.getChanActivityId()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public Context getApplicationContext() {
-		return mApplication != null ? mApplication.getAndroidContext() : null;
+		com.mijack.Xlog.logMethodEnter("android.content.Context com.chanapps.four.gallery.ChanOffLineImage.getApplicationContext()",this);try{com.mijack.Xlog.logMethodExit("android.content.Context com.chanapps.four.gallery.ChanOffLineImage.getApplicationContext()",this);return mApplication != null ? mApplication.getAndroidContext() : null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.Context com.chanapps.four.gallery.ChanOffLineImage.getApplicationContext()",this,throwable);throw throwable;}
 	}
 }

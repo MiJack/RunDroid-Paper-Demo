@@ -31,11 +31,11 @@ public class SynchronizedHandler extends Handler {
 
     @Override
     public void dispatchMessage(Message message) {
-        mRoot.lockRenderThread();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SynchronizedHandler.dispatchMessage(android.os.Message)",this,message);try{mRoot.lockRenderThread();
         try {
             super.dispatchMessage(message);
         } finally {
             mRoot.unlockRenderThread();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SynchronizedHandler.dispatchMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SynchronizedHandler.dispatchMessage(android.os.Message)",this,throwable);throw throwable;}
     }
 }

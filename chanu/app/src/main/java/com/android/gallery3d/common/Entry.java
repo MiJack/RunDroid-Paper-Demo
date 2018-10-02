@@ -28,7 +28,7 @@ public abstract class Entry {
         public static final String ID = "_id";
     }
 
-    // The primary key of the entry.
+    /*// The primary key of the entry.*/
     @Column("_id")
     public long id = 0;
 
@@ -51,6 +51,6 @@ public abstract class Entry {
     }
 
     public void clear() {
-        id = 0;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.Entry.clear()",this);try{id = 0;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.Entry.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.Entry.clear()",this,throwable);throw throwable;}
     }
 }

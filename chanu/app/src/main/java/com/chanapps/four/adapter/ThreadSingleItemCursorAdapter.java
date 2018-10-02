@@ -30,7 +30,7 @@ public class ThreadSingleItemCursorAdapter extends ThreadCursorAdapter {
 
     @Override
     protected View newView(ViewGroup parent, int tag, int position) {
-        if (DEBUG) Log.d(TAG, "Creating " + tag + " layout for " + position);
+        com.mijack.Xlog.logMethodEnter("android.view.View com.chanapps.four.adapter.ThreadSingleItemCursorAdapter.newView(android.view.ViewGroup,int,int)",this,parent,tag,position);try{if (DEBUG) {Log.d(TAG, "Creating " + tag + " layout for " + position);}
         int id = getItemViewLayout(tag);
         ViewGroup v = (ViewGroup)mInflater.inflate(id, parent, false);
         ThreadViewHolder viewHolder = new ThreadViewHolder(v);
@@ -38,14 +38,14 @@ public class ThreadSingleItemCursorAdapter extends ThreadCursorAdapter {
         v.setTag(R.id.VIEW_HOLDER, viewHolder);
         View inner = v.getChildAt(0);
         if ((tag == TYPE_HEADER || tag == TYPE_IMAGE_ITEM || tag == TYPE_TEXT_ITEM) && inner != null) {
-            if (DEBUG) Log.i(TAG, "setting background to null inner=" + inner);
+            if (DEBUG) {Log.i(TAG, "setting background to null inner=" + inner);}
             int bg = ThemeSelector.instance(parent.getContext()).isDark()
                     ? R.color.PaletteDarkCardBg
                     : R.color.PaletteCardBg;
             inner.setBackgroundResource(bg);
         }
         initWebView(viewHolder);
-        return v;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.chanapps.four.adapter.ThreadSingleItemCursorAdapter.newView(android.view.ViewGroup,int,int)",this);return v;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.chanapps.four.adapter.ThreadSingleItemCursorAdapter.newView(android.view.ViewGroup,int,int)",this,throwable);throw throwable;}
     }
 
 }

@@ -97,27 +97,27 @@ public class ChanThread extends ChanPost {
     };
 
     public static MatrixCursor buildMatrixCursor(int capacity) {
-        return new MatrixCursor(THREAD_COLUMNS, capacity);
+        com.mijack.Xlog.logStaticMethodEnter("android.database.MatrixCursor com.chanapps.four.data.ChanThread.buildMatrixCursor(int)",capacity);try{com.mijack.Xlog.logStaticMethodExit("android.database.MatrixCursor com.chanapps.four.data.ChanThread.buildMatrixCursor(int)");return new MatrixCursor(THREAD_COLUMNS, capacity);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.database.MatrixCursor com.chanapps.four.data.ChanThread.buildMatrixCursor(int)",throwable);throw throwable;}
     }
 
     private static int threadFlags(ChanPost post) {
-        int flags = 0;
+        com.mijack.Xlog.logStaticMethodEnter("int com.chanapps.four.data.ChanThread.threadFlags(com.chanapps.four.data.ChanPost)",post);try{int flags = 0;
         if (post.isDead)
-            flags |= THREAD_FLAG_DEAD;
+            {flags |= THREAD_FLAG_DEAD;}
         if (post.closed > 0)
-            flags |= THREAD_FLAG_CLOSED;
+            {flags |= THREAD_FLAG_CLOSED;}
         if (post.sticky > 0)
-            flags |= THREAD_FLAG_STICKY;
-        return flags;
+            {flags |= THREAD_FLAG_STICKY;}
+        {com.mijack.Xlog.logStaticMethodExit("int com.chanapps.four.data.ChanThread.threadFlags(com.chanapps.four.data.ChanPost)");return flags;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.chanapps.four.data.ChanThread.threadFlags(com.chanapps.four.data.ChanPost)",throwable);throw throwable;}
     }
 
     public static Object[] makeRow(Context context, ChanThread thread, String query, int extraFlags,
                                    boolean showNumReplies, boolean abbrev) {
-        String id = thread.board + "/" + thread.no;
+        com.mijack.Xlog.logStaticMethodEnter("[java.lang.Object com.chanapps.four.data.ChanThread.makeRow(android.content.Context,com.chanapps.four.data.ChanThread,java.lang.String,int,boolean,boolean)",context,thread,query,extraFlags,showNumReplies,abbrev);try{String id = thread.board + "/" + thread.no;
         String[] textComponents = thread.textComponents(query);
         byte[] lastRepliesBlob = blobifyLastReplies(thread.lastReplies);
-        if (DEBUG) Log.i(TAG, "makeRow /" + thread.board + "/" + thread.no + " lastRepliesBlob=" + lastRepliesBlob);
-        return new Object[] {
+        if (DEBUG) {Log.i(TAG, "makeRow /" + thread.board + "/" + thread.no + " lastRepliesBlob=" + lastRepliesBlob);}
+        {com.mijack.Xlog.logStaticMethodExit("[java.lang.Object com.chanapps.four.data.ChanThread.makeRow(android.content.Context,com.chanapps.four.data.ChanThread,java.lang.String,int,boolean,boolean)");return new Object[] {
                 id.hashCode(),
                 thread.board,
                 thread.no,
@@ -135,11 +135,11 @@ public class ChanThread extends ChanPost {
                 thread.lastReplies == null ? 0 : thread.lastReplies.length,
                 lastRepliesBlob,
                 threadFlags(thread) | extraFlags
-        };
+        };}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[java.lang.Object com.chanapps.four.data.ChanThread.makeRow(android.content.Context,com.chanapps.four.data.ChanThread,java.lang.String,int,boolean,boolean)",throwable);throw throwable;}
     }
 
     public static Object[] makeBoardRow(Context context, String boardCode, String boardName, int boardImageResourceId, int extraFlags) {
-        return new Object[] {
+        com.mijack.Xlog.logStaticMethodEnter("[java.lang.Object com.chanapps.four.data.ChanThread.makeBoardRow(android.content.Context,java.lang.String,java.lang.String,int,int)",context,boardCode,boardName,boardImageResourceId,extraFlags);try{com.mijack.Xlog.logStaticMethodExit("[java.lang.Object com.chanapps.four.data.ChanThread.makeBoardRow(android.content.Context,java.lang.String,java.lang.String,int,int)");return new Object[] {
                 boardCode.hashCode(),
                 boardCode,
                 0,
@@ -157,20 +157,20 @@ public class ChanThread extends ChanPost {
                 0,
                 null,
                 THREAD_FLAG_BOARD | extraFlags
-        };
+        };}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[java.lang.Object com.chanapps.four.data.ChanThread.makeBoardRow(android.content.Context,java.lang.String,java.lang.String,int,int)",throwable);throw throwable;}
     }
 
     public static Object[] makeHeaderRow(Context context, ChanBoard board) {
-        String boardCode = board.link;
+        com.mijack.Xlog.logStaticMethodEnter("[java.lang.Object com.chanapps.four.data.ChanThread.makeHeaderRow(android.content.Context,com.chanapps.four.data.ChanBoard)",context,board);try{String boardCode = board.link;
         String boardName = "/" + boardCode + "/ " + board.getName(context);
-        //String safeText = context.getString(board.isWorksafe(context, boardCode) ? R.string.board_type_worksafe : R.string.board_type_adult);
+        /*//String safeText = context.getString(board.isWorksafe(context, boardCode) ? R.string.board_type_worksafe : R.string.board_type_adult);*/
         String dateText = String.format(context.getString(R.string.board_last_updated),
                 DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date(board.lastFetched)));
-        //String description = board.getDescription(context) + "<br/>"
-        //        + safeText + "<br/>"
-        //        + dateText;
+        /*//String description = board.getDescription(context) + "<br/>"*/
+        /*//        + safeText + "<br/>"*/
+        /*//        + dateText;*/
         String description = dateText;
-        return new Object[] {
+        {com.mijack.Xlog.logStaticMethodExit("[java.lang.Object com.chanapps.four.data.ChanThread.makeHeaderRow(android.content.Context,com.chanapps.four.data.ChanBoard)");return new Object[] {
                 boardCode.hashCode(),
                 boardCode,
                 0,
@@ -188,79 +188,79 @@ public class ChanThread extends ChanPost {
                 0,
                 null,
                 THREAD_FLAG_BOARD | THREAD_FLAG_HEADER
-        };
+        };}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[java.lang.Object com.chanapps.four.data.ChanThread.makeHeaderRow(android.content.Context,com.chanapps.four.data.ChanBoard)",throwable);throw throwable;}
     }
 
     public static boolean threadNeedsRefresh(Context context, String boardCode, long threadNo, boolean forceRefresh) {
-        ChanThread thread = ChanFileStorage.loadThreadData(context, boardCode, threadNo);
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh(android.content.Context,java.lang.String,long,boolean)",context,boardCode,threadNo,forceRefresh);try{ChanThread thread = ChanFileStorage.loadThreadData(context, boardCode, threadNo);
         if (thread == null)
-            return true;
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh(android.content.Context,java.lang.String,long,boolean)");return true;}}
         if (forceRefresh)
-            return true;
-        return thread.threadNeedsRefresh();
+            {{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh(android.content.Context,java.lang.String,long,boolean)");return true;}}
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh(android.content.Context,java.lang.String,long,boolean)");return thread.threadNeedsRefresh();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh(android.content.Context,java.lang.String,long,boolean)",throwable);throw throwable;}
     }
     
     public boolean threadNeedsRefresh() {
-        if (isDead)
-            return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);try{if (isDead)
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);return false;}}
         else if (defData)
-            return true;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);return true;}}
         else if (posts == null || posts.length == 0)
-            return true;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);return true;}}
         else if (posts[0] == null || posts[0].defData)
-            return true;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);return true;}}
         else if (posts.length < replies)
-            return true;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);return true;}}
         else if (!isCurrent())
-            return true;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);return true;}}
         else
-            return false;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this);return false;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.data.ChanThread.threadNeedsRefresh()",this,throwable);throw throwable;}
     }
 
     public String toString() {
-		return "Thread " + no + ", defData:" + defData + " dead:" + isDead + ", images: " + images
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.ChanThread.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.ChanThread.toString()",this);return "Thread " + no + ", defData:" + defData + " dead:" + isDead + ", images: " + images
                 + " com: " + com + ", sub:" + sub + ", replies: " + replies + ", posts.length: " + posts.length
 				+ (posts.length > 0
                     ? ", posts[0].no: " + posts[0].no + ", posts[0].replies: " + posts[0].replies
                     + ", posts[0].images: " + posts[0].images + ", posts[0].defData: " + posts[0].defData
                     + ", posts[0].isDead: " + posts[0].isDead
                     : "")
-				+ ", tn_w: " + tn_w + " tn_h: " + tn_h;
+				+ ", tn_w: " + tn_w + " tn_h: " + tn_h;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.ChanThread.toString()",this,throwable);throw throwable;}
 	}
 	
     public void mergePosts(List<ChanPost> newPosts) {
-        Map<Long,ChanPost> postMap = new HashMap<Long,ChanPost>(this.posts.length);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.ChanThread.mergePosts(java.util.List)",this,newPosts);try{Map<Long,ChanPost> postMap = new HashMap<Long,ChanPost>(this.posts.length);
         for (ChanPost post : this.posts)
-            postMap.put(post.no, post);
+            {postMap.put(post.no, post);}
         for (ChanPost newPost: newPosts)
-            postMap.put(newPost.no, newPost); // overwrite any existing posts
+            {postMap.put(newPost.no, newPost);} /*// overwrite any existing posts*/
         ChanPost[] postArray = postMap.values().toArray(new ChanPost[0]);
         Arrays.sort(postArray, new Comparator<ChanPost>() {
             @Override
             public int compare(ChanPost lhs, ChanPost rhs) {
-                if (lhs.no == rhs.no)
-                    return 0;
+                com.mijack.Xlog.logMethodEnter("int com.chanapps.four.data.ChanThread$1.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this,lhs,rhs);try{if (lhs.no == rhs.no)
+                    {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.ChanThread.mergePosts(java.util.List)",this);{com.mijack.Xlog.logMethodExit("int com.chanapps.four.data.ChanThread$1.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this);return 0;}}}
                 else if (lhs.no < rhs.no)
-                    return -1;
+                    {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.ChanThread.mergePosts(java.util.List)",this);{com.mijack.Xlog.logMethodExit("int com.chanapps.four.data.ChanThread$1.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this);return -1;}}}
                 else
-                    return 1;
+                    {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.ChanThread.mergePosts(java.util.List)",this);{com.mijack.Xlog.logMethodExit("int com.chanapps.four.data.ChanThread$1.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this);return 1;}}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.data.ChanThread$1.compare(com.chanapps.four.data.ChanPost,com.chanapps.four.data.ChanPost)",this,throwable);throw throwable;}
             }
         });
-        this.posts = postArray; // swap
+        this.posts = postArray; /*// swap*/}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.ChanThread.mergePosts(java.util.List)",this,throwable);throw throwable;}
     }
 
     public Map<Long, HashSet<Long>> backlinksMap() {
-        Map<Long, HashSet<Long>> backlinksMap = new HashMap<Long, HashSet<Long>>();
+        com.mijack.Xlog.logMethodEnter("java.util.HashMap com.chanapps.four.data.ChanThread.backlinksMap()",this);try{Map<Long, HashSet<Long>> backlinksMap = new HashMap<Long, HashSet<Long>>();
         for (ChanPost post : posts) {
             HashSet<Long> backlinks = post.backlinks();
             if (backlinks != null && !backlinks.isEmpty())
-                backlinksMap.put(post.no, backlinks);
+                {backlinksMap.put(post.no, backlinks);}
         }
-        return backlinksMap;
+        {com.mijack.Xlog.logMethodExit("java.util.HashMap com.chanapps.four.data.ChanThread.backlinksMap()",this);return backlinksMap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.HashMap com.chanapps.four.data.ChanThread.backlinksMap()",this,throwable);throw throwable;}
     }
 
     public Map<Long, HashSet<Long>> repliesMap(Map<Long, HashSet<Long>> backlinksMap) {
-        Map<Long, HashSet<Long>> repliesMap = new HashMap<Long, HashSet<Long>>();
+        com.mijack.Xlog.logMethodEnter("java.util.HashMap com.chanapps.four.data.ChanThread.repliesMap(java.util.HashMap)",this,backlinksMap);try{Map<Long, HashSet<Long>> repliesMap = new HashMap<Long, HashSet<Long>>();
         for (Long laterPostNo : backlinksMap.keySet()) {
             for (Long originalPostNo : backlinksMap.get(laterPostNo)) {
                 HashSet<Long> replies = repliesMap.get(originalPostNo);
@@ -271,14 +271,14 @@ public class ChanThread extends ChanPost {
                 replies.add(laterPostNo);
             }
         }
-        return repliesMap;
+        {com.mijack.Xlog.logMethodExit("java.util.HashMap com.chanapps.four.data.ChanThread.repliesMap(java.util.HashMap)",this);return repliesMap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.HashMap com.chanapps.four.data.ChanThread.repliesMap(java.util.HashMap)",this,throwable);throw throwable;}
     }
 
     public Map<String, HashSet<Long>> sameIdsMap() {
-        Map<String, HashSet<Long>> sameIdsMap = new HashMap<String, HashSet<Long>>();
+        com.mijack.Xlog.logMethodEnter("java.util.HashMap com.chanapps.four.data.ChanThread.sameIdsMap()",this);try{Map<String, HashSet<Long>> sameIdsMap = new HashMap<String, HashSet<Long>>();
         for (ChanPost post : posts) {
             if (post.id == null || post.id.isEmpty() || post.id.equals(ChanPost.SAGE_POST_ID))
-                continue;
+                {continue;}
             HashSet<Long> sameIds = sameIdsMap.get(post.id);
             if (sameIds == null) {
                 sameIds = new HashSet<Long>();
@@ -286,11 +286,11 @@ public class ChanThread extends ChanPost {
             }
             sameIds.add(post.no);
         }
-        return sameIdsMap;
+        {com.mijack.Xlog.logMethodExit("java.util.HashMap com.chanapps.four.data.ChanThread.sameIdsMap()",this);return sameIdsMap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.HashMap com.chanapps.four.data.ChanThread.sameIdsMap()",this,throwable);throw throwable;}
     }
     
     public ChanThread cloneForWatchlist() {
-    	ChanThread t = new ChanThread();
+    	com.mijack.Xlog.logMethodEnter("com.chanapps.four.data.ChanThread com.chanapps.four.data.ChanThread.cloneForWatchlist()",this);try{ChanThread t = new ChanThread();
     	t.no = no;
     	t.board = board;
     	t.closed = closed;
@@ -331,67 +331,67 @@ public class ChanThread extends ChanPost {
             t.jumpToPostNo = posts[0].jumpToPostNo;
     	}
     	
-    	return t;
+    	{com.mijack.Xlog.logMethodExit("com.chanapps.four.data.ChanThread com.chanapps.four.data.ChanThread.cloneForWatchlist()",this);return t;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.data.ChanThread com.chanapps.four.data.ChanThread.cloneForWatchlist()",this,throwable);throw throwable;}
     }
 
     public static String threadUrl(Context context, String boardCode, long threadNo) {
-        return String.format(URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_WEB_THREAD_URL_FORMAT), boardCode, threadNo);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.chanapps.four.data.ChanThread.threadUrl(android.content.Context,java.lang.String,long)",context,boardCode,threadNo);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.chanapps.four.data.ChanThread.threadUrl(android.content.Context,java.lang.String,long)");return String.format(URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_WEB_THREAD_URL_FORMAT), boardCode, threadNo);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.chanapps.four.data.ChanThread.threadUrl(android.content.Context,java.lang.String,long)",throwable);throw throwable;}
     }
 
     public boolean isCurrent() {
-        FetchParams params = NetworkProfileManager.instance().getCurrentProfile().getFetchParams();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.data.ChanThread.isCurrent()",this);try{FetchParams params = NetworkProfileManager.instance().getCurrentProfile().getFetchParams();
         if (defData)
-            return false;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.isCurrent()",this);return false;}}
         else if (lastFetched <= 0)
-            return false;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.isCurrent()",this);return false;}}
         else if (Math.abs(new Date().getTime() - lastFetched) > params.refreshDelay)
-            return false;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.isCurrent()",this);return false;}}
         else
-            return true;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.isCurrent()",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.data.ChanThread.isCurrent()",this,throwable);throw throwable;}
     }
 
     public static byte[] blobifyLastReplies(ChanPost[] list) {
-        if (list == null || list.length == 0)
-            return null;
+        com.mijack.Xlog.logStaticMethodEnter("[byte com.chanapps.four.data.ChanThread.blobifyLastReplies([com.chanapps.four.data.ChanPost)",list);try{if (list == null || list.length == 0)
+            {{com.mijack.Xlog.logStaticMethodExit("[byte com.chanapps.four.data.ChanThread.blobifyLastReplies([com.chanapps.four.data.ChanPost)");return null;}}
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
             oos.writeObject(list);
-            return baos.toByteArray();
+            {com.mijack.Xlog.logStaticMethodExit("[byte com.chanapps.four.data.ChanThread.blobifyLastReplies([com.chanapps.four.data.ChanPost)");return baos.toByteArray();}
         }
         catch (IOException e) {
             Log.e(TAG, "Couldn't serialize list=" + list, e);
         }
-        return null;
+        {com.mijack.Xlog.logStaticMethodExit("[byte com.chanapps.four.data.ChanThread.blobifyLastReplies([com.chanapps.four.data.ChanPost)");return null;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[byte com.chanapps.four.data.ChanThread.blobifyLastReplies([com.chanapps.four.data.ChanPost)",throwable);throw throwable;}
     }
 
     public static ChanPost[] parseLastRepliesBlob(final byte[] b) {
-        if (b == null || b.length == 0)
-            return null;
+        com.mijack.Xlog.logStaticMethodEnter("[com.chanapps.four.data.ChanPost com.chanapps.four.data.ChanThread.parseLastRepliesBlob([byte)",b);try{if (b == null || b.length == 0)
+            {{com.mijack.Xlog.logStaticMethodExit("[com.chanapps.four.data.ChanPost com.chanapps.four.data.ChanThread.parseLastRepliesBlob([byte)");return null;}}
         try {
             InputStream bais = new BufferedInputStream(new ByteArrayInputStream(b));
             ObjectInputStream ois = new ObjectInputStream(bais);
             ChanPost[] list = (ChanPost[])ois.readObject();
-            return list;
+            {com.mijack.Xlog.logStaticMethodExit("[com.chanapps.four.data.ChanPost com.chanapps.four.data.ChanThread.parseLastRepliesBlob([byte)");return list;}
         }
         catch (Exception e) {
             Log.e(TAG, "Couldn't deserialize blob=" + b);
         }
-        return null;
+        {com.mijack.Xlog.logStaticMethodExit("[com.chanapps.four.data.ChanPost com.chanapps.four.data.ChanThread.parseLastRepliesBlob([byte)");return null;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[com.chanapps.four.data.ChanPost com.chanapps.four.data.ChanThread.parseLastRepliesBlob([byte)",throwable);throw throwable;}
     }
 
     public boolean matchesQuery(String query) {
-        if (query == null || query.isEmpty())
-            return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.data.ChanThread.matchesQuery(java.lang.String)",this,query);try{if (query == null || query.isEmpty())
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.matchesQuery(java.lang.String)",this);return true;}}
         if (super.matchesQuery(query))
-            return true;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.matchesQuery(java.lang.String)",this);return true;}}
         if (lastReplies != null) {
             for (ChanPost p : lastReplies) {
                 if (p.matchesQuery(query))
-                    return true;
+                    {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.matchesQuery(java.lang.String)",this);return true;}}
             }
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.ChanThread.matchesQuery(java.lang.String)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.data.ChanThread.matchesQuery(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

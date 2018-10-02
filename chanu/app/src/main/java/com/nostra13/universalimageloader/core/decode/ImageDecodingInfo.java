@@ -62,7 +62,7 @@ public class ImageDecodingInfo {
 	}
 
 	private void copyOptions(Options srcOptions, Options destOptions) {
-		destOptions.inDensity = srcOptions.inDensity;
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this,srcOptions,destOptions);try{destOptions.inDensity = srcOptions.inDensity;
 		destOptions.inDither = srcOptions.inDither;
 		destOptions.inInputShareable = srcOptions.inInputShareable;
 		destOptions.inJustDecodeBounds = srcOptions.inJustDecodeBounds;
@@ -73,33 +73,33 @@ public class ImageDecodingInfo {
 		destOptions.inScreenDensity = srcOptions.inScreenDensity;
 		destOptions.inTargetDensity = srcOptions.inTargetDensity;
 		destOptions.inTempStorage = srcOptions.inTempStorage;
-		if (Build.VERSION.SDK_INT >= 10) copyOptions10(srcOptions, destOptions);
-		if (Build.VERSION.SDK_INT >= 11) copyOptions11(srcOptions, destOptions);
+		if (Build.VERSION.SDK_INT >= 10) {copyOptions10(srcOptions, destOptions);}
+		if (Build.VERSION.SDK_INT >= 11) {copyOptions11(srcOptions, destOptions);}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this,throwable);throw throwable;}
 	}
 
 	@TargetApi(10)
 	private void copyOptions10(Options srcOptions, Options destOptions) {
-		destOptions.inPreferQualityOverSpeed = srcOptions.inPreferQualityOverSpeed;
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions10(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this,srcOptions,destOptions);try{destOptions.inPreferQualityOverSpeed = srcOptions.inPreferQualityOverSpeed;com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions10(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions10(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this,throwable);throw throwable;}
 	}
 
 	@TargetApi(11)
 	private void copyOptions11(Options srcOptions, Options destOptions) {
-		destOptions.inBitmap = srcOptions.inBitmap;
-		destOptions.inMutable = srcOptions.inMutable;
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions11(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this,srcOptions,destOptions);try{destOptions.inBitmap = srcOptions.inBitmap;
+		destOptions.inMutable = srcOptions.inMutable;com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions11(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.copyOptions11(android.graphics.BitmapFactory.Options,android.graphics.BitmapFactory.Options)",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return Original {@linkplain MemoryCacheUtil#generateKey(String, ImageSize) image key} (used in memory cache).
 	 */
 	public String getImageKey() {
-		return imageKey;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageKey()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageKey()",this);return imageKey;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageKey()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return Image URI for decoding (usually image from disc cache)
 	 */
 	public String getImageUri() {
-		return imageUri;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageUri()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageUri()",this);return imageUri;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageUri()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class ImageDecodingInfo {
 	 *         image scale type} and {@linkplain ViewScaleType view scale type}.
 	 */
 	public ImageSize getTargetSize() {
-		return targetSize;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getTargetSize()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getTargetSize()",this);return targetSize;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getTargetSize()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -115,34 +115,34 @@ public class ImageDecodingInfo {
 	 *         of decoded bitmap.
 	 */
 	public ImageScaleType getImageScaleType() {
-		return imageScaleType;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.assist.ImageScaleType com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageScaleType()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.assist.ImageScaleType com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageScaleType()",this);return imageScaleType;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ImageScaleType com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getImageScaleType()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return {@linkplain ViewScaleType View scale type}. This parameter affects result size of decoded bitmap.
 	 */
 	public ViewScaleType getViewScaleType() {
-		return viewScaleType;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.assist.ViewScaleType com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getViewScaleType()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.assist.ViewScaleType com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getViewScaleType()",this);return viewScaleType;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ViewScaleType com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getViewScaleType()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return Downloader for image loading
 	 */
 	public ImageDownloader getDownloader() {
-		return downloader;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getDownloader()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getDownloader()",this);return downloader;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getDownloader()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return Auxiliary object for downloader
 	 */
 	public Object getExtraForDownloader() {
-		return extraForDownloader;
+		com.mijack.Xlog.logMethodEnter("java.lang.Object com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getExtraForDownloader()",this);try{com.mijack.Xlog.logMethodExit("java.lang.Object com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getExtraForDownloader()",this);return extraForDownloader;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getExtraForDownloader()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return Decoding options
 	 */
 	public Options getDecodingOptions() {
-		return decodingOptions;
+		com.mijack.Xlog.logMethodEnter("android.graphics.BitmapFactory.Options com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getDecodingOptions()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.BitmapFactory.Options com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getDecodingOptions()",this);return decodingOptions;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.BitmapFactory.Options com.nostra13.universalimageloader.core.decode.ImageDecodingInfo.getDecodingOptions()",this,throwable);throw throwable;}
 	}
 }

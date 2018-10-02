@@ -46,15 +46,15 @@ public class ThreadParserService extends BaseChanService implements ChanIdentifi
     private long threadFetchTime;
 
     public static void startService(Context context, String boardCode, long threadNo, boolean priority) {
-        if (DEBUG) Log.i(TAG, "Start thread load service for " + boardCode + " thread " + threadNo
-                + " priority=" + priority);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.ThreadParserService.startService(android.content.Context,java.lang.String,long,boolean)",context,boardCode,threadNo,priority);try{if (DEBUG) {Log.i(TAG, "Start thread load service for " + boardCode + " thread " + threadNo
+                + " priority=" + priority);}
         Intent intent = new Intent(context, ThreadParserService.class);
         intent.putExtra(ChanBoard.BOARD_CODE, boardCode);
         intent.putExtra(ChanThread.THREAD_NO, threadNo);
         intent.putExtra(THREAD_FETCH_TIME, new Date().getTime());
         if (priority)
-            intent.putExtra(PRIORITY_MESSAGE_FETCH, 1);
-        context.startService(intent);
+            {intent.putExtra(PRIORITY_MESSAGE_FETCH, 1);}
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.ThreadParserService.startService(android.content.Context,java.lang.String,long,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.ThreadParserService.startService(android.content.Context,java.lang.String,long,boolean)",throwable);throw throwable;}
     }
 
     public ThreadParserService() {
@@ -67,23 +67,23 @@ public class ThreadParserService extends BaseChanService implements ChanIdentifi
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		boardCode = intent.getStringExtra(ChanBoard.BOARD_CODE);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadParserService.onHandleIntent(android.content.Intent)",this,intent);try{boardCode = intent.getStringExtra(ChanBoard.BOARD_CODE);
         threadNo = intent.getLongExtra(ChanThread.THREAD_NO, 0);
         priority = intent.getIntExtra(PRIORITY_MESSAGE_FETCH, 0) > 0;
         threadFetchTime = intent.getLongExtra(THREAD_FETCH_TIME, 0);
 
-        if (DEBUG) Log.i(TAG, "Handling board=" + boardCode + " threadNo=" + threadNo + " priority=" + priority);
+        if (DEBUG) {Log.i(TAG, "Handling board=" + boardCode + " threadNo=" + threadNo + " priority=" + priority);}
 
         if (threadNo == 0) {
             Log.e(TAG, "Board loading must be done via the FetchChanDataService");
         }
         if (ChanBoard.WATCHLIST_BOARD_CODE.equals(boardCode)) {
             Log.e(TAG, "Watchlist is never parsed but stored directly");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadParserService.onHandleIntent(android.content.Intent)",this);return;}
         }
         else if (ChanBoard.FAVORITES_BOARD_CODE.equals(boardCode)) {
             Log.e(TAG, "Favorites is never parsed but stored directly");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadParserService.onHandleIntent(android.content.Intent)",this);return;}
         }
 
         long startTime = Calendar.getInstance().getTimeInMillis();
@@ -95,81 +95,81 @@ public class ThreadParserService extends BaseChanService implements ChanIdentifi
                 thread.no = threadNo;
                 thread.isDead = false;
 			} else if (thread.lastFetched > threadFetchTime) {
-				if (DEBUG) Log.i(TAG, "Thread " + boardCode + "/" + threadNo + " won't be parsed. "
-					+ "Last fetched " + new Date(thread.lastFetched) + ", scheduled " + new Date(threadFetchTime));
+				if (DEBUG) {Log.i(TAG, "Thread " + boardCode + "/" + threadNo + " won't be parsed. "
+					+ "Last fetched " + new Date(thread.lastFetched) + ", scheduled " + new Date(threadFetchTime));}
 				NetworkProfileManager.instance().finishedParsingData(this);
-				return;
+				{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadParserService.onHandleIntent(android.content.Intent)",this);return;}
 			}
 			thread.lastFetched = threadFetchTime;
 			int previousPostNum = thread.posts.length;
 			
 			File threadFile = ChanFileStorage.getThreadFile(getBaseContext(), boardCode, threadNo);
 			if (threadFile == null || !threadFile.exists()) {
-                if (DEBUG) Log.i(TAG, "Thread file " + threadFile.getAbsolutePath() + " was deleted, probably already parsed.");
+                if (DEBUG) {Log.i(TAG, "Thread file " + threadFile.getAbsolutePath() + " was deleted, probably already parsed.");}
                 NetworkProfileManager.instance().failedParsingData(this, Failure.MISSING_DATA);
-				return;
+				{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadParserService.onHandleIntent(android.content.Intent)",this);return;}
 			}
 			parseThread(threadFile);
 
-			if (DEBUG) Log.i(TAG, "Parsed thread " + boardCode + "/" + threadNo
-            		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");
+			if (DEBUG) {Log.i(TAG, "Parsed thread " + boardCode + "/" + threadNo
+            		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");}
             startTime = Calendar.getInstance().getTimeInMillis();
             threadFile.delete();
 
             if (previousPostNum > 0 && thread.posts.length == 0) {
-                if (DEBUG) Log.w(TAG, "Thread " + boardCode + "/" + threadNo + " has 0 posts after parsing, won't be stored");
+                if (DEBUG) {Log.w(TAG, "Thread " + boardCode + "/" + threadNo + " has 0 posts after parsing, won't be stored");}
             } else {
                 if (!boardCode.equals(thread.board)) {
-                    if (DEBUG) Log.i(TAG, "Found inconsistent thread boardCode=" + thread.board + ", repairing to=" + boardCode);
+                    if (DEBUG) {Log.i(TAG, "Found inconsistent thread boardCode=" + thread.board + ", repairing to=" + boardCode);}
                     thread.board = boardCode;
                 }
-                if (DEBUG) Log.i(TAG, "In onHandleIntent in ThreadParserService calling storeThreadData for /" + thread.board + "/" + thread.no);
+                if (DEBUG) {Log.i(TAG, "In onHandleIntent in ThreadParserService calling storeThreadData for /" + thread.board + "/" + thread.no);}
                 ChanFileStorage.storeThreadData(getBaseContext(), thread);
-                if (DEBUG) Log.i(TAG, "Stored thread " + boardCode + "/" + threadNo + " with " + thread.posts.length + " posts"
-                		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");
+                if (DEBUG) {Log.i(TAG, "Stored thread " + boardCode + "/" + threadNo + " with " + thread.posts.length + " posts"
+                		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");}
             }
             threadUpdateMessage = null;
             NetworkProfileManager.instance().finishedParsingData(this);
         } catch (Exception e) {
 			Log.e(TAG, "Error parsing thread json. " + e.getMessage(), e);
         	NetworkProfileManager.instance().failedParsingData(this, Failure.WRONG_DATA);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadParserService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
 	}
 
     String threadUpdateMessage = null;
 
 	protected void parseThread(File in) throws IOException {
-    	if (DEBUG) Log.i(TAG, "starting parsing thread " + boardCode + "/" + threadNo);
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadParserService.parseThread(java.io.File)",this,in);try{if (DEBUG) {Log.i(TAG, "starting parsing thread " + boardCode + "/" + threadNo);}
 
     	List<ChanPost> posts = new ArrayList<ChanPost>();
     	ObjectMapper mapper = BoardParserService.getJsonMapper();
         JsonNode rootNode = mapper.readValue(in, JsonNode.class);
 
-        for (JsonNode postValue : rootNode.path("posts")) { // first object is the thread post
+        for (JsonNode postValue : rootNode.path("posts")) { /*// first object is the thread post*/
             ChanPost post = mapper.readValue(postValue, ChanPost.class);
             if (post != null) {
                 post.board = boardCode;
                 posts.add(post);
             }
-            //if (DEBUG) Log.v(TAG, "Added post " + post.no + " to thread " + boardCode + "/" + threadNo);
+            /*//if (DEBUG) Log.v(TAG, "Added post " + post.no + " to thread " + boardCode + "/" + threadNo);*/
         }
         if (thread != null)
-            thread.mergePosts(posts);
+            {thread.mergePosts(posts);}
 
-        if (DEBUG) Log.i(TAG, "finished parsing thread " + boardCode + "/" + threadNo);
+        if (DEBUG) {Log.i(TAG, "finished parsing thread " + boardCode + "/" + threadNo);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadParserService.parseThread(java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadParserService.parseThread(java.io.File)",this,throwable);throw throwable;}
     }
 	
 	@Override
 	public ChanActivityId getChanActivityId() {
-		ChanActivityId id = new ChanActivityId(boardCode, threadNo, priority);
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ThreadParserService.getChanActivityId()",this);try{ChanActivityId id = new ChanActivityId(boardCode, threadNo, priority);
         if (threadUpdateMessage != null)
-            id.threadUpdateMessage = threadUpdateMessage;
-	    return id;
+            {id.threadUpdateMessage = threadUpdateMessage;}
+	    {com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ThreadParserService.getChanActivityId()",this);return id;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ThreadParserService.getChanActivityId()",this,throwable);throw throwable;}
     }
 
     @Override
     public String toString() {
-        return "ThreadParserService : " + getChanActivityId();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.service.ThreadParserService.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.service.ThreadParserService.toString()",this);return "ThreadParserService : " + getChanActivityId();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.service.ThreadParserService.toString()",this,throwable);throw throwable;}
     }
 
 }

@@ -49,46 +49,46 @@ public class TileImageViewAdapter implements TileImageView.Model {
     }
 
     public synchronized void clear() {
-        mBackupImage = null;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.TileImageViewAdapter.clear()",this);try{mBackupImage = null;
         mImageWidth = 0;
         mImageHeight = 0;
         mLevelCount = 0;
         mRegionDecoder = null;
-        mFailedToLoad = false;
+        mFailedToLoad = false;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.TileImageViewAdapter.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.TileImageViewAdapter.clear()",this,throwable);throw throwable;}
     }
 
     public synchronized void setBackupImage(Bitmap backup, int width, int height) {
-        mBackupImage = Utils.checkNotNull(backup);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.TileImageViewAdapter.setBackupImage(android.graphics.Bitmap,int,int)",this,backup,width,height);try{mBackupImage = Utils.checkNotNull(backup);
         mImageWidth = width;
         mImageHeight = height;
         mRegionDecoder = null;
         mLevelCount = 0;
-        mFailedToLoad = false;
+        mFailedToLoad = false;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.TileImageViewAdapter.setBackupImage(android.graphics.Bitmap,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.TileImageViewAdapter.setBackupImage(android.graphics.Bitmap,int,int)",this,throwable);throw throwable;}
     }
 
     public synchronized void setRegionDecoder(BitmapRegionDecoder decoder) {
-        mRegionDecoder = Utils.checkNotNull(decoder);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.TileImageViewAdapter.setRegionDecoder(android.graphics.BitmapRegionDecoder)",this,decoder);try{mRegionDecoder = Utils.checkNotNull(decoder);
         mImageWidth = decoder.getWidth();
         mImageHeight = decoder.getHeight();
         mLevelCount = calculateLevelCount();
-        mFailedToLoad = false;
+        mFailedToLoad = false;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.TileImageViewAdapter.setRegionDecoder(android.graphics.BitmapRegionDecoder)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.TileImageViewAdapter.setRegionDecoder(android.graphics.BitmapRegionDecoder)",this,throwable);throw throwable;}
     }
 
     private int calculateLevelCount() {
-        return Math.max(0, Utils.ceilLog2(
-                (float) mImageWidth / mBackupImage.getWidth()));
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.TileImageViewAdapter.calculateLevelCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.TileImageViewAdapter.calculateLevelCount()",this);return Math.max(0, Utils.ceilLog2(
+                (float) mImageWidth / mBackupImage.getWidth()));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.TileImageViewAdapter.calculateLevelCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public synchronized Bitmap getTile(int level, int x, int y, int length) {
-        if (mRegionDecoder == null) return null;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getTile(int,int,int,int)",this,level,x,y,length);try{if (mRegionDecoder == null) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getTile(int,int,int,int)",this);return null;}}
 
         Rect region = mRegionRect;
         Rect intersectRect = mIntersectRect;
         region.set(x, y, x + (length << level), y + (length << level));
         intersectRect.set(0, 0, mImageWidth, mImageHeight);
 
-        // Get the intersected rect of the requested region and the image.
+        /*// Get the intersected rect of the requested region and the image.*/
         Utils.assertTrue(intersectRect.intersect(region));
 
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -98,18 +98,18 @@ public class TileImageViewAdapter implements TileImageView.Model {
 
         Bitmap bitmap;
 
-        // In CropImage, we may call the decodeRegion() concurrently.
+        /*// In CropImage, we may call the decodeRegion() concurrently.*/
         synchronized (mRegionDecoder) {
             bitmap = mRegionDecoder.decodeRegion(intersectRect, options);
         }
 
-        // The returned region may not match with the targetLength.
-        // If so, we fill black pixels on it.
-        if (intersectRect.equals(region)) return bitmap;
+        /*// The returned region may not match with the targetLength.*/
+        /*// If so, we fill black pixels on it.*/
+        if (intersectRect.equals(region)) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getTile(int,int,int,int)",this);return bitmap;}}
 
         if (bitmap == null) {
             Log.w(TAG, "fail in decoding region");
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getTile(int,int,int,int)",this);return null;}
         }
 
         Bitmap tile = Bitmap.createBitmap(length, length, Config.ARGB_8888);
@@ -118,35 +118,35 @@ public class TileImageViewAdapter implements TileImageView.Model {
                 (intersectRect.left - region.left) >> level,
                 (intersectRect.top - region.top) >> level, null);
         bitmap.recycle();
-        return tile;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getTile(int,int,int,int)",this);return tile;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getTile(int,int,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public Bitmap getBackupImage() {
-        return mBackupImage;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getBackupImage()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getBackupImage()",this);return mBackupImage;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.TileImageViewAdapter.getBackupImage()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getImageHeight() {
-        return mImageHeight;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.TileImageViewAdapter.getImageHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.TileImageViewAdapter.getImageHeight()",this);return mImageHeight;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.TileImageViewAdapter.getImageHeight()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getImageWidth() {
-        return mImageWidth;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.TileImageViewAdapter.getImageWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.TileImageViewAdapter.getImageWidth()",this);return mImageWidth;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.TileImageViewAdapter.getImageWidth()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getLevelCount() {
-        return mLevelCount;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.TileImageViewAdapter.getLevelCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.TileImageViewAdapter.getLevelCount()",this);return mLevelCount;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.TileImageViewAdapter.getLevelCount()",this,throwable);throw throwable;}
     }
 
     public void setFailedToLoad() {
-        mFailedToLoad = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.TileImageViewAdapter.setFailedToLoad()",this);try{mFailedToLoad = true;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.TileImageViewAdapter.setFailedToLoad()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.TileImageViewAdapter.setFailedToLoad()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean isFailedToLoad() {
-        return mFailedToLoad;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.TileImageViewAdapter.isFailedToLoad()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.TileImageViewAdapter.isFailedToLoad()",this);return mFailedToLoad;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.TileImageViewAdapter.isFailedToLoad()",this,throwable);throw throwable;}
     }
 }

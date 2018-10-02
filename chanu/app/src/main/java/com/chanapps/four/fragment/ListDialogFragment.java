@@ -30,13 +30,13 @@ public abstract class ListDialogFragment extends DialogFragment {
 
     public Dialog createListDialog(int titleStringId, int emptyTitleStringId, int emptyStringId, String[] array,
                                    ListView.OnItemClickListener listener) {
-        return createListDialog(titleStringId, emptyTitleStringId, emptyStringId, array, listener, null);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(int,int,int,[java.lang.String,ListView.OnItemClickListener)",this,titleStringId,emptyTitleStringId,emptyStringId,array,listener);try{com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(int,int,int,[java.lang.String,ListView.OnItemClickListener)",this);return createListDialog(titleStringId, emptyTitleStringId, emptyStringId, array, listener, null);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(int,int,int,[java.lang.String,ListView.OnItemClickListener)",this,throwable);throw throwable;}
     }
 
     public Dialog createListDialog(int titleStringId, int emptyTitleStringId, int emptyStringId, String[] array,
                                    ListView.OnItemClickListener listener, final DialogInterface.OnCancelListener cancelListener) {
-        return createListDialog(getString(titleStringId), getString(emptyTitleStringId), getString(emptyStringId),
-                array, listener, cancelListener, null, null);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(int,int,int,[java.lang.String,ListView.OnItemClickListener,DialogInterface.OnCancelListener)",this,titleStringId,emptyTitleStringId,emptyStringId,array,listener,cancelListener);try{com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(int,int,int,[java.lang.String,ListView.OnItemClickListener,DialogInterface.OnCancelListener)",this);return createListDialog(getString(titleStringId), getString(emptyTitleStringId), getString(emptyStringId),
+                array, listener, cancelListener, null, null);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(int,int,int,[java.lang.String,ListView.OnItemClickListener,DialogInterface.OnCancelListener)",this,throwable);throw throwable;}
     }
 
     public Dialog createListDialog(String title, String emptyTitle, String empty, String[] array,
@@ -44,7 +44,7 @@ public abstract class ListDialogFragment extends DialogFragment {
                              final DialogInterface.OnCancelListener cancelListener,
                              String positiveLabel,
                              final DialogInterface.OnClickListener positiveListener) {
-        this.array = array;
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(java.lang.String,java.lang.String,java.lang.String,[java.lang.String,ListView.OnItemClickListener,DialogInterface.OnCancelListener,java.lang.String,DialogInterface.OnClickListener)",this,title,emptyTitle,empty,array,listener,cancelListener,positiveLabel,positiveListener);try{this.array = array;
         this.cancelListener = cancelListener;
         if (array.length > 0) {
             setStyle(STYLE_NO_TITLE, 0);
@@ -60,7 +60,7 @@ public abstract class ListDialogFragment extends DialogFragment {
                     itemLayoutId, array);
             items.setAdapter(adapter);
             if (listener != null)
-                items.setOnItemClickListener(listener);
+                {items.setOnItemClickListener(listener);}
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()).setView(layout);
             if (positiveListener != null) {
                 builder.setPositiveButton(positiveLabel, positiveListener);
@@ -70,20 +70,18 @@ public abstract class ListDialogFragment extends DialogFragment {
                         .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                cancelListener.onCancel(dialog);
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ListDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{cancelListener.onCancel(dialog);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ListDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ListDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         });
             }
             else {
                 builder.setNegativeButton(R.string.dialog_cancel,
                         new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
+                            {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ListDialogFragment$2.onClick(android.content.DialogInterface,int)",this,dialog,which);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ListDialogFragment$2.onClick(android.content.DialogInterface,int)",this);}
                         });
             }
             Dialog d = builder.create();
-            return d;
+            {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(java.lang.String,java.lang.String,java.lang.String,[java.lang.String,ListView.OnItemClickListener,DialogInterface.OnCancelListener,java.lang.String,DialogInterface.OnClickListener)",this);return d;}
         }
         else {
             LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -99,27 +97,25 @@ public abstract class ListDialogFragment extends DialogFragment {
                         .setNegativeButton(R.string.dismiss, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                cancelListener.onCancel(dialog);
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ListDialogFragment$3.onClick(android.content.DialogInterface,int)",this,dialog,which);try{cancelListener.onCancel(dialog);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ListDialogFragment$3.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ListDialogFragment$3.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         });
             }
             else {
                 builder.setNegativeButton(R.string.dismiss,
                         new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
+                            {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ListDialogFragment$4.onClick(android.content.DialogInterface,int)",this,dialog,which);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ListDialogFragment$4.onClick(android.content.DialogInterface,int)",this);}
                         });
             }
             Dialog d = builder.create();
-            return d;
-        }
+            {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(java.lang.String,java.lang.String,java.lang.String,[java.lang.String,ListView.OnItemClickListener,DialogInterface.OnCancelListener,java.lang.String,DialogInterface.OnClickListener)",this);return d;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.ListDialogFragment.createListDialog(java.lang.String,java.lang.String,java.lang.String,[java.lang.String,ListView.OnItemClickListener,DialogInterface.OnCancelListener,java.lang.String,DialogInterface.OnClickListener)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCancel(DialogInterface dialogInterface) {
-        if (cancelListener != null)
-            cancelListener.onCancel(dialogInterface);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ListDialogFragment.onCancel(android.content.DialogInterface)",this,dialogInterface);try{if (cancelListener != null)
+            {cancelListener.onCancel(dialogInterface);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ListDialogFragment.onCancel(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ListDialogFragment.onCancel(android.content.DialogInterface)",this,throwable);throw throwable;}
     }
 
 }

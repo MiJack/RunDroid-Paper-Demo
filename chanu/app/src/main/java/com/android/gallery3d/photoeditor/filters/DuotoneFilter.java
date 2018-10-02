@@ -30,16 +30,16 @@ public class DuotoneFilter extends Filter {
     private int secondColor;
 
     public void setDuotone(int firstColor, int secondColor) {
-        this.firstColor = firstColor;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.DuotoneFilter.setDuotone(int,int)",this,firstColor,secondColor);try{this.firstColor = firstColor;
         this.secondColor = secondColor;
-        validate();
+        validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.DuotoneFilter.setDuotone(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.DuotoneFilter.setDuotone(int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        Effect effect = getEffect(EffectFactory.EFFECT_DUOTONE);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.DuotoneFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{Effect effect = getEffect(EffectFactory.EFFECT_DUOTONE);
         effect.setParameter("first_color", firstColor);
         effect.setParameter("second_color", secondColor);
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.DuotoneFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.DuotoneFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

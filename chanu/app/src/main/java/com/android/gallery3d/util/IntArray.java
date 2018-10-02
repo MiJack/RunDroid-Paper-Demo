@@ -23,32 +23,32 @@ public class IntArray {
     private int mSize = 0;
 
     public void add(int value) {
-        if (mData.length == mSize) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.IntArray.add(int)",this,value);try{if (mData.length == mSize) {
             int temp[] = new int[mSize + mSize];
             System.arraycopy(mData, 0, temp, 0, mSize);
             mData = temp;
         }
-        mData[mSize++] = value;
+        mData[mSize++] = value;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.IntArray.add(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.IntArray.add(int)",this,throwable);throw throwable;}
     }
 
     public int size() {
-        return mSize;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.util.IntArray.size()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.util.IntArray.size()",this);return mSize;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.util.IntArray.size()",this,throwable);throw throwable;}
     }
 
     public int[] toArray(int[] result) {
-        if (result == null || result.length < mSize) {
+        com.mijack.Xlog.logMethodEnter("[int com.android.gallery3d.util.IntArray.toArray([int)",this,result);try{if (result == null || result.length < mSize) {
             result = new int[mSize];
         }
         System.arraycopy(mData, 0, result, 0, mSize);
-        return result;
+        {com.mijack.Xlog.logMethodExit("[int com.android.gallery3d.util.IntArray.toArray([int)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[int com.android.gallery3d.util.IntArray.toArray([int)",this,throwable);throw throwable;}
     }
 
     public int[] getInternalArray() {
-        return mData;
+        com.mijack.Xlog.logMethodEnter("[int com.android.gallery3d.util.IntArray.getInternalArray()",this);try{com.mijack.Xlog.logMethodExit("[int com.android.gallery3d.util.IntArray.getInternalArray()",this);return mData;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[int com.android.gallery3d.util.IntArray.getInternalArray()",this,throwable);throw throwable;}
     }
 
     public void clear() {
-        mSize = 0;
-        if (mData.length != INIT_CAPACITY) mData = new int[INIT_CAPACITY];
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.IntArray.clear()",this);try{mSize = 0;
+        if (mData.length != INIT_CAPACITY) {mData = new int[INIT_CAPACITY];}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.IntArray.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.IntArray.clear()",this,throwable);throw throwable;}
     }
 }

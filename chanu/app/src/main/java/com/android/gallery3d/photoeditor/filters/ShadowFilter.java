@@ -34,15 +34,15 @@ public class ShadowFilter extends Filter {
      * @param shadow ranges from 0 to 1.
      */
     public void setShadow(float shadow) {
-        black = shadow * 0.5f;
-        validate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.ShadowFilter.setShadow(float)",this,shadow);try{black = shadow * 0.5f;
+        validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.ShadowFilter.setShadow(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.ShadowFilter.setShadow(float)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        Effect effect = getEffect(EffectFactory.EFFECT_BLACKWHITE);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.ShadowFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{Effect effect = getEffect(EffectFactory.EFFECT_BLACKWHITE);
         effect.setParameter("black", black);
         effect.setParameter("white", 1f);
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.ShadowFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.ShadowFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

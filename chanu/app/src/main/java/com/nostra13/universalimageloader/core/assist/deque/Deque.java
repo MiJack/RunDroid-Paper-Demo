@@ -349,7 +349,7 @@ public interface Deque<E> extends Queue<E> {
      */
     boolean removeLastOccurrence(Object o);
 
-    // *** Queue methods ***
+    /*// *** Queue methods ****/
 
     /**
      * Inserts the specified element into the queue represented by this deque
@@ -449,7 +449,7 @@ public interface Deque<E> extends Queue<E> {
     E peek();
 
 
-    // *** Stack methods ***
+    /*// *** Stack methods ****/
 
     /**
      * Pushes an element onto the stack represented by this deque (in other
@@ -485,7 +485,7 @@ public interface Deque<E> extends Queue<E> {
     E pop();
 
 
-    // *** Collection methods ***
+    /*// *** Collection methods ****/
 
     /**
      * Removes the first occurrence of the specified element from this deque.

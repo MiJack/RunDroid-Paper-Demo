@@ -80,39 +80,39 @@ public class SaveCopyTask extends AsyncTask<Bitmap, Void, Uri> {
      */
     @Override
     protected Uri doInBackground(Bitmap... params) {
-        // TODO: Support larger dimensions for photo saving.
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.photoeditor.SaveCopyTask.doInBackground([android.graphics.Bitmap)",this,params);try{/*// TODO: Support larger dimensions for photo saving.*/
         if (params[0] == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.photoeditor.SaveCopyTask.doInBackground([android.graphics.Bitmap)",this);return null;}
         }
         Bitmap bitmap = params[0];
         File file = save(bitmap);
         Uri uri = (file != null) ? insertContent(file) : null;
         bitmap.recycle();
-        return uri;
+        {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.photoeditor.SaveCopyTask.doInBackground([android.graphics.Bitmap)",this);return uri;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.photoeditor.SaveCopyTask.doInBackground([android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostExecute(Uri result) {
-        String message = (result == null) ? context.getString(R.string.saving_failure)
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.SaveCopyTask.onPostExecute(android.net.Uri)",this,result);try{String message = (result == null) ? context.getString(R.string.saving_failure)
                 : context.getString(R.string.photo_saved, albumName);
         Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
 
-        callback.onComplete(result);
+        callback.onComplete(result);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.SaveCopyTask.onPostExecute(android.net.Uri)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.SaveCopyTask.onPostExecute(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     private File save(Bitmap bitmap) {
-        String directory = Environment.getExternalStorageDirectory().toString() + "/" + albumName;
-        return new BitmapUtils(context).saveBitmap(
-                bitmap, directory, saveFileName, Bitmap.CompressFormat.JPEG);
+        com.mijack.Xlog.logMethodEnter("java.io.File com.android.gallery3d.photoeditor.SaveCopyTask.save(android.graphics.Bitmap)",this,bitmap);try{String directory = Environment.getExternalStorageDirectory().toString() + "/" + albumName;
+        {com.mijack.Xlog.logMethodExit("java.io.File com.android.gallery3d.photoeditor.SaveCopyTask.save(android.graphics.Bitmap)",this);return new BitmapUtils(context).saveBitmap(
+                bitmap, directory, saveFileName, Bitmap.CompressFormat.JPEG);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.android.gallery3d.photoeditor.SaveCopyTask.save(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     /**
      * Insert the content (saved file) with proper source photo properties.
      */
     private Uri insertContent(File file) {
-        long now = System.currentTimeMillis() / 1000;
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.photoeditor.SaveCopyTask.insertContent(java.io.File)",this,file);try{long now = System.currentTimeMillis() / 1000;
         long dateTaken = now;
         double latitude = 0f;
         double longitude = 0f;
@@ -127,7 +127,7 @@ public class SaveCopyTask extends AsyncTask<Bitmap, Void, Uri> {
                 longitude = cursor.getDouble(INDEX_LONGITUDE);
             }
         } catch (Exception e) {
-            // Ignore error for lacking property columns from the source.
+            /*// Ignore error for lacking property columns from the source.*/
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -145,11 +145,11 @@ public class SaveCopyTask extends AsyncTask<Bitmap, Void, Uri> {
         values.put(Images.Media.DATA, file.getAbsolutePath());
         values.put(Images.Media.SIZE, file.length());
 
-        // TODO: Change || to && after the default location issue is fixed.
+        /*// TODO: Change || to && after the default location issue is fixed.*/
         if ((latitude != 0f) || (longitude != 0f)) {
             values.put(Images.Media.LATITUDE, latitude);
             values.put(Images.Media.LONGITUDE, longitude);
         }
-        return contentResolver.insert(Images.Media.EXTERNAL_CONTENT_URI, values);
+        {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.photoeditor.SaveCopyTask.insertContent(java.io.File)",this);return contentResolver.insert(Images.Media.EXTERNAL_CONTENT_URI, values);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.photoeditor.SaveCopyTask.insertContent(java.io.File)",this,throwable);throw throwable;}
     }
 }

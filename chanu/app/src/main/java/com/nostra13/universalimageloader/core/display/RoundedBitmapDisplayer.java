@@ -47,9 +47,9 @@ public class RoundedBitmapDisplayer implements BitmapDisplayer {
 
 	@Override
 	public Bitmap display(Bitmap bitmap, ImageView imageView) {
-		Bitmap roundedBitmap = roundCorners(bitmap, imageView, roundPixels);
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,bitmap,imageView);try{Bitmap roundedBitmap = roundCorners(bitmap, imageView, roundPixels);
 		imageView.setImageBitmap(roundedBitmap);
-		return roundedBitmap;
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this);return roundedBitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -62,14 +62,14 @@ public class RoundedBitmapDisplayer implements BitmapDisplayer {
 	 * @return Result bitmap with rounded corners
 	 */
 	public static Bitmap roundCorners(Bitmap bitmap, ImageView imageView, int roundPixels) {
-		Bitmap roundBitmap;
+		com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.roundCorners(android.graphics.Bitmap,android.widget.ImageView,int)",bitmap,imageView,roundPixels);try{Bitmap roundBitmap;
 
 		int bw = bitmap.getWidth();
 		int bh = bitmap.getHeight();
 		int vw = imageView.getWidth();
 		int vh = imageView.getHeight();
-		if (vw <= 0) vw = bw;
-		if (vh <= 0) vh = bh;
+		if (vw <= 0) {vw = bw;}
+		if (vh <= 0) {vh = bh;}
 
 		int width, height;
 		Rect srcRect;
@@ -155,11 +155,11 @@ public class RoundedBitmapDisplayer implements BitmapDisplayer {
 			roundBitmap = bitmap;
 		}
 
-		return roundBitmap;
+		{com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.roundCorners(android.graphics.Bitmap,android.widget.ImageView,int)");return roundBitmap;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.roundCorners(android.graphics.Bitmap,android.widget.ImageView,int)",throwable);throw throwable;}
 	}
 
 	private static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int roundPixels, Rect srcRect, Rect destRect, int width, int height) {
-		Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
+		com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.getRoundedCornerBitmap(android.graphics.Bitmap,int,android.graphics.Rect,android.graphics.Rect,int,int)",bitmap,roundPixels,srcRect,destRect,width,height);try{Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 		Canvas canvas = new Canvas(output);
 
 		final Paint paint = new Paint();
@@ -173,6 +173,6 @@ public class RoundedBitmapDisplayer implements BitmapDisplayer {
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
 		canvas.drawBitmap(bitmap, srcRect, destRectF, paint);
 
-		return output;
+		{com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.getRoundedCornerBitmap(android.graphics.Bitmap,int,android.graphics.Rect,android.graphics.Rect,int,int)");return output;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer.getRoundedCornerBitmap(android.graphics.Bitmap,int,android.graphics.Rect,android.graphics.Rect,int,int)",throwable);throw throwable;}
 	}
 }

@@ -48,12 +48,12 @@ public final class EntrySchema {
     private final boolean mHasFullTextIndex;
 
     public EntrySchema(Class<? extends Entry> clazz) {
-        // Get table and column metadata from reflection.
+        /*// Get table and column metadata from reflection.*/
         ColumnInfo[] columns = parseColumnInfo(clazz);
         mTableName = parseTableName(clazz);
         mColumnInfo = columns;
 
-        // Cache the list of projection columns and check for full-text columns.
+        /*// Cache the list of projection columns and check for full-text columns.*/
         String[] projection = {};
         boolean hasFullTextIndex = false;
         if (columns != null) {
@@ -71,37 +71,37 @@ public final class EntrySchema {
     }
 
     public String getTableName() {
-        return mTableName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.common.EntrySchema.getTableName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.common.EntrySchema.getTableName()",this);return mTableName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.common.EntrySchema.getTableName()",this,throwable);throw throwable;}
     }
 
     public ColumnInfo[] getColumnInfo() {
-        return mColumnInfo;
+        com.mijack.Xlog.logMethodEnter("[com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.getColumnInfo()",this);try{com.mijack.Xlog.logMethodExit("[com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.getColumnInfo()",this);return mColumnInfo;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.getColumnInfo()",this,throwable);throw throwable;}
     }
 
     public String[] getProjection() {
-        return mProjection;
+        com.mijack.Xlog.logMethodEnter("[java.lang.String com.android.gallery3d.common.EntrySchema.getProjection()",this);try{com.mijack.Xlog.logMethodExit("[java.lang.String com.android.gallery3d.common.EntrySchema.getProjection()",this);return mProjection;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[java.lang.String com.android.gallery3d.common.EntrySchema.getProjection()",this,throwable);throw throwable;}
     }
 
     public int getColumnIndex(String columnName) {
-        for (ColumnInfo column : mColumnInfo) {
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.common.EntrySchema.getColumnIndex(java.lang.String)",this,columnName);try{for (ColumnInfo column : mColumnInfo) {
             if (column.name.equals(columnName)) {
-                return column.projectionIndex;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.common.EntrySchema.getColumnIndex(java.lang.String)",this);return column.projectionIndex;}
             }
         }
-        return -1;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.common.EntrySchema.getColumnIndex(java.lang.String)",this);return -1;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.common.EntrySchema.getColumnIndex(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public ColumnInfo getColumn(String columnName) {
-        int index = getColumnIndex(columnName);
-        return (index < 0) ? null : mColumnInfo[index];
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.getColumn(java.lang.String)",this,columnName);try{int index = getColumnIndex(columnName);
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.getColumn(java.lang.String)",this);return (index < 0) ? null : mColumnInfo[index];}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.getColumn(java.lang.String)",this,throwable);throw throwable;}
     }
 
     private void logExecSql(SQLiteDatabase db, String sql) {
-        db.execSQL(sql);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.EntrySchema.logExecSql(android.database.sqlite.SQLiteDatabase,java.lang.String)",this,db,sql);try{db.execSQL(sql);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.EntrySchema.logExecSql(android.database.sqlite.SQLiteDatabase,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.EntrySchema.logExecSql(android.database.sqlite.SQLiteDatabase,java.lang.String)",this,throwable);throw throwable;}
     }
 
     public <T extends Entry> T cursorToObject(Cursor cursor, T object) {
-        try {
+        com.mijack.Xlog.logMethodEnter("T com.android.gallery3d.common.EntrySchema.cursorToObject(android.database.Cursor,T)",this,cursor,object);try{try {
             for (ColumnInfo column : mColumnInfo) {
                 int columnIndex = column.projectionIndex;
                 Field field = column.field;
@@ -136,15 +136,15 @@ public final class EntrySchema {
                     break;
                 }
             }
-            return object;
+            {com.mijack.Xlog.logMethodExit("T com.android.gallery3d.common.EntrySchema.cursorToObject(android.database.Cursor,T)",this);return object;}
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.android.gallery3d.common.EntrySchema.cursorToObject(android.database.Cursor,T)",this,throwable);throw throwable;}
     }
 
     private void setIfNotNull(Field field, Object object, Object value)
             throws IllegalAccessException {
-        if (value != null) field.set(object, value);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.EntrySchema.setIfNotNull(java.lang.reflect.Field,java.lang.Object,java.lang.Object)",this,field,object,value);try{if (value != null) {field.set(object, value);}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.EntrySchema.setIfNotNull(java.lang.reflect.Field,java.lang.Object,java.lang.Object)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.EntrySchema.setIfNotNull(java.lang.reflect.Field,java.lang.Object,java.lang.Object)",this,throwable);throw throwable;}
     }
 
     /**
@@ -152,7 +152,7 @@ public final class EntrySchema {
      * contain values for all the fields in the object.
      */
     public <T extends Entry> T valuesToObject(ContentValues values, T object) {
-        try {
+        com.mijack.Xlog.logMethodEnter("T com.android.gallery3d.common.EntrySchema.valuesToObject(android.content.ContentValues,T)",this,values,object);try{try {
             for (ColumnInfo column : mColumnInfo) {
                 String columnName = column.name;
                 Field field = column.field;
@@ -183,14 +183,14 @@ public final class EntrySchema {
                     break;
                 }
             }
-            return object;
+            {com.mijack.Xlog.logMethodExit("T com.android.gallery3d.common.EntrySchema.valuesToObject(android.content.ContentValues,T)",this);return object;}
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.android.gallery3d.common.EntrySchema.valuesToObject(android.content.ContentValues,T)",this,throwable);throw throwable;}
     }
 
     public void objectToValues(Entry object, ContentValues values) {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.EntrySchema.objectToValues(com.android.gallery3d.common.Entry,android.content.ContentValues)",this,object,values);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.EntrySchema.objectToValues(com.android.gallery3d.common.Entry,android.content.ContentValues)",this);try {
             for (ColumnInfo column : mColumnInfo) {
                 String columnName = column.name;
                 Field field = column.field;
@@ -223,11 +223,11 @@ public final class EntrySchema {
             }
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.EntrySchema.objectToValues(com.android.gallery3d.common.Entry,android.content.ContentValues)",this,throwable);throw throwable;}
     }
 
     public String toDebugString(Entry entry) {
-        try {
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.common.EntrySchema.toDebugString(com.android.gallery3d.common.Entry)",this,entry);try{try {
             StringBuilder sb = new StringBuilder();
             sb.append("ID=").append(entry.id);
             for (ColumnInfo column : mColumnInfo) {
@@ -237,14 +237,14 @@ public final class EntrySchema {
                 sb.append(" ").append(columnName).append("=")
                         .append((value == null) ? "null" : value.toString());
             }
-            return sb.toString();
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.common.EntrySchema.toDebugString(com.android.gallery3d.common.Entry)",this);return sb.toString();}
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.common.EntrySchema.toDebugString(com.android.gallery3d.common.Entry)",this,throwable);throw throwable;}
     }
 
     public String toDebugString(Entry entry, String... columnNames) {
-        try {
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.common.EntrySchema.toDebugString(com.android.gallery3d.common.Entry,[java.lang.String)",this,entry,columnNames);try{try {
             StringBuilder sb = new StringBuilder();
             sb.append("ID=").append(entry.id);
             for (String columnName : columnNames) {
@@ -254,18 +254,18 @@ public final class EntrySchema {
                 sb.append(" ").append(columnName).append("=")
                         .append((value == null) ? "null" : value.toString());
             }
-            return sb.toString();
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.common.EntrySchema.toDebugString(com.android.gallery3d.common.Entry,[java.lang.String)",this);return sb.toString();}
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.common.EntrySchema.toDebugString(com.android.gallery3d.common.Entry,[java.lang.String)",this,throwable);throw throwable;}
     }
 
     public Cursor queryAll(SQLiteDatabase db) {
-        return db.query(mTableName, mProjection, null, null, null, null, null);
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.android.gallery3d.common.EntrySchema.queryAll(android.database.sqlite.SQLiteDatabase)",this,db);try{com.mijack.Xlog.logMethodExit("android.database.Cursor com.android.gallery3d.common.EntrySchema.queryAll(android.database.sqlite.SQLiteDatabase)",this);return db.query(mTableName, mProjection, null, null, null, null, null);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.android.gallery3d.common.EntrySchema.queryAll(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
     }
 
     public boolean queryWithId(SQLiteDatabase db, long id, Entry entry) {
-        Cursor cursor = db.query(mTableName, mProjection, "_id=?",
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.EntrySchema.queryWithId(android.database.sqlite.SQLiteDatabase,long,com.android.gallery3d.common.Entry)",this,db,id,entry);try{Cursor cursor = db.query(mTableName, mProjection, "_id=?",
                 new String[] {Long.toString(id)}, null, null, null);
         boolean success = false;
         if (cursor.moveToFirst()) {
@@ -273,30 +273,30 @@ public final class EntrySchema {
             success = true;
         }
         cursor.close();
-        return success;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.EntrySchema.queryWithId(android.database.sqlite.SQLiteDatabase,long,com.android.gallery3d.common.Entry)",this);return success;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.EntrySchema.queryWithId(android.database.sqlite.SQLiteDatabase,long,com.android.gallery3d.common.Entry)",this,throwable);throw throwable;}
     }
 
     public long insertOrReplace(SQLiteDatabase db, Entry entry) {
-        ContentValues values = new ContentValues();
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.common.EntrySchema.insertOrReplace(android.database.sqlite.SQLiteDatabase,com.android.gallery3d.common.Entry)",this,db,entry);try{ContentValues values = new ContentValues();
         objectToValues(entry, values);
         if (entry.id == 0) {
             values.remove("_id");
         }
         long id = db.replace(mTableName, "_id", values);
         entry.id = id;
-        return id;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.common.EntrySchema.insertOrReplace(android.database.sqlite.SQLiteDatabase,com.android.gallery3d.common.Entry)",this);return id;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.common.EntrySchema.insertOrReplace(android.database.sqlite.SQLiteDatabase,com.android.gallery3d.common.Entry)",this,throwable);throw throwable;}
     }
 
     public boolean deleteWithId(SQLiteDatabase db, long id) {
-        return db.delete(mTableName, "_id=?", new String[] { Long.toString(id) }) == 1;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.EntrySchema.deleteWithId(android.database.sqlite.SQLiteDatabase,long)",this,db,id);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.EntrySchema.deleteWithId(android.database.sqlite.SQLiteDatabase,long)",this);return db.delete(mTableName, "_id=?", new String[] { Long.toString(id) }) == 1;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.EntrySchema.deleteWithId(android.database.sqlite.SQLiteDatabase,long)",this,throwable);throw throwable;}
     }
 
     public void createTables(SQLiteDatabase db) {
-        // Wrapped class must have a @Table.Definition.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.EntrySchema.createTables(android.database.sqlite.SQLiteDatabase)",this,db);try{/*// Wrapped class must have a @Table.Definition.*/
         String tableName = mTableName;
         Utils.assertTrue(tableName != null);
 
-        // Add the CREATE TABLE statement for the main table.
+        /*// Add the CREATE TABLE statement for the main table.*/
         StringBuilder sql = new StringBuilder("CREATE TABLE ");
         sql.append(tableName);
         sql.append(" (_id INTEGER PRIMARY KEY AUTOINCREMENT");
@@ -316,9 +316,9 @@ public final class EntrySchema {
         logExecSql(db, sql.toString());
         sql.setLength(0);
 
-        // Create indexes for all indexed columns.
+        /*// Create indexes for all indexed columns.*/
         for (ColumnInfo column : mColumnInfo) {
-            // Create an index on the indexed columns.
+            /*// Create an index on the indexed columns.*/
             if (column.indexed) {
                 sql.append("CREATE INDEX ");
                 sql.append(tableName);
@@ -335,14 +335,14 @@ public final class EntrySchema {
         }
 
         if (mHasFullTextIndex) {
-            // Add an FTS virtual table if using full-text search.
+            /*// Add an FTS virtual table if using full-text search.*/
             String ftsTableName = tableName + FULL_TEXT_INDEX_SUFFIX;
             sql.append("CREATE VIRTUAL TABLE ");
             sql.append(ftsTableName);
             sql.append(" USING FTS3 (_id INTEGER PRIMARY KEY");
             for (ColumnInfo column : mColumnInfo) {
                 if (column.fullText) {
-                    // Add the column to the FTS table.
+                    /*// Add the column to the FTS table.*/
                     String columnName = column.name;
                     sql.append(',');
                     sql.append(columnName);
@@ -353,8 +353,8 @@ public final class EntrySchema {
             logExecSql(db, sql.toString());
             sql.setLength(0);
 
-            // Build an insert statement that will automatically keep the FTS
-            // table in sync.
+            /*// Build an insert statement that will automatically keep the FTS*/
+            /*// table in sync.*/
             StringBuilder insertSql = new StringBuilder("INSERT OR REPLACE INTO ");
             insertSql.append(ftsTableName);
             insertSql.append(" (_id");
@@ -374,7 +374,7 @@ public final class EntrySchema {
             insertSql.append(");");
             String insertSqlString = insertSql.toString();
 
-            // Add an insert trigger.
+            /*// Add an insert trigger.*/
             sql.append("CREATE TRIGGER ");
             sql.append(tableName);
             sql.append("_insert_trigger AFTER INSERT ON ");
@@ -385,7 +385,7 @@ public final class EntrySchema {
             logExecSql(db, sql.toString());
             sql.setLength(0);
 
-            // Add an update trigger.
+            /*// Add an update trigger.*/
             sql.append("CREATE TRIGGER ");
             sql.append(tableName);
             sql.append("_update_trigger AFTER UPDATE ON ");
@@ -396,7 +396,7 @@ public final class EntrySchema {
             logExecSql(db, sql.toString());
             sql.setLength(0);
 
-            // Add a delete trigger.
+            /*// Add a delete trigger.*/
             sql.append("CREATE TRIGGER ");
             sql.append(tableName);
             sql.append("_delete_trigger AFTER DELETE ON ");
@@ -406,11 +406,11 @@ public final class EntrySchema {
             sql.append(" WHERE _id = old._id; END;");
             logExecSql(db, sql.toString());
             sql.setLength(0);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.EntrySchema.createTables(android.database.sqlite.SQLiteDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.EntrySchema.createTables(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
     }
 
     public void dropTables(SQLiteDatabase db) {
-        String tableName = mTableName;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.EntrySchema.dropTables(android.database.sqlite.SQLiteDatabase)",this,db);try{String tableName = mTableName;
         StringBuilder sql = new StringBuilder("DROP TABLE IF EXISTS ");
         sql.append(tableName);
         sql.append(';');
@@ -423,51 +423,51 @@ public final class EntrySchema {
             sql.append(FULL_TEXT_INDEX_SUFFIX);
             sql.append(';');
             logExecSql(db, sql.toString());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.EntrySchema.dropTables(android.database.sqlite.SQLiteDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.EntrySchema.dropTables(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
 
     }
 
     public void deleteAll(SQLiteDatabase db) {
-        StringBuilder sql = new StringBuilder("DELETE FROM ");
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.EntrySchema.deleteAll(android.database.sqlite.SQLiteDatabase)",this,db);try{StringBuilder sql = new StringBuilder("DELETE FROM ");
         sql.append(mTableName);
         sql.append(";");
-        logExecSql(db, sql.toString());
+        logExecSql(db, sql.toString());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.EntrySchema.deleteAll(android.database.sqlite.SQLiteDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.EntrySchema.deleteAll(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
     }
 
     private String parseTableName(Class<? extends Object> clazz) {
-        // Check for a table annotation.
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.common.EntrySchema.parseTableName(java.lang.Class)",this,clazz);try{/*// Check for a table annotation.*/
         Entry.Table table = clazz.getAnnotation(Entry.Table.class);
         if (table == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.common.EntrySchema.parseTableName(java.lang.Class)",this);return null;}
         }
 
-        // Return the table name.
-        return table.value();
+        /*// Return the table name.*/
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.common.EntrySchema.parseTableName(java.lang.Class)",this);return table.value();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.common.EntrySchema.parseTableName(java.lang.Class)",this,throwable);throw throwable;}
     }
 
     private ColumnInfo[] parseColumnInfo(Class<? extends Object> clazz) {
-        ArrayList<ColumnInfo> columns = new ArrayList<ColumnInfo>();
+        com.mijack.Xlog.logMethodEnter("[com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.parseColumnInfo(java.lang.Class)",this,clazz);try{ArrayList<ColumnInfo> columns = new ArrayList<ColumnInfo>();
         while (clazz != null) {
             parseColumnInfo(clazz, columns);
             clazz = clazz.getSuperclass();
         }
 
-        // Return a list.
+        /*// Return a list.*/
         ColumnInfo[] columnList = new ColumnInfo[columns.size()];
         columns.toArray(columnList);
-        return columnList;
+        {com.mijack.Xlog.logMethodExit("[com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.parseColumnInfo(java.lang.Class)",this);return columnList;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[com.android.gallery3d.common.EntrySchema$ColumnInfo com.android.gallery3d.common.EntrySchema.parseColumnInfo(java.lang.Class)",this,throwable);throw throwable;}
     }
 
     private void parseColumnInfo(Class<? extends Object> clazz, ArrayList<ColumnInfo> columns) {
-        // Gather metadata from each annotated field.
-        Field[] fields = clazz.getDeclaredFields(); // including non-public fields
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.EntrySchema.parseColumnInfo(java.lang.Class,java.util.ArrayList)",this,clazz,columns);try{/*// Gather metadata from each annotated field.*/
+        Field[] fields = clazz.getDeclaredFields(); /*// including non-public fields*/
         for (int i = 0; i != fields.length; ++i) {
-            // Get column metadata from the annotation.
+            /*// Get column metadata from the annotation.*/
             Field field = fields[i];
             Entry.Column info = ((AnnotatedElement) field).getAnnotation(Entry.Column.class);
-            if (info == null) continue;
+            if (info == null) {continue;}
 
-            // Determine the field type.
+            /*// Determine the field type.*/
             int type;
             Class<?> fieldType = field.getType();
             if (fieldType == String.class) {
@@ -491,11 +491,11 @@ public final class EntrySchema {
                         "Unsupported field type for column: " + fieldType.getName());
             }
 
-            // Add the column to the array.
+            /*// Add the column to the array.*/
             int index = columns.size();
             columns.add(new ColumnInfo(info.value(), type, info.indexed(),
                     info.fullText(), info.defaultValue(), field, index));
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.EntrySchema.parseColumnInfo(java.lang.Class,java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     public static final class ColumnInfo {
@@ -519,11 +519,11 @@ public final class EntrySchema {
             this.field = field;
             this.projectionIndex = projectionIndex;
 
-            field.setAccessible(true); // in order to set non-public fields
+            field.setAccessible(true); /*// in order to set non-public fields*/
         }
 
         public boolean isId() {
-            return ID_KEY.equals(name);
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.EntrySchema$ColumnInfo.isId()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.EntrySchema$ColumnInfo.isId()",this);return ID_KEY.equals(name);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.EntrySchema$ColumnInfo.isId()",this,throwable);throw throwable;}
         }
     }
 }

@@ -31,21 +31,21 @@ public class WidgetClickHandler extends Activity {
     private static final String TAG = "PhotoAppWidgetClickHandler";
 
     private boolean isValidDataUri(Uri dataUri) {
-        if (dataUri == null) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.gadget.WidgetClickHandler.isValidDataUri(android.net.Uri)",this,dataUri);try{if (dataUri == null) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.WidgetClickHandler.isValidDataUri(android.net.Uri)",this);return false;}}
         try {
             AssetFileDescriptor f = getContentResolver()
                     .openAssetFileDescriptor(dataUri, "r");
             f.close();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.WidgetClickHandler.isValidDataUri(android.net.Uri)",this);return true;}
         } catch (Throwable e) {
             Log.w(TAG, "cannot open uri: " + dataUri, e);
-            return false;
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.WidgetClickHandler.isValidDataUri(android.net.Uri)",this);return false;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.gadget.WidgetClickHandler.isValidDataUri(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onCreate(Bundle savedState) {
-        super.onCreate(savedState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetClickHandler.onCreate(android.os.Bundle)",this,savedState);try{super.onCreate(savedState);
         Intent intent = getIntent();
         if (isValidDataUri(intent.getData())) {
             startActivity(new Intent(Intent.ACTION_VIEW, intent.getData()));
@@ -54,6 +54,6 @@ public class WidgetClickHandler extends Activity {
                     R.string.no_such_item, Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, Gallery.class));
         }
-        finish();
+        finish();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetClickHandler.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetClickHandler.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

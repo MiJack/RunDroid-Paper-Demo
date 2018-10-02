@@ -34,44 +34,44 @@ public class ClusterAlbum extends MediaSet implements ContentListener {
     }
 
     void setMediaItems(ArrayList<Path> paths) {
-        mPaths = paths;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbum.setMediaItems(java.util.ArrayList)",this,paths);try{mPaths = paths;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbum.setMediaItems(java.util.ArrayList)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbum.setMediaItems(java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     ArrayList<Path> getMediaItems() {
-        return mPaths;
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItems()",this);try{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItems()",this);return mPaths;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItems()",this,throwable);throw throwable;}
     }
 
     public void setName(String name) {
-        mName = name;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbum.setName(java.lang.String)",this,name);try{mName = name;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbum.setName(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbum.setName(java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     public String getName() {
-        return mName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.ClusterAlbum.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.ClusterAlbum.getName()",this);return mName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.ClusterAlbum.getName()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getMediaItemCount() {
-        return mPaths.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.ClusterAlbum.getMediaItemCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.ClusterAlbum.getMediaItemCount()",this);return mPaths.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.ClusterAlbum.getMediaItemCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public ArrayList<MediaItem> getMediaItem(int start, int count) {
-        return getMediaItemFromPath(mPaths, start, count, mDataManager);
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItem(int,int)",this,start,count);try{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItem(int,int)",this);return getMediaItemFromPath(mPaths, start, count, mDataManager);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItem(int,int)",this,throwable);throw throwable;}
     }
 
     public static ArrayList<MediaItem> getMediaItemFromPath(
             ArrayList<Path> paths, int start, int count,
             DataManager dataManager) {
-        if (start >= paths.size()) {
-            return new ArrayList<MediaItem>();
+        com.mijack.Xlog.logStaticMethodEnter("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItemFromPath(java.util.ArrayList,int,int,com.android.gallery3d.data.DataManager)",paths,start,count,dataManager);try{if (start >= paths.size()) {
+            {com.mijack.Xlog.logStaticMethodExit("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItemFromPath(java.util.ArrayList,int,int,com.android.gallery3d.data.DataManager)");return new ArrayList<MediaItem>();}
         }
         int end = Math.min(start + count, paths.size());
         ArrayList<Path> subset = new ArrayList<Path>(paths.subList(start, end));
         final MediaItem[] buf = new MediaItem[end - start];
         ItemConsumer consumer = new ItemConsumer() {
             public void consume(int index, MediaItem item) {
-                buf[index] = item;
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbum$1.consume(int,com.android.gallery3d.data.MediaItem)",this,index,item);try{buf[index] = item;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbum$1.consume(int,com.android.gallery3d.data.MediaItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbum$1.consume(int,com.android.gallery3d.data.MediaItem)",this,throwable);throw throwable;}
             }
         };
         dataManager.mapMediaItems(subset, consumer, 0);
@@ -79,51 +79,51 @@ public class ClusterAlbum extends MediaSet implements ContentListener {
         for (int i = 0; i < buf.length; i++) {
             result.add(buf[i]);
         }
-        return result;
+        {com.mijack.Xlog.logStaticMethodExit("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItemFromPath(java.util.ArrayList,int,int,com.android.gallery3d.data.DataManager)");return result;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.ClusterAlbum.getMediaItemFromPath(java.util.ArrayList,int,int,com.android.gallery3d.data.DataManager)",throwable);throw throwable;}
     }
 
     @Override
     protected int enumerateMediaItems(ItemConsumer consumer, int startIndex) {
-        mDataManager.mapMediaItems(mPaths, consumer, startIndex);
-        return mPaths.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.ClusterAlbum.enumerateMediaItems(ItemConsumer,int)",this,consumer,startIndex);try{mDataManager.mapMediaItems(mPaths, consumer, startIndex);
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.ClusterAlbum.enumerateMediaItems(ItemConsumer,int)",this);return mPaths.size();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.ClusterAlbum.enumerateMediaItems(ItemConsumer,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getTotalMediaItemCount() {
-        return mPaths.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.ClusterAlbum.getTotalMediaItemCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.ClusterAlbum.getTotalMediaItemCount()",this);return mPaths.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.ClusterAlbum.getTotalMediaItemCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public long reload() {
-        if (mClusterAlbumSet.reload() > mDataVersion) {
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.ClusterAlbum.reload()",this);try{if (mClusterAlbumSet.reload() > mDataVersion) {
             mDataVersion = nextVersionNumber();
         }
-        return mDataVersion;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.ClusterAlbum.reload()",this);return mDataVersion;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.ClusterAlbum.reload()",this,throwable);throw throwable;}
     }
 
     public void onContentDirty() {
-        notifyContentChanged();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbum.onContentDirty()",this);try{notifyContentChanged();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbum.onContentDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbum.onContentDirty()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getSupportedOperations() {
-        return SUPPORT_SHARE | SUPPORT_DELETE | SUPPORT_INFO;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.ClusterAlbum.getSupportedOperations()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.ClusterAlbum.getSupportedOperations()",this);return SUPPORT_SHARE | SUPPORT_DELETE | SUPPORT_INFO;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.ClusterAlbum.getSupportedOperations()",this,throwable);throw throwable;}
     }
 
     @Override
     public void delete() {
-        ItemConsumer consumer = new ItemConsumer() {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbum.delete()",this);try{ItemConsumer consumer = new ItemConsumer() {
             public void consume(int index, MediaItem item) {
-                if ((item.getSupportedOperations() & SUPPORT_DELETE) != 0) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbum$2.consume(int,com.android.gallery3d.data.MediaItem)",this,index,item);try{if ((item.getSupportedOperations() & SUPPORT_DELETE) != 0) {
                     item.delete();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbum$2.consume(int,com.android.gallery3d.data.MediaItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbum$2.consume(int,com.android.gallery3d.data.MediaItem)",this,throwable);throw throwable;}
             }
         };
-        mDataManager.mapMediaItems(mPaths, consumer, 0);
+        mDataManager.mapMediaItems(mPaths, consumer, 0);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbum.delete()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbum.delete()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean isLeafAlbum() {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.ClusterAlbum.isLeafAlbum()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.ClusterAlbum.isLeafAlbum()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.ClusterAlbum.isLeafAlbum()",this,throwable);throw throwable;}
     }
 }

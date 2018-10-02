@@ -36,7 +36,7 @@ public class ExtendedImageDownloader extends URLConnectionImageDownloader {
 
     @Override
     protected InputStream getStreamFromOtherSource(String imageUri, Object extra) throws IOException {
-    	URI imageUrl = null;
+    	com.mijack.Xlog.logMethodEnter("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this,imageUri,extra);try{URI imageUrl = null;
 		try {
 			imageUrl = new URI(imageUri);
 		} catch (URISyntaxException e) {
@@ -44,27 +44,27 @@ public class ExtendedImageDownloader extends URLConnectionImageDownloader {
 		}
         String protocol = imageUrl.getScheme();
         if (PROTOCOL_ASSETS.equals(protocol)) {
-            return getStreamFromAssets(imageUrl);
+            {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this);return getStreamFromAssets(imageUrl);}
         } else if (PROTOCOL_DRAWABLE.equals(protocol)) {
-            return getStreamFromDrawable(imageUrl);
+            {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this);return getStreamFromDrawable(imageUrl);}
         } else {
-            return super.getStreamFromOtherSource(imageUri, extra);
-        }
+            {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this);return super.getStreamFromOtherSource(imageUri, extra);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromOtherSource(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
     }
 
     private InputStream getStreamFromAssets(URI imageUri) throws IOException {
-        String filePath = imageUri.toString().substring(PROTOCOL_ASSETS_PREFIX.length()); // Remove "assets://" prefix from image URI
-        return context.getAssets().open(filePath);
+        com.mijack.Xlog.logMethodEnter("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromAssets(java.net.URI)",this,imageUri);try{String filePath = imageUri.toString().substring(PROTOCOL_ASSETS_PREFIX.length()); /*// Remove "assets://" prefix from image URI*/
+        {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromAssets(java.net.URI)",this);return context.getAssets().open(filePath);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromAssets(java.net.URI)",this,throwable);throw throwable;}
     }
 
     private InputStream getStreamFromDrawable(URI imageUri) {
-        String drawableIdString = imageUri.toString().substring(PROTOCOL_DRAWABLE_PREFIX.length()); // Remove "drawable://" prefix from image URI
+        com.mijack.Xlog.logMethodEnter("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromDrawable(java.net.URI)",this,imageUri);try{String drawableIdString = imageUri.toString().substring(PROTOCOL_DRAWABLE_PREFIX.length()); /*// Remove "drawable://" prefix from image URI*/
         int drawableId = Integer.parseInt(drawableIdString);
         BitmapDrawable drawable = (BitmapDrawable) context.getResources().getDrawable(drawableId);
         Bitmap bitmap = drawable.getBitmap();
-        if (DEBUG) Log.d(TAG, "Getting drawable from stream: " + imageUri + " has value " + drawable);
+        if (DEBUG) {Log.d(TAG, "Getting drawable from stream: " + imageUri + " has value " + drawable);}
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         bitmap.compress(CompressFormat.PNG, 0, os);
-        return new ByteArrayInputStream(os.toByteArray());
+        {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromDrawable(java.net.URI)",this);return new ByteArrayInputStream(os.toByteArray());}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.ByteArrayInputStream com.chanapps.four.component.ExtendedImageDownloader.getStreamFromDrawable(java.net.URI)",this,throwable);throw throwable;}
     }
 }

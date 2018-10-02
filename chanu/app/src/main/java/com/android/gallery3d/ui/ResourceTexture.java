@@ -22,8 +22,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-// ResourceTexture is a texture whose Bitmap is decoded from a resource.
-// By default ResourceTexture is not opaque.
+/*// ResourceTexture is a texture whose Bitmap is decoded from a resource.*/
+/*// By default ResourceTexture is not opaque.*/
 public class ResourceTexture extends UploadedTexture {
 
     private static final String TAG = ResourceTexture.class.getSimpleName();
@@ -39,7 +39,7 @@ public class ResourceTexture extends UploadedTexture {
 
     @Override
     protected Bitmap onGetBitmap() {
-        BitmapFactory.Options options = new BitmapFactory.Options();
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.ResourceTexture.onGetBitmap()",this);try{BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
         Bitmap b = null;
         try {
@@ -49,12 +49,12 @@ public class ResourceTexture extends UploadedTexture {
         catch (OutOfMemoryError e) {
             Log.e(TAG, "Couldn't get memory allocated for bitmap resId=" + mResId, e);
         }
-        return b;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.ResourceTexture.onGetBitmap()",this);return b;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.ResourceTexture.onGetBitmap()",this,throwable);throw throwable;}
     }
 
     @Override
     protected BitmapFactory.Options onGetBitmapBounds() {
-        BitmapFactory.Options options = new BitmapFactory.Options();
+        com.mijack.Xlog.logMethodEnter("BitmapFactory.Options com.android.gallery3d.ui.ResourceTexture.onGetBitmapBounds()",this);try{BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
         try {
@@ -64,13 +64,13 @@ public class ResourceTexture extends UploadedTexture {
         catch (OutOfMemoryError e) {
             Log.e(TAG, "Couldn't get memory allocated for bitmap bounds resId=" + mResId, e);
         }
-        return options;
+        {com.mijack.Xlog.logMethodExit("BitmapFactory.Options com.android.gallery3d.ui.ResourceTexture.onGetBitmapBounds()",this);return options;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("BitmapFactory.Options com.android.gallery3d.ui.ResourceTexture.onGetBitmapBounds()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onFreeBitmap(Bitmap bitmap) {
-        if (!inFinalizer()) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ResourceTexture.onFreeBitmap(android.graphics.Bitmap)",this,bitmap);try{if (!inFinalizer()) {
             bitmap.recycle();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ResourceTexture.onFreeBitmap(android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ResourceTexture.onFreeBitmap(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 }

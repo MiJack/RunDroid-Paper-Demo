@@ -54,17 +54,17 @@ public abstract class BaseDiscCache implements DiscCacheAware {
 
 	@Override
 	public File get(String key) {
-		String fileName = fileNameGenerator.generate(key);
-		return new File(cacheDir, fileName);
+		com.mijack.Xlog.logMethodEnter("java.io.File com.nostra13.universalimageloader.cache.disc.BaseDiscCache.get(java.lang.String)",this,key);try{String fileName = fileNameGenerator.generate(key);
+		{com.mijack.Xlog.logMethodExit("java.io.File com.nostra13.universalimageloader.cache.disc.BaseDiscCache.get(java.lang.String)",this);return new File(cacheDir, fileName);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.cache.disc.BaseDiscCache.get(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		File[] files = cacheDir.listFiles();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.disc.BaseDiscCache.clear()",this);try{File[] files = cacheDir.listFiles();
 		if (files != null) {
 			for (File f : files) {
 				f.delete();
 			}
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.disc.BaseDiscCache.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.disc.BaseDiscCache.clear()",this,throwable);throw throwable;}
 	}
 }

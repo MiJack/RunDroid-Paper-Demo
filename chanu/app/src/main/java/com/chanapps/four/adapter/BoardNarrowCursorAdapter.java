@@ -28,18 +28,18 @@ public class BoardNarrowCursorAdapter extends AbstractBoardCursorAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        Cursor c = getCursor();
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.adapter.BoardNarrowCursorAdapter.getItemViewType(int)",this,position);try{Cursor c = getCursor();
         if (c != null
                 && c.moveToPosition(position)
                 && (c.getInt(c.getColumnIndex(ChanThread.THREAD_FLAGS)) & ChanThread.THREAD_FLAG_HEADER) > 0)
-            return TYPE_GRID_HEADER;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardNarrowCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_HEADER;}}
         else
-            return TYPE_GRID_ITEM;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardNarrowCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.adapter.BoardNarrowCursorAdapter.getItemViewType(int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected View newView(ViewGroup parent, int tag, int position) {
-        if (DEBUG) Log.d(TAG, "Creating " + tag + " layout for " + position);
+        com.mijack.Xlog.logMethodEnter("android.view.View com.chanapps.four.adapter.BoardNarrowCursorAdapter.newView(android.view.ViewGroup,int,int)",this,parent,tag,position);try{if (DEBUG) {Log.d(TAG, "Creating " + tag + " layout for " + position);}
         int layoutId = getItemViewType(position) == TYPE_GRID_HEADER
                 ? R.layout.board_grid_header_narrow
                 : R.layout.board_grid_item_narrow;
@@ -47,11 +47,11 @@ public class BoardNarrowCursorAdapter extends AbstractBoardCursorAdapter {
         BoardViewHolder viewHolder = new BoardViewHolder(v);
         v.setTag(R.id.VIEW_TAG_TYPE, tag);
         v.setTag(R.id.VIEW_HOLDER, viewHolder);
-        return v;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.chanapps.four.adapter.BoardNarrowCursorAdapter.newView(android.view.ViewGroup,int,int)",this);return v;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.chanapps.four.adapter.BoardNarrowCursorAdapter.newView(android.view.ViewGroup,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getViewTypeCount() {
-        return TYPE_MAX_COUNT;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.adapter.BoardNarrowCursorAdapter.getViewTypeCount()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardNarrowCursorAdapter.getViewTypeCount()",this);return TYPE_MAX_COUNT;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.adapter.BoardNarrowCursorAdapter.getViewTypeCount()",this,throwable);throw throwable;}
     }
 }

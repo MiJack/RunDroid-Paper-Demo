@@ -31,10 +31,10 @@ final class Config {
         public AlbumSetView.LabelSpec labelSpec;
 
         public static synchronized AlbumSetPage get(Context context) {
-            if (sInstance == null) {
+            com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.app.Config$AlbumSetPage com.android.gallery3d.app.Config$AlbumSetPage.get(android.content.Context)",context);try{if (sInstance == null) {
                 sInstance = new AlbumSetPage(context);
             }
-            return sInstance;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.app.Config$AlbumSetPage com.android.gallery3d.app.Config$AlbumSetPage.get(android.content.Context)");return sInstance;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.app.Config$AlbumSetPage com.android.gallery3d.app.Config$AlbumSetPage.get(android.content.Context)",throwable);throw throwable;}
         }
 
         private AlbumSetPage(Context context) {
@@ -69,10 +69,10 @@ final class Config {
         public SlotView.Spec slotViewSpec;
 
         public static synchronized AlbumPage get(Context context) {
-            if (sInstance == null) {
+            com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.app.Config$AlbumPage com.android.gallery3d.app.Config$AlbumPage.get(android.content.Context)",context);try{if (sInstance == null) {
                 sInstance = new AlbumPage(context);
             }
-            return sInstance;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.app.Config$AlbumPage com.android.gallery3d.app.Config$AlbumPage.get(android.content.Context)");return sInstance;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.app.Config$AlbumPage com.android.gallery3d.app.Config$AlbumPage.get(android.content.Context)",throwable);throw throwable;}
         }
 
         private AlbumPage(Context context) {
@@ -92,10 +92,10 @@ final class Config {
         public final int cachePinMargin;
 
         public static synchronized ManageCachePage get(Context context) {
-            if (sInstance == null) {
+            com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.app.Config$ManageCachePage com.android.gallery3d.app.Config$ManageCachePage.get(android.content.Context)",context);try{if (sInstance == null) {
                 sInstance = new ManageCachePage(context);
             }
-            return sInstance;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.app.Config$ManageCachePage com.android.gallery3d.app.Config$ManageCachePage.get(android.content.Context)");return sInstance;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.app.Config$ManageCachePage com.android.gallery3d.app.Config$ManageCachePage.get(android.content.Context)",throwable);throw throwable;}
         }
 
         public ManageCachePage(Context context) {
@@ -109,8 +109,8 @@ final class Config {
     public static class PhotoPage {
         private static PhotoPage sInstance;
 
-        // These are all height values. See the comment in FilmStripView for
-        // the meaning of these values.
+        /*// These are all height values. See the comment in FilmStripView for*/
+        /*// the meaning of these values.*/
         public final int filmstripTopMargin;
         public final int filmstripMidMargin;
         public final int filmstripBottomMargin;
@@ -119,14 +119,14 @@ final class Config {
         public final int filmstripGripSize;
         public final int filmstripBarSize;
 
-        // These are width values.
+        /*// These are width values.*/
         public final int filmstripGripWidth;
 
         public static synchronized PhotoPage get(Context context) {
-            if (sInstance == null) {
+            com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.app.Config$PhotoPage com.android.gallery3d.app.Config$PhotoPage.get(android.content.Context)",context);try{if (sInstance == null) {
                 sInstance = new PhotoPage(context);
             }
-            return sInstance;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.app.Config$PhotoPage com.android.gallery3d.app.Config$PhotoPage.get(android.content.Context)");return sInstance;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.app.Config$PhotoPage com.android.gallery3d.app.Config$PhotoPage.get(android.content.Context)",throwable);throw throwable;}
         }
 
         public PhotoPage(Context context) {

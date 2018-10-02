@@ -35,14 +35,12 @@ public class DuotoneAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        // TODO: Add several sets of duo-tone colors to select from.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DuotoneAction.doBegin()",this);try{/*// TODO: Add several sets of duo-tone colors to select from.*/
         DuotoneFilter filter = new DuotoneFilter();
         filter.setDuotone(DEFAULT_FIRST_COLOR, DEFAULT_SECOND_COLOR);
         notifyFilterChanged(filter, true);
-        notifyDone();
+        notifyDone();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DuotoneAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DuotoneAction.doBegin()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void doEnd() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DuotoneAction.doEnd()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DuotoneAction.doEnd()",this);}
 }

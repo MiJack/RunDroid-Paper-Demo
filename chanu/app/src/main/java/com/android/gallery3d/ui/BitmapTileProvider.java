@@ -50,42 +50,42 @@ public class BitmapTileProvider implements TileImageView.Model {
     }
 
     public Bitmap getBackupImage() {
-        return mBackup;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTileProvider.getBackupImage()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTileProvider.getBackupImage()",this);return mBackup;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTileProvider.getBackupImage()",this,throwable);throw throwable;}
     }
 
     public int getImageHeight() {
-        return mImageHeight;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.BitmapTileProvider.getImageHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.BitmapTileProvider.getImageHeight()",this);return mImageHeight;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.BitmapTileProvider.getImageHeight()",this,throwable);throw throwable;}
     }
 
     public int getImageWidth() {
-        return mImageWidth;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.BitmapTileProvider.getImageWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.BitmapTileProvider.getImageWidth()",this);return mImageWidth;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.BitmapTileProvider.getImageWidth()",this,throwable);throw throwable;}
     }
 
     public int getLevelCount() {
-        return mMipmaps.length;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.BitmapTileProvider.getLevelCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.BitmapTileProvider.getLevelCount()",this);return mMipmaps.length;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.BitmapTileProvider.getLevelCount()",this,throwable);throw throwable;}
     }
 
     public Bitmap getTile(int level, int x, int y, int tileSize) {
-        Bitmap result = Bitmap.createBitmap(tileSize, tileSize, mConfig);
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTileProvider.getTile(int,int,int,int)",this,level,x,y,tileSize);try{Bitmap result = Bitmap.createBitmap(tileSize, tileSize, mConfig);
         Canvas canvas = new Canvas(result);
         canvas.drawBitmap(mMipmaps[level], -(x >> level), -(y >> level), null);
-        return result;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTileProvider.getTile(int,int,int,int)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTileProvider.getTile(int,int,int,int)",this,throwable);throw throwable;}
     }
 
     public void recycle() {
-        if (mRecycled) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.BitmapTileProvider.recycle()",this);try{if (mRecycled) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.BitmapTileProvider.recycle()",this);return;}}
         mRecycled = true;
         for (Bitmap bitmap : mMipmaps) {
             BitmapUtils.recycleSilently(bitmap);
         }
-        BitmapUtils.recycleSilently(mBackup);
+        BitmapUtils.recycleSilently(mBackup);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.BitmapTileProvider.recycle()",this,throwable);throw throwable;}
     }
 
     public int getRotation() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.BitmapTileProvider.getRotation()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.BitmapTileProvider.getRotation()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.BitmapTileProvider.getRotation()",this,throwable);throw throwable;}
     }
 
     public boolean isFailedToLoad() {
-        return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.BitmapTileProvider.isFailedToLoad()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.BitmapTileProvider.isFailedToLoad()",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.BitmapTileProvider.isFailedToLoad()",this,throwable);throw throwable;}
     }
 }

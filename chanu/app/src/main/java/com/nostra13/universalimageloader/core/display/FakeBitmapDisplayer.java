@@ -33,7 +33,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 public final class FakeBitmapDisplayer implements BitmapDisplayer {
 	@Override
 	public Bitmap display(Bitmap bitmap, ImageView imageView) {
-		// Do nothing
-		return bitmap;
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.FakeBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,bitmap,imageView);try{/*// Do nothing*/
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.FakeBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.FakeBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 }

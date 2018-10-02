@@ -27,41 +27,41 @@ public class CheckableRelativeLayout extends RelativeLayout implements Checkable
 
     @Override
     protected void onFinishInflate() {
-        super.onFinishInflate();
-        setBackground();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableRelativeLayout.onFinishInflate()",this);try{super.onFinishInflate();
+        setBackground();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableRelativeLayout.onFinishInflate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableRelativeLayout.onFinishInflate()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean isChecked() {
-        return isChecked;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.CheckableRelativeLayout.isChecked()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.CheckableRelativeLayout.isChecked()",this);return isChecked;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.CheckableRelativeLayout.isChecked()",this,throwable);throw throwable;}
     }
 
     @Override
     public void setChecked(boolean checked) {
-        isChecked = checked;
-        setBackground();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableRelativeLayout.setChecked(boolean)",this,checked);try{isChecked = checked;
+        setBackground();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableRelativeLayout.setChecked(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableRelativeLayout.setChecked(boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     public void toggle() {
-        isChecked = !isChecked;
-        setBackground();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableRelativeLayout.toggle()",this);try{isChecked = !isChecked;
+        setBackground();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableRelativeLayout.toggle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableRelativeLayout.toggle()",this,throwable);throw throwable;}
     }
 
     protected void setBackground() {
-        if (isChecked)
-            setBackgroundResource(backgroundDrawable);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableRelativeLayout.setBackground()",this);try{if (isChecked)
+            {setBackgroundResource(backgroundDrawable);}
         else {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
-                deprecatedSetBackgroundDrawable(null);
+                {deprecatedSetBackgroundDrawable(null);}
             else
-                setBackground(null);
-        }
+                {setBackground(null);}
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableRelativeLayout.setBackground()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableRelativeLayout.setBackground()",this,throwable);throw throwable;}
     }
 
     @SuppressWarnings("deprecation")
     protected void deprecatedSetBackgroundDrawable(Drawable d) {
-        setBackgroundDrawable(d);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableRelativeLayout.deprecatedSetBackgroundDrawable(android.graphics.drawable.Drawable)",this,d);try{setBackgroundDrawable(d);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableRelativeLayout.deprecatedSetBackgroundDrawable(android.graphics.drawable.Drawable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableRelativeLayout.deprecatedSetBackgroundDrawable(android.graphics.drawable.Drawable)",this,throwable);throw throwable;}
     }
 
 }

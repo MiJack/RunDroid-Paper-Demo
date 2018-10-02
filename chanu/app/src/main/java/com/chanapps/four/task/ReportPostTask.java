@@ -56,46 +56,46 @@ public class ReportPostTask extends AsyncTask<ReportingPostDialogFragment, Void,
     }
 
     @Override
-    protected Integer doInBackground(ReportingPostDialogFragment... params) { // dialog is for callback
+    protected Integer doInBackground(ReportingPostDialogFragment... params) { com.mijack.Xlog.logMethodEnter("java.lang.Integer com.chanapps.four.task.ReportPostTask.doInBackground([com.chanapps.four.fragment.ReportingPostDialogFragment)",this,params);try{/*// dialog is for callback*/
         dialogFragment = params[0];
         try {
             MultipartEntity entity = buildMultipartEntity();
             if (entity == null) {
                 Log.e(TAG, "Null entity returned building report post");
-                return R.string.report_post_error;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.ReportPostTask.doInBackground([com.chanapps.four.fragment.ReportingPostDialogFragment)",this);return R.string.report_post_error;}
             }
 
             String response = executeReportPost(entity);
             if (response == null || response.isEmpty()) {
                 Log.e(TAG, "Null response posting report post");
-                return R.string.report_post_error;
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.ReportPostTask.doInBackground([com.chanapps.four.fragment.ReportingPostDialogFragment)",this);return R.string.report_post_error;}
             }
 
             ReportPostResponse reportPostResponse = new ReportPostResponse(context, response);
             reportPostResponse.processResponse();
 
             if (!postSuccessful(reportPostResponse))
-                return R.string.report_post_error;
+                {{com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.ReportPostTask.doInBackground([com.chanapps.four.fragment.ReportingPostDialogFragment)",this);return R.string.report_post_error;}}
 
-            return 0;
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.ReportPostTask.doInBackground([com.chanapps.four.fragment.ReportingPostDialogFragment)",this);return 0;}
         }
         catch (Exception e) {
             Log.e(TAG, "Error posting", e);
-            return R.string.report_post_error;
-        }
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.task.ReportPostTask.doInBackground([com.chanapps.four.fragment.ReportingPostDialogFragment)",this);return R.string.report_post_error;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.chanapps.four.task.ReportPostTask.doInBackground([com.chanapps.four.fragment.ReportingPostDialogFragment)",this,throwable);throw throwable;}
     }
 
     protected String reportTypeCode(int reportTypeIndex) {
-        switch (reportTypeIndex) {
-            case 0: return "vio";
-            case 1: return "illegal";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.task.ReportPostTask.reportTypeCode(int)",this,reportTypeIndex);try{switch (reportTypeIndex) {
+            case 0: {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.ReportPostTask.reportTypeCode(int)",this);return "vio";}
+            case 1: {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.ReportPostTask.reportTypeCode(int)",this);return "illegal";}
             case 2:
-            default: return "spam";
-        }
+            default: {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.ReportPostTask.reportTypeCode(int)",this);return "spam";}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.task.ReportPostTask.reportTypeCode(int)",this,throwable);throw throwable;}
     }
 
     protected MultipartEntity buildMultipartEntity() {
-        List<StringPart> partsList = new ArrayList<StringPart>();
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.task.ReportPostTask.buildMultipartEntity()",this);try{List<StringPart> partsList = new ArrayList<StringPart>();
         partsList.add(new StringPart("mode", "report", PartBase.ASCII_CHARSET));
         partsList.add(new StringPart("cat", reportTypeCode(reportTypeIndex), PartBase.ASCII_CHARSET));
         partsList.add(new StringPart("board", boardCode, PartBase.ASCII_CHARSET));
@@ -103,108 +103,108 @@ public class ReportPostTask extends AsyncTask<ReportingPostDialogFragment, Void,
         partsList.add(new StringPart("g-recaptcha-response", recaptchaResponse, PartBase.ASCII_CHARSET));
         Part[] parts = partsList.toArray(new Part[partsList.size()]);
         if (DEBUG)
-            dumpPartsList(partsList);
+            {dumpPartsList(partsList);}
         MultipartEntity entity = new MultipartEntity(parts);
-        return entity;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.task.ReportPostTask.buildMultipartEntity()",this);return entity;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.task.ReportPostTask.buildMultipartEntity()",this,throwable);throw throwable;}
     }
 
     protected void dumpPartsList(List<StringPart> partsList) {
-        if (DEBUG) Log.i(TAG, "Dumping mime parts list:");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.ReportPostTask.dumpPartsList(java.util.ArrayList)",this,partsList);try{if (DEBUG) {Log.i(TAG, "Dumping mime parts list:");}
         for (Part p : partsList) {
             if (!(p instanceof StringPart))
-                continue;
+                {continue;}
             StringPart s = (StringPart)p;
             String line = s.getName() + ": " + s.getValue() + ", ";
-            if (DEBUG) Log.i(TAG, line);
-        }
+            if (DEBUG) {Log.i(TAG, line);}
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.ReportPostTask.dumpPartsList(java.util.ArrayList)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.ReportPostTask.dumpPartsList(java.util.ArrayList)",this,throwable);throw throwable;}
     }
 
     protected String executeReportPost(MultipartEntity entity) {
-        String url = String.format(URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_POST_URL_DELETE_FORMAT), boardCode);;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.task.ReportPostTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this,entity);try{String url = String.format(URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_POST_URL_DELETE_FORMAT), boardCode);;
         AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
         try {
             HttpPost request = new HttpPost(url);
             entity.setContentEncoding(PartBase.ASCII_CHARSET);
             request.setEntity(entity);
             if (DEBUG)
-                dumpRequestContent(request.getEntity().getContent());
-            if (DEBUG) Log.i(TAG, "Calling URL: " + request.getURI());
+                {dumpRequestContent(request.getEntity().getContent());}
+            if (DEBUG) {Log.i(TAG, "Calling URL: " + request.getURI());}
             HttpResponse httpResponse = client.execute(request);
-            if (DEBUG) Log.i(TAG, "Response: " + (httpResponse == null ? "null" : "length: " + httpResponse.toString().length()));
+            if (DEBUG) {Log.i(TAG, "Response: " + (httpResponse == null ? "null" : "length: " + httpResponse.toString().length()));}
             if (httpResponse == null) {
                 Log.e(TAG, context.getString(R.string.report_post_no_response));
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.ReportPostTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this);return null;}
             }
             BufferedReader r = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
             StringBuilder s = new StringBuilder();
             String line;
             while ((line = r.readLine()) != null) {
-                if (DEBUG) Log.i(TAG, "Response Line:" + line);
+                if (DEBUG) {Log.i(TAG, "Response Line:" + line);}
                 s.append(line);
             }
             String response = s.toString();
-            return response;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.ReportPostTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this);return response;}
         }
         catch (Exception e) {
             Log.e(TAG, "Exception while posting to url=" + url, e);
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.task.ReportPostTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this);return null;}
         }
         finally {
             if (client != null) {
                 client.close();
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.task.ReportPostTask.executeReportPost(com.chanapps.four.multipartmime.MultipartEntity)",this,throwable);throw throwable;}
     }
 
     protected void dumpRequestContent(InputStream is) {
-        if (DEBUG) Log.i(TAG, "Request Message Body:");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.ReportPostTask.dumpRequestContent(java.io.InputStream)",this,is);try{if (DEBUG) {Log.i(TAG, "Request Message Body:");}
         try {
             BufferedReader r = new BufferedReader(new InputStreamReader(is));
             String l;
             while ((l = r.readLine()) != null)
-                if (DEBUG) Log.i(TAG, l);
+                {if (DEBUG) {Log.i(TAG, l);}}
         }
         catch (IOException e) {
-            if (DEBUG) Log.i(TAG, "Exception reading message for logging", e);
-        }
+            if (DEBUG) {Log.i(TAG, "Exception reading message for logging", e);}
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.ReportPostTask.dumpRequestContent(java.io.InputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.ReportPostTask.dumpRequestContent(java.io.InputStream)",this,throwable);throw throwable;}
     }
 
     protected String errorMessage = null;
 
     protected boolean postSuccessful(ReportPostResponse reportPostResponse) {
-        errorMessage = reportPostResponse.getError(context);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.task.ReportPostTask.postSuccessful(com.chanapps.four.data.ReportPostResponse)",this,reportPostResponse);try{errorMessage = reportPostResponse.getError(context);
         if (errorMessage != null && !errorMessage.isEmpty()) {
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.task.ReportPostTask.postSuccessful(com.chanapps.four.data.ReportPostResponse)",this);return false;}
         }
 
-        if (DEBUG) Log.i(TAG, "isPosted:" + reportPostResponse.isPosted());
+        if (DEBUG) {Log.i(TAG, "isPosted:" + reportPostResponse.isPosted());}
         if (!reportPostResponse.isPosted()) {
             Log.e(TAG, "Unable to post response=" + reportPostResponse.getResponse());
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.task.ReportPostTask.postSuccessful(com.chanapps.four.data.ReportPostResponse)",this);return false;}
         }
 
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.task.ReportPostTask.postSuccessful(com.chanapps.four.data.ReportPostResponse)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.task.ReportPostTask.postSuccessful(com.chanapps.four.data.ReportPostResponse)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onCancelled() {
-        Log.e(TAG, "Post cancelled");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.ReportPostTask.onCancelled()",this);try{Log.e(TAG, "Post cancelled");
         Toast.makeText(context, R.string.report_post_cancelled, Toast.LENGTH_SHORT).show();
-        dialogFragment.dismiss();
+        dialogFragment.dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.ReportPostTask.onCancelled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.ReportPostTask.onCancelled()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostExecute(Integer result) {
-        if (result != 0) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.task.ReportPostTask.onPostExecute(java.lang.Integer)",this,result);try{if (result != 0) {
             String error = context.getString(result) + (errorMessage == null ? "" : ": " + errorMessage);
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(context, R.string.report_post_successful, Toast.LENGTH_SHORT).show();
-            // actually no reason to refresh when reporting posts, as nothing happens
-            //refreshableActivity.refresh();
+            /*// actually no reason to refresh when reporting posts, as nothing happens*/
+            /*//refreshableActivity.refresh();*/
         }
-        dialogFragment.dismiss();
+        dialogFragment.dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.task.ReportPostTask.onPostExecute(java.lang.Integer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.task.ReportPostTask.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
     }
 
 }

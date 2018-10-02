@@ -34,7 +34,7 @@ public class ScrollerHelper {
     }
 
     public void setOverfling(boolean enabled) {
-        mOverflingEnabled = enabled;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollerHelper.setOverfling(boolean)",this,enabled);try{mOverflingEnabled = enabled;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollerHelper.setOverfling(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollerHelper.setOverfling(boolean)",this,throwable);throw throwable;}
     }
 
     /**
@@ -43,54 +43,54 @@ public class ScrollerHelper {
      * animation is not yet finished.
      */
     public boolean advanceAnimation(long currentTimeMillis) {
-        return mScroller.computeScrollOffset();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.ScrollerHelper.advanceAnimation(long)",this,currentTimeMillis);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ScrollerHelper.advanceAnimation(long)",this);return mScroller.computeScrollOffset();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.ScrollerHelper.advanceAnimation(long)",this,throwable);throw throwable;}
     }
 
     public boolean isFinished() {
-        return mScroller.isFinished();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.ScrollerHelper.isFinished()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ScrollerHelper.isFinished()",this);return mScroller.isFinished();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.ScrollerHelper.isFinished()",this,throwable);throw throwable;}
     }
 
     public void forceFinished() {
-        mScroller.forceFinished(true);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollerHelper.forceFinished()",this);try{mScroller.forceFinished(true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollerHelper.forceFinished()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollerHelper.forceFinished()",this,throwable);throw throwable;}
     }
 
     public int getPosition() {
-        return mScroller.getCurrX();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.ScrollerHelper.getPosition()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.ScrollerHelper.getPosition()",this);return mScroller.getCurrX();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.ScrollerHelper.getPosition()",this,throwable);throw throwable;}
     }
 
     public float getCurrVelocity() {
-        return mScroller.getCurrVelocity();
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.ui.ScrollerHelper.getCurrVelocity()",this);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.ui.ScrollerHelper.getCurrVelocity()",this);return mScroller.getCurrVelocity();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.ui.ScrollerHelper.getCurrVelocity()",this,throwable);throw throwable;}
     }
 
     public void setPosition(int position) {
-        mScroller.startScroll(
-                position, 0,    // startX, startY
-                0, 0, 0);       // dx, dy, duration
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollerHelper.setPosition(int)",this,position);try{mScroller.startScroll(
+                position, 0,    /*// startX, startY*/
+                0, 0, 0);       /*// dx, dy, duration*/
 
-        // This forces the scroller to reach the final position.
-        mScroller.abortAnimation();
+        /*// This forces the scroller to reach the final position.*/
+        mScroller.abortAnimation();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollerHelper.setPosition(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollerHelper.setPosition(int)",this,throwable);throw throwable;}
     }
 
     public void fling(int velocity, int min, int max) {
-        int currX = getPosition();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollerHelper.fling(int,int,int)",this,velocity,min,max);try{int currX = getPosition();
         mScroller.fling(
-                currX, 0,      // startX, startY
-                velocity, 0,   // velocityX, velocityY
-                min, max,      // minX, maxX
-                0, 0,          // minY, maxY
-                mOverflingEnabled ? mOverflingDistance : 0, 0);
+                currX, 0,      /*// startX, startY*/
+                velocity, 0,   /*// velocityX, velocityY*/
+                min, max,      /*// minX, maxX*/
+                0, 0,          /*// minY, maxY*/
+                mOverflingEnabled ? mOverflingDistance : 0, 0);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollerHelper.fling(int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollerHelper.fling(int,int,int)",this,throwable);throw throwable;}
     }
 
-    // Returns the distance that over the scroll limit.
+    /*// Returns the distance that over the scroll limit.*/
     public int startScroll(int distance, int min, int max) {
-        int currPosition = mScroller.getCurrX();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.ScrollerHelper.startScroll(int,int,int)",this,distance,min,max);try{int currPosition = mScroller.getCurrX();
         int finalPosition = mScroller.getFinalX();
         int newPosition = Utils.clamp(finalPosition + distance, min, max);
         if (newPosition != currPosition) {
             mScroller.startScroll(
-                currPosition, 0,                    // startX, startY
-                newPosition - currPosition, 0, 0);  // dx, dy, duration
+                currPosition, 0,                    /*// startX, startY*/
+                newPosition - currPosition, 0, 0);  /*// dx, dy, duration*/
         }
-        return finalPosition + distance - newPosition;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.ScrollerHelper.startScroll(int,int,int)",this);return finalPosition + distance - newPosition;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.ScrollerHelper.startScroll(int,int,int)",this,throwable);throw throwable;}
     }
 }

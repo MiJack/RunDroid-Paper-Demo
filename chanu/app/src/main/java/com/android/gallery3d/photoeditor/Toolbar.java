@@ -48,8 +48,8 @@ public class Toolbar extends RelativeLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        idleHandler.killIdle();
-        return super.dispatchTouchEvent(ev);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.Toolbar.dispatchTouchEvent(android.view.MotionEvent)",this,ev);try{idleHandler.killIdle();
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.Toolbar.dispatchTouchEvent(android.view.MotionEvent)",this);return super.dispatchTouchEvent(ev);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.Toolbar.dispatchTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     private static class ToolbarIdleHandler implements OnHierarchyChangeListener {
@@ -68,7 +68,7 @@ public class Toolbar extends RelativeLayout {
 
                 @Override
                 public void handleMessage(Message msg) {
-                    switch (msg.what) {
+                    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler$1.handleMessage(android.os.Message)",this,msg);try{switch (msg.what) {
                         case MAKE_IDLE:
                             if (!idle) {
                                 idle = true;
@@ -77,7 +77,7 @@ public class Toolbar extends RelativeLayout {
                                 }
                             }
                             break;
-                    }
+                    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler$1.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
                 }
             };
 
@@ -86,27 +86,27 @@ public class Toolbar extends RelativeLayout {
         }
 
         public void killIdle() {
-            mainHandler.removeMessages(MAKE_IDLE);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.killIdle()",this);try{mainHandler.removeMessages(MAKE_IDLE);
             if (idle) {
                 idle = false;
                 for (View view : childViews) {
                     view.startAnimation(fadeIn);
                 }
             }
-            mainHandler.sendEmptyMessageDelayed(MAKE_IDLE, TIMEOUT_IDLE);
+            mainHandler.sendEmptyMessageDelayed(MAKE_IDLE, TIMEOUT_IDLE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.killIdle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.killIdle()",this,throwable);throw throwable;}
         }
 
         @Override
         public void onChildViewAdded(View parent, View child) {
-            // All child views, except photo-view, will fade out on inactivity timeout.
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.onChildViewAdded(android.view.View,android.view.View)",this,parent,child);try{/*// All child views, except photo-view, will fade out on inactivity timeout.*/
             if (child.getId() != R.id.photo_view) {
                 childViews.add(child);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.onChildViewAdded(android.view.View,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.onChildViewAdded(android.view.View,android.view.View)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onChildViewRemoved(View parent, View child) {
-            childViews.remove(child);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.onChildViewRemoved(android.view.View,android.view.View)",this,parent,child);try{childViews.remove(child);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.onChildViewRemoved(android.view.View,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.Toolbar$ToolbarIdleHandler.onChildViewRemoved(android.view.View,android.view.View)",this,throwable);throw throwable;}
         }
     }
 }

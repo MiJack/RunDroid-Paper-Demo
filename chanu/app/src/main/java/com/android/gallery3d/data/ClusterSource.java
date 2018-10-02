@@ -51,14 +51,14 @@ class ClusterSource extends MediaSource {
         mMatcher.add("/cluster/*/face/*", CLUSTER_ALBUM_FACE);
     }
 
-    // The names we accept are:
-    // /cluster/{set}/time      /cluster/{set}/time/k
-    // /cluster/{set}/location  /cluster/{set}/location/k
-    // /cluster/{set}/tag       /cluster/{set}/tag/encoded_tag
-    // /cluster/{set}/size      /cluster/{set}/size/min_size
+    /*// The names we accept are:*/
+    /*// /cluster/{set}/time      /cluster/{set}/time/k*/
+    /*// /cluster/{set}/location  /cluster/{set}/location/k*/
+    /*// /cluster/{set}/tag       /cluster/{set}/tag/encoded_tag*/
+    /*// /cluster/{set}/size      /cluster/{set}/size/min_size*/
     @Override
     public MediaObject createMediaObject(Path path) {
-        int matchType = mMatcher.match(path);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ClusterSource.createMediaObject(com.android.gallery3d.data.Path)",this,path);try{int matchType = mMatcher.match(path);
         String setsName = mMatcher.getVar(0);
         DataManager dataManager = mApplication.getDataManager();
         MediaSet[] sets = dataManager.getMediaSetsFromString(setsName);
@@ -68,19 +68,19 @@ class ClusterSource extends MediaSource {
             case CLUSTER_ALBUMSET_TAG:
             case CLUSTER_ALBUMSET_SIZE:
             case CLUSTER_ALBUMSET_FACE:
-                return new ClusterAlbumSet(path, mApplication, sets[0], matchType);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ClusterSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new ClusterAlbumSet(path, mApplication, sets[0], matchType);}
             case CLUSTER_ALBUM_TIME:
             case CLUSTER_ALBUM_LOCATION:
             case CLUSTER_ALBUM_TAG:
             case CLUSTER_ALBUM_SIZE:
             case CLUSTER_ALBUM_FACE: {
                 MediaSet parent = dataManager.getMediaSet(path.getParent());
-                // The actual content in the ClusterAlbum will be filled later
-                // when the reload() method in the parent is run.
-                return new ClusterAlbum(path, dataManager, parent);
+                /*// The actual content in the ClusterAlbum will be filled later*/
+                /*// when the reload() method in the parent is run.*/
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ClusterSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new ClusterAlbum(path, dataManager, parent);}
             }
             default:
                 throw new RuntimeException("bad path: " + path);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ClusterSource.createMediaObject(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 }

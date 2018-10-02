@@ -33,7 +33,7 @@ public class ChanAlbum extends MediaSet {
 	
 	public ChanAlbum(Path path, GalleryApp application, ChanThread thread) {
 		super(path, nextVersionNumber());
-        if (thread == null) { // in case something went wrong
+        if (thread == null) { /*// in case something went wrong*/
             this.board = ChanBoard.DEFAULT_BOARD_CODE;
             ChanBoard board = ChanBoard.getBoardByCode(application.getAndroidContext(), this.board);
             String rawName = ChanBoard.getName(application.getAndroidContext(), this.board);
@@ -46,7 +46,7 @@ public class ChanAlbum extends MediaSet {
 		this.board = thread.board;
 		this.name = "/" + board + "/" + thread.no;
 		this.threadNo = thread.no;
-        if (DEBUG) Log.i(TAG, "ChanAlbum thread=" + thread);
+        if (DEBUG) {Log.i(TAG, "ChanAlbum thread=" + thread);}
 		for (ChanPost post : thread.posts) {
 			if (post.tim != 0) {
 				post.isDead = thread.isDead;
@@ -57,12 +57,12 @@ public class ChanAlbum extends MediaSet {
 
 	@Override
 	public String getName() {
-		return name;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.gallery.ChanAlbum.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.gallery.ChanAlbum.getName()",this);return name;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.gallery.ChanAlbum.getName()",this,throwable);throw throwable;}
 	}
 
 	@Override
     public ArrayList<MediaItem> getMediaItem(int start, int count) {
-		ArrayList<MediaItem> result = new ArrayList<MediaItem>();
+		com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.chanapps.four.gallery.ChanAlbum.getMediaItem(int,int)",this,start,count);try{ArrayList<MediaItem> result = new ArrayList<MediaItem>();
 		for (int i = 0; i < count; i++) {
 			if (i + start < posts.size()) {
 				ChanPost post = posts.get(i + start);
@@ -74,23 +74,23 @@ public class ChanAlbum extends MediaSet {
 				}
 			}
 		}
-		return result;
+		{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.chanapps.four.gallery.ChanAlbum.getMediaItem(int,int)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.chanapps.four.gallery.ChanAlbum.getMediaItem(int,int)",this,throwable);throw throwable;}
 	}
 	
 	@Override
     public int getMediaItemCount() {
-		return posts.size();
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.ChanAlbum.getMediaItemCount()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanAlbum.getMediaItemCount()",this);return posts.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.ChanAlbum.getMediaItemCount()",this,throwable);throw throwable;}
 	}
 	
 	@Override
     public boolean isLeafAlbum() {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.gallery.ChanAlbum.isLeafAlbum()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.ChanAlbum.isLeafAlbum()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.gallery.ChanAlbum.isLeafAlbum()",this,throwable);throw throwable;}
     }
 
 	@Override
 	public long reload() {
-        if (application == null)
-            return mDataVersion;
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.gallery.ChanAlbum.reload()",this);try{if (application == null)
+            {{com.mijack.Xlog.logMethodExit("long com.chanapps.four.gallery.ChanAlbum.reload()",this);return mDataVersion;}}
 		ChanThread thread = ChanFileStorage.loadThreadData(application.getAndroidContext(), board, threadNo);
 		int prevSize = posts.size();
 		posts.clear();
@@ -100,9 +100,9 @@ public class ChanAlbum extends MediaSet {
 			}
 		}
 		if (prevSize != posts.size()) {
-			return nextVersionNumber();
+			{com.mijack.Xlog.logMethodExit("long com.chanapps.four.gallery.ChanAlbum.reload()",this);return nextVersionNumber();}
 		} else {
-			return mDataVersion;
-		}
+			{com.mijack.Xlog.logMethodExit("long com.chanapps.four.gallery.ChanAlbum.reload()",this);return mDataVersion;}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.gallery.ChanAlbum.reload()",this,throwable);throw throwable;}
 	}
 }

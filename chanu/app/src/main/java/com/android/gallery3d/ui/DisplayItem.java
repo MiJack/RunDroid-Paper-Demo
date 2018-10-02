@@ -21,17 +21,17 @@ public abstract class DisplayItem {
     protected int mBoxWidth;
     protected int mBoxHeight;
 
-    // setBox() specifies the box that the DisplayItem should render into. It
-    // should be called before first render(). It may be called again between
-    // render() calls to change the size of the box.
+    /*// setBox() specifies the box that the DisplayItem should render into. It*/
+    /*// should be called before first render(). It may be called again between*/
+    /*// render() calls to change the size of the box.*/
     public void setBox(int width, int height) {
-        mBoxWidth = width;
-        mBoxHeight = height;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DisplayItem.setBox(int,int)",this,width,height);try{mBoxWidth = width;
+        mBoxHeight = height;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DisplayItem.setBox(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DisplayItem.setBox(int,int)",this,throwable);throw throwable;}
     }
 
-    // Return values of render():
-    // RENDER_MORE_PASS: more pass is needed for this item
-    // RENDER_MORE_FRAME: need to render next frame (used for animation)
+    /*// Return values of render():*/
+    /*// RENDER_MORE_PASS: more pass is needed for this item*/
+    /*// RENDER_MORE_FRAME: need to render next frame (used for animation)*/
     public static final int RENDER_MORE_PASS = 1;
     public static final int RENDER_MORE_FRAME = 2;
 
@@ -40,6 +40,6 @@ public abstract class DisplayItem {
     public abstract long getIdentity();
 
     public int getRotation() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.DisplayItem.getRotation()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.DisplayItem.getRotation()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.DisplayItem.getRotation()",this,throwable);throw throwable;}
     }
 }

@@ -60,12 +60,12 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter
             @Override
             @SuppressWarnings("unchecked")
             public void handleMessage(Message message) {
-                Utils.assertTrue(message.what == MSG_UPDATE_IMAGE);
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter$1.handleMessage(android.os.Message)",this,message);try{Utils.assertTrue(message.what == MSG_UPDATE_IMAGE);
                 if (mHasFullImage) {
                     onDecodeLargeComplete((ImageBundle) message.obj);
                 } else {
                     onDecodeThumbComplete((Future<Bitmap>) message.obj);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter$1.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
             }
         };
         mThreadPool = activity.getThreadPool();
@@ -84,8 +84,8 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter
     private FutureListener<BitmapRegionDecoder> mLargeListener =
             new FutureListener<BitmapRegionDecoder>() {
         public void onFutureDone(Future<BitmapRegionDecoder> future) {
-            BitmapRegionDecoder decoder = future.get();
-            if (decoder == null) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter$2.onFutureDone(com.android.gallery3d.util.Future)",this,future);try{BitmapRegionDecoder decoder = future.get();
+            if (decoder == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter$2.onFutureDone(com.android.gallery3d.util.Future)",this);return;}}
             int width = decoder.getWidth();
             int height = decoder.getHeight();
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -93,51 +93,51 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter
                     (float) SIZE_BACKUP / Math.max(width, height));
             Bitmap bitmap = decoder.decodeRegion(new Rect(0, 0, width, height), options);
             mHandler.sendMessage(mHandler.obtainMessage(
-                    MSG_UPDATE_IMAGE, new ImageBundle(decoder, bitmap)));
+                    MSG_UPDATE_IMAGE, new ImageBundle(decoder, bitmap)));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter$2.onFutureDone(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
         }
     };
 
     private FutureListener<Bitmap> mThumbListener =
             new FutureListener<Bitmap>() {
         public void onFutureDone(Future<Bitmap> future) {
-            mHandler.sendMessage(
-                    mHandler.obtainMessage(MSG_UPDATE_IMAGE, future));
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter$3.onFutureDone(com.android.gallery3d.util.Future)",this,future);try{mHandler.sendMessage(
+                    mHandler.obtainMessage(MSG_UPDATE_IMAGE, future));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter$3.onFutureDone(com.android.gallery3d.util.Future)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter$3.onFutureDone(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
         }
     };
 
     public boolean isEmpty() {
-        return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.SinglePhotoDataAdapter.isEmpty()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.SinglePhotoDataAdapter.isEmpty()",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.SinglePhotoDataAdapter.isEmpty()",this,throwable);throw throwable;}
     }
 
     public int getImageRotation() {
-        return mItem.getRotation();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.SinglePhotoDataAdapter.getImageRotation()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.SinglePhotoDataAdapter.getImageRotation()",this);return mItem.getRotation();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.SinglePhotoDataAdapter.getImageRotation()",this,throwable);throw throwable;}
     }
 
     private void onDecodeLargeComplete(ImageBundle bundle) {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.onDecodeLargeComplete(com.android.gallery3d.app.SinglePhotoDataAdapter$ImageBundle)",this,bundle);try{try {
             setBackupImage(bundle.backupImage,
                     bundle.decoder.getWidth(), bundle.decoder.getHeight());
             setRegionDecoder(bundle.decoder);
             mPhotoView.notifyImageInvalidated(0);
         } catch (Throwable t) {
             Log.w(TAG, "fail to decode large", t);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.onDecodeLargeComplete(com.android.gallery3d.app.SinglePhotoDataAdapter$ImageBundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.onDecodeLargeComplete(com.android.gallery3d.app.SinglePhotoDataAdapter$ImageBundle)",this,throwable);throw throwable;}
     }
 
     private void onDecodeThumbComplete(Future<Bitmap> future) {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.onDecodeThumbComplete(com.android.gallery3d.util.Future)",this,future);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.onDecodeThumbComplete(com.android.gallery3d.util.Future)",this);try {
             Bitmap backup = future.get();
-            if (backup == null) return;
+            if (backup == null) {return;}
             setBackupImage(backup, backup.getWidth(), backup.getHeight());
             mPhotoView.notifyOnNewImage();
-            mPhotoView.notifyImageInvalidated(0); // the current image
+            mPhotoView.notifyImageInvalidated(0); /*// the current image*/
         } catch (Throwable t) {
             Log.w(TAG, "fail to decode thumb", t);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.onDecodeThumbComplete(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        if (mTask == null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.resume()",this);try{if (mTask == null) {
             if (mHasFullImage) {
                 mTask = mThreadPool.submit(
                         mItem.requestLargeImage(), mLargeListener);
@@ -146,47 +146,47 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter
                         mItem.requestImage(MediaItem.TYPE_THUMBNAIL),
                         mThumbListener);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.resume()",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        Future<?> task = mTask;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.pause()",this);try{Future<?> task = mTask;
         task.cancel();
         task.waitDone();
         if (task.get() == null) {
             mTask = null;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.pause()",this,throwable);throw throwable;}
     }
 
     public ImageData getNextImage() {
-        return null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.SinglePhotoDataAdapter.getNextImage()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.SinglePhotoDataAdapter.getNextImage()",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.SinglePhotoDataAdapter.getNextImage()",this,throwable);throw throwable;}
     }
 
     public ImageData getPreviousImage() {
-        return null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.SinglePhotoDataAdapter.getPreviousImage()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.SinglePhotoDataAdapter.getPreviousImage()",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.SinglePhotoDataAdapter.getPreviousImage()",this,throwable);throw throwable;}
     }
 
     public void next() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.next()",this);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.next()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.next()",this,throwable);throw throwable;}
     }
 
     public void previous() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.previous()",this);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.previous()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.previous()",this,throwable);throw throwable;}
     }
 
     public void jumpTo(int index) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.jumpTo(int)",this,index);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.jumpTo(int)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.jumpTo(int)",this,throwable);throw throwable;}
     }
 
     public MediaItem getCurrentMediaItem() {
-        return mItem;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.SinglePhotoDataAdapter.getCurrentMediaItem()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.SinglePhotoDataAdapter.getCurrentMediaItem()",this);return mItem;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.SinglePhotoDataAdapter.getCurrentMediaItem()",this,throwable);throw throwable;}
     }
 
     public int getCurrentIndex() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.SinglePhotoDataAdapter.getCurrentIndex()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.SinglePhotoDataAdapter.getCurrentIndex()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.SinglePhotoDataAdapter.getCurrentIndex()",this,throwable);throw throwable;}
     }
 
     public void setCurrentPhoto(Path path, int indexHint) {
-        // ignore
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SinglePhotoDataAdapter.setCurrentPhoto(com.android.gallery3d.data.Path,int)",this,path,indexHint);try{/*// ignore*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SinglePhotoDataAdapter.setCurrentPhoto(com.android.gallery3d.data.Path,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SinglePhotoDataAdapter.setCurrentPhoto(com.android.gallery3d.data.Path,int)",this,throwable);throw throwable;}
     }
 }

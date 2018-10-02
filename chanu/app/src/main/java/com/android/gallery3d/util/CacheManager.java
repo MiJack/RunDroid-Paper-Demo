@@ -33,12 +33,12 @@ public class CacheManager {
             new HashMap<String, BlobCache>();
     private static boolean sOldCheckDone = false;
 
-    // Return null when we cannot instantiate a BlobCache, e.g.:
-    // there is no SD card found.
-    // This can only be called from data thread.
+    /*// Return null when we cannot instantiate a BlobCache, e.g.:*/
+    /*// there is no SD card found.*/
+    /*// This can only be called from data thread.*/
     public static BlobCache getCache(Context context, String filename,
             int maxEntries, int maxBytes, int version) {
-        synchronized (sCacheMap) {
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.common.BlobCache com.android.gallery3d.util.CacheManager.getCache(android.content.Context,java.lang.String,int,int,int)",context,filename,maxEntries,maxBytes,version);try{com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.common.BlobCache com.android.gallery3d.util.CacheManager.getCache(android.content.Context,java.lang.String,int,int,int)");synchronized (sCacheMap) {
             if (!sOldCheckDone) {
                 removeOldFilesIfNecessary(context);
                 sOldCheckDone = true;
@@ -56,20 +56,20 @@ public class CacheManager {
                 }
             }
             return cache;
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.common.BlobCache com.android.gallery3d.util.CacheManager.getCache(android.content.Context,java.lang.String,int,int,int)",throwable);throw throwable;}
     }
 
-    // Removes the old files if the data is wiped.
+    /*// Removes the old files if the data is wiped.*/
     private static void removeOldFilesIfNecessary(Context context) {
-        SharedPreferences pref = PreferenceManager
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.util.CacheManager.removeOldFilesIfNecessary(android.content.Context)",context);try{SharedPreferences pref = PreferenceManager
                 .getDefaultSharedPreferences(context);
         int n = 0;
         try {
             n = pref.getInt(KEY_CACHE_UP_TO_DATE, 0);
         } catch (Throwable t) {
-            // ignore.
+            /*// ignore.*/
         }
-        if (n != 0) return;
+        if (n != 0) {{com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.util.CacheManager.removeOldFilesIfNecessary(android.content.Context)");return;}}
         pref.edit().putInt(KEY_CACHE_UP_TO_DATE, 1).commit();
 
         File cacheDir = context.getExternalCacheDir();
@@ -77,6 +77,6 @@ public class CacheManager {
 
         BlobCache.deleteFiles(prefix + "imgcache");
         BlobCache.deleteFiles(prefix + "rev_geocoding");
-        BlobCache.deleteFiles(prefix + "bookmark");
+        BlobCache.deleteFiles(prefix + "bookmark");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.util.CacheManager.removeOldFilesIfNecessary(android.content.Context)",throwable);throw throwable;}
     }
 }

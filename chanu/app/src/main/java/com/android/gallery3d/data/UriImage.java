@@ -63,28 +63,28 @@ public class UriImage extends MediaItem {
     }
 
     private String getMimeType(Uri uri) {
-        if (ContentResolver.SCHEME_FILE.equals(uri.getScheme())) {
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.UriImage.getMimeType(android.net.Uri)",this,uri);try{if (ContentResolver.SCHEME_FILE.equals(uri.getScheme())) {
             String extension =
                     MimeTypeMap.getFileExtensionFromUrl(uri.toString());
             String type = MimeTypeMap.getSingleton()
                     .getMimeTypeFromExtension(extension);
-            if (type != null) return type;
+            if (type != null) {{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.UriImage.getMimeType(android.net.Uri)",this);return type;}}
         }
-        return mApplication.getContentResolver().getType(uri);
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.UriImage.getMimeType(android.net.Uri)",this);return mApplication.getContentResolver().getType(uri);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.UriImage.getMimeType(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     public Job<Bitmap> requestImage(int type) {
-        return new BitmapJob(type);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.UriImage.requestImage(int)",this,type);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.UriImage.requestImage(int)",this);return new BitmapJob(type);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.UriImage.requestImage(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public Job<BitmapRegionDecoder> requestLargeImage() {
-        return new RegionDecoderJob();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.UriImage.requestLargeImage()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.UriImage.requestLargeImage()",this);return new RegionDecoderJob();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool.Job com.android.gallery3d.data.UriImage.requestLargeImage()",this,throwable);throw throwable;}
     }
 
     private void openFileOrDownloadTempFile(JobContext jc) {
-        int state = openOrDownloadInner(jc);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.UriImage.openFileOrDownloadTempFile(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{int state = openOrDownloadInner(jc);
         synchronized (this) {
             mState = state;
             if (mState != STATE_DOWNLOADED) {
@@ -94,83 +94,83 @@ public class UriImage extends MediaItem {
                 }
             }
             notifyAll();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.UriImage.openFileOrDownloadTempFile(com.android.gallery3d.util.ThreadPool.JobContext)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.UriImage.openFileOrDownloadTempFile(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
     }
 
     private int openOrDownloadInner(JobContext jc) {
-        String scheme = mUri.getScheme();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{String scheme = mUri.getScheme();
         if (ContentResolver.SCHEME_CONTENT.equals(scheme)
                 || ContentResolver.SCHEME_ANDROID_RESOURCE.equals(scheme)
                 || ContentResolver.SCHEME_FILE.equals(scheme)) {
             try {
                 mFileDescriptor = mApplication.getContentResolver()
                         .openFileDescriptor(mUri, "r");
-                if (jc.isCancelled()) return STATE_INIT;
-                return STATE_DOWNLOADED;
+                if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this);return STATE_INIT;}}
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this);return STATE_DOWNLOADED;}
             } catch (FileNotFoundException e) {
                 Log.w(TAG, "fail to open: " + mUri, e);
-                return STATE_ERROR;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this);return STATE_ERROR;}
             }
         } else {
             try {
                 URL url = new URI(mUri.toString()).toURL();
                 mCacheEntry = mApplication.getDownloadCache().download(jc, url);
-                if (jc.isCancelled()) return STATE_INIT;
+                if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this);return STATE_INIT;}}
                 if (mCacheEntry == null) {
                     Log.w(TAG, "download failed " + url);
-                    return STATE_ERROR;
+                    {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this);return STATE_ERROR;}
                 }
                 mFileDescriptor = ParcelFileDescriptor.open(
                         mCacheEntry.cacheFile, ParcelFileDescriptor.MODE_READ_ONLY);
-                return STATE_DOWNLOADED;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this);return STATE_DOWNLOADED;}
             } catch (Throwable t) {
                 Log.w(TAG, "download error", t);
-                return STATE_ERROR;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this);return STATE_ERROR;}
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.UriImage.openOrDownloadInner(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
     }
 
     private boolean prepareInputFile(JobContext jc) {
-        jc.setCancelListener(new CancelListener() {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.UriImage.prepareInputFile(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{jc.setCancelListener(new CancelListener() {
             public void onCancel() {
-                synchronized (this) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.UriImage$1.onCancel()",this);try{synchronized (this) {
                     notifyAll();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.UriImage$1.onCancel()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.UriImage$1.onCancel()",this,throwable);throw throwable;}
             }
         });
 
         while (true) {
             synchronized (this) {
-                if (jc.isCancelled()) return false;
+                if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.UriImage.prepareInputFile(com.android.gallery3d.util.ThreadPool.JobContext)",this);return false;}}
                 if (mState == STATE_INIT) {
                     mState = STATE_DOWNLOADING;
-                    // Then leave the synchronized block and continue.
+                    /*// Then leave the synchronized block and continue.*/
                 } else if (mState == STATE_ERROR) {
-                    return false;
+                    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.UriImage.prepareInputFile(com.android.gallery3d.util.ThreadPool.JobContext)",this);return false;}
                 } else if (mState == STATE_DOWNLOADED) {
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.UriImage.prepareInputFile(com.android.gallery3d.util.ThreadPool.JobContext)",this);return true;}
                 } else /* if (mState == STATE_DOWNLOADING) */ {
                     try {
                         wait();
                     } catch (InterruptedException ex) {
-                        // ignored.
+                        /*// ignored.*/
                     }
                     continue;
                 }
             }
-            // This is only reached for STATE_INIT->STATE_DOWNLOADING
+            /*// This is only reached for STATE_INIT->STATE_DOWNLOADING*/
             openFileOrDownloadTempFile(jc);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.UriImage.prepareInputFile(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
     }
 
     private class RegionDecoderJob implements Job<BitmapRegionDecoder> {
         public BitmapRegionDecoder run(JobContext jc) {
-            if (!prepareInputFile(jc)) return null;
+            com.mijack.Xlog.logMethodEnter("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.UriImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{if (!prepareInputFile(jc)) {{com.mijack.Xlog.logMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.UriImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}
             BitmapRegionDecoder decoder = DecodeUtils.requestCreateBitmapRegionDecoder(
                     jc, mFileDescriptor.getFileDescriptor(), false);
             mWidth = decoder.getWidth();
             mHeight = decoder.getHeight();
-            return decoder;
+            {com.mijack.Xlog.logMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.UriImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return decoder;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.UriImage$RegionDecoderJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 
@@ -182,14 +182,14 @@ public class UriImage extends MediaItem {
         }
 
         public Bitmap run(JobContext jc) {
-            if (!prepareInputFile(jc)) return null;
+            com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.UriImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{if (!prepareInputFile(jc)) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.UriImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}
             int targetSize = LocalImage.getTargetSize(mType);
             Options options = new Options();
             options.inPreferredConfig = Config.ARGB_8888;
             Bitmap bitmap = DecodeUtils.requestDecode(jc,
                     mFileDescriptor.getFileDescriptor(), options, targetSize);
             if (jc.isCancelled() || bitmap == null) {
-                return null;
+                {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.UriImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}
             }
 
             if (mType == MediaItem.TYPE_MICROTHUMBNAIL) {
@@ -200,41 +200,41 @@ public class UriImage extends MediaItem {
                         targetSize, true);
             }
 
-            return bitmap;
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.UriImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.UriImage$BitmapJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 
     @Override
     public int getSupportedOperations() {
-        int supported = SUPPORT_EDIT | SUPPORT_SETAS;
-        if (isSharable()) supported |= SUPPORT_SHARE;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.UriImage.getSupportedOperations()",this);try{int supported = SUPPORT_EDIT | SUPPORT_SETAS;
+        if (isSharable()) {supported |= SUPPORT_SHARE;}
         if (BitmapUtils.isSupportedByRegionDecoder(mContentType)) {
             supported |= SUPPORT_FULL_IMAGE;
         }
-        return supported;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.getSupportedOperations()",this);return supported;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.UriImage.getSupportedOperations()",this,throwable);throw throwable;}
     }
 
     private boolean isSharable() {
-        // We cannot grant read permission to the receiver since we put
-        // the data URI in EXTRA_STREAM instead of the data part of an intent
-        // And there are issues in MediaUploader and Bluetooth file sender to
-        // share a general image data. So, we only share for local file.
-        return ContentResolver.SCHEME_FILE.equals(mUri.getScheme());
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.UriImage.isSharable()",this);try{/*// We cannot grant read permission to the receiver since we put*/
+        /*// the data URI in EXTRA_STREAM instead of the data part of an intent*/
+        /*// And there are issues in MediaUploader and Bluetooth file sender to*/
+        /*// share a general image data. So, we only share for local file.*/
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.UriImage.isSharable()",this);return ContentResolver.SCHEME_FILE.equals(mUri.getScheme());}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.UriImage.isSharable()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getMediaType() {
-        return MEDIA_TYPE_IMAGE;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.UriImage.getMediaType()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.getMediaType()",this);return MEDIA_TYPE_IMAGE;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.UriImage.getMediaType()",this,throwable);throw throwable;}
     }
 
     @Override
     public Uri getContentUri() {
-        return mUri;
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.data.UriImage.getContentUri()",this);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.data.UriImage.getContentUri()",this);return mUri;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.data.UriImage.getContentUri()",this,throwable);throw throwable;}
     }
 
     @Override
     public MediaDetails getDetails() {
-        MediaDetails details = super.getDetails();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.UriImage.getDetails()",this);try{MediaDetails details = super.getDetails();
         if (mWidth != 0 && mHeight != 0) {
             details.addDetail(MediaDetails.INDEX_WIDTH, mWidth);
             details.addDetail(MediaDetails.INDEX_HEIGHT, mHeight);
@@ -245,32 +245,32 @@ public class UriImage extends MediaItem {
             details.addDetail(MediaDetails.INDEX_PATH, filePath);
             MediaDetails.extractExifInfo(details, filePath);
         }
-        return details;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.UriImage.getDetails()",this);return details;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.UriImage.getDetails()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getMimeType() {
-        return mContentType;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.UriImage.getMimeType()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.UriImage.getMimeType()",this);return mContentType;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.UriImage.getMimeType()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void finalize() throws Throwable {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.UriImage.finalize()",this);try{try {
             if (mFileDescriptor != null) {
                 Utils.closeSilently(mFileDescriptor);
             }
         } finally {
             super.finalize();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.UriImage.finalize()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.UriImage.finalize()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.UriImage.getWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.getWidth()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.UriImage.getWidth()",this,throwable);throw throwable;}
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.UriImage.getHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.UriImage.getHeight()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.UriImage.getHeight()",this,throwable);throw throwable;}
     }
 }

@@ -50,7 +50,7 @@ public class StateManager {
 
     public void startState(Class<? extends ActivityState> klass,
             Bundle data) {
-        Log.v(TAG, "startState " + klass);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.startState(java.lang.Class,android.os.Bundle)",this,klass,data);try{Log.v(TAG, "startState " + klass);
         ActivityState state = null;
         try {
             state = klass.newInstance();
@@ -59,22 +59,22 @@ public class StateManager {
         }
         if (!mStack.isEmpty()) {
             ActivityState top = getTopState();
-            if (mIsResumed) top.onPause();
+            if (mIsResumed) {top.onPause();}
         }
         state.initialize(mContext, data);
 
         mStack.push(new StateEntry(data, state));
         state.onCreate(data, null);
-        if (mIsResumed) state.resume();
+        if (mIsResumed) {state.resume();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.startState(java.lang.Class,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public void setLaunchGalleryOnTop(boolean enabled) {
-        mLaunchGalleryOnTop = enabled;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.setLaunchGalleryOnTop(boolean)",this,enabled);try{mLaunchGalleryOnTop = enabled;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.setLaunchGalleryOnTop(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.setLaunchGalleryOnTop(boolean)",this,throwable);throw throwable;}
     }
 
     public void startStateForResult(Class<? extends ActivityState> klass,
             int requestCode, Bundle data) {
-        Log.v(TAG, "startStateForResult " + klass + ", " + requestCode);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.startStateForResult(java.lang.Class,int,android.os.Bundle)",this,klass,requestCode,data);try{Log.v(TAG, "startStateForResult " + klass + ", " + requestCode);
         ActivityState state = null;
         try {
             state = klass.newInstance();
@@ -88,53 +88,53 @@ public class StateManager {
         if (!mStack.isEmpty()) {
             ActivityState as = getTopState();
             as.mReceivedResults = state.mResult;
-            if (mIsResumed) as.onPause();
+            if (mIsResumed) {as.onPause();}
         } else {
             mResult = state.mResult;
         }
 
         mStack.push(new StateEntry(data, state));
         state.onCreate(data, null);
-        if (mIsResumed) state.resume();
+        if (mIsResumed) {state.resume();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.startStateForResult(java.lang.Class,int,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public boolean createOptionsMenu(Menu menu) {
-        if (!mStack.isEmpty()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.StateManager.createOptionsMenu(android.view.Menu)",this,menu);try{if (!mStack.isEmpty()) {
             ((Activity) mContext).setProgressBarIndeterminateVisibility(false);
-            return getTopState().onCreateActionBar(menu);
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.StateManager.createOptionsMenu(android.view.Menu)",this);return getTopState().onCreateActionBar(menu);}
         } else {
-            return false;
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.StateManager.createOptionsMenu(android.view.Menu)",this);return false;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.StateManager.createOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     public void onConfigurationChange(Configuration config) {
-        for (StateEntry entry : mStack) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.onConfigurationChange(android.content.res.Configuration)",this,config);try{for (StateEntry entry : mStack) {
             entry.activityState.onConfigurationChanged(config);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.onConfigurationChange(android.content.res.Configuration)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.onConfigurationChange(android.content.res.Configuration)",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        if (mIsResumed) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.resume()",this);try{if (mIsResumed) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.resume()",this);return;}}
         mIsResumed = true;
-        if (!mStack.isEmpty()) getTopState().resume();
+        if (!mStack.isEmpty()) {getTopState().resume();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.resume()",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        if (!mIsResumed) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.pause()",this);try{if (!mIsResumed) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.pause()",this);return;}}
         mIsResumed = false;
-        if (!mStack.isEmpty()) getTopState().onPause();
+        if (!mStack.isEmpty()) {getTopState().onPause();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.pause()",this,throwable);throw throwable;}
     }
 
     public void notifyActivityResult(int requestCode, int resultCode, Intent data) {
-        getTopState().onStateResult(requestCode, resultCode, data);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.notifyActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,data);try{getTopState().onStateResult(requestCode, resultCode, data);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.notifyActivityResult(int,int,android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.notifyActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     public int getStateCount() {
-        return mStack.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.StateManager.getStateCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.StateManager.getStateCount()",this);return mStack.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.StateManager.getStateCount()",this,throwable);throw throwable;}
     }
 
     public boolean itemSelected(MenuItem item) {
-        if (!mStack.isEmpty()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.StateManager.itemSelected(android.view.MenuItem)",this,item);try{if (!mStack.isEmpty()) {
             if (item.getItemId() == android.R.id.home) {
                 if (mStack.size() > 1) {
                     getTopState().onBackPressed();
@@ -144,22 +144,22 @@ public class StateManager {
                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     ((Activity) mContext).startActivity(intent);
                 }
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.StateManager.itemSelected(android.view.MenuItem)",this);return true;}
             } else {
-                return getTopState().onItemSelected(item);
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.StateManager.itemSelected(android.view.MenuItem)",this);return getTopState().onItemSelected(item);}
             }
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.StateManager.itemSelected(android.view.MenuItem)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.StateManager.itemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     public void onBackPressed() {
-        if (!mStack.isEmpty()) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.onBackPressed()",this);try{if (!mStack.isEmpty()) {
             getTopState().onBackPressed();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.onBackPressed()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.onBackPressed()",this,throwable);throw throwable;}
     }
     
     public void compactActivityStateStack() {
-    	Class<? extends ActivityState> stateClass = getTopState().getClass();
+    	com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.compactActivityStateStack()",this);try{Class<? extends ActivityState> stateClass = getTopState().getClass();
     	for (int i = mStack.size() - 2; i >= 0; i--) {
     		StateEntry entry = mStack.get(i);
     		if (entry.activityState.getClass().equals(stateClass)) {
@@ -168,24 +168,24 @@ public class StateManager {
     		} else {
     			break;
     		}
-    	}
+    	}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.compactActivityStateStack()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.compactActivityStateStack()",this,throwable);throw throwable;}
     }
     
     public String getStackDescription() {
-    	StringBuffer buf = new StringBuffer();
+    	com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.app.StateManager.getStackDescription()",this);try{StringBuffer buf = new StringBuffer();
     	for (int i = mStack.size() - 1; i >= 0; i--) {
     		StateEntry entry = mStack.get(i);
     		buf.append(" " + i + ". " + entry.activityState.getClass());
     	}
-    	return buf.toString();
+    	{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.app.StateManager.getStackDescription()",this);return buf.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.StateManager.getStackDescription()",this,throwable);throw throwable;}
     }
 
     void finishState(ActivityState state) {
-        Log.v(TAG, "finishState " + state.getClass());
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.finishState(com.android.gallery3d.app.ActivityState)",this,state);try{Log.v(TAG, "finishState " + state.getClass());
         if (state != mStack.peek().activityState) {
             if (state.isDestroyed()) {
                 Log.d(TAG, "The state is already destroyed");
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.finishState(com.android.gallery3d.app.ActivityState)",this);return;}
             } else {
                 throw new IllegalArgumentException("The stateview to be finished"
                         + " is not at the top of the stack: " + state + ", "
@@ -193,9 +193,9 @@ public class StateManager {
             }
         }
 
-        // Remove the top state.
+        /*// Remove the top state.*/
         mStack.pop();
-        if (mIsResumed) state.onPause();
+        if (mIsResumed) {state.onPause();}
         mContext.getGLRoot().setContentPane(null);
         state.onDestroy();
 
@@ -207,33 +207,33 @@ public class StateManager {
             }
             activity.finish();
 
-            // The finish() request is rejected (only happens under Monkey),
-            // so we start the default page instead.
+            /*// The finish() request is rejected (only happens under Monkey),*/
+            /*// so we start the default page instead.*/
             if (!activity.isFinishing()) {
                 Log.v(TAG, "finish() failed, start default page");
                 ((Gallery) mContext).startDefaultPage();
             }
         } else {
-            // Restore the immediately previous state
+            /*// Restore the immediately previous state*/
             ActivityState top = mStack.peek().activityState;
-            if (mIsResumed) top.resume();
-        }
+            if (mIsResumed) {top.resume();}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.finishState(com.android.gallery3d.app.ActivityState)",this,throwable);throw throwable;}
     }
 
     void switchState(ActivityState oldState,
             Class<? extends ActivityState> klass, Bundle data) {
-        Log.v(TAG, "switchState " + oldState + ", " + klass);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.switchState(com.android.gallery3d.app.ActivityState,java.lang.Class,android.os.Bundle)",this,oldState,klass,data);try{Log.v(TAG, "switchState " + oldState + ", " + klass);
         if (oldState != mStack.peek().activityState) {
             throw new IllegalArgumentException("The stateview to be finished"
                     + " is not at the top of the stack: " + oldState + ", "
                     + mStack.peek().activityState);
         }
-        // Remove the top state.
+        /*// Remove the top state.*/
         mStack.pop();
-        if (mIsResumed) oldState.onPause();
+        if (mIsResumed) {oldState.onPause();}
         oldState.onDestroy();
 
-        // Create new state.
+        /*// Create new state.*/
         ActivityState state = null;
         try {
             state = klass.newInstance();
@@ -243,20 +243,20 @@ public class StateManager {
         state.initialize(mContext, data);
         mStack.push(new StateEntry(data, state));
         state.onCreate(data, null);
-        if (mIsResumed) state.resume();
+        if (mIsResumed) {state.resume();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.switchState(com.android.gallery3d.app.ActivityState,java.lang.Class,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public void destroy() {
-        Log.v(TAG, "destroy");
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.destroy()",this);try{Log.v(TAG, "destroy");
         while (!mStack.isEmpty()) {
             mStack.pop().activityState.onDestroy();
         }
-        mStack.clear();
+        mStack.clear();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.destroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.destroy()",this,throwable);throw throwable;}
     }
 
     @SuppressWarnings("unchecked")
     public void restoreFromState(Bundle inState) {
-        Log.v(TAG, "restoreFromState");
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.restoreFromState(android.os.Bundle)",this,inState);try{Log.v(TAG, "restoreFromState");
         mLaunchGalleryOnTop = inState.getBoolean(KEY_LAUNCH_GALLERY_ON_TOP, false);
         Parcelable list[] = inState.getParcelableArray(KEY_MAIN);
         for (Parcelable parcelable : list) {
@@ -277,11 +277,11 @@ public class StateManager {
             activityState.initialize(mContext, data);
             activityState.onCreate(data, state);
             mStack.push(new StateEntry(data, activityState));
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.restoreFromState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public void saveState(Bundle outState) {
-        Log.v(TAG, "saveState");
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.StateManager.saveState(android.os.Bundle)",this,outState);try{Log.v(TAG, "saveState");
 
         outState.putBoolean(KEY_LAUNCH_GALLERY_ON_TOP, mLaunchGalleryOnTop);
         Parcelable list[] = new Parcelable[mStack.size()];
@@ -296,21 +296,21 @@ public class StateManager {
             Log.v(TAG, "saveState " + entry.activityState.getClass());
             list[i++] = bundle;
         }
-        outState.putParcelableArray(KEY_MAIN, list);
+        outState.putParcelableArray(KEY_MAIN, list);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.StateManager.saveState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.StateManager.saveState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public boolean hasStateClass(Class<? extends ActivityState> klass) {
-        for (StateEntry entry : mStack) {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.StateManager.hasStateClass(java.lang.Class)",this,klass);try{for (StateEntry entry : mStack) {
             if (klass.isInstance(entry.activityState)) {
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.StateManager.hasStateClass(java.lang.Class)",this);return true;}
             }
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.StateManager.hasStateClass(java.lang.Class)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.StateManager.hasStateClass(java.lang.Class)",this,throwable);throw throwable;}
     }
 
     public ActivityState getTopState() {
-        Utils.assertTrue(!mStack.isEmpty());
-        return mStack.peek().activityState;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.app.ActivityState com.android.gallery3d.app.StateManager.getTopState()",this);try{Utils.assertTrue(!mStack.isEmpty());
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.app.ActivityState com.android.gallery3d.app.StateManager.getTopState()",this);return mStack.peek().activityState;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.app.ActivityState com.android.gallery3d.app.StateManager.getTopState()",this,throwable);throw throwable;}
     }
 
     private static class StateEntry {

@@ -43,13 +43,13 @@ public class AlphanumComparator implements Comparator
 {
     private final boolean isDigit(char ch)
     {
-        return ch >= 48 && ch <= 57;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.AlphanumComparator.isDigit(char)",this,ch);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.AlphanumComparator.isDigit(char)",this);return ch >= 48 && ch <= 57;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.AlphanumComparator.isDigit(char)",this,throwable);throw throwable;}
     }
 
     /** Length of string is passed in for improved efficiency (only need to calculate it once) **/
     private final String getChunk(String s, int slength, int marker)
     {
-        StringBuilder chunk = new StringBuilder();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.component.AlphanumComparator.getChunk(java.lang.String,int,int)",this,s,slength,marker);try{StringBuilder chunk = new StringBuilder();
         char c = s.charAt(marker);
         chunk.append(c);
         marker++;
@@ -59,7 +59,7 @@ public class AlphanumComparator implements Comparator
             {
                 c = s.charAt(marker);
                 if (!isDigit(c))
-                    break;
+                    {break;}
                 chunk.append(c);
                 marker++;
             }
@@ -69,19 +69,19 @@ public class AlphanumComparator implements Comparator
             {
                 c = s.charAt(marker);
                 if (isDigit(c))
-                    break;
+                    {break;}
                 chunk.append(c);
                 marker++;
             }
         }
-        return chunk.toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.component.AlphanumComparator.getChunk(java.lang.String,int,int)",this);return chunk.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.component.AlphanumComparator.getChunk(java.lang.String,int,int)",this,throwable);throw throwable;}
     }
 
     public int compare(Object o1, Object o2)
     {
-        if (!(o1 instanceof String) || !(o2 instanceof String))
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this,o1,o2);try{if (!(o1 instanceof String) || !(o2 instanceof String))
         {
-            return 0;
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this);return 0;}
         }
         String s1 = (String)o1;
         String s2 = (String)o2;
@@ -99,14 +99,14 @@ public class AlphanumComparator implements Comparator
             String thatChunk = getChunk(s2, s2Length, thatMarker);
             thatMarker += thatChunk.length();
 
-            // If both chunks contain numeric characters, sort them numerically
+            /*// If both chunks contain numeric characters, sort them numerically*/
             int result = 0;
             if (isDigit(thisChunk.charAt(0)) && isDigit(thatChunk.charAt(0)))
             {
-                // Simple chunk comparison by length.
+                /*// Simple chunk comparison by length.*/
                 int thisChunkLength = thisChunk.length();
                 result = thisChunkLength - thatChunk.length();
-                // If equal, the first different number counts
+                /*// If equal, the first different number counts*/
                 if (result == 0)
                 {
                     for (int i = 0; i < thisChunkLength; i++)
@@ -114,18 +114,18 @@ public class AlphanumComparator implements Comparator
                         result = thisChunk.charAt(i) - thatChunk.charAt(i);
                         if (result != 0)
                         {
-                            return result;
+                            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this);return result;}
                         }
                     }
                 }
             }
             else if (isDigit(thisChunk.charAt(0)))
             {
-                return 1;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this);return 1;}
             }
             else if (isDigit(thatChunk.charAt(0)))
             {
-                return -1;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this);return -1;}
             }
             else
             {
@@ -133,9 +133,9 @@ public class AlphanumComparator implements Comparator
             }
 
             if (result != 0)
-                return result;
+                {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this);return result;}}
         }
 
-        return s1Length - s2Length;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this);return s1Length - s2Length;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.component.AlphanumComparator.compare(java.lang.Object,java.lang.Object)",this,throwable);throw throwable;}
     }
 }

@@ -57,59 +57,59 @@ public class SelectionManager {
         mTotal = -1;
     }
 
-    // Whether we will leave selection mode automatically once the number of
-    // selected items is down to zero.
+    /*// Whether we will leave selection mode automatically once the number of*/
+    /*// selected items is down to zero.*/
     public void setAutoLeaveSelectionMode(boolean enable) {
-        mAutoLeave = enable;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.setAutoLeaveSelectionMode(boolean)",this,enable);try{mAutoLeave = enable;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.setAutoLeaveSelectionMode(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.setAutoLeaveSelectionMode(boolean)",this,throwable);throw throwable;}
     }
 
     public void setSelectionListener(SelectionListener listener) {
-        mListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.setSelectionListener(SelectionListener)",this,listener);try{mListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.setSelectionListener(SelectionListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.setSelectionListener(SelectionListener)",this,throwable);throw throwable;}
     }
 
     public void selectAll() {
-        mInverseSelection = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.selectAll()",this);try{mInverseSelection = true;
         mClickedSet.clear();
         enterSelectionMode();
-        if (mListener != null) mListener.onSelectionModeChange(SELECT_ALL_MODE);
+        if (mListener != null) {mListener.onSelectionModeChange(SELECT_ALL_MODE);}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.selectAll()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.selectAll()",this,throwable);throw throwable;}
     }
 
     public void deSelectAll() {
-        leaveSelectionMode();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.deSelectAll()",this);try{leaveSelectionMode();
         mInverseSelection = false;
-        mClickedSet.clear();
+        mClickedSet.clear();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.deSelectAll()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.deSelectAll()",this,throwable);throw throwable;}
     }
 
     public boolean inSelectAllMode() {
-        return mInverseSelection;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SelectionManager.inSelectAllMode()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SelectionManager.inSelectAllMode()",this);return mInverseSelection;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SelectionManager.inSelectAllMode()",this,throwable);throw throwable;}
     }
 
     public boolean inSelectionMode() {
-        return mInSelectionMode;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SelectionManager.inSelectionMode()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SelectionManager.inSelectionMode()",this);return mInSelectionMode;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SelectionManager.inSelectionMode()",this,throwable);throw throwable;}
     }
 
     public void enterSelectionMode() {
-        if (mInSelectionMode) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.enterSelectionMode()",this);try{if (mInSelectionMode) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.enterSelectionMode()",this);return;}}
 
         mInSelectionMode = true;
-        if (mListener != null) mListener.onSelectionModeChange(ENTER_SELECTION_MODE);
+        if (mListener != null) {mListener.onSelectionModeChange(ENTER_SELECTION_MODE);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.enterSelectionMode()",this,throwable);throw throwable;}
     }
 
     public void leaveSelectionMode() {
-        if (!mInSelectionMode) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.leaveSelectionMode()",this);try{if (!mInSelectionMode) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.leaveSelectionMode()",this);return;}}
 
         mInSelectionMode = false;
         mInverseSelection = false;
         mClickedSet.clear();
-        if (mListener != null) mListener.onSelectionModeChange(LEAVE_SELECTION_MODE);
+        if (mListener != null) {mListener.onSelectionModeChange(LEAVE_SELECTION_MODE);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.leaveSelectionMode()",this,throwable);throw throwable;}
     }
 
     public boolean isItemSelected(Path itemId) {
-        return mInverseSelection ^ mClickedSet.contains(itemId);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SelectionManager.isItemSelected(com.android.gallery3d.data.Path)",this,itemId);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SelectionManager.isItemSelected(com.android.gallery3d.data.Path)",this);return mInverseSelection ^ mClickedSet.contains(itemId);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SelectionManager.isItemSelected(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     public int getSelectedCount() {
-        int count = mClickedSet.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SelectionManager.getSelectedCount()",this);try{int count = mClickedSet.size();
         if (mInverseSelection) {
             if (mTotal < 0) {
                 mTotal = mIsAlbumSet
@@ -118,33 +118,33 @@ public class SelectionManager {
             }
             count = mTotal - count;
         }
-        return count;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SelectionManager.getSelectedCount()",this);return count;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SelectionManager.getSelectedCount()",this,throwable);throw throwable;}
     }
 
     public void toggle(Path path) {
-        if (mClickedSet.contains(path)) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.toggle(com.android.gallery3d.data.Path)",this,path);try{if (mClickedSet.contains(path)) {
             mClickedSet.remove(path);
         } else {
             enterSelectionMode();
             mClickedSet.add(path);
         }
 
-        if (mListener != null) mListener.onSelectionChange(path, isItemSelected(path));
+        if (mListener != null) {mListener.onSelectionChange(path, isItemSelected(path));}
         if (getSelectedCount() == 0 && mAutoLeave) {
             leaveSelectionMode();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.toggle(com.android.gallery3d.data.Path)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.toggle(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     public void setPressedPath(Path path) {
-        mPressedPath = path;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.setPressedPath(com.android.gallery3d.data.Path)",this,path);try{mPressedPath = path;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.setPressedPath(com.android.gallery3d.data.Path)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.setPressedPath(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     public boolean isPressedPath(Path path) {
-        return path != null && path == mPressedPath;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SelectionManager.isPressedPath(com.android.gallery3d.data.Path)",this,path);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SelectionManager.isPressedPath(com.android.gallery3d.data.Path)",this);return path != null && path == mPressedPath;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SelectionManager.isPressedPath(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     private static void expandMediaSet(ArrayList<Path> items, MediaSet set) {
-        int subCount = set.getSubMediaSetCount();
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.SelectionManager.expandMediaSet(java.util.ArrayList,com.android.gallery3d.data.MediaSet)",items,set);try{int subCount = set.getSubMediaSetCount();
         for (int i = 0; i < subCount; i++) {
             expandMediaSet(items, set.getSubMediaSet(i));
         }
@@ -161,11 +161,11 @@ public class SelectionManager {
                 items.add(item.getPath());
             }
             index += batch;
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.SelectionManager.expandMediaSet(java.util.ArrayList,com.android.gallery3d.data.MediaSet)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.expandMediaSet(java.util.ArrayList,com.android.gallery3d.data.MediaSet)",throwable);throw throwable;}
     }
 
     public ArrayList<Path> getSelected(boolean expandSet) {
-        ArrayList<Path> selected = new ArrayList<Path>();
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.ui.SelectionManager.getSelected(boolean)",this,expandSet);try{ArrayList<Path> selected = new ArrayList<Path>();
         if (mIsAlbumSet) {
             if (mInverseSelection) {
                 int max = mSourceMediaSet.getSubMediaSetCount();
@@ -199,7 +199,7 @@ public class SelectionManager {
                     ArrayList<MediaItem> list = mSourceMediaSet.getMediaItem(index, count);
                     for (MediaItem item : list) {
                         Path id = item.getPath();
-                        if (!mClickedSet.contains(id)) selected.add(id);
+                        if (!mClickedSet.contains(id)) {selected.add(id);}
                     }
                     index += count;
                 }
@@ -209,15 +209,15 @@ public class SelectionManager {
                 }
             }
         }
-        return selected;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.ui.SelectionManager.getSelected(boolean)",this);return selected;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.ui.SelectionManager.getSelected(boolean)",this,throwable);throw throwable;}
     }
 
     public void setSourceMediaSet(MediaSet set) {
-        mSourceMediaSet = set;
-        mTotal = -1;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionManager.setSourceMediaSet(com.android.gallery3d.data.MediaSet)",this,set);try{mSourceMediaSet = set;
+        mTotal = -1;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionManager.setSourceMediaSet(com.android.gallery3d.data.MediaSet)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionManager.setSourceMediaSet(com.android.gallery3d.data.MediaSet)",this,throwable);throw throwable;}
     }
 
     public MediaSet getSourceMediaSet() {
-        return mSourceMediaSet;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaSet com.android.gallery3d.ui.SelectionManager.getSourceMediaSet()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.ui.SelectionManager.getSourceMediaSet()",this);return mSourceMediaSet;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaSet com.android.gallery3d.ui.SelectionManager.getSourceMediaSet()",this,throwable);throw throwable;}
     }
 }

@@ -26,25 +26,25 @@ public class CancelDownloadActivity extends Activity {
 	final Context context = this;
 	
     public static Intent createIntent(Context context, final int notificationId, final String boardCode, final long threadNo) {
-		Intent intent = new Intent(context, CancelDownloadActivity.class);
+		com.mijack.Xlog.logStaticMethodEnter("android.content.Intent com.chanapps.four.activity.CancelDownloadActivity.createIntent(android.content.Context,int,android.app.String,long)",context,notificationId,boardCode,threadNo);try{Intent intent = new Intent(context, CancelDownloadActivity.class);
 		intent.putExtra(NOTIFICATION_ID, notificationId);
 		intent.putExtra(ThreadActivity.BOARD_CODE, boardCode);
         intent.putExtra(ThreadActivity.THREAD_NO, threadNo);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		return intent;
+		{com.mijack.Xlog.logStaticMethodExit("android.content.Intent com.chanapps.four.activity.CancelDownloadActivity.createIntent(android.content.Context,int,android.app.String,long)");return intent;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.content.Intent com.chanapps.four.activity.CancelDownloadActivity.createIntent(android.content.Context,int,android.app.String,long)",throwable);throw throwable;}
 	}
  
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.CancelDownloadActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 		
 		final int notificationId = getIntent().getIntExtra(NOTIFICATION_ID, 0);
 		if (notificationId == 0) {
 			finish();
-			return;
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.CancelDownloadActivity.onCreate(android.os.Bundle)",this);return;}
 		}
 		
 		setContentView(R.layout.cancel_download_dialog);
-        (new CancelDownloadDialogFragment(notificationId)).show(getFragmentManager(), TAG);
+        (new CancelDownloadDialogFragment(notificationId)).show(getFragmentManager(), TAG);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.CancelDownloadActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
 	}
 
     protected class CancelDownloadDialogFragment extends DialogFragment {
@@ -62,33 +62,33 @@ public class CancelDownloadActivity extends Activity {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            LayoutInflater inflater = getActivity().getLayoutInflater();
+            com.mijack.Xlog.logMethodEnter("android.app.Dialog com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{LayoutInflater inflater = getActivity().getLayoutInflater();
             View layout = inflater.inflate(R.layout.message_dialog_fragment, null);
             TextView title = (TextView)layout.findViewById(R.id.title);
             TextView message = (TextView)layout.findViewById(R.id.message);
             title.setText(R.string.cancel_download_title);
             message.setText(R.string.cancel_download_message);
             setStyle(STYLE_NO_TITLE, 0);
-            return (new AlertDialog.Builder(getActivity()))
+            {com.mijack.Xlog.logMethodExit("android.app.Dialog com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment.onCreateDialog(android.os.Bundle)",this);return (new AlertDialog.Builder(getActivity()))
                     .setView(layout)
                     .setPositiveButton(android.R.string.yes,
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (notificationId != 0) {
+                                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{if (notificationId != 0) {
                                         ThreadImageDownloadService.cancelDownload(getBaseContext(), notificationId);
                                     }
-                                    CancelDownloadActivity.this.finish();
+                                    CancelDownloadActivity.this.finish();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                                 }
                             })
                     .setNegativeButton(R.string.dismiss,
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    CancelDownloadActivity.this.finish();
+                                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment$2.onClick(android.content.DialogInterface,int)",this,dialog,which);try{CancelDownloadActivity.this.finish();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                                 }
                             })
-                    .create();
+                    .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.Dialog com.chanapps.four.activity.CancelDownloadActivity$CancelDownloadDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
         }
 
     }

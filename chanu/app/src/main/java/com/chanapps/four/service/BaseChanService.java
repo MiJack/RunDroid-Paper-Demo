@@ -52,19 +52,19 @@ public abstract class BaseChanService extends Service {
     private String mName;
 
     protected void toastUI(final String string) {
-    	try {
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BaseChanService.toastUI(java.lang.String)",this,string);try{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BaseChanService.toastUI(java.lang.String)",this);try {
 	        Handler handler = NetworkProfileManager.instance().getActivity().getChanHandler();
 	        if (handler == null) {
 	        	return;
 	        }
 	        handler.post(new Runnable() {
 	            public void run() {
-	                Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
+	                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BaseChanService$1.run()",this);try{Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BaseChanService$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BaseChanService$1.run()",this,throwable);throw throwable;}
 	            }
 	        });
     	} catch (Exception e) {
-    		// we don't want to log that
-    	}
+    		/*// we don't want to log that*/
+    	}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BaseChanService.toastUI(java.lang.String)",this,throwable);throw throwable;}
     }
 
     protected final class ServiceHandler extends Handler {
@@ -74,7 +74,7 @@ public abstract class BaseChanService extends Service {
 
         @Override
         public void handleMessage(Message msg) {
-        	Intent intent = (Intent)msg.obj;
+        	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BaseChanService$ServiceHandler.handleMessage(android.os.Message)",this,msg);try{Intent intent = (Intent)msg.obj;
         	if (intent != null && intent.getIntExtra(PRIORITY_MESSAGE_FETCH, 0) == 1) {
         		synchronized(this) {
         			priorityMessageCounter--;
@@ -91,8 +91,8 @@ public abstract class BaseChanService extends Service {
         		}
         	}
             if (intent != null)
-                onHandleIntent(intent);
-            stopSelf(msg.arg1);
+                {onHandleIntent(intent);}
+            stopSelf(msg.arg1);com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BaseChanService$ServiceHandler.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BaseChanService$ServiceHandler.handleMessage(android.os.Message)",this,throwable);throw throwable;}
         }        
     }
 
@@ -108,32 +108,32 @@ public abstract class BaseChanService extends Service {
 
     @Override
     public void onCreate() {
-        super.onCreate();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BaseChanService.onCreate()",this);try{super.onCreate();
         HandlerThread thread = new HandlerThread("ChanService[" + mName + "]");
         thread.start();
 
         mServiceLooper = thread.getLooper();
-        mServiceHandler = new ServiceHandler(mServiceLooper);
+        mServiceHandler = new ServiceHandler(mServiceLooper);com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BaseChanService.onCreate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BaseChanService.onCreate()",this,throwable);throw throwable;}
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-    	if (nonPriorityMessageCounter > MAX_NON_PRIORITY_MESSAGES) {
-    		if (DEBUG) Log.i(TAG, "Clearing chan fetch service message queue from non priority messages (" + nonPriorityMessageCounter + ")");
+    	com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.BaseChanService.onStartCommand(android.content.Intent,int,int)",this,intent,flags,startId);try{if (nonPriorityMessageCounter > MAX_NON_PRIORITY_MESSAGES) {
+    		if (DEBUG) {Log.i(TAG, "Clearing chan fetch service message queue from non priority messages (" + nonPriorityMessageCounter + ")");}
         	mServiceHandler.removeMessages(NON_PRIORITY_MESSAGE);
         	synchronized(this) {
         		nonPriorityMessageCounter = 0;
         	}
     	}
     	if (priorityMessageCounter > MAX_PRIORITY_MESSAGES) {
-    		if (DEBUG) Log.i(TAG, "Clearing chan fetch service message queue from priority messages (" + priorityMessageCounter + ")");
+    		if (DEBUG) {Log.i(TAG, "Clearing chan fetch service message queue from priority messages (" + priorityMessageCounter + ")");}
         	mServiceHandler.removeMessages(PRIORITY_MESSAGE);
         	synchronized(this) {
         		priorityMessageCounter = 0;
         	}
     	}
         if (intent != null && intent.getIntExtra(CLEAR_FETCH_QUEUE, 0) == 1) {
-            if (DEBUG) Log.i(TAG, "Clearing chan fetch service message queue");
+            if (DEBUG) {Log.i(TAG, "Clearing chan fetch service message queue");}
         	mServiceHandler.removeMessages(NON_PRIORITY_MESSAGE);
         	synchronized(this) {
         		nonPriorityMessageCounter = 0;
@@ -142,7 +142,7 @@ public abstract class BaseChanService extends Service {
         	synchronized(this) {
         		priorityMessageCounter = 0;
         	}
-        	return START_NOT_STICKY;
+        	{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.BaseChanService.onStartCommand(android.content.Intent,int,int)",this);return START_NOT_STICKY;}
         }
         
         Message msg = mServiceHandler.obtainMessage();
@@ -162,7 +162,7 @@ public abstract class BaseChanService extends Service {
         	}
         }
         
-        return START_NOT_STICKY;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.BaseChanService.onStartCommand(android.content.Intent,int,int)",this);return START_NOT_STICKY;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.BaseChanService.onStartCommand(android.content.Intent,int,int)",this,throwable);throw throwable;}
     }
 	
     /*
@@ -178,7 +178,7 @@ public abstract class BaseChanService extends Service {
 
     @Override
     public void onDestroy() {
-        mServiceLooper.quit();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BaseChanService.onDestroy()",this);try{mServiceLooper.quit();com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BaseChanService.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BaseChanService.onDestroy()",this,throwable);throw throwable;}
     }
 
     /**
@@ -188,7 +188,7 @@ public abstract class BaseChanService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        com.mijack.Xlog.logMethodEnter("android.os.IBinder com.chanapps.four.service.BaseChanService.onBind(android.content.Intent)",this,intent);try{com.mijack.Xlog.logMethodExit("android.os.IBinder com.chanapps.four.service.BaseChanService.onBind(android.content.Intent)",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.IBinder com.chanapps.four.service.BaseChanService.onBind(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     /**
@@ -206,7 +206,7 @@ public abstract class BaseChanService extends Service {
     protected abstract void onHandleIntent(Intent intent);
 
 	protected void closeConnection(HttpURLConnection tc) {
-		if (tc != null) {
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BaseChanService.closeConnection(java.net.HttpURLConnection)",this,tc);try{if (tc != null) {
 			try {
 		        tc.disconnect();
 			} catch (Exception e) {
@@ -214,7 +214,7 @@ public abstract class BaseChanService extends Service {
 			} finally {
                 tc = null;
             }
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BaseChanService.closeConnection(java.net.HttpURLConnection)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BaseChanService.closeConnection(java.net.HttpURLConnection)",this,throwable);throw throwable;}
 	}
 	
 }

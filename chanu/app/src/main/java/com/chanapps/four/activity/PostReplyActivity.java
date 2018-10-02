@@ -146,8 +146,8 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
     protected boolean exitingOnSuccess = false;
 
     private static final int IMAGE_GALLERY = 0x11;
-    // private static final String ANDROID_IMAGE_CAPTURE =
-    // "android.media.action.IMAGE_CAPTURE";
+    /*// private static final String ANDROID_IMAGE_CAPTURE =*/
+    /*// "android.media.action.IMAGE_CAPTURE";*/
 
     private LinearLayout wrapperLayout;
 
@@ -165,7 +165,7 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
 
     private CaptchaView recaptchaView;
     private View infoButton;
-    // private Button doneButton;
+    /*// private Button doneButton;*/
 
     private EditText messageText;
     private TextView passStatusText;
@@ -200,51 +200,51 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
     protected String quoteText = "";
 
     public static void startActivity(Context from, ChanActivityId aid) {
-        startActivity(from, aid.boardCode, aid.threadNo, aid.postNo, aid.text, aid.quoteText);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.activity.PostReplyActivity.startActivity(org.apache.http.client.protocol.ClientContext,com.chanapps.four.activity.ChanActivityId)",from,aid);try{startActivity(from, aid.boardCode, aid.threadNo, aid.postNo, aid.text, aid.quoteText);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.activity.PostReplyActivity.startActivity(org.apache.http.client.protocol.ClientContext,com.chanapps.four.activity.ChanActivityId)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.startActivity(org.apache.http.client.protocol.ClientContext,com.chanapps.four.activity.ChanActivityId)",throwable);throw throwable;}
     }
 
     public static void startActivity(Context context, String boardCode, long threadNo, long postNo, String replyText, String quoteText) {
-        Intent intent = createIntent(context, boardCode, threadNo, postNo, replyText, quoteText);
-        context.startActivity(intent);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.activity.PostReplyActivity.startActivity(org.apache.http.client.protocol.ClientContext,java.lang.String,long,long,java.lang.String,java.lang.String)",context,boardCode,threadNo,postNo,replyText,quoteText);try{Intent intent = createIntent(context, boardCode, threadNo, postNo, replyText, quoteText);
+        context.startActivity(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.activity.PostReplyActivity.startActivity(org.apache.http.client.protocol.ClientContext,java.lang.String,long,long,java.lang.String,java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.startActivity(org.apache.http.client.protocol.ClientContext,java.lang.String,long,long,java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
     public static Intent createIntent(Context context, String boardCode, long threadNo, long postNo, String replyText, String quoteText) {
-        Intent replyIntent = new Intent(context, PostReplyActivity.class);
+        com.mijack.Xlog.logStaticMethodEnter("android.content.Intent com.chanapps.four.activity.PostReplyActivity.createIntent(org.apache.http.client.protocol.ClientContext,java.lang.String,long,long,java.lang.String,java.lang.String)",context,boardCode,threadNo,postNo,replyText,quoteText);try{Intent replyIntent = new Intent(context, PostReplyActivity.class);
         replyIntent.putExtra(ChanBoard.BOARD_CODE, boardCode);
         replyIntent.putExtra(ChanThread.THREAD_NO, threadNo);
         replyIntent.putExtra(ChanPost.POST_NO, postNo);
         replyIntent.putExtra(TEXT, replyText);
         replyIntent.putExtra(REPLY_TEXT, replyText);
         replyIntent.putExtra(QUOTE_TEXT, quoteText);
-        return replyIntent;
+        {com.mijack.Xlog.logStaticMethodExit("android.content.Intent com.chanapps.four.activity.PostReplyActivity.createIntent(org.apache.http.client.protocol.ClientContext,java.lang.String,long,long,java.lang.String,java.lang.String)");return replyIntent;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.content.Intent com.chanapps.four.activity.PostReplyActivity.createIntent(org.apache.http.client.protocol.ClientContext,java.lang.String,long,long,java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
     @Override
     protected void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        if (DEBUG) Log.i(TAG, "onCreate bundle=" + bundle);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onCreate(android.os.Bundle)",this,bundle);try{super.onCreate(bundle);
+        if (DEBUG) {Log.i(TAG, "onCreate bundle=" + bundle);}
         exitingOnSuccess = false;
         broadcastThemeReceiver = new ThemeSelector.ThemeReceiver(this);
         broadcastThemeReceiver.register();
         setContentView(R.layout.post_reply_layout);
         createViews();
-        if (bundle != null) onRestoreInstanceState(bundle);
-        else setFromIntent(getIntent());
-        if (boardCode == null || boardCode.isEmpty()) boardCode = ChanBoard.DEFAULT_BOARD_CODE;
+        if (bundle != null) {onRestoreInstanceState(bundle);}
+        else {setFromIntent(getIntent());}
+        if (boardCode == null || boardCode.isEmpty()) {boardCode = ChanBoard.DEFAULT_BOARD_CODE;}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getThemeId() {
-        return themeId;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.activity.PostReplyActivity.getThemeId()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.activity.PostReplyActivity.getThemeId()",this);return themeId;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.activity.PostReplyActivity.getThemeId()",this,throwable);throw throwable;}
     }
 
     @Override
     public void setThemeId(int themeId) {
-        this.themeId = themeId;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setThemeId(int)",this,themeId);try{this.themeId = themeId;com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setThemeId(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setThemeId(int)",this,throwable);throw throwable;}
     }
 
     protected void createViews() {
-        wrapperLayout = (LinearLayout) findViewById(R.id.post_reply_wrapper);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.createViews()",this);try{wrapperLayout = (LinearLayout) findViewById(R.id.post_reply_wrapper);
         previewFrame = (ViewGroup) findViewById(R.id.post_reply_preview_frame);
         imagePreview = (ImageView) findViewById(R.id.post_reply_preview_image);
         previewProgress = (ProgressBar) findViewById(R.id.post_reply_preview_progress_bar);
@@ -260,7 +260,7 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
          * bumpButton = (ImageView)findViewById(R.id.post_reply_bump_button);
          */
         infoButton = findViewById(R.id.password_help_icon);
-        // doneButton = (Button)findViewById(R.id.done);
+        /*// doneButton = (Button)findViewById(R.id.done);*/
         deleteButtonBg = findViewById(R.id.post_reply_delete_button_bg);
         deleteButton = (ImageView) findViewById(R.id.post_reply_delete_button);
         webImageButtonBg = findViewById(R.id.post_reply_web_image_button_bg);
@@ -272,17 +272,17 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         emailText = (EditText) findViewById(R.id.post_reply_email);
         subjectText = (EditText) findViewById(R.id.post_reply_subject);
         passwordText = (EditText) findViewById(R.id.post_reply_password);
-        passwordText.setText(generatePassword()); // always default random
-                                                  // generate, then we store for
-                                                  // later use
+        passwordText.setText(generatePassword()); /*// always default random*/
+                                                  /*// generate, then we store for*/
+                                                  /*// later use*/
         spoilerCheckbox = (CheckBox) findViewById(R.id.post_reply_spoiler_checkbox);
         recaptchaView = (CaptchaView) findViewById(R.id.post_reply_recaptcha_webview);
 
         fastSend = new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                validateAndSendReply();
-                return true;
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent)",this,v,actionId,event);try{validateAndSendReply();
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.createViews()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity$1.onEditorAction(android.widget.TextView,int,android.view.KeyEvent)",this,throwable);throw throwable;}
             }
         };
         recaptchaView.initCaptcha();
@@ -295,19 +295,19 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showInfoFragment();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$2.onClick(android.view.View)",this,v);try{showInfoFragment();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$2.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$2.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                deleteImage();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$3.onClick(android.view.View)",this,view);try{deleteImage();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$3.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$3.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
         webImageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                (new WebImageDialogFragment(boardCode, threadNo)).show(getSupportFragmentManager(), WebImageDialogFragment.TAG);
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$4.onClick(android.view.View)",this,view);try{(new WebImageDialogFragment(boardCode, threadNo)).show(getSupportFragmentManager(), WebImageDialogFragment.TAG);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$4.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$4.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
         /*
@@ -328,18 +328,18 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
          */
         sageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                sage();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$5.onClick(android.view.View)",this,view);try{sage();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$5.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$5.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
         passStatusText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (isPassEnabled()) disablePass();
-                else showPassFragment();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$6.onClick(android.view.View)",this,view);try{if (isPassEnabled()) {disablePass();}
+                else {showPassFragment();}
                 /*
                  * if (!isPassEnabled() && isPassAvailable()) if
                  * (isPassAvailable()) showPassFragment();
-                 */
+                 */com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$6.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$6.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
@@ -347,75 +347,75 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         imageClickTarget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGallery();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$7.onClick(android.view.View)",this,v);try{startGallery();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$7.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$7.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
 
-        updatePassRecaptchaViews(isPassEnabled());
+        updatePassRecaptchaViews(isPassEnabled());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.createViews()",this,throwable);throw throwable;}
     }
 
     protected void setFromIntent(Intent intent) {
-        boardCode = intent.getStringExtra(ChanBoard.BOARD_CODE);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setFromIntent(android.content.Intent)",this,intent);try{boardCode = intent.getStringExtra(ChanBoard.BOARD_CODE);
         threadNo = intent.getLongExtra(ChanThread.THREAD_NO, 0);
         postNo = intent.getLongExtra(ChanPost.POST_NO, 0);
-        if (intent.hasExtra(SUBJECT)) subjectText.setText(intent.getStringExtra(SUBJECT));
-        if (intent.hasExtra(TEXT)) setMessage(intent.getStringExtra(TEXT));
-        if (intent.hasExtra(REPLY_TEXT)) replyText = intent.getStringExtra(REPLY_TEXT);
-        if (intent.hasExtra(QUOTE_TEXT)) quoteText = intent.getStringExtra(QUOTE_TEXT);
-        if (intent.hasExtra(SPOILER)) spoilerCheckbox.setChecked(intent.getBooleanExtra(SPOILER, false));
-        // these are just reset
+        if (intent.hasExtra(SUBJECT)) {subjectText.setText(intent.getStringExtra(SUBJECT));}
+        if (intent.hasExtra(TEXT)) {setMessage(intent.getStringExtra(TEXT));}
+        if (intent.hasExtra(REPLY_TEXT)) {replyText = intent.getStringExtra(REPLY_TEXT);}
+        if (intent.hasExtra(QUOTE_TEXT)) {quoteText = intent.getStringExtra(QUOTE_TEXT);}
+        if (intent.hasExtra(SPOILER)) {spoilerCheckbox.setChecked(intent.getBooleanExtra(SPOILER, false));}
+        /*// these are just reset*/
         imageUri = intent.hasExtra(POST_REPLY_IMAGE_URL) ? Uri.parse(intent.getStringExtra(POST_REPLY_IMAGE_URL)) : null;
         imagePath = null;
         contentType = null;
         orientation = null;
-        if (DEBUG) Log.i(TAG, "setIntent() intent has /" + boardCode + "/" + threadNo + ":" + postNo + " imageUri=" + imageUri + " combinedSubCom=" + intent.getStringExtra(SUBJECT) + " text=" + intent.getStringExtra(TEXT) + " replyText=" + intent.getStringExtra(REPLY_TEXT) + " quoteText=" + intent.getStringExtra(QUOTE_TEXT));
+        if (DEBUG) {Log.i(TAG, "setIntent() intent has /" + boardCode + "/" + threadNo + ":" + postNo + " imageUri=" + imageUri + " combinedSubCom=" + intent.getStringExtra(SUBJECT) + " text=" + intent.getStringExtra(TEXT) + " replyText=" + intent.getStringExtra(REPLY_TEXT) + " quoteText=" + intent.getStringExtra(QUOTE_TEXT));}
         Bundle bundle = loadBundleFromPrefs();
         if (bundle != null && boardCode != null && boardCode.equals(bundle.getString(ChanBoard.BOARD_CODE)) && threadNo == bundle.getLong(ChanThread.THREAD_NO)) {
-            if (DEBUG) Log.i(TAG, "setIntent() found saved bundle for same thread, restoring");
+            if (DEBUG) {Log.i(TAG, "setIntent() found saved bundle for same thread, restoring");}
             long savedPostNo = postNo;
             String savedReplyText = replyText;
             String savedQuoteText = quoteText;
             onRestoreInstanceState(bundle);
             Editable msg = messageText.getText();
             String s = msg.toString();
-            if (!s.contains(savedReplyText)) msg.append((s.trim().isEmpty() ? "" : "\n\n") + savedReplyText);
+            if (!s.contains(savedReplyText)) {msg.append((s.trim().isEmpty() ? "" : "\n\n") + savedReplyText);}
             replyText = savedReplyText;
             quoteText = savedQuoteText;
             postNo = savedPostNo;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setFromIntent(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setFromIntent(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle bundle) {
-        super.onRestoreInstanceState(bundle);
-        if (bundle == null) return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onRestoreInstanceState(android.os.Bundle)",this,bundle);try{super.onRestoreInstanceState(bundle);
+        if (bundle == null) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onRestoreInstanceState(android.os.Bundle)",this);return;}}
         boardCode = bundle.getString(ChanBoard.BOARD_CODE);
         threadNo = bundle.getLong(ChanThread.THREAD_NO, 0);
         postNo = bundle.getLong(ChanPost.POST_NO, 0);
-        if (bundle.containsKey(SUBJECT)) subjectText.setText(bundle.getString(SUBJECT));
-        if (bundle.containsKey(TEXT)) setMessage(bundle.getString(TEXT));
-        if (bundle.containsKey(REPLY_TEXT)) replyText = bundle.getString(REPLY_TEXT);
-        if (bundle.containsKey(QUOTE_TEXT)) quoteText = bundle.getString(QUOTE_TEXT);
-        if (bundle.containsKey(SPOILER)) spoilerCheckbox.setChecked(bundle.getBoolean(SPOILER, false));
-        if (bundle.containsKey(POST_REPLY_IMAGE_URL)) imageUri = bundle.getString(POST_REPLY_IMAGE_URL) != null ? Uri.parse(bundle.getString(POST_REPLY_IMAGE_URL)) : null;
+        if (bundle.containsKey(SUBJECT)) {subjectText.setText(bundle.getString(SUBJECT));}
+        if (bundle.containsKey(TEXT)) {setMessage(bundle.getString(TEXT));}
+        if (bundle.containsKey(REPLY_TEXT)) {replyText = bundle.getString(REPLY_TEXT);}
+        if (bundle.containsKey(QUOTE_TEXT)) {quoteText = bundle.getString(QUOTE_TEXT);}
+        if (bundle.containsKey(SPOILER)) {spoilerCheckbox.setChecked(bundle.getBoolean(SPOILER, false));}
+        if (bundle.containsKey(POST_REPLY_IMAGE_URL)) {imageUri = bundle.getString(POST_REPLY_IMAGE_URL) != null ? Uri.parse(bundle.getString(POST_REPLY_IMAGE_URL)) : null;}
         imagePath = bundle.getString(IMAGE_PATH);
         contentType = bundle.getString(CONTENT_TYPE);
         orientation = bundle.getString(ORIENTATION);
-        if (DEBUG) Log.i(TAG, "onRestoreInstanceState() bundle=" + bundle);
+        if (DEBUG) {Log.i(TAG, "onRestoreInstanceState() bundle=" + bundle);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onRestoreInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onSaveInstanceState(Bundle bundle) {
-        super.onSaveInstanceState(bundle);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onSaveInstanceState(android.os.Bundle)",this,bundle);try{super.onSaveInstanceState(bundle);
         saveStateToBundle(bundle);
-        if (DEBUG) Log.i(TAG, "onSaveInstanceState bundle=" + bundle);
+        if (DEBUG) {Log.i(TAG, "onSaveInstanceState bundle=" + bundle);}
         saveUserFieldsToPrefs();
         saveBundleToPrefs(bundle);
-        ActivityDispatcher.store(this);
+        ActivityDispatcher.store(this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onSaveInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onSaveInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     protected Bundle saveStateToBundle(Bundle bundle) {
-        if (DEBUG) Log.i(TAG, "saveStateToBundle()");
+        com.mijack.Xlog.logMethodEnter("android.os.Bundle com.chanapps.four.activity.PostReplyActivity.saveStateToBundle(android.os.Bundle)",this,bundle);try{if (DEBUG) {Log.i(TAG, "saveStateToBundle()");}
         bundle.putString(ChanBoard.BOARD_CODE, boardCode);
         bundle.putLong(ChanThread.THREAD_NO, threadNo);
         bundle.putLong(ChanPost.POST_NO, postNo);
@@ -424,15 +424,15 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         bundle.putString(REPLY_TEXT, replyText);
         bundle.putString(QUOTE_TEXT, quoteText);
         bundle.putBoolean(SPOILER, spoilerCheckbox.isChecked());
-        if (imageUri != null) bundle.putString(POST_REPLY_IMAGE_URL, imageUri.toString());
+        if (imageUri != null) {bundle.putString(POST_REPLY_IMAGE_URL, imageUri.toString());}
         bundle.putString(IMAGE_PATH, imagePath);
         bundle.putString(CONTENT_TYPE, contentType);
         bundle.putString(ORIENTATION, orientation);
-        return bundle;
+        {com.mijack.Xlog.logMethodExit("android.os.Bundle com.chanapps.four.activity.PostReplyActivity.saveStateToBundle(android.os.Bundle)",this);return bundle;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Bundle com.chanapps.four.activity.PostReplyActivity.saveStateToBundle(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     protected void saveBundleToPrefs(Bundle bundle) {
-        if (DEBUG) Log.i(TAG, "saveBundleToPrefs()");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.saveBundleToPrefs(android.os.Bundle)",this,bundle);try{if (DEBUG) {Log.i(TAG, "saveBundleToPrefs()");}
         SharedPreferences.Editor editor = ensurePrefs().edit();
         editor.putString(BOARD_CODE, boardCode);
         editor.putLong(THREAD_NO, threadNo);
@@ -447,11 +447,11 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         editor.putString(POST_REPLY_QUOTE_TEXT, quoteText);
         editor.putString(REPLY_TEXT, replyText);
         editor.commit();
-        if (DEBUG) Log.i(TAG, "saveBundleToPrefs bundle=" + bundle);
+        if (DEBUG) {Log.i(TAG, "saveBundleToPrefs bundle=" + bundle);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.saveBundleToPrefs(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.saveBundleToPrefs(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     protected Bundle loadBundleFromPrefs() {
-        SharedPreferences prefs = ensurePrefs();
+        com.mijack.Xlog.logMethodEnter("android.os.Bundle com.chanapps.four.activity.PostReplyActivity.loadBundleFromPrefs()",this);try{SharedPreferences prefs = ensurePrefs();
         Bundle bundle = new Bundle();
         bundle.putString(ChanBoard.BOARD_CODE, prefs.getString(BOARD_CODE, null));
         bundle.putLong(ChanThread.THREAD_NO, prefs.getLong(THREAD_NO, 0));
@@ -465,35 +465,35 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         bundle.putString(IMAGE_PATH, prefs.getString(IMAGE_PATH, null));
         bundle.putString(CONTENT_TYPE, prefs.getString(CONTENT_TYPE, null));
         bundle.putString(ORIENTATION, prefs.getString(ORIENTATION, null));
-        return bundle;
+        {com.mijack.Xlog.logMethodExit("android.os.Bundle com.chanapps.four.activity.PostReplyActivity.loadBundleFromPrefs()",this);return bundle;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Bundle com.chanapps.four.activity.PostReplyActivity.loadBundleFromPrefs()",this,throwable);throw throwable;}
     }
 
     protected void clearPrefs() {
-        SharedPreferences.Editor editor = ensurePrefs().edit();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.clearPrefs()",this);try{SharedPreferences.Editor editor = ensurePrefs().edit();
         for (String pref : PREFS) {
             editor.remove(pref);
         }
-        editor.commit();
+        editor.commit();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.clearPrefs()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.clearPrefs()",this,throwable);throw throwable;}
     }
 
     private void showPassFragment() {
-        showPassFragment(new DialogInterface.OnDismissListener() {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.showPassFragment()",this);try{showPassFragment(new DialogInterface.OnDismissListener() {
             public void onDismiss(DialogInterface dialog) {
-                wrapperLayout.setVisibility(View.VISIBLE);
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$8.onDismiss(android.content.DialogInterface)",this,dialog);try{wrapperLayout.setVisibility(View.VISIBLE);
                 boolean passEnabled = isPassEnabled();
                 updatePassRecaptchaViews(passEnabled);
-                if (passEnabled) Toast.makeText(PostReplyActivity.this, R.string.post_reply_pass_enabled_text, Toast.LENGTH_SHORT).show();
+                if (passEnabled) {Toast.makeText(PostReplyActivity.this, R.string.post_reply_pass_enabled_text, Toast.LENGTH_SHORT).show();}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$8.onDismiss(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$8.onDismiss(android.content.DialogInterface)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.showPassFragment()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.showPassFragment()",this,throwable);throw throwable;}
     }
 
     private void showInfoFragment() {
-        (new PasswordInfoDialogFragment()).show(getSupportFragmentManager(), PasswordInfoDialogFragment.TAG);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.showInfoFragment()",this);try{(new PasswordInfoDialogFragment()).show(getSupportFragmentManager(), PasswordInfoDialogFragment.TAG);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.showInfoFragment()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.showInfoFragment()",this,throwable);throw throwable;}
 
     }
 
     private void showPassFragment(DialogInterface.OnDismissListener dismissListener) {
-        closeKeyboard();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.showPassFragment(DialogInterface.OnDismissListener)",this,dismissListener);try{closeKeyboard();
         PassSettingsFragment fragment = new PassSettingsFragment();
         fragment.setOnDismissListener(dismissListener);
         android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -501,30 +501,30 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         ft.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.addToBackStack(null);
         ft.commit();
-        wrapperLayout.setVisibility(View.GONE);
+        wrapperLayout.setVisibility(View.GONE);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.showPassFragment(DialogInterface.OnDismissListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.showPassFragment(DialogInterface.OnDismissListener)",this,throwable);throw throwable;}
     }
 
     private boolean isPassEnabled() {
-        return ensurePrefs().getBoolean(SettingsActivity.PREF_PASS_ENABLED, false);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity.isPassEnabled()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.isPassEnabled()",this);return ensurePrefs().getBoolean(SettingsActivity.PREF_PASS_ENABLED, false);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity.isPassEnabled()",this,throwable);throw throwable;}
     }
 
     private boolean isPassAvailable() {
-        switch (NetworkProfileManager.instance().getCurrentProfile().getConnectionType()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity.isPassAvailable()",this);try{switch (NetworkProfileManager.instance().getCurrentProfile().getConnectionType()) {
         case WIFI:
         case MOBILE:
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.isPassAvailable()",this);return true;}
         case NO_CONNECTION:
         default:
-            return false;
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.isPassAvailable()",this);return false;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity.isPassAvailable()",this,throwable);throw throwable;}
     }
 
     public boolean usePass() {
-        return isPassAvailable() && isPassEnabled();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity.usePass()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.usePass()",this);return isPassAvailable() && isPassEnabled();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity.usePass()",this,throwable);throw throwable;}
     }
 
     private void disablePass() {
-        ensurePrefs().edit().putBoolean(SettingsActivity.PREF_PASS_ENABLED, false).commit();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.disablePass()",this);try{ensurePrefs().edit().putBoolean(SettingsActivity.PREF_PASS_ENABLED, false).commit();
         String passToken = ensurePrefs().getString(SettingsActivity.PREF_PASS_TOKEN, "");
         String passPIN = ensurePrefs().getString(SettingsActivity.PREF_PASS_PIN, "");
         LogoutPassTask logoutPassTask = new LogoutPassTask(this, passToken, passPIN);
@@ -532,11 +532,11 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         passDialogFragment.show(getFragmentManager(), LogoutPassDialogFragment.TAG);
         if (!logoutPassTask.isCancelled()) {
             logoutPassTask.execute(passDialogFragment);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.disablePass()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.disablePass()",this,throwable);throw throwable;}
     }
 
     private void updatePassRecaptchaViews(boolean passEnabled) {
-        switch (NetworkProfileManager.instance().getCurrentProfile().getConnectionType()) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.updatePassRecaptchaViews(boolean)",this,passEnabled);try{switch (NetworkProfileManager.instance().getCurrentProfile().getConnectionType()) {
         case WIFI:
         case MOBILE:
             if (passEnabled) {
@@ -555,160 +555,160 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
             setPassUnavailable();
             setRecaptchaDisabled();
             break;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.updatePassRecaptchaViews(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.updatePassRecaptchaViews(boolean)",this,throwable);throw throwable;}
     }
 
     private void setPassUnavailable() {
-        showPassEnable = false;
-        showPassDisable = false;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setPassUnavailable()",this);try{showPassEnable = false;
+        showPassDisable = false;com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setPassUnavailable()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setPassUnavailable()",this,throwable);throw throwable;}
     }
 
     private void setPassEnabled() {
-        showPassEnable = false;
-        showPassDisable = true;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setPassEnabled()",this);try{showPassEnable = false;
+        showPassDisable = true;com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setPassEnabled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setPassEnabled()",this,throwable);throw throwable;}
     }
 
     private void setPassDisabled() {
-        showPassEnable = true;
-        showPassDisable = false;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setPassDisabled()",this);try{showPassEnable = true;
+        showPassDisable = false;com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setPassDisabled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setPassDisabled()",this,throwable);throw throwable;}
     }
 
     private void setRecaptchaEnabled() {
-        recaptchaView.setVisibility(View.VISIBLE);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaEnabled()",this);try{recaptchaView.setVisibility(View.VISIBLE);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaEnabled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaEnabled()",this,throwable);throw throwable;}
     }
 
     private void setRecaptchaDisabled() {
-        recaptchaView.setVisibility(View.GONE);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaDisabled()",this);try{recaptchaView.setVisibility(View.GONE);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaDisabled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaDisabled()",this,throwable);throw throwable;}
     }
 
     public SharedPreferences ensurePrefs() {
-        return PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        com.mijack.Xlog.logMethodEnter("android.content.SharedPreferences com.chanapps.four.activity.PostReplyActivity.ensurePrefs()",this);try{com.mijack.Xlog.logMethodExit("android.content.SharedPreferences com.chanapps.four.activity.PostReplyActivity.ensurePrefs()",this);return PreferenceManager.getDefaultSharedPreferences(getApplicationContext());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.SharedPreferences com.chanapps.four.activity.PostReplyActivity.ensurePrefs()",this,throwable);throw throwable;}
     }
 
     public Handler getHandler() {
-        return ensureHandler();
+        com.mijack.Xlog.logMethodEnter("android.os.Handler com.chanapps.four.activity.PostReplyActivity.getHandler()",this);try{com.mijack.Xlog.logMethodExit("android.os.Handler com.chanapps.four.activity.PostReplyActivity.getHandler()",this);return ensureHandler();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Handler com.chanapps.four.activity.PostReplyActivity.getHandler()",this,throwable);throw throwable;}
     }
 
     protected synchronized Handler ensureHandler() {
-        if (handler == null && ActivityDispatcher.onUIThread()) handler = new PostReplyHandler();
-        return handler;
+        com.mijack.Xlog.logMethodEnter("android.os.Handler com.chanapps.four.activity.PostReplyActivity.ensureHandler()",this);try{if (handler == null && ActivityDispatcher.onUIThread()) {handler = new PostReplyHandler();}
+        {com.mijack.Xlog.logMethodExit("android.os.Handler com.chanapps.four.activity.PostReplyActivity.ensureHandler()",this);return handler;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Handler com.chanapps.four.activity.PostReplyActivity.ensureHandler()",this,throwable);throw throwable;}
     }
 
     public void onRestart() {
-        super.onRestart();
-        if (DEBUG) Log.i(TAG, "onStart");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onRestart()",this);try{super.onRestart();
+        if (DEBUG) {Log.i(TAG, "onStart");}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onRestart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onRestart()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onStart() {
-        super.onStart();
-        if (DEBUG) Log.i(TAG, "onStart");
-        if ((!isPassEnabled() || !isPassAvailable())) refresh();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onStart()",this);try{super.onStart();
+        if (DEBUG) {Log.i(TAG, "onStart");}
+        if ((!isPassEnabled() || !isPassAvailable())) {refresh();}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onStart()",this,throwable);throw throwable;}
     }
 
     protected void setViews() {
-        if (messageText.getText().length() == 0 && postNo != 0) setMessage(">>" + postNo + "\n");
-        // updateBump();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setViews()",this);try{if (messageText.getText().length() == 0 && postNo != 0) {setMessage(">>" + postNo + "\n");}
+        /*// updateBump();*/
         adjustFieldVisibility();
         defaultEmptyUserFieldsFromPrefs();
         setActionBarTitle();
-        setImagePreview();
+        setImagePreview();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setViews()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setViews()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onResume() {
-        super.onResume();
-        if (DEBUG) Log.i(TAG, "onResume");
-        setViews();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onResume()",this);try{super.onResume();
+        if (DEBUG) {Log.i(TAG, "onResume");}
+        setViews();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onPause()",this);try{super.onPause();
         saveUserFieldsToPrefs();
-        if (DEBUG) Log.i(TAG, "onPause");
+        if (DEBUG) {Log.i(TAG, "onPause");}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onPause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onPause()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
-        if (DEBUG) Log.i(TAG, "onStop");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onStop()",this);try{super.onStop();
+        if (DEBUG) {Log.i(TAG, "onStop");}
         handler = null;
-        if (!exitingOnSuccess) saveBundleToPrefs(saveStateToBundle(new Bundle()));
+        if (!exitingOnSuccess) {saveBundleToPrefs(saveStateToBundle(new Bundle()));}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onStop()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        broadcastThemeReceiver.unregister();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onDestroy()",this);try{super.onDestroy();
+        broadcastThemeReceiver.unregister();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onDestroy()",this,throwable);throw throwable;}
     }
 
     protected void saveUserFieldsToPrefs() {
-        SharedPreferences.Editor ed = ensurePrefs().edit();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.saveUserFieldsToPrefs()",this);try{SharedPreferences.Editor ed = ensurePrefs().edit();
         String name = nameText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
-        // if (!name.isEmpty())
+        /*// if (!name.isEmpty())*/
         ed.putString(SettingsActivity.PREF_USER_NAME, name);
-        // if (!email.isEmpty() && !email.equalsIgnoreCase("sage")) // no
-        // sagebombing
+        /*// if (!email.isEmpty() && !email.equalsIgnoreCase("sage")) // no*/
+        /*// sagebombing*/
         ed.putString(SettingsActivity.PREF_USER_EMAIL, email);
-        // if (!password.isEmpty())
+        /*// if (!password.isEmpty())*/
         ed.putString(SettingsActivity.PREF_USER_PASSWORD, password);
         ed.apply();
-        if (DEBUG) Log.i(TAG, "saved name=" + name);
+        if (DEBUG) {Log.i(TAG, "saved name=" + name);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.saveUserFieldsToPrefs()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.saveUserFieldsToPrefs()",this,throwable);throw throwable;}
     }
 
     public void refresh() {
-        boolean passEnabled = isPassEnabled();
-        updatePassRecaptchaViews(passEnabled);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.refresh()",this);try{boolean passEnabled = isPassEnabled();
+        updatePassRecaptchaViews(passEnabled);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.refresh()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.refresh()",this,throwable);throw throwable;}
     }
 
     public void setImageUri(Uri uri) {
-        if (uri != null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setImageUri(android.net.Uri)",this,uri);try{if (uri != null) {
             imageUri = uri;
             setImagePreview();
-            if (DEBUG) Log.i(TAG, "loaded uri = " + uri);
+            if (DEBUG) {Log.i(TAG, "loaded uri = " + uri);}
         } else {
             imageUri = null;
             imagePreview.setVisibility(View.GONE);
-            if (DEBUG) Log.i(TAG, "image uri passed was null");
-        }
+            if (DEBUG) {Log.i(TAG, "image uri passed was null");}
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setImageUri(android.net.Uri)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setImageUri(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     protected void defaultEmptyUserFieldsFromPrefs() {
-        ensurePrefs();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.defaultEmptyUserFieldsFromPrefs()",this);try{ensurePrefs();
         CharSequence existingName = nameText.getText();
         CharSequence existingEmail = emailText.getText();
         CharSequence existingPassword = passwordText.getText();
-        if (DEBUG) Log.i(TAG, "existingName=" + existingName);
+        if (DEBUG) {Log.i(TAG, "existingName=" + existingName);}
         if (existingName == null || existingName.length() == 0) {
             String name = ensurePrefs().getString(SettingsActivity.PREF_USER_NAME, "");
-            if (DEBUG) Log.i(TAG, "prefName=" + name);
-            if (!name.isEmpty()) nameText.setText(name);
+            if (DEBUG) {Log.i(TAG, "prefName=" + name);}
+            if (!name.isEmpty()) {nameText.setText(name);}
         }
         if (existingEmail == null || existingEmail.length() == 0) {
             String email = ensurePrefs().getString(SettingsActivity.PREF_USER_EMAIL, "");
-            if (!email.isEmpty()) emailText.setText(email);
+            if (!email.isEmpty()) {emailText.setText(email);}
         }
         if (existingPassword == null || existingPassword.length() == 0) {
             String password = ensurePrefs().getString(SettingsActivity.PREF_USER_PASSWORD, "");
-            if (password.isEmpty()) password = generatePassword();
+            if (password.isEmpty()) {password = generatePassword();}
             passwordText.setText(password);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.defaultEmptyUserFieldsFromPrefs()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.defaultEmptyUserFieldsFromPrefs()",this,throwable);throw throwable;}
     }
 
     protected void adjustFieldVisibility() {
-        if (threadNo == 0) // new thread
-        sageButton.setVisibility(View.GONE);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.adjustFieldVisibility()",this);try{if (threadNo == 0) /*// new thread*/
+        {sageButton.setVisibility(View.GONE);}
 
-        if (ChanBoard.hasName(boardCode)) nameText.setVisibility(View.VISIBLE);
-        else nameText.setVisibility(View.GONE);
+        if (ChanBoard.hasName(boardCode)) {nameText.setVisibility(View.VISIBLE);}
+        else {nameText.setVisibility(View.GONE);}
 
-        if (ChanBoard.hasSpoiler(boardCode)) spoilerCheckbox.setVisibility(View.VISIBLE);
-        else spoilerCheckbox.setVisibility(View.GONE);
+        if (ChanBoard.hasSpoiler(boardCode)) {spoilerCheckbox.setVisibility(View.VISIBLE);}
+        else {spoilerCheckbox.setVisibility(View.GONE);}
 
-        // combinedSubCom hints
+        /*// combinedSubCom hints*/
         if (threadNo == 0 && ChanBoard.requiresThreadSubject(boardCode)) {
             messageText.setHint(R.string.post_reply_text_hint_required);
             subjectText.setHint(R.string.post_reply_subject_hint_required);
@@ -721,31 +721,31 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
             subjectText.setVisibility(View.VISIBLE);
         } else {
             subjectText.setVisibility(View.GONE);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.adjustFieldVisibility()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.adjustFieldVisibility()",this,throwable);throw throwable;}
 
     }
 
     public boolean hasSpoiler() {
-        return spoilerCheckbox.isChecked();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity.hasSpoiler()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.hasSpoiler()",this);return spoilerCheckbox.isChecked();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity.hasSpoiler()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        int fragmentIndex = (requestCode >>> 16);
-        if (fragmentIndex != 0) { // fragment bug
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,intent);try{int fragmentIndex = (requestCode >>> 16);
+        if (fragmentIndex != 0) { /*// fragment bug*/
             super.onActivityResult(requestCode, resultCode, intent);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onActivityResult(int,int,android.content.Intent)",this);return;}
         }
-        if (DEBUG) Log.i(TAG, "onActivityResult for requestCode=" + requestCode + " intent=" + intent + " intent.getData()=" + (intent == null ? "null" : intent.getData()));
+        if (DEBUG) {Log.i(TAG, "onActivityResult for requestCode=" + requestCode + " intent=" + intent + " intent.getData()=" + (intent == null ? "null" : intent.getData()));}
         if (resultCode != RESULT_OK) {
             Log.e(TAG, "onActivityResult error resultCode=" + resultCode + " intent=" + intent);
             int errId = R.string.post_reply_no_load_gallery_image;
             Toast.makeText(this, errId, Toast.LENGTH_SHORT).show();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.onActivityResult(int,int,android.content.Intent)",this);return;}
         }
         switch (requestCode) {
         case IMAGE_GALLERY:
-            if (DEBUG) Log.i(TAG, "Got gallery result for activity imageUri=" + imageUri);
+            if (DEBUG) {Log.i(TAG, "Got gallery result for activity imageUri=" + imageUri);}
             if (intent == null || intent.getData() == null) {
                 Log.e(TAG, "null image uri for gallery image");
                 Toast.makeText(this, R.string.post_reply_no_load_gallery_image, Toast.LENGTH_SHORT).show();
@@ -756,7 +756,7 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         default:
             Log.e(TAG, "invalid request code for image");
             Toast.makeText(this, R.string.post_reply_no_image, Toast.LENGTH_SHORT).show();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
     private enum MaxAxis {
@@ -764,9 +764,9 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
     }
 
     private Bitmap getImagePreviewBitmap() throws Exception {
-        if (DEBUG) Log.i(TAG, "getImagePreviewBitmap with imageUri=" + imageUri);
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.chanapps.four.activity.PostReplyActivity.getImagePreviewBitmap()",this);try{if (DEBUG) {Log.i(TAG, "getImagePreviewBitmap with imageUri=" + imageUri);}
         if (imageUri == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.activity.PostReplyActivity.getImagePreviewBitmap()",this);return null;}
         }
 
         imagePath = null;
@@ -778,7 +778,7 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
                     MediaStore.Images.ImageColumns.MIME_TYPE,
                     MediaStore.Images.ImageColumns.ORIENTATION
             };
-            // query so image shows up
+            /*// query so image shows up*/
             Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
             if (cursor != null) {
                 cursor.moveToFirst();
@@ -798,141 +798,141 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
             Log.e(TAG, "Couldn't get media information for imageUri=" + imageUri, e);
         }
 
-        // just find the image bounds first pass
+        /*// just find the image bounds first pass*/
         InputStream in = new BufferedInputStream(getContentResolver().openInputStream(imageUri));
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(in, null, options); // this just sets
-                                                       // options, returns null
+        BitmapFactory.decodeStream(in, null, options); /*// this just sets*/
+                                                       /*// options, returns null*/
         MaxAxis axis = (options.outWidth >= options.outHeight) ? MaxAxis.WIDTH : MaxAxis.HEIGHT;
-        if (DEBUG) Log.i(TAG, "Initial size: " + options.outWidth + "x" + options.outHeight);
+        if (DEBUG) {Log.i(TAG, "Initial size: " + options.outWidth + "x" + options.outHeight);}
         int scale = 1;
-        int maxPx = ChanGridSizer.dpToPx(getWindowManager().getDefaultDisplay(), 250); // limit to match thread preview size
-        if (DEBUG) Log.i(TAG, "Max px:" + maxPx);
+        int maxPx = ChanGridSizer.dpToPx(getWindowManager().getDefaultDisplay(), 250); /*// limit to match thread preview size*/
+        if (DEBUG) {Log.i(TAG, "Max px:" + maxPx);}
         switch (axis) {
         case WIDTH:
             while (options.outWidth / scale > maxPx)
-                scale *= 2;
+                {scale *= 2;}
             break;
         case HEIGHT:
             while (options.outHeight / scale > maxPx)
-                scale *= 2;
+                {scale *= 2;}
             break;
         }
 
-        // second pass actually scale the preview image
+        /*// second pass actually scale the preview image*/
         InputStream inScale = new BufferedInputStream(getContentResolver().openInputStream(imageUri));
         BitmapFactory.Options scaleOptions = new BitmapFactory.Options();
         scaleOptions.inSampleSize = scale;
         Bitmap b = BitmapFactory.decodeStream(inScale, null, scaleOptions);
-        if (DEBUG) Log.i(TAG, "Final size: " + b.getWidth() + "x" + b.getHeight());
-        return b;
+        if (DEBUG) {Log.i(TAG, "Final size: " + b.getWidth() + "x" + b.getHeight());}
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.activity.PostReplyActivity.getImagePreviewBitmap()",this);return b;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.chanapps.four.activity.PostReplyActivity.getImagePreviewBitmap()",this,throwable);throw throwable;}
     }
 
     protected void setImagePreview() {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setImagePreview()",this);try{com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setImagePreview()",this);try {
             if (imageUri == null) {
                 imagePreview.setVisibility(View.GONE);
-                if (DEBUG) Log.i(TAG, "No image uri found, not setting image");
+                if (DEBUG) {Log.i(TAG, "No image uri found, not setting image");}
                 return;
             }
-            if (DEBUG) Log.i(TAG, "Setting preview image to uri=" + imageUri);
+            if (DEBUG) {Log.i(TAG, "Setting preview image to uri=" + imageUri);}
             DisplayImageOptions options = (new DisplayImageOptions.Builder()).cacheInMemory().cacheOnDisc().showStubImage(R.drawable.stub_image_background).resetViewBeforeLoading().displayer(new FadeInBitmapDisplayer(100)).fullSizeImageLocation(imageUri.toString()).imageSize(new ImageSize(300, 300)).build();
             ChanImageLoader.getInstance(this).displayImage(imageUri.toString(), imagePreview, options, previewListener);
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), R.string.post_reply_no_image, Toast.LENGTH_SHORT).show();
             Log.e(TAG, "setImagePreview exception while loading bitmap", e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setImagePreview()",this,throwable);throw throwable;}
     }
 
     protected ImageLoadingListener previewListener = new ImageLoadingListener() {
         @Override
         public void onLoadingStarted(String imageUri, View view) {
-            imageClickTarget.setVisibility(View.GONE);
-            previewProgress.setVisibility(View.VISIBLE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingStarted(java.lang.String,android.view.View)",this,imageUri,view);try{imageClickTarget.setVisibility(View.GONE);
+            previewProgress.setVisibility(View.VISIBLE);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingStarted(java.lang.String,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingStarted(java.lang.String,android.view.View)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            previewProgress.setVisibility(View.GONE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this,imageUri,view,failReason);try{previewProgress.setVisibility(View.GONE);
             imageClickTarget.setVisibility(View.VISIBLE);
-            deleteImage();
+            deleteImage();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            imagePreview.setVisibility(View.VISIBLE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this,imageUri,view,loadedImage);try{imagePreview.setVisibility(View.VISIBLE);
             deleteButtonBg.setVisibility(View.VISIBLE);
             deleteButton.setVisibility(View.VISIBLE);
             previewProgress.setVisibility(View.GONE);
-            imageClickTarget.setVisibility(View.GONE);
+            imageClickTarget.setVisibility(View.GONE);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLoadingCancelled(String imageUri, View view) {
-            previewProgress.setVisibility(View.GONE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingCancelled(java.lang.String,android.view.View)",this,imageUri,view);try{previewProgress.setVisibility(View.GONE);
             imageClickTarget.setVisibility(View.VISIBLE);
-            deleteImage();
+            deleteImage();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingCancelled(java.lang.String,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$9.onLoadingCancelled(java.lang.String,android.view.View)",this,throwable);throw throwable;}
         }
     };
 
     private void deleteImage() {
-        imagePreview.setVisibility(View.GONE);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.deleteImage()",this);try{imagePreview.setVisibility(View.GONE);
         deleteButtonBg.setVisibility(View.GONE);
         deleteButton.setVisibility(View.GONE);
         imageClickTarget.setVisibility(View.VISIBLE);
         imageUri = null;
         imagePath = null;
         contentType = null;
-        orientation = null;
+        orientation = null;com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.deleteImage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.deleteImage()",this,throwable);throw throwable;}
     }
 
     private void sage() {
-        emailText.setText("sage"); // 4chan way to post without bumping
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.sage()",this);try{emailText.setText("sage"); /*// 4chan way to post without bumping*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.sage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.sage()",this,throwable);throw throwable;}
     }
 
     private void startGallery() {
-        if (DEBUG) Log.i(TAG, "startGallery()");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.startGallery()",this);try{if (DEBUG) {Log.i(TAG, "startGallery()");}
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        //intent.setType("image/*|video/webm");
+        /*//intent.setType("image/*|video/webm");*/
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMAGE_GALLERY);
+        startActivityForResult(intent, IMAGE_GALLERY);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.startGallery()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.startGallery()",this,throwable);throw throwable;}
     }
 
     protected void validateAndSendReply() {
-        String validMsg = validatePost();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.validateAndSendReply()",this);try{String validMsg = validatePost();
         if (validMsg != null) {
             Toast.makeText(getApplicationContext(), validMsg, Toast.LENGTH_SHORT).show();
         } else {
             makePost();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.validateAndSendReply()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.validateAndSendReply()",this,throwable);throw throwable;}
     }
 
     private void makePost() {
-        closeKeyboard();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.makePost()",this);try{closeKeyboard();
         PostReplyTask postReplyTask = new PostReplyTask();
         PostingReplyDialogFragment dialogFragment = new PostingReplyDialogFragment(postReplyTask, threadNo);
         dialogFragment.show(getSupportFragmentManager(), PostingReplyDialogFragment.TAG);
         if (!postReplyTask.isCancelled()) {
             postReplyTask.execute(dialogFragment);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.makePost()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.makePost()",this,throwable);throw throwable;}
     }
 
     private void closeKeyboard() {
-        IBinder windowToken = getCurrentFocus() != null ? getCurrentFocus().getWindowToken() : null;
-        if (windowToken != null) { // close the keyboard
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.closeKeyboard()",this);try{IBinder windowToken = getCurrentFocus() != null ? getCurrentFocus().getWindowToken() : null;
+        if (windowToken != null) { /*// close the keyboard*/
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(windowToken, 0);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.closeKeyboard()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.closeKeyboard()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.post_reply_send_menu);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity.onPrepareOptionsMenu(android.view.Menu)",this,menu);try{MenuItem item = menu.findItem(R.id.post_reply_send_menu);
         if (item != null) {
             boolean hasConnection = NetworkProfileManager.instance().getCurrentProfile().getConnectionType() != NetworkProfile.Type.NO_CONNECTION;
-            if (!hasConnection) Toast.makeText(this, R.string.post_reply_pass_no_connection_text, Toast.LENGTH_SHORT).show();
+            if (!hasConnection) {Toast.makeText(this, R.string.post_reply_pass_no_connection_text, Toast.LENGTH_SHORT).show();}
             item.setVisible(hasConnection);
         }
         item = menu.findItem(R.id.post_reply_quote_menu);
@@ -940,73 +940,73 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
             boolean hasQuote = quoteText != null && !quoteText.trim().isEmpty();
             item.setVisible(hasQuote);
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.onPrepareOptionsMenu(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity.onPrepareOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
         case android.R.id.home:
             navigateUp();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
         case R.id.post_reply_quote_menu:
             insertQuote();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
             /*
              * case R.id.post_reply_exit_menu: finish(); return true;
              */
         case R.id.post_reply_send_menu:
             validateAndSendReply();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
         default:
-            return super.onOptionsItemSelected(item);
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.onOptionsItemSelected(android.view.MenuItem)",this);return super.onOptionsItemSelected(item);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     public String getMessage() {
-        String s = messageText.getText().toString();
-        return (s != null) ? s : "";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.getMessage()",this);try{String s = messageText.getText().toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.getMessage()",this);return (s != null) ? s : "";}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.getMessage()",this,throwable);throw throwable;}
     }
 
     public void setMessage(String text) {
-        messageText.setText(text);
-        // updateBump();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setMessage(java.lang.String)",this,text);try{messageText.setText(text);
+        /*// updateBump();*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setMessage(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setMessage(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public String getName() {
-        String s = nameText.getText().toString();
-        return (s != null) ? s : "";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.getName()",this);try{String s = nameText.getText().toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.getName()",this);return (s != null) ? s : "";}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.getName()",this,throwable);throw throwable;}
     }
 
     public String getEmail() {
-        String s = emailText.getText().toString();
-        return (s != null) ? s : "";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.getEmail()",this);try{String s = emailText.getText().toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.getEmail()",this);return (s != null) ? s : "";}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.getEmail()",this,throwable);throw throwable;}
     }
 
     public String getSubject() {
-        String s = subjectText.getText().toString();
-        return (s != null) ? s : "";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.getSubject()",this);try{String s = subjectText.getText().toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.getSubject()",this);return (s != null) ? s : "";}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.getSubject()",this,throwable);throw throwable;}
     }
 
     public Captcha getCaptcha() {
-        return captcha;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.data.Captcha com.chanapps.four.activity.PostReplyActivity.getCaptcha()",this);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.data.Captcha com.chanapps.four.activity.PostReplyActivity.getCaptcha()",this);return captcha;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.data.Captcha com.chanapps.four.activity.PostReplyActivity.getCaptcha()",this,throwable);throw throwable;}
     }
 
     public void setCaptcha(Captcha captcha) {
-        this.captcha = captcha;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setCaptcha(com.chanapps.four.data.Captcha)",this,captcha);try{this.captcha = captcha;com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setCaptcha(com.chanapps.four.data.Captcha)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setCaptcha(com.chanapps.four.data.Captcha)",this,throwable);throw throwable;}
     }
 
     public String getPassword() {
-        String s = passwordText.getText().toString();
-        return (s != null) ? s : "";
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.getPassword()",this);try{String s = passwordText.getText().toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.getPassword()",this);return (s != null) ? s : "";}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.getPassword()",this,throwable);throw throwable;}
     }
 
     private String generatePassword() {
-        return eightDigits.format(randomGenerator.nextInt(PASSWORD_MAX));
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.generatePassword()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.generatePassword()",this);return eightDigits.format(randomGenerator.nextInt(PASSWORD_MAX));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.generatePassword()",this,throwable);throw throwable;}
     }
 
     private String validatePost() {
-        String subject = subjectText.getText().toString();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.validatePost()",this);try{String subject = subjectText.getText().toString();
         String message = messageText.getText().toString();
         String image = imageUri != null ? imageUri.getPath() : null;
         boolean hasSubject = subject != null && !subject.trim().isEmpty();
@@ -1014,67 +1014,67 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         boolean hasImage = image != null && !image.trim().isEmpty();
 
         if (threadNo == 0) {
-            if (ChanBoard.requiresThreadImage(boardCode) && !hasImage) return getString(R.string.post_reply_add_image);
-            if (ChanBoard.requiresThreadSubject(boardCode) && !hasSubject) return getString(R.string.post_reply_board_requires_subject);
+            if (ChanBoard.requiresThreadImage(boardCode) && !hasImage) {{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.validatePost()",this);return getString(R.string.post_reply_add_image);}}
+            if (ChanBoard.requiresThreadSubject(boardCode) && !hasSubject) {{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.validatePost()",this);return getString(R.string.post_reply_board_requires_subject);}}
         }
-        if (!hasImage && !hasMessage) return getString(R.string.post_reply_add_text_or_image);
+        if (!hasImage && !hasMessage) {{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.validatePost()",this);return getString(R.string.post_reply_add_text_or_image);}}
 
         if (!isPassEnabled() || !isPassAvailable()) {
             String recaptcha = getRecaptchaResponse();
             if (StringUtils.isEmpty(recaptcha)) {
                 recaptchaView.initCaptcha();
-                return getString(R.string.post_reply_enter_captcha);
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.validatePost()",this);return getString(R.string.post_reply_enter_captcha);}
             }
         }
 
-        return null;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.validatePost()",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.validatePost()",this,throwable);throw throwable;}
     }
 
     public void navigateUp() {
-        Pair<Integer, ActivityManager.RunningTaskInfo> p = ActivityDispatcher.safeGetRunningTasks(this);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.navigateUp()",this);try{Pair<Integer, ActivityManager.RunningTaskInfo> p = ActivityDispatcher.safeGetRunningTasks(this);
         int numTasks = p.first;
         ActivityManager.RunningTaskInfo task = p.second;
         if (task != null) {
-            if (DEBUG) Log.i(TAG, "navigateUp() top=" + task.topActivity + " base=" + task.baseActivity);
+            if (DEBUG) {Log.i(TAG, "navigateUp() top=" + task.topActivity + " base=" + task.baseActivity);}
             if (task.baseActivity != null && !this.getClass().getName().equals(task.baseActivity.getClassName())) {
-                if (DEBUG) Log.i(TAG, "navigateUp() using finish instead of intents with me=" + this.getClass().getName() + " base=" + task.baseActivity.getClassName());
+                if (DEBUG) {Log.i(TAG, "navigateUp() using finish instead of intents with me=" + this.getClass().getName() + " base=" + task.baseActivity.getClassName());}
                 finish();
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.navigateUp()",this);return;}
             }
         }
 
-        if (DEBUG) Log.i(TAG, "navigateUp() launching intent /" + boardCode + "/" + threadNo + "#p" + postNo);
+        if (DEBUG) {Log.i(TAG, "navigateUp() launching intent /" + boardCode + "/" + threadNo + "#p" + postNo);}
         Intent intent = ThreadActivity.createIntent(this, boardCode, threadNo, postNo, "");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        finish();
+        finish();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.navigateUp()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity.onCreateOptionsMenu(android.view.Menu)",this,menu);try{MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.post_reply_menu, menu);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity.onCreateOptionsMenu(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity.onCreateOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     protected void setActionBarTitle() {
-        String replyTitle = threadNo > 0 ? getString(R.string.post_reply_title) : getString(R.string.new_thread_menu);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setActionBarTitle()",this);try{String replyTitle = threadNo > 0 ? getString(R.string.post_reply_title) : getString(R.string.new_thread_menu);
         String title = "/" + boardCode + "/ " + replyTitle;
         getActionBar().setTitle(title);
         getActionBar().setDisplayShowHomeEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setActionBarTitle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setActionBarTitle()",this,throwable);throw throwable;}
     }
 
     @Override
     public ChanActivityId getChanActivityId() {
-        ChanActivityId aid = new ChanActivityId(LastActivity.POST_REPLY_ACTIVITY, boardCode, threadNo, postNo, replyText);
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.PostReplyActivity.getChanActivityId()",this);try{ChanActivityId aid = new ChanActivityId(LastActivity.POST_REPLY_ACTIVITY, boardCode, threadNo, postNo, replyText);
         aid.quoteText = quoteText;
-        return aid;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.PostReplyActivity.getChanActivityId()",this);return aid;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.PostReplyActivity.getChanActivityId()",this,throwable);throw throwable;}
     }
 
     @Override
     public Handler getChanHandler() {
-        return null;
+        com.mijack.Xlog.logMethodEnter("android.os.Handler com.chanapps.four.activity.PostReplyActivity.getChanHandler()",this);try{com.mijack.Xlog.logMethodExit("android.os.Handler com.chanapps.four.activity.PostReplyActivity.getChanHandler()",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Handler com.chanapps.four.activity.PostReplyActivity.getChanHandler()",this,throwable);throw throwable;}
     }
 
     public class PostReplyHandler extends Handler {
@@ -1084,7 +1084,7 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
 
         @Override
         public void handleMessage(Message msg) {
-            try {
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$PostReplyHandler.handleMessage(android.os.Message)",this,msg);try{try {
                 super.handleMessage(msg);
                 switch (msg.what) {
                 case POST_FINISHED:
@@ -1093,23 +1093,19 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Couldn't handle message " + msg, e);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$PostReplyHandler.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$PostReplyHandler.handleMessage(android.os.Message)",this,throwable);throw throwable;}
         }
     }
 
-    @Override
-    public void closeSearch() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.closeSearch()",this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.closeSearch()",this);}
 
-    @Override
-    public void setProgress(boolean on) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setProgress(boolean)",this,on);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setProgress(boolean)",this);}
 
     public class PostReplyTask extends AsyncTask<PostingReplyDialogFragment, Void, Integer> {
 
         public static final String MAX_FILE_SIZE = "3145728";
 
-        // private PostReplyActivity activity = null;
+        /*// private PostReplyActivity activity = null;*/
         private boolean usePass = false;
         private String password = null;
         private Context context = null;
@@ -1123,42 +1119,42 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
         }
 
         @Override
-        protected Integer doInBackground(PostingReplyDialogFragment... params) { // dialog
-                                                                                 // is
-                                                                                 // for
-                                                                                 // callback
+        protected Integer doInBackground(PostingReplyDialogFragment... params) { com.mijack.Xlog.logMethodEnter("java.lang.Integer com.chanapps.four.activity.PostReplyActivity$PostReplyTask.doInBackground([com.chanapps.four.fragment.PostingReplyDialogFragment)",this,params);try{/*// dialog*/
+                                                                                 /*// is*/
+                                                                                 /*// for*/
+                                                                                 /*// callback*/
             dialogFragment = params[0];
             try {
-                password = getPassword(); // save for later use
+                password = getPassword(); /*// save for later use*/
 
                 MultipartEntity entity = buildMultipartEntity();
                 if (entity == null) {
                     Log.e(TAG, "Null entity returned building post");
-                    return R.string.post_reply_error;
+                    {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.activity.PostReplyActivity$PostReplyTask.doInBackground([com.chanapps.four.fragment.PostingReplyDialogFragment)",this);return R.string.post_reply_error;}
                 }
 
                 String response = executePostReply(entity);
                 if (response == null || response.isEmpty()) {
                     Log.e(TAG, "Null response posting");
-                    return R.string.post_reply_error;
+                    {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.activity.PostReplyActivity$PostReplyTask.doInBackground([com.chanapps.four.fragment.PostingReplyDialogFragment)",this);return R.string.post_reply_error;}
                 }
 
                 ChanPostResponse chanPostResponse = new ChanPostResponse(context, response);
                 chanPostResponse.processResponse();
 
-                if (!postSuccessful(chanPostResponse)) return R.string.post_reply_error;
+                if (!postSuccessful(chanPostResponse)) {{com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.activity.PostReplyActivity$PostReplyTask.doInBackground([com.chanapps.four.fragment.PostingReplyDialogFragment)",this);return R.string.post_reply_error;}}
 
-                clearPrefs(); // clear on successful response
+                clearPrefs(); /*// clear on successful response*/
 
-                return updateThreadsAndWatchlist(chanPostResponse);
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.activity.PostReplyActivity$PostReplyTask.doInBackground([com.chanapps.four.fragment.PostingReplyDialogFragment)",this);return updateThreadsAndWatchlist(chanPostResponse);}
             } catch (Exception e) {
                 Log.e(TAG, "Error posting", e);
-                return R.string.post_reply_error;
-            }
+                {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.activity.PostReplyActivity$PostReplyTask.doInBackground([com.chanapps.four.fragment.PostingReplyDialogFragment)",this);return R.string.post_reply_error;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.chanapps.four.activity.PostReplyActivity$PostReplyTask.doInBackground([com.chanapps.four.fragment.PostingReplyDialogFragment)",this,throwable);throw throwable;}
         }
 
         protected MultipartEntity buildMultipartEntity() {
-            List<Part> partsList = new ArrayList<Part>();
+            com.mijack.Xlog.logMethodEnter("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.activity.PostReplyActivity$PostReplyTask.buildMultipartEntity()",this);try{List<Part> partsList = new ArrayList<Part>();
             partsList.add(new StringPart("MAX-FILE-SIZE", MAX_FILE_SIZE, charset));
             partsList.add(new StringPart("mode", "regist", charset));
             partsList.add(new StringPart("resto", Long.toString(threadNo), charset));
@@ -1174,35 +1170,35 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
             if (hasSpoiler()) {
                 partsList.add(new StringPart("spoiler", "on", charset));
             }
-            if (!addImage(partsList)) return null;
+            if (!addImage(partsList)) {{com.mijack.Xlog.logMethodExit("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.activity.PostReplyActivity$PostReplyTask.buildMultipartEntity()",this);return null;}}
 
             Part[] parts = partsList.toArray(new Part[partsList.size()]);
 
-            if (DEBUG) dumpPartsList(partsList);
+            if (DEBUG) {dumpPartsList(partsList);}
 
             MultipartEntity entity = new MultipartEntity(parts);
-            return entity;
+            {com.mijack.Xlog.logMethodExit("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.activity.PostReplyActivity$PostReplyTask.buildMultipartEntity()",this);return entity;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.multipartmime.MultipartEntity com.chanapps.four.activity.PostReplyActivity$PostReplyTask.buildMultipartEntity()",this,throwable);throw throwable;}
         }
 
         protected void dumpPartsList(List<Part> partsList) {
-            if (DEBUG) Log.i(TAG, "Dumping mime parts list:");
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.dumpPartsList(java.util.ArrayList)",this,partsList);try{if (DEBUG) {Log.i(TAG, "Dumping mime parts list:");}
             for (Part p : partsList) {
-                if (!(p instanceof StringPart)) continue;
+                if (!(p instanceof StringPart)) {continue;}
                 StringPart s = (StringPart) p;
                 String line = s.getName() + ": " + s.getValue() + ", ";
-                if (DEBUG) Log.i(TAG, line);
-            }
+                if (DEBUG) {Log.i(TAG, line);}
+            }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.dumpPartsList(java.util.ArrayList)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.dumpPartsList(java.util.ArrayList)",this,throwable);throw throwable;}
         }
 
         protected boolean addImage(List<Part> partsList) {
-            String imageUrl = imageUri == null ? null : imageUri.toString();
+            com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.addImage(java.util.ArrayList)",this,partsList);try{String imageUrl = imageUri == null ? null : imageUri.toString();
             if (imageUrl == null && threadNo == 0 && !ChanBoard.requiresThreadImage(boardCode)) {
                 partsList.add(new StringPart("textonly", "on", charset));
             }
             if (imageUrl != null) {
-                if (DEBUG) Log.i(TAG, "Trying to load image for imageUrl=" + imageUrl + " imagePath=" + imagePath + " contentType=" + contentType);
+                if (DEBUG) {Log.i(TAG, "Trying to load image for imageUrl=" + imageUrl + " imagePath=" + imagePath + " contentType=" + contentType);}
                 File file = null;
-                if (imagePath == null || imagePath.startsWith("http")) { // non-local path, load to tmp
+                if (imagePath == null || imagePath.startsWith("http")) { /*// non-local path, load to tmp*/
                     InputStream in = null;
                     try {
                         String prefix = UUID.randomUUID().toString();
@@ -1214,7 +1210,7 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
 
                     } catch (Exception e) {
                         Log.e(TAG, "Couldn't get file from uri=" + imageUri, e);
-                        return false;
+                        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.addImage(java.util.ArrayList)",this);return false;}
                     } finally {
                         if (in != null) {
                             try {
@@ -1224,13 +1220,13 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
                             }
                         }
                     }
-                } else { // local file, load it directly
+                } else { /*// local file, load it directly*/
                     file = new File(imagePath);
                 }
 
                 try {
                     ExifInterface exif = new ExifInterface(file.getAbsolutePath());
-                    if (DEBUG) Log.i(TAG, "Found exif orientation: " + exif.getAttribute(ExifInterface.TAG_ORIENTATION));
+                    if (DEBUG) {Log.i(TAG, "Found exif orientation: " + exif.getAttribute(ExifInterface.TAG_ORIENTATION));}
                 } catch (Exception e) {
                     Log.e(TAG, "Couldn't read exif interface for file:" + file.getAbsolutePath(), e);
                 }
@@ -1242,104 +1238,104 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
                     }
                 } catch (Exception e) {
                     Log.e(TAG, "Couldn't add file to entity, file=" + file.getAbsolutePath(), e);
-                    return false;
+                    {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.addImage(java.util.ArrayList)",this);return false;}
                 }
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.addImage(java.util.ArrayList)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.addImage(java.util.ArrayList)",this,throwable);throw throwable;}
         }
 
         protected String executePostReply(MultipartEntity entity) {
-            String url = String.format(URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_POST_URL_FORMAT), boardCode);
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity$PostReplyTask.executePostReply(com.chanapps.four.multipartmime.MultipartEntity)",this,entity);try{String url = String.format(URLFormatComponent.getUrl(context, URLFormatComponent.CHAN_POST_URL_FORMAT), boardCode);
             AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
             HttpParams params = client.getParams();
-            if (params != null) HttpClientParams.setRedirecting(params, true); // handle 302s from 4chan
+            if (params != null) {HttpClientParams.setRedirecting(params, true);} /*// handle 302s from 4chan*/
             try {
-                // setup post
+                /*// setup post*/
                 HttpPost request = new HttpPost(url);
                 entity.setContentEncoding(charset);
                 request.setEntity(entity);
-                if (DEBUG) dumpRequestContent(request.getEntity().getContent());
-                if (DEBUG) Log.i(TAG, "Calling URL: " + request.getURI());
+                if (DEBUG) {dumpRequestContent(request.getEntity().getContent());}
+                if (DEBUG) {Log.i(TAG, "Calling URL: " + request.getURI());}
 
-                // make call
+                /*// make call*/
                 HttpResponse httpResponse;
                 if (usePass) {
-                    if (DEBUG) Log.i(TAG, "Using 4chan pass, attaching cookies to request");
+                    if (DEBUG) {Log.i(TAG, "Using 4chan pass, attaching cookies to request");}
                     PersistentCookieStore cookieStore = new PersistentCookieStore(context);
                     HttpContext localContext = new BasicHttpContext();
                     localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
                     httpResponse = client.execute(request, localContext);
-                    if (DEBUG) Log.i(TAG, "Cookies: " + cookieStore.dump());
+                    if (DEBUG) {Log.i(TAG, "Cookies: " + cookieStore.dump());}
                 } else {
-                    if (DEBUG) Log.i(TAG, "Not using 4chan pass, executing with captcha");
+                    if (DEBUG) {Log.i(TAG, "Not using 4chan pass, executing with captcha");}
                     httpResponse = client.execute(request);
                 }
-                if (DEBUG) Log.i(TAG, "Response Headers: " + (httpResponse == null ? "null" : Arrays.toString(httpResponse.getAllHeaders())));
-                if (DEBUG) Log.i(TAG, "Response Body: " + (httpResponse == null ? "null" : "length: " + httpResponse.toString().length()));
-                // check if response
+                if (DEBUG) {Log.i(TAG, "Response Headers: " + (httpResponse == null ? "null" : Arrays.toString(httpResponse.getAllHeaders())));}
+                if (DEBUG) {Log.i(TAG, "Response Body: " + (httpResponse == null ? "null" : "length: " + httpResponse.toString().length()));}
+                /*// check if response*/
                 if (httpResponse == null) {
                     Log.e(TAG, context.getString(R.string.post_reply_no_response));
-                    return null;
+                    {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity$PostReplyTask.executePostReply(com.chanapps.four.multipartmime.MultipartEntity)",this);return null;}
                 }
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
-                if (DEBUG) Log.i(TAG, "Response statusCode=" + statusCode);
-                // process response
+                if (DEBUG) {Log.i(TAG, "Response statusCode=" + statusCode);}
+                /*// process response*/
                 BufferedReader r = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
                 StringBuilder s = new StringBuilder();
                 String line;
                 while ((line = r.readLine()) != null) {
-                    if (DEBUG) Log.i(TAG, "Response Line:" + line);
+                    if (DEBUG) {Log.i(TAG, "Response Line:" + line);}
                     s.append(line);
                 }
                 String response = s.toString();
-                return response;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity$PostReplyTask.executePostReply(com.chanapps.four.multipartmime.MultipartEntity)",this);return response;}
             } catch (Exception e) {
                 Log.e(TAG, "Exception while posting to url=" + url, e);
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity$PostReplyTask.executePostReply(com.chanapps.four.multipartmime.MultipartEntity)",this);return null;}
             } finally {
                 if (client != null) {
                     client.close();
                 }
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity$PostReplyTask.executePostReply(com.chanapps.four.multipartmime.MultipartEntity)",this,throwable);throw throwable;}
         }
 
         protected void dumpRequestContent(InputStream is) {
-            if (DEBUG) Log.i(TAG, "Request Message Body:");
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.dumpRequestContent(java.io.BufferedInputStream)",this,is);try{if (DEBUG) {Log.i(TAG, "Request Message Body:");}
             try {
                 BufferedReader r = new BufferedReader(new InputStreamReader(is));
                 String l;
                 while ((l = r.readLine()) != null)
-                    if (DEBUG) Log.i(TAG, l);
+                    {if (DEBUG) {Log.i(TAG, l);}}
             } catch (IOException e) {
-                if (DEBUG) Log.i(TAG, "Exception reading message for logging", e);
-            }
+                if (DEBUG) {Log.i(TAG, "Exception reading message for logging", e);}
+            }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.dumpRequestContent(java.io.BufferedInputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.dumpRequestContent(java.io.BufferedInputStream)",this,throwable);throw throwable;}
         }
 
         protected String errorMessage = null;
 
         protected boolean postSuccessful(ChanPostResponse chanPostResponse) {
-            errorMessage = chanPostResponse.getError(getApplicationContext());
+            com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.postSuccessful(com.chanapps.four.data.ChanPostResponse)",this,chanPostResponse);try{errorMessage = chanPostResponse.getError(getApplicationContext());
             if (errorMessage != null && !errorMessage.isEmpty()) {
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.postSuccessful(com.chanapps.four.data.ChanPostResponse)",this);return false;}
             }
 
-            if (DEBUG) Log.i(TAG, "isPosted:" + chanPostResponse.isPosted());
+            if (DEBUG) {Log.i(TAG, "isPosted:" + chanPostResponse.isPosted());}
             if (!chanPostResponse.isPosted()) {
                 Log.e(TAG, "Unable to post response=" + chanPostResponse.getResponse());
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.postSuccessful(com.chanapps.four.data.ChanPostResponse)",this);return false;}
             }
 
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.postSuccessful(com.chanapps.four.data.ChanPostResponse)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity$PostReplyTask.postSuccessful(com.chanapps.four.data.ChanPostResponse)",this,throwable);throw throwable;}
         }
 
         protected int updateThreadsAndWatchlist(ChanPostResponse chanPostResponse) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            long postThreadNo = chanPostResponse.getThreadNo(); // direct from 4chan post response parsing
-            final long newThreadNo = postThreadNo != 0 ? postThreadNo : threadNo; // fallback
+            com.mijack.Xlog.logMethodEnter("int com.chanapps.four.activity.PostReplyActivity$PostReplyTask.updateThreadsAndWatchlist(com.chanapps.four.data.ChanPostResponse)",this,chanPostResponse);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            long postThreadNo = chanPostResponse.getThreadNo(); /*// direct from 4chan post response parsing*/
+            final long newThreadNo = postThreadNo != 0 ? postThreadNo : threadNo; /*// fallback*/
             long postNo = chanPostResponse.getPostNo();
-            if (DEBUG) Log.i(TAG, "posted /" + boardCode + "/" + newThreadNo + ":" + postNo);
+            if (DEBUG) {Log.i(TAG, "posted /" + boardCode + "/" + newThreadNo + ":" + postNo);}
 
-            // forcing thread/board refresh
+            /*// forcing thread/board refresh*/
             ChanActivityId activityId = NetworkProfileManager.instance().getActivityId();
             if (activityId != null) {
                 if (activityId.activity == LastActivity.THREAD_ACTIVITY) {
@@ -1351,11 +1347,11 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
                 }
             }
 
-            // auto-add to watchlist
-            if (PreferenceManager.getDefaultSharedPreferences(PostReplyActivity.this).getBoolean(SettingsActivity.PREF_AUTOMATICALLY_MANAGE_WATCHLIST, true)) new Thread(new Runnable() {
+            /*// auto-add to watchlist*/
+            if (PreferenceManager.getDefaultSharedPreferences(PostReplyActivity.this).getBoolean(SettingsActivity.PREF_AUTOMATICALLY_MANAGE_WATCHLIST, true)) {new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    ChanThread thread = new ChanThread();
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask$1.run()",this);try{ChanThread thread = new ChanThread();
                     thread.no = newThreadNo;
                     thread.board = boardCode;
                     thread.tn_w = 250;
@@ -1367,27 +1363,27 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
                         BoardActivity.refreshWatchlist(context);
                     } catch (IOException e) {
                         Log.e(TAG, "Couldn't add thread /" + thread.board + "/" + thread.no + " to watchlist", e);
-                    }
+                    }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask$1.run()",this,throwable);throw throwable;}
                 }
-            }).start();
+            }).start();}
 
-            imageUri = null; // now we've processed so don't use it again
-            return 0;
+            imageUri = null; /*// now we've processed so don't use it again*/
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.activity.PostReplyActivity$PostReplyTask.updateThreadsAndWatchlist(com.chanapps.four.data.ChanPostResponse)",this);return 0;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.activity.PostReplyActivity$PostReplyTask.updateThreadsAndWatchlist(com.chanapps.four.data.ChanPostResponse)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onCancelled() {
-            Log.e(TAG, "Post cancelled");
-            Toast.makeText(context, R.string.post_reply_cancelled, Toast.LENGTH_SHORT).show();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.onCancelled()",this);try{Log.e(TAG, "Post cancelled");
+            Toast.makeText(context, R.string.post_reply_cancelled, Toast.LENGTH_SHORT).show();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.onCancelled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.onCancelled()",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            if (result != 0) {
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.onPostExecute(java.lang.Integer)",this,result);try{if (result != 0) {
                 String error = context.getString(result) + (errorMessage == null ? "" : ": " + errorMessage);
                 Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                 safeDismiss();
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.onPostExecute(java.lang.Integer)",this);return;}
             }
 
             if (threadNo == 0) {
@@ -1398,58 +1394,56 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
             safeDismiss();
             clearPrefs();
             exitingOnSuccess = true;
-            Message.obtain(getHandler(), POST_FINISHED).sendToTarget();
+            Message.obtain(getHandler(), POST_FINISHED).sendToTarget();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.onPostExecute(java.lang.Integer)",this,throwable);throw throwable;}
         }
 
         protected void safeDismiss() {
-            if (dialogFragment != null) try {
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.safeDismiss()",this);try{if (dialogFragment != null) {try {
                 dialogFragment.dismiss();
             } catch (Exception e) {
                 Log.e(TAG, "Exception while dismissing dialog", e);
-            }
+            }}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.safeDismiss()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity$PostReplyTask.safeDismiss()",this,throwable);throw throwable;}
         }
     }
 
     protected PopupMenu.OnMenuItemClickListener popupListener = new PopupMenu.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
+            com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.PostReplyActivity$10.onMenuItemClick(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
             case R.id.post_reply_quote_menu:
                 insertQuote();
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$10.onMenuItemClick(android.view.MenuItem)",this);return true;}
             default:
-                return false;
-            }
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.PostReplyActivity$10.onMenuItemClick(android.view.MenuItem)",this);return false;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.PostReplyActivity$10.onMenuItemClick(android.view.MenuItem)",this,throwable);throw throwable;}
         }
     };
 
     protected void insertQuote() {
-        if (messageText == null) return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.insertQuote()",this);try{if (messageText == null) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.insertQuote()",this);return;}}
         Editable t = messageText.getText();
-        if (t == null) return;
+        if (t == null) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.insertQuote()",this);return;}}
         String s = t.subSequence(0, t.length()).toString();
-        if (DEBUG) Log.i(TAG, "insertQuote text=" + s + " replyText=" + replyText + " quoteText=" + quoteText);
+        if (DEBUG) {Log.i(TAG, "insertQuote text=" + s + " replyText=" + replyText + " quoteText=" + quoteText);}
         int st;
         if (quoteText != null && !quoteText.isEmpty() && (st = s.indexOf(quoteText)) >= 0) {
-            // quote is already there, so remove
+            /*// quote is already there, so remove*/
             t.replace(st, st + replyText.length(), "");
         } else if (replyText != null && !replyText.isEmpty() && (st = s.indexOf(replyText)) >= 0) {
             t.replace(st, st + replyText.length(), quoteText);
         } else {
             t.insert(0, quoteText);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.insertQuote()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void switchBoard(String boardCode, String query) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.switchBoard(java.lang.String,java.lang.String)",this,boardCode,query);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.switchBoard(java.lang.String,java.lang.String)",this);}
 
     public String getRecaptchaResponse() {
-        return recaptchaView.getCaptchaResponse();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.PostReplyActivity.getRecaptchaResponse()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.PostReplyActivity.getRecaptchaResponse()",this);return recaptchaView.getCaptchaResponse();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.PostReplyActivity.getRecaptchaResponse()",this,throwable);throw throwable;}
     }
 
     public void setRecaptchaResponse(String gRecaptchaResponse) {
-        recaptchaView.setCaptchaResponse(gRecaptchaResponse);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaResponse(java.lang.String)",this,gRecaptchaResponse);try{recaptchaView.setCaptchaResponse(gRecaptchaResponse);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaResponse(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.PostReplyActivity.setRecaptchaResponse(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

@@ -68,60 +68,60 @@ public abstract class LimitedDiscCache extends BaseDiscCache {
 	}
 
 	private void calculateCacheSizeAndFillUsageMap() {
-		new Thread(new Runnable() {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.calculateCacheSizeAndFillUsageMap()",this);try{new Thread(new Runnable() {
 			@Override
 			public void run() {
-				int size = 0;
+				com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache$1.run()",this);try{int size = 0;
 				File[] cachedFiles = cacheDir.listFiles();
-				if (cachedFiles != null) { // rarely but it can happen, don't know why
+				if (cachedFiles != null) { /*// rarely but it can happen, don't know why*/
 					for (File cachedFile : cachedFiles) {
 						size += getSize(cachedFile);
 						lastUsageDates.put(cachedFile, cachedFile.lastModified());
 					}
 					cacheSize.set(size);
-				}
+				}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache$1.run()",this,throwable);throw throwable;}
 			}
-		}).start();
+		}).start();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.calculateCacheSizeAndFillUsageMap()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.calculateCacheSizeAndFillUsageMap()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void put(String key, File file) {
-		int valueSize = getSize(file);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.put(java.lang.String,java.io.File)",this,key,file);try{int valueSize = getSize(file);
 		int curCacheSize = cacheSize.get();
 		while (curCacheSize + valueSize > sizeLimit) {
 			int freedSize = removeNext();
-			if (freedSize == 0) break; // cache is empty (have nothing to delete)
+			if (freedSize == 0) {break;} /*// cache is empty (have nothing to delete)*/
 			curCacheSize = cacheSize.addAndGet(-freedSize);
 		}
 		cacheSize.addAndGet(valueSize);
 
 		Long currentTime = System.currentTimeMillis();
 		file.setLastModified(currentTime);
-		lastUsageDates.put(file, currentTime);
+		lastUsageDates.put(file, currentTime);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.put(java.lang.String,java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.put(java.lang.String,java.io.File)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public File get(String key) {
-		File file = super.get(key);
+		com.mijack.Xlog.logMethodEnter("java.io.File com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.get(java.lang.String)",this,key);try{File file = super.get(key);
 
 		Long currentTime = System.currentTimeMillis();
 		file.setLastModified(currentTime);
 		lastUsageDates.put(file, currentTime);
 
-		return file;
+		{com.mijack.Xlog.logMethodExit("java.io.File com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.get(java.lang.String)",this);return file;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.get(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		lastUsageDates.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.clear()",this);try{lastUsageDates.clear();
 		cacheSize.set(0);
-		super.clear();
+		super.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.clear()",this,throwable);throw throwable;}
 	}
 
 	/** Remove next file and returns it's size */
 	private int removeNext() {
-		if (lastUsageDates.isEmpty()) {
-			return 0;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.removeNext()",this);try{if (lastUsageDates.isEmpty()) {
+			{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.removeNext()",this);return 0;}
 		}
 
 		Long oldestUsage = null;
@@ -146,7 +146,7 @@ public abstract class LimitedDiscCache extends BaseDiscCache {
 		if (mostLongUsedFile.delete()) {
 			lastUsageDates.remove(mostLongUsedFile);
 		}
-		return fileSize;
+		{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.removeNext()",this);return fileSize;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.cache.disc.LimitedDiscCache.removeNext()",this,throwable);throw throwable;}
 	}
 
 	protected abstract int getSize(File file);

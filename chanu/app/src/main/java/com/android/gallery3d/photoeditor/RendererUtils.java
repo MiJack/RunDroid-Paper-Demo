@@ -67,14 +67,14 @@ public class RendererUtils {
     private static final float DEGREE_TO_RADIAN = (float) Math.PI / 180.0f;
 
     public static int createTexture() {
-        int[] textures = new int[1];
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.photoeditor.RendererUtils.createTexture()");try{int[] textures = new int[1];
         GLES20.glGenTextures(textures.length, textures, 0);
         checkGlError("glGenTextures");
-        return textures[0];
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.photoeditor.RendererUtils.createTexture()");return textures[0];}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.photoeditor.RendererUtils.createTexture()",throwable);throw throwable;}
     }
 
     public static int createTexture(Bitmap bitmap) {
-        int texture = createTexture();
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.photoeditor.RendererUtils.createTexture(android.graphics.Bitmap)",bitmap);try{int texture = createTexture();
 
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture);
         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
@@ -88,11 +88,11 @@ public class RendererUtils {
                 GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
         checkGlError("texImage2D");
 
-        return texture;
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.photoeditor.RendererUtils.createTexture(android.graphics.Bitmap)");return texture;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.photoeditor.RendererUtils.createTexture(android.graphics.Bitmap)",throwable);throw throwable;}
     }
 
     public static Bitmap saveTexture(int texture, int width, int height) {
-        int[] frame = new int[1];
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.photoeditor.RendererUtils.saveTexture(int,int,int)",texture,width,height);try{int[] frame = new int[1];
         GLES20.glGenFramebuffers(1, frame, 0);
         checkGlError("glGenFramebuffers");
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, frame[0]);
@@ -111,26 +111,26 @@ public class RendererUtils {
         checkGlError("glBindFramebuffer");
         GLES20.glDeleteFramebuffers(1, frame, 0);
         checkGlError("glDeleteFramebuffer");
-        return bitmap;
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.RendererUtils.saveTexture(int,int,int)");return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.photoeditor.RendererUtils.saveTexture(int,int,int)",throwable);throw throwable;}
     }
 
     public static void clearTexture(int texture) {
-        int[] textures = new int[1];
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.photoeditor.RendererUtils.clearTexture(int)",texture);try{int[] textures = new int[1];
         textures[0] = texture;
         GLES20.glDeleteTextures(textures.length, textures, 0);
-        checkGlError("glDeleteTextures");
+        checkGlError("glDeleteTextures");com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.photoeditor.RendererUtils.clearTexture(int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RendererUtils.clearTexture(int)",throwable);throw throwable;}
     }
 
     private static float[] getFitVertices(int srcWidth, int srcHeight, int dstWidth,
             int dstHeight) {
-        float srcAspectRatio = ((float) srcWidth) / srcHeight;
+        com.mijack.Xlog.logStaticMethodEnter("[float com.android.gallery3d.photoeditor.RendererUtils.getFitVertices(int,int,int,int)",srcWidth,srcHeight,dstWidth,dstHeight);try{float srcAspectRatio = ((float) srcWidth) / srcHeight;
         float dstAspectRatio = ((float) dstWidth) / dstHeight;
         float relativeAspectRatio = dstAspectRatio / srcAspectRatio;
 
         float[] vertices = new float[8];
         System.arraycopy(POS_VERTICES, 0, vertices, 0, vertices.length);
         if (relativeAspectRatio > 1.0f) {
-            // Screen is wider than the camera, scale down X
+            /*// Screen is wider than the camera, scale down X*/
             vertices[0] /= relativeAspectRatio;
             vertices[2] /= relativeAspectRatio;
             vertices[4] /= relativeAspectRatio;
@@ -141,18 +141,18 @@ public class RendererUtils {
             vertices[5] *= relativeAspectRatio;
             vertices[7] *= relativeAspectRatio;
         }
-        return vertices;
+        {com.mijack.Xlog.logStaticMethodExit("[float com.android.gallery3d.photoeditor.RendererUtils.getFitVertices(int,int,int,int)");return vertices;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("[float com.android.gallery3d.photoeditor.RendererUtils.getFitVertices(int,int,int,int)",throwable);throw throwable;}
     }
 
     public static void setRenderToFit(RenderContext context, int srcWidth, int srcHeight,
             int dstWidth, int dstHeight) {
-        context.posVertices = createVerticesBuffer(
-                getFitVertices(srcWidth, srcHeight, dstWidth, dstHeight));
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToFit(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int)",context,srcWidth,srcHeight,dstWidth,dstHeight);try{context.posVertices = createVerticesBuffer(
+                getFitVertices(srcWidth, srcHeight, dstWidth, dstHeight));com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToFit(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToFit(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int)",throwable);throw throwable;}
     }
 
     public static void setRenderToRotate(RenderContext context, int srcWidth, int srcHeight,
             int dstWidth, int dstHeight, float degrees) {
-        float radian = -degrees * DEGREE_TO_RADIAN;
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToRotate(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int,float)",context,srcWidth,srcHeight,dstWidth,dstHeight,degrees);try{float radian = -degrees * DEGREE_TO_RADIAN;
         float cosTheta = (float) Math.cos(radian);
         float sinTheta = (float) Math.sin(radian);
         float cosWidth = cosTheta * srcWidth;
@@ -178,12 +178,12 @@ public class RendererUtils {
             vertices[i] *= scale / dstWidth;
             vertices[i + 1] *= scale / dstHeight;
         }
-        context.posVertices = createVerticesBuffer(vertices);
+        context.posVertices = createVerticesBuffer(vertices);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToRotate(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int,float)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToRotate(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int,float)",throwable);throw throwable;}
     }
 
     public static void setRenderToFlip(RenderContext context, int srcWidth, int srcHeight,
             int dstWidth, int dstHeight, float horizontalDegrees, float verticalDegrees) {
-        // Calculate the base flip coordinates.
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToFlip(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int,float,float)",context,srcWidth,srcHeight,dstWidth,dstHeight,horizontalDegrees,verticalDegrees);try{/*// Calculate the base flip coordinates.*/
         float[] base = getFitVertices(srcWidth, srcHeight, dstWidth, dstHeight);
         int horizontalRounds = (int) horizontalDegrees / 180;
         if (horizontalRounds % 2 != 0) {
@@ -238,28 +238,28 @@ public class RendererUtils {
             vertices[6] = base[6] * scale;
             vertices[7] = vertices[5];
         }
-        context.posVertices = createVerticesBuffer(vertices);
+        context.posVertices = createVerticesBuffer(vertices);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToFlip(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int,float,float)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RendererUtils.setRenderToFlip(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int,int,float,float)",throwable);throw throwable;}
     }
 
     public static void renderBackground() {
-        GLES20.glClearColor(0, 0, 0, 1);
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.photoeditor.RendererUtils.renderBackground()");try{GLES20.glClearColor(0, 0, 0, 1);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.photoeditor.RendererUtils.renderBackground()");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RendererUtils.renderBackground()",throwable);throw throwable;}
     }
 
     public static void renderTexture(
             RenderContext context, int texture, int viewWidth, int viewHeight) {
-        // Use our shader program
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.photoeditor.RendererUtils.renderTexture(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int)",context,texture,viewWidth,viewHeight);try{/*// Use our shader program*/
         GLES20.glUseProgram(context.shaderProgram);
         checkGlError("glUseProgram");
 
-        // Set viewport
+        /*// Set viewport*/
         GLES20.glViewport(0, 0, viewWidth, viewHeight);
         checkGlError("glViewport");
 
-        // Disable blending
+        /*// Disable blending*/
         GLES20.glDisable(GLES20.GL_BLEND);
 
-        // Set the vertex attributes
+        /*// Set the vertex attributes*/
         GLES20.glVertexAttribPointer(
                 context.texCoordHandle, 2, GLES20.GL_FLOAT, false, 0, context.texVertices);
         GLES20.glEnableVertexAttribArray(context.texCoordHandle);
@@ -268,25 +268,25 @@ public class RendererUtils {
         GLES20.glEnableVertexAttribArray(context.posCoordHandle);
         checkGlError("vertex attribute setup");
 
-        // Set the input texture
+        /*// Set the input texture*/
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         checkGlError("glActiveTexture");
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture);
         checkGlError("glBindTexture");
         GLES20.glUniform1i(context.texSamplerHandle, 0);
 
-        // Draw!
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
+        /*// Draw!*/
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.photoeditor.RendererUtils.renderTexture(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RendererUtils.renderTexture(com.android.gallery3d.photoeditor.RendererUtils$RenderContext,int,int,int)",throwable);throw throwable;}
     }
 
     public static RenderContext createProgram() {
-        int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, VERTEX_SHADER);
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.photoeditor.RendererUtils$RenderContext com.android.gallery3d.photoeditor.RendererUtils.createProgram()");try{int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, VERTEX_SHADER);
         if (vertexShader == 0) {
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.photoeditor.RendererUtils$RenderContext com.android.gallery3d.photoeditor.RendererUtils.createProgram()");return null;}
         }
         int pixelShader = loadShader(GLES20.GL_FRAGMENT_SHADER, FRAGMENT_SHADER);
         if (pixelShader == 0) {
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.photoeditor.RendererUtils$RenderContext com.android.gallery3d.photoeditor.RendererUtils.createProgram()");return null;}
         }
 
         int program = GLES20.glCreateProgram();
@@ -306,7 +306,7 @@ public class RendererUtils {
             }
         }
 
-        // Bind attributes and uniforms
+        /*// Bind attributes and uniforms*/
         RenderContext context = new RenderContext();
         context.texSamplerHandle = GLES20.glGetUniformLocation(program, "tex_sampler");
         context.texCoordHandle = GLES20.glGetAttribLocation(program, "a_texcoord");
@@ -315,11 +315,11 @@ public class RendererUtils {
         context.posVertices = createVerticesBuffer(POS_VERTICES);
 
         context.shaderProgram = program;
-        return context;
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.photoeditor.RendererUtils$RenderContext com.android.gallery3d.photoeditor.RendererUtils.createProgram()");return context;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.photoeditor.RendererUtils$RenderContext com.android.gallery3d.photoeditor.RendererUtils.createProgram()",throwable);throw throwable;}
     }
 
     private static int loadShader(int shaderType, String source) {
-        int shader = GLES20.glCreateShader(shaderType);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.photoeditor.RendererUtils.loadShader(int,java.lang.String)",shaderType,source);try{int shader = GLES20.glCreateShader(shaderType);
         if (shader != 0) {
             GLES20.glShaderSource(shader, source);
             GLES20.glCompileShader(shader);
@@ -332,24 +332,24 @@ public class RendererUtils {
                 throw new RuntimeException("Could not compile shader " + shaderType + ":" + info);
             }
         }
-        return shader;
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.photoeditor.RendererUtils.loadShader(int,java.lang.String)");return shader;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.photoeditor.RendererUtils.loadShader(int,java.lang.String)",throwable);throw throwable;}
     }
 
     private static FloatBuffer createVerticesBuffer(float[] vertices) {
-        if (vertices.length != 8) {
+        com.mijack.Xlog.logStaticMethodEnter("java.nio.FloatBuffer com.android.gallery3d.photoeditor.RendererUtils.createVerticesBuffer([float)",vertices);try{if (vertices.length != 8) {
             throw new RuntimeException("Number of vertices should be four.");
         }
 
         FloatBuffer buffer = ByteBuffer.allocateDirect(
                 vertices.length * FLOAT_SIZE_BYTES).order(ByteOrder.nativeOrder()).asFloatBuffer();
         buffer.put(vertices).position(0);
-        return buffer;
+        {com.mijack.Xlog.logStaticMethodExit("java.nio.FloatBuffer com.android.gallery3d.photoeditor.RendererUtils.createVerticesBuffer([float)");return buffer;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.nio.FloatBuffer com.android.gallery3d.photoeditor.RendererUtils.createVerticesBuffer([float)",throwable);throw throwable;}
     }
 
     private static void checkGlError(String op) {
-        int error;
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.photoeditor.RendererUtils.checkGlError(java.lang.String)",op);try{int error;
         while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
             throw new RuntimeException(op + ": glError " + error);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RendererUtils.checkGlError(java.lang.String)",throwable);throw throwable;}
     }
 }

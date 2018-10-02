@@ -44,7 +44,7 @@ public class MovieActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
@@ -59,9 +59,9 @@ public class MovieActivity extends Activity {
                 !mFinishOnCompletion) {
             @Override
             public void onCompletion() {
-                if (mFinishOnCompletion) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity$1.onCompletion()",this);try{if (mFinishOnCompletion) {
                     finish();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity$1.onCompletion()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity$1.onCompletion()",this,throwable);throw throwable;}
             }
         };
         if (intent.hasExtra(MediaStore.EXTRA_SCREEN_ORIENTATION)) {
@@ -76,11 +76,11 @@ public class MovieActivity extends Activity {
         WindowManager.LayoutParams winParams = win.getAttributes();
         winParams.buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
         winParams.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        win.setAttributes(winParams);
+        win.setAttributes(winParams);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     private void initializeActionBar(Intent intent) {
-        ActionBar actionBar = getActionBar();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.initializeActionBar(android.content.Intent)",this,intent);try{ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP,
                 ActionBar.DISPLAY_HOME_AS_UP);
         String title = intent.getStringExtra(Intent.EXTRA_TITLE);
@@ -95,57 +95,57 @@ public class MovieActivity extends Activity {
             } catch (Throwable t) {
                 Log.w(TAG, "cannot get title from: " + intent.getDataString(), t);
             } finally {
-                if (cursor != null) cursor.close();
+                if (cursor != null) {cursor.close();}
             }
         }
-        if (title != null) actionBar.setTitle(title);
+        if (title != null) {actionBar.setTitle(title);}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.initializeActionBar(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.initializeActionBar(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.MovieActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{if (item.getItemId() == android.R.id.home) {
             finish();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MovieActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MovieActivity.onOptionsItemSelected(android.view.MenuItem)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.MovieActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onStart() {
-        ((AudioManager) getSystemService(AUDIO_SERVICE))
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.onStart()",this);try{((AudioManager) getSystemService(AUDIO_SERVICE))
                 .requestAudioFocus(null, AudioManager.STREAM_MUSIC,
                 AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-        super.onStart();
+        super.onStart();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.onStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.onStart()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onStop() {
-        ((AudioManager) getSystemService(AUDIO_SERVICE))
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.onStop()",this);try{((AudioManager) getSystemService(AUDIO_SERVICE))
                 .abandonAudioFocus(null);
-        super.onStop();
+        super.onStop();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.onStop()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onPause() {
-        mPlayer.onPause();
-        super.onPause();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.onPause()",this);try{mPlayer.onPause();
+        super.onPause();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.onPause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.onPause()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onResume() {
-        mPlayer.onResume();
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.onResume()",this);try{mPlayer.onResume();
+        super.onResume();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mPlayer.onSaveInstanceState(outState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.onSaveInstanceState(android.os.Bundle)",this,outState);try{super.onSaveInstanceState(outState);
+        mPlayer.onSaveInstanceState(outState);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.onSaveInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.onSaveInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDestroy() {
-        mPlayer.onDestroy();
-        super.onDestroy();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieActivity.onDestroy()",this);try{mPlayer.onDestroy();
+        super.onDestroy();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieActivity.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieActivity.onDestroy()",this,throwable);throw throwable;}
     }
 }

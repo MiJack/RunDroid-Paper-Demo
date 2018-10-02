@@ -40,22 +40,22 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
     public static final String IMAGE_URL = "imageUrl";
 
     public static void startService(Context context, String board, long threadNo, long postNo, String url, String targetFile) {
-        if (DEBUG) Log.i(TAG, "Start image download service for " + url);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.ImageDownloadService.startService(android.content.Context,com.chanapps.four.data.String,long,long,com.chanapps.four.data.String,com.chanapps.four.data.String)",context,board,threadNo,postNo,url,targetFile);try{if (DEBUG) {Log.i(TAG, "Start image download service for " + url);}
         Intent intent = new Intent(context, ImageDownloadService.class);
         intent.putExtra(ChanBoard.BOARD_CODE, board);
         intent.putExtra(ChanThread.THREAD_NO, threadNo);
         intent.putExtra(ChanPost.POST_NO, postNo);
         intent.putExtra(IMAGE_URL, url);
         intent.putExtra(IMAGE_PATH, targetFile);
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.ImageDownloadService.startService(android.content.Context,com.chanapps.four.data.String,long,long,com.chanapps.four.data.String,com.chanapps.four.data.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.ImageDownloadService.startService(android.content.Context,com.chanapps.four.data.String,long,long,com.chanapps.four.data.String,com.chanapps.four.data.String)",throwable);throw throwable;}
     }
 
     public static void cancelService(Context context, String url) {
-        if (DEBUG) Log.i(TAG, "Cancelling image download service for " + url);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.ImageDownloadService.cancelService(android.content.Context,com.chanapps.four.data.String)",context,url);try{if (DEBUG) {Log.i(TAG, "Cancelling image download service for " + url);}
         Intent intent = new Intent(context, ImageDownloadService.class);
         intent.putExtra(CLEAR_FETCH_QUEUE, 1);
         intent.putExtra(IMAGE_URL, url);
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.ImageDownloadService.cancelService(android.content.Context,com.chanapps.four.data.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.ImageDownloadService.cancelService(android.content.Context,com.chanapps.four.data.String)",throwable);throw throwable;}
     }
 
     public ImageDownloadService() {
@@ -75,7 +75,7 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-        long startTime = Calendar.getInstance().getTimeInMillis();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ImageDownloadService.onHandleIntent(android.content.Intent)",this,intent);try{long startTime = Calendar.getInstance().getTimeInMillis();
         InputStream in = null;
         OutputStream out = null;
         HttpURLConnection conn = null;
@@ -86,7 +86,7 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
 			postNo = intent.getLongExtra(ChanPost.POST_NO, 0);
 			imageUrl = intent.getStringExtra(IMAGE_URL);
 			targetImagePath = intent.getStringExtra(IMAGE_PATH);
-			if (DEBUG) Log.i(TAG, "Handling image download service for " + imageUrl);
+			if (DEBUG) {Log.i(TAG, "Handling image download service for " + imageUrl);}
 			
 			File targetFile = new File(URI.create(targetImagePath));
 			if (targetFile.exists()) {
@@ -95,7 +95,7 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
 			
 			conn = (HttpURLConnection)new URL(imageUrl).openConnection();
 			FetchParams fetchParams = NetworkProfileManager.instance().getFetchParams();
-			// we need to double read timeout as file might be large
+			/*// we need to double read timeout as file might be large*/
 			conn.setReadTimeout(fetchParams.readTimeout * 2);
 			conn.setConnectTimeout(fetchParams.connectTimeout);
 			
@@ -119,8 +119,8 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
 			
 			long endTime = Calendar.getInstance().getTimeInMillis();
 			NetworkProfileManager.instance().finishedImageDownload(this, (int)(endTime - startTime), fileLength);
-            if (DEBUG) Log.i(TAG, "Stored image " + imageUrl + " to file "
-            		+ targetFile.getAbsolutePath() + " in " + (endTime - startTime) + "ms.");
+            if (DEBUG) {Log.i(TAG, "Stored image " + imageUrl + " to file "
+            		+ targetFile.getAbsolutePath() + " in " + (endTime - startTime) + "ms.");}
             
 		    notifyDownloadFinished(fileLength);			    	
 		} catch (Exception e) {
@@ -132,46 +132,46 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
 			IOUtils.closeQuietly(out);
 			closeConnection(conn);
 			imageUrl = null;
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ImageDownloadService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
 	}
 
 	private void notifyDownloadProgress(int fileLength) {
-		ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ImageDownloadService.notifyDownloadProgress(int)",this,fileLength);try{ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
 		if (activity != null && activity.getChanActivityId().activity == LastActivity.GALLERY_ACTIVITY) {
 			Handler handler = activity.getChanHandler();
 			if (handler != null) {
 				Message msg = handler.obtainMessage(GalleryViewActivity.PROGRESS_REFRESH_MSG, fileLength, 0);
 				handler.sendMessage(msg);
 			}
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ImageDownloadService.notifyDownloadProgress(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ImageDownloadService.notifyDownloadProgress(int)",this,throwable);throw throwable;}
 	}
 	
 	private void notifyDownloadFinished(int fileLength) {
-		ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ImageDownloadService.notifyDownloadFinished(int)",this,fileLength);try{ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
 		if (activity != null && activity.getChanActivityId().activity == LastActivity.GALLERY_ACTIVITY) {
 			Handler handler = activity.getChanHandler();
 			if (handler != null) {
 				Message msg = handler.obtainMessage(GalleryViewActivity.FINISHED_DOWNLOAD_MSG, fileLength, 0);
 				handler.sendMessage(msg);
 			}
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ImageDownloadService.notifyDownloadFinished(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ImageDownloadService.notifyDownloadFinished(int)",this,throwable);throw throwable;}
 	}
 	
 	private void notifyDownloadError() {
-		ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ImageDownloadService.notifyDownloadError()",this);try{ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
 		if (activity != null && activity.getChanActivityId().activity == LastActivity.GALLERY_ACTIVITY) {
 			Handler handler = activity.getChanHandler();
 			if (handler != null) {
 				Message msg = handler.obtainMessage(GalleryViewActivity.DOWNLOAD_ERROR_MSG);
 				handler.sendMessage(msg);
 			}
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ImageDownloadService.notifyDownloadError()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ImageDownloadService.notifyDownloadError()",this,throwable);throw throwable;}
 	}
 	
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && intent.getIntExtra(CLEAR_FETCH_QUEUE, 0) == 1) {
-            if (DEBUG) Log.i(TAG, "Clearing chan fetch service message queue");
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.ImageDownloadService.onStartCommand(android.content.Intent,int,int)",this,intent,flags,startId);try{if (intent != null && intent.getIntExtra(CLEAR_FETCH_QUEUE, 0) == 1) {
+            if (DEBUG) {Log.i(TAG, "Clearing chan fetch service message queue");}
         	mServiceHandler.removeMessages(PRIORITY_MESSAGE);
         	synchronized(this) {
         		priorityMessageCounter = 0;
@@ -179,7 +179,7 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
         	if (imageUrl != null && imageUrl.equals(intent.getStringExtra(IMAGE_URL))) {
         		stopDownload = true;
         	}
-        	return START_NOT_STICKY;
+        	{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.ImageDownloadService.onStartCommand(android.content.Intent,int,int)",this);return START_NOT_STICKY;}
         }
 
     	mServiceHandler.removeMessages(PRIORITY_MESSAGE);
@@ -196,11 +196,11 @@ public class ImageDownloadService extends BaseChanService implements ChanIdentif
     		priorityMessageCounter++;
     	}
         
-        return START_NOT_STICKY;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.ImageDownloadService.onStartCommand(android.content.Intent,int,int)",this);return START_NOT_STICKY;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.ImageDownloadService.onStartCommand(android.content.Intent,int,int)",this,throwable);throw throwable;}
     }
 	
 	@Override
 	public ChanActivityId getChanActivityId() {
-		return new ChanActivityId(null, board, threadNo, postNo);
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ImageDownloadService.getChanActivityId()",this);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ImageDownloadService.getChanActivityId()",this);return new ChanActivityId(null, board, threadNo, postNo);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ImageDownloadService.getChanActivityId()",this,throwable);throw throwable;}
 	}
 }

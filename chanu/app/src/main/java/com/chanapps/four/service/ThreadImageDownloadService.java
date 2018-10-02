@@ -85,11 +85,11 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
     */
 
     public static void startDownloadViaThreadMenu(Context context, String board, long threadNo, long[] postNos) {
-        startDownload(context, board, threadNo, DownloadImageTargetType.TO_GALLERY, 0, 0, postNos, null, 0);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.startDownloadViaThreadMenu(android.content.Context,java.lang.String,long,[long)",context,board,threadNo,postNos);try{startDownload(context, board, threadNo, DownloadImageTargetType.TO_GALLERY, 0, 0, postNos, null, 0);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.startDownloadViaThreadMenu(android.content.Context,java.lang.String,long,[long)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.startDownloadViaThreadMenu(android.content.Context,java.lang.String,long,[long)",throwable);throw throwable;}
     }
     
     public static void startDownloadViaGalleryView(Context context, Path mMediaSetPath, ArrayList<Path> ids) {
-		String[] mMediaSet = mMediaSetPath.split();
+		com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.startDownloadViaGalleryView(android.content.Context,com.android.gallery3d.data.Path,java.util.ArrayList)",context,mMediaSetPath,ids);try{String[] mMediaSet = mMediaSetPath.split();
 		if (mMediaSet[0].equals(ChanOffLineSource.SOURCE_PREFIX)) {
             Log.e(TAG, "Download from offline source not supported");
             /*
@@ -111,7 +111,7 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 		} else {
 			long threadId = NumberUtils.toLong(mMediaSet[2], 0);
 			if (ids == null || ids.size() == 0) {
-				if (DEBUG) Log.w(TAG, "Download images from gallery " + mMediaSetPath + ", all images");
+				if (DEBUG) {Log.w(TAG, "Download images from gallery " + mMediaSetPath + ", all images");}
 				ThreadImageDownloadService.startDownloadViaThreadMenu(context, mMediaSet[1], threadId, new long[]{});
 			} else {
 				long[] fileNames = new long[ids.size()];
@@ -119,25 +119,25 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 				for (Path path : ids) {
 					fileNames[i++] = NumberUtils.toLong(path.split()[3], 0);
 				}
-				if (DEBUG) Log.w(TAG, "Download images from gallery " + mMediaSetPath + ", num images: " + fileNames.length);
+				if (DEBUG) {Log.w(TAG, "Download images from gallery " + mMediaSetPath + ", num images: " + fileNames.length);}
 				ThreadImageDownloadService.startDownloadViaThreadMenu(context, mMediaSet[1], threadId, fileNames);
 			}
-		}
+		}com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.startDownloadViaGalleryView(android.content.Context,com.android.gallery3d.data.Path,java.util.ArrayList)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.startDownloadViaGalleryView(android.content.Context,com.android.gallery3d.data.Path,java.util.ArrayList)",throwable);throw throwable;}
 	}
 
     private static void startDownload(Context context, String board, long threadNo, DownloadImageTargetType downloadImageTargetType,
     		long startPostNo, int restartCounter, long[] postNos, String[] fileNames, int notificationId) {
-        if (DEBUG) Log.i(TAG, (restartCounter > 0 ? "Restart " : "Start") 
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.startDownload(android.content.Context,java.lang.String,long,com.chanapps.four.data.DownloadImageTargetType,long,int,[long,[java.lang.String,int)",context,board,threadNo,downloadImageTargetType,startPostNo,restartCounter,postNos,fileNames,notificationId);try{if (DEBUG) {Log.i(TAG, (restartCounter > 0 ? "Restart " : "Start") 
         		+ " all image download service for thread " + board + "/" + threadNo
-        		+ (startPostNo == 0 ? "" : " from post " + startPostNo) + " " + downloadImageTargetType);
+        		+ (startPostNo == 0 ? "" : " from post " + startPostNo) + " " + downloadImageTargetType);}
 
         if (notificationId != 0) {
-        	// notification id provided so task was restarted
+        	/*// notification id provided so task was restarted*/
         } else if (threadNo == 0) {
-        	// copy cache to gallery
+        	/*// copy cache to gallery*/
         	notificationId = board.hashCode() + (int)new Date().getTime();
         } else {
-        	// regular image download
+        	/*// regular image download*/
         	notificationId = board.hashCode() + (int)threadNo + (int)new Date().getTime();
         }
         NotificationComponent.notifyDownloadScheduled(context, notificationId, board, threadNo);
@@ -152,14 +152,14 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
         intent.putExtra(SCHEDULE_TIME, Calendar.getInstance().getTimeInMillis());
         intent.putExtra(POST_NOS, postNos);
         intent.putExtra(FILE_NAMES, fileNames);
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.startDownload(android.content.Context,java.lang.String,long,com.chanapps.four.data.DownloadImageTargetType,long,int,[long,[java.lang.String,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.startDownload(android.content.Context,java.lang.String,long,com.chanapps.four.data.DownloadImageTargetType,long,int,[long,[java.lang.String,int)",throwable);throw throwable;}
     }
     
     public static synchronized void cancelDownload(Context context, int notificationId) {
-        if (DEBUG) Log.i(TAG, "Cancelling image download service for " + notificationId);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.cancelDownload(android.content.Context,int)",context,notificationId);try{if (DEBUG) {Log.i(TAG, "Cancelling image download service for " + notificationId);}
         stoppedDownloads.add(notificationId);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.cancel(notificationId);
+        notificationManager.cancel(notificationId);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.cancelDownload(android.content.Context,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.cancelDownload(android.content.Context,int)",throwable);throw throwable;}
     }
 
     public ThreadImageDownloadService() {
@@ -184,7 +184,7 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		notificationId = intent.getIntExtra(NOTIFICATION_ID, 0);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this,intent);try{notificationId = intent.getIntExtra(NOTIFICATION_ID, 0);
 		board = intent.getStringExtra(ChanBoard.BOARD_CODE);
 		threadNo = intent.getLongExtra(ChanThread.THREAD_NO, 0);
 		startPostNo = intent.getLongExtra(START_POST_NO, 0);
@@ -196,59 +196,59 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 
         if (threadNo <= 0) {
             Log.e(TAG, "non-thread image download not supported, exiting");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this);return;}
         }
         else if (checkIfStopped(notificationId)) {
-			if (DEBUG) Log.i(TAG, "download manually stopped by user, exiting");
-            return;
+			if (DEBUG) {Log.i(TAG, "download manually stopped by user, exiting");}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this);return;}
 		}
 
 		if (NetworkProfile.Type.NO_CONNECTION == NetworkProfileManager.instance().getCurrentProfile().getConnectionType()) {
-			if (DEBUG) Log.i(TAG, "no connection, re-scheduling download and exiting");
+			if (DEBUG) {Log.i(TAG, "no connection, re-scheduling download and exiting");}
 			delayedStartDownload(false);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this);return;}
 		}
 		
 		ChanThread thread = ChanFileStorage.loadThreadData(getBaseContext(), board, threadNo);
         if (thread == null) {
             Log.e(TAG, "thread could not be loaded for download, exiting");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this);return;}
         }
 
         if (restartCounter > MAX_RESTARTS) {
             Log.e(TAG, "image download restarts exceeded max, exiting");
             NetworkProfileManager.instance().failedFetchingData(this, Failure.NETWORK);
             NotificationComponent.notifyDownloadError(this, notificationId, thread);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this);return;}
         }
 
         prepareTargetFolder();
         prepareNomedia();
 
-        if (DEBUG) Log.i(TAG, (restartCounter > 0 ? "Restart " : "Start")
+        if (DEBUG) {Log.i(TAG, (restartCounter > 0 ? "Restart " : "Start")
                 + " handling all image download service type=" + downloadImageTargetType
                 + " for nid=(" + notificationId + ") thread=/" + board + "/" + threadNo
                 + ((postNos != null && postNos.length == 0) ? "" : " for posts " + Arrays.toString(postNos))
                 + ((fileNames != null && fileNames.length == 0) ? "" : " for filenames " + Arrays.toString(fileNames))
                 + (startPostNo == 0 ? "" : " from post " + startPostNo)
                 + " destination folder=" + targetFolder
-                + (restartCounter > 0 ? ", restarted " + restartCounter + " time(s)." : ""));
+                + (restartCounter > 0 ? ", restarted " + restartCounter + " time(s)." : ""));}
 
         try {
 	        downloadImages(thread);
 
             if (checkIfStopped(notificationId)) {
-				if (DEBUG) Log.i(TAG, "download stopped by user, exiting");
-                return;
+				if (DEBUG) {Log.i(TAG, "download stopped by user, exiting");}
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this);return;}
 			}
 
 			if (startPostNo != 0 || threadNo == 0) {
                 boolean downloadNomedia = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(SettingsActivity.PREF_DOWNLOAD_NOMEDIA, false);
 				if (downloadImageTargetType == DownloadImageTargetType.TO_GALLERY && !downloadNomedia) {
-                    if (DEBUG) Log.i(TAG, "onHandleIntent starting media scanner to display images in gallery");
+                    if (DEBUG) {Log.i(TAG, "onHandleIntent starting media scanner to display images in gallery");}
                     new MultipleFileMediaScanner(getApplicationContext(), notificationId, downloadImageTargetType, thread, board, threadNo, fileNames, targetFolder);
                 } else if (downloadImageTargetType == DownloadImageTargetType.TO_GALLERY && !downloadNomedia) {
-                    if (DEBUG) Log.i(TAG, "onHandleIntent nomedia configured, skipping media file scanner");
+                    if (DEBUG) {Log.i(TAG, "onHandleIntent nomedia configured, skipping media file scanner");}
                 } else {
 					NotificationComponent.notifyDownloadFinished(getApplicationContext(), notificationId, downloadImageTargetType, thread, board, threadNo, targetFolder);
 				}
@@ -258,44 +258,44 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
             delayedStartDownload(true);
 		} finally {
 			stoppedDownloads.remove(Integer.valueOf(notificationId));
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
 	}
 
 	private void delayedStartDownload(final boolean increaseCounter) {
-		Timer timer = new Timer();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.delayedStartDownload(boolean)",this,increaseCounter);try{Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 		    @Override
 		    public void run() {
-		    	Log.i(TAG, "Delayed scheduling image download service");
+		    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService$1.run()",this);try{Log.i(TAG, "Delayed scheduling image download service");
 		        startDownload(getBaseContext(), board, threadNo, downloadImageTargetType, startPostNo,
-		        		restartCounter + (increaseCounter ? 1 : 0), postNos, fileNames, notificationId);
+		        		restartCounter + (increaseCounter ? 1 : 0), postNos, fileNames, notificationId);com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService$1.run()",this,throwable);throw throwable;}
 		    }
-		}, 10000);
+		}, 10000);com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.delayedStartDownload(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.delayedStartDownload(boolean)",this,throwable);throw throwable;}
 	}
 
     private void prepareNomedia() {
-        boolean downloadNomedia = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(SettingsActivity.PREF_DOWNLOAD_NOMEDIA, false);
-        if (DEBUG) Log.i(TAG, "createNomediaIfConfigured downloadNomedia=" + downloadNomedia + " targetFolder=" + targetFolder);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.prepareNomedia()",this);try{boolean downloadNomedia = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(SettingsActivity.PREF_DOWNLOAD_NOMEDIA, false);
+        if (DEBUG) {Log.i(TAG, "createNomediaIfConfigured downloadNomedia=" + downloadNomedia + " targetFolder=" + targetFolder);}
         File d = new File(targetFolder);
-        if (DEBUG) Log.i(TAG, "createNomediaIfConfigured downloadFolder=" + d);
+        if (DEBUG) {Log.i(TAG, "createNomediaIfConfigured downloadFolder=" + d);}
         if (d == null || !d.exists() || !d.isDirectory())
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.prepareNomedia()",this);return;}}
         File f = new File(d, NOMEDIA_FILENAME);
         try {
             if (downloadNomedia) {
                 if (f.createNewFile()) {
-                    if (DEBUG) Log.i(TAG, "created new nomedia file path=" + f.getAbsolutePath());
+                    if (DEBUG) {Log.i(TAG, "created new nomedia file path=" + f.getAbsolutePath());}
                 }
                 else {
-                    if (DEBUG) Log.i(TAG, "nomedia file already exists path=" + f.getAbsolutePath());
+                    if (DEBUG) {Log.i(TAG, "nomedia file already exists path=" + f.getAbsolutePath());}
                 }
             }
             else if (!downloadNomedia) {
                 if (!f.exists()) {
-                    if (DEBUG) Log.i(TAG, "nomedia file correctly not present path=" + f.getAbsolutePath());
+                    if (DEBUG) {Log.i(TAG, "nomedia file correctly not present path=" + f.getAbsolutePath());}
                 }
                 else if (f.delete()) {
-                    if (DEBUG) Log.i(TAG, "nomedia file deleted path=" + f.getAbsolutePath());
+                    if (DEBUG) {Log.i(TAG, "nomedia file deleted path=" + f.getAbsolutePath());}
                 }
                 else {
                     Log.e(TAG, "unabled to remove nomedia file path=" + f.getAbsolutePath());
@@ -304,20 +304,20 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
         }
         catch (IOException e) {
             Log.e(TAG, "exception creating nomedia file in path=" + f.getAbsolutePath(), e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.prepareNomedia()",this,throwable);throw throwable;}
     }
 
 	public static synchronized boolean checkIfStopped(int notificationId) {
-		if (stoppedDownloads.contains(notificationId)) {
-			if (DEBUG) Log.w(TAG, "Download stopped: (" + notificationId + ") ");
-			return true;
+		com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.service.ThreadImageDownloadService.checkIfStopped(int)",notificationId);try{if (stoppedDownloads.contains(notificationId)) {
+			if (DEBUG) {Log.w(TAG, "Download stopped: (" + notificationId + ") ");}
+			{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.ThreadImageDownloadService.checkIfStopped(int)");return true;}
 		}
-		return false;
+		{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.ThreadImageDownloadService.checkIfStopped(int)");return false;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.service.ThreadImageDownloadService.checkIfStopped(int)",throwable);throw throwable;}
 	}
 
 	private void downloadImages(ChanThread thread) throws IOException, MalformedURLException, FileNotFoundException, InterruptedException {
-        if (thread == null)
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.downloadImages(com.chanapps.four.data.ChanThread)",this,thread);try{if (thread == null)
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.downloadImages(com.chanapps.four.data.ChanThread)",this);return;}}
         Set<Long> postNoSet = new HashSet<Long>(postNos.length);
         for (int i = 0; i < postNos.length; i++) {
         	if (postNos[i] != 0) {
@@ -328,7 +328,7 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
         int totalNumImages = thread.posts != null && thread.posts.length > 0 && thread.posts[0] != null && thread.posts[0].images > 0
                 ? thread.posts[0].images
                 : totalNumPosts;
-        if (DEBUG) Log.i(TAG, "downloadImages() numPosts:" + totalNumPosts + " numImages:" + totalNumImages);
+        if (DEBUG) {Log.i(TAG, "downloadImages() numPosts:" + totalNumPosts + " numImages:" + totalNumImages);}
 		lastUpdateTime = NotificationComponent.notifyDownloadUpdated(getApplicationContext(), notificationId, board, threadNo,
                 totalNumImages, 0, lastUpdateTime);
         boolean downloadNomedia = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(SettingsActivity.PREF_DOWNLOAD_NOMEDIA, false);
@@ -337,8 +337,8 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 		int index = 0;
 		int fileLength = 0;
 		for (ChanPost post : thread.posts) {
-		    if (postNos.length != 0 && !postNoSet.contains(post.no)) // only download selected posts
-		        continue;
+		    if (postNos.length != 0 && !postNoSet.contains(post.no)) /*// only download selected posts*/
+		        {continue;}
 			if (startPointFound || post.no == startPostNo) {
 				startPointFound = true;
 				if (post.tim != 0) {
@@ -353,12 +353,12 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 					lastUpdateTime = NotificationComponent.notifyDownloadUpdated(getApplicationContext(), notificationId, board, threadNo,
                             totalNumImages, index++, lastUpdateTime);
 				}
-				startPostNo = post.no;  // setting last fetched image no
+				startPostNo = post.no;  /*// setting last fetched image no*/
 			}
 			if (checkIfStopped(notificationId)) {
-				return;
+				{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.downloadImages(com.chanapps.four.data.ChanThread)",this);return;}
 			}
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.downloadImages(com.chanapps.four.data.ChanThread)",this,throwable);throw throwable;}
 	}
 
     /*
@@ -393,12 +393,12 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
     */
 
 	private int downloadImage(ChanPost post) throws IOException, MalformedURLException, FileNotFoundException, InterruptedException {
-		long startTime = Calendar.getInstance().getTimeInMillis();
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.ThreadImageDownloadService.downloadImage(com.chanapps.four.data.ChanPost)",this,post);try{long startTime = Calendar.getInstance().getTimeInMillis();
 
         Uri uri = Uri.parse("file://" + targetFolder + "/" + post.imageName());
 		File targetFile = new File(URI.create(uri.toString()));
 		if (targetFile.exists()) {
-			return (int)targetFile.length();
+			{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.ThreadImageDownloadService.downloadImage(com.chanapps.four.data.ChanPost)",this);return (int)targetFile.length();}
 		}
 		
 		InputStream in = null;
@@ -407,7 +407,7 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 		try {
 			conn = (HttpURLConnection)new URL(post.imageUrl(getApplicationContext())).openConnection();
 			FetchParams fetchParams = NetworkProfileManager.instance().getFetchParams();
-			// we need to double read timeout as file might be large
+			/*// we need to double read timeout as file might be large*/
 			conn.setReadTimeout(fetchParams.readTimeout * 2);
 			conn.setConnectTimeout(fetchParams.connectTimeout);
 			
@@ -416,26 +416,26 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 			int fileLength = IOUtils.copy(in, out);
 			long endTime = Calendar.getInstance().getTimeInMillis();
 			NetworkProfileManager.instance().finishedImageDownload(this, (int)(endTime - startTime), fileLength);
-			if (DEBUG) Log.i(TAG, "Stored image " + post.imageUrl(getApplicationContext()) + " to file "
-					+ targetFile.getAbsolutePath() + " in " + (endTime - startTime) + "ms.");
-			return fileLength;
+			if (DEBUG) {Log.i(TAG, "Stored image " + post.imageUrl(getApplicationContext()) + " to file "
+					+ targetFile.getAbsolutePath() + " in " + (endTime - startTime) + "ms.");}
+			{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.ThreadImageDownloadService.downloadImage(com.chanapps.four.data.ChanPost)",this);return fileLength;}
 		} catch(Exception e) {
 		    Log.e(TAG, "Failed to download image: " + post.tim);
-		    return -1;
+		    {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.ThreadImageDownloadService.downloadImage(com.chanapps.four.data.ChanPost)",this);return -1;}
 		} finally {
 			IOUtils.closeQuietly(in);
 			IOUtils.closeQuietly(out);
 			closeConnection(conn);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.ThreadImageDownloadService.downloadImage(com.chanapps.four.data.ChanPost)",this,throwable);throw throwable;}
 	}
 
     private void prepareTargetFolder() {
-        boolean isSingleImage = (postNos != null && postNos.length > 0) || (fileNames != null && fileNames.length > 0);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.prepareTargetFolder()",this);try{boolean isSingleImage = (postNos != null && postNos.length > 0) || (fileNames != null && fileNames.length > 0);
         File galleryFolder = ChanFileStorage.getDownloadFolder(this, board, threadNo, isSingleImage);
         if (!galleryFolder.exists() || !galleryFolder.isDirectory()) {
             galleryFolder.mkdirs();
         }
-        targetFolder = galleryFolder.getAbsolutePath();
+        targetFolder = galleryFolder.getAbsolutePath();com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.prepareTargetFolder()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.prepareTargetFolder()",this,throwable);throw throwable;}
     }
 
     /*
@@ -466,16 +466,16 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
     */
 
 	private void addImageToGallery(File image) {
-	    Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+	    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService.addImageToGallery(java.io.File)",this,image);try{Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 	    Uri contentUri = Uri.fromFile(image);
-        if (DEBUG) Log.i(TAG, "Adding to gallery: " + contentUri);
+        if (DEBUG) {Log.i(TAG, "Adding to gallery: " + contentUri);}
 	    mediaScanIntent.setData(contentUri);
-	    this.sendBroadcast(mediaScanIntent);
+	    this.sendBroadcast(mediaScanIntent);com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService.addImageToGallery(java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService.addImageToGallery(java.io.File)",this,throwable);throw throwable;}
 	}
 
     @Override
 	public ChanActivityId getChanActivityId() {
-		return new ChanActivityId(null, board, threadNo);
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ThreadImageDownloadService.getChanActivityId()",this);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ThreadImageDownloadService.getChanActivityId()",this);return new ChanActivityId(null, board, threadNo);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.ThreadImageDownloadService.getChanActivityId()",this,throwable);throw throwable;}
 	}
 	
 	private static class MultipleFileMediaScanner implements MediaScannerConnectionClient {
@@ -508,13 +508,13 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 		
 		@Override
 		public void onMediaScannerConnected() {
-			if (threadNo > 0) {
+			com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService$MultipleFileMediaScanner.onMediaScannerConnected()",this);try{if (threadNo > 0) {
 				for (ChanPost post : thread.posts) {
 					if (post.tim != 0) {
 						File image = new File(targetFolder, post.imageName());
 						if (image.exists()) {
 							scansScheduled++;
-	                        if (DEBUG) Log.w(TAG, "Schedulling scan: " + image.getAbsolutePath() + " counter=" + scansScheduled);
+	                        if (DEBUG) {Log.w(TAG, "Schedulling scan: " + image.getAbsolutePath() + " counter=" + scansScheduled);}
 							scannerConn.scanFile(image.getAbsolutePath(), null);
 							if (firstImage == null) {
 								firstImage = image.getAbsolutePath();
@@ -527,26 +527,26 @@ public class ThreadImageDownloadService extends BaseChanService implements ChanI
 					File image = new File(targetFolder, filename);
 					if (image.exists()) {
 						scansScheduled++;
-                        if (DEBUG) Log.w(TAG, "Schedulling scan: " + image.getAbsolutePath() + " counter=" + scansScheduled);
+                        if (DEBUG) {Log.w(TAG, "Schedulling scan: " + image.getAbsolutePath() + " counter=" + scansScheduled);}
 						scannerConn.scanFile(image.getAbsolutePath(), null);
 						if (firstImage == null) {
 							firstImage = image.getAbsolutePath();
 						}
 					}
 				}
-			}
+			}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService$MultipleFileMediaScanner.onMediaScannerConnected()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService$MultipleFileMediaScanner.onMediaScannerConnected()",this,throwable);throw throwable;}
 		}
 
 		@Override
 		public void onScanCompleted(String path, Uri uri) {
-			scansScheduled--;
-            if (DEBUG) Log.i(TAG, "Finished scan: " + path + " counter=" + scansScheduled);
+			com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.ThreadImageDownloadService$MultipleFileMediaScanner.onScanCompleted(java.lang.String,android.net.Uri)",this,path,uri);try{scansScheduled--;
+            if (DEBUG) {Log.i(TAG, "Finished scan: " + path + " counter=" + scansScheduled);}
 			if (scansScheduled <= 0) {
 				if (threadNo > 0) {
 					NotificationComponent.notifyDownloadFinished(context, notificationId, downloadImageTargetType, thread, board, threadNo, firstImage);
 				}
 				scannerConn.disconnect();
-			}
+			}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.ThreadImageDownloadService$MultipleFileMediaScanner.onScanCompleted(java.lang.String,android.net.Uri)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.ThreadImageDownloadService$MultipleFileMediaScanner.onScanCompleted(java.lang.String,android.net.Uri)",this,throwable);throw throwable;}
 		}
 
 	}

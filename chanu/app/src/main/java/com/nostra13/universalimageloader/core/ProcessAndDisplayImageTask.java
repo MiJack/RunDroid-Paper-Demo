@@ -47,12 +47,12 @@ class ProcessAndDisplayImageTask implements Runnable {
 
 	@Override
 	public void run() {
-		if (engine.configuration.loggingEnabled) L.i(LOG_POSTPROCESS_IMAGE, imageLoadingInfo.memoryCacheKey);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ProcessAndDisplayImageTask.run()",this);try{if (engine.configuration.loggingEnabled) {L.i(LOG_POSTPROCESS_IMAGE, imageLoadingInfo.memoryCacheKey);}
 		BitmapProcessor processor = imageLoadingInfo.options.getPostProcessor();
 		final Bitmap processedBitmap = processor.process(bitmap);
 		if (processedBitmap != bitmap) {
 			bitmap.recycle();
 		}
-		handler.post(new DisplayBitmapTask(processedBitmap, imageLoadingInfo, engine));
+		handler.post(new DisplayBitmapTask(processedBitmap, imageLoadingInfo, engine));com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ProcessAndDisplayImageTask.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ProcessAndDisplayImageTask.run()",this,throwable);throw throwable;}
 	}
 }

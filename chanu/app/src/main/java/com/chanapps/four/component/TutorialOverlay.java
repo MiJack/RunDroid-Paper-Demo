@@ -26,11 +26,11 @@ public class TutorialOverlay {
     private static Typeface subjectTypeface = null;
 
     public enum Page {
-        //BOARDLIST,
-        //POPULAR,
-        //WATCHLIST,
+        /*//BOARDLIST,*/
+        /*//POPULAR,*/
+        /*//WATCHLIST,*/
         BOARD
-        //,THREAD
+        /*//,THREAD*/
         ;
     }
 
@@ -43,10 +43,10 @@ public class TutorialOverlay {
         this.layout =  layout;
         this.page = page;
         if (layout == null)
-            return;
+            {return;}
         tutorialOverlay = (ViewGroup)layout.findViewById(R.id.tutorial_overlay);
         if (tutorialOverlay == null)
-            return;
+            {return;}
         if (!TEST_MODE && !displayNextTipForPage(page)) {
             tutorialOverlay.setVisibility(View.GONE);
             return;
@@ -58,51 +58,51 @@ public class TutorialOverlay {
     }
 
     protected boolean displayNextTipForPage(Page page) {
-        NetworkProfileManager manager = NetworkProfileManager.instance();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.TutorialOverlay.displayNextTipForPage(Page)",this,page);try{NetworkProfileManager manager = NetworkProfileManager.instance();
         if (manager == null) {
-            if (DEBUG) Log.i(TAG, "no network manager found");
-            return false;
+            if (DEBUG) {Log.i(TAG, "no network manager found");}
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.TutorialOverlay.displayNextTipForPage(Page)",this);return false;}
         }
         UserStatistics stats = manager.getUserStatistics();
         if (stats == null) {
-            if (DEBUG) Log.i(TAG, "no user statistics found");
-            return false;
+            if (DEBUG) {Log.i(TAG, "no user statistics found");}
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.TutorialOverlay.displayNextTipForPage(Page)",this);return false;}
         }
         feature = stats.nextTipForPage(page);
         if (feature == null) {
-            if (DEBUG) Log.i(TAG, "no tutorial feature found");
-            return false;
+            if (DEBUG) {Log.i(TAG, "no tutorial feature found");}
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.TutorialOverlay.displayNextTipForPage(Page)",this);return false;}
         }
         if (feature == UserStatistics.ChanFeature.NONE) {
-            if (DEBUG) Log.i(TAG, "NONE tutorial feature found");
-            return false;
+            if (DEBUG) {Log.i(TAG, "NONE tutorial feature found");}
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.TutorialOverlay.displayNextTipForPage(Page)",this);return false;}
         }
-        if (DEBUG) Log.i(TAG, "found feature=" + feature);
+        if (DEBUG) {Log.i(TAG, "found feature=" + feature);}
         NetworkProfileManager.instance().getUserStatistics().tipDisplayed(feature);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.TutorialOverlay.displayNextTipForPage(Page)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.TutorialOverlay.displayNextTipForPage(Page)",this,throwable);throw throwable;}
     }
 
     protected void setSubjectTypeface() {
-        subjectTypeface = Typeface.createFromAsset(layout.getResources().getAssets(), SUBJECT_FONT);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.TutorialOverlay.setSubjectTypeface()",this);try{subjectTypeface = Typeface.createFromAsset(layout.getResources().getAssets(), SUBJECT_FONT);
         TextView subject = (TextView)tutorialOverlay.findViewById(R.id.tutorial_overlay_subject);
         if (subject != null && subjectTypeface != null)
-            subject.setTypeface(subjectTypeface);
+            {subject.setTypeface(subjectTypeface);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.TutorialOverlay.setSubjectTypeface()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.TutorialOverlay.setSubjectTypeface()",this,throwable);throw throwable;}
     }
 
     protected void addButtonHandlers() {
-        if (tutorialOverlay == null)
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.TutorialOverlay.addButtonHandlers()",this);try{if (tutorialOverlay == null)
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.TutorialOverlay.addButtonHandlers()",this);return;}}
         View tutorialOverlayDismiss = tutorialOverlay.findViewById(R.id.tutorial_overlay_dismiss);
         if (tutorialOverlayDismiss == null)
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.TutorialOverlay.addButtonHandlers()",this);return;}}
         tutorialOverlayDismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tutorialOverlay.setVisibility(View.GONE);
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.TutorialOverlay$1.onClick(android.view.View)",this,v);try{tutorialOverlay.setVisibility(View.GONE);
                 NetworkProfileManager.instance().getUserStatistics().tipDisplayed(feature);
-                NetworkProfileManager.instance().getUserStatistics().disableTips();
+                NetworkProfileManager.instance().getUserStatistics().disableTips();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.TutorialOverlay$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.TutorialOverlay$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.TutorialOverlay.addButtonHandlers()",this,throwable);throw throwable;}
     }
 
 }

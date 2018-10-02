@@ -25,7 +25,7 @@ public class ScrollerRunnable implements Runnable {
 	}
 
     public void start(int position) {
-    	stop();
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ScrollerRunnable.start(int)",this,position);try{stop();
 
         final int firstPos = mList.getFirstVisiblePosition();
         final int lastPos = firstPos + mList.getChildCount() - 1;
@@ -38,8 +38,8 @@ public class ScrollerRunnable implements Runnable {
             viewTravelCount = position - lastPos + 1;
             mMode = MOVE_DOWN_POS;
         } else {
-            // Already on screen, nothing to do
-            return;
+            /*// Already on screen, nothing to do*/
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerRunnable.start(int)",this);return;}
         }
 
         if (viewTravelCount > 0) {
@@ -50,15 +50,15 @@ public class ScrollerRunnable implements Runnable {
         mTargetPos = position;
         mLastSeenPos = AbsListView.INVALID_POSITION;
         
-        mList.post(this);
+        mList.post(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ScrollerRunnable.start(int)",this,throwable);throw throwable;}
     }
     
     void stop() {
-        mList.removeCallbacks(this);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ScrollerRunnable.stop()",this);try{mList.removeCallbacks(this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerRunnable.stop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ScrollerRunnable.stop()",this,throwable);throw throwable;}
     }
     
     public void run() {
-        final int listHeight = mList.getHeight();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ScrollerRunnable.run()",this);try{final int listHeight = mList.getHeight();
         final int firstPos = mList.getFirstVisiblePosition();
         
         switch (mMode) {
@@ -67,13 +67,13 @@ public class ScrollerRunnable implements Runnable {
             final int lastPos = firstPos + lastViewIndex;
             
             if (lastViewIndex < 0) {
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerRunnable.run()",this);return;}
             }
 
             if (lastPos == mLastSeenPos) {
-                // No new views, let things keep going.
+                /*// No new views, let things keep going.*/
                 mList.post(this);
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerRunnable.run()",this);return;}
             }
 
             final View lastView = mList.getChildAt(lastViewIndex);
@@ -94,14 +94,14 @@ public class ScrollerRunnable implements Runnable {
             
         case MOVE_UP_POS: {
             if (firstPos == mLastSeenPos) {
-                // No new views, let things keep going.
+                /*// No new views, let things keep going.*/
                 mList.post(this);
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerRunnable.run()",this);return;}
             }
 
             final View firstView = mList.getChildAt(0);
             if (firstView == null) {
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ScrollerRunnable.run()",this);return;}
             }
             final int firstViewTop = firstView.getTop();
             final int extraScroll = firstPos > 0 ? mExtraScroll : mList.getPaddingTop();
@@ -118,7 +118,7 @@ public class ScrollerRunnable implements Runnable {
             
         default:
             break;
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ScrollerRunnable.run()",this,throwable);throw throwable;}
     }
 }
 

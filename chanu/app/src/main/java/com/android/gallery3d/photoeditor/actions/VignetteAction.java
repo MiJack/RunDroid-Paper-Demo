@@ -36,27 +36,27 @@ public class VignetteAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final VignetteFilter filter = new VignetteFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.VignetteAction.doBegin()",this);try{final VignetteFilter filter = new VignetteFilter();
 
         scalePicker = factory.createScalePicker(EffectToolFactory.ScalePickerType.GENERIC);
         scalePicker.setOnScaleChangeListener(new ScaleSeekBar.OnScaleChangeListener() {
 
             @Override
             public void onProgressChanged(float progress, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.VignetteAction$1.onProgressChanged(float,boolean)",this,progress,fromUser);try{if (fromUser) {
                     filter.setScale(progress);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.VignetteAction$1.onProgressChanged(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.VignetteAction$1.onProgressChanged(float,boolean)",this,throwable);throw throwable;}
             }
         });
         scalePicker.setProgress(DEFAULT_SCALE);
 
         filter.setScale(DEFAULT_SCALE);
-        notifyFilterChanged(filter, true);
+        notifyFilterChanged(filter, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.VignetteAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.VignetteAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        scalePicker.setOnScaleChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.VignetteAction.doEnd()",this);try{scalePicker.setOnScaleChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.VignetteAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.VignetteAction.doEnd()",this,throwable);throw throwable;}
     }
 }

@@ -35,8 +35,8 @@ public class BoxBlurFilter {
 
     static {
         int index = 0;
-        // Build a lookup table from summed to normalized kernel values.
-        // The formula: KERNAL_NORM[value] = value / KERNEL_SIZE
+        /*// Build a lookup table from summed to normalized kernel values.*/
+        /*// The formula: KERNAL_NORM[value] = value / KERNEL_SIZE*/
         for (int i = 0; i < NUM_COLORS; ++i) {
             for (int j = 0; j < KERNEL_SIZE; ++j) {
                 KERNEL_NORM[index++] = i;
@@ -48,29 +48,29 @@ public class BoxBlurFilter {
     }
 
     private static int sample(int x, int width, int mode) {
-        if (x >= 0 && x < width) return x;
-        return mode == MODE_REPEAT
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.BoxBlurFilter.sample(int,int,int)",x,width,mode);try{if (x >= 0 && x < width) {{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.BoxBlurFilter.sample(int,int,int)");return x;}}
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.BoxBlurFilter.sample(int,int,int)");return mode == MODE_REPEAT
                 ? x < 0 ? x + width : x - width
-                : x < 0 ? 0 : width - 1;
+                : x < 0 ? 0 : width - 1;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.BoxBlurFilter.sample(int,int,int)",throwable);throw throwable;}
     }
 
     public static void apply(
             Bitmap bitmap, int horizontalMode, int verticalMode) {
 
-        int width = bitmap.getWidth();
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.BoxBlurFilter.apply(android.graphics.Bitmap,int,int)",bitmap,horizontalMode,verticalMode);try{int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         int data[] = new int[width * height];
         bitmap.getPixels(data, 0, width, 0, 0, width, height);
         int temp[] = new int[width * height];
         applyOneDimension(data, temp, width, height, horizontalMode);
         applyOneDimension(temp, data, height, width, verticalMode);
-        bitmap.setPixels(data, 0, width, 0, 0, width, height);
+        bitmap.setPixels(data, 0, width, 0, 0, width, height);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.BoxBlurFilter.apply(android.graphics.Bitmap,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.BoxBlurFilter.apply(android.graphics.Bitmap,int,int)",throwable);throw throwable;}
     }
 
     private static void applyOneDimension(
             int[] in, int[] out, int width, int height, int mode) {
-        for (int y = 0, read = 0; y < height; ++y, read += width) {
-            // Evaluate the kernel for the first pixel in the row.
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.BoxBlurFilter.applyOneDimension([int,[int,int,int,int)",in,out,width,height,mode);try{for (int y = 0, read = 0; y < height; ++y, read += width) {
+            /*// Evaluate the kernel for the first pixel in the row.*/
             int red = 0;
             int green = 0;
             int blue = 0;
@@ -81,20 +81,20 @@ public class BoxBlurFilter {
                 blue += argb & BLUE_MASK;
             }
             for (int x = 0, write = y; x < width; ++x, write += height) {
-                // Output the current pixel.
+                /*// Output the current pixel.*/
                 out[write] = 0xFF000000
                         | (KERNEL_NORM[red] << RED_MASK_SHIFT)
                         | (KERNEL_NORM[green] << GREEN_MASK_SHIFT)
                         | KERNEL_NORM[blue];
 
-                // Slide to the next pixel, adding the new rightmost pixel and
-                // subtracting the former leftmost.
+                /*// Slide to the next pixel, adding the new rightmost pixel and*/
+                /*// subtracting the former leftmost.*/
                 int prev = in[read + sample(x - RADIUS, width, mode)];
                 int next = in[read + sample(x + RADIUS + 1, width, mode)];
                 red += ((next & RED_MASK) - (prev & RED_MASK)) >> RED_MASK_SHIFT;
                 green += ((next & GREEN_MASK) - (prev & GREEN_MASK)) >> GREEN_MASK_SHIFT;
                 blue += (next & BLUE_MASK) - (prev & BLUE_MASK);
             }
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.BoxBlurFilter.applyOneDimension([int,[int,int,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.BoxBlurFilter.applyOneDimension([int,[int,int,int,int)",throwable);throw throwable;}
     }
 }

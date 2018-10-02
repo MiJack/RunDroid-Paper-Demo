@@ -41,11 +41,11 @@ class GalleryEGLConfigChooser implements EGLConfigChooser {
     };
 
     public int getStencilBits() {
-        return mStencilBits;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.GalleryEGLConfigChooser.getStencilBits()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.GalleryEGLConfigChooser.getStencilBits()",this);return mStencilBits;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.GalleryEGLConfigChooser.getStencilBits()",this,throwable);throw throwable;}
     }
 
     public EGLConfig chooseConfig(EGL10 egl, EGLDisplay display) {
-        int[] numConfig = new int[1];
+        com.mijack.Xlog.logMethodEnter("javax.microedition.khronos.egl.EGLConfig com.android.gallery3d.ui.GalleryEGLConfigChooser.chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay)",this,egl,display);try{int[] numConfig = new int[1];
         if (!egl.eglChooseConfig(display, mConfigSpec, null, 0, numConfig)) {
             throw new RuntimeException("eglChooseConfig failed");
         }
@@ -60,28 +60,28 @@ class GalleryEGLConfigChooser implements EGLConfigChooser {
             throw new RuntimeException();
         }
 
-        return chooseConfig(egl, display, configs);
+        {com.mijack.Xlog.logMethodExit("javax.microedition.khronos.egl.EGLConfig com.android.gallery3d.ui.GalleryEGLConfigChooser.chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay)",this);return chooseConfig(egl, display, configs);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("javax.microedition.khronos.egl.EGLConfig com.android.gallery3d.ui.GalleryEGLConfigChooser.chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay)",this,throwable);throw throwable;}
     }
 
     private EGLConfig chooseConfig(
             EGL10 egl, EGLDisplay display, EGLConfig configs[]) {
 
-        EGLConfig result = null;
+        com.mijack.Xlog.logMethodEnter("javax.microedition.khronos.egl.EGLConfig com.android.gallery3d.ui.GalleryEGLConfigChooser.chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)",this,egl,display,configs[]);try{EGLConfig result = null;
         int minStencil = Integer.MAX_VALUE;
         int value[] = new int[1];
 
-        // Because we need only one bit of stencil, try to choose a config that
-        // has stencil support but with smallest number of stencil bits. If
-        // none is found, choose any one.
+        /*// Because we need only one bit of stencil, try to choose a config that*/
+        /*// has stencil support but with smallest number of stencil bits. If*/
+        /*// none is found, choose any one.*/
         for (int i = 0, n = configs.length; i < n; ++i) {
             if (egl.eglGetConfigAttrib(
                 display, configs[i], EGL10.EGL_RED_SIZE, value)) {
-                // Filter out ARGB 8888 configs.
-                if (value[0] == 8) continue;
+                /*// Filter out ARGB 8888 configs.*/
+                if (value[0] == 8) {continue;}
             }
             if (egl.eglGetConfigAttrib(
                     display, configs[i], EGL10.EGL_STENCIL_SIZE, value)) {
-                if (value[0] == 0) continue;
+                if (value[0] == 0) {continue;}
                 if (value[0] < minStencil) {
                     minStencil = value[0];
                     result = configs[i];
@@ -91,12 +91,12 @@ class GalleryEGLConfigChooser implements EGLConfigChooser {
                         "eglGetConfigAttrib error: " + egl.eglGetError());
             }
         }
-        if (result == null) result = configs[0];
+        if (result == null) {result = configs[0];}
         egl.eglGetConfigAttrib(
                 display, result, EGL10.EGL_STENCIL_SIZE, value);
         mStencilBits = value[0];
         logConfig(egl, display, result);
-        return result;
+        {com.mijack.Xlog.logMethodExit("javax.microedition.khronos.egl.EGLConfig com.android.gallery3d.ui.GalleryEGLConfigChooser.chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("javax.microedition.khronos.egl.EGLConfig com.android.gallery3d.ui.GalleryEGLConfigChooser.chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)",this,throwable);throw throwable;}
     }
 
     private static final int[] ATTR_ID = {
@@ -115,12 +115,12 @@ class GalleryEGLConfigChooser implements EGLConfigChooser {
     };
 
     private void logConfig(EGL10 egl, EGLDisplay display, EGLConfig config) {
-        int value[] = new int[1];
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GalleryEGLConfigChooser.logConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)",this,egl,display,config);try{int value[] = new int[1];
         StringBuilder sb = new StringBuilder();
         for (int j = 0; j < ATTR_ID.length; j++) {
             egl.eglGetConfigAttrib(display, config, ATTR_ID[j], value);
             sb.append(ATTR_NAME[j] + value[0] + " ");
         }
-        Log.i(TAG, "Config chosen: " + sb.toString());
+        Log.i(TAG, "Config chosen: " + sb.toString());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GalleryEGLConfigChooser.logConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GalleryEGLConfigChooser.logConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)",this,throwable);throw throwable;}
     }
 }

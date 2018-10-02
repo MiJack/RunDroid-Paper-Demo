@@ -58,16 +58,16 @@ public class CacheSizePreference extends Preference implements OnSeekBarChangeLi
 	}
 
 	private void initPreference(Context context, AttributeSet attrs) {
-		setValuesFromXml(attrs);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.initPreference(android.content.Context,android.util.AttributeSet)",this,context,attrs);try{setValuesFromXml(attrs);
 		seekBar = new SeekBar(context, attrs);
 		seekBar.setMax(maxValue - minValue);
-		seekBar.setOnSeekBarChangeListener(this);
+		seekBar.setOnSeekBarChangeListener(this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.initPreference(android.content.Context,android.util.AttributeSet)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CacheSizePreference.initPreference(android.content.Context,android.util.AttributeSet)",this,throwable);throw throwable;}
 	}
 
 	private void setValuesFromXml(AttributeSet attrs) {
-		maxValue = attrs.getAttributeIntValue(ANDROIDNS, "max", 1024);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.setValuesFromXml(android.util.AttributeSet)",this,attrs);try{maxValue = attrs.getAttributeIntValue(ANDROIDNS, "max", 1024);
 		minValue = attrs.getAttributeIntValue(CHANAPPS, "min", DEFAULT_VALUE);
-		if (DEBUG) Log.i(TAG, "Cache loaded from xml, min: " + minValue + " max: " + maxValue);
+		if (DEBUG) {Log.i(TAG, "Cache loaded from xml, min: " + minValue + " max: " + maxValue);}
 		try {
 			File cacheFolder = ChanFileStorage.getCacheDirectory(getContext());
 			long totalSpace = cacheFolder.getTotalSpace() / (1024*1024);
@@ -96,21 +96,21 @@ public class CacheSizePreference extends Preference implements OnSeekBarChangeLi
 			Log.e(TAG, "Invalid cacheSize value", e);
 		}
 
-		if (DEBUG) Log.i(TAG, "Cache value set to " + cacheSize);
+		if (DEBUG) {Log.i(TAG, "Cache value set to " + cacheSize);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.setValuesFromXml(android.util.AttributeSet)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CacheSizePreference.setValuesFromXml(android.util.AttributeSet)",this,throwable);throw throwable;}
 	}
 
 	private String getAttributeStringValue(AttributeSet attrs, String namespace, String name, String defaultValue) {
-		String value = attrs.getAttributeValue(namespace, name);
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.component.CacheSizePreference.getAttributeStringValue(android.util.AttributeSet,java.lang.String,java.lang.String,java.lang.String)",this,attrs,namespace,name,defaultValue);try{String value = attrs.getAttributeValue(namespace, name);
 		if (value == null) {
 			value = defaultValue;
 		}
 
-		return value;
+		{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.component.CacheSizePreference.getAttributeStringValue(android.util.AttributeSet,java.lang.String,java.lang.String,java.lang.String)",this);return value;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.component.CacheSizePreference.getAttributeStringValue(android.util.AttributeSet,java.lang.String,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected View onCreateView(ViewGroup parent) {
-		RelativeLayout layout = null;
+		com.mijack.Xlog.logMethodEnter("android.view.View com.chanapps.four.component.CacheSizePreference.onCreateView(android.view.ViewGroup)",this,parent);try{RelativeLayout layout = null;
 		try {
 			LayoutInflater mInflater = (LayoutInflater) getContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -120,27 +120,27 @@ public class CacheSizePreference extends Preference implements OnSeekBarChangeLi
 			Log.e(TAG, "Error creating seek bar preference", e);
 		}
 
-		return layout;
+		{com.mijack.Xlog.logMethodExit("android.view.View com.chanapps.four.component.CacheSizePreference.onCreateView(android.view.ViewGroup)",this);return layout;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.chanapps.four.component.CacheSizePreference.onCreateView(android.view.ViewGroup)",this,throwable);throw throwable;}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onBindView(View view) {
-		super.onBindView(view);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.onBindView(android.view.View)",this,view);try{super.onBindView(view);
 
 		try {
-			// move our seekbar to the new view we've been given
+			/*// move our seekbar to the new view we've been given*/
 			ViewParent oldContainer = seekBar.getParent();
 			ViewGroup newContainer = (ViewGroup) view
 					.findViewById(R.id.seekBarPrefBarContainer);
 
 			if (oldContainer != newContainer) {
-				// remove the seekbar from the old view
+				/*// remove the seekbar from the old view*/
 				if (oldContainer != null) {
 					((ViewGroup) oldContainer).removeView(seekBar);
 				}
-				// remove the existing seekbar (there may not be one) and add
-				// ours
+				/*// remove the existing seekbar (there may not be one) and add*/
+				/*// ours*/
 				newContainer.removeAllViews();
 				newContainer.addView(seekBar,
 						ViewGroup.LayoutParams.FILL_PARENT,
@@ -150,7 +150,7 @@ public class CacheSizePreference extends Preference implements OnSeekBarChangeLi
 			Log.e(TAG, "Error binding view: " + ex.toString(), ex);
 		}
 
-		updateView(view);
+		updateView(view);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.onBindView(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CacheSizePreference.onBindView(android.view.View)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class CacheSizePreference extends Preference implements OnSeekBarChangeLi
 	 */
 	protected void updateView(View view) {
 
-		try {
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.updateView(android.view.View)",this,view);try{try {
 			RelativeLayout layout = (RelativeLayout) view;
 
 			statusText = (TextView) layout.findViewById(R.id.seekBarPrefValue);
@@ -176,56 +176,54 @@ public class CacheSizePreference extends Preference implements OnSeekBarChangeLi
 			unitsLeftText.setText(unitsLeft);
 		} catch (Exception e) {
 			Log.e(TAG, "Error updating seek bar preference", e);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.updateView(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CacheSizePreference.updateView(android.view.View)",this,throwable);throw throwable;}
 
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		int newValue = progress + minValue;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.onProgressChanged(android.widget.SeekBar,int,boolean)",this,seekBar,progress,fromUser);try{int newValue = progress + minValue;
 
 		if (newValue > maxValue)
-			newValue = maxValue;
+			{newValue = maxValue;}
 		else if (newValue < minValue)
-			newValue = minValue;
+			{newValue = minValue;}
 
-		// change rejected, revert to the previous value
+		/*// change rejected, revert to the previous value*/
 		if (!callChangeListener(newValue)) {
 			seekBar.setProgress(currentValue - minValue);
-			return;
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.onProgressChanged(android.widget.SeekBar,int,boolean)",this);return;}
 		}
 
-		// change accepted, store it
+		/*// change accepted, store it*/
 		currentValue = newValue;
 		statusText.setText(String.valueOf(newValue));
-		persistInt(newValue);
+		persistInt(newValue);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CacheSizePreference.onProgressChanged(android.widget.SeekBar,int,boolean)",this,throwable);throw throwable;}
 
 	}
 
-	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-	}
+	{com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.onStartTrackingTouch(android.widget.SeekBar)",this,seekBar);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.onStartTrackingTouch(android.widget.SeekBar)",this);}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		notifyChanged();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.onStopTrackingTouch(android.widget.SeekBar)",this,seekBar);try{notifyChanged();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.onStopTrackingTouch(android.widget.SeekBar)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CacheSizePreference.onStopTrackingTouch(android.widget.SeekBar)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected Object onGetDefaultValue(TypedArray ta, int index) {
-		int defaultValue = ta.getInt(index, DEFAULT_VALUE);
-		return defaultValue;
+		com.mijack.Xlog.logMethodEnter("java.lang.Object com.chanapps.four.component.CacheSizePreference.onGetDefaultValue(android.content.res.TypedArray,int)",this,ta,index);try{int defaultValue = ta.getInt(index, DEFAULT_VALUE);
+		{com.mijack.Xlog.logMethodExit("java.lang.Object com.chanapps.four.component.CacheSizePreference.onGetDefaultValue(android.content.res.TypedArray,int)",this);return defaultValue;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.chanapps.four.component.CacheSizePreference.onGetDefaultValue(android.content.res.TypedArray,int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-		if (restoreValue) {
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CacheSizePreference.onSetInitialValue(boolean,java.lang.Object)",this,restoreValue,defaultValue);try{if (restoreValue) {
 			currentValue = getPersistedInt(currentValue);
 		} else {
 			int temp = DEFAULT_VALUE;
 			persistInt(temp);
 			currentValue = temp;
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CacheSizePreference.onSetInitialValue(boolean,java.lang.Object)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CacheSizePreference.onSetInitialValue(boolean,java.lang.Object)",this,throwable);throw throwable;}
 	}
 }

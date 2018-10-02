@@ -53,6 +53,6 @@ public class FileCountLimitedDiscCache extends LimitedDiscCache {
 
 	@Override
 	protected int getSize(File file) {
-		return 1;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.cache.disc.impl.FileCountLimitedDiscCache.getSize(java.io.File)",this,file);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.cache.disc.impl.FileCountLimitedDiscCache.getSize(java.io.File)",this);return 1;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.cache.disc.impl.FileCountLimitedDiscCache.getSize(java.io.File)",this,throwable);throw throwable;}
 	}
 }

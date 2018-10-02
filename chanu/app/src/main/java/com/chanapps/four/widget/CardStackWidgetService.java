@@ -13,6 +13,6 @@ import android.widget.RemoteViewsService;
 public class CardStackWidgetService extends RemoteViewsService {
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return new CardStackRemoteViewsFactory(this.getApplicationContext(), intent);
+        com.mijack.Xlog.logMethodEnter("RemoteViewsFactory com.chanapps.four.widget.CardStackWidgetService.onGetViewFactory(android.content.Intent)",this,intent);try{com.mijack.Xlog.logMethodExit("RemoteViewsFactory com.chanapps.four.widget.CardStackWidgetService.onGetViewFactory(android.content.Intent)",this);return new CardStackRemoteViewsFactory(this.getApplicationContext(), intent);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("RemoteViewsFactory com.chanapps.four.widget.CardStackWidgetService.onGetViewFactory(android.content.Intent)",this,throwable);throw throwable;}
     }
 }

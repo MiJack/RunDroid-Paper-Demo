@@ -42,7 +42,7 @@ public class ColorPickerActivity extends Activity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// To fight color branding.
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{/*// To fight color branding.*/
 		getWindow().setFormat(PixelFormat.RGBA_8888);
 
 		super.onCreate(savedInstanceState);
@@ -55,12 +55,12 @@ public class ColorPickerActivity extends Activity implements
 			initialColor = b.getInt(INTENT_DATA_INITIAL_COLOR);
 		}
 
-		setUp(initialColor);
+		setUp(initialColor);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
 
 	}
 
 	private void setUp(int color) {
-		mColorPickerView = (ColorPickerView) findViewById(R.id.color_picker_view);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerActivity.setUp(int)",this,color);try{mColorPickerView = (ColorPickerView) findViewById(R.id.color_picker_view);
 		mOldColorPanel = (ColorPanelView) findViewById(R.id.old_color_panel);
 		mNewColorPanel = (ColorPanelView) findViewById(R.id.new_color_panel);
 		mOkButton = (Button) findViewById(R.id.ok_button);
@@ -75,7 +75,7 @@ public class ColorPickerActivity extends Activity implements
 
 					@Override
 					public void onColorChanged(int color) {
-						mNewColorPanel.setColor(color);
+						com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerActivity$1.onColorChanged(int)",this,color);try{mNewColorPanel.setColor(color);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerActivity$1.onColorChanged(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerActivity$1.onColorChanged(int)",this,throwable);throw throwable;}
 					}
 				});
 
@@ -88,13 +88,13 @@ public class ColorPickerActivity extends Activity implements
 		mNewColorPanel.setBorderColor(mColorPickerView.getBorderColor());
 
 		mOkButton.setOnClickListener(this);
-		mCancelButton.setOnClickListener(this);
+		mCancelButton.setOnClickListener(this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerActivity.setUp(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerActivity.setUp(int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void onClick(View v) {
 
-		switch (v.getId()) {
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.ColorPickerActivity.onClick(com.chanapps.four.mColorPicker.views.ColorPanelView)",this,v);try{switch (v.getId()) {
 		case R.id.ok_button:
 
 			Intent i = new Intent();
@@ -111,7 +111,7 @@ public class ColorPickerActivity extends Activity implements
 			finish();
 
 			break;
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.ColorPickerActivity.onClick(com.chanapps.four.mColorPicker.views.ColorPanelView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.ColorPickerActivity.onClick(com.chanapps.four.mColorPicker.views.ColorPanelView)",this,throwable);throw throwable;}
 
 	}
 

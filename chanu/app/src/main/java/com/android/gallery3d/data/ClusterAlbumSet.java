@@ -43,22 +43,22 @@ public class ClusterAlbumSet extends MediaSet implements ContentListener {
 
     @Override
     public MediaSet getSubMediaSet(int index) {
-        return mAlbums.get(index);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.ClusterAlbumSet.getSubMediaSet(int)",this,index);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.ClusterAlbumSet.getSubMediaSet(int)",this);return mAlbums.get(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.ClusterAlbumSet.getSubMediaSet(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getSubMediaSetCount() {
-        return mAlbums.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.ClusterAlbumSet.getSubMediaSetCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.ClusterAlbumSet.getSubMediaSetCount()",this);return mAlbums.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.ClusterAlbumSet.getSubMediaSetCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getName() {
-        return mBaseSet.getName();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.ClusterAlbumSet.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.ClusterAlbumSet.getName()",this);return mBaseSet.getName();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.ClusterAlbumSet.getName()",this,throwable);throw throwable;}
     }
 
     @Override
     public long reload() {
-        if (mBaseSet.reload() > mDataVersion) {
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.ClusterAlbumSet.reload()",this);try{if (mBaseSet.reload() > mDataVersion) {
             if (mFirstReloadDone) {
                 updateClustersContents();
             } else {
@@ -67,15 +67,15 @@ public class ClusterAlbumSet extends MediaSet implements ContentListener {
             }
             mDataVersion = nextVersionNumber();
         }
-        return mDataVersion;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.ClusterAlbumSet.reload()",this);return mDataVersion;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.ClusterAlbumSet.reload()",this,throwable);throw throwable;}
     }
 
     public void onContentDirty() {
-        notifyContentChanged();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbumSet.onContentDirty()",this);try{notifyContentChanged();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbumSet.onContentDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbumSet.onContentDirty()",this,throwable);throw throwable;}
     }
 
     private void updateClusters() {
-        mAlbums.clear();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbumSet.updateClusters()",this);try{mAlbums.clear();
         Clustering clustering;
         Context context = mApplication.getAndroidContext();
         switch (mKind) {
@@ -118,21 +118,21 @@ public class ClusterAlbumSet extends MediaSet implements ContentListener {
             album.setMediaItems(clustering.getCluster(i));
             album.setName(childName);
             mAlbums.add(album);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbumSet.updateClusters()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbumSet.updateClusters()",this,throwable);throw throwable;}
     }
 
     private void updateClustersContents() {
-        final HashSet<Path> existing = new HashSet<Path>();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbumSet.updateClustersContents()",this);try{final HashSet<Path> existing = new HashSet<Path>();
         mBaseSet.enumerateTotalMediaItems(new MediaSet.ItemConsumer() {
             public void consume(int index, MediaItem item) {
-                existing.add(item.getPath());
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ClusterAlbumSet$1.consume(int,com.android.gallery3d.data.MediaItem)",this,index,item);try{existing.add(item.getPath());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbumSet$1.consume(int,com.android.gallery3d.data.MediaItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbumSet$1.consume(int,com.android.gallery3d.data.MediaItem)",this,throwable);throw throwable;}
             }
         });
 
         int n = mAlbums.size();
 
-        // The loop goes backwards because we may remove empty albums from
-        // mAlbums.
+        /*// The loop goes backwards because we may remove empty albums from*/
+        /*// mAlbums.*/
         for (int i = n - 1; i >= 0; i--) {
             ArrayList<Path> oldPaths = mAlbums.get(i).getMediaItems();
             ArrayList<Path> newPaths = new ArrayList<Path>();
@@ -147,6 +147,6 @@ public class ClusterAlbumSet extends MediaSet implements ContentListener {
             if (newPaths.isEmpty()) {
                 mAlbums.remove(i);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ClusterAlbumSet.updateClustersContents()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ClusterAlbumSet.updateClustersContents()",this,throwable);throw throwable;}
     }
 }

@@ -41,81 +41,81 @@ public class BoardCursorAdapter extends AbstractBoardCursorAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        Cursor cursor = getCursor();
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this,position);try{Cursor cursor = getCursor();
         if (cursor == null || !cursor.moveToPosition(position))
-            return TYPE_GRID_ITEM;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM;}}
         if (isHeader(cursor))
-            return TYPE_GRID_HEADER;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_HEADER;}}
         if (isBlocked(cursor))
-            return TYPE_GRID_EMPTY;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_EMPTY;}}
         if (isOffWatchlist(cursor))
-            return TYPE_GRID_EMPTY;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_EMPTY;}}
         if (hideLastReplies)
-            return TYPE_GRID_ITEM;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM;}}
         int numLastReplies = cursor.getInt(cursor.getColumnIndex(ChanThread.THREAD_NUM_LAST_REPLIES));
         switch (numLastReplies) {
             case 5:
-                return TYPE_GRID_ITEM_5;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM_5;}
             case 4:
-                return TYPE_GRID_ITEM_4;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM_4;}
             case 3:
-                return TYPE_GRID_ITEM_3;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM_3;}
             case 2:
-                return TYPE_GRID_ITEM_2;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM_2;}
             case 1:
-                return TYPE_GRID_ITEM_1;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM_1;}
             case 0:
             default:
-                return TYPE_GRID_ITEM;
-        }
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this);return TYPE_GRID_ITEM;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewType(int)",this,throwable);throw throwable;}
     }
 
     protected int getItemViewLayout(int position) {
-        Cursor cursor = getCursor();
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this,position);try{Cursor cursor = getCursor();
         if (cursor == null || !cursor.moveToPosition(position))
-            return R.layout.board_grid_item;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item;}}
         if (isHeader(cursor))
-            return R.layout.board_grid_header;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_header;}}
         if (isBlocked(cursor))
-                return R.layout.board_grid_item_empty;
+                {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item_empty;}}
         if (isOffWatchlist(cursor))
-            return R.layout.board_grid_item_empty;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item_empty;}}
         if (hideLastReplies)
-            return R.layout.board_grid_item;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item;}}
         int numLastReplies = cursor.getInt(cursor.getColumnIndex(ChanThread.THREAD_NUM_LAST_REPLIES));
         switch (numLastReplies) {
             case 5:
-                return R.layout.board_grid_item_5;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item_5;}
             case 4:
-                return R.layout.board_grid_item_4;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item_4;}
             case 3:
-                return R.layout.board_grid_item_3;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item_3;}
             case 2:
-                return R.layout.board_grid_item_2;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item_2;}
             case 1:
-                return R.layout.board_grid_item_1;
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item_1;}
             case 0:
             default:
-                return R.layout.board_grid_item;
-        }
+                {com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this);return R.layout.board_grid_item;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.adapter.BoardCursorAdapter.getItemViewLayout(int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected View newView(ViewGroup parent, int tag, int position) {
-        if (DEBUG) Log.d(TAG, "Creating " + tag + " layout for " + position);
+        com.mijack.Xlog.logMethodEnter("android.view.View com.chanapps.four.adapter.BoardCursorAdapter.newView(android.view.ViewGroup,int,int)",this,parent,tag,position);try{if (DEBUG) {Log.d(TAG, "Creating " + tag + " layout for " + position);}
         View v = mInflater.inflate(getItemViewLayout(position), parent, false);
         BoardViewHolder viewHolder = new BoardViewHolder(v);
         v.setTag(R.id.VIEW_TAG_TYPE, tag);
         v.setTag(R.id.VIEW_HOLDER, viewHolder);
-        return v;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.chanapps.four.adapter.BoardCursorAdapter.newView(android.view.ViewGroup,int,int)",this);return v;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.chanapps.four.adapter.BoardCursorAdapter.newView(android.view.ViewGroup,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getViewTypeCount() {
-        if (hideLastReplies)
-            return TYPE_HIDE_LAST_COUNT;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.adapter.BoardCursorAdapter.getViewTypeCount()",this);try{if (hideLastReplies)
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getViewTypeCount()",this);return TYPE_HIDE_LAST_COUNT;}}
         else
-            return TYPE_MAX_COUNT;
+            {{com.mijack.Xlog.logMethodExit("int com.chanapps.four.adapter.BoardCursorAdapter.getViewTypeCount()",this);return TYPE_MAX_COUNT;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.adapter.BoardCursorAdapter.getViewTypeCount()",this,throwable);throw throwable;}
     }
 
 }

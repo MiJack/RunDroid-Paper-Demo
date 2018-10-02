@@ -34,6 +34,6 @@ public class FileDesc {
 	public long lastModified;
 	
 	public String toString() {
-		return path + " " + size + "b " + new Date(lastModified) + " (" + lastModified + ")";
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.FileDesc.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.FileDesc.toString()",this);return path + " " + size + "b " + new Date(lastModified) + " (" + lastModified + ")";}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.FileDesc.toString()",this,throwable);throw throwable;}
 	}
 }

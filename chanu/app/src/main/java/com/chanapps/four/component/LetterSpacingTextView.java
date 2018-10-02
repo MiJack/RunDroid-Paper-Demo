@@ -33,27 +33,27 @@ public class LetterSpacingTextView extends TextView {
     }
 
     public float getTextSpacing() {
-        return textSpacing;
+        com.mijack.Xlog.logMethodEnter("float com.chanapps.four.component.LetterSpacingTextView.getTextSpacing()",this);try{com.mijack.Xlog.logMethodExit("float com.chanapps.four.component.LetterSpacingTextView.getTextSpacing()",this);return textSpacing;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.chanapps.four.component.LetterSpacingTextView.getTextSpacing()",this,throwable);throw throwable;}
     }
 
     public void setTextSpacing(float textSpacing) {
-        this.textSpacing = textSpacing;
-        applyLetterSpacing();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.LetterSpacingTextView.setTextSpacing(float)",this,textSpacing);try{this.textSpacing = textSpacing;
+        applyLetterSpacing();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.LetterSpacingTextView.setTextSpacing(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.LetterSpacingTextView.setTextSpacing(float)",this,throwable);throw throwable;}
     }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        originalText = text;
-        applyLetterSpacing();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.LetterSpacingTextView.setText(java.lang.CharSequence,BufferType)",this,text,type);try{originalText = text;
+        applyLetterSpacing();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.LetterSpacingTextView.setText(java.lang.CharSequence,BufferType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.LetterSpacingTextView.setText(java.lang.CharSequence,BufferType)",this,throwable);throw throwable;}
     }
 
     @Override
     public CharSequence getText() {
-        return originalText;
+        com.mijack.Xlog.logMethodEnter("java.lang.CharSequence com.chanapps.four.component.LetterSpacingTextView.getText()",this);try{com.mijack.Xlog.logMethodExit("java.lang.CharSequence com.chanapps.four.component.LetterSpacingTextView.getText()",this);return originalText;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.CharSequence com.chanapps.four.component.LetterSpacingTextView.getText()",this,throwable);throw throwable;}
     }
 
     private void applyLetterSpacing() {
-        StringBuilder builder = new StringBuilder();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.LetterSpacingTextView.applyLetterSpacing()",this);try{StringBuilder builder = new StringBuilder();
         for(int i = 0; i < originalText.length(); i++) {
             builder.append(originalText.charAt(i));
             if(i+1 < originalText.length()) {
@@ -66,7 +66,7 @@ public class LetterSpacingTextView extends TextView {
                 finalText.setSpan(new ScaleXSpan((textSpacing+1)/10), i, i+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
-        super.setText(finalText, BufferType.SPANNABLE);
+        super.setText(finalText, BufferType.SPANNABLE);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.LetterSpacingTextView.applyLetterSpacing()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.LetterSpacingTextView.applyLetterSpacing()",this,throwable);throw throwable;}
     }
 
     public class TextSpacing {

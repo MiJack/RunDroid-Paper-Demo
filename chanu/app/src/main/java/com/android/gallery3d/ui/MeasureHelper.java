@@ -32,34 +32,34 @@ class MeasureHelper {
     }
 
     public static MeasureHelper getInstance(GLView component) {
-        sInstance.mComponent = component;
-        return sInstance;
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.ui.MeasureHelper com.android.gallery3d.ui.MeasureHelper.getInstance(com.android.gallery3d.ui.GLView)",component);try{sInstance.mComponent = component;
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.ui.MeasureHelper com.android.gallery3d.ui.MeasureHelper.getInstance(com.android.gallery3d.ui.GLView)");return sInstance;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.ui.MeasureHelper com.android.gallery3d.ui.MeasureHelper.getInstance(com.android.gallery3d.ui.GLView)",throwable);throw throwable;}
     }
 
     public MeasureHelper setPreferredContentSize(int width, int height) {
-        mPreferredWidth = width;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.MeasureHelper com.android.gallery3d.ui.MeasureHelper.setPreferredContentSize(int,int)",this,width,height);try{mPreferredWidth = width;
         mPreferredHeight = height;
-        return this;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.MeasureHelper com.android.gallery3d.ui.MeasureHelper.setPreferredContentSize(int,int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.MeasureHelper com.android.gallery3d.ui.MeasureHelper.setPreferredContentSize(int,int)",this,throwable);throw throwable;}
     }
 
     public void measure(int widthSpec, int heightSpec) {
-        Rect p = mComponent.getPaddings();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MeasureHelper.measure(int,int)",this,widthSpec,heightSpec);try{Rect p = mComponent.getPaddings();
         setMeasuredSize(
                 getLength(widthSpec, mPreferredWidth + p.left + p.right),
-                getLength(heightSpec, mPreferredHeight + p.top + p.bottom));
+                getLength(heightSpec, mPreferredHeight + p.top + p.bottom));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MeasureHelper.measure(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MeasureHelper.measure(int,int)",this,throwable);throw throwable;}
     }
 
     private static int getLength(int measureSpec, int prefered) {
-        int specLength = MeasureSpec.getSize(measureSpec);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.MeasureHelper.getLength(int,int)",measureSpec,prefered);try{int specLength = MeasureSpec.getSize(measureSpec);
         switch(MeasureSpec.getMode(measureSpec)) {
-            case MeasureSpec.EXACTLY: return specLength;
-            case MeasureSpec.AT_MOST: return Math.min(prefered, specLength);
-            default: return prefered;
-        }
+            case MeasureSpec.EXACTLY: {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.MeasureHelper.getLength(int,int)");return specLength;}
+            case MeasureSpec.AT_MOST: {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.MeasureHelper.getLength(int,int)");return Math.min(prefered, specLength);}
+            default: {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.MeasureHelper.getLength(int,int)");return prefered;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.MeasureHelper.getLength(int,int)",throwable);throw throwable;}
     }
 
     protected void setMeasuredSize(int width, int height) {
-        mComponent.setMeasuredSize(width, height);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MeasureHelper.setMeasuredSize(int,int)",this,width,height);try{mComponent.setMeasuredSize(width, height);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MeasureHelper.setMeasuredSize(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MeasureHelper.setMeasuredSize(int,int)",this,throwable);throw throwable;}
     }
 
 }

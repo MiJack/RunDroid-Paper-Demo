@@ -27,7 +27,7 @@ import android.widget.ImageView;
 public final class SimpleBitmapDisplayer implements BitmapDisplayer {
 	@Override
 	public Bitmap display(Bitmap bitmap, ImageView imageView) {
-		imageView.setImageBitmap(bitmap);
-		return bitmap;
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,bitmap,imageView);try{imageView.setImageBitmap(bitmap);
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 }

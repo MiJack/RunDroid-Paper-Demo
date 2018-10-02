@@ -30,17 +30,17 @@ import com.nostra13.universalimageloader.utils.L;
 public class Md5FileNameGenerator implements FileNameGenerator {
 
 	private static final String HASH_ALGORITHM = "MD5";
-	private static final int RADIX = 10 + 26; // 10 digits + 26 letters
+	private static final int RADIX = 10 + 26; /*// 10 digits + 26 letters*/
 
 	@Override
 	public String generate(String imageUri) {
-		byte[] md5 = getMD5(imageUri.getBytes());
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator.generate(java.lang.String)",this,imageUri);try{byte[] md5 = getMD5(imageUri.getBytes());
 		BigInteger bi = new BigInteger(md5).abs();
-		return bi.toString(RADIX);
+		{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator.generate(java.lang.String)",this);return bi.toString(RADIX);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator.generate(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	private byte[] getMD5(byte[] data) {
-		byte[] hash = null;
+		com.mijack.Xlog.logMethodEnter("[byte com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator.getMD5([byte)",this,data);try{byte[] hash = null;
 		try {
 			MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
 			digest.update(data);
@@ -48,6 +48,6 @@ public class Md5FileNameGenerator implements FileNameGenerator {
 		} catch (NoSuchAlgorithmException e) {
 			L.e(e);
 		}
-		return hash;
+		{com.mijack.Xlog.logMethodExit("[byte com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator.getMD5([byte)",this);return hash;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator.getMD5([byte)",this,throwable);throw throwable;}
 	}
 }

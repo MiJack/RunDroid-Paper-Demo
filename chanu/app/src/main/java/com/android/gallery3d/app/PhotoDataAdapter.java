@@ -64,11 +64,11 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
     private static final long VERSION_OUT_OF_RANGE = MediaObject.nextVersionNumber();
 
-    // sImageFetchSeq is the fetching sequence for images.
-    // We want to fetch the current screennail first (offset = 0), the next
-    // screennail (offset = +1), then the previous screennail (offset = -1) etc.
-    // After all the screennail are fetched, we fetch the full images (only some
-    // of them because of we don't want to use too much memory).
+    /*// sImageFetchSeq is the fetching sequence for images.*/
+    /*// We want to fetch the current screennail first (offset = 0), the next*/
+    /*// screennail (offset = +1), then the previous screennail (offset = -1) etc.*/
+    /*// After all the screennail are fetched, we fetch the full images (only some*/
+    /*// of them because of we don't want to use too much memory).*/
     private static ImageFetch[] sImageFetchSeq;
 
     private static class ImageFetch {
@@ -97,17 +97,17 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
     private final TileImageViewAdapter mTileProvider = new TileImageViewAdapter();
 
-    // PhotoDataAdapter caches MediaItems (data) and ImageEntries (image).
-    //
-    // The MediaItems are stored in the mData array, which has DATA_CACHE_SIZE
-    // entries. The valid index range are [mContentStart, mContentEnd). We keep
-    // mContentEnd - mContentStart <= DATA_CACHE_SIZE, so we can use
-    // (i % DATA_CACHE_SIZE) as index to the array.
-    //
-    // The valid MediaItem window size (mContentEnd - mContentStart) may be
-    // smaller than DATA_CACHE_SIZE because we only update the window and reload
-    // the MediaItems when there are significant changes to the window position
-    // (>= MIN_LOAD_COUNT).
+    /*// PhotoDataAdapter caches MediaItems (data) and ImageEntries (image).*/
+    /*//*/
+    /*// The MediaItems are stored in the mData array, which has DATA_CACHE_SIZE*/
+    /*// entries. The valid index range are [mContentStart, mContentEnd). We keep*/
+    /*// mContentEnd - mContentStart <= DATA_CACHE_SIZE, so we can use*/
+    /*// (i % DATA_CACHE_SIZE) as index to the array.*/
+    /*//*/
+    /*// The valid MediaItem window size (mContentEnd - mContentStart) may be*/
+    /*// smaller than DATA_CACHE_SIZE because we only update the window and reload*/
+    /*// the MediaItems when there are significant changes to the window position*/
+    /*// (>= MIN_LOAD_COUNT).*/
     private final MediaItem mData[] = new MediaItem[DATA_CACHE_SIZE];
     private int mContentStart = 0;
     private int mContentEnd = 0;
@@ -123,13 +123,13 @@ public class PhotoDataAdapter implements PhotoPage.Model {
     private int mActiveStart = 0;
     private int mActiveEnd = 0;
 
-    // mCurrentIndex is the "center" image the user is viewing. The change of
-    // mCurrentIndex triggers the data loading and image loading.
+    /*// mCurrentIndex is the "center" image the user is viewing. The change of*/
+    /*// mCurrentIndex triggers the data loading and image loading.*/
     private int mCurrentIndex;
 
-    // mChanges keeps the version number (of MediaItem) about the previous,
-    // current, and next image. If the version number changes, we invalidate
-    // the model. This is used after a database reload or mCurrentIndex changes.
+    /*// mChanges keeps the version number (of MediaItem) about the previous,*/
+    /*// current, and next image. If the version number changes, we invalidate*/
+    /*// the model. This is used after a database reload or mCurrentIndex changes.*/
     private final long mChanges[] = new long[3];
 
     private final Handler mMainHandler;
@@ -153,10 +153,10 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
     private final SourceListener mSourceListener = new SourceListener();
 
-    // The path of the current viewing item will be stored in mItemPath.
-    // If mItemPath is not null, mCurrentIndex is only a hint for where we
-    // can find the item. If mItemPath is null, then we use the mCurrentIndex to
-    // find the image being viewed.
+    /*// The path of the current viewing item will be stored in mItemPath.*/
+    /*// If mItemPath is not null, mCurrentIndex is only a hint for where we*/
+    /*// can find the item. If mItemPath is null, then we use the mCurrentIndex to*/
+    /*// find the image being viewed.*/
     public PhotoDataAdapter(GalleryActivity activity,
             PhotoView view, MediaSet mediaSet, Path itemPath, int indexHint) {
         mSource = Utils.checkNotNull(mediaSet);
@@ -171,20 +171,20 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             @SuppressWarnings("unchecked")
             @Override
             public void handleMessage(Message message) {
-                switch (message.what) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$1.handleMessage(android.os.Message)",this,message);try{switch (message.what) {
                     case MSG_RUN_OBJECT:
                         ((Runnable) message.obj).run();
-                        return;
+                        {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$1.handleMessage(android.os.Message)",this);return;}
                     case MSG_LOAD_START: {
-                        if (mDataListener != null) mDataListener.onLoadingStarted();
-                        return;
+                        if (mDataListener != null) {mDataListener.onLoadingStarted();}
+                        {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$1.handleMessage(android.os.Message)",this);return;}
                     }
                     case MSG_LOAD_FINISH: {
-                        if (mDataListener != null) mDataListener.onLoadingFinished();
-                        return;
+                        if (mDataListener != null) {mDataListener.onLoadingFinished();}
+                        {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$1.handleMessage(android.os.Message)",this);return;}
                     }
                     default: throw new AssertionError();
-                }
+                }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
             }
         };
 
@@ -192,35 +192,35 @@ public class PhotoDataAdapter implements PhotoPage.Model {
     }
 
     private long getVersion(int index) {
-        if (index < 0 || index >= mSize) return VERSION_OUT_OF_RANGE;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.app.PhotoDataAdapter.getVersion(int)",this,index);try{if (index < 0 || index >= mSize) {{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.app.PhotoDataAdapter.getVersion(int)",this);return VERSION_OUT_OF_RANGE;}}
         if (index >= mContentStart && index < mContentEnd) {
             MediaItem item = mData[index % DATA_CACHE_SIZE];
-            if (item != null) return item.getDataVersion();
+            if (item != null) {{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.app.PhotoDataAdapter.getVersion(int)",this);return item.getDataVersion();}}
         }
-        return MediaObject.INVALID_DATA_VERSION;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.app.PhotoDataAdapter.getVersion(int)",this);return MediaObject.INVALID_DATA_VERSION;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.app.PhotoDataAdapter.getVersion(int)",this,throwable);throw throwable;}
     }
 
     private void fireModelInvalidated() {
-        for (int i = -1; i <= 1; ++i) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.fireModelInvalidated()",this);try{for (int i = -1; i <= 1; ++i) {
             long current = getVersion(mCurrentIndex + i);
             long change = mChanges[i + 1];
             if (current != change) {
                 mPhotoView.notifyImageInvalidated(i);
                 mChanges[i + 1] = current;
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.fireModelInvalidated()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.fireModelInvalidated()",this,throwable);throw throwable;}
     }
 
     public void setDataListener(DataListener listener) {
-        mDataListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.setDataListener(DataListener)",this,listener);try{mDataListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.setDataListener(DataListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.setDataListener(DataListener)",this,throwable);throw throwable;}
     }
 
     private void updateScreenNail(long version, Future<Bitmap> future) {
-        ImageEntry entry = mImageCache.get(version);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateScreenNail(long,com.android.gallery3d.util.Future)",this,version,future);try{ImageEntry entry = mImageCache.get(version);
         if (entry == null || entry.screenNailTask != future) {
             Bitmap screenNail = future.get();
-            if (screenNail != null) screenNail.recycle();
-            return;
+            if (screenNail != null) {screenNail.recycle();}
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateScreenNail(long,com.android.gallery3d.util.Future)",this);return;}
         }
 
         entry.screenNailTask = null;
@@ -234,20 +234,20 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             }
             for (int i = -1; i <=1; ++i) {
                 if (version == getVersion(mCurrentIndex + i)) {
-                    if (i == 0) updateTileProvider(entry);
+                    if (i == 0) {updateTileProvider(entry);}
                     mPhotoView.notifyImageInvalidated(i);
                 }
             }
         }
-        updateImageRequests();
+        updateImageRequests();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateScreenNail(long,com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
     }
 
     private void updateFullImage(long version, Future<BitmapRegionDecoder> future) {
-        ImageEntry entry = mImageCache.get(version);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateFullImage(long,com.android.gallery3d.util.Future)",this,version,future);try{ImageEntry entry = mImageCache.get(version);
         if (entry == null || entry.fullImageTask != future) {
             BitmapRegionDecoder fullImage = future.get();
-            if (fullImage != null) fullImage.recycle();
-            return;
+            if (fullImage != null) {fullImage.recycle();}
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateFullImage(long,com.android.gallery3d.util.Future)",this);return;}
         }
 
         entry.fullImageTask = null;
@@ -261,11 +261,11 @@ public class PhotoDataAdapter implements PhotoPage.Model {
                 mPhotoView.notifyImageInvalidated(0);
             }
         }
-        updateImageRequests();
+        updateImageRequests();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateFullImage(long,com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        mIsActive = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.resume()",this);try{mIsActive = true;
         mSource.addContentListener(mSourceListener);
         updateImageCache();
         updateImageRequests();
@@ -273,11 +273,11 @@ public class PhotoDataAdapter implements PhotoPage.Model {
         mReloadTask = new ReloadTask();
         mReloadTask.start();
 
-        mPhotoView.notifyModelInvalidated();
+        mPhotoView.notifyModelInvalidated();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.resume()",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        mIsActive = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.pause()",this);try{mIsActive = false;
 
         mReloadTask.terminate();
         mReloadTask = null;
@@ -285,36 +285,36 @@ public class PhotoDataAdapter implements PhotoPage.Model {
         mSource.removeContentListener(mSourceListener);
 
         for (ImageEntry entry : mImageCache.values()) {
-            if (entry.fullImageTask != null) entry.fullImageTask.cancel();
-            if (entry.screenNailTask != null) entry.screenNailTask.cancel();
+            if (entry.fullImageTask != null) {entry.fullImageTask.cancel();}
+            if (entry.screenNailTask != null) {entry.screenNailTask.cancel();}
         }
         mImageCache.clear();
-        mTileProvider.clear();
+        mTileProvider.clear();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.pause()",this,throwable);throw throwable;}
     }
 
     private ImageData getImage(int index) {
-        if (index < 0 || index >= mSize || !mIsActive) return null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getImage(int)",this,index);try{if (index < 0 || index >= mSize || !mIsActive) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getImage(int)",this);return null;}}
         Utils.assertTrue(index >= mActiveStart && index < mActiveEnd);
 
         ImageEntry entry = mImageCache.get(getVersion(index));
         Bitmap screennail = entry == null ? null : entry.screenNail;
         if (screennail != null) {
-            return new ImageData(screennail, entry.rotation);
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getImage(int)",this);return new ImageData(screennail, entry.rotation);}
         } else {
-            return new ImageData(null, 0);
-        }
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getImage(int)",this);return new ImageData(null, 0);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getImage(int)",this,throwable);throw throwable;}
     }
 
     public ImageData getPreviousImage() {
-        return getImage(mCurrentIndex - 1);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getPreviousImage()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getPreviousImage()",this);return getImage(mCurrentIndex - 1);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getPreviousImage()",this,throwable);throw throwable;}
     }
 
     public ImageData getNextImage() {
-        return getImage(mCurrentIndex + 1);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getNextImage()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getNextImage()",this);return getImage(mCurrentIndex + 1);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.PhotoView.ImageData com.android.gallery3d.app.PhotoDataAdapter.getNextImage()",this,throwable);throw throwable;}
     }
 
     private void updateCurrentIndex(int index) {
-        mCurrentIndex = index;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateCurrentIndex(int)",this,index);try{mCurrentIndex = index;
         updateSlidingWindow();
 
         MediaItem item = mData[index % DATA_CACHE_SIZE];
@@ -328,89 +328,89 @@ public class PhotoDataAdapter implements PhotoPage.Model {
         if (mDataListener != null) {
             mDataListener.onPhotoChanged(index, mItemPath);
         }
-        fireModelInvalidated();
+        fireModelInvalidated();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateCurrentIndex(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateCurrentIndex(int)",this,throwable);throw throwable;}
     }
 
     public void next() {
-        updateCurrentIndex(mCurrentIndex + 1);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.next()",this);try{updateCurrentIndex(mCurrentIndex + 1);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.next()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.next()",this,throwable);throw throwable;}
     }
 
     public void previous() {
-        updateCurrentIndex(mCurrentIndex - 1);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.previous()",this);try{updateCurrentIndex(mCurrentIndex - 1);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.previous()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.previous()",this,throwable);throw throwable;}
     }
 
     public void jumpTo(int index) {
-        if (mCurrentIndex == index) return;
-        updateCurrentIndex(index);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.jumpTo(int)",this,index);try{if (mCurrentIndex == index) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.jumpTo(int)",this);return;}}
+        updateCurrentIndex(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.jumpTo(int)",this,throwable);throw throwable;}
     }
 
     public Bitmap getBackupImage() {
-        return mTileProvider.getBackupImage();
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter.getBackupImage()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter.getBackupImage()",this);return mTileProvider.getBackupImage();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter.getBackupImage()",this,throwable);throw throwable;}
     }
 
     public int getImageHeight() {
-        return mTileProvider.getImageHeight();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.PhotoDataAdapter.getImageHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter.getImageHeight()",this);return mTileProvider.getImageHeight();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.PhotoDataAdapter.getImageHeight()",this,throwable);throw throwable;}
     }
 
     public int getImageWidth() {
-        return mTileProvider.getImageWidth();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.PhotoDataAdapter.getImageWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter.getImageWidth()",this);return mTileProvider.getImageWidth();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.PhotoDataAdapter.getImageWidth()",this,throwable);throw throwable;}
     }
 
     public int getImageRotation() {
-        ImageEntry entry = mImageCache.get(getVersion(mCurrentIndex));
-        return entry == null ? 0 : entry.rotation;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.PhotoDataAdapter.getImageRotation()",this);try{ImageEntry entry = mImageCache.get(getVersion(mCurrentIndex));
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter.getImageRotation()",this);return entry == null ? 0 : entry.rotation;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.PhotoDataAdapter.getImageRotation()",this,throwable);throw throwable;}
     }
 
     public int getLevelCount() {
-        return mTileProvider.getLevelCount();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.PhotoDataAdapter.getLevelCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter.getLevelCount()",this);return mTileProvider.getLevelCount();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.PhotoDataAdapter.getLevelCount()",this,throwable);throw throwable;}
     }
 
     public Bitmap getTile(int level, int x, int y, int tileSize) {
-        return mTileProvider.getTile(level, x, y, tileSize);
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter.getTile(int,int,int,int)",this,level,x,y,tileSize);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter.getTile(int,int,int,int)",this);return mTileProvider.getTile(level, x, y, tileSize);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter.getTile(int,int,int,int)",this,throwable);throw throwable;}
     }
 
     public boolean isFailedToLoad() {
-        return mTileProvider.isFailedToLoad();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.PhotoDataAdapter.isFailedToLoad()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.PhotoDataAdapter.isFailedToLoad()",this);return mTileProvider.isFailedToLoad();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.PhotoDataAdapter.isFailedToLoad()",this,throwable);throw throwable;}
     }
 
     public boolean isEmpty() {
-        return mSize == 0;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.PhotoDataAdapter.isEmpty()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.PhotoDataAdapter.isEmpty()",this);return mSize == 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.PhotoDataAdapter.isEmpty()",this,throwable);throw throwable;}
     }
 
     public int getCurrentIndex() {
-        return mCurrentIndex;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.PhotoDataAdapter.getCurrentIndex()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter.getCurrentIndex()",this);return mCurrentIndex;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.PhotoDataAdapter.getCurrentIndex()",this,throwable);throw throwable;}
     }
 
     public MediaItem getCurrentMediaItem() {
-        return mData[mCurrentIndex % DATA_CACHE_SIZE];
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.PhotoDataAdapter.getCurrentMediaItem()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.PhotoDataAdapter.getCurrentMediaItem()",this);return mData[mCurrentIndex % DATA_CACHE_SIZE];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.PhotoDataAdapter.getCurrentMediaItem()",this,throwable);throw throwable;}
     }
 
     public void setCurrentPhoto(Path path, int indexHint) {
-        if (mItemPath == path) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.setCurrentPhoto(com.android.gallery3d.data.Path,int)",this,path,indexHint);try{if (mItemPath == path) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.setCurrentPhoto(com.android.gallery3d.data.Path,int)",this);return;}}
         mItemPath = path;
         mCurrentIndex = indexHint;
         updateSlidingWindow();
         updateImageCache();
         fireModelInvalidated();
 
-        // We need to reload content if the path doesn't match.
+        /*// We need to reload content if the path doesn't match.*/
         MediaItem item = getCurrentMediaItem();
         if (item != null && item.getPath() != path) {
-            if (mReloadTask != null) mReloadTask.notifyDirty();
-        }
+            if (mReloadTask != null) {mReloadTask.notifyDirty();}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.setCurrentPhoto(com.android.gallery3d.data.Path,int)",this,throwable);throw throwable;}
     }
 
     private void updateTileProvider() {
-        ImageEntry entry = mImageCache.get(getVersion(mCurrentIndex));
-        if (entry == null) { // in loading
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateTileProvider()",this);try{ImageEntry entry = mImageCache.get(getVersion(mCurrentIndex));
+        if (entry == null) { /*// in loading*/
             mTileProvider.clear();
         } else {
             updateTileProvider(entry);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateTileProvider()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateTileProvider()",this,throwable);throw throwable;}
     }
 
     private void updateTileProvider(ImageEntry entry) {
-        Bitmap screenNail = entry.screenNail;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateTileProvider(com.android.gallery3d.app.PhotoDataAdapter$ImageEntry)",this,entry);try{Bitmap screenNail = entry.screenNail;
         BitmapRegionDecoder fullImage = entry.fullImage;
         if (screenNail != null) {
             if (fullImage != null) {
@@ -424,22 +424,22 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             }
         } else {
             mTileProvider.clear();
-            if (entry.failToLoad) mTileProvider.setFailedToLoad();
-        }
+            if (entry.failToLoad) {mTileProvider.setFailedToLoad();}
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateTileProvider(com.android.gallery3d.app.PhotoDataAdapter$ImageEntry)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateTileProvider(com.android.gallery3d.app.PhotoDataAdapter$ImageEntry)",this,throwable);throw throwable;}
     }
 
     private void updateSlidingWindow() {
-        // 1. Update the image window
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateSlidingWindow()",this);try{/*// 1. Update the image window*/
         int start = Utils.clamp(mCurrentIndex - IMAGE_CACHE_SIZE / 2,
                 0, Math.max(0, mSize - IMAGE_CACHE_SIZE));
         int end = Math.min(mSize, start + IMAGE_CACHE_SIZE);
 
-        if (mActiveStart == start && mActiveEnd == end) return;
+        if (mActiveStart == start && mActiveEnd == end) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateSlidingWindow()",this);return;}}
 
         mActiveStart = start;
         mActiveEnd = end;
 
-        // 2. Update the data window
+        /*// 2. Update the data window*/
         start = Utils.clamp(mCurrentIndex - DATA_CACHE_SIZE / 2,
                 0, Math.max(0, mSize - DATA_CACHE_SIZE));
         end = Math.min(mSize, start + DATA_CACHE_SIZE);
@@ -452,30 +452,30 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             }
             mContentStart = start;
             mContentEnd = end;
-            if (mReloadTask != null) mReloadTask.notifyDirty();
-        }
+            if (mReloadTask != null) {mReloadTask.notifyDirty();}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateSlidingWindow()",this,throwable);throw throwable;}
     }
 
     private void updateImageRequests() {
-        if (!mIsActive) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateImageRequests()",this);try{if (!mIsActive) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateImageRequests()",this);return;}}
 
         int currentIndex = mCurrentIndex;
         MediaItem item = mData[currentIndex % DATA_CACHE_SIZE];
         if (item == null || item.getPath() != mItemPath) {
-            // current item mismatch - don't request image
-            return;
+            /*// current item mismatch - don't request image*/
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateImageRequests()",this);return;}
         }
 
-        // 1. Find the most wanted request and start it (if not already started).
+        /*// 1. Find the most wanted request and start it (if not already started).*/
         Future<?> task = null;
         for (int i = 0; i < sImageFetchSeq.length; i++) {
             int offset = sImageFetchSeq[i].indexOffset;
             int bit = sImageFetchSeq[i].imageBit;
             task = startTaskIfNeeded(currentIndex + offset, bit);
-            if (task != null) break;
+            if (task != null) {break;}
         }
 
-        // 2. Cancel everything else.
+        /*// 2. Cancel everything else.*/
         for (ImageEntry entry : mImageCache.values()) {
             if (entry.screenNailTask != null && entry.screenNailTask != task) {
                 entry.screenNailTask.cancel();
@@ -487,7 +487,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
                 entry.fullImageTask = null;
                 entry.requestedBits &= ~BIT_FULL_IMAGE;
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateImageRequests()",this,throwable);throw throwable;}
     }
 
     private static class ScreenNailJob implements Job<Bitmap> {
@@ -499,27 +499,27 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
         @Override
         public Bitmap run(JobContext jc) {
-            Bitmap bitmap = mItem.requestImage(MediaItem.TYPE_THUMBNAIL).run(jc);
-            if (jc.isCancelled()) return null;
+            com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter$ScreenNailJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{Bitmap bitmap = mItem.requestImage(MediaItem.TYPE_THUMBNAIL).run(jc);
+            if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter$ScreenNailJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}
             if (bitmap != null) {
                 bitmap = BitmapUtils.rotateBitmap(bitmap,
                     mItem.getRotation() - mItem.getFullImageRotation(), true);
             }
-            return bitmap;
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter$ScreenNailJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.app.PhotoDataAdapter$ScreenNailJob.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 
-    // Returns the task if we started the task or the task is already started.
+    /*// Returns the task if we started the task or the task is already started.*/
     private Future<?> startTaskIfNeeded(int index, int which) {
-        if (index < mActiveStart || index >= mActiveEnd) return null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this,index,which);try{if (index < mActiveStart || index >= mActiveEnd) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this);return null;}}
 
         ImageEntry entry = mImageCache.get(getVersion(index));
-        if (entry == null) return null;
+        if (entry == null) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this);return null;}}
 
         if (which == BIT_SCREEN_NAIL && entry.screenNailTask != null) {
-            return entry.screenNailTask;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this);return entry.screenNailTask;}
         } else if (which == BIT_FULL_IMAGE && entry.fullImageTask != null) {
-            return entry.fullImageTask;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this);return entry.fullImageTask;}
         }
 
         MediaItem item = mData[index % DATA_CACHE_SIZE];
@@ -531,8 +531,8 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             entry.screenNailTask = mThreadPool.submit(
                     new ScreenNailJob(item),
                     new ScreenNailListener(item.getDataVersion()));
-            // request screen nail
-            return entry.screenNailTask;
+            /*// request screen nail*/
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this);return entry.screenNailTask;}
         }
         if (which == BIT_FULL_IMAGE
                 && (entry.requestedBits & BIT_FULL_IMAGE) == 0
@@ -542,20 +542,20 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             entry.fullImageTask = mThreadPool.submit(
                     item.requestLargeImage(),
                     new FullImageListener(item.getDataVersion()));
-            // request full image
-            return entry.fullImageTask;
+            /*// request full image*/
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this);return entry.fullImageTask;}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.Future com.android.gallery3d.app.PhotoDataAdapter.startTaskIfNeeded(int,int)",this,throwable);throw throwable;}
     }
 
     private void updateImageCache() {
-        HashSet<Long> toBeRemoved = new HashSet<Long>(mImageCache.keySet());
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter.updateImageCache()",this);try{HashSet<Long> toBeRemoved = new HashSet<Long>(mImageCache.keySet());
         for (int i = mActiveStart; i < mActiveEnd; ++i) {
             MediaItem item = mData[i % DATA_CACHE_SIZE];
             long version = item == null
                     ? MediaObject.INVALID_DATA_VERSION
                     : item.getDataVersion();
-            if (version == MediaObject.INVALID_DATA_VERSION) continue;
+            if (version == MediaObject.INVALID_DATA_VERSION) {continue;}
             ImageEntry entry = mImageCache.get(version);
             toBeRemoved.remove(version);
             if (entry != null) {
@@ -574,12 +574,12 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             }
         }
 
-        // Clear the data and requests for ImageEntries outside the new window.
+        /*// Clear the data and requests for ImageEntries outside the new window.*/
         for (Long version : toBeRemoved) {
             ImageEntry entry = mImageCache.remove(version);
-            if (entry.fullImageTask != null) entry.fullImageTask.cancel();
-            if (entry.screenNailTask != null) entry.screenNailTask.cancel();
-        }
+            if (entry.fullImageTask != null) {entry.fullImageTask.cancel();}
+            if (entry.screenNailTask != null) {entry.screenNailTask.cancel();}
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter.updateImageCache()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter.updateImageCache()",this,throwable);throw throwable;}
     }
 
     private class FullImageListener
@@ -593,14 +593,14 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
         @Override
         public void onFutureDone(Future<BitmapRegionDecoder> future) {
-            mFuture = future;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$FullImageListener.onFutureDone(com.android.gallery3d.util.Future)",this,future);try{mFuture = future;
             mMainHandler.sendMessage(
-                    mMainHandler.obtainMessage(MSG_RUN_OBJECT, this));
+                    mMainHandler.obtainMessage(MSG_RUN_OBJECT, this));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$FullImageListener.onFutureDone(com.android.gallery3d.util.Future)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$FullImageListener.onFutureDone(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
         }
 
         @Override
         public void run() {
-            updateFullImage(mVersion, mFuture);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$FullImageListener.run()",this);try{updateFullImage(mVersion, mFuture);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$FullImageListener.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$FullImageListener.run()",this,throwable);throw throwable;}
         }
     }
 
@@ -615,14 +615,14 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
         @Override
         public void onFutureDone(Future<Bitmap> future) {
-            mFuture = future;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$ScreenNailListener.onFutureDone(com.android.gallery3d.util.Future)",this,future);try{mFuture = future;
             mMainHandler.sendMessage(
-                    mMainHandler.obtainMessage(MSG_RUN_OBJECT, this));
+                    mMainHandler.obtainMessage(MSG_RUN_OBJECT, this));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$ScreenNailListener.onFutureDone(com.android.gallery3d.util.Future)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$ScreenNailListener.onFutureDone(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
         }
 
         @Override
         public void run() {
-            updateScreenNail(mVersion, mFuture);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$ScreenNailListener.run()",this);try{updateScreenNail(mVersion, mFuture);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$ScreenNailListener.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$ScreenNailListener.run()",this,throwable);throw throwable;}
         }
     }
 
@@ -638,21 +638,21 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
     private class SourceListener implements ContentListener {
         public void onContentDirty() {
-            if (mReloadTask != null) mReloadTask.notifyDirty();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$SourceListener.onContentDirty()",this);try{if (mReloadTask != null) {mReloadTask.notifyDirty();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$SourceListener.onContentDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$SourceListener.onContentDirty()",this,throwable);throw throwable;}
         }
     }
 
     private <T> T executeAndWait(Callable<T> callable) {
-        FutureTask<T> task = new FutureTask<T>(callable);
+        com.mijack.Xlog.logMethodEnter("java.lang.Object com.android.gallery3d.app.PhotoDataAdapter.executeAndWait(java.util.concurrent.Callable)",this,callable);try{FutureTask<T> task = new FutureTask<T>(callable);
         mMainHandler.sendMessage(
                 mMainHandler.obtainMessage(MSG_RUN_OBJECT, task));
         try {
-            return task.get();
+            {com.mijack.Xlog.logMethodExit("java.lang.Object com.android.gallery3d.app.PhotoDataAdapter.executeAndWait(java.util.concurrent.Callable)",this);return task.get();}
         } catch (InterruptedException e) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.Object com.android.gallery3d.app.PhotoDataAdapter.executeAndWait(java.util.concurrent.Callable)",this);return null;}
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.android.gallery3d.app.PhotoDataAdapter.executeAndWait(java.util.concurrent.Callable)",this,throwable);throw throwable;}
     }
 
     private static class UpdateInfo {
@@ -670,16 +670,16 @@ public class PhotoDataAdapter implements PhotoPage.Model {
     private class GetUpdateInfo implements Callable<UpdateInfo> {
 
         private boolean needContentReload() {
-            for (int i = mContentStart, n = mContentEnd; i < n; ++i) {
-                if (mData[i % DATA_CACHE_SIZE] == null) return true;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.PhotoDataAdapter$GetUpdateInfo.needContentReload()",this);try{for (int i = mContentStart, n = mContentEnd; i < n; ++i) {
+                if (mData[i % DATA_CACHE_SIZE] == null) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.PhotoDataAdapter$GetUpdateInfo.needContentReload()",this);return true;}}
             }
             MediaItem current = mData[mCurrentIndex % DATA_CACHE_SIZE];
-            return current == null || current.getPath() != mItemPath;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.PhotoDataAdapter$GetUpdateInfo.needContentReload()",this);return current == null || current.getPath() != mItemPath;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.PhotoDataAdapter$GetUpdateInfo.needContentReload()",this,throwable);throw throwable;}
         }
 
         @Override
         public UpdateInfo call() throws Exception {
-            // TODO: Try to load some data in first update
+            com.mijack.Xlog.logMethodEnter("com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo com.android.gallery3d.app.PhotoDataAdapter$GetUpdateInfo.call()",this);try{/*// TODO: Try to load some data in first update*/
             UpdateInfo info = new UpdateInfo();
             info.version = mSourceVersion;
             info.reloadContent = needContentReload();
@@ -688,7 +688,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             info.contentStart = mContentStart;
             info.contentEnd = mContentEnd;
             info.size = mSize;
-            return info;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo com.android.gallery3d.app.PhotoDataAdapter$GetUpdateInfo.call()",this);return info;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo com.android.gallery3d.app.PhotoDataAdapter$GetUpdateInfo.call()",this,throwable);throw throwable;}
         }
     }
 
@@ -701,18 +701,18 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
         @Override
         public Void call() throws Exception {
-            UpdateInfo info = mUpdateInfo;
+            com.mijack.Xlog.logMethodEnter("java.lang.Void com.android.gallery3d.app.PhotoDataAdapter$UpdateContent.call()",this);try{UpdateInfo info = mUpdateInfo;
             mSourceVersion = info.version;
 
             if (info.size != mSize) {
                 mSize = info.size;
-                if (mContentEnd > mSize) mContentEnd = mSize;
-                if (mActiveEnd > mSize) mActiveEnd = mSize;
+                if (mContentEnd > mSize) {mContentEnd = mSize;}
+                if (mActiveEnd > mSize) {mActiveEnd = mSize;}
             }
 
             if (info.indexHint == MediaSet.INDEX_NOT_FOUND) {
-                // The image has been deleted, clear mItemPath, the
-                // mCurrentIndex will be updated in the updateCurrentItem().
+                /*// The image has been deleted, clear mItemPath, the*/
+                /*// mCurrentIndex will be updated in the updateCurrentItem().*/
                 mItemPath = null;
                 updateCurrentItem();
             } else {
@@ -727,7 +727,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
                 int dataIndex = start % DATA_CACHE_SIZE;
                 for (int i = start; i < end; ++i) {
                     mData[dataIndex] = info.items.get(i - info.contentStart);
-                    if (++dataIndex == DATA_CACHE_SIZE) dataIndex = 0;
+                    if (++dataIndex == DATA_CACHE_SIZE) {dataIndex = 0;}
                 }
             }
             if (mItemPath == null) {
@@ -738,11 +738,11 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             updateTileProvider();
             updateImageRequests();
             fireModelInvalidated();
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.Void com.android.gallery3d.app.PhotoDataAdapter$UpdateContent.call()",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Void com.android.gallery3d.app.PhotoDataAdapter$UpdateContent.call()",this,throwable);throw throwable;}
         }
 
         private void updateCurrentItem() {
-            if (mSize == 0) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$UpdateContent.updateCurrentItem()",this);try{if (mSize == 0) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$UpdateContent.updateCurrentItem()",this);return;}}
             if (mCurrentIndex >= mSize) {
                 mCurrentIndex = mSize - 1;
                 mPhotoView.notifyOnNewImage();
@@ -750,7 +750,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
             } else {
                 mPhotoView.notifyOnNewImage();
                 mPhotoView.startSlideInAnimation(PhotoView.TRANS_SLIDE_IN_RIGHT);
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$UpdateContent.updateCurrentItem()",this,throwable);throw throwable;}
         }
     }
 
@@ -761,14 +761,14 @@ public class PhotoDataAdapter implements PhotoPage.Model {
         private boolean mIsLoading = false;
 
         private void updateLoading(boolean loading) {
-            if (mIsLoading == loading) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.updateLoading(boolean)",this,loading);try{if (mIsLoading == loading) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.updateLoading(boolean)",this);return;}}
             mIsLoading = loading;
-            mMainHandler.sendEmptyMessage(loading ? MSG_LOAD_START : MSG_LOAD_FINISH);
+            mMainHandler.sendEmptyMessage(loading ? MSG_LOAD_START : MSG_LOAD_FINISH);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.updateLoading(boolean)",this,throwable);throw throwable;}
         }
 
         @Override
         public void run() {
-            while (mActive) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.run()",this);try{while (mActive) {
                 synchronized (this) {
                     if (!mDirty && mActive) {
                         updateLoading(false);
@@ -785,7 +785,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
                         info.reloadContent = true;
                         info.size = mSource.getMediaItemCount();
                     }
-                    if (!info.reloadContent) continue;
+                    if (!info.reloadContent) {continue;}
                     info.items =  mSource.getMediaItem(info.contentStart, info.contentEnd);
                     MediaItem item = findCurrentMediaItem(info);
                     if (item == null || item.getPath() != info.target) {
@@ -793,38 +793,38 @@ public class PhotoDataAdapter implements PhotoPage.Model {
                     }
                 }
                 executeAndWait(new UpdateContent(info));
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.run()",this,throwable);throw throwable;}
         }
 
         public synchronized void notifyDirty() {
-            mDirty = true;
-            notifyAll();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.notifyDirty()",this);try{mDirty = true;
+            notifyAll();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.notifyDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.notifyDirty()",this,throwable);throw throwable;}
         }
 
         public synchronized void terminate() {
-            mActive = false;
-            notifyAll();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.terminate()",this);try{mActive = false;
+            notifyAll();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.terminate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.terminate()",this,throwable);throw throwable;}
         }
 
         private MediaItem findCurrentMediaItem(UpdateInfo info) {
-            ArrayList<MediaItem> items = info.items;
+            com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findCurrentMediaItem(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this,info);try{ArrayList<MediaItem> items = info.items;
             int index = info.indexHint - info.contentStart;
-            return index < 0 || index >= items.size() ? null : items.get(index);
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findCurrentMediaItem(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this);return index < 0 || index >= items.size() ? null : items.get(index);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findCurrentMediaItem(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this,throwable);throw throwable;}
         }
 
         private int findIndexOfTarget(UpdateInfo info) {
-            if (info.target == null) return info.indexHint;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findIndexOfTarget(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this,info);try{if (info.target == null) {{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findIndexOfTarget(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this);return info.indexHint;}}
             ArrayList<MediaItem> items = info.items;
 
-            // First, try to find the item in the data just loaded
+            /*// First, try to find the item in the data just loaded*/
             if (items != null) {
                 for (int i = 0, n = items.size(); i < n; ++i) {
-                    if (items.get(i).getPath() == info.target) return i + info.contentStart;
+                    if (items.get(i).getPath() == info.target) {{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findIndexOfTarget(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this);return i + info.contentStart;}}
                 }
             }
 
-            // Not found, find it in mSource.
-            return mSource.getIndexOfItem(info.target, info.indexHint);
+            /*// Not found, find it in mSource.*/
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findIndexOfTarget(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this);return mSource.getIndexOfItem(info.target, info.indexHint);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.app.PhotoDataAdapter$ReloadTask.findIndexOfTarget(com.android.gallery3d.app.PhotoDataAdapter$UpdateInfo)",this,throwable);throw throwable;}
         }
     }
 }

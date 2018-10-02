@@ -32,23 +32,23 @@ public class FileSaverService extends BaseChanService {
     public enum FileType {USER_STATISTICS, LOG_EVENT, BOARD_SAVE};
     
     public static void startService(Context context, FileType fileType) {
-        if (DEBUG) Log.i(TAG, "Start file saver service for " + fileType);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType)",context,fileType);try{if (DEBUG) {Log.i(TAG, "Start file saver service for " + fileType);}
         Intent intent = new Intent(context, FileSaverService.class);
         intent.putExtra(NAME, fileType.toString());
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType)",throwable);throw throwable;}
     }
     
     public static void startService(Context context, FileType fileType, String value) {
-        if (DEBUG) Log.i(TAG, "Start file saver service for " + fileType);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType,java.lang.String)",context,fileType,value);try{if (DEBUG) {Log.i(TAG, "Start file saver service for " + fileType);}
         Intent intent = new Intent(context, FileSaverService.class);
         intent.putExtra(NAME, fileType.toString());
     	intent.putExtra(PARAM_VALUE, value);
     	
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType,java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType,java.lang.String)",throwable);throw throwable;}
     }
     
     public static void startService(Context context, FileType fileType, String type, String value) {
-        if (DEBUG) Log.i(TAG, "Start file saver service for " + fileType);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType,java.lang.String,java.lang.String)",context,fileType,type,value);try{if (DEBUG) {Log.i(TAG, "Start file saver service for " + fileType);}
         Intent intent = new Intent(context, FileSaverService.class);
         intent.putExtra(NAME, fileType.toString());
         intent.putExtra(PARAM_DATE, Calendar.getInstance().getTimeInMillis());
@@ -60,7 +60,7 @@ public class FileSaverService extends BaseChanService {
     	new Exception("Stacktrace").printStackTrace(pw);
     	intent.putExtra(PARAM_STACKTRACE, sw.toString());
     	
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType,java.lang.String,java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.FileSaverService.startService(android.content.Context,FileType,java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
     public FileSaverService() {
@@ -73,18 +73,18 @@ public class FileSaverService extends BaseChanService {
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
-        long startTime = Calendar.getInstance().getTimeInMillis();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FileSaverService.onHandleIntent(android.content.Intent)",this,intent);try{long startTime = Calendar.getInstance().getTimeInMillis();
 		try {
 			String fileName = intent.getStringExtra(NAME);
 			FileType fileType = FileType.valueOf(fileName);
-			if (DEBUG) Log.i(TAG, "Handling file saver service for " + fileType);
+			if (DEBUG) {Log.i(TAG, "Handling file saver service for " + fileType);}
 			
 			switch(fileType) {
 			case USER_STATISTICS:
 				UserStatistics userStats = NetworkProfileManager.instance().getUserStatistics();
 				if (userStats == null) {
-                    if (DEBUG) Log.w(TAG, "User statistics object not loaded!");
-					return;
+                    if (DEBUG) {Log.w(TAG, "User statistics object not loaded!");}
+					{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FileSaverService.onHandleIntent(android.content.Intent)",this);return;}
 				}
 				ChanFileStorage.storeUserStats(getBaseContext(), userStats);
 				break;
@@ -102,9 +102,9 @@ public class FileSaverService extends BaseChanService {
 			}
 			
 			long endTime = Calendar.getInstance().getTimeInMillis();
-            if (DEBUG) Log.i(TAG, "Stored " + fileType + " in " + (endTime - startTime) + "ms.");            
+            if (DEBUG) {Log.i(TAG, "Stored " + fileType + " in " + (endTime - startTime) + "ms.");}            
 		} catch (Exception e) { 
             Log.e(TAG, "Error in file saver service", e);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FileSaverService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
 	}
 }

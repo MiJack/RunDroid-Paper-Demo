@@ -33,8 +33,8 @@ public final class DiscCacheUtil {
 
 	/** Returns {@link File} of cached image or <b>null</b> if image was not cached in disc cache */
 	public static File findInCache(String imageUri, DiscCacheAware discCache) {
-		File image = discCache.get(imageUri);
-		return image.exists() ? image : null;
+		com.mijack.Xlog.logStaticMethodEnter("java.io.File com.nostra13.universalimageloader.core.assist.DiscCacheUtil.findInCache(java.lang.String,com.nostra13.universalimageloader.cache.disc.DiscCacheAware)",imageUri,discCache);try{File image = discCache.get(imageUri);
+		{com.mijack.Xlog.logStaticMethodExit("java.io.File com.nostra13.universalimageloader.core.assist.DiscCacheUtil.findInCache(java.lang.String,com.nostra13.universalimageloader.cache.disc.DiscCacheAware)");return image.exists() ? image : null;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.core.assist.DiscCacheUtil.findInCache(java.lang.String,com.nostra13.universalimageloader.cache.disc.DiscCacheAware)",throwable);throw throwable;}
 	}
 
 	/**
@@ -43,7 +43,7 @@ public final class DiscCacheUtil {
 	 * @return <b>true</b> - if cached image file existed and was deleted; <b>false</b> - otherwise.
 	 */
 	public static boolean removeFromCache(String imageUri, DiscCacheAware discCache) {
-		File image = discCache.get(imageUri);
-		return image.delete();
+		com.mijack.Xlog.logStaticMethodEnter("boolean com.nostra13.universalimageloader.core.assist.DiscCacheUtil.removeFromCache(java.lang.String,com.nostra13.universalimageloader.cache.disc.DiscCacheAware)",imageUri,discCache);try{File image = discCache.get(imageUri);
+		{com.mijack.Xlog.logStaticMethodExit("boolean com.nostra13.universalimageloader.core.assist.DiscCacheUtil.removeFromCache(java.lang.String,com.nostra13.universalimageloader.cache.disc.DiscCacheAware)");return image.delete();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.DiscCacheUtil.removeFromCache(java.lang.String,com.nostra13.universalimageloader.cache.disc.DiscCacheAware)",throwable);throw throwable;}
 	}
 }

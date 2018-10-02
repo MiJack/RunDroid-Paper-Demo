@@ -69,8 +69,8 @@ public class LocalPhotoSource implements WidgetSource {
         mContentObserver = new ContentObserver(new Handler()) {
             @Override
             public void onChange(boolean selfChange) {
-                mContentDirty = true;
-                if (mContentListener != null) mContentListener.onContentDirty();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.LocalPhotoSource$1.onChange(boolean)",this,selfChange);try{mContentDirty = true;
+                if (mContentListener != null) {mContentListener.onContentDirty();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.LocalPhotoSource$1.onChange(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.LocalPhotoSource$1.onChange(boolean)",this,throwable);throw throwable;}
             }
         };
         mContext.getContentResolver()
@@ -78,87 +78,87 @@ public class LocalPhotoSource implements WidgetSource {
     }
 
     public void close() {
-        mContext.getContentResolver().unregisterContentObserver(mContentObserver);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.LocalPhotoSource.close()",this);try{mContext.getContentResolver().unregisterContentObserver(mContentObserver);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.LocalPhotoSource.close()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.LocalPhotoSource.close()",this,throwable);throw throwable;}
     }
 
     @Override
     public Uri getContentUri(int index) {
-        if (index < mPhotos.size()) {
-            return CONTENT_URI.buildUpon()
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.gadget.LocalPhotoSource.getContentUri(int)",this,index);try{if (index < mPhotos.size()) {
+            {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.gadget.LocalPhotoSource.getContentUri(int)",this);return CONTENT_URI.buildUpon()
                     .appendPath(String.valueOf(mPhotos.get(index)))
-                    .build();
+                    .build();}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.gadget.LocalPhotoSource.getContentUri(int)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.gadget.LocalPhotoSource.getContentUri(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public Bitmap getImage(int index) {
-        if (index >= mPhotos.size()) return null;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.gadget.LocalPhotoSource.getImage(int)",this,index);try{if (index >= mPhotos.size()) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.LocalPhotoSource.getImage(int)",this);return null;}}
         long id = mPhotos.get(index);
         MediaItem image = (MediaItem)
                 mDataManager.getMediaObject(LOCAL_IMAGE_ROOT.getChild(id));
-        if (image == null) return null;
+        if (image == null) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.LocalPhotoSource.getImage(int)",this);return null;}}
 
-        return WidgetUtils.createWidgetBitmap(image);
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.LocalPhotoSource.getImage(int)",this);return WidgetUtils.createWidgetBitmap(image);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.gadget.LocalPhotoSource.getImage(int)",this,throwable);throw throwable;}
     }
 
     private int[] getExponentialIndice(int total, int count) {
-        Random random = new Random();
-        if (count > total) count = total;
+        com.mijack.Xlog.logMethodEnter("[int com.android.gallery3d.gadget.LocalPhotoSource.getExponentialIndice(int,int)",this,total,count);try{Random random = new Random();
+        if (count > total) {count = total;}
         HashSet<Integer> selected = new HashSet<Integer>(count);
         while (selected.size() < count) {
             int row = (int)(-Math.log(random.nextDouble()) * total / 2);
-            if (row < total) selected.add(row);
+            if (row < total) {selected.add(row);}
         }
         int values[] = new int[count];
         int index = 0;
         for (int value : selected) {
             values[index++] = value;
         }
-        return values;
+        {com.mijack.Xlog.logMethodExit("[int com.android.gallery3d.gadget.LocalPhotoSource.getExponentialIndice(int,int)",this);return values;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[int com.android.gallery3d.gadget.LocalPhotoSource.getExponentialIndice(int,int)",this,throwable);throw throwable;}
     }
 
     private int getPhotoCount(ContentResolver resolver) {
-        Cursor cursor = resolver.query(
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.gadget.LocalPhotoSource.getPhotoCount(android.content.ContentResolver)",this,resolver);try{Cursor cursor = resolver.query(
                 CONTENT_URI, COUNT_PROJECTION, SELECTION, null, null);
-        if (cursor == null) return 0;
+        if (cursor == null) {{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.gadget.LocalPhotoSource.getPhotoCount(android.content.ContentResolver)",this);return 0;}}
         try {
             Utils.assertTrue(cursor.moveToNext());
-            return cursor.getInt(0);
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.gadget.LocalPhotoSource.getPhotoCount(android.content.ContentResolver)",this);return cursor.getInt(0);}
         } finally {
             cursor.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.gadget.LocalPhotoSource.getPhotoCount(android.content.ContentResolver)",this,throwable);throw throwable;}
     }
 
     private boolean isContentSound(int totalCount) {
-        if (mPhotos.size() < Math.min(totalCount, MAX_PHOTO_COUNT)) return false;
-        if (mPhotos.size() == 0) return true; // totalCount is also 0
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.gadget.LocalPhotoSource.isContentSound(int)",this,totalCount);try{if (mPhotos.size() < Math.min(totalCount, MAX_PHOTO_COUNT)) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.LocalPhotoSource.isContentSound(int)",this);return false;}}
+        if (mPhotos.size() == 0) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.LocalPhotoSource.isContentSound(int)",this);return true;}} /*// totalCount is also 0*/
 
         StringBuilder builder = new StringBuilder();
         for (Long imageId : mPhotos) {
-            if (builder.length() > 0) builder.append(",");
+            if (builder.length() > 0) {builder.append(",");}
             builder.append(imageId);
         }
         Cursor cursor = mContext.getContentResolver().query(
                 CONTENT_URI, COUNT_PROJECTION,
                 String.format("%s in (%s)", Media._ID, builder.toString()),
                 null, null);
-        if (cursor == null) return false;
+        if (cursor == null) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.LocalPhotoSource.isContentSound(int)",this);return false;}}
         try {
             Utils.assertTrue(cursor.moveToNext());
-            return cursor.getInt(0) == mPhotos.size();
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.gadget.LocalPhotoSource.isContentSound(int)",this);return cursor.getInt(0) == mPhotos.size();}
         } finally {
             cursor.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.gadget.LocalPhotoSource.isContentSound(int)",this,throwable);throw throwable;}
     }
 
     public void reload() {
-        if (!mContentDirty) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.LocalPhotoSource.reload()",this);try{if (!mContentDirty) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.LocalPhotoSource.reload()",this);return;}}
         mContentDirty = false;
 
         ContentResolver resolver = mContext.getContentResolver();
         int photoCount = getPhotoCount(resolver);
-        if (isContentSound(photoCount)) return;
+        if (isContentSound(photoCount)) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.LocalPhotoSource.reload()",this);return;}}
 
         int choosedIds[] = getExponentialIndice(photoCount, MAX_PHOTO_COUNT);
         Arrays.sort(choosedIds);
@@ -166,7 +166,7 @@ public class LocalPhotoSource implements WidgetSource {
         mPhotos.clear();
         Cursor cursor = mContext.getContentResolver().query(
                 CONTENT_URI, PROJECTION, SELECTION, null, ORDER);
-        if (cursor == null) return;
+        if (cursor == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.LocalPhotoSource.reload()",this);return;}}
         try {
             for (int index : choosedIds) {
                 if (cursor.moveToPosition(index)) {
@@ -175,13 +175,13 @@ public class LocalPhotoSource implements WidgetSource {
             }
         } finally {
             cursor.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.LocalPhotoSource.reload()",this,throwable);throw throwable;}
     }
 
     @Override
     public int size() {
-        reload();
-        return mPhotos.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.gadget.LocalPhotoSource.size()",this);try{reload();
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.gadget.LocalPhotoSource.size()",this);return mPhotos.size();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.gadget.LocalPhotoSource.size()",this,throwable);throw throwable;}
     }
 
     /**
@@ -189,14 +189,14 @@ public class LocalPhotoSource implements WidgetSource {
      * @return the bucket ID
      */
     private static int getDownloadBucketId() {
-        String downloadsPath = Environment
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.gadget.LocalPhotoSource.getDownloadBucketId()");try{String downloadsPath = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                 .getAbsolutePath();
-        return GalleryUtils.getBucketId(downloadsPath);
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.gadget.LocalPhotoSource.getDownloadBucketId()");return GalleryUtils.getBucketId(downloadsPath);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.gadget.LocalPhotoSource.getDownloadBucketId()",throwable);throw throwable;}
     }
 
     @Override
     public void setContentListener(ContentListener listener) {
-        mContentListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.LocalPhotoSource.setContentListener(com.android.gallery3d.data.ContentListener)",this,listener);try{mContentListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.LocalPhotoSource.setContentListener(com.android.gallery3d.data.ContentListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.LocalPhotoSource.setContentListener(com.android.gallery3d.data.ContentListener)",this,throwable);throw throwable;}
     }
 }

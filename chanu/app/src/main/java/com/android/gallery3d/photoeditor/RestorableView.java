@@ -47,27 +47,27 @@ public abstract class RestorableView extends FrameLayout {
     protected abstract int childLayoutId();
 
     private void recreateChildView() {
-        if (getChildCount() != 0) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.RestorableView.recreateChildView()",this);try{if (getChildCount() != 0) {
             removeAllViews();
         }
-        inflater.inflate(childLayoutId(), this, true);
+        inflater.inflate(childLayoutId(), this, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.RestorableView.recreateChildView()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RestorableView.recreateChildView()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onFinishInflate() {
-        super.onFinishInflate();
-        recreateChildView();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.RestorableView.onFinishInflate()",this);try{super.onFinishInflate();
+        recreateChildView();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.RestorableView.onFinishInflate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RestorableView.onFinishInflate()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.RestorableView.onConfigurationChanged(android.content.res.Configuration)",this,newConfig);try{super.onConfigurationChanged(newConfig);
 
-        // Remember the removing child before recreating the child.
+        /*// Remember the removing child before recreating the child.*/
         View view = getChildAt(0);
         recreateChildView();
 
-        // Restore its runnables and status of views that have been changed.
+        /*// Restore its runnables and status of views that have been changed.*/
         for (Entry<Integer, Runnable> entry : clickRunnables.entrySet()) {
             setClickRunnable(entry.getKey(), entry.getValue());
         }
@@ -75,33 +75,33 @@ public abstract class RestorableView extends FrameLayout {
             View changed = view.findViewById(id);
             setViewEnabled(id, changed.isEnabled());
             setViewSelected(id, changed.isSelected());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.RestorableView.onConfigurationChanged(android.content.res.Configuration)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RestorableView.onConfigurationChanged(android.content.res.Configuration)",this,throwable);throw throwable;}
     }
 
     public void setClickRunnable(int id, final Runnable r) {
-        findViewById(id).setOnClickListener(new OnClickListener() {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.RestorableView.setClickRunnable(int,java.lang.Runnable)",this,id,r);try{findViewById(id).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (isEnabled()) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.RestorableView$1.onClick(android.view.View)",this,v);try{if (isEnabled()) {
                     r.run();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.RestorableView$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RestorableView$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
         });
-        clickRunnables.put(id, r);
+        clickRunnables.put(id, r);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.RestorableView.setClickRunnable(int,java.lang.Runnable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RestorableView.setClickRunnable(int,java.lang.Runnable)",this,throwable);throw throwable;}
     }
 
     public void setViewEnabled(int id, boolean enabled) {
-        View view = findViewById(id);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.RestorableView.setViewEnabled(int,boolean)",this,id,enabled);try{View view = findViewById(id);
         view.setEnabled(enabled);
         view.setAlpha(enabled ? ENABLED_ALPHA : DISABLED_ALPHA);
-        // Track views whose enabled status has been updated.
-        changedViews.add(id);
+        /*// Track views whose enabled status has been updated.*/
+        changedViews.add(id);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.RestorableView.setViewEnabled(int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RestorableView.setViewEnabled(int,boolean)",this,throwable);throw throwable;}
     }
 
     public void setViewSelected(int id, boolean selected) {
-        findViewById(id).setSelected(selected);
-        // Track views whose selected status has been updated.
-        changedViews.add(id);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.RestorableView.setViewSelected(int,boolean)",this,id,selected);try{findViewById(id).setSelected(selected);
+        /*// Track views whose selected status has been updated.*/
+        changedViews.add(id);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.RestorableView.setViewSelected(int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.RestorableView.setViewSelected(int,boolean)",this,throwable);throw throwable;}
     }
 }

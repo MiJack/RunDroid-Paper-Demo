@@ -25,10 +25,10 @@ public class JacksonNonBlockingObjectMapperFactory {
         }
         @Override
         public Integer deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            Object o = null;
+            com.mijack.Xlog.logMethodEnter("java.lang.Integer com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingIntegerDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,jp,ctxt);try{Object o = null;
             try {
                 if (delegate != null)
-                    o = delegate.deserialize(jp, ctxt);
+                    {o = delegate.deserialize(jp, ctxt);}
             }
             catch (JsonMappingException e) {
                 try {
@@ -37,14 +37,14 @@ public class JacksonNonBlockingObjectMapperFactory {
                 }
                 catch (Exception e2) {
                     if (delegate != null)
-                        o = delegate.getNullValue();
+                        {o = delegate.getNullValue();}
                 }
             }
             catch (Exception e) {
                 if (delegate != null)
-                    o = delegate.getNullValue();
+                    {o = delegate.getNullValue();}
             }
-            return (Integer)o;
+            {com.mijack.Xlog.logMethodExit("java.lang.Integer com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingIntegerDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this);return (Integer)o;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Integer com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingIntegerDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,throwable);throw throwable;}
         }
     }
 
@@ -55,16 +55,16 @@ public class JacksonNonBlockingObjectMapperFactory {
         }
         @Override
         public Long deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            Object o = null;
+            com.mijack.Xlog.logMethodEnter("java.lang.Long com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingLongDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,jp,ctxt);try{Object o = null;
             try {
                 if (delegate != null)
-                    o = delegate.deserialize(jp, ctxt);
+                    {o = delegate.deserialize(jp, ctxt);}
             }
             catch (Exception e) {
                 if (delegate != null)
-                    o = delegate.getNullValue();
+                    {o = delegate.getNullValue();}
             }
-            return (Long)o;
+            {com.mijack.Xlog.logMethodExit("java.lang.Long com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingLongDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this);return (Long)o;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Long com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingLongDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,throwable);throw throwable;}
         }
     }
 
@@ -75,16 +75,16 @@ public class JacksonNonBlockingObjectMapperFactory {
         }
         @Override
         public Boolean deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            Object o = null;
+            com.mijack.Xlog.logMethodEnter("java.lang.Boolean com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingBooleanDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,jp,ctxt);try{Object o = null;
             try {
                 if (delegate != null)
-                    o = delegate.deserialize(jp, ctxt);
+                    {o = delegate.deserialize(jp, ctxt);}
             }
             catch (Exception e) {
                 if (delegate != null)
-                    o = delegate.getNullValue();
+                    {o = delegate.getNullValue();}
             }
-            return (Boolean)o;
+            {com.mijack.Xlog.logMethodExit("java.lang.Boolean com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingBooleanDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this);return (Boolean)o;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Boolean com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingBooleanDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,throwable);throw throwable;}
         }
     }
 
@@ -95,16 +95,16 @@ public class JacksonNonBlockingObjectMapperFactory {
         }
         @Override
         public String deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            Object o = null;
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingStringDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,jp,ctxt);try{Object o = null;
             try {
                 if (delegate != null)
-                    o = delegate.deserialize(jp, ctxt);
+                    {o = delegate.deserialize(jp, ctxt);}
             }
             catch (Exception e) {
                 if (delegate != null)
-                    o = delegate.getNullValue();
+                    {o = delegate.getNullValue();}
             }
-            return (String)o;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingStringDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this);return (String)o;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingStringDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,throwable);throw throwable;}
         }
     }
 
@@ -115,22 +115,22 @@ public class JacksonNonBlockingObjectMapperFactory {
         }
         @Override
         public Date deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            Object o = null;
+            com.mijack.Xlog.logMethodEnter("java.util.Date com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingDateDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,jp,ctxt);try{Object o = null;
             try {
                 if (delegate != null)
-                    o = delegate.deserialize(jp, ctxt);
+                    {o = delegate.deserialize(jp, ctxt);}
             }
             catch (Exception e) {
                 if (delegate != null)
-                    o = delegate.getNullValue();
+                    {o = delegate.getNullValue();}
             }
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.util.Date com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingDateDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Date com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory$NonBlockingDateDeserializer.deserialize(org.codehaus.jackson.JsonParser,DeserializationContext)",this,throwable);throw throwable;}
         }
     }
 
     public ObjectMapper createObjectMapper(){
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper;
+        com.mijack.Xlog.logMethodEnter("ObjectMapper com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory.createObjectMapper()",this);try{ObjectMapper objectMapper = new ObjectMapper();
+        {com.mijack.Xlog.logMethodExit("ObjectMapper com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory.createObjectMapper()",this);return objectMapper;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("ObjectMapper com.chanapps.four.data.JacksonNonBlockingObjectMapperFactory.createObjectMapper()",this,throwable);throw throwable;}
     }
 
 }

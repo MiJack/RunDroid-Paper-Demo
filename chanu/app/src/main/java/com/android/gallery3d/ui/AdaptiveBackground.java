@@ -46,7 +46,7 @@ public class AdaptiveBackground extends GLView {
     }
 
     public Bitmap getAdaptiveBitmap(Bitmap bitmap) {
-        Bitmap target = Bitmap.createBitmap(
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.AdaptiveBackground.getAdaptiveBitmap(android.graphics.Bitmap)",this,bitmap);try{Bitmap target = Bitmap.createBitmap(
                 BACKGROUND_WIDTH, BACKGROUND_HEIGHT, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(target);
         int width = bitmap.getWidth();
@@ -65,39 +65,39 @@ public class AdaptiveBackground extends GLView {
         canvas.drawBitmap(bitmap, left, top, mPaint);
         BoxBlurFilter.apply(target,
                 BoxBlurFilter.MODE_REPEAT, BoxBlurFilter.MODE_CLAMP);
-        return target;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.AdaptiveBackground.getAdaptiveBitmap(android.graphics.Bitmap)",this);return target;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.AdaptiveBackground.getAdaptiveBitmap(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     private void startTransition(Bitmap bitmap) {
-        BitmapTexture texture = new BitmapTexture(bitmap);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AdaptiveBackground.startTransition(android.graphics.Bitmap)",this,bitmap);try{BitmapTexture texture = new BitmapTexture(bitmap);
         if (mBackground == null) {
             mBackground = texture;
         } else {
-            if (mOldBackground != null) mOldBackground.recycle();
+            if (mOldBackground != null) {mOldBackground.recycle();}
             mOldBackground = mBackground;
             mBackground = texture;
             mAnimation.start();
         }
-        invalidate();
+        invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AdaptiveBackground.startTransition(android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AdaptiveBackground.startTransition(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     public void setImage(Bitmap bitmap) {
-        if (mAnimation.isActive()) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AdaptiveBackground.setImage(android.graphics.Bitmap)",this,bitmap);try{if (mAnimation.isActive()) {
             mPendingBitmap = bitmap;
         } else {
             startTransition(bitmap);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AdaptiveBackground.setImage(android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AdaptiveBackground.setImage(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     public void setScrollPosition(int position) {
-        if (mScrollX == position) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AdaptiveBackground.setScrollPosition(int)",this,position);try{if (mScrollX == position) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AdaptiveBackground.setScrollPosition(int)",this);return;}}
         mScrollX = position;
-        invalidate();
+        invalidate();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AdaptiveBackground.setScrollPosition(int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        if (mBackground == null) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AdaptiveBackground.render(GLCanvas)",this,canvas);try{if (mBackground == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AdaptiveBackground.render(GLCanvas)",this);return;}}
 
         int height = getHeight();
         float scale = (float) height / BACKGROUND_HEIGHT;
@@ -123,6 +123,6 @@ public class AdaptiveBackground extends GLView {
                 startTransition(mPendingBitmap);
                 mPendingBitmap = null;
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AdaptiveBackground.render(GLCanvas)",this,throwable);throw throwable;}
     }
 }

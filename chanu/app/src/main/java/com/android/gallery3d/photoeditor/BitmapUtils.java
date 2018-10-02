@@ -62,7 +62,7 @@ public class BitmapUtils {
      */
     private static Bitmap createBitmap(
             Bitmap source, int x, int y, int width, int height, Matrix m) {
-        // Re-implement Bitmap createBitmap() to always return a mutable bitmap.
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.createBitmap(android.graphics.Bitmap,int,int,int,int,android.graphics.Matrix)",source,x,y,width,height,m);try{/*// Re-implement Bitmap createBitmap() to always return a mutable bitmap.*/
         Canvas canvas = new Canvas();
 
         Bitmap bitmap;
@@ -90,21 +90,21 @@ public class BitmapUtils {
         Rect srcBounds = new Rect(x, y, x + width, y + height);
         RectF dstBounds = new RectF(0, 0, width, height);
         canvas.drawBitmap(source, srcBounds, dstBounds, paint);
-        return bitmap;
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.createBitmap(android.graphics.Bitmap,int,int,int,int,android.graphics.Matrix)");return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.createBitmap(android.graphics.Bitmap,int,int,int,int,android.graphics.Matrix)",throwable);throw throwable;}
     }
 
     private void closeStream(Closeable stream) {
-        if (stream != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.BitmapUtils.closeStream(java.io.Closeable)",this,stream);try{if (stream != null) {
             try {
                 stream.close();
             } catch (IOException e) {
                 Log.e(TAG, "Exception closing stream=" + stream, e);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.BitmapUtils.closeStream(java.io.Closeable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.BitmapUtils.closeStream(java.io.Closeable)",this,throwable);throw throwable;}
     }
 
     private Rect getBitmapBounds(Uri uri) {
-        Rect bounds = new Rect();
+        com.mijack.Xlog.logMethodEnter("android.graphics.Rect com.android.gallery3d.photoeditor.BitmapUtils.getBitmapBounds(android.net.Uri)",this,uri);try{Rect bounds = new Rect();
         InputStream is = null;
 
         try {
@@ -121,11 +121,11 @@ public class BitmapUtils {
             closeStream(is);
         }
 
-        return bounds;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Rect com.android.gallery3d.photoeditor.BitmapUtils.getBitmapBounds(android.net.Uri)",this);return bounds;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Rect com.android.gallery3d.photoeditor.BitmapUtils.getBitmapBounds(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     private int getOrientation(Uri uri) {
-        int orientation = 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.photoeditor.BitmapUtils.getOrientation(android.net.Uri)",this,uri);try{int orientation = 0;
         Cursor cursor = null;
         try {
             cursor = context.getContentResolver().query(uri, IMAGE_PROJECTION, null, null, null);
@@ -133,24 +133,24 @@ public class BitmapUtils {
                 orientation = cursor.getInt(INDEX_ORIENTATION);
             }
         } catch (Exception e) {
-            // Ignore error for no orientation column; just use the default orientation value 0.
+            /*// Ignore error for no orientation column; just use the default orientation value 0.*/
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
         }
-        return orientation;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.photoeditor.BitmapUtils.getOrientation(android.net.Uri)",this);return orientation;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.photoeditor.BitmapUtils.getOrientation(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     /**
      * Decodes bitmap (maybe immutable) that keeps aspect-ratio and spans most within the bounds.
      */
     private Bitmap decodeBitmap(Uri uri, int width, int height) {
-        InputStream is = null;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.decodeBitmap(android.net.Uri,int,int)",this,uri,width,height);try{InputStream is = null;
         Bitmap bitmap = null;
 
         try {
-            // TODO: Take max pixels allowed into account for calculation to avoid possible OOM.
+            /*// TODO: Take max pixels allowed into account for calculation to avoid possible OOM.*/
             Rect bounds = getBitmapBounds(uri);
             int sampleSize = Math.max(bounds.width() / width, bounds.height() / height);
             sampleSize = Math.min(sampleSize,
@@ -168,7 +168,7 @@ public class BitmapUtils {
             closeStream(is);
         }
 
-        // Ensure bitmap in 8888 format, good for editing as well as GL compatible.
+        /*// Ensure bitmap in 8888 format, good for editing as well as GL compatible.*/
         if ((bitmap != null) && (bitmap.getConfig() != Bitmap.Config.ARGB_8888)) {
             Bitmap copy = bitmap.copy(Bitmap.Config.ARGB_8888, true);
             bitmap.recycle();
@@ -176,7 +176,7 @@ public class BitmapUtils {
         }
 
         if (bitmap != null) {
-            // Scale down the sampled bitmap if it's still larger than the desired dimension.
+            /*// Scale down the sampled bitmap if it's still larger than the desired dimension.*/
             float scale = Math.min((float) width / bitmap.getWidth(),
                     (float) height / bitmap.getHeight());
             scale = Math.max(scale, Math.min((float) height / bitmap.getWidth(),
@@ -187,19 +187,19 @@ public class BitmapUtils {
                 Bitmap transformed = createBitmap(
                         bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m);
                 bitmap.recycle();
-                return transformed;
+                {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.decodeBitmap(android.net.Uri,int,int)",this);return transformed;}
             }
         }
-        return bitmap;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.decodeBitmap(android.net.Uri,int,int)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.decodeBitmap(android.net.Uri,int,int)",this,throwable);throw throwable;}
     }
 
     /**
      * Gets decoded bitmap that keeps orientation as well.
      */
     public Bitmap getBitmap(Uri uri, int width, int height) {
-        Bitmap bitmap = decodeBitmap(uri, width, height);
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.getBitmap(android.net.Uri,int,int)",this,uri,width,height);try{Bitmap bitmap = decodeBitmap(uri, width, height);
 
-        // Rotate the decoded bitmap according to its orientation if it's necessary.
+        /*// Rotate the decoded bitmap according to its orientation if it's necessary.*/
         if (bitmap != null) {
             int orientation = getOrientation(uri);
             if (orientation != 0) {
@@ -208,10 +208,10 @@ public class BitmapUtils {
                 Bitmap transformed = createBitmap(
                         bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m);
                 bitmap.recycle();
-                return transformed;
+                {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.getBitmap(android.net.Uri,int,int)",this);return transformed;}
             }
         }
-        return bitmap;
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.getBitmap(android.net.Uri,int,int)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.photoeditor.BitmapUtils.getBitmap(android.net.Uri,int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -221,13 +221,13 @@ public class BitmapUtils {
     public File saveBitmap(
             Bitmap bitmap, String directory, String filename, CompressFormat format) {
 
-        if (directory == null) {
+        com.mijack.Xlog.logMethodEnter("java.io.File com.android.gallery3d.photoeditor.BitmapUtils.saveBitmap(android.graphics.Bitmap,java.lang.String,java.lang.String,android.graphics.Bitmap.CompressFormat)",this,bitmap,directory,filename,format);try{if (directory == null) {
             directory = context.getCacheDir().getAbsolutePath();
         } else {
-            // Check if the given directory exists or try to create it.
+            /*// Check if the given directory exists or try to create it.*/
             File file = new File(directory);
             if (!file.isDirectory() && !file.mkdirs()) {
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.io.File com.android.gallery3d.photoeditor.BitmapUtils.saveBitmap(android.graphics.Bitmap,java.lang.String,java.lang.String,android.graphics.Bitmap.CompressFormat)",this);return null;}
             }
         }
 
@@ -244,6 +244,6 @@ public class BitmapUtils {
         } finally {
             closeStream(os);
         }
-        return file;
+        {com.mijack.Xlog.logMethodExit("java.io.File com.android.gallery3d.photoeditor.BitmapUtils.saveBitmap(android.graphics.Bitmap,java.lang.String,java.lang.String,android.graphics.Bitmap.CompressFormat)",this);return file;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.android.gallery3d.photoeditor.BitmapUtils.saveBitmap(android.graphics.Bitmap,java.lang.String,java.lang.String,android.graphics.Bitmap.CompressFormat)",this,throwable);throw throwable;}
     }
 }

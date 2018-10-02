@@ -75,13 +75,13 @@ final class LoadAndDisplayImageTask implements Runnable {
 	private static final String WARNING_POST_PROCESSOR_NULL = "Pre-processor returned null [%s]";
 	private static final String FULL_IMAGE_COPY_ERROR = "Copy full image throw an exception [%s]";
 
-	private static final int BUFFER_SIZE = 8 * 1024; // 8 Kb
+	private static final int BUFFER_SIZE = 8 * 1024; /*// 8 Kb*/
 
 	private final ImageLoaderEngine engine;
 	private final ImageLoadingInfo imageLoadingInfo;
 	private final Handler handler;
 
-	// Helper references
+	/*// Helper references*/
 	private final ImageLoaderConfiguration configuration;
 	private final ImageDownloader downloader;
 	private final ImageDownloader networkDeniedDownloader;
@@ -116,8 +116,8 @@ final class LoadAndDisplayImageTask implements Runnable {
 
 	@Override
 	public void run() {
-		if (waitIfPaused()) return;
-		if (delayIfNeed()) return;
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this);try{if (waitIfPaused()) {{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this);return;}}
+		if (delayIfNeed()) {{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this);return;}}
 
 		ReentrantLock loadFromUriLock = imageLoadingInfo.loadFromUriLock;
 		log(LOG_START_DISPLAY_IMAGE_TASK);
@@ -128,14 +128,14 @@ final class LoadAndDisplayImageTask implements Runnable {
 		loadFromUriLock.lock();
 		Bitmap bmp;
 		try {
-			if (checkTaskIsNotActual()) return;
+			if (checkTaskIsNotActual()) {{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this);return;}}
 
 			bmp = configuration.memoryCache.get(memoryCacheKey);
 			if (bmp == null) {
 				bmp = tryLoadBitmap();
-				if (bmp == null) return;
+				if (bmp == null) {{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this);return;}}
 
-				if (checkTaskIsNotActual() || checkTaskIsInterrupted()) return;
+				if (checkTaskIsNotActual() || checkTaskIsInterrupted()) {{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this);return;}}
 
 				if (options.shouldPreProcess()) {
 					log(LOG_PREPROCESS_IMAGE);
@@ -170,15 +170,15 @@ final class LoadAndDisplayImageTask implements Runnable {
                         fos = new FileOutputStream(options.getFullSizeImageLocation());
 						IOUtils.copy(fis, fos);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+						/*// TODO Auto-generated catch block*/
 						L.w(FULL_IMAGE_COPY_ERROR, memoryCacheKey);
 					}
                     finally {
                         try {
                             if (fis != null)
-                                fis.close();
+                                {fis.close();}
                             if (fos != null)
-                                fos.close();
+                                {fos.close();}
                         }
                         catch (IOException e) {
                         }
@@ -190,18 +190,18 @@ final class LoadAndDisplayImageTask implements Runnable {
 			loadFromUriLock.unlock();
 		}
 
-		if (checkTaskIsNotActual() || checkTaskIsInterrupted()) return;
+		if (checkTaskIsNotActual() || checkTaskIsInterrupted()) {{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this);return;}}
 
 		DisplayBitmapTask displayBitmapTask = new DisplayBitmapTask(bmp, imageLoadingInfo, engine);
 		displayBitmapTask.setLoggingEnabled(loggingEnabled);
-		handler.post(displayBitmapTask);
+		handler.post(displayBitmapTask);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.run()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return true - if task should be interrupted; false - otherwise
 	 */
 	private boolean waitIfPaused() {
-		AtomicBoolean pause = engine.getPause();
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.waitIfPaused()",this);try{AtomicBoolean pause = engine.getPause();
 		if (pause.get()) {
 			synchronized (pause) {
 				log(LOG_WAITING_FOR_RESUME);
@@ -209,29 +209,29 @@ final class LoadAndDisplayImageTask implements Runnable {
 					pause.wait();
 				} catch (InterruptedException e) {
 					L.e(LOG_TASK_INTERRUPTED, memoryCacheKey);
-					return true;
+					{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.waitIfPaused()",this);return true;}
 				}
 				log(LOG_RESUME_AFTER_PAUSE);
 			}
 		}
-		return checkTaskIsNotActual();
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.waitIfPaused()",this);return checkTaskIsNotActual();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.waitIfPaused()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return true - if task should be interrupted; false - otherwise
 	 */
 	private boolean delayIfNeed() {
-		if (options.shouldDelayBeforeLoading()) {
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.delayIfNeed()",this);try{if (options.shouldDelayBeforeLoading()) {
 			log(LOG_DELAY_BEFORE_LOADING, options.getDelayBeforeLoading(), memoryCacheKey);
 			try {
 				Thread.sleep(options.getDelayBeforeLoading());
 			} catch (InterruptedException e) {
 				L.e(LOG_TASK_INTERRUPTED, memoryCacheKey);
-				return true;
+				{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.delayIfNeed()",this);return true;}
 			}
-			return checkTaskIsNotActual();
+			{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.delayIfNeed()",this);return checkTaskIsNotActual();}
 		}
-		return false;
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.delayIfNeed()",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.delayIfNeed()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -239,31 +239,31 @@ final class LoadAndDisplayImageTask implements Runnable {
 	 * moment and fire {@link ImageLoadingListener onLoadingCancelled()} event if it doesn't.
 	 */
 	private boolean checkTaskIsNotActual() {
-		String currentCacheKey = engine.getLoadingUriForView(imageView);
-		// Check whether memory cache key (image URI) for current ImageView is actual. 
-		// If ImageView is reused for another task then current task should be cancelled.
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.checkTaskIsNotActual()",this);try{String currentCacheKey = engine.getLoadingUriForView(imageView);
+		/*// Check whether memory cache key (image URI) for current ImageView is actual. */
+		/*// If ImageView is reused for another task then current task should be cancelled.*/
 		boolean imageViewWasReused = !memoryCacheKey.equals(currentCacheKey);
 		if (imageViewWasReused) {
 			handler.post(new Runnable() {
 				@Override
 				public void run() {
-					listener.onLoadingCancelled(uri, imageView);
+					com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask$1.run()",this);try{listener.onLoadingCancelled(uri, imageView);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask$1.run()",this,throwable);throw throwable;}
 				}
 			});
 			log(LOG_TASK_CANCELLED);
 		}
-		return imageViewWasReused;
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.checkTaskIsNotActual()",this);return imageViewWasReused;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.checkTaskIsNotActual()",this,throwable);throw throwable;}
 	}
 
 	/** Check whether the current task was interrupted */
 	private boolean checkTaskIsInterrupted() {
-		boolean interrupted = Thread.interrupted();
-		if (interrupted) log(LOG_TASK_INTERRUPTED);
-		return interrupted;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.checkTaskIsInterrupted()",this);try{boolean interrupted = Thread.interrupted();
+		if (interrupted) {log(LOG_TASK_INTERRUPTED);}
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.checkTaskIsInterrupted()",this);return interrupted;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.checkTaskIsInterrupted()",this,throwable);throw throwable;}
 	}
 
 	private Bitmap tryLoadBitmap() {
-		File imageFile = getImageFileInDiscCache();
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.tryLoadBitmap()",this);try{File imageFile = getImageFileInDiscCache();
 
 		Bitmap bitmap = null;
 		try {
@@ -298,11 +298,11 @@ final class LoadAndDisplayImageTask implements Runnable {
 			L.e(e);
 			fireImageLoadingFailedEvent(FailType.UNKNOWN, e);
 		}
-		return bitmap;
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.tryLoadBitmap()",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.tryLoadBitmap()",this,throwable);throw throwable;}
 	}
 
 	private File getImageFileInDiscCache() {
-		DiscCacheAware discCache = configuration.discCache;
+		com.mijack.Xlog.logMethodEnter("java.io.File com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getImageFileInDiscCache()",this);try{DiscCacheAware discCache = configuration.discCache;
 		File imageFile = discCache.get(uri);
 		File cacheDir = imageFile.getParentFile();
 		if (cacheDir == null || (!cacheDir.exists() && !cacheDir.mkdirs())) {
@@ -312,20 +312,20 @@ final class LoadAndDisplayImageTask implements Runnable {
 				cacheDir.mkdirs();
 			}
 		}
-		return imageFile;
+		{com.mijack.Xlog.logMethodExit("java.io.File com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getImageFileInDiscCache()",this);return imageFile;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getImageFileInDiscCache()",this,throwable);throw throwable;}
 	}
 
 	private Bitmap decodeImage(String imageUri) throws IOException {
-		ViewScaleType viewScaleType = ViewScaleType.fromImageView(imageView);
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.decodeImage(java.lang.String)",this,imageUri);try{ViewScaleType viewScaleType = ViewScaleType.fromImageView(imageView);
 		ImageDecodingInfo decodingInfo = new ImageDecodingInfo(memoryCacheKey, imageUri, targetSize, viewScaleType, getDownloader(), options);
-		return decoder.decode(decodingInfo);
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.decodeImage(java.lang.String)",this);return decoder.decode(decodingInfo);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.decodeImage(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * @return Cached image URI; or original image URI if caching failed
 	 */
 	private String tryCacheImageOnDisc(File targetFile) {
-		log(LOG_CACHE_IMAGE_ON_DISC);
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.tryCacheImageOnDisc(java.io.File)",this,targetFile);try{log(LOG_CACHE_IMAGE_ON_DISC);
 
 		try {
 			int width = configuration.maxImageWidthForDiscCache;
@@ -343,15 +343,15 @@ final class LoadAndDisplayImageTask implements Runnable {
 			}
 
 			configuration.discCache.put(uri, targetFile);
-			return Scheme.FILE.wrap(targetFile.getAbsolutePath());
+			{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.tryCacheImageOnDisc(java.io.File)",this);return Scheme.FILE.wrap(targetFile.getAbsolutePath());}
 		} catch (IOException e) {
 			L.e(e);
-			return uri;
-		}
+			{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.tryCacheImageOnDisc(java.io.File)",this);return uri;}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.tryCacheImageOnDisc(java.io.File)",this,throwable);throw throwable;}
 	}
 
 	private boolean downloadSizedImage(File targetFile, int maxWidth, int maxHeight) throws IOException {
-		// Download, decode, compress and save image
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.downloadSizedImage(java.io.File,int,int)",this,targetFile,maxWidth,maxHeight);try{/*// Download, decode, compress and save image*/
 		ImageSize targetImageSize = new ImageSize(maxWidth, maxHeight);
 		DisplayImageOptions specialOptions = new DisplayImageOptions.Builder().cloneFrom(options).imageScaleType(ImageScaleType.IN_SAMPLE_INT).build();
 		ImageDecodingInfo decodingInfo = new ImageDecodingInfo(memoryCacheKey, uri, targetImageSize, ViewScaleType.FIT_INSIDE, getDownloader(), specialOptions);
@@ -368,11 +368,11 @@ final class LoadAndDisplayImageTask implements Runnable {
 				bmp.recycle();
 			}
 		}
-		return savedSuccessfully;
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.downloadSizedImage(java.io.File,int,int)",this);return savedSuccessfully;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.downloadSizedImage(java.io.File,int,int)",this,throwable);throw throwable;}
 	}
 
 	private void downloadImage(File targetFile) throws IOException {
-		InputStream is = getDownloader().getStream(uri, options.getExtraForDownloader());
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.downloadImage(java.io.File)",this,targetFile);try{InputStream is = getDownloader().getStream(uri, options.getExtraForDownloader());
 		try {
 			OutputStream os = new BufferedOutputStream(new FileOutputStream(targetFile), BUFFER_SIZE);
 			try {
@@ -382,25 +382,25 @@ final class LoadAndDisplayImageTask implements Runnable {
 			}
 		} finally {
 			IoUtils.closeSilently(is);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.downloadImage(java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.downloadImage(java.io.File)",this,throwable);throw throwable;}
 	}
 
 	private void fireImageLoadingFailedEvent(final FailType failType, final Throwable failCause) {
-		if (!Thread.interrupted()) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.fireImageLoadingFailedEvent(com.nostra13.universalimageloader.core.assist.FailReason.FailType,java.lang.Throwable)",this,failType,failCause);try{if (!Thread.interrupted()) {
 			handler.post(new Runnable() {
 				@Override
 				public void run() {
-					if (options.shouldShowImageOnFail()) {
+					com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask$2.run()",this);try{if (options.shouldShowImageOnFail()) {
 						imageView.setImageResource(options.getImageOnFail());
 					}
-					listener.onLoadingFailed(uri, imageView, new FailReason(failType, failCause));
+					listener.onLoadingFailed(uri, imageView, new FailReason(failType, failCause));com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask$2.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask$2.run()",this,throwable);throw throwable;}
 				}
 			});
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.fireImageLoadingFailedEvent(com.nostra13.universalimageloader.core.assist.FailReason.FailType,java.lang.Throwable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.fireImageLoadingFailedEvent(com.nostra13.universalimageloader.core.assist.FailReason.FailType,java.lang.Throwable)",this,throwable);throw throwable;}
 	}
 
 	private ImageDownloader getDownloader() {
-		ImageDownloader d;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getDownloader()",this);try{ImageDownloader d;
 		if (engine.isNetworkDenied()) {
 			d = networkDeniedDownloader;
 		} else if (engine.isSlowNetwork()) {
@@ -408,18 +408,18 @@ final class LoadAndDisplayImageTask implements Runnable {
 		} else {
 			d = downloader;
 		}
-		return d;
+		{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getDownloader()",this);return d;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.download.ImageDownloader com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getDownloader()",this,throwable);throw throwable;}
 	}
 
 	String getLoadingUri() {
-		return uri;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getLoadingUri()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getLoadingUri()",this);return uri;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.getLoadingUri()",this,throwable);throw throwable;}
 	}
 
 	private void log(String message) {
-		if (loggingEnabled) L.i(message, memoryCacheKey);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.log(java.lang.String)",this,message);try{if (loggingEnabled) {L.i(message, memoryCacheKey);}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.log(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.log(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	private void log(String message, Object... args) {
-		if (loggingEnabled) L.i(message, args);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.log(java.lang.String,[java.lang.Object)",this,message,args);try{if (loggingEnabled) {L.i(message, args);}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.log(java.lang.String,[java.lang.Object)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.LoadAndDisplayImageTask.log(java.lang.String,[java.lang.Object)",this,throwable);throw throwable;}
 	}
 }

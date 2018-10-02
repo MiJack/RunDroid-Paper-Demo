@@ -44,71 +44,71 @@ public class DecodeUtils {
             mOptions = options;
         }
         public void onCancel() {
-            mOptions.requestCancelDecode();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DecodeUtils$DecodeCanceller.onCancel()",this);try{mOptions.requestCancelDecode();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DecodeUtils$DecodeCanceller.onCancel()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DecodeUtils$DecodeCanceller.onCancel()",this,throwable);throw throwable;}
         }
     }
 
     public static Bitmap requestDecode(JobContext jc, final String filePath,
             Options options) {
-        if (options == null) options = new Options();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,android.graphics.BitmapFactory.Options)",jc,filePath,options);try{if (options == null) {options = new Options();}
         jc.setCancelListener(new DecodeCanceller(options));
-        return ensureGLCompatibleBitmap(
-                BitmapFactory.decodeFile(filePath, options));
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,android.graphics.BitmapFactory.Options)");return ensureGLCompatibleBitmap(
+                BitmapFactory.decodeFile(filePath, options));}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,android.graphics.BitmapFactory.Options)",throwable);throw throwable;}
     }
 
     public static Bitmap requestDecode(JobContext jc, FileDescriptor fd, Options options) {
-        if (options == null) options = new Options();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.BitmapFactory.Options)",jc,fd,options);try{if (options == null) {options = new Options();}
         jc.setCancelListener(new DecodeCanceller(options));
-        return ensureGLCompatibleBitmap(
-                BitmapFactory.decodeFileDescriptor(fd, null, options));
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.BitmapFactory.Options)");return ensureGLCompatibleBitmap(
+                BitmapFactory.decodeFileDescriptor(fd, null, options));}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.BitmapFactory.Options)",throwable);throw throwable;}
     }
 
     public static Bitmap requestDecode(JobContext jc, byte[] bytes,
             Options options) {
-        return requestDecode(jc, bytes, 0, bytes.length, options);
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options)",jc,bytes,options);try{com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options)");return requestDecode(jc, bytes, 0, bytes.length, options);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options)",throwable);throw throwable;}
     }
 
     public static Bitmap requestDecode(JobContext jc, byte[] bytes, int offset,
             int length, Options options) {
-        if (options == null) options = new Options();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,[byte,int,int,android.graphics.BitmapFactory.Options)",jc,bytes,offset,length,options);try{if (options == null) {options = new Options();}
         jc.setCancelListener(new DecodeCanceller(options));
-        return ensureGLCompatibleBitmap(
-                BitmapFactory.decodeByteArray(bytes, offset, length, options));
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,[byte,int,int,android.graphics.BitmapFactory.Options)");return ensureGLCompatibleBitmap(
+                BitmapFactory.decodeByteArray(bytes, offset, length, options));}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,[byte,int,int,android.graphics.BitmapFactory.Options)",throwable);throw throwable;}
     }
 
     public static Bitmap requestDecode(JobContext jc, final String filePath,
             Options options, int targetSize) {
-        FileInputStream fis = null;
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,android.graphics.BitmapFactory.Options,int)",jc,filePath,options,targetSize);try{FileInputStream fis = null;
         try {
             fis = new FileInputStream(filePath);
             FileDescriptor fd = fis.getFD();
-            return requestDecode(jc, fd, options, targetSize);
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,android.graphics.BitmapFactory.Options,int)");return requestDecode(jc, fd, options, targetSize);}
         } catch (Exception ex) {
             Log.w(TAG, ex);
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,android.graphics.BitmapFactory.Options,int)");return null;}
         } finally {
             Utils.closeSilently(fis);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,android.graphics.BitmapFactory.Options,int)",throwable);throw throwable;}
     }
 
     public static Bitmap requestDecode(JobContext jc, FileDescriptor fd,
             Options options, int targetSize) {
-        if (options == null) options = new Options();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.BitmapFactory.Options,int)",jc,fd,options,targetSize);try{if (options == null) {options = new Options();}
         jc.setCancelListener(new DecodeCanceller(options));
 
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFileDescriptor(fd, null, options);
-        if (jc.isCancelled()) return null;
+        if (jc.isCancelled()) {{com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.BitmapFactory.Options,int)");return null;}}
 
         options.inSampleSize = BitmapUtils.computeSampleSizeLarger(
                 options.outWidth, options.outHeight, targetSize);
         options.inJustDecodeBounds = false;
 
         Bitmap result = BitmapFactory.decodeFileDescriptor(fd, null, options);
-        // We need to resize down if the decoder does not support inSampleSize.
-        // (For example, GIF images.)
+        /*// We need to resize down if the decoder does not support inSampleSize.*/
+        /*// (For example, GIF images.)*/
         result = BitmapUtils.resizeDownIfTooBig(result, targetSize, true);
-        return ensureGLCompatibleBitmap(result);
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.BitmapFactory.Options,int)");return ensureGLCompatibleBitmap(result);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.BitmapFactory.Options,int)",throwable);throw throwable;}
     }
 
     /**
@@ -120,103 +120,103 @@ public class DecodeUtils {
      */
     public static Bitmap requestDecodeIfBigEnough(JobContext jc, byte[] data,
             Options options, int targetSize) {
-        if (options == null) options = new Options();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecodeIfBigEnough(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options,int)",jc,data,options,targetSize);try{if (options == null) {options = new Options();}
         jc.setCancelListener(new DecodeCanceller(options));
 
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeByteArray(data, 0, data.length, options);
-        if (jc.isCancelled()) return null;
+        if (jc.isCancelled()) {{com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecodeIfBigEnough(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options,int)");return null;}}
         if (options.outWidth < targetSize || options.outHeight < targetSize) {
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecodeIfBigEnough(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options,int)");return null;}
         }
         options.inSampleSize = BitmapUtils.computeSampleSizeLarger(
                 options.outWidth, options.outHeight, targetSize);
         options.inJustDecodeBounds = false;
-        return ensureGLCompatibleBitmap(
-                BitmapFactory.decodeByteArray(data, 0, data.length, options));
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecodeIfBigEnough(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options,int)");return ensureGLCompatibleBitmap(
+                BitmapFactory.decodeByteArray(data, 0, data.length, options));}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecodeIfBigEnough(com.android.gallery3d.util.ThreadPool.JobContext,[byte,android.graphics.BitmapFactory.Options,int)",throwable);throw throwable;}
     }
 
     public static Bitmap requestDecode(JobContext jc,
             FileDescriptor fileDescriptor, Rect paddings, Options options) {
-        if (options == null) options = new Options();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.Rect,android.graphics.BitmapFactory.Options)",jc,fileDescriptor,paddings,options);try{if (options == null) {options = new Options();}
         jc.setCancelListener(new DecodeCanceller(options));
-        return ensureGLCompatibleBitmap(BitmapFactory.decodeFileDescriptor
-                (fileDescriptor, paddings, options));
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.Rect,android.graphics.BitmapFactory.Options)");return ensureGLCompatibleBitmap(BitmapFactory.decodeFileDescriptor
+                (fileDescriptor, paddings, options));}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.requestDecode(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,android.graphics.Rect,android.graphics.BitmapFactory.Options)",throwable);throw throwable;}
     }
 
-    // TODO: This function should not be called directly from
-    // DecodeUtils.requestDecode(...), since we don't have the knowledge
-    // if the bitmap will be uploaded to GL.
+    /*// TODO: This function should not be called directly from*/
+    /*// DecodeUtils.requestDecode(...), since we don't have the knowledge*/
+    /*// if the bitmap will be uploaded to GL.*/
     public static Bitmap ensureGLCompatibleBitmap(Bitmap bitmap) {
-        if (bitmap == null || bitmap.getConfig() != null) return bitmap;
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.ensureGLCompatibleBitmap(android.graphics.Bitmap)",bitmap);try{if (bitmap == null || bitmap.getConfig() != null) {{com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.ensureGLCompatibleBitmap(android.graphics.Bitmap)");return bitmap;}}
         Bitmap newBitmap = bitmap.copy(Config.ARGB_8888, false);
         bitmap.recycle();
-        return newBitmap;
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.ensureGLCompatibleBitmap(android.graphics.Bitmap)");return newBitmap;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.DecodeUtils.ensureGLCompatibleBitmap(android.graphics.Bitmap)",throwable);throw throwable;}
     }
 
     public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(
             JobContext jc, byte[] bytes, int offset, int length,
             boolean shareable) {
-        if (offset < 0 || length <= 0 || offset + length > bytes.length) {
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,[byte,int,int,boolean)",jc,bytes,offset,length,shareable);try{if (offset < 0 || length <= 0 || offset + length > bytes.length) {
             throw new IllegalArgumentException(String.format(
                     "offset = %s, length = %s, bytes = %s",
                     offset, length, bytes.length));
         }
 
         try {
-            return BitmapRegionDecoder.newInstance(
-                    bytes, offset, length, shareable);
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,[byte,int,int,boolean)");return BitmapRegionDecoder.newInstance(
+                    bytes, offset, length, shareable);}
         } catch (Throwable t)  {
             Log.w(TAG, t);
-            return null;
-        }
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,[byte,int,int,boolean)");return null;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,[byte,int,int,boolean)",throwable);throw throwable;}
     }
 
     public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(
             JobContext jc, String filePath, boolean shareable) {
-        try {
-            return BitmapRegionDecoder.newInstance(filePath, shareable);
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,boolean)",jc,filePath,shareable);try{try {
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,boolean)");return BitmapRegionDecoder.newInstance(filePath, shareable);}
         } catch (Throwable t)  {
             Log.w(TAG, t);
-            return null;
-        }
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,boolean)");return null;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.lang.String,boolean)",throwable);throw throwable;}
     }
 
     public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(
             JobContext jc, FileDescriptor fd, boolean shareable) {
-        try {
-            return BitmapRegionDecoder.newInstance(fd, shareable);
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,boolean)",jc,fd,shareable);try{try {
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,boolean)");return BitmapRegionDecoder.newInstance(fd, shareable);}
         } catch (Throwable t)  {
             Log.w(TAG, t);
-            return null;
-        }
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,boolean)");return null;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.os.ParcelFileDescriptor,boolean)",throwable);throw throwable;}
     }
 
     public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(
             JobContext jc, InputStream is, boolean shareable) {
-        try {
-            return BitmapRegionDecoder.newInstance(is, shareable);
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.io.FileInputStream,boolean)",jc,is,shareable);try{try {
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.io.FileInputStream,boolean)");return BitmapRegionDecoder.newInstance(is, shareable);}
         } catch (Throwable t)  {
-            // We often cancel the creating of bitmap region decoder,
-            // so just log one line.
+            /*// We often cancel the creating of bitmap region decoder,*/
+            /*// so just log one line.*/
             Log.w(TAG, "requestCreateBitmapRegionDecoder: " + t);
-            return null;
-        }
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.io.FileInputStream,boolean)");return null;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,java.io.FileInputStream,boolean)",throwable);throw throwable;}
     }
 
     public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(
             JobContext jc, Uri uri, ContentResolver resolver,
             boolean shareable) {
-        ParcelFileDescriptor pfd = null;
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.net.Uri,android.content.ContentResolver,boolean)",jc,uri,resolver,shareable);try{ParcelFileDescriptor pfd = null;
         try {
             pfd = resolver.openFileDescriptor(uri, "r");
-            return BitmapRegionDecoder.newInstance(
-                    pfd.getFileDescriptor(), shareable);
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.net.Uri,android.content.ContentResolver,boolean)");return BitmapRegionDecoder.newInstance(
+                    pfd.getFileDescriptor(), shareable);}
         } catch (Throwable t) {
             Log.w(TAG, t);
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.net.Uri,android.content.ContentResolver,boolean)");return null;}
         } finally {
             Utils.closeSilently(pfd);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.BitmapRegionDecoder com.android.gallery3d.data.DecodeUtils.requestCreateBitmapRegionDecoder(com.android.gallery3d.util.ThreadPool.JobContext,android.net.Uri,android.content.ContentResolver,boolean)",throwable);throw throwable;}
     }
 }

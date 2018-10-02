@@ -34,14 +34,14 @@ public class GrainFilter extends Filter {
      * @param scale ranges from 0 to 1.
      */
     public void setScale(float scale) {
-        this.scale = scale;
-        validate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.GrainFilter.setScale(float)",this,scale);try{this.scale = scale;
+        validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.GrainFilter.setScale(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.GrainFilter.setScale(float)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        Effect effect = getEffect(EffectFactory.EFFECT_GRAIN);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.GrainFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{Effect effect = getEffect(EffectFactory.EFFECT_GRAIN);
         effect.setParameter("strength", scale);
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.GrainFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.GrainFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

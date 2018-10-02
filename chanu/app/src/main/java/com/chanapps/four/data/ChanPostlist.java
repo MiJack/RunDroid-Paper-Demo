@@ -19,14 +19,14 @@ public class ChanPostlist {
     public static final String USER_POSTS = "userPosts";
 
     public static void addPost(Context context, String boardCode, long threadNo, long postNo, String password) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.data.ChanPostlist.addPost(android.content.Context,java.lang.String,long,long,java.lang.String)",context,boardCode,threadNo,postNo,password);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> posts = prefs.getStringSet(USER_POSTS, new HashSet<String>());
         String post = getSerializedPost(boardCode, threadNo, postNo, password);
         posts.add(post);
-        prefs.edit().putStringSet(USER_POSTS, posts).commit();
+        prefs.edit().putStringSet(USER_POSTS, posts).commit();com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.data.ChanPostlist.addPost(android.content.Context,java.lang.String,long,long,java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.data.ChanPostlist.addPost(android.content.Context,java.lang.String,long,long,java.lang.String)",throwable);throw throwable;}
     }
 
     private static String getSerializedPost(String boardCode, long threadNo, long postNo, String password) {
-        return boardCode + "/" + threadNo + "/" + postNo + "/" + password;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.chanapps.four.data.ChanPostlist.getSerializedPost(java.lang.String,long,long,java.lang.String)",boardCode,threadNo,postNo,password);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.chanapps.four.data.ChanPostlist.getSerializedPost(java.lang.String,long,long,java.lang.String)");return boardCode + "/" + threadNo + "/" + postNo + "/" + password;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.chanapps.four.data.ChanPostlist.getSerializedPost(java.lang.String,long,long,java.lang.String)",throwable);throw throwable;}
     }
 }

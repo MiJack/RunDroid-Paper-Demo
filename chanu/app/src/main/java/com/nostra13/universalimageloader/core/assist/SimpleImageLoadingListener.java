@@ -28,21 +28,21 @@ import android.view.View;
 public class SimpleImageLoadingListener implements ImageLoadingListener {
 	@Override
 	public void onLoadingStarted(String imageUri, View view) {
-		// Empty implementation
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingStarted(java.lang.String,android.view.View)",this,imageUri,view);try{/*// Empty implementation*/com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingStarted(java.lang.String,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingStarted(java.lang.String,android.view.View)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-		// Empty implementation
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this,imageUri,view,failReason);try{/*// Empty implementation*/com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-		// Empty implementation
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this,imageUri,view,loadedImage);try{/*// Empty implementation*/com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void onLoadingCancelled(String imageUri, View view) {
-		// Empty implementation
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingCancelled(java.lang.String,android.view.View)",this,imageUri,view);try{/*// Empty implementation*/com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingCancelled(java.lang.String,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener.onLoadingCancelled(java.lang.String,android.view.View)",this,throwable);throw throwable;}
 	}
 }

@@ -43,25 +43,25 @@ public class Wallpaper extends Activity {
 
     @Override
     protected void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Wallpaper.onCreate(android.os.Bundle)",this,bundle);try{super.onCreate(bundle);
         if (bundle != null) {
             mState = bundle.getInt(KEY_STATE);
             mPickedItem = (Uri) bundle.getParcelable(KEY_PICKED_ITEM);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Wallpaper.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Wallpaper.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onSaveInstanceState(Bundle saveState) {
-        saveState.putInt(KEY_STATE, mState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Wallpaper.onSaveInstanceState(android.os.Bundle)",this,saveState);try{saveState.putInt(KEY_STATE, mState);
         if (mPickedItem != null) {
             saveState.putParcelable(KEY_PICKED_ITEM, mPickedItem);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Wallpaper.onSaveInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Wallpaper.onSaveInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @SuppressWarnings("fallthrough")
     @Override
     protected void onResume() {
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Wallpaper.onResume()",this);try{super.onResume();
         Intent intent = getIntent();
         switch (mState) {
             case STATE_INIT: {
@@ -71,10 +71,10 @@ public class Wallpaper extends Activity {
                             .setClass(this, DialogPicker.class)
                             .setType(IMAGE_TYPE);
                     startActivityForResult(request, STATE_PHOTO_PICKED);
-                    return;
+                    {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Wallpaper.onResume()",this);return;}
                 }
                 mState = STATE_PHOTO_PICKED;
-                // fall-through
+                /*// fall-through*/
             }
             case STATE_PHOTO_PICKED: {
                 int width = getWallpaperDesiredMinimumWidth();
@@ -99,21 +99,21 @@ public class Wallpaper extends Activity {
                 startActivity(request);
                 finish();
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Wallpaper.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.Wallpaper.onActivityResult(int,int,android.content.Intent)",this,requestCode,resultCode,data);try{if (resultCode != RESULT_OK) {
             setResult(resultCode);
             finish();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.Wallpaper.onActivityResult(int,int,android.content.Intent)",this);return;}
         }
         mState = requestCode;
         if (mState == STATE_PHOTO_PICKED) {
             mPickedItem = data.getData();
         }
 
-        // onResume() would be called next
+        /*// onResume() would be called next*/}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.Wallpaper.onActivityResult(int,int,android.content.Intent)",this,throwable);throw throwable;}
     }
 }

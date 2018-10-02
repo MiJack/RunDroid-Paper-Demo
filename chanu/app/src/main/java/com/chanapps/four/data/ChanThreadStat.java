@@ -25,12 +25,12 @@ public class ChanThreadStat {
 		this.usage = 0;
 	}
 	public long use() {
-		usage++;
+		com.mijack.Xlog.logMethodEnter("long com.chanapps.four.data.ChanThreadStat.use()",this);try{usage++;
 		lastUsage = Calendar.getInstance().getTimeInMillis();
-		return lastUsage;
+		{com.mijack.Xlog.logMethodExit("long com.chanapps.four.data.ChanThreadStat.use()",this);return lastUsage;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.data.ChanThreadStat.use()",this,throwable);throw throwable;}
 	}
 	
 	public String toString() {
-		return "thread " + board + "/" + no + " used " + usage + " last " + new Date(lastUsage);
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.ChanThreadStat.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.ChanThreadStat.toString()",this);return "thread " + board + "/" + no + " used " + usage + " last " + new Date(lastUsage);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.ChanThreadStat.toString()",this,throwable);throw throwable;}
 	}
 }

@@ -43,14 +43,14 @@ public final class StorageUtils {
 	 * @return Cache {@link File directory}
 	 */
 	public static File getCacheDirectory(Context context) {
-		File appCacheDir = null;
+		com.mijack.Xlog.logStaticMethodEnter("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getCacheDirectory(android.content.Context)",context);try{File appCacheDir = null;
 		if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
 			appCacheDir = getExternalCacheDir(context);
 		}
 		if (appCacheDir == null) {
 			appCacheDir = context.getCacheDir();
 		}
-		return appCacheDir;
+		{com.mijack.Xlog.logStaticMethodExit("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getCacheDirectory(android.content.Context)");return appCacheDir;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getCacheDirectory(android.content.Context)",throwable);throw throwable;}
 	}
 
 	/**
@@ -62,14 +62,14 @@ public final class StorageUtils {
 	 * @return Cache {@link File directory}
 	 */
 	public static File getIndividualCacheDirectory(Context context) {
-		File cacheDir = getCacheDirectory(context);
+		com.mijack.Xlog.logStaticMethodEnter("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context)",context);try{File cacheDir = getCacheDirectory(context);
 		File individualCacheDir = new File(cacheDir, INDIVIDUAL_DIR_NAME);
 		if (!individualCacheDir.exists()) {
 			if (!individualCacheDir.mkdir()) {
 				individualCacheDir = cacheDir;
 			}
 		}
-		return individualCacheDir;
+		{com.mijack.Xlog.logStaticMethodExit("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context)");return individualCacheDir;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getIndividualCacheDirectory(android.content.Context)",throwable);throw throwable;}
 	}
 
 	/**
@@ -81,32 +81,32 @@ public final class StorageUtils {
 	 * @return Cache {@link File directory}
 	 */
 	public static File getOwnCacheDirectory(Context context, String cacheDir) {
-		File appCacheDir = null;
+		com.mijack.Xlog.logStaticMethodEnter("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory(android.content.Context,java.lang.String)",context,cacheDir);try{File appCacheDir = null;
 		if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
 			appCacheDir = new File(Environment.getExternalStorageDirectory(), cacheDir);
 		}
 		if (appCacheDir == null || (!appCacheDir.exists() && !appCacheDir.mkdirs())) {
 			appCacheDir = context.getCacheDir();
 		}
-		return appCacheDir;
+		{com.mijack.Xlog.logStaticMethodExit("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory(android.content.Context,java.lang.String)");return appCacheDir;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory(android.content.Context,java.lang.String)",throwable);throw throwable;}
 	}
 
 	private static File getExternalCacheDir(Context context) {
-		File dataDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
+		com.mijack.Xlog.logStaticMethodEnter("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir(android.content.Context)",context);try{File dataDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
 		File appCacheDir = new File(new File(dataDir, context.getPackageName()), "cache");
 		if (!appCacheDir.exists()) {
 			if (!appCacheDir.mkdirs()) {
 				L.w("Unable to create external cache directory");
-				return null;
+				{com.mijack.Xlog.logStaticMethodExit("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir(android.content.Context)");return null;}
             }
         }
         try {
             File f = new File(appCacheDir, ".nomedia");
             if (!f.exists())
-                f.createNewFile();
+                {f.createNewFile();}
         } catch (IOException e) {
             L.i("Can't create \".nomedia\" file in app external cache dir " + appCacheDir);
         }
-        return appCacheDir;
+        {com.mijack.Xlog.logStaticMethodExit("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir(android.content.Context)");return appCacheDir;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir(android.content.Context)",throwable);throw throwable;}
 	}
 }

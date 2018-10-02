@@ -24,8 +24,8 @@ public class ThemeSelector {
 
     protected static final int LIGHT_THEME = R.style.AppTheme;
     protected static final int DARK_THEME = R.style.AppTheme_Dark;
-    //protected static final float LIGHT_LUX_THRESHOLD = 5;
-    //protected static final float LUX_MIN_DELTA = 10;
+    /*//protected static final float LIGHT_LUX_THRESHOLD = 5;*/
+    /*//protected static final float LUX_MIN_DELTA = 10;*/
 
     public static final int DEFAULT_THEME = LIGHT_THEME;
 
@@ -34,9 +34,9 @@ public class ThemeSelector {
     protected String themeType;
     protected int themeId = LIGHT_THEME;
     protected Context context;
-    //protected SensorManager sensorManager;
-    //protected Sensor lightSensor;
-    //protected float lux = 100; // default to room lighting
+    /*//protected SensorManager sensorManager;*/
+    /*//protected Sensor lightSensor;*/
+    /*//protected float lux = 100; // default to room lighting*/
 
     protected ThemeSelector(Context context) {
         this.context = context;
@@ -45,15 +45,15 @@ public class ThemeSelector {
         themeType = prefs.getString(SettingsActivity.PREF_THEME,
                 context.getString(R.string.pref_theme_default_value));
         themeId = calcThemeId();
-        if (DEBUG) Log.i(TAG, "ThemeSelector() set to "
+        if (DEBUG) {Log.i(TAG, "ThemeSelector() set to "
                 + (themeId == DARK_THEME ? "dark" : "light")
-                + " theme");
+                + " theme");}
         prefs.registerOnSharedPreferenceChangeListener(themeChangeListener);
 
-        //sensorManager = (SensorManager)context.getSystemService(Service.SENSOR_SERVICE);
-        //lightSensor = sensorManager == null ? null : sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        //if (lightSensor != null)
-        //    sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        /*//sensorManager = (SensorManager)context.getSystemService(Service.SENSOR_SERVICE);*/
+        /*//lightSensor = sensorManager == null ? null : sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);*/
+        /*//if (lightSensor != null)*/
+        /*//    sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);*/
     }
 
     /*
@@ -85,54 +85,54 @@ public class ThemeSelector {
     */
 
     protected void updateTheme(int newTheme) {
-        if (themeId == newTheme)
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThemeSelector.updateTheme(int)",this,newTheme);try{if (themeId == newTheme)
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThemeSelector.updateTheme(int)",this);return;}}
         themeId = newTheme;
         Intent intent = new Intent(ACTION_THEME_CHANGED);
         intent.putExtra(EXTRA_THEME_ID, themeId);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThemeSelector.updateTheme(int)",this,throwable);throw throwable;}
     }
     
     public static ThemeSelector instance(Context context) {
-        if (themeSelector == null)
-            themeSelector = new ThemeSelector(context);
-        return themeSelector;
+        com.mijack.Xlog.logStaticMethodEnter("com.chanapps.four.component.ThemeSelector com.chanapps.four.component.ThemeSelector.instance(android.content.Context)",context);try{if (themeSelector == null)
+            {themeSelector = new ThemeSelector(context);}
+        {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.component.ThemeSelector com.chanapps.four.component.ThemeSelector.instance(android.content.Context)");return themeSelector;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.chanapps.four.component.ThemeSelector com.chanapps.four.component.ThemeSelector.instance(android.content.Context)",throwable);throw throwable;}
     }
 
     protected SharedPreferences.OnSharedPreferenceChangeListener themeChangeListener
             = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (!SettingsActivity.PREF_THEME.equals(key))
-                return;
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThemeSelector$1.onSharedPreferenceChanged(android.content.SharedPreferences,android.content.String)",this,sharedPreferences,key);try{if (!SettingsActivity.PREF_THEME.equals(key))
+                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThemeSelector$1.onSharedPreferenceChanged(android.content.SharedPreferences,android.content.String)",this);return;}}
             themeType = sharedPreferences.getString(SettingsActivity.PREF_THEME,
                     context.getString(R.string.pref_theme_default_value));
             int newThemeId = calcThemeId();
             if (themeId == newThemeId)
-                return;
+                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThemeSelector$1.onSharedPreferenceChanged(android.content.SharedPreferences,android.content.String)",this);return;}}
             updateTheme(newThemeId);
-            if (DEBUG) Log.i(TAG, "themeChangeListener set to "
+            if (DEBUG) {Log.i(TAG, "themeChangeListener set to "
                     + (themeId == DARK_THEME ? "dark" : "light")
-                    + " theme");
+                    + " theme");}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThemeSelector$1.onSharedPreferenceChanged(android.content.SharedPreferences,android.content.String)",this,throwable);throw throwable;}
         }
     };
 
     protected int calcThemeId() {
-        int id;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.component.ThemeSelector.calcThemeId()",this);try{int id;
         if (context.getString(R.string.pref_theme_light_value).equals(themeType))
-            id = LIGHT_THEME;
+            {id = LIGHT_THEME;}
         else if (context.getString(R.string.pref_theme_dark_value).equals(themeType))
-            id = DARK_THEME;
-        //else if (context.getString(R.string.pref_theme_auto_value).equals(themeType))
-        //    id = ambientLuxTheme(); // should be fixed to check sensor lux levels
+            {id = DARK_THEME;}
+        /*//else if (context.getString(R.string.pref_theme_auto_value).equals(themeType))*/
+        /*//    id = ambientLuxTheme(); // should be fixed to check sensor lux levels*/
         else
-            id = DEFAULT_THEME;
-        if (DEBUG) Log.i(TAG, "calcThemeId('" + themeType + "') = " + id);
-        return id;
+            {id = DEFAULT_THEME;}
+        if (DEBUG) {Log.i(TAG, "calcThemeId('" + themeType + "') = " + id);}
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.ThemeSelector.calcThemeId()",this);return id;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.component.ThemeSelector.calcThemeId()",this,throwable);throw throwable;}
     }
 
     public boolean isDark() {
-        return themeId == R.style.AppTheme_Dark;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.ThemeSelector.isDark()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ThemeSelector.isDark()",this);return themeId == R.style.AppTheme_Dark;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.ThemeSelector.isDark()",this,throwable);throw throwable;}
     }
 
     /*
@@ -168,24 +168,24 @@ public class ThemeSelector {
         }
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (activity == null
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.onReceive(android.content.Context,android.content.Intent)",this,context,intent);try{if (activity == null
                     || intent == null
                     || intent.getAction() == null
                     || !intent.getAction().equals(ThemeSelector.ACTION_THEME_CHANGED)
                     || !intent.hasExtra(ThemeSelector.EXTRA_THEME_ID))
-                return;
+                {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.onReceive(android.content.Context,android.content.Intent)",this);return;}}
             int newThemeId = intent.getIntExtra(ThemeSelector.EXTRA_THEME_ID, ThemeSelector.DEFAULT_THEME);
             if (activity.getThemeId() != newThemeId)
-                activity.recreate();
+                {activity.recreate();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.onReceive(android.content.Context,android.content.Intent)",this,throwable);throw throwable;}
         }
         public void register() {
-            IntentFilter intentFilter = new IntentFilter(ThemeSelector.ACTION_THEME_CHANGED);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.register()",this);try{IntentFilter intentFilter = new IntentFilter(ThemeSelector.ACTION_THEME_CHANGED);
             LocalBroadcastManager.getInstance(activity.getApplicationContext())
-                    .registerReceiver(this, intentFilter);
+                    .registerReceiver(this, intentFilter);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.register()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.register()",this,throwable);throw throwable;}
         }
         public void unregister() {
-            LocalBroadcastManager.getInstance(activity.getApplicationContext())
-                    .unregisterReceiver(this);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.unregister()",this);try{LocalBroadcastManager.getInstance(activity.getApplicationContext())
+                    .unregisterReceiver(this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.unregister()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThemeSelector$ThemeReceiver.unregister()",this,throwable);throw throwable;}
         }
     }
 

@@ -53,7 +53,7 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
     
     static {
         MAPPER.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        MAPPER.setDateFormat(new SimpleDateFormat("MMM d, yyyy h:mm:ss aaa")); // "Jan 15, 2013 10:16:20 AM"
+        MAPPER.setDateFormat(new SimpleDateFormat("MMM d, yyyy h:mm:ss aaa")); /*// "Jan 15, 2013 10:16:20 AM"*/
     }
 
     private String boardCode;
@@ -64,19 +64,19 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
     private ChanBoard board;
 
     public static void startService(Context context, String boardCode, int pageNo, boolean priority, long secondaryThreadNo) {
-    	if (ChanBoard.isVirtualBoard(boardCode)) {
-    		return;
+    	com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.BoardParserService.startService(android.content.Context,java.lang.String,int,boolean,long)",context,boardCode,pageNo,priority,secondaryThreadNo);try{if (ChanBoard.isVirtualBoard(boardCode)) {
+    		{com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.BoardParserService.startService(android.content.Context,java.lang.String,int,boolean,long)");return;}
     	}
-        if (DEBUG) Log.i(TAG, "Start board load service for board=" + boardCode + " page=" + pageNo + " priority=" + priority );
+        if (DEBUG) {Log.i(TAG, "Start board load service for board=" + boardCode + " page=" + pageNo + " priority=" + priority );}
         Intent intent = new Intent(context, BoardParserService.class);
         intent.putExtra(ChanBoard.BOARD_CODE, boardCode);
         intent.putExtra(ChanBoard.BOARD_CATALOG, pageNo == -1 ? 1 : 0);
         intent.putExtra(ChanBoard.PAGE, pageNo);
         if (priority)
-	        intent.putExtra(PRIORITY_MESSAGE_FETCH, 1);
+	        {intent.putExtra(PRIORITY_MESSAGE_FETCH, 1);}
         if (secondaryThreadNo > 0)
-            intent.putExtra(FetchChanDataService.SECONDARY_THREAD_NO, secondaryThreadNo);
-        context.startService(intent);
+            {intent.putExtra(FetchChanDataService.SECONDARY_THREAD_NO, secondaryThreadNo);}
+        context.startService(intent);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.BoardParserService.startService(android.content.Context,java.lang.String,int,boolean,long)",throwable);throw throwable;}
     }
     
     public BoardParserService() {
@@ -88,13 +88,13 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
    	}
 
     public static void configureJsonParser(JsonParser jp) throws IOException, JsonParseException {
-        jp.configure(JsonParser.Feature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.BoardParserService.configureJsonParser(org.codehaus.jackson.JsonParser)",jp);try{jp.configure(JsonParser.Feature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true);
         jp.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
         jp.configure(JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS, true);
         jp.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         jp.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
         jp.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-        jp.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, true);
+        jp.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, true);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.BoardParserService.configureJsonParser(org.codehaus.jackson.JsonParser)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.BoardParserService.configureJsonParser(org.codehaus.jackson.JsonParser)",throwable);throw throwable;}
     }
 
     /*
@@ -114,17 +114,17 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
     }
     */
     public static ObjectMapper getJsonMapper() {
-        return MAPPER;
+        com.mijack.Xlog.logStaticMethodEnter("org.codehaus.jackson.map.ObjectMapper com.chanapps.four.service.BoardParserService.getJsonMapper()");try{com.mijack.Xlog.logStaticMethodExit("org.codehaus.jackson.map.ObjectMapper com.chanapps.four.service.BoardParserService.getJsonMapper()");return MAPPER;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("org.codehaus.jackson.map.ObjectMapper com.chanapps.four.service.BoardParserService.getJsonMapper()",throwable);throw throwable;}
     }
 
     @Override
 	protected void onHandleIntent(Intent intent) {
-		boardCode = intent.getStringExtra(ChanBoard.BOARD_CODE);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BoardParserService.onHandleIntent(android.content.Intent)",this,intent);try{boardCode = intent.getStringExtra(ChanBoard.BOARD_CODE);
 		boardCatalog = intent.getIntExtra(ChanBoard.BOARD_CATALOG, 0) == 1;
 		pageNo = intent.getIntExtra(ChanBoard.PAGE, 0);
         priority = intent.getIntExtra(PRIORITY_MESSAGE_FETCH, 0) > 0;
 		secondaryThreadNo = intent.getLongExtra(FetchChanDataService.SECONDARY_THREAD_NO, 0);
-        if (DEBUG) Log.i(TAG, "Handling board=" + boardCode + " priority=" + priority);
+        if (DEBUG) {Log.i(TAG, "Handling board=" + boardCode + " priority=" + priority);}
 
         long startTime = Calendar.getInstance().getTimeInMillis();
 		try {
@@ -137,20 +137,20 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
             	parseBoard(boardFile);
             }
             if (board != null)
-                board.lastFetched = Calendar.getInstance().getTimeInMillis();
+                {board.lastFetched = Calendar.getInstance().getTimeInMillis();}
 
-            if (DEBUG) Log.i(TAG, "Parsed board " + boardCode + (pageNo == -1 ? " catalog" : " page " + pageNo)
-            		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");
+            if (DEBUG) {Log.i(TAG, "Parsed board " + boardCode + (pageNo == -1 ? " catalog" : " page " + pageNo)
+            		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");}
             startTime = Calendar.getInstance().getTimeInMillis();
 
             if (board != null)
-                ChanFileStorage.storeBoardData(context, board);
-            if (DEBUG) Log.i(TAG, "Stored board " + boardCode + (pageNo == -1 ? " catalog" : " page " + pageNo)
-            		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");
-            //setActionBarSubtitle();
+                {ChanFileStorage.storeBoardData(context, board);}
+            if (DEBUG) {Log.i(TAG, "Stored board " + boardCode + (pageNo == -1 ? " catalog" : " page " + pageNo)
+            		+ " in " + (Calendar.getInstance().getTimeInMillis() - startTime) + "ms");}
+            /*//setActionBarSubtitle();*/
 
             if (!boardCatalog) {
-	            // thread files are stored in separate service call to make board parsing faster
+	            /*// thread files are stored in separate service call to make board parsing faster*/
 	            if (priority) {
 	            	BoardThreadsParserService.startServiceWithPriority(getBaseContext(), boardCode, pageNo);
 	            } else {
@@ -161,41 +161,41 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
         } catch (Exception e) {
         	NetworkProfileManager.instance().failedParsingData(this, Failure.WRONG_DATA);
             Log.e(TAG, "IO Error reading Chan board json", e);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BoardParserService.onHandleIntent(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BoardParserService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
 	}
 
     private void parseBoard(File in) throws IOException {
-//    	List<ChanPost> stickyPosts = new ArrayList<ChanPost>();
+com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BoardParserService.parseBoard(java.io.File)",this,in);try{/*//    	List<ChanPost> stickyPosts = new ArrayList<ChanPost>();*/
     	List<ChanPost> threads = new ArrayList<ChanPost>();
     	board = ChanFileStorage.loadBoardData(getBaseContext(), boardCode);
     	if (board.defData) {
-    		// default board we should not use it
+    		/*// default board we should not use it*/
     		board = ChanBoard.getBoardByCode(getBaseContext(), boardCode);
     	}
 
-        if (pageNo != 0) { // preserve existing threads on subsequent page loads
-//            if (board.stickyPosts != null && board.stickyPosts.length > 0) {
-//                Collections.addAll(stickyPosts, board.stickyPosts);
-//                if (DEBUG) Log.i(TAG, "Added " + board.stickyPosts.length + " sticky posts from storage");
-//            }
+        if (pageNo != 0) { /*// preserve existing threads on subsequent page loads*/
+/*//            if (board.stickyPosts != null && board.stickyPosts.length > 0) {*/
+/*//                Collections.addAll(stickyPosts, board.stickyPosts);*/
+/*//                if (DEBUG) Log.i(TAG, "Added " + board.stickyPosts.length + " sticky posts from storage");*/
+/*//            }*/
             if (board.threads != null && board.threads.length > 0) {
                 if (board.threads.length < MAX_THREAD_RETENTION_PER_BOARD) {
                     Collections.addAll(threads, board.threads);
-                    if (DEBUG) Log.i(TAG, "Added " + board.threads.length + " threads from storage");
+                    if (DEBUG) {Log.i(TAG, "Added " + board.threads.length + " threads from storage");}
                 }
                 else {
                     for (int i = 0; i < MAX_THREAD_RETENTION_PER_BOARD; i++) {
                         threads.add(board.threads[i]);
                     }
-                    if (DEBUG) Log.i(TAG, "Hit thread retention limit, adding only " + MAX_THREAD_RETENTION_PER_BOARD + " threads from storage");
+                    if (DEBUG) {Log.i(TAG, "Hit thread retention limit, adding only " + MAX_THREAD_RETENTION_PER_BOARD + " threads from storage");}
                 }
             }
         }
 
         ObjectMapper mapper = getJsonMapper();
         JsonNode rootNode = mapper.readValue(in, JsonNode.class);
-        for (JsonNode threadValue : rootNode.path("threads")) { // iterate over threads
-            JsonNode postValue = threadValue.path("posts").get(0); // first object is the thread post
+        for (JsonNode threadValue : rootNode.path("threads")) { /*// iterate over threads*/
+            JsonNode postValue = threadValue.path("posts").get(0); /*// first object is the thread post*/
             try {
                 ChanPost post = mapper.readValue(postValue, ChanPost.class);
                 if (post != null) {
@@ -203,21 +203,21 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
                     post.mergeIntoThreadList(threads);
                 }
             }
-            catch (JsonMappingException e) { // if we have just one error, try and recover
+            catch (JsonMappingException e) { /*// if we have just one error, try and recover*/
                 Log.e(TAG, "Couldn't parseBoard deserialize postValue for board=" + boardCode, e);
             }
         }
 
         board.threads = threads.toArray(new ChanThread[threads.size()]);
-        if (DEBUG) Log.i(TAG, "Now have " + threads.size() + " threads ");
+        if (DEBUG) {Log.i(TAG, "Now have " + threads.size() + " threads ");}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BoardParserService.parseBoard(java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BoardParserService.parseBoard(java.io.File)",this,throwable);throw throwable;}
     }
 
     private void parseBoardCatalog(File in) throws IOException {
-    	List<ChanThread> threads = new ArrayList<ChanThread>();
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BoardParserService.parseBoardCatalog(java.io.File)",this,in);try{List<ChanThread> threads = new ArrayList<ChanThread>();
     	board = ChanFileStorage.loadBoardData(getBaseContext(), boardCode);
     	boolean firstLoad = false;
     	if (board != null && board.defData) {
-    		// default board we should not use it
+    		/*// default board we should not use it*/
     		board = ChanBoard.getBoardByCode(getBaseContext(), boardCode);
     		firstLoad = true;
     	}
@@ -226,23 +226,23 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
 	        ObjectMapper mapper = getJsonMapper();
 	        JsonParser jp = new MappingJsonFactory().createJsonParser(in);
 	    	configureJsonParser(jp);
-	    	JsonToken current = jp.nextToken(); // will return JsonToken.START_ARRAY
+	    	JsonToken current = jp.nextToken(); /*// will return JsonToken.START_ARRAY*/
 	    	while (jp.nextToken() != JsonToken.END_ARRAY) {
-        		current = jp.nextToken(); // should be JsonToken.START_OBJECT
+        		current = jp.nextToken(); /*// should be JsonToken.START_OBJECT*/
         		JsonNode pageNode = jp.readValueAsTree();
-    	        for (JsonNode threadValue : pageNode.path("threads")) { // iterate over threads
+    	        for (JsonNode threadValue : pageNode.path("threads")) { /*// iterate over threads*/
     	            try {
                         ChanThread thread = mapper.readValue(threadValue, ChanThread.class);
-                        if (DEBUG) Log.i(TAG, "thread sub=" + thread.sub + " thumb=" + thread.tn_w + "x" + thread.tn_h
-                                + " full=" + thread.w + "x" + thread.h + " com=" + thread.com);
+                        if (DEBUG) {Log.i(TAG, "thread sub=" + thread.sub + " thumb=" + thread.tn_w + "x" + thread.tn_h
+                                + " full=" + thread.w + "x" + thread.h + " com=" + thread.com);}
                         if (thread != null) {
                             thread.board = boardCode;
                             threads.add(thread);
-                            if (DEBUG) Log.i(TAG, "thread lastReplies=" + thread.lastReplies
-                                    + " len=" + (thread.lastReplies == null ? 0 : thread.lastReplies.length));
+                            if (DEBUG) {Log.i(TAG, "thread lastReplies=" + thread.lastReplies
+                                    + " len=" + (thread.lastReplies == null ? 0 : thread.lastReplies.length));}
                         }
                     }
-                    catch (JsonMappingException e) { // if we have just one error, try and recover
+                    catch (JsonMappingException e) { /*// if we have just one error, try and recover*/
                         Log.e(TAG, "Couldn't parseBoardCatalog deserialize threadValue for board=" + boardCode);
                     }
     	        }
@@ -260,12 +260,12 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
 		}
 
         updateBoardData(threads, firstLoad);
-        if (DEBUG) Log.i(TAG, "Now have " + threads.size() + " threads ");
+        if (DEBUG) {Log.i(TAG, "Now have " + threads.size() + " threads ");}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BoardParserService.parseBoardCatalog(java.io.File)",this,throwable);throw throwable;}
     }
 
 	private void updateBoardData(List<ChanThread> threads, boolean firstLoad) {
-		if (board == null)
-            return;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BoardParserService.updateBoardData(java.util.ArrayList,boolean)",this,threads,firstLoad);try{if (board == null)
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BoardParserService.updateBoardData(java.util.ArrayList,boolean)",this);return;}}
 
         final Context context = getBaseContext();
         final String boardCode = board.link;
@@ -280,17 +280,17 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
                 board.loadedThreads = threads.toArray(new ChanThread[0]);
             }
             board.updateCountersAfterLoad(context);
-            // create a map for lookup of watched threads
+            /*// create a map for lookup of watched threads*/
             for (ChanThread thread : board.loadedThreads) {
                 threadNos.add(thread.no);
             }
         }
 
-        updateWatchlist(context, boardCode, threadNos);
+        updateWatchlist(context, boardCode, threadNos);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BoardParserService.updateBoardData(java.util.ArrayList,boolean)",this,throwable);throw throwable;}
     }
 
     protected void updateWatchlist(final Context context, final String boardCode, final Set<Long> threadNos) {
-        // mark watched threads no longer in board as dead
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.BoardParserService.updateWatchlist(android.content.Context,java.lang.String,java.util.HashSet)",this,context,boardCode,threadNos);try{/*// mark watched threads no longer in board as dead*/
         boolean atLeastOne = false;
         ChanBoard watchlist = ChanFileStorage.loadBoardData(context, ChanBoard.WATCHLIST_BOARD_CODE);
         for (ChanThread thread : watchlist.threads) {
@@ -300,18 +300,18 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
             }
         }
 
-        // remove watched threads no longer in board (and thus dead)
+        /*// remove watched threads no longer in board (and thus dead)*/
         if (atLeastOne) {
             try {
                 if (PreferenceManager.getDefaultSharedPreferences(context)
                         .getBoolean(SettingsActivity.PREF_AUTOMATICALLY_MANAGE_WATCHLIST, true))
-                    ChanFileStorage.cleanDeadWatchedThreads(context);
+                    {ChanFileStorage.cleanDeadWatchedThreads(context);}
             }
             catch (IOException e) {
                 Log.e(TAG, "Exception cleaning dead threads for /" + boardCode + "/", e);
             }
             BoardActivity.refreshWatchlist(context);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.BoardParserService.updateWatchlist(android.content.Context,java.lang.String,java.util.HashSet)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.BoardParserService.updateWatchlist(android.content.Context,java.lang.String,java.util.HashSet)",this,throwable);throw throwable;}
     }
 
     /*
@@ -335,15 +335,15 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
     */
 	@Override
 	public ChanActivityId getChanActivityId() {
-		ChanActivityId id = new ChanActivityId(boardCode, pageNo, priority);
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.BoardParserService.getChanActivityId()",this);try{ChanActivityId id = new ChanActivityId(boardCode, pageNo, priority);
         if (secondaryThreadNo > 0)
-            id.secondaryThreadNo = secondaryThreadNo;
-        return id;
+            {id.secondaryThreadNo = secondaryThreadNo;}
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.BoardParserService.getChanActivityId()",this);return id;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.BoardParserService.getChanActivityId()",this,throwable);throw throwable;}
 	}
 
     @Override
     public String toString() {
-        return "BoardParserService: " + getChanActivityId();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.service.BoardParserService.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.service.BoardParserService.toString()",this);return "BoardParserService: " + getChanActivityId();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.service.BoardParserService.toString()",this,throwable);throw throwable;}
     }
 
 }

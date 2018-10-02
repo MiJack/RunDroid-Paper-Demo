@@ -19,7 +19,7 @@ package com.android.gallery3d.ui;
 import android.content.Context;
 import android.opengl.Matrix;
 
-// EdgeView draws EdgeEffect (blue glow) at four sides of the view.
+/*// EdgeView draws EdgeEffect (blue glow) at four sides of the view.*/
 public class EdgeView extends GLView {
     private static final String TAG = "EdgeView";
 
@@ -28,9 +28,9 @@ public class EdgeView extends GLView {
     public static final int BOTTOM = 2;
     public static final int RIGHT = 3;
 
-    // Each edge effect has a transform matrix, and each matrix has 16 elements.
-    // We put all the elements in one array. These constants specify the
-    // starting index of each matrix.
+    /*// Each edge effect has a transform matrix, and each matrix has 16 elements.*/
+    /*// We put all the elements in one array. These constants specify the*/
+    /*// starting index of each matrix.*/
     private static final int TOP_M = TOP * 16;
     private static final int LEFT_M = LEFT * 16;
     private static final int BOTTOM_M = BOTTOM * 16;
@@ -48,22 +48,22 @@ public class EdgeView extends GLView {
     @Override
     protected void onLayout(
             boolean changeSize, int left, int top, int right, int bottom) {
-        if (!changeSize) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeView.onLayout(boolean,int,int,int,int)",this,changeSize,left,top,right,bottom);try{if (!changeSize) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeView.onLayout(boolean,int,int,int,int)",this);return;}}
 
         int w = right - left;
         int h = bottom - top;
         for (int i = 0; i < 4; i++) {
-            if ((i & 1) == 0) {  // top or bottom
+            if ((i & 1) == 0) {  /*// top or bottom*/
                 mEffect[i].setSize(w, h);
-            } else {  // left or right
+            } else {  /*// left or right*/
                 mEffect[i].setSize(h, w);
             }
         }
 
-        // Set up transforms for the four edges. Without transforms an
-        // EdgeEffect draws the TOP edge from (0, 0) to (w, Y * h) where Y
-        // is some factor < 1. For other edges we need to move, rotate, and
-        // flip the effects into proper places.
+        /*// Set up transforms for the four edges. Without transforms an*/
+        /*// EdgeEffect draws the TOP edge from (0, 0) to (w, Y * h) where Y*/
+        /*// is some factor < 1. For other edges we need to move, rotate, and*/
+        /*// flip the effects into proper places.*/
         Matrix.setIdentityM(mMatrix, TOP_M);
         Matrix.setIdentityM(mMatrix, LEFT_M);
         Matrix.setIdentityM(mMatrix, BOTTOM_M);
@@ -76,12 +76,12 @@ public class EdgeView extends GLView {
         Matrix.scaleM(mMatrix, BOTTOM_M, 1, -1, 1);
 
         Matrix.translateM(mMatrix, RIGHT_M, w, 0, 0);
-        Matrix.rotateM(mMatrix, RIGHT_M, 90, 0, 0, 1);
+        Matrix.rotateM(mMatrix, RIGHT_M, 90, 0, 0, 1);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeView.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        super.render(canvas);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeView.render(GLCanvas)",this,canvas);try{super.render(canvas);
         boolean more = false;
         for (int i = 0; i < 4; i++) {
             canvas.save(GLCanvas.SAVE_FLAG_MATRIX);
@@ -91,38 +91,38 @@ public class EdgeView extends GLView {
         }
         if (more) {
             invalidate();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeView.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeView.render(GLCanvas)",this,throwable);throw throwable;}
     }
 
-    // Called when the content is pulled away from the edge.
-    // offset is in pixels. direction is one of {TOP, LEFT, BOTTOM, RIGHT}.
+    /*// Called when the content is pulled away from the edge.*/
+    /*// offset is in pixels. direction is one of {TOP, LEFT, BOTTOM, RIGHT}.*/
     public void onPull(int offset, int direction) {
-        int fullLength = ((direction & 1) == 0) ? getWidth() : getHeight();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeView.onPull(int,int)",this,offset,direction);try{int fullLength = ((direction & 1) == 0) ? getWidth() : getHeight();
         mEffect[direction].onPull((float)offset / fullLength);
         if (!mEffect[direction].isFinished()) {
             invalidate();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeView.onPull(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeView.onPull(int,int)",this,throwable);throw throwable;}
     }
 
-    // Call when the object is released after being pulled.
+    /*// Call when the object is released after being pulled.*/
     public void onRelease() {
-        boolean more = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeView.onRelease()",this);try{boolean more = false;
         for (int i = 0; i < 4; i++) {
             mEffect[i].onRelease();
             more |= !mEffect[i].isFinished();
         }
         if (more) {
             invalidate();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeView.onRelease()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeView.onRelease()",this,throwable);throw throwable;}
     }
 
-    // Call when the effect absorbs an impact at the given velocity.
-    // Used when a fling reaches the scroll boundary. velocity is in pixels
-    // per second. direction is one of {TOP, LEFT, BOTTOM, RIGHT}.
+    /*// Call when the effect absorbs an impact at the given velocity.*/
+    /*// Used when a fling reaches the scroll boundary. velocity is in pixels*/
+    /*// per second. direction is one of {TOP, LEFT, BOTTOM, RIGHT}.*/
     public void onAbsorb(int velocity, int direction) {
-        mEffect[direction].onAbsorb(velocity);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeView.onAbsorb(int,int)",this,velocity,direction);try{mEffect[direction].onAbsorb(velocity);
         if (!mEffect[direction].isFinished()) {
             invalidate();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeView.onAbsorb(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeView.onAbsorb(int,int)",this,throwable);throw throwable;}
     }
 }

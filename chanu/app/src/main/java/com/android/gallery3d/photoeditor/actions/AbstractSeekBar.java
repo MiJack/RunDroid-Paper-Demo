@@ -38,13 +38,13 @@ abstract class AbstractSeekBar extends SeekBar {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.AbstractSeekBar.onSizeChanged(int,int,int,int)",this,w,h,oldw,oldh);try{super.onSizeChanged(w, h, oldw, oldh);
 
-        // Scale the thumb to fit seek-bar height.
+        /*// Scale the thumb to fit seek-bar height.*/
         Resources res = getResources();
         Drawable thumb = res.getDrawable(R.drawable.photoeditor_seekbar_thumb);
 
-        // Set the left/right padding to half width of the thumb drawn.
+        /*// Set the left/right padding to half width of the thumb drawn.*/
         int scaledWidth = thumb.getIntrinsicWidth() * h / thumb.getIntrinsicHeight();
         int padding = (scaledWidth + 1) / 2;
         setPadding(padding, 0, padding, 0);
@@ -54,6 +54,6 @@ abstract class AbstractSeekBar extends SeekBar {
         thumb.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
         thumb.draw(canvas);
 
-        setThumb(new BitmapDrawable(res, bitmap));
+        setThumb(new BitmapDrawable(res, bitmap));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.AbstractSeekBar.onSizeChanged(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.AbstractSeekBar.onSizeChanged(int,int,int,int)",this,throwable);throw throwable;}
     }
 }

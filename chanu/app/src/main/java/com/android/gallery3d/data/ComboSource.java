@@ -32,10 +32,10 @@ class ComboSource extends MediaSource {
         mMatcher.add("/combo/*/*", COMBO_ALBUM);
     }
 
-    // The only path we accept is "/combo/{set1, set2, ...} and /combo/item/{set1, set2, ...}"
+    /*// The only path we accept is "/combo/{set1, set2, ...} and /combo/item/{set1, set2, ...}"*/
     @Override
     public MediaObject createMediaObject(Path path) {
-        String[] segments = path.split();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ComboSource.createMediaObject(com.android.gallery3d.data.Path)",this,path);try{String[] segments = path.split();
         if (segments.length < 2) {
             throw new RuntimeException("bad path: " + path);
         }
@@ -43,13 +43,13 @@ class ComboSource extends MediaSource {
         DataManager dataManager = mApplication.getDataManager();
         switch (mMatcher.match(path)) {
             case COMBO_ALBUMSET:
-                return new ComboAlbumSet(path, mApplication,
-                        dataManager.getMediaSetsFromString(segments[1]));
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ComboSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new ComboAlbumSet(path, mApplication,
+                        dataManager.getMediaSetsFromString(segments[1]));}
 
             case COMBO_ALBUM:
-                return new ComboAlbum(path,
-                        dataManager.getMediaSetsFromString(segments[2]), segments[1]);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ComboSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new ComboAlbum(path,
+                        dataManager.getMediaSetsFromString(segments[2]), segments[1]);}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ComboSource.createMediaObject(com.android.gallery3d.data.Path)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.ComboSource.createMediaObject(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 }

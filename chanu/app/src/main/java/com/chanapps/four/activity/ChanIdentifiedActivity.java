@@ -20,15 +20,15 @@ public interface ChanIdentifiedActivity {
 	 */
 	Context getBaseContext();
 
-    // tell the search-launching activity to close the search action bar
+    /*// tell the search-launching activity to close the search action bar*/
     void closeSearch();
 
-    // used for refreshing data
+    /*// used for refreshing data*/
     void refresh();
 
-    // tell activity we are starting fetch
+    /*// tell activity we are starting fetch*/
     void setProgress(boolean on);
 
-    public void switchBoard(String boardCode, String query); // for when we are already in this class
+    public void switchBoard(String boardCode, String query); /*// for when we are already in this class*/
 
 }

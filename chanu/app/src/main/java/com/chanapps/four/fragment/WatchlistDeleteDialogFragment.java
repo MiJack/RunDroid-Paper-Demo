@@ -42,20 +42,20 @@ public class WatchlistDeleteDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.WatchlistDeleteDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{LayoutInflater inflater = getActivity().getLayoutInflater();
         View layout = inflater.inflate(R.layout.message_dialog_fragment, null);
         TextView title = (TextView)layout.findViewById(R.id.title);
         TextView message = (TextView)layout.findViewById(R.id.message);
         title.setText(R.string.board_watch);
         message.setText(R.string.dialog_delete_watchlist_thread);
         setStyle(STYLE_NO_TITLE, 0);
-        return (new AlertDialog.Builder(getActivity()))
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.WatchlistDeleteDialogFragment.onCreateDialog(android.os.Bundle)",this);return (new AlertDialog.Builder(getActivity()))
                 .setView(layout)
                 .setPositiveButton(R.string.dialog_remove,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                try {
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.WatchlistDeleteDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{try {
                                     Context context = getActivity().getApplicationContext();
                                     ChanFileStorage.deleteWatchedThread(context, thread);
                                     BoardActivity.refreshWatchlist(context);
@@ -65,17 +65,17 @@ public class WatchlistDeleteDialogFragment extends DialogFragment {
                                     Toast.makeText(getActivity().getApplicationContext(),
                                             R.string.thread_watchlist_not_deleted_thread, Toast.LENGTH_SHORT).show();
                                 }
-                                dismiss();
+                                dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.WatchlistDeleteDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.WatchlistDeleteDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
                 .setNegativeButton(R.string.dialog_cancel,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dismiss();
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.WatchlistDeleteDialogFragment$2.onClick(android.content.DialogInterface,int)",this,dialog,which);try{dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.WatchlistDeleteDialogFragment$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.WatchlistDeleteDialogFragment$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.WatchlistDeleteDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 }

@@ -52,64 +52,64 @@ public class ChanOffLineAlbum extends MediaSet {
 
 	@Override
 	public String getName() {
-		return name;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.gallery.ChanOffLineAlbum.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.gallery.ChanOffLineAlbum.getName()",this);return name;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.gallery.ChanOffLineAlbum.getName()",this,throwable);throw throwable;}
 	}
 	
 	public String getDirName() {
-		return dir != null ? dir.getName() : "null";
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.gallery.ChanOffLineAlbum.getDirName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.gallery.ChanOffLineAlbum.getDirName()",this);return dir != null ? dir.getName() : "null";}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.gallery.ChanOffLineAlbum.getDirName()",this,throwable);throw throwable;}
 	}
 
 	@Override
     public ArrayList<MediaItem> getMediaItem(int start, int count) {
-		ArrayList<MediaItem> result = new ArrayList<MediaItem>();
+		com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.chanapps.four.gallery.ChanOffLineAlbum.getMediaItem(int,int)",this,start,count);try{ArrayList<MediaItem> result = new ArrayList<MediaItem>();
 		for (int i = 0; i < count; i++) {
 			if (i + start < images.size()) {
 				ChanOffLineImage post = images.get(i + start);
 				result.add(post);
 			}
 		}
-		return result;
+		{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.chanapps.four.gallery.ChanOffLineAlbum.getMediaItem(int,int)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.chanapps.four.gallery.ChanOffLineAlbum.getMediaItem(int,int)",this,throwable);throw throwable;}
 	}
 	
 	@Override
     public int getMediaItemCount() {
-		return images.size();
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.ChanOffLineAlbum.getMediaItemCount()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.ChanOffLineAlbum.getMediaItemCount()",this);return images.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.ChanOffLineAlbum.getMediaItemCount()",this,throwable);throw throwable;}
 	}
 	
 	@Override
     public boolean isLeafAlbum() {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.gallery.ChanOffLineAlbum.isLeafAlbum()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.ChanOffLineAlbum.isLeafAlbum()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.gallery.ChanOffLineAlbum.isLeafAlbum()",this,throwable);throw throwable;}
     }
 
 	@Override
 	public long reload() {
-		int prevSize = images.size();
+		com.mijack.Xlog.logMethodEnter("long com.chanapps.four.gallery.ChanOffLineAlbum.reload()",this);try{int prevSize = images.size();
 		images.clear();
 		
         loadData();
         
 		if (prevSize != images.size()) {
-			return nextVersionNumber();
+			{com.mijack.Xlog.logMethodExit("long com.chanapps.four.gallery.ChanOffLineAlbum.reload()",this);return nextVersionNumber();}
 		} else {
-			return mDataVersion;
-		}
+			{com.mijack.Xlog.logMethodExit("long com.chanapps.four.gallery.ChanOffLineAlbum.reload()",this);return mDataVersion;}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.gallery.ChanOffLineAlbum.reload()",this,throwable);throw throwable;}
 	}
 
 	private void loadData() {
-        if (dir == null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.ChanOffLineAlbum.loadData()",this);try{if (dir == null) {
             Log.e(TAG, "loadData() null directory, exiting");
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.ChanOffLineAlbum.loadData()",this);return;}
         }
 		Log.i(TAG, "Loading data from " + dir.getAbsolutePath());
 		File[] files = dir.listFiles(new FilenameFilter() {
             public boolean accept(File directory, String fileName) {
-            	if (DEBUG) Log.d(TAG, "Checking file " + directory.getAbsolutePath() + "/" + fileName);
-                return !fileName.endsWith(".txt");
+            	com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.gallery.ChanOffLineAlbum$1.accept(java.io.File,java.lang.String)",this,directory,fileName);try{if (DEBUG) {Log.d(TAG, "Checking file " + directory.getAbsolutePath() + "/" + fileName);}
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.ChanOffLineAlbum.loadData()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.ChanOffLineAlbum$1.accept(java.io.File,java.lang.String)",this);return !fileName.endsWith(".txt");}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.gallery.ChanOffLineAlbum$1.accept(java.io.File,java.lang.String)",this,throwable);throw throwable;}
             }
         });
         if (files == null || files.length == 0) {
             Log.e(TAG, "loadData() exiting, no gallery images found in dir=" + dir);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.ChanOffLineAlbum.loadData()",this);return;}
         }
         String dirName = dir.getName();
         for (File file : files) {
@@ -119,6 +119,6 @@ public class ChanOffLineAlbum extends MediaSet {
         	} else {
         		images.add((ChanOffLineImage)path.getObject());
         	}
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.ChanOffLineAlbum.loadData()",this,throwable);throw throwable;}
 	}
 }

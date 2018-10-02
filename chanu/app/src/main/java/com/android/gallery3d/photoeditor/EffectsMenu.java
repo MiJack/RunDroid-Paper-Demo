@@ -47,35 +47,35 @@ public class EffectsMenu extends RestorableView {
 
     @Override
     protected int childLayoutId() {
-        return R.layout.photoeditor_effects_menu;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.photoeditor.EffectsMenu.childLayoutId()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.photoeditor.EffectsMenu.childLayoutId()",this);return R.layout.photoeditor_effects_menu;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.photoeditor.EffectsMenu.childLayoutId()",this,throwable);throw throwable;}
     }
 
     public void setOnToggleListener(OnToggleListener listener) {
-        setToggleRunnalbe(listener, R.id.exposure_button, R.layout.photoeditor_effects_exposure);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.EffectsMenu.setOnToggleListener(OnToggleListener)",this,listener);try{setToggleRunnalbe(listener, R.id.exposure_button, R.layout.photoeditor_effects_exposure);
         setToggleRunnalbe(listener, R.id.artistic_button, R.layout.photoeditor_effects_artistic);
         setToggleRunnalbe(listener, R.id.color_button, R.layout.photoeditor_effects_color);
-        setToggleRunnalbe(listener, R.id.fix_button, R.layout.photoeditor_effects_fix);
+        setToggleRunnalbe(listener, R.id.fix_button, R.layout.photoeditor_effects_fix);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.EffectsMenu.setOnToggleListener(OnToggleListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.EffectsMenu.setOnToggleListener(OnToggleListener)",this,throwable);throw throwable;}
     }
 
     private void setToggleRunnalbe(final OnToggleListener listener, final int toggleId,
             final int effectsId) {
-        setClickRunnable(toggleId, new Runnable() {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.EffectsMenu.setToggleRunnalbe(OnToggleListener,int,int)",this,listener,toggleId,effectsId);try{setClickRunnable(toggleId, new Runnable() {
 
             @Override
             public void run() {
-                boolean selected = findViewById(toggleId).isSelected();
-                setViewSelected(toggleId, listener.onToggle(selected, effectsId));
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.EffectsMenu$1.run()",this);try{boolean selected = findViewById(toggleId).isSelected();
+                setViewSelected(toggleId, listener.onToggle(selected, effectsId));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.EffectsMenu$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.EffectsMenu$1.run()",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.EffectsMenu.setToggleRunnalbe(OnToggleListener,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.EffectsMenu.setToggleRunnalbe(OnToggleListener,int,int)",this,throwable);throw throwable;}
     }
 
     public void clearSelected() {
-        ViewGroup menu = (ViewGroup) findViewById(R.id.toggles);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.EffectsMenu.clearSelected()",this);try{ViewGroup menu = (ViewGroup) findViewById(R.id.toggles);
         for (int i = 0; i < menu.getChildCount(); i++) {
             View toggle = menu.getChildAt(i);
             if (toggle.isSelected()) {
                 setViewSelected(toggle.getId(), false);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.EffectsMenu.clearSelected()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.EffectsMenu.clearSelected()",this,throwable);throw throwable;}
     }
 }

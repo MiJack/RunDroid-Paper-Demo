@@ -23,8 +23,8 @@ public enum BoardSortType {
 
     public static final BoardSortType valueOfDisplayString(Context context, String displayString) {
         for (BoardSortType boardType : BoardSortType.values())
-            if (context.getString(boardType.displayStringId).equals(displayString))
-                return boardType;
+            {if (context.getString(boardType.displayStringId).equals(displayString))
+                {return boardType;}}
         return null;
     }
 
@@ -38,7 +38,7 @@ public enum BoardSortType {
                 .getString(SettingsActivity.PREF_BOARD_SORT_TYPE,
                         context.getString(R.string.sort_order_bump_order)));
         if (sortType == null)
-            sortType = BoardSortType.BUMP_ORDER;
+            {sortType = BoardSortType.BUMP_ORDER;}
         return sortType;
     }
 

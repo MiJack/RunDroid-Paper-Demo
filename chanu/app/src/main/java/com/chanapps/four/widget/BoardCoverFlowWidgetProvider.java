@@ -12,7 +12,7 @@ public class BoardCoverFlowWidgetProvider extends AbstractBoardWidgetProvider {
 
     @Override
     protected String getWidgetType() {
-        return WidgetConstants.WIDGET_TYPE_COVER_FLOW;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.widget.BoardCoverFlowWidgetProvider.getWidgetType()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.widget.BoardCoverFlowWidgetProvider.getWidgetType()",this);return WidgetConstants.WIDGET_TYPE_COVER_FLOW;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.widget.BoardCoverFlowWidgetProvider.getWidgetType()",this,throwable);throw throwable;}
     }
 
 }

@@ -26,7 +26,7 @@ public class PostingReplyDialogFragment extends DialogFragment {
     protected PostReplyActivity.PostReplyTask task;
     protected long  threadNo;
 
-    public PostingReplyDialogFragment() { // when on-create gets called
+    public PostingReplyDialogFragment() { /*// when on-create gets called*/
         super();
     }
 
@@ -38,7 +38,7 @@ public class PostingReplyDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle bundle) {
-        if (bundle != null) { // recalled on existing task
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.PostingReplyDialogFragment.onCreateDialog(android.os.Bundle)",this,bundle);try{if (bundle != null) { /*// recalled on existing task*/
            this.threadNo = bundle.getLong(THREAD_NO);
         }
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -49,22 +49,22 @@ public class PostingReplyDialogFragment extends DialogFragment {
         title.setText(titleId);
         message.setText(R.string.dialog_posting_reply);
         setStyle(STYLE_NO_TITLE, 0);
-        return (new AlertDialog.Builder(getActivity()))
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.PostingReplyDialogFragment.onCreateDialog(android.os.Bundle)",this);return (new AlertDialog.Builder(getActivity()))
                 .setView(layout)
                 .setNegativeButton(R.string.dialog_cancel,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (task != null)
-                                    task.cancel(true);
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PostingReplyDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{if (task != null)
+                                    {task.cancel(true);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PostingReplyDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PostingReplyDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.PostingReplyDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putLong(THREAD_NO, threadNo);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PostingReplyDialogFragment.onSaveInstanceState(android.os.Bundle)",this,outState);try{outState.putLong(THREAD_NO, threadNo);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PostingReplyDialogFragment.onSaveInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PostingReplyDialogFragment.onSaveInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 }

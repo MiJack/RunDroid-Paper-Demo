@@ -50,7 +50,7 @@ public class DeletePostDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        this.password = PreferenceManager
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.DeletePostDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{this.password = PreferenceManager
                 .getDefaultSharedPreferences(getActivity())
                 .getString(SettingsActivity.PREF_USER_PASSWORD, "");
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -64,10 +64,10 @@ public class DeletePostDialogFragment extends DialogFragment {
             .setPositiveButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    password = passwordText.getText().toString();
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DeletePostDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{password = passwordText.getText().toString();
                     if ("".equals(password)) {
                         Toast.makeText(getActivity(), R.string.delete_post_enter_password, Toast.LENGTH_SHORT).show();
-                        return;
+                        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.DeletePostDialogFragment.onCreateDialog(android.os.Bundle)",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DeletePostDialogFragment$1.onClick(android.content.DialogInterface,int)",this);return;}}
                     }
                     closeKeyboard();
                     boolean onlyImages = imageOnlyCheckbox.isChecked();
@@ -76,36 +76,34 @@ public class DeletePostDialogFragment extends DialogFragment {
                     DeletingPostDialogFragment dialogFragment = new DeletingPostDialogFragment(deletePostTask, onlyImages);
                     dialogFragment.show(getActivity().getSupportFragmentManager(), DeletingPostDialogFragment.TAG);
                     if (!deletePostTask.isCancelled())
-                        deletePostTask.execute(dialogFragment);
-                    //mode.finish();
+                        {deletePostTask.execute(dialogFragment);}
+                    /*//mode.finish();*/}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DeletePostDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                 }
             })
             .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
+                {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DeletePostDialogFragment$2.onClick(android.content.DialogInterface,int)",this,dialog,which);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DeletePostDialogFragment$2.onClick(android.content.DialogInterface,int)",this);}
             });
         passwordText = (EditText)layout.findViewById(R.id.delete_post_password);
         passwordText.setText(password);
         imageOnlyCheckbox = (CheckBox)layout.findViewById(R.id.delete_post_only_image_checkbox);
         imageOnlyCheckbox.setChecked(false);
-        return builder.create();
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.DeletePostDialogFragment.onCreateDialog(android.os.Bundle)",this);return builder.create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.DeletePostDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onActivityCreated(Bundle bundle) {
-        super.onActivityCreated(bundle);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DeletePostDialogFragment.onActivityCreated(android.os.Bundle)",this,bundle);try{super.onActivityCreated(bundle);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DeletePostDialogFragment.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DeletePostDialogFragment.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     private void closeKeyboard() {
-        IBinder windowToken = getActivity().getCurrentFocus() != null ?
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DeletePostDialogFragment.closeKeyboard()",this);try{IBinder windowToken = getActivity().getCurrentFocus() != null ?
                 getActivity().getCurrentFocus().getWindowToken()
                 : null;
-        if (windowToken != null) { // close the keyboard
+        if (windowToken != null) { /*// close the keyboard*/
             InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(windowToken, 0);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DeletePostDialogFragment.closeKeyboard()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DeletePostDialogFragment.closeKeyboard()",this,throwable);throw throwable;}
     }
 
 }

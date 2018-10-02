@@ -66,21 +66,21 @@ public class ByteArrayPartSource implements PartSource {
      * @see PartSource#getLength()
      */
     public long getLength() {
-        return bytes.length;
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.multipartmime.ByteArrayPartSource.getLength()",this);try{com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.ByteArrayPartSource.getLength()",this);return bytes.length;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.multipartmime.ByteArrayPartSource.getLength()",this,throwable);throw throwable;}
     }
 
     /**
      * @see PartSource#getFileName()
      */
     public String getFileName() {
-        return fileName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.ByteArrayPartSource.getFileName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.ByteArrayPartSource.getFileName()",this);return fileName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.ByteArrayPartSource.getFileName()",this,throwable);throw throwable;}
     }
 
     /**
      * @see PartSource#createInputStream()
      */
     public InputStream createInputStream() {
-        return new ByteArrayInputStream(bytes);
+        com.mijack.Xlog.logMethodEnter("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.ByteArrayPartSource.createInputStream()",this);try{com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.ByteArrayPartSource.createInputStream()",this);return new ByteArrayInputStream(bytes);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.ByteArrayPartSource.createInputStream()",this,throwable);throw throwable;}
     }
 
 }

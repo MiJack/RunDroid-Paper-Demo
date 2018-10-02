@@ -13,6 +13,6 @@ public class BoardWidgetProvider extends AbstractBoardWidgetProvider {
 
     @Override
     protected String getWidgetType() {
-        return WidgetConstants.WIDGET_TYPE_BOARD;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.widget.BoardWidgetProvider.getWidgetType()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.widget.BoardWidgetProvider.getWidgetType()",this);return WidgetConstants.WIDGET_TYPE_BOARD;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.widget.BoardWidgetProvider.getWidgetType()",this,throwable);throw throwable;}
     }
 }

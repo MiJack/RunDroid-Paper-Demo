@@ -24,38 +24,38 @@ public class GifDecoder {
 	protected static final int MAX_STACK_SIZE = 4096;
 	protected InputStream in;
 	protected int status;
-	protected int width; // full image width
-	protected int height; // full image height
-	protected boolean gctFlag; // global color table used
-	protected int gctSize; // size of global color table
-	protected int loopCount = 1; // iterations; 0 = repeat forever
-	protected int[] gct; // global color table
-	protected int[] lct; // local color table
-	protected int[] act; // active color table
-	protected int bgIndex; // background color index
-	protected int bgColor; // background color
-	protected int lastBgColor; // previous bg color
-	protected int pixelAspect; // pixel aspect ratio
-	protected boolean lctFlag; // local color table flag
-	protected boolean interlace; // interlace flag
-	protected int lctSize; // local color table size
-	protected int ix, iy, iw, ih; // current image rectangle
+	protected int width; /*// full image width*/
+	protected int height; /*// full image height*/
+	protected boolean gctFlag; /*// global color table used*/
+	protected int gctSize; /*// size of global color table*/
+	protected int loopCount = 1; /*// iterations; 0 = repeat forever*/
+	protected int[] gct; /*// global color table*/
+	protected int[] lct; /*// local color table*/
+	protected int[] act; /*// active color table*/
+	protected int bgIndex; /*// background color index*/
+	protected int bgColor; /*// background color*/
+	protected int lastBgColor; /*// previous bg color*/
+	protected int pixelAspect; /*// pixel aspect ratio*/
+	protected boolean lctFlag; /*// local color table flag*/
+	protected boolean interlace; /*// interlace flag*/
+	protected int lctSize; /*// local color table size*/
+	protected int ix, iy, iw, ih; /*// current image rectangle*/
 	protected int lrx, lry, lrw, lrh;
-	protected Bitmap image; // current frame
-	protected Bitmap lastBitmap; // previous frame
-	protected byte[] block = new byte[256]; // current data block
-	protected int blockSize = 0; // block size last graphic control extension info
-	protected int dispose = 0; // 0=no action; 1=leave in place; 2=restore to bg; 3=restore to prev
+	protected Bitmap image; /*// current frame*/
+	protected Bitmap lastBitmap; /*// previous frame*/
+	protected byte[] block = new byte[256]; /*// current data block*/
+	protected int blockSize = 0; /*// block size last graphic control extension info*/
+	protected int dispose = 0; /*// 0=no action; 1=leave in place; 2=restore to bg; 3=restore to prev*/
 	protected int lastDispose = 0;
-	protected boolean transparency = false; // use transparent color
-	protected int delay = 0; // delay in milliseconds
-	protected int transIndex; // transparent color index
-	// LZW decoder working arrays
+	protected boolean transparency = false; /*// use transparent color*/
+	protected int delay = 0; /*// delay in milliseconds*/
+	protected int transIndex; /*// transparent color index*/
+	/*// LZW decoder working arrays*/
 	protected short[] prefix;
 	protected byte[] suffix;
 	protected byte[] pixelStack;
 	protected byte[] pixels;
-	protected Vector<GifFrame> frames; // frames read from current file
+	protected Vector<GifFrame> frames; /*// frames read from current file*/
 	protected int frameCount;
 
 	private static class GifFrame {
@@ -76,11 +76,11 @@ public class GifDecoder {
 	 * @return delay in milliseconds
 	 */
 	public int getDelay(int n) {
-		delay = -1;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.GifDecoder.getDelay(int)",this,n);try{delay = -1;
 		if ((n >= 0) && (n < frameCount)) {
 			delay = frames.elementAt(n).delay;
 		}
-		return delay;
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.GifDecoder.getDelay(int)",this);return delay;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.GifDecoder.getDelay(int)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class GifDecoder {
 	 * @return frame count
 	 */
 	public int getFrameCount() {
-		return frameCount;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.GifDecoder.getFrameCount()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.GifDecoder.getFrameCount()",this);return frameCount;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.GifDecoder.getFrameCount()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class GifDecoder {
 	 * @return BufferedBitmap containing first frame, or null if none.
 	 */
 	public Bitmap getBitmap() {
-		return getFrame(0);
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.chanapps.four.gallery.GifDecoder.getBitmap()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.GifDecoder.getBitmap()",this);return getFrame(0);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.chanapps.four.gallery.GifDecoder.getBitmap()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -107,19 +107,19 @@ public class GifDecoder {
 	 * @return iteration count if one was specified, else 1.
 	 */
 	public int getLoopCount() {
-		return loopCount;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.GifDecoder.getLoopCount()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.GifDecoder.getLoopCount()",this);return loopCount;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.GifDecoder.getLoopCount()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Creates new frame image from current data (and previous frames as specified by their disposition codes).
 	 */
 	protected void setPixels() {
-		// expose destination image's pixels as int array
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.setPixels()",this);try{/*// expose destination image's pixels as int array*/
 		int[] dest = new int[width * height];
-		// fill in starting image contents based on last image's dispose code
+		/*// fill in starting image contents based on last image's dispose code*/
 		if (lastDispose > 0) {
 			if (lastDispose == 3) {
-				// use image before last
+				/*// use image before last*/
 				int n = frameCount - 2;
 				if (n > 0) {
 					lastBitmap = getFrame(n - 1);
@@ -129,9 +129,9 @@ public class GifDecoder {
 			}
 			if (lastBitmap != null) {
 				lastBitmap.getPixels(dest, 0, width, 0, 0, width, height);
-				// copy pixels
+				/*// copy pixels*/
 				if (lastDispose == 2) {
-					// fill last image rect area with background color
+					/*// fill last image rect area with background color*/
 					int c = 0;
 					if (!transparency) {
 						c = lastBgColor;
@@ -146,7 +146,7 @@ public class GifDecoder {
 				}
 			}
 		}
-		// copy each source line to the appropriate place in the destination
+		/*// copy each source line to the appropriate place in the destination*/
 		int pass = 1;
 		int inc = 8;
 		int iline = 0;
@@ -177,14 +177,14 @@ public class GifDecoder {
 			line += iy;
 			if (line < height) {
 				int k = line * width;
-				int dx = k + ix; // start of line in dest
-				int dlim = dx + iw; // end of dest line
+				int dx = k + ix; /*// start of line in dest*/
+				int dlim = dx + iw; /*// end of dest line*/
 				if ((k + width) < dlim) {
-					dlim = k + width; // past dest edge
+					dlim = k + width; /*// past dest edge*/
 				}
-				int sx = i * iw; // start of line in source
+				int sx = i * iw; /*// start of line in source*/
 				while (dx < dlim) {
-					// map color and insert in destination
+					/*// map color and insert in destination*/
 					int index = ((int) pixels[sx++]) & 0xff;
 					int c = act[index];
 					if (c != 0) {
@@ -194,7 +194,7 @@ public class GifDecoder {
 				}
 			}
 		}
-		image = Bitmap.createBitmap(dest, width, height, Config.ARGB_4444);
+		image = Bitmap.createBitmap(dest, width, height, Config.ARGB_4444);com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.setPixels()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.setPixels()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -203,10 +203,10 @@ public class GifDecoder {
 	 * @return BufferedBitmap representation of frame, or null if n is invalid.
 	 */
 	public Bitmap getFrame(int n) {
-		if (frameCount <= 0)
-			return null;
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.chanapps.four.gallery.GifDecoder.getFrame(int)",this,n);try{if (frameCount <= 0)
+			{{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.GifDecoder.getFrame(int)",this);return null;}}
 		n = n % frameCount;
-		return ((GifFrame) frames.elementAt(n)).image;
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.chanapps.four.gallery.GifDecoder.getFrame(int)",this);return ((GifFrame) frames.elementAt(n)).image;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.chanapps.four.gallery.GifDecoder.getFrame(int)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class GifDecoder {
 	 * @return read status code (0 = no errors)
 	 */
 	public int read(InputStream is) {
-		init();
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.GifDecoder.read(java.io.InputStream)",this,is);try{init();
 		if (is != null) {
 			in = is;
 			readHeader();
@@ -234,18 +234,18 @@ public class GifDecoder {
 			is.close();
 		} catch (Exception e) {
 		}
-		return status;
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.GifDecoder.read(java.io.InputStream)",this);return status;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.GifDecoder.read(java.io.InputStream)",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Decodes LZW image data into pixel array. Adapted from John Cristy's BitmapMagick.
 	 */
 	protected void decodeBitmapData() {
-		int nullCode = -1;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.decodeBitmapData()",this);try{int nullCode = -1;
 		int npix = iw * ih;
 		int available, clear, code_mask, code_size, end_of_information, in_code, old_code, bits, code, count, i, datum, data_size, first, top, bi, pi;
 		if ((pixels == null) || (pixels.length < npix)) {
-			pixels = new byte[npix]; // allocate new pixel array
+			pixels = new byte[npix]; /*// allocate new pixel array*/
 		}
 		if (prefix == null) {
 			prefix = new short[MAX_STACK_SIZE];
@@ -256,7 +256,7 @@ public class GifDecoder {
 		if (pixelStack == null) {
 			pixelStack = new byte[MAX_STACK_SIZE + 1];
 		}
-		// Initialize GIF data stream decoder.
+		/*// Initialize GIF data stream decoder.*/
 		data_size = read();
 		clear = 1 << data_size;
 		end_of_information = clear + 1;
@@ -265,17 +265,17 @@ public class GifDecoder {
 		code_size = data_size + 1;
 		code_mask = (1 << code_size) - 1;
 		for (code = 0; code < clear; code++) {
-			prefix[code] = 0; // XXX ArrayIndexOutOfBoundsException
+			prefix[code] = 0; /*// XXX ArrayIndexOutOfBoundsException*/
 			suffix[code] = (byte) code;
 		}
-		// Decode GIF pixel stream.
+		/*// Decode GIF pixel stream.*/
 		datum = bits = count = first = top = pi = bi = 0;
 		for (i = 0; i < npix;) {
 			if (top == 0) {
 				if (bits < code_size) {
-					// Load bytes until there are enough bits for a code.
+					/*// Load bytes until there are enough bits for a code.*/
 					if (count == 0) {
-						// Read a new data block.
+						/*// Read a new data block.*/
 						count = readBlock();
 						if (count <= 0) {
 							break;
@@ -288,16 +288,16 @@ public class GifDecoder {
 					count--;
 					continue;
 				}
-				// Get the next code.
+				/*// Get the next code.*/
 				code = datum & code_mask;
 				datum >>= code_size;
 				bits -= code_size;
-				// Interpret the code
+				/*// Interpret the code*/
 				if ((code > available) || (code == end_of_information)) {
 					break;
 				}
 				if (code == clear) {
-					// Reset decoder.
+					/*// Reset decoder.*/
 					code_size = data_size + 1;
 					code_mask = (1 << code_size) - 1;
 					available = clear + 2;
@@ -320,7 +320,7 @@ public class GifDecoder {
 					code = prefix[code];
 				}
 				first = ((int) suffix[code]) & 0xff;
-				// Add a new string to the string table,
+				/*// Add a new string to the string table,*/
 				if (available >= MAX_STACK_SIZE) {
 					break;
 				}
@@ -334,45 +334,45 @@ public class GifDecoder {
 				}
 				old_code = in_code;
 			}
-			// Pop a pixel off the pixel stack.
+			/*// Pop a pixel off the pixel stack.*/
 			top--;
 			pixels[pi++] = pixelStack[top];
 			i++;
 		}
 		for (i = pi; i < npix; i++) {
-			pixels[i] = 0; // clear missing pixels
-		}
+			pixels[i] = 0; /*// clear missing pixels*/
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.decodeBitmapData()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.decodeBitmapData()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Returns true if an error was encountered during reading/decoding
 	 */
 	protected boolean err() {
-		return status != STATUS_OK;
+		com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.gallery.GifDecoder.err()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.GifDecoder.err()",this);return status != STATUS_OK;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.gallery.GifDecoder.err()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Initializes or re-initializes reader
 	 */
 	protected void init() {
-		status = STATUS_OK;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.init()",this);try{status = STATUS_OK;
 		frameCount = 0;
 		frames = new Vector<GifFrame>();
 		gct = null;
-		lct = null;
+		lct = null;com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.init()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.init()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Reads a single byte from the input stream.
 	 */
 	protected int read() {
-		int curByte = 0;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.GifDecoder.read()",this);try{int curByte = 0;
 		try {
 			curByte = in.read();
 		} catch (Exception e) {
 			status = STATUS_FORMAT_ERROR;
 		}
-		return curByte;
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.GifDecoder.read()",this);return curByte;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.GifDecoder.read()",this,throwable);throw throwable;}
 	}
 
     protected static final String TAG = GifDecoder.class.getSimpleName();
@@ -383,7 +383,7 @@ public class GifDecoder {
 	 * @return number of bytes stored in "buffer"
 	 */
 	protected int readBlock() {
-		blockSize = read();
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.GifDecoder.readBlock()",this);try{blockSize = read();
 		int n = 0;
 		if (blockSize > 0) {
 			try {
@@ -402,7 +402,7 @@ public class GifDecoder {
 				status = STATUS_FORMAT_ERROR;
 			}
 		}
-		return n;
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.GifDecoder.readBlock()",this);return n;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.GifDecoder.readBlock()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -413,7 +413,7 @@ public class GifDecoder {
 	 * @return int array containing 256 colors (packed ARGB with full alpha)
 	 */
 	protected int[] readColorTable(int ncolors) {
-		int nbytes = 3 * ncolors;
+		com.mijack.Xlog.logMethodEnter("[int com.chanapps.four.gallery.GifDecoder.readColorTable(int)",this,ncolors);try{int nbytes = 3 * ncolors;
 		int[] tab = null;
 		byte[] c = new byte[nbytes];
 		int n = 0;
@@ -425,7 +425,7 @@ public class GifDecoder {
 		if (n < nbytes) {
 			status = STATUS_FORMAT_ERROR;
 		} else {
-			tab = new int[256]; // max size to avoid bounds checks
+			tab = new int[256]; /*// max size to avoid bounds checks*/
 			int i = 0;
 			int j = 0;
 			while (i < ncolors) {
@@ -435,28 +435,28 @@ public class GifDecoder {
 				tab[i++] = 0xff000000 | (r << 16) | (g << 8) | b;
 			}
 		}
-		return tab;
+		{com.mijack.Xlog.logMethodExit("[int com.chanapps.four.gallery.GifDecoder.readColorTable(int)",this);return tab;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[int com.chanapps.four.gallery.GifDecoder.readColorTable(int)",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Main file parser. Reads GIF content blocks.
 	 */
 	protected void readContents() {
-		// read GIF file content blocks
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.readContents()",this);try{/*// read GIF file content blocks*/
 		boolean done = false;
 		while (!(done || err())) {
 			int code = read();
 			switch (code) {
-			case 0x2C: // image separator
+			case 0x2C: /*// image separator*/
 				readBitmap();
 				break;
-			case 0x21: // extension
+			case 0x21: /*// extension*/
 				code = read();
 				switch (code) {
-				case 0xf9: // graphics control extension
+				case 0xf9: /*// graphics control extension*/
 					readGraphicControlExt();
 					break;
-				case 0xff: // application extension
+				case 0xff: /*// application extension*/
 					readBlock();
 					String app = "";
 					for (int i = 0; i < 11; i++) {
@@ -465,84 +465,84 @@ public class GifDecoder {
 					if (app.equals("NETSCAPE2.0")) {
 						readNetscapeExt();
 					} else {
-						skip(); // don't care
+						skip(); /*// don't care*/
 					}
 					break;
-				case 0xfe:// comment extension
+				case 0xfe:/*// comment extension*/
 					skip();
 					break;
-				case 0x01:// plain text extension
+				case 0x01:/*// plain text extension*/
 					skip();
 					break;
-				default: // uninteresting extension
+				default: /*// uninteresting extension*/
 					skip();
 				}
 				break;
-			case 0x3b: // terminator
+			case 0x3b: /*// terminator*/
 				done = true;
 				break;
-			case 0x00: // bad byte, but keep going and see what happens break;
+			case 0x00: /*// bad byte, but keep going and see what happens break;*/
 			default:
 				status = STATUS_FORMAT_ERROR;
 			}
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.readContents()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.readContents()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Reads Graphics Control Extension values
 	 */
 	protected void readGraphicControlExt() {
-		read(); // block size
-		int packed = read(); // packed fields
-		dispose = (packed & 0x1c) >> 2; // disposal method
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.readGraphicControlExt()",this);try{read(); /*// block size*/
+		int packed = read(); /*// packed fields*/
+		dispose = (packed & 0x1c) >> 2; /*// disposal method*/
 		if (dispose == 0) {
-			dispose = 1; // elect to keep old image if discretionary
+			dispose = 1; /*// elect to keep old image if discretionary*/
 		}
 		transparency = (packed & 1) != 0;
-		delay = readShort() * 10; // delay in milliseconds
-		transIndex = read(); // transparent color index
-		read(); // block terminator
+		delay = readShort() * 10; /*// delay in milliseconds*/
+		transIndex = read(); /*// transparent color index*/
+		read(); /*// block terminator*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.readGraphicControlExt()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.readGraphicControlExt()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Reads GIF file header information.
 	 */
 	protected void readHeader() {
-		String id = "";
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.readHeader()",this);try{String id = "";
 		for (int i = 0; i < 6; i++) {
 			id += (char) read();
 		}
 		if (!id.startsWith("GIF")) {
 			status = STATUS_FORMAT_ERROR;
-			return;
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.readHeader()",this);return;}
 		}
 		readLSD();
 		if (gctFlag && !err()) {
 			gct = readColorTable(gctSize);
 			bgColor = gct[bgIndex];
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.readHeader()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Reads next frame image
 	 */
 	protected void readBitmap() {
-		ix = readShort(); // (sub)image position & size
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.readBitmap()",this);try{ix = readShort(); /*// (sub)image position & size*/
 		iy = readShort();
 		iw = readShort();
 		ih = readShort();
 		int packed = read();
-		lctFlag = (packed & 0x80) != 0; // 1 - local color table flag interlace
+		lctFlag = (packed & 0x80) != 0; /*// 1 - local color table flag interlace*/
 		lctSize = (int) Math.pow(2, (packed & 0x07) + 1);
-		// 3 - sort flag
-		// 4-5 - reserved lctSize = 2 << (packed & 7); // 6-8 - local color
-		// table size
+		/*// 3 - sort flag*/
+		/*// 4-5 - reserved lctSize = 2 << (packed & 7); // 6-8 - local color*/
+		/*// table size*/
 		interlace = (packed & 0x40) != 0;
 		if (lctFlag) {
-			lct = readColorTable(lctSize); // read table
-			act = lct; // make local table active
+			lct = readColorTable(lctSize); /*// read table*/
+			act = lct; /*// make local table active*/
 		} else {
-			act = gct; // make global table active
+			act = gct; /*// make global table active*/
 			if (bgIndex == transIndex) {
 				bgColor = 0;
 			}
@@ -550,78 +550,78 @@ public class GifDecoder {
 		int save = 0;
 		if (transparency) {
 			save = act[transIndex];
-			act[transIndex] = 0; // set transparent color if specified
+			act[transIndex] = 0; /*// set transparent color if specified*/
 		}
 		if (act == null) {
-			status = STATUS_FORMAT_ERROR; // no color table defined
+			status = STATUS_FORMAT_ERROR; /*// no color table defined*/
 		}
 		if (err()) {
-			return;
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.readBitmap()",this);return;}
 		}
-		decodeBitmapData(); // decode pixel data
+		decodeBitmapData(); /*// decode pixel data*/
 		skip();
 		if (err()) {
-			return;
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.readBitmap()",this);return;}
 		}
 		if (frameCount == 0) {
 			frameCount++;
-			// create new image to receive frame data
+			/*// create new image to receive frame data*/
 			image = Bitmap.createBitmap(width, height, Config.ARGB_4444);
-			setPixels(); // transfer pixel data to image
-			frames.addElement(new GifFrame(image, delay)); // add image to frame
-			// list
+			setPixels(); /*// transfer pixel data to image*/
+			frames.addElement(new GifFrame(image, delay)); /*// add image to frame*/
+			/*// list*/
 			if (transparency) {
 				act[transIndex] = save;
 			}
 		}
-		resetFrame();
+		resetFrame();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.readBitmap()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Reads Logical Screen Descriptor
 	 */
 	protected void readLSD() {
-		// logical screen size
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.readLSD()",this);try{/*// logical screen size*/
 		width = readShort();
 		height = readShort();
-		// packed fields
+		/*// packed fields*/
 		int packed = read();
-		gctFlag = (packed & 0x80) != 0; // 1 : global color table flag
-		// 2-4 : color resolution
-		// 5 : gct sort flag
-		gctSize = 2 << (packed & 7); // 6-8 : gct size
-		bgIndex = read(); // background color index
-		pixelAspect = read(); // pixel aspect ratio
+		gctFlag = (packed & 0x80) != 0; /*// 1 : global color table flag*/
+		/*// 2-4 : color resolution*/
+		/*// 5 : gct sort flag*/
+		gctSize = 2 << (packed & 7); /*// 6-8 : gct size*/
+		bgIndex = read(); /*// background color index*/
+		pixelAspect = read(); /*// pixel aspect ratio*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.readLSD()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.readLSD()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Reads Netscape extenstion to obtain iteration count
 	 */
 	protected void readNetscapeExt() {
-		do {
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.readNetscapeExt()",this);try{do {
 			readBlock();
 			if (block[0] == 1) {
-				// loop count sub-block
+				/*// loop count sub-block*/
 				int b1 = ((int) block[1]) & 0xff;
 				int b2 = ((int) block[2]) & 0xff;
 				loopCount = (b2 << 8) | b1;
 			}
-		} while ((blockSize > 0) && !err());
+		} while ((blockSize > 0) && !err());com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.readNetscapeExt()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.readNetscapeExt()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Reads next 16-bit value, LSB first
 	 */
 	protected int readShort() {
-		// read 16-bit value, LSB first
-		return read() | (read() << 8);
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.gallery.GifDecoder.readShort()",this);try{/*// read 16-bit value, LSB first*/
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.gallery.GifDecoder.readShort()",this);return read() | (read() << 8);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.gallery.GifDecoder.readShort()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Resets frame state for reading next image.
 	 */
 	protected void resetFrame() {
-		lastDispose = dispose;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.resetFrame()",this);try{lastDispose = dispose;
 		lrx = ix;
 		lry = iy;
 		lrw = iw;
@@ -631,15 +631,15 @@ public class GifDecoder {
 		dispose = 0;
 		transparency = false;
 		delay = 0;
-		lct = null;
+		lct = null;com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.resetFrame()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.resetFrame()",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Skips variable length blocks up to and including next zero length block.
 	 */
 	protected void skip() {
-		do {
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.gallery.GifDecoder.skip()",this);try{do {
 			readBlock();
-		} while ((blockSize > 0) && !err());
+		} while ((blockSize > 0) && !err());com.mijack.Xlog.logMethodExit("void com.chanapps.four.gallery.GifDecoder.skip()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.gallery.GifDecoder.skip()",this,throwable);throw throwable;}
 	}
 }

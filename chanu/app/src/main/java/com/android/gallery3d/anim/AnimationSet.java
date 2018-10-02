@@ -28,49 +28,49 @@ public class AnimationSet extends CanvasAnimation {
 
 
     public void addAnimation(CanvasAnimation anim) {
-        mAnimations.add(anim);
-        mSaveFlags |= anim.getCanvasSaveFlags();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.anim.AnimationSet.addAnimation(com.android.gallery3d.anim.CanvasAnimation)",this,anim);try{mAnimations.add(anim);
+        mSaveFlags |= anim.getCanvasSaveFlags();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.anim.AnimationSet.addAnimation(com.android.gallery3d.anim.CanvasAnimation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.anim.AnimationSet.addAnimation(com.android.gallery3d.anim.CanvasAnimation)",this,throwable);throw throwable;}
     }
 
     @Override
     public void apply(GLCanvas canvas) {
-        for (int i = 0, n = mAnimations.size(); i < n; i++) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.anim.AnimationSet.apply(com.android.gallery3d.ui.GLCanvas)",this,canvas);try{for (int i = 0, n = mAnimations.size(); i < n; i++) {
             mAnimations.get(i).apply(canvas);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.anim.AnimationSet.apply(com.android.gallery3d.ui.GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.anim.AnimationSet.apply(com.android.gallery3d.ui.GLCanvas)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getCanvasSaveFlags() {
-        return mSaveFlags;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.anim.AnimationSet.getCanvasSaveFlags()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.anim.AnimationSet.getCanvasSaveFlags()",this);return mSaveFlags;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.anim.AnimationSet.getCanvasSaveFlags()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onCalculate(float progress) {
-        // DO NOTHING
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.anim.AnimationSet.onCalculate(float)",this,progress);try{/*// DO NOTHING*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.anim.AnimationSet.onCalculate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.anim.AnimationSet.onCalculate(float)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean calculate(long currentTimeMillis) {
-        boolean more = false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.anim.AnimationSet.calculate(long)",this,currentTimeMillis);try{boolean more = false;
         for (CanvasAnimation anim : mAnimations) {
             more |= anim.calculate(currentTimeMillis);
         }
-        return more;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.anim.AnimationSet.calculate(long)",this);return more;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.anim.AnimationSet.calculate(long)",this,throwable);throw throwable;}
     }
 
     @Override
     public void start() {
-        for (CanvasAnimation anim : mAnimations) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.anim.AnimationSet.start()",this);try{for (CanvasAnimation anim : mAnimations) {
             anim.start();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.anim.AnimationSet.start()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.anim.AnimationSet.start()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean isActive() {
-        for (CanvasAnimation anim : mAnimations) {
-            if (anim.isActive()) return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.anim.AnimationSet.isActive()",this);try{for (CanvasAnimation anim : mAnimations) {
+            if (anim.isActive()) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.anim.AnimationSet.isActive()",this);return true;}}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.anim.AnimationSet.isActive()",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.anim.AnimationSet.isActive()",this,throwable);throw throwable;}
     }
 
 }

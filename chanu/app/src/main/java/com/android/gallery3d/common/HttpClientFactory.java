@@ -34,15 +34,15 @@ import java.lang.reflect.Method;
  * level differences.
  */
 public final class HttpClientFactory {
-    // TODO: migrate GDataClient to use this util method instead of apache's
-    // DefaultHttpClient.
+    /*// TODO: migrate GDataClient to use this util method instead of apache's*/
+    /*// DefaultHttpClient.*/
     /**
      * Creates an HttpClient with the userAgent string constructed from the
      * package name contained in the context.
      * @return the client
      */
     public static HttpClient newHttpClient(Context context) {
-        return HttpClientFactory.newHttpClient(getUserAgent(context));
+        com.mijack.Xlog.logStaticMethodEnter("org.apache.http.client.HttpClient com.android.gallery3d.common.HttpClientFactory.newHttpClient(android.content.Context)",context);try{com.mijack.Xlog.logStaticMethodExit("org.apache.http.client.HttpClient com.android.gallery3d.common.HttpClientFactory.newHttpClient(android.content.Context)");return HttpClientFactory.newHttpClient(getUserAgent(context));}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("org.apache.http.client.HttpClient com.android.gallery3d.common.HttpClientFactory.newHttpClient(android.content.Context)",throwable);throw throwable;}
     }
 
     /**
@@ -51,8 +51,8 @@ public final class HttpClientFactory {
      * @return the client
      */
     public static HttpClient newHttpClient(String userAgent) {
-        // AndroidHttpClient is available on all platform releases,
-        // but is hidden until API Level 8
+        com.mijack.Xlog.logStaticMethodEnter("org.apache.http.client.HttpClient com.android.gallery3d.common.HttpClientFactory.newHttpClient(java.lang.String)",userAgent);try{/*// AndroidHttpClient is available on all platform releases,*/
+        /*// but is hidden until API Level 8*/
         try {
             Class<?> clazz = Class.forName("android.net.http.AndroidHttpClient");
             Method newInstance = clazz.getMethod("newInstance", String.class);
@@ -60,18 +60,18 @@ public final class HttpClientFactory {
 
             HttpClient client = (HttpClient) instance;
 
-            // ensure we default to HTTP 1.1
+            /*// ensure we default to HTTP 1.1*/
             HttpParams params = client.getParams();
             params.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
-            // AndroidHttpClient sets these two parameters thusly by default:
-            // HttpConnectionParams.setSoTimeout(params, 60 * 1000);
-            // HttpConnectionParams.setConnectionTimeout(params, 60 * 1000);
+            /*// AndroidHttpClient sets these two parameters thusly by default:*/
+            /*// HttpConnectionParams.setSoTimeout(params, 60 * 1000);*/
+            /*// HttpConnectionParams.setConnectionTimeout(params, 60 * 1000);*/
 
-            // however it doesn't set this one...
+            /*// however it doesn't set this one...*/
             ConnManagerParams.setTimeout(params, 60 * 1000);
 
-            return client;
+            {com.mijack.Xlog.logStaticMethodExit("org.apache.http.client.HttpClient com.android.gallery3d.common.HttpClientFactory.newHttpClient(java.lang.String)");return client;}
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -80,15 +80,15 @@ public final class HttpClientFactory {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("org.apache.http.client.HttpClient com.android.gallery3d.common.HttpClientFactory.newHttpClient(java.lang.String)",throwable);throw throwable;}
     }
 
     /**
      * Closes an HttpClient.
      */
     public static void close(HttpClient client) {
-        // AndroidHttpClient is available on all platform releases,
-        // but is hidden until API Level 8
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.HttpClientFactory.close(org.apache.http.client.HttpClient)",client);try{/*// AndroidHttpClient is available on all platform releases,*/
+        /*// but is hidden until API Level 8*/
         try {
             Class<?> clazz = client.getClass();
             Method method = clazz.getMethod("close", (Class<?>[]) null);
@@ -99,13 +99,13 @@ public final class HttpClientFactory {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.HttpClientFactory.close(org.apache.http.client.HttpClient)",throwable);throw throwable;}
     }
 
     private static String sUserAgent = null;
 
     private static String getUserAgent(Context context) {
-        if (sUserAgent == null) {
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.common.HttpClientFactory.getUserAgent(android.content.Context)",context);try{if (sUserAgent == null) {
             PackageInfo pi;
             try {
                 pi = context.getPackageManager().getPackageInfo(
@@ -124,7 +124,7 @@ public final class HttpClientFactory {
                     Build.VERSION.RELEASE,
                     Build.VERSION.INCREMENTAL);
         }
-        return sUserAgent;
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.common.HttpClientFactory.getUserAgent(android.content.Context)");return sUserAgent;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.common.HttpClientFactory.getUserAgent(android.content.Context)",throwable);throw throwable;}
     }
 
     private HttpClientFactory() {

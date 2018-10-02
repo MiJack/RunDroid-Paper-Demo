@@ -26,17 +26,17 @@ public class LinkedNode {
     }
 
     public void insert(LinkedNode node) {
-        node.mNext = mNext;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.LinkedNode.insert(com.android.gallery3d.util.LinkedNode)",this,node);try{node.mNext = mNext;
         mNext.mPrev = node;
         node.mPrev = this;
-        mNext = node;
+        mNext = node;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.LinkedNode.insert(com.android.gallery3d.util.LinkedNode)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.LinkedNode.insert(com.android.gallery3d.util.LinkedNode)",this,throwable);throw throwable;}
     }
 
     public void remove() {
-        if (mNext == this) throw new IllegalStateException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.LinkedNode.remove()",this);try{if (mNext == this) {throw new IllegalStateException();}
         mPrev.mNext = mNext;
         mNext.mPrev = mPrev;
-        mPrev = mNext = null;
+        mPrev = mNext = null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.LinkedNode.remove()",this,throwable);throw throwable;}
     }
 
     @SuppressWarnings("unchecked")
@@ -44,32 +44,32 @@ public class LinkedNode {
         private LinkedNode mHead = new LinkedNode();
 
         public void insertFirst(T node) {
-            mHead.insert(node);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.insertFirst(T)",this,node);try{mHead.insert(node);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.insertFirst(T)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.insertFirst(T)",this,throwable);throw throwable;}
         }
 
         public void insertLast(T node) {
-            mHead.mPrev.insert(node);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.insertLast(T)",this,node);try{mHead.mPrev.insert(node);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.insertLast(T)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.insertLast(T)",this,throwable);throw throwable;}
         }
 
         public T getFirst() {
-            return (T) (mHead.mNext == mHead ? null : mHead.mNext);
+            com.mijack.Xlog.logMethodEnter("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.getFirst()",this);try{com.mijack.Xlog.logMethodExit("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.getFirst()",this);return (T) (mHead.mNext == mHead ? null : mHead.mNext);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.getFirst()",this,throwable);throw throwable;}
         }
 
         public T getLast() {
-            return (T) (mHead.mPrev == mHead ? null : mHead.mPrev);
+            com.mijack.Xlog.logMethodEnter("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.getLast()",this);try{com.mijack.Xlog.logMethodExit("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.getLast()",this);return (T) (mHead.mPrev == mHead ? null : mHead.mPrev);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.getLast()",this,throwable);throw throwable;}
         }
 
         public T nextOf(T node) {
-            return (T) (node.mNext == mHead ? null : node.mNext);
+            com.mijack.Xlog.logMethodEnter("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.nextOf(T)",this,node);try{com.mijack.Xlog.logMethodExit("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.nextOf(T)",this);return (T) (node.mNext == mHead ? null : node.mNext);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.nextOf(T)",this,throwable);throw throwable;}
         }
 
         public T previousOf(T node) {
-            return (T) (node.mPrev == mHead ? null : node.mPrev);
+            com.mijack.Xlog.logMethodEnter("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.previousOf(T)",this,node);try{com.mijack.Xlog.logMethodExit("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.previousOf(T)",this);return (T) (node.mPrev == mHead ? null : node.mPrev);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.android.gallery3d.util.LinkedNode$List<T extends LinkedNode>.previousOf(T)",this,throwable);throw throwable;}
         }
 
     }
 
     public static <T extends LinkedNode> List<T> newList() {
-        return new List<T>();
+        com.mijack.Xlog.logStaticMethodEnter("List com.android.gallery3d.util.LinkedNode.newList()");try{com.mijack.Xlog.logStaticMethodExit("List com.android.gallery3d.util.LinkedNode.newList()");return new List<T>();}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("List com.android.gallery3d.util.LinkedNode.newList()",throwable);throw throwable;}
     }
 }

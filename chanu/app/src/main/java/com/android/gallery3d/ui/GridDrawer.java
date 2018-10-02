@@ -41,7 +41,7 @@ public class GridDrawer extends IconDrawer {
 
     @Override
     public void prepareDrawing() {
-        mSelectionMode = mSelectionManager.inSelectionMode();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GridDrawer.prepareDrawing()",this);try{mSelectionMode = mSelectionManager.inSelectionMode();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GridDrawer.prepareDrawing()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GridDrawer.prepareDrawing()",this,throwable);throw throwable;}
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GridDrawer extends IconDrawer {
             int dataSourceType, int mediaType, boolean isPanorama,
             int labelBackgroundHeight, boolean wantCache, boolean isCaching) {
 
-        int x = -width / 2;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GridDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,canvas,content,width,height,rotation,path,dataSourceType,mediaType,isPanorama,labelBackgroundHeight,wantCache,isCaching);try{int x = -width / 2;
         int y = -height / 2;
 
         drawWithRotation(canvas, content, x, y, width, height, rotation);
@@ -74,12 +74,12 @@ public class GridDrawer extends IconDrawer {
             drawPressedFrame(canvas, x, y, width, height);
         } else if (mSelectionMode && mSelectionManager.isItemSelected(path)) {
             drawSelectedFrame(canvas, x, y, width, height);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GridDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GridDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,throwable);throw throwable;}
     }
 
-    // Draws the "click to import" label at the center of the frame
+    /*// Draws the "click to import" label at the center of the frame*/
     private void drawImportLabel(GLCanvas canvas, int width, int height) {
-        if (mImportLabel == null || mGridWidth != width) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GridDrawer.drawImportLabel(GLCanvas,int,int)",this,canvas,width,height);try{if (mImportLabel == null || mGridWidth != width) {
             mGridWidth = width;
             mImportLabel = MultiLineTexture.newInstance(
                     mContext.getString(R.string.click_import),
@@ -89,10 +89,8 @@ public class GridDrawer extends IconDrawer {
         }
         int w = mImportLabel.getWidth();
         int h = mImportLabel.getHeight();
-        mImportLabel.draw(canvas, -w / 2, -h / 2);
+        mImportLabel.draw(canvas, -w / 2, -h / 2);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GridDrawer.drawImportLabel(GLCanvas,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GridDrawer.drawImportLabel(GLCanvas,int,int)",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void drawFocus(GLCanvas canvas, int width, int height) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GridDrawer.drawFocus(GLCanvas,int,int)",this,canvas,width,height);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GridDrawer.drawFocus(GLCanvas,int,int)",this);}
 }

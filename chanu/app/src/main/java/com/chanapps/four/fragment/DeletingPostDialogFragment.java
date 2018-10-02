@@ -30,7 +30,7 @@ public class DeletingPostDialogFragment extends DialogFragment {
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.DeletingPostDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{LayoutInflater inflater = getActivity().getLayoutInflater();
         View layout = inflater.inflate(R.layout.message_dialog_fragment, null);
         TextView title = (TextView)layout.findViewById(R.id.title);
         TextView message = (TextView)layout.findViewById(R.id.message);
@@ -38,15 +38,15 @@ public class DeletingPostDialogFragment extends DialogFragment {
         int messageId = onlyImages ? R.string.delete_post_deleting_image : R.string.delete_post_deleting;
         message.setText(messageId);
         setStyle(STYLE_NO_TITLE, 0);
-        return (new AlertDialog.Builder(getActivity()))
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.DeletingPostDialogFragment.onCreateDialog(android.os.Bundle)",this);return (new AlertDialog.Builder(getActivity()))
                 .setView(layout)
                 .setNegativeButton(R.string.dialog_cancel,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                task.cancel(true);
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DeletingPostDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{task.cancel(true);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DeletingPostDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DeletingPostDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.DeletingPostDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

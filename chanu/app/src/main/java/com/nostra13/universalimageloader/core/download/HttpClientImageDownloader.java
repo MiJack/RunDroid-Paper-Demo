@@ -43,10 +43,10 @@ public class HttpClientImageDownloader extends BaseImageDownloader {
 
 	@Override
 	protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
-		HttpGet httpRequest = new HttpGet(imageUri);
+		com.mijack.Xlog.logMethodEnter("java.io.InputStream com.nostra13.universalimageloader.core.download.HttpClientImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this,imageUri,extra);try{HttpGet httpRequest = new HttpGet(imageUri);
 		HttpResponse response = httpClient.execute(httpRequest);
 		HttpEntity entity = response.getEntity();
 		BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
-		return bufHttpEntity.getContent();
+		{com.mijack.Xlog.logMethodExit("java.io.InputStream com.nostra13.universalimageloader.core.download.HttpClientImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this);return bufHttpEntity.getContent();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.InputStream com.nostra13.universalimageloader.core.download.HttpClientImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 }

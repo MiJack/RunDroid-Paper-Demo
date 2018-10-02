@@ -43,42 +43,42 @@ public class FlipAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        filter = new FlipFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction.doBegin()",this);try{filter = new FlipFilter();
 
         flipView = factory.createFlipView();
         flipView.setOnFlipChangeListener(new FlipView.OnFlipChangeListener() {
 
-            // Directly transform photo-view because running the flip filter isn't fast enough.
+            /*// Directly transform photo-view because running the flip filter isn't fast enough.*/
             PhotoView photoView = (PhotoView) flipView.getRootView().findViewById(
                     R.id.photo_view);
 
             @Override
             public void onAngleChanged(float horizontalDegrees, float verticalDegrees,
                     boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onAngleChanged(float,float,boolean)",this,horizontalDegrees,verticalDegrees,fromUser);try{if (fromUser) {
                     horizontalFlipDegrees = horizontalDegrees;
                     verticalFlipDegrees = verticalDegrees;
                     updateFlipFilter(false);
                     transformPhotoView(horizontalDegrees, verticalDegrees);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onAngleChanged(float,float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onAngleChanged(float,float,boolean)",this,throwable);throw throwable;}
             }
 
             @Override
             public void onStartTrackingTouch() {
-                // no-op
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onStartTrackingTouch()",this);try{/*// no-op*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onStartTrackingTouch()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onStartTrackingTouch()",this,throwable);throw throwable;}
             }
 
             @Override
             public void onStopTrackingTouch() {
-                roundFlipDegrees();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onStopTrackingTouch()",this);try{roundFlipDegrees();
                 updateFlipFilter(false);
                 transformPhotoView(horizontalFlipDegrees, verticalFlipDegrees);
-                flipView.setFlippedAngles(horizontalFlipDegrees, verticalFlipDegrees);
+                flipView.setFlippedAngles(horizontalFlipDegrees, verticalFlipDegrees);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onStopTrackingTouch()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction$1.onStopTrackingTouch()",this,throwable);throw throwable;}
             }
 
             private void transformPhotoView(final float horizontalDegrees,
                     final float verticalDegrees) {
-                // Remove the outdated flip change before queuing a new one.
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction$1.transformPhotoView(float,float)",this,horizontalDegrees,verticalDegrees);try{/*// Remove the outdated flip change before queuing a new one.*/
                 if (queuedFlipChange != null) {
                     photoView.remove(queuedFlipChange);
                 }
@@ -86,43 +86,43 @@ public class FlipAction extends EffectAction {
 
                     @Override
                     public void run() {
-                        photoView.flipPhoto(horizontalDegrees, verticalDegrees);
+                        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction$1$1.run()",this);try{photoView.flipPhoto(horizontalDegrees, verticalDegrees);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction$1$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction$1$1.run()",this,throwable);throw throwable;}
                     }
                 };
-                photoView.queue(queuedFlipChange);
+                photoView.queue(queuedFlipChange);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction$1.transformPhotoView(float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction$1.transformPhotoView(float,float)",this,throwable);throw throwable;}
             }
         });
         flipView.setFlippedAngles(DEFAULT_ANGLE, DEFAULT_ANGLE);
         flipView.setFlipSpan(DEFAULT_FLIP_SPAN);
         horizontalFlipDegrees = 0;
         verticalFlipDegrees = 0;
-        queuedFlipChange = null;
+        queuedFlipChange = null;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        flipView.setOnFlipChangeListener(null);
-        // Round the current flip degrees in case flip tracking has not stopped yet.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction.doEnd()",this);try{flipView.setOnFlipChangeListener(null);
+        /*// Round the current flip degrees in case flip tracking has not stopped yet.*/
         roundFlipDegrees();
-        updateFlipFilter(true);
+        updateFlipFilter(true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction.doEnd()",this,throwable);throw throwable;}
     }
 
     /**
      * Rounds flip degrees to multiples of 180 degrees.
      */
     private void roundFlipDegrees() {
-        if (horizontalFlipDegrees % 180 != 0) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction.roundFlipDegrees()",this);try{if (horizontalFlipDegrees % 180 != 0) {
             horizontalFlipDegrees = Math.round(horizontalFlipDegrees / 180) * 180;
         }
         if (verticalFlipDegrees % 180 != 0) {
             verticalFlipDegrees = Math.round(verticalFlipDegrees / 180) * 180;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction.roundFlipDegrees()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction.roundFlipDegrees()",this,throwable);throw throwable;}
     }
 
     private void updateFlipFilter(boolean outputFilter) {
-        // Flip the filter if the flipped degrees are at the opposite directions.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipAction.updateFlipFilter(boolean)",this,outputFilter);try{/*// Flip the filter if the flipped degrees are at the opposite directions.*/
         filter.setFlip(((int) horizontalFlipDegrees / 180) % 2 != 0,
                 ((int) verticalFlipDegrees / 180) % 2 != 0);
-        notifyFilterChanged(filter, outputFilter);
+        notifyFilterChanged(filter, outputFilter);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipAction.updateFlipFilter(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipAction.updateFlipFilter(boolean)",this,throwable);throw throwable;}
     }
 }

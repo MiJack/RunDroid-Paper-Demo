@@ -32,17 +32,17 @@ public class AlphaAnimation extends CanvasAnimation {
 
     @Override
     public void apply(GLCanvas canvas) {
-        canvas.multiplyAlpha(mCurrentAlpha);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.anim.AlphaAnimation.apply(com.android.gallery3d.ui.GLCanvas)",this,canvas);try{canvas.multiplyAlpha(mCurrentAlpha);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.anim.AlphaAnimation.apply(com.android.gallery3d.ui.GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.anim.AlphaAnimation.apply(com.android.gallery3d.ui.GLCanvas)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getCanvasSaveFlags() {
-        return GLCanvas.SAVE_FLAG_ALPHA;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.anim.AlphaAnimation.getCanvasSaveFlags()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.anim.AlphaAnimation.getCanvasSaveFlags()",this);return GLCanvas.SAVE_FLAG_ALPHA;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.anim.AlphaAnimation.getCanvasSaveFlags()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onCalculate(float progress) {
-        mCurrentAlpha = Utils.clamp(mStartAlpha
-                + (mEndAlpha - mStartAlpha) * progress, 0f, 1f);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.anim.AlphaAnimation.onCalculate(float)",this,progress);try{mCurrentAlpha = Utils.clamp(mStartAlpha
+                + (mEndAlpha - mStartAlpha) * progress, 0f, 1f);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.anim.AlphaAnimation.onCalculate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.anim.AlphaAnimation.onCalculate(float)",this,throwable);throw throwable;}
     }
 }

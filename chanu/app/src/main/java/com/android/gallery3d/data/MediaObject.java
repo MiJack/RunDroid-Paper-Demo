@@ -23,7 +23,7 @@ public abstract class MediaObject {
     private static final String TAG = "MediaObject";
     public static final long INVALID_DATA_VERSION = -1;
 
-    // These are the bits returned from getSupportedOperations():
+    /*// These are the bits returned from getSupportedOperations():*/
     public static final int SUPPORT_DELETE = 1 << 0;
     public static final int SUPPORT_ROTATE = 1 << 1;
     public static final int SUPPORT_SHARE = 1 << 2;
@@ -39,18 +39,18 @@ public abstract class MediaObject {
     public static final int SUPPORT_ANIMATED_GIF = 1 << 12;
     public static final int SUPPORT_ALL = 0xffffffff;
 
-    // These are the bits returned from getMediaType():
+    /*// These are the bits returned from getMediaType():*/
     public static final int MEDIA_TYPE_UNKNOWN = 1;
     public static final int MEDIA_TYPE_IMAGE = 2;
     public static final int MEDIA_TYPE_VIDEO = 4;
     public static final int MEDIA_TYPE_ALL = MEDIA_TYPE_IMAGE | MEDIA_TYPE_VIDEO;
 
-    // These are flags for cache() and return values for getCacheFlag():
+    /*// These are flags for cache() and return values for getCacheFlag():*/
     public static final int CACHE_FLAG_NO = 0;
     public static final int CACHE_FLAG_SCREENNAIL = 1;
     public static final int CACHE_FLAG_FULL = 2;
 
-    // These are return values for getCacheStatus():
+    /*// These are return values for getCacheStatus():*/
     public static final int CACHE_STATUS_NOT_CACHED = 0;
     public static final int CACHE_STATUS_CACHING = 1;
     public static final int CACHE_STATUS_CACHED_SCREENNAIL = 2;
@@ -69,63 +69,63 @@ public abstract class MediaObject {
     }
 
     public Path getPath() {
-        return mPath;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaObject.getPath()",this);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaObject.getPath()",this);return mPath;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaObject.getPath()",this,throwable);throw throwable;}
     }
 
     public int getSupportedOperations() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaObject.getSupportedOperations()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaObject.getSupportedOperations()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaObject.getSupportedOperations()",this,throwable);throw throwable;}
     }
 
     public void delete() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaObject.delete()",this);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaObject.delete()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MediaObject.delete()",this,throwable);throw throwable;}
     }
 
     public void rotate(int degrees) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaObject.rotate(int)",this,degrees);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaObject.rotate(int)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MediaObject.rotate(int)",this,throwable);throw throwable;}
     }
 
     public Uri getContentUri() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.data.MediaObject.getContentUri()",this);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.data.MediaObject.getContentUri()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.data.MediaObject.getContentUri()",this,throwable);throw throwable;}
     }
 
     public Uri getPlayUri() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.data.MediaObject.getPlayUri()",this);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.data.MediaObject.getPlayUri()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.data.MediaObject.getPlayUri()",this,throwable);throw throwable;}
     }
 
     public int getMediaType() {
-        return MEDIA_TYPE_UNKNOWN;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaObject.getMediaType()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaObject.getMediaType()",this);return MEDIA_TYPE_UNKNOWN;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaObject.getMediaType()",this,throwable);throw throwable;}
     }
 
     public boolean Import() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MediaObject.Import()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MediaObject.Import()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MediaObject.Import()",this,throwable);throw throwable;}
     }
 
     public MediaDetails getDetails() {
-        MediaDetails details = new MediaDetails();
-        return details;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.MediaObject.getDetails()",this);try{MediaDetails details = new MediaDetails();
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.MediaObject.getDetails()",this);return details;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.MediaObject.getDetails()",this,throwable);throw throwable;}
     }
 
     public long getDataVersion() {
-        return mDataVersion;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MediaObject.getDataVersion()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MediaObject.getDataVersion()",this);return mDataVersion;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MediaObject.getDataVersion()",this,throwable);throw throwable;}
     }
 
     public int getCacheFlag() {
-        return CACHE_FLAG_NO;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaObject.getCacheFlag()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaObject.getCacheFlag()",this);return CACHE_FLAG_NO;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaObject.getCacheFlag()",this,throwable);throw throwable;}
     }
 
     public int getCacheStatus() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaObject.getCacheStatus()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaObject.getCacheStatus()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaObject.getCacheStatus()",this,throwable);throw throwable;}
     }
 
     public long getCacheSize() {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MediaObject.getCacheSize()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MediaObject.getCacheSize()",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MediaObject.getCacheSize()",this,throwable);throw throwable;}
     }
 
     public void cache(int flag) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaObject.cache(int)",this,flag);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaObject.cache(int)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MediaObject.cache(int)",this,throwable);throw throwable;}
     }
 
     public static synchronized long nextVersionNumber() {
-        return ++MediaObject.sVersionSerial;
+        com.mijack.Xlog.logStaticMethodEnter("long com.android.gallery3d.data.MediaObject.nextVersionNumber()");try{com.mijack.Xlog.logStaticMethodExit("long com.android.gallery3d.data.MediaObject.nextVersionNumber()");return ++MediaObject.sVersionSerial;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("long com.android.gallery3d.data.MediaObject.nextVersionNumber()",throwable);throw throwable;}
     }
 }

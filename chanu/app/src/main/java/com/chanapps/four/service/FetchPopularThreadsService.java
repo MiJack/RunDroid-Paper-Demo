@@ -44,40 +44,40 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
     private boolean backgroundLoad;
 
     public static boolean schedulePopularFetchService(Context context, boolean priority, boolean backgroundLoad) {
-        if (!boardNeedsRefresh(context, priority)) {
-            if (DEBUG) Log.i(TAG, "Skipping priority popular threads fetch service refresh unneeded");
-            return false;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.service.FetchPopularThreadsService.schedulePopularFetchService(android.content.Context,boolean,boolean)",context,priority,backgroundLoad);try{if (!boardNeedsRefresh(context, priority)) {
+            if (DEBUG) {Log.i(TAG, "Skipping priority popular threads fetch service refresh unneeded");}
+            {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchPopularThreadsService.schedulePopularFetchService(android.content.Context,boolean,boolean)");return false;}
         }
-        if (DEBUG) Log.i(TAG, "Start popular threads fetch service priority=" + priority + " background=" + backgroundLoad);
+        if (DEBUG) {Log.i(TAG, "Start popular threads fetch service priority=" + priority + " background=" + backgroundLoad);}
         Intent intent = new Intent(context, FetchPopularThreadsService.class);
         if (priority)
-            intent.putExtra(PRIORITY_MESSAGE_FETCH, priority ? 1 : 0);
+            {intent.putExtra(PRIORITY_MESSAGE_FETCH, priority ? 1 : 0);}
         if (backgroundLoad)
-            intent.putExtra(BACKGROUND_LOAD, true);
+            {intent.putExtra(BACKGROUND_LOAD, true);}
         context.startService(intent);
-        return true;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchPopularThreadsService.schedulePopularFetchService(android.content.Context,boolean,boolean)");return true;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.service.FetchPopularThreadsService.schedulePopularFetchService(android.content.Context,boolean,boolean)",throwable);throw throwable;}
     }
     
     public static void clearServiceQueue(Context context) {
-        if (DEBUG) Log.i(TAG, "Clearing chan fetch service queue");
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.FetchPopularThreadsService.clearServiceQueue(android.content.Context)",context);try{if (DEBUG) {Log.i(TAG, "Clearing chan fetch service queue");}
         Intent intent = new Intent(context, FetchPopularThreadsService.class);
         intent.putExtra(CLEAR_FETCH_QUEUE, 1);
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.clearServiceQueue(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.FetchPopularThreadsService.clearServiceQueue(android.content.Context)",throwable);throw throwable;}
     }
 
 	private static boolean boardNeedsRefresh(Context context, boolean forceRefresh) {
-		FetchParams params = NetworkProfileManager.instance().getFetchParams();
+		com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.service.FetchPopularThreadsService.boardNeedsRefresh(android.content.Context,boolean)",context,forceRefresh);try{FetchParams params = NetworkProfileManager.instance().getFetchParams();
         ChanBoard board = ChanFileStorage.loadBoardData(context, ChanBoard.POPULAR_BOARD_CODE);
         long now = new Date().getTime();
         if (board != null && !board.defData && board.lastFetched > 0) {
         	long refresh = forceRefresh ? params.forceRefreshDelay : params.refreshDelay;
         	if (now - board.lastFetched < refresh) {
-        		if (DEBUG) Log.i(TAG, "Skiping board " + ChanBoard.POPULAR_BOARD_CODE + " fetch as it was fetched "
-        				+ ((now - board.lastFetched) / 1000) + "s ago, refresh delay is " + (refresh / 1000) + "s" );
-        		return false;
+        		if (DEBUG) {Log.i(TAG, "Skiping board " + ChanBoard.POPULAR_BOARD_CODE + " fetch as it was fetched "
+        				+ ((now - board.lastFetched) / 1000) + "s ago, refresh delay is " + (refresh / 1000) + "s" );}
+        		{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchPopularThreadsService.boardNeedsRefresh(android.content.Context,boolean)");return false;}
         	}
         }
-        return true;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.service.FetchPopularThreadsService.boardNeedsRefresh(android.content.Context,boolean)");return true;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.service.FetchPopularThreadsService.boardNeedsRefresh(android.content.Context,boolean)",throwable);throw throwable;}
 	}
 
     public FetchPopularThreadsService() {
@@ -90,40 +90,40 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
     
 	@Override
 	protected void onHandleIntent(Intent intent) {
-        backgroundLoad = intent.getBooleanExtra(BACKGROUND_LOAD, false);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchPopularThreadsService.onHandleIntent(android.content.Intent)",this,intent);try{backgroundLoad = intent.getBooleanExtra(BACKGROUND_LOAD, false);
 		if (!isChanForegroundActivity() && !backgroundLoad) {
             if (DEBUG)
-                Log.i(TAG, "Not foreground activity, exiting");
-			return;
+                {Log.i(TAG, "Not foreground activity, exiting");}
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.onHandleIntent(android.content.Intent)",this);return;}
 		}
 
         NetworkProfileManager.NetworkBroadcastReceiver.checkNetwork(this.getBaseContext());
         NetworkProfile profile = NetworkProfileManager.instance().getCurrentProfile();
         if (profile.getConnectionType() == NetworkProfile.Type.NO_CONNECTION
                 || profile.getConnectionHealth() == NetworkProfile.Health.NO_CONNECTION) {
-            if (DEBUG) Log.i(TAG, "No network connection, exiting");
-            return;
+            if (DEBUG) {Log.i(TAG, "No network connection, exiting");}
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.onHandleIntent(android.content.Intent)",this);return;}
         }
 
 		priority = intent.getIntExtra(PRIORITY_MESSAGE_FETCH, 0) > 0;
-		if (DEBUG) Log.i(TAG, "Handling popular threads fetch");
-		handlePopularThreadsFetch();
+		if (DEBUG) {Log.i(TAG, "Handling popular threads fetch");}
+		handlePopularThreadsFetch();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchPopularThreadsService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
 	}
 	
 	private boolean isChanForegroundActivity() {
-        return ActivityDispatcher.safeGetIsChanForegroundActivity(this);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.service.FetchPopularThreadsService.isChanForegroundActivity()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.FetchPopularThreadsService.isChanForegroundActivity()",this);return ActivityDispatcher.safeGetIsChanForegroundActivity(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.service.FetchPopularThreadsService.isChanForegroundActivity()",this,throwable);throw throwable;}
 	}
 
     private void handlePopularThreadsFetch() {
-        URL chanApi;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchPopularThreadsService.handlePopularThreadsFetch()",this);try{URL chanApi;
         try {
             String url = URLFormatComponent.getUrl(getApplicationContext(), URLFormatComponent.CHAN_FRONTPAGE_URL);
             chanApi = new URL(url);
-            if (DEBUG) Log.i(TAG, "Fetching " + url);
+            if (DEBUG) {Log.i(TAG, "Fetching " + url);}
         }
         catch (MalformedURLException e) {
             Log.e(TAG, "malformed url", e);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.handlePopularThreadsFetch()",this);return;}
         }
 
         HttpURLConnection tc = null;
@@ -138,32 +138,32 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 			ChanBoard board = ChanFileStorage.loadBoardData(getBaseContext(), ChanBoard.POPULAR_BOARD_CODE);
             if (board == null || board.defData || board.threads == null || board.threads.length <= 1) {
                 priority = true;
-                if (DEBUG) Log.i(TAG, "Upping priority for first fetch");
+                if (DEBUG) {Log.i(TAG, "Upping priority for first fetch");}
             }
             if (board != null && board.lastFetched > 0 && !priority) {
-            	if (DEBUG) Log.i(TAG, "IfModifiedSince set as last fetch happened "
-        				+ ((startTime - board.lastFetched) / 1000) + "s ago");
+            	if (DEBUG) {Log.i(TAG, "IfModifiedSince set as last fetch happened "
+        				+ ((startTime - board.lastFetched) / 1000) + "s ago");}
                 tc.setIfModifiedSince(board.lastFetched);
             }
             String contentType = tc.getContentType();
-            if (DEBUG) Log.i(TAG, "Called API " + tc.getURL() + " response length=" + tc.getContentLength()
-            		+ " code=" + tc.getResponseCode() + " type=" + contentType);
+            if (DEBUG) {Log.i(TAG, "Called API " + tc.getURL() + " response length=" + tc.getContentLength()
+            		+ " code=" + tc.getResponseCode() + " type=" + contentType);}
             if (tc.getResponseCode() == 304) {
-            	if (DEBUG) Log.i(TAG, "Got 304 for " + chanApi + " so was not modified since " + board.lastFetched);
-            	return;
+            	if (DEBUG) {Log.i(TAG, "Got 304 for " + chanApi + " so was not modified since " + board.lastFetched);}
+            	{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.handlePopularThreadsFetch()",this);return;}
             }
 
             if (tc.getResponseCode() == HttpURLConnection.HTTP_NOT_FOUND) {
                 closeConnection(tc);
-                if (DEBUG) Log.i(TAG, "Got 404 during popular threads fetch");
+                if (DEBUG) {Log.i(TAG, "Got 404 during popular threads fetch");}
                 board.lastFetched = new Date().getTime();
                 ChanFileStorage.storeBoardData(getBaseContext(), board);
             } else if (contentType == null || !contentType.contains("text/html")) {
-                // happens if 4chan is temporarily down or when access requires authentication to wifi router
+                /*// happens if 4chan is temporarily down or when access requires authentication to wifi router*/
                 closeConnection(tc);
-                if (DEBUG) Log.i(TAG, "Wrong content type returned board=" + board + " contentType='" + contentType + "' responseCode=" + tc.getResponseCode() + " content=" + tc.getContent().toString());
+                if (DEBUG) {Log.i(TAG, "Wrong content type returned board=" + board + " contentType='" + contentType + "' responseCode=" + tc.getResponseCode() + " content=" + tc.getContent().toString());}
             } else {
-            	// long fileSize = ChanFileStorage.storeBoardFile(getBaseContext(), boardCode, pageNo, new InputStreamReader(tc.getInputStream()));
+            	/*// long fileSize = ChanFileStorage.storeBoardFile(getBaseContext(), boardCode, pageNo, new InputStreamReader(tc.getInputStream()));*/
                 InputStream is = null;
                 try {
                     is = new BufferedInputStream(tc.getInputStream());
@@ -195,11 +195,11 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
             NetworkProfileManager.instance().failedFetchingData(this, Failure.WRONG_DATA);
 		} finally {
 			closeConnection(tc);
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchPopularThreadsService.handlePopularThreadsFetch()",this,throwable);throw throwable;}
 	}
 
     protected void parseAndStore(ChanBoard board, String response, long startTime) throws IOException {
-        long lastFetched = new Date().getTime();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchPopularThreadsService.parseAndStore(com.chanapps.four.data.ChanBoard,java.lang.String,long)",this,board,response,startTime);try{long lastFetched = new Date().getTime();
         int fetchTime = (int)(lastFetched - startTime);
 
         parsePopularThreads(board, response);
@@ -216,16 +216,16 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
         imagesBoard.lastFetched = lastFetched;
         ChanFileStorage.storeBoardData(getBaseContext(), imagesBoard);
 
-        if (DEBUG) Log.w(TAG, "Fetched and stored /" + board.link + "/ in " + fetchTime + "ms, size " + response.length());
+        if (DEBUG) {Log.w(TAG, "Fetched and stored /" + board.link + "/ in " + fetchTime + "ms, size " + response.length());}
         NetworkProfileManager.instance().finishedFetchingData(this, fetchTime, (int)response.length());
-        NetworkProfileManager.instance().finishedParsingData(this);
+        NetworkProfileManager.instance().finishedParsingData(this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.parseAndStore(com.chanapps.four.data.ChanBoard,java.lang.String,long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchPopularThreadsService.parseAndStore(com.chanapps.four.data.ChanBoard,java.lang.String,long)",this,throwable);throw throwable;}
     }
 
 	private static final String DIV_CLASS_BOX_OUTER_RIGHT_BOX = "class=\"box-outer right-box\"";
 	private static final String ID_POPULAR_THREADS = "id=\"popular-threads\"";
 
 	private void parseLatestImages(ChanBoard board, String response) {
-		board.defData = false;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchPopularThreadsService.parseLatestImages(com.chanapps.four.data.ChanBoard,java.lang.String)",this,board,response);try{board.defData = false;
 		
 		int startIdx = response.indexOf("id=\"recent-images\"");
 		int endIdx = response.indexOf(DIV_CLASS_BOX_OUTER_RIGHT_BOX, startIdx);
@@ -248,11 +248,11 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 				}
 			}
 		}
-		if (DEBUG) Log.i(TAG, "board /" + board.link + "/ has " + board.threads.length + " threads\n\n");
+		if (DEBUG) {Log.i(TAG, "board /" + board.link + "/ has " + board.threads.length + " threads\n\n");}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.parseLatestImages(com.chanapps.four.data.ChanBoard,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchPopularThreadsService.parseLatestImages(com.chanapps.four.data.ChanBoard,java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	private void parseLatestPosts(ChanBoard board, String response) {
-		board.defData = false;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchPopularThreadsService.parseLatestPosts(com.chanapps.four.data.ChanBoard,java.lang.String)",this,board,response);try{board.defData = false;
 		
 		int startIdx = response.indexOf("id=\"recent-threads\"");
 		int endIdx = response.indexOf(DIV_CLASS_BOX_OUTER_RIGHT_BOX, startIdx);
@@ -270,12 +270,12 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 			}
 			board.threads = threads.toArray(new ChanThread[]{});
 		}
-        if (DEBUG) Log.i(TAG, "board /" + board.link + "/ has " + board.threads.length + " threads\n\n");
+        if (DEBUG) {Log.i(TAG, "board /" + board.link + "/ has " + board.threads.length + " threads\n\n");}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.parseLatestPosts(com.chanapps.four.data.ChanBoard,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchPopularThreadsService.parseLatestPosts(com.chanapps.four.data.ChanBoard,java.lang.String)",this,throwable);throw throwable;}
     }
 
 	
 	private void parsePopularThreads(ChanBoard board, String response) {
-		board.defData = false;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.FetchPopularThreadsService.parsePopularThreads(com.chanapps.four.data.ChanBoard,java.lang.String)",this,board,response);try{board.defData = false;
 		
 		int startIdx = response.indexOf(ID_POPULAR_THREADS);
 		int endIdx = response.indexOf(DIV_CLASS_BOX_OUTER_RIGHT_BOX, startIdx);
@@ -286,11 +286,11 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 			String strings[] = popularThreadsStr.split("<li>");
 			for (int i = 1; i < strings.length; i++) {
 				try {
-                    if (DEBUG) Log.v(TAG, "paring line=" + strings[i]);
+                    if (DEBUG) {Log.v(TAG, "paring line=" + strings[i]);}
                     ChanThread thread = parseThread(strings[i]);
-                    if (DEBUG) Log.v(TAG, "parsed thread /" + thread.board + "/" + thread.no
+                    if (DEBUG) {Log.v(TAG, "parsed thread /" + thread.board + "/" + thread.no
                             + " tn_w=" + thread.tn_w + " tn_h=" + thread.tn_h + " tim=" + thread.tim
-                            + " thumbUrl=" + thread.thumbnailUrl(getApplicationContext()));
+                            + " thumbUrl=" + thread.thumbnailUrl(getApplicationContext()));}
 					threads.add(thread);
 				} catch (Exception e) {
 					Log.e(TAG, "Problem occured for: " + strings[i], e);
@@ -298,11 +298,11 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 			}
 			board.threads = threads.toArray(new ChanThread[]{});
 		}
-        if (DEBUG) Log.i(TAG, "board /" + board.link + "/ has " + board.threads.length + " threads\n\n");
+        if (DEBUG) {Log.i(TAG, "board /" + board.link + "/ has " + board.threads.length + " threads\n\n");}com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.FetchPopularThreadsService.parsePopularThreads(com.chanapps.four.data.ChanBoard,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.FetchPopularThreadsService.parsePopularThreads(com.chanapps.four.data.ChanBoard,java.lang.String)",this,throwable);throw throwable;}
     }
 
     private ChanThread parseThread(String threadStr) {
-		ChanThread thread = new ChanThread();
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.data.ChanThread com.chanapps.four.service.FetchPopularThreadsService.parseThread(java.lang.String)",this,threadStr);try{ChanThread thread = new ChanThread();
 		ParsableString str = new ParsableString();
 		str.str = threadStr;
 		str.pos = threadStr.indexOf("href");
@@ -310,7 +310,7 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 		thread.board = str.extract(".4chan.org/", "/");
 		thread.no = Long.parseLong(str.extract("thread/", "#p"));
         thread.jumpToPostNo = Long.parseLong(str.extract("#p", "\""));
-        //String image = str.extract("&lt;a href=&quot;#&quot;&gt;", "&lt;/a&gt;");
+        /*//String image = str.extract("&lt;a href=&quot;#&quot;&gt;", "&lt;/a&gt;");*/
 		
 		if (str.moveTo(")&lt;")) {
 			String imageDesc = str.extractBefore("(");
@@ -326,7 +326,7 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 						thread.fsize *= 1024;
 					}
 				} catch (Exception e) {
-                    if (DEBUG) Log.i(TAG, "Exception parsing popular thread filesize", e);
+                    if (DEBUG) {Log.i(TAG, "Exception parsing popular thread filesize", e);}
                     thread.fsize = 0;
 				}
 				try {
@@ -342,14 +342,14 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
                     thread.tn_h = (int)(scale * (double)thread.h);
 
                 } catch (Exception e) {
-					if (DEBUG) Log.i(TAG, "Exception parsing popular thread dimensions", e);
+					if (DEBUG) {Log.i(TAG, "Exception parsing popular thread dimensions", e);}
 				}
 				try {
 					String imgStr[] = parts[2].trim().split("\\.");
 					thread.filename = imgStr[0];
 					thread.ext = "." + imgStr[imgStr.length - 1];
 				} catch (Exception e) {
-                    if (DEBUG) Log.i(TAG, "Exception parsing popular thread filename", e);
+                    if (DEBUG) {Log.i(TAG, "Exception parsing popular thread filename", e);}
                 }
 			}
 		}
@@ -366,20 +366,20 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 		str.pos = 0;
 		thread.com = str.extract("<blockquote>", "</blockquote>");
 
-        if (DEBUG) Log.i(TAG, "Board: " + thread.board + ", no: " + thread.no + ", tim: " + thread.tim
+        if (DEBUG) {Log.i(TAG, "Board: " + thread.board + ", no: " + thread.no + ", tim: " + thread.tim
         		+ ", sub: " + thread.sub + ", com: " + thread.com
         		+ ", size: " + thread.fsize + ", wXh=" + thread.w + "x" + thread.h
         		+ ", tn_wXtn_h=" + thread.tn_w + "x" + thread.tn_h
 				+ ", img: " + thread.imageUrl(getApplicationContext())
                 + ", thumb: " + thread.thumbnailUrl(getApplicationContext())
-				+ ", topic: " + thread.sub);
-		return thread;
+				+ ", topic: " + thread.sub);}
+		{com.mijack.Xlog.logMethodExit("com.chanapps.four.data.ChanThread com.chanapps.four.service.FetchPopularThreadsService.parseThread(java.lang.String)",this);return thread;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.data.ChanThread com.chanapps.four.service.FetchPopularThreadsService.parseThread(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 
 	@Override
 	public ChanActivityId getChanActivityId() {
-		return new ChanActivityId(ChanBoard.POPULAR_BOARD_CODE, -1, priority);
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchPopularThreadsService.getChanActivityId()",this);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchPopularThreadsService.getChanActivityId()",this);return new ChanActivityId(ChanBoard.POPULAR_BOARD_CODE, -1, priority);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.service.FetchPopularThreadsService.getChanActivityId()",this,throwable);throw throwable;}
 	}
 
 	static class ParsableString {
@@ -387,35 +387,35 @@ public class FetchPopularThreadsService extends BaseChanService implements ChanI
 		int pos;
 		
 		public String extract(String start, String end) {
-			int startIdx = str.indexOf(start, pos);
+			com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extract(java.lang.String,java.lang.String)",this,start,end);try{int startIdx = str.indexOf(start, pos);
 			if (startIdx < 0) {
-				return null;
+				{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extract(java.lang.String,java.lang.String)",this);return null;}
 			}
 			int endIdx = str.indexOf(end, startIdx + start.length());
 			if (endIdx > -1) {
 				pos = endIdx;
-				return str.substring(startIdx + start.length(), endIdx);
+				{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extract(java.lang.String,java.lang.String)",this);return str.substring(startIdx + start.length(), endIdx);}
 			}
-			return null;
+			{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extract(java.lang.String,java.lang.String)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extract(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
 		}
 		
 		public String extractBefore(String start) {
-			int startIdx = str.lastIndexOf(start, pos);
+			com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extractBefore(java.lang.String)",this,start);try{int startIdx = str.lastIndexOf(start, pos);
 			if (startIdx > -1) {
-				return str.substring(startIdx + start.length(), pos);
+				{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extractBefore(java.lang.String)",this);return str.substring(startIdx + start.length(), pos);}
 			} else {
-				return null;
-			}
+				{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extractBefore(java.lang.String)",this);return null;}
+			}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.service.FetchPopularThreadsService$ParsableString.extractBefore(java.lang.String)",this,throwable);throw throwable;}
 		}
 		
 		public boolean moveTo(String text) {
-			int moveIdx = str.indexOf(text, pos);
+			com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.service.FetchPopularThreadsService$ParsableString.moveTo(java.lang.String)",this,text);try{int moveIdx = str.indexOf(text, pos);
 			if (moveIdx > -1) {
 				pos = moveIdx;
-				return true;
+				{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.FetchPopularThreadsService$ParsableString.moveTo(java.lang.String)",this);return true;}
 			} else {
-				return false;
-			}
+				{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.FetchPopularThreadsService$ParsableString.moveTo(java.lang.String)",this);return false;}
+			}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.service.FetchPopularThreadsService$ParsableString.moveTo(java.lang.String)",this,throwable);throw throwable;}
 		}
 	}
 }

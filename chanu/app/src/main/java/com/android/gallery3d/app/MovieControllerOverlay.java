@@ -121,7 +121,7 @@ public class MovieControllerOverlay extends FrameLayout implements
     handler = new Handler();
     startHidingRunnable = new Runnable() {
       public void run() {
-        startHiding();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay$1.run()",this);try{startHiding();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay$1.run()",this,throwable);throw throwable;}
       }
     };
 
@@ -135,55 +135,55 @@ public class MovieControllerOverlay extends FrameLayout implements
   }
 
   public void setListener(Listener listener) {
-    this.listener = listener;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.setListener(android.view.View.OnClickListener)",this,listener);try{this.listener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.setListener(android.view.View.OnClickListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.setListener(android.view.View.OnClickListener)",this,throwable);throw throwable;}
   }
 
   public void setCanReplay(boolean canReplay) {
-    this.canReplay = canReplay;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.setCanReplay(boolean)",this,canReplay);try{this.canReplay = canReplay;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.setCanReplay(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.setCanReplay(boolean)",this,throwable);throw throwable;}
   }
 
   public View getView() {
-    return this;
+    com.mijack.Xlog.logMethodEnter("android.view.View com.android.gallery3d.app.MovieControllerOverlay.getView()",this);try{com.mijack.Xlog.logMethodExit("android.view.View com.android.gallery3d.app.MovieControllerOverlay.getView()",this);return this;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.android.gallery3d.app.MovieControllerOverlay.getView()",this,throwable);throw throwable;}
   }
 
   public void showPlaying() {
-    state = State.PLAYING;
-    showMainView(playPauseReplayView);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.showPlaying()",this);try{state = State.PLAYING;
+    showMainView(playPauseReplayView);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.showPlaying()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.showPlaying()",this,throwable);throw throwable;}
   }
 
   public void showPaused() {
-    state = State.PAUSED;
-    showMainView(playPauseReplayView);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.showPaused()",this);try{state = State.PAUSED;
+    showMainView(playPauseReplayView);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.showPaused()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.showPaused()",this,throwable);throw throwable;}
   }
 
   public void showEnded() {
-    state = State.ENDED;
-    showMainView(playPauseReplayView);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.showEnded()",this);try{state = State.ENDED;
+    showMainView(playPauseReplayView);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.showEnded()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.showEnded()",this,throwable);throw throwable;}
   }
 
   public void showLoading() {
-    state = State.LOADING;
-    showMainView(loadingView);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.showLoading()",this);try{state = State.LOADING;
+    showMainView(loadingView);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.showLoading()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.showLoading()",this,throwable);throw throwable;}
   }
 
   public void showErrorMessage(String message) {
-    state = State.ERROR;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.showErrorMessage(java.lang.String)",this,message);try{state = State.ERROR;
     int padding = (int) (getMeasuredWidth() * ERROR_MESSAGE_RELATIVE_PADDING);
     errorView.setPadding(padding, 10, padding, 10);
     errorView.setText(message);
-    showMainView(errorView);
+    showMainView(errorView);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.showErrorMessage(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.showErrorMessage(java.lang.String)",this,throwable);throw throwable;}
   }
 
   public void resetTime() {
-    timeBar.resetTime();
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.resetTime()",this);try{timeBar.resetTime();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.resetTime()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.resetTime()",this,throwable);throw throwable;}
   }
 
   public void setTimes(int currentTime, int totalTime) {
-    timeBar.setTime(currentTime, totalTime);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.setTimes(int,int)",this,currentTime,totalTime);try{timeBar.setTime(currentTime, totalTime);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.setTimes(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.setTimes(int,int)",this,throwable);throw throwable;}
   }
 
   public void hide() {
-    boolean wasHidden = hidden;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.hide()",this);try{boolean wasHidden = hidden;
     hidden = true;
     playPauseReplayView.setVisibility(View.INVISIBLE);
     loadingView.setVisibility(View.INVISIBLE);
@@ -194,20 +194,20 @@ public class MovieControllerOverlay extends FrameLayout implements
     requestFocus();
     if (listener != null && wasHidden != hidden) {
       listener.onHidden();
-    }
+    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.hide()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.hide()",this,throwable);throw throwable;}
   }
 
   private void showMainView(View view) {
-    mainView = view;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.showMainView(android.view.View)",this,view);try{mainView = view;
     errorView.setVisibility(mainView == errorView ? View.VISIBLE : View.INVISIBLE);
     loadingView.setVisibility(mainView == loadingView ? View.VISIBLE : View.INVISIBLE);
     playPauseReplayView.setVisibility(
         mainView == playPauseReplayView ? View.VISIBLE : View.INVISIBLE);
-    show();
+    show();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.showMainView(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.showMainView(android.view.View)",this,throwable);throw throwable;}
   }
 
   public void show() {
-    boolean wasHidden = hidden;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.show()",this);try{boolean wasHidden = hidden;
     hidden = false;
     updateViews();
     setVisibility(View.VISIBLE);
@@ -215,48 +215,48 @@ public class MovieControllerOverlay extends FrameLayout implements
     if (listener != null && wasHidden != hidden) {
       listener.onShown();
     }
-    maybeStartHiding();
+    maybeStartHiding();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.show()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.show()",this,throwable);throw throwable;}
   }
 
   private void maybeStartHiding() {
-    cancelHiding();
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.maybeStartHiding()",this);try{cancelHiding();
     if (state == State.PLAYING) {
       handler.postDelayed(startHidingRunnable, 2500);
-    }
+    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.maybeStartHiding()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.maybeStartHiding()",this,throwable);throw throwable;}
   }
 
   private void startHiding() {
-    startHideAnimation(timeBar);
-    startHideAnimation(playPauseReplayView);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.startHiding()",this);try{startHideAnimation(timeBar);
+    startHideAnimation(playPauseReplayView);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.startHiding()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.startHiding()",this,throwable);throw throwable;}
   }
 
   private void startHideAnimation(View view) {
-    if (view.getVisibility() == View.VISIBLE) {
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.startHideAnimation(android.view.View)",this,view);try{if (view.getVisibility() == View.VISIBLE) {
       view.startAnimation(hideAnimation);
-    }
+    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.startHideAnimation(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.startHideAnimation(android.view.View)",this,throwable);throw throwable;}
   }
 
   private void cancelHiding() {
-    handler.removeCallbacks(startHidingRunnable);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.cancelHiding()",this);try{handler.removeCallbacks(startHidingRunnable);
     background.setAnimation(null);
     timeBar.setAnimation(null);
-    playPauseReplayView.setAnimation(null);
+    playPauseReplayView.setAnimation(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.cancelHiding()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.cancelHiding()",this,throwable);throw throwable;}
   }
 
   public void onAnimationStart(Animation animation) {
-    // Do nothing.
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationStart(android.view.animation.Animation)",this,animation);try{/*// Do nothing.*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationStart(android.view.animation.Animation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationStart(android.view.animation.Animation)",this,throwable);throw throwable;}
   }
 
   public void onAnimationRepeat(Animation animation) {
-    // Do nothing.
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationRepeat(android.view.animation.Animation)",this,animation);try{/*// Do nothing.*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationRepeat(android.view.animation.Animation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationRepeat(android.view.animation.Animation)",this,throwable);throw throwable;}
   }
 
   public void onAnimationEnd(Animation animation) {
-    hide();
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationEnd(android.view.animation.Animation)",this,animation);try{hide();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationEnd(android.view.animation.Animation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onAnimationEnd(android.view.animation.Animation)",this,throwable);throw throwable;}
   }
 
   public void onClick(View view) {
-    if (listener != null) {
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onClick(android.view.View)",this,view);try{if (listener != null) {
       if (view == playPauseReplayView) {
         if (state == State.ENDED) {
           if (canReplay) {
@@ -266,26 +266,26 @@ public class MovieControllerOverlay extends FrameLayout implements
           listener.onPlayPause();
         }
       }
-    }
+    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onClick(android.view.View)",this,throwable);throw throwable;}
   }
 
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if (hidden) {
+    com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.MovieControllerOverlay.onKeyDown(int,android.view.KeyEvent)",this,keyCode,event);try{if (hidden) {
       show();
     }
-    return super.onKeyDown(keyCode, event);
+    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MovieControllerOverlay.onKeyDown(int,android.view.KeyEvent)",this);return super.onKeyDown(keyCode, event);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.MovieControllerOverlay.onKeyDown(int,android.view.KeyEvent)",this,throwable);throw throwable;}
   }
 
   @Override
   public boolean onTouchEvent(MotionEvent event) {
-    if (super.onTouchEvent(event)) {
-      return true;
+    com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.MovieControllerOverlay.onTouchEvent(android.view.MotionEvent)",this,event);try{if (super.onTouchEvent(event)) {
+      {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MovieControllerOverlay.onTouchEvent(android.view.MotionEvent)",this);return true;}
     }
 
     if (hidden) {
       show();
-      return true;
+      {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MovieControllerOverlay.onTouchEvent(android.view.MotionEvent)",this);return true;}
     }
     switch (event.getAction()) {
       case MotionEvent.ACTION_DOWN:
@@ -298,12 +298,12 @@ public class MovieControllerOverlay extends FrameLayout implements
         maybeStartHiding();
         break;
     }
-    return true;
+    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.MovieControllerOverlay.onTouchEvent(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.MovieControllerOverlay.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
   }
 
   @Override
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
-    int bw;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onLayout(boolean,int,int,int,int)",this,changed,l,t,r,b);try{int bw;
     int bh;
     int y;
     int h = b - t;
@@ -317,11 +317,11 @@ public class MovieControllerOverlay extends FrameLayout implements
     background.layout(l, y, r, b);
 
     timeBar.layout(l, b - timeBar.getPreferredHeight(), r, b);
-    // Needed, otherwise the framework will not re-layout in case only the padding is changed
+    /*// Needed, otherwise the framework will not re-layout in case only the padding is changed*/
     timeBar.requestLayout();
 
-    // play pause / next / previous buttons
-    int cx = l + w / 2; // center x
+    /*// play pause / next / previous buttons*/
+    int cx = l + w / 2; /*// center x*/
     int playbackButtonsCenterline = t + h / 2;
     bw = playPauseReplayView.getMeasuredWidth();
     bh = playPauseReplayView.getMeasuredHeight();
@@ -329,31 +329,31 @@ public class MovieControllerOverlay extends FrameLayout implements
         cx - bw / 2, playbackButtonsCenterline - bh / 2, cx + bw / 2,
         playbackButtonsCenterline + bh / 2);
 
-    // Space available on each side of the error message for the next and previous buttons
+    /*// Space available on each side of the error message for the next and previous buttons*/
     int errorMessagePadding = (int) (w * ERROR_MESSAGE_RELATIVE_PADDING);
 
     if (mainView != null) {
       layoutCenteredView(mainView, l, t, r, b);
-    }
+    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onLayout(boolean,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
   }
 
   private void layoutCenteredView(View view, int l, int t, int r, int b) {
-    int cw = view.getMeasuredWidth();
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.layoutCenteredView(android.view.View,int,int,int,int)",this,view,l,t,r,b);try{int cw = view.getMeasuredWidth();
     int ch = view.getMeasuredHeight();
     int cl = (r - l - cw) / 2;
     int ct = (b - t - ch) / 2;
-    view.layout(cl, ct, cl + cw, ct + ch);
+    view.layout(cl, ct, cl + cw, ct + ch);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.layoutCenteredView(android.view.View,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.layoutCenteredView(android.view.View,int,int,int,int)",this,throwable);throw throwable;}
   }
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    measureChildren(widthMeasureSpec, heightMeasureSpec);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onMeasure(int,int)",this,widthMeasureSpec,heightMeasureSpec);try{super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    measureChildren(widthMeasureSpec, heightMeasureSpec);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onMeasure(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onMeasure(int,int)",this,throwable);throw throwable;}
   }
 
   private void updateViews() {
-    if (hidden) {
-      return;
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.updateViews()",this);try{if (hidden) {
+      {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.updateViews()",this);return;}
     }
     background.setVisibility(View.VISIBLE);
     timeBar.setVisibility(View.VISIBLE);
@@ -365,24 +365,24 @@ public class MovieControllerOverlay extends FrameLayout implements
         (state != State.LOADING && state != State.ERROR &&
                 !(state == State.ENDED && !canReplay))
         ? View.VISIBLE : View.GONE);
-    requestLayout();
+    requestLayout();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.updateViews()",this,throwable);throw throwable;}
   }
 
-  // TimeBar listener
+  /*// TimeBar listener*/
 
   public void onScrubbingStart() {
-    cancelHiding();
-    listener.onSeekStart();
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingStart()",this);try{cancelHiding();
+    listener.onSeekStart();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingStart()",this,throwable);throw throwable;}
   }
 
   public void onScrubbingMove(int time) {
-    cancelHiding();
-    listener.onSeekMove(time);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingMove(int)",this,time);try{cancelHiding();
+    listener.onSeekMove(time);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingMove(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingMove(int)",this,throwable);throw throwable;}
   }
 
   public void onScrubbingEnd(int time) {
-    maybeStartHiding();
-    listener.onSeekEnd(time);
+    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingEnd(int)",this,time);try{maybeStartHiding();
+    listener.onSeekEnd(time);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingEnd(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.MovieControllerOverlay.onScrubbingEnd(int)",this,throwable);throw throwable;}
   }
 
 }

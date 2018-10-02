@@ -36,35 +36,35 @@ public abstract class BaseMemoryCache<K, V> implements MemoryCacheAware<K, V> {
 
 	@Override
 	public V get(K key) {
-		V result = null;
+		com.mijack.Xlog.logMethodEnter("V com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.get(K)",this,key);try{V result = null;
 		Reference<V> reference = softMap.get(key);
 		if (reference != null) {
 			result = reference.get();
 		}
-		return result;
+		{com.mijack.Xlog.logMethodExit("V com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.get(K)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("V com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.get(K)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public boolean put(K key, V value) {
-		softMap.put(key, createReference(value));
-		return true;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.put(K,V)",this,key,value);try{softMap.put(key, createReference(value));
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.put(K,V)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.put(K,V)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void remove(K key) {
-		softMap.remove(key);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.remove(K)",this,key);try{softMap.remove(key);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.remove(K)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.remove(K)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public Collection<K> keys() {
-		synchronized (softMap) {
+		com.mijack.Xlog.logMethodEnter("java.util.Collection com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.keys()",this);try{com.mijack.Xlog.logMethodExit("java.util.Collection com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.keys()",this);synchronized (softMap) {
 			return new HashSet<K>(softMap.keySet());
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Collection com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.keys()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		softMap.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.clear()",this);try{softMap.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.BaseMemoryCache<K, V>.clear()",this,throwable);throw throwable;}
 	}
 
 	/** Creates {@linkplain Reference not strong} reference of value */

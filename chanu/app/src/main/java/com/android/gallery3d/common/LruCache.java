@@ -38,7 +38,7 @@ public class LruCache<K, V> {
         mLruMap = new LinkedHashMap<K, V>(16, 0.75f, true) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-                return size() > capacity;
+                com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.LruCache<K, V>$1.removeEldestEntry(Map.Entry)",this,eldest);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.LruCache<K, V>$1.removeEldestEntry(Map.Entry)",this);return size() > capacity;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.LruCache<K, V>$1.removeEldestEntry(Map.Entry)",this,throwable);throw throwable;}
             }
         };
     }
@@ -54,37 +54,37 @@ public class LruCache<K, V> {
 
     @SuppressWarnings("unchecked")
     private void cleanUpWeakMap() {
-        Entry<K, V> entry = (Entry<K, V>) mQueue.poll();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.LruCache<K, V>.cleanUpWeakMap()",this);try{Entry<K, V> entry = (Entry<K, V>) mQueue.poll();
         while (entry != null) {
             mWeakMap.remove(entry.mKey);
             entry = (Entry<K, V>) mQueue.poll();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.LruCache<K, V>.cleanUpWeakMap()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.LruCache<K, V>.cleanUpWeakMap()",this,throwable);throw throwable;}
     }
 
     public synchronized boolean containsKey(K key) {
-        cleanUpWeakMap();
-        return mWeakMap.containsKey(key);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.LruCache<K, V>.containsKey(K)",this,key);try{cleanUpWeakMap();
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.LruCache<K, V>.containsKey(K)",this);return mWeakMap.containsKey(key);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.LruCache<K, V>.containsKey(K)",this,throwable);throw throwable;}
     }
 
     public synchronized V put(K key, V value) {
-        cleanUpWeakMap();
+        com.mijack.Xlog.logMethodEnter("V com.android.gallery3d.common.LruCache<K, V>.put(K,V)",this,key,value);try{cleanUpWeakMap();
         mLruMap.put(key, value);
         Entry<K, V> entry = mWeakMap.put(
                 key, new Entry<K, V>(key, value, mQueue));
-        return entry == null ? null : entry.get();
+        {com.mijack.Xlog.logMethodExit("V com.android.gallery3d.common.LruCache<K, V>.put(K,V)",this);return entry == null ? null : entry.get();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("V com.android.gallery3d.common.LruCache<K, V>.put(K,V)",this,throwable);throw throwable;}
     }
 
     public synchronized V get(K key) {
-        cleanUpWeakMap();
+        com.mijack.Xlog.logMethodEnter("V com.android.gallery3d.common.LruCache<K, V>.get(K)",this,key);try{cleanUpWeakMap();
         V value = mLruMap.get(key);
-        if (value != null) return value;
+        if (value != null) {{com.mijack.Xlog.logMethodExit("V com.android.gallery3d.common.LruCache<K, V>.get(K)",this);return value;}}
         Entry<K, V> entry = mWeakMap.get(key);
-        return entry == null ? null : entry.get();
+        {com.mijack.Xlog.logMethodExit("V com.android.gallery3d.common.LruCache<K, V>.get(K)",this);return entry == null ? null : entry.get();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("V com.android.gallery3d.common.LruCache<K, V>.get(K)",this,throwable);throw throwable;}
     }
 
     public synchronized void clear() {
-        mLruMap.clear();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.LruCache<K, V>.clear()",this);try{mLruMap.clear();
         mWeakMap.clear();
-        mQueue = new ReferenceQueue<V>();
+        mQueue = new ReferenceQueue<V>();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.LruCache<K, V>.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.LruCache<K, V>.clear()",this,throwable);throw throwable;}
     }
 }

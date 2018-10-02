@@ -41,34 +41,34 @@ public class IdentityCache<K, V> {
     }
 
     private void cleanUpWeakMap() {
-        Entry<K, V> entry = (Entry<K, V>) mQueue.poll();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.IdentityCache<K, V>.cleanUpWeakMap()",this);try{Entry<K, V> entry = (Entry<K, V>) mQueue.poll();
         while (entry != null) {
             mWeakMap.remove(entry.mKey);
             entry = (Entry<K, V>) mQueue.poll();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.IdentityCache<K, V>.cleanUpWeakMap()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.IdentityCache<K, V>.cleanUpWeakMap()",this,throwable);throw throwable;}
     }
 
     public synchronized V put(K key, V value) {
-        cleanUpWeakMap();
+        com.mijack.Xlog.logMethodEnter("V com.android.gallery3d.util.IdentityCache<K, V>.put(K,V)",this,key,value);try{cleanUpWeakMap();
         Entry<K, V> entry = mWeakMap.put(
                 key, new Entry<K, V>(key, value, mQueue));
-        return entry == null ? null : entry.get();
+        {com.mijack.Xlog.logMethodExit("V com.android.gallery3d.util.IdentityCache<K, V>.put(K,V)",this);return entry == null ? null : entry.get();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("V com.android.gallery3d.util.IdentityCache<K, V>.put(K,V)",this,throwable);throw throwable;}
     }
 
     public synchronized V get(K key) {
-        cleanUpWeakMap();
+        com.mijack.Xlog.logMethodEnter("V com.android.gallery3d.util.IdentityCache<K, V>.get(K)",this,key);try{cleanUpWeakMap();
         Entry<K, V> entry = mWeakMap.get(key);
-        return entry == null ? null : entry.get();
+        {com.mijack.Xlog.logMethodExit("V com.android.gallery3d.util.IdentityCache<K, V>.get(K)",this);return entry == null ? null : entry.get();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("V com.android.gallery3d.util.IdentityCache<K, V>.get(K)",this,throwable);throw throwable;}
     }
 
     public synchronized void clear() {
-        mWeakMap.clear();
-        mQueue = new ReferenceQueue<V>();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.IdentityCache<K, V>.clear()",this);try{mWeakMap.clear();
+        mQueue = new ReferenceQueue<V>();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.IdentityCache<K, V>.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.IdentityCache<K, V>.clear()",this,throwable);throw throwable;}
     }
 
     public synchronized ArrayList<K> keys() {
-        Set<K> set = mWeakMap.keySet();
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.util.IdentityCache<K, V>.keys()",this);try{Set<K> set = mWeakMap.keySet();
         ArrayList<K> result = new ArrayList<K>(set);
-        return result;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.util.IdentityCache<K, V>.keys()",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.util.IdentityCache<K, V>.keys()",this,throwable);throw throwable;}
     }
 }

@@ -31,8 +31,8 @@ public class ScrollBarView extends GLView {
     private int mBarHeight;
 
     private int mGripHeight;
-    private int mGripPosition;  // left side of the grip
-    private int mGripWidth;     // zero if the grip is disabled
+    private int mGripPosition;  /*// left side of the grip*/
+    private int mGripWidth;     /*// zero if the grip is disabled*/
     private int mGivenGripWidth;
 
     private int mContentPosition;
@@ -54,21 +54,21 @@ public class ScrollBarView extends GLView {
     }
 
     public void setListener(Listener listener) {
-        mListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollBarView.setListener(Listener)",this,listener);try{mListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollBarView.setListener(Listener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollBarView.setListener(Listener)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onLayout(
             boolean changed, int left, int top, int right, int bottom) {
-        if (!changed) return;
-        mBarHeight = bottom - top;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollBarView.onLayout(boolean,int,int,int,int)",this,changed,left,top,right,bottom);try{if (!changed) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollBarView.onLayout(boolean,int,int,int,int)",this);return;}}
+        mBarHeight = bottom - top;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollBarView.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
     }
 
-    // The content position is between 0 to "total". The current position is
-    // in "position".
+    /*// The content position is between 0 to "total". The current position is*/
+    /*// in "position".*/
     public void setContentPosition(int position, int total) {
-        if (position == mContentPosition && total == mContentTotal) {
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollBarView.setContentPosition(int,int)",this,position,total);try{if (position == mContentPosition && total == mContentTotal) {
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollBarView.setContentPosition(int,int)",this);return;}
         }
 
         invalidate();
@@ -76,40 +76,40 @@ public class ScrollBarView extends GLView {
         mContentPosition = position;
         mContentTotal = total;
 
-        // If the grip cannot move, don't draw it.
+        /*// If the grip cannot move, don't draw it.*/
         if (mContentTotal <= 0) {
             mGripPosition = 0;
             mGripWidth = 0;
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollBarView.setContentPosition(int,int)",this);return;}
         }
 
-        // Map from the content range to scroll bar range.
-        //
-        // mContentTotal --> getWidth() - mGripWidth
-        // mContentPosition --> mGripPosition
+        /*// Map from the content range to scroll bar range.*/
+        /*//*/
+        /*// mContentTotal --> getWidth() - mGripWidth*/
+        /*// mContentPosition --> mGripPosition*/
         mGripWidth = mGivenGripWidth;
         float r = (getWidth() - mGripWidth) / (float) mContentTotal;
-        mGripPosition = Math.round(r * mContentPosition);
+        mGripPosition = Math.round(r * mContentPosition);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollBarView.setContentPosition(int,int)",this,throwable);throw throwable;}
     }
 
     private void notifyContentPositionFromGrip() {
-        if (mContentTotal <= 0) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollBarView.notifyContentPositionFromGrip()",this);try{if (mContentTotal <= 0) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollBarView.notifyContentPositionFromGrip()",this);return;}}
         float r = (getWidth() - mGripWidth) / (float) mContentTotal;
         int newContentPosition = Math.round(mGripPosition / r);
-        mListener.onScrollBarPositionChanged(newContentPosition);
+        mListener.onScrollBarPositionChanged(newContentPosition);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollBarView.notifyContentPositionFromGrip()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        super.render(canvas);
-        if (mGripWidth == 0) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ScrollBarView.render(GLCanvas)",this,canvas);try{super.render(canvas);
+        if (mGripWidth == 0) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ScrollBarView.render(GLCanvas)",this);return;}}
         Rect b = bounds();
         int y = (mBarHeight - mGripHeight) / 2;
-        mScrollBarTexture.draw(canvas, mGripPosition, y, mGripWidth, mGripHeight);
+        mScrollBarTexture.draw(canvas, mGripPosition, y, mGripWidth, mGripHeight);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ScrollBarView.render(GLCanvas)",this,throwable);throw throwable;}
     }
 
-    // The onTouch() handler is disabled because now we don't want the user
-    // to drag the bar (it's an indicator only).
+    /*// The onTouch() handler is disabled because now we don't want the user*/
+    /*// to drag the bar (it's an indicator only).*/
     /*
     @Override
     protected boolean onTouch(MotionEvent event) {

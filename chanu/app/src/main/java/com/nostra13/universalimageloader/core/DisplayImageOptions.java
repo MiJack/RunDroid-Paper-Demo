@@ -100,127 +100,127 @@ public final class DisplayImageOptions implements Cloneable {
 	}
 
 	public boolean shouldShowStubImage() {
-		return stubImage != 0;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowStubImage()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowStubImage()",this);return stubImage != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowStubImage()",this,throwable);throw throwable;}
 	}
 
 	public boolean shouldShowImageForEmptyUri() {
-		return imageForEmptyUri != 0;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowImageForEmptyUri()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowImageForEmptyUri()",this);return imageForEmptyUri != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowImageForEmptyUri()",this,throwable);throw throwable;}
 	}
 
 	public boolean shouldShowImageOnFail() {
-		return imageOnFail != 0;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowImageOnFail()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowImageOnFail()",this);return imageOnFail != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldShowImageOnFail()",this,throwable);throw throwable;}
 	}
 
 	public boolean shouldPreProcess() {
-		return preProcessor != null;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldPreProcess()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldPreProcess()",this);return preProcessor != null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldPreProcess()",this,throwable);throw throwable;}
 	}
 
 	public boolean shouldPostProcess() {
-		return postProcessor != null;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldPostProcess()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldPostProcess()",this);return postProcessor != null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldPostProcess()",this,throwable);throw throwable;}
 	}
 
 	public boolean shouldDelayBeforeLoading() {
-		return delayBeforeLoading > 0;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldDelayBeforeLoading()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldDelayBeforeLoading()",this);return delayBeforeLoading > 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.shouldDelayBeforeLoading()",this,throwable);throw throwable;}
 	}
 
 	public int getStubImage() {
-		return stubImage;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.DisplayImageOptions.getStubImage()",this);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.DisplayImageOptions.getStubImage()",this);return stubImage;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.DisplayImageOptions.getStubImage()",this,throwable);throw throwable;}
 	}
 
 	public int getImageForEmptyUri() {
-		return imageForEmptyUri;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.DisplayImageOptions.getImageForEmptyUri()",this);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.DisplayImageOptions.getImageForEmptyUri()",this);return imageForEmptyUri;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.DisplayImageOptions.getImageForEmptyUri()",this,throwable);throw throwable;}
 	}
 	
 	ImageSize getImageSize() {
-        return imageSize;
+        com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.DisplayImageOptions.getImageSize()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.DisplayImageOptions.getImageSize()",this);return imageSize;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.DisplayImageOptions.getImageSize()",this,throwable);throw throwable;}
     }
 
 	public int getImageOnFail() {
-		return imageOnFail;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.DisplayImageOptions.getImageOnFail()",this);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.DisplayImageOptions.getImageOnFail()",this);return imageOnFail;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.DisplayImageOptions.getImageOnFail()",this,throwable);throw throwable;}
 	}
 
 	public boolean isResetViewBeforeLoading() {
-		return resetViewBeforeLoading;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isResetViewBeforeLoading()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isResetViewBeforeLoading()",this);return resetViewBeforeLoading;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isResetViewBeforeLoading()",this,throwable);throw throwable;}
 	}
 
 	public boolean isCacheInMemory() {
-		return cacheInMemory;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCacheInMemory()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCacheInMemory()",this);return cacheInMemory;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCacheInMemory()",this,throwable);throw throwable;}
 	}
 
 	public boolean isCacheOnDisc() {
-		return cacheOnDisc;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCacheOnDisc()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCacheOnDisc()",this);return cacheOnDisc;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCacheOnDisc()",this,throwable);throw throwable;}
 	}
 
 	public ImageScaleType getImageScaleType() {
-		return imageScaleType;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.assist.ImageScaleType com.nostra13.universalimageloader.core.DisplayImageOptions.getImageScaleType()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.assist.ImageScaleType com.nostra13.universalimageloader.core.DisplayImageOptions.getImageScaleType()",this);return imageScaleType;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ImageScaleType com.nostra13.universalimageloader.core.DisplayImageOptions.getImageScaleType()",this,throwable);throw throwable;}
 	}
 
 	String getFullSizeImageLocation() {
-		return fullSizeImageLocation;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.DisplayImageOptions.getFullSizeImageLocation()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.DisplayImageOptions.getFullSizeImageLocation()",this);return fullSizeImageLocation;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.DisplayImageOptions.getFullSizeImageLocation()",this,throwable);throw throwable;}
 	}
 	
 	boolean isCenterCrop() {
-		return centerCrop;
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCenterCrop()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCenterCrop()",this);return centerCrop;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayImageOptions.isCenterCrop()",this,throwable);throw throwable;}
 	}
 
 	public Options getDecodingOptions() {
-		return decodingOptions;
+		com.mijack.Xlog.logMethodEnter("android.graphics.BitmapFactory.Options com.nostra13.universalimageloader.core.DisplayImageOptions.getDecodingOptions()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.BitmapFactory.Options com.nostra13.universalimageloader.core.DisplayImageOptions.getDecodingOptions()",this);return decodingOptions;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.BitmapFactory.Options com.nostra13.universalimageloader.core.DisplayImageOptions.getDecodingOptions()",this,throwable);throw throwable;}
 	}
 
 	public int getDelayBeforeLoading() {
-		return delayBeforeLoading;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.DisplayImageOptions.getDelayBeforeLoading()",this);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.DisplayImageOptions.getDelayBeforeLoading()",this);return delayBeforeLoading;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.DisplayImageOptions.getDelayBeforeLoading()",this,throwable);throw throwable;}
 	}
 
 	public Object getExtraForDownloader() {
-		return extraForDownloader;
+		com.mijack.Xlog.logMethodEnter("java.lang.Object com.nostra13.universalimageloader.core.DisplayImageOptions.getExtraForDownloader()",this);try{com.mijack.Xlog.logMethodExit("java.lang.Object com.nostra13.universalimageloader.core.DisplayImageOptions.getExtraForDownloader()",this);return extraForDownloader;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.nostra13.universalimageloader.core.DisplayImageOptions.getExtraForDownloader()",this,throwable);throw throwable;}
 	}
 
 	public BitmapProcessor getPreProcessor() {
-		return preProcessor;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.process.BitmapProcessor com.nostra13.universalimageloader.core.DisplayImageOptions.getPreProcessor()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.process.BitmapProcessor com.nostra13.universalimageloader.core.DisplayImageOptions.getPreProcessor()",this);return preProcessor;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.process.BitmapProcessor com.nostra13.universalimageloader.core.DisplayImageOptions.getPreProcessor()",this,throwable);throw throwable;}
 	}
 
 	public BitmapProcessor getPostProcessor() {
-		return postProcessor;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.process.BitmapProcessor com.nostra13.universalimageloader.core.DisplayImageOptions.getPostProcessor()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.process.BitmapProcessor com.nostra13.universalimageloader.core.DisplayImageOptions.getPostProcessor()",this);return postProcessor;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.process.BitmapProcessor com.nostra13.universalimageloader.core.DisplayImageOptions.getPostProcessor()",this,throwable);throw throwable;}
 	}
 
     public DisplayImageOptions createClone() {
-        try {
-            return (DisplayImageOptions)clone();
+        com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createClone()",this);try{try {
+            {com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createClone()",this);return (DisplayImageOptions)clone();}
         } catch (CloneNotSupportedException e) {
             Log.e(TAG, "Clone error", e);
         }
-        return this;
+        {com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createClone()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createClone()",this,throwable);throw throwable;}
     }
 
 	public DisplayImageOptions modifyCenterCrop(boolean centerCropImage) {
-		try {
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.modifyCenterCrop(boolean)",this,centerCropImage);try{try {
 			DisplayImageOptions options = (DisplayImageOptions)clone();
 			options.centerCrop = centerCropImage;
-			return options;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.modifyCenterCrop(boolean)",this);return options;}
 		} catch (CloneNotSupportedException e) {
 			Log.e(TAG, "Clone error", e);
 		}
-		return this;
+		{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.modifyCenterCrop(boolean)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.modifyCenterCrop(boolean)",this,throwable);throw throwable;}
 	}
 
     public DisplayImageOptions noCache() {
-        try {
+        com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.noCache()",this);try{try {
             DisplayImageOptions options = (DisplayImageOptions)clone();
             options.cacheOnDisc = false;
             options.cacheInMemory = false;
-            return options;
+            {com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.noCache()",this);return options;}
         } catch (CloneNotSupportedException e) {
             Log.e(TAG, "Clone error", e);
         }
-        return this;
+        {com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.noCache()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.noCache()",this,throwable);throw throwable;}
     }
 
     public BitmapDisplayer getDisplayer() {
-		return displayer;
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.display.BitmapDisplayer com.nostra13.universalimageloader.core.DisplayImageOptions.getDisplayer()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.display.BitmapDisplayer com.nostra13.universalimageloader.core.DisplayImageOptions.getDisplayer()",this);return displayer;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.display.BitmapDisplayer com.nostra13.universalimageloader.core.DisplayImageOptions.getDisplayer()",this,throwable);throw throwable;}
 	}
 
 	public Handler getHandler() {
-        return (handler == null ? new Handler() : handler);
+        com.mijack.Xlog.logMethodEnter("android.os.Handler com.nostra13.universalimageloader.core.DisplayImageOptions.getHandler()",this);try{{com.mijack.Xlog.logMethodExit("android.os.Handler com.nostra13.universalimageloader.core.DisplayImageOptions.getHandler()",this);return (handler == null ? new Handler() : handler);}
         /*
         if (handler != null)
             return handler;
@@ -228,7 +228,7 @@ public final class DisplayImageOptions implements Cloneable {
             return new Handler();
         else
             return null;
-	    */
+	    */}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Handler com.nostra13.universalimageloader.core.DisplayImageOptions.getHandler()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -265,8 +265,8 @@ public final class DisplayImageOptions implements Cloneable {
 		 * @param stubImageRes Stub image resource
 		 */
 		public Builder showStubImage(int stubImageRes) {
-			stubImage = stubImageRes;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showStubImage(int)",this,stubImageRes);try{stubImage = stubImageRes;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showStubImage(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showStubImage(int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -276,8 +276,8 @@ public final class DisplayImageOptions implements Cloneable {
 		 * @param imageRes Image resource
 		 */
 		public Builder showImageForEmptyUri(int imageRes) {
-			imageForEmptyUri = imageRes;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageForEmptyUri(int)",this,imageRes);try{imageForEmptyUri = imageRes;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageForEmptyUri(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageForEmptyUri(int)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -287,26 +287,26 @@ public final class DisplayImageOptions implements Cloneable {
 		 * @param imageRes Image resource
 		 */
 		public Builder showImageOnFail(int imageRes) {
-			imageOnFail = imageRes;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageOnFail(int)",this,imageRes);try{imageOnFail = imageRes;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageOnFail(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.showImageOnFail(int)",this,throwable);throw throwable;}
 		}
 
 		/** {@link android.widget.ImageView ImageView} will be reset (set <b>null</b>) before image loading start */
 		public Builder resetViewBeforeLoading() {
-			resetViewBeforeLoading = true;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.resetViewBeforeLoading()",this);try{resetViewBeforeLoading = true;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.resetViewBeforeLoading()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.resetViewBeforeLoading()",this,throwable);throw throwable;}
 		}
 
 		/** Loaded image will be cached in memory */
 		public Builder cacheInMemory() {
-			cacheInMemory = true;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheInMemory()",this);try{cacheInMemory = true;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheInMemory()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheInMemory()",this,throwable);throw throwable;}
 		}
 
 		/** Loaded image will be cached on disc */
 		public Builder cacheOnDisc() {
-			cacheOnDisc = true;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheOnDisc()",this);try{cacheOnDisc = true;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheOnDisc()",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cacheOnDisc()",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -314,24 +314,24 @@ public final class DisplayImageOptions implements Cloneable {
 		 * size for decoding image to Bitmap. Default value - {@link ImageScaleType#IN_SAMPLE_POWER_OF_2}
 		 */
 		public Builder imageScaleType(ImageScaleType imageScaleType) {
-			this.imageScaleType = imageScaleType;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.imageScaleType(com.nostra13.universalimageloader.core.assist.ImageScaleType)",this,imageScaleType);try{this.imageScaleType = imageScaleType;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.imageScaleType(com.nostra13.universalimageloader.core.assist.ImageScaleType)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.imageScaleType(com.nostra13.universalimageloader.core.assist.ImageScaleType)",this,throwable);throw throwable;}
 		}
 		
 		public Builder imageSize(ImageSize imageSize) {
-            this.imageSize = imageSize;
-            return this;
+            com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.imageSize(com.nostra13.universalimageloader.core.assist.ImageSize)",this,imageSize);try{this.imageSize = imageSize;
+            {com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.imageSize(com.nostra13.universalimageloader.core.assist.ImageSize)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.imageSize(com.nostra13.universalimageloader.core.assist.ImageSize)",this,throwable);throw throwable;}
         }
 
         public Builder fullSizeImageLocation(String imageLocation) {
-            this.fullSizeImageLocation = imageLocation;
-            return this;
+            com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.fullSizeImageLocation(java.lang.String)",this,imageLocation);try{this.fullSizeImageLocation = imageLocation;
+            {com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.fullSizeImageLocation(java.lang.String)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.fullSizeImageLocation(java.lang.String)",this,throwable);throw throwable;}
         }
 
 		/** Sets {@link Bitmap.Config bitmap config} for image decoding. Default value - {@link Bitmap.Config#ARGB_8888} */
 		public Builder bitmapConfig(Bitmap.Config bitmapConfig) {
-			decodingOptions.inPreferredConfig = bitmapConfig;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.bitmapConfig(Bitmap.Config)",this,bitmapConfig);try{decodingOptions.inPreferredConfig = bitmapConfig;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.bitmapConfig(Bitmap.Config)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.bitmapConfig(Bitmap.Config)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -343,20 +343,20 @@ public final class DisplayImageOptions implements Cloneable {
 		 * option.
 		 */
 		public Builder decodingOptions(Options decodingOptions) {
-			this.decodingOptions = decodingOptions;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.decodingOptions(android.graphics.BitmapFactory.Options)",this,decodingOptions);try{this.decodingOptions = decodingOptions;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.decodingOptions(android.graphics.BitmapFactory.Options)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.decodingOptions(android.graphics.BitmapFactory.Options)",this,throwable);throw throwable;}
 		}
 
 		/** Sets delay time before starting loading task. Default - no delay. */
 		public Builder delayBeforeLoading(int delayInMillis) {
-			this.delayBeforeLoading = delayInMillis;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.delayBeforeLoading(int)",this,delayInMillis);try{this.delayBeforeLoading = delayInMillis;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.delayBeforeLoading(int)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.delayBeforeLoading(int)",this,throwable);throw throwable;}
 		}
 
 		/** Sets auxiliary object which will be passed to {@link ImageDownloader#} */
 		public Builder extraForDownloader(Object extra) {
-			this.extraForDownloader = extra;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.extraForDownloader(java.lang.Object)",this,extra);try{this.extraForDownloader = extra;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.extraForDownloader(java.lang.Object)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.extraForDownloader(java.lang.Object)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -365,8 +365,8 @@ public final class DisplayImageOptions implements Cloneable {
 		 * Image will be pre-processed even if caching in memory is disabled.
 		 */
 		public Builder preProcessor(BitmapProcessor preProcessor) {
-			this.preProcessor = preProcessor;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.preProcessor(com.nostra13.universalimageloader.core.process.BitmapProcessor)",this,preProcessor);try{this.preProcessor = preProcessor;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.preProcessor(com.nostra13.universalimageloader.core.process.BitmapProcessor)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.preProcessor(com.nostra13.universalimageloader.core.process.BitmapProcessor)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -374,8 +374,8 @@ public final class DisplayImageOptions implements Cloneable {
 		 * after they'll have been saved in memory cache.
 		 */
 		public Builder postProcessor(BitmapProcessor postProcessor) {
-			this.postProcessor = postProcessor;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.postProcessor(com.nostra13.universalimageloader.core.process.BitmapProcessor)",this,postProcessor);try{this.postProcessor = postProcessor;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.postProcessor(com.nostra13.universalimageloader.core.process.BitmapProcessor)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.postProcessor(com.nostra13.universalimageloader.core.process.BitmapProcessor)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -383,8 +383,8 @@ public final class DisplayImageOptions implements Cloneable {
 		 * {@link DefaultConfigurationFactory#createBitmapDisplayer()}
 		 */
 		public Builder displayer(BitmapDisplayer displayer) {
-			this.displayer = displayer;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.displayer(com.nostra13.universalimageloader.core.display.BitmapDisplayer)",this,displayer);try{this.displayer = displayer;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.displayer(com.nostra13.universalimageloader.core.display.BitmapDisplayer)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.displayer(com.nostra13.universalimageloader.core.display.BitmapDisplayer)",this,throwable);throw throwable;}
 		}
 
 		/**
@@ -392,13 +392,13 @@ public final class DisplayImageOptions implements Cloneable {
 		 * listener} events.
 		 */
 		public Builder handler(Handler handler) {
-			this.handler = handler;
-			return this;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.handler(android.os.Handler)",this,handler);try{this.handler = handler;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.handler(android.os.Handler)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.handler(android.os.Handler)",this,throwable);throw throwable;}
 		}
 
 		/** Sets all options equal to incoming options */
 		public Builder cloneFrom(DisplayImageOptions options) {
-			stubImage = options.stubImage;
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cloneFrom(com.nostra13.universalimageloader.core.DisplayImageOptions)",this,options);try{stubImage = options.stubImage;
 			imageForEmptyUri = options.imageForEmptyUri;
 			imageOnFail = options.imageOnFail;
 			resetViewBeforeLoading = options.resetViewBeforeLoading;
@@ -413,12 +413,12 @@ public final class DisplayImageOptions implements Cloneable {
 			displayer = options.displayer;
 			handler = options.handler;
 			fullSizeImageLocation = options.fullSizeImageLocation;
-			return this;
+			{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cloneFrom(com.nostra13.universalimageloader.core.DisplayImageOptions)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions$Builder com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.cloneFrom(com.nostra13.universalimageloader.core.DisplayImageOptions)",this,throwable);throw throwable;}
 		}
 
 		/** Builds configured {@link DisplayImageOptions} object */
 		public DisplayImageOptions build() {
-			return new DisplayImageOptions(this);
+			com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.build()",this);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.build()",this);return new DisplayImageOptions(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions$Builder.build()",this,throwable);throw throwable;}
 		}
 	}
 
@@ -436,6 +436,6 @@ public final class DisplayImageOptions implements Cloneable {
 	 * These option are appropriate for simple single-use image (from drawables or from Internet) displaying.
 	 */
 	public static DisplayImageOptions createSimple() {
-		return new Builder().build();
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createSimple()");try{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createSimple()");return new Builder().build();}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.DisplayImageOptions com.nostra13.universalimageloader.core.DisplayImageOptions.createSimple()",throwable);throw throwable;}
 	}
 }

@@ -36,9 +36,9 @@ public class ThreadImageExpander {
     private static final boolean DEBUG = false;
 
     public static final String WEBVIEW_BLANK_URL = "about:blank";
-    private static final int BIG_IMAGE_SIZE_BYTES = 1024 * 250; // more than 250kb, show in web view
-    private static final int BYTES_PER_PIXEL = 4; // Bitmap.Config.ARGB_8888;
-    //private static final double MAX_EXPANDED_SCALE = 1.5;
+    private static final int BIG_IMAGE_SIZE_BYTES = 1024 * 250; /*// more than 250kb, show in web view*/
+    private static final int BYTES_PER_PIXEL = 4; /*// Bitmap.Config.ARGB_8888;*/
+    /*//private static final double MAX_EXPANDED_SCALE = 1.5;*/
 
     private ThreadViewHolder viewHolder;
     private String thumbUrl = null;
@@ -89,12 +89,12 @@ public class ThreadImageExpander {
         	fullImagePath = (new File(URI.create(uri.toString()))).getAbsolutePath();
         }
         this.showContextMenu = showContextMenu;
-        if (DEBUG) Log.i(TAG, "postUrl=" + postImageUrl + " postSize=" + postW + "x" + postH);
+        if (DEBUG) {Log.i(TAG, "postUrl=" + postImageUrl + " postSize=" + postW + "x" + postH);}
     }
 
     static public void setImageDimensions(ThreadViewHolder viewHolder, Point targetSize) {
-        //ViewGroup.LayoutParams params = viewHolder.list_item_image_expanded.getLayoutParams();
-        if (DEBUG) Log.i(TAG, "setImageDimensions() to " + targetSize.x + "x" + targetSize.y);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.component.ThreadImageExpander.setImageDimensions(com.chanapps.four.viewer.ThreadViewHolder,android.graphics.Point)",viewHolder,targetSize);try{/*//ViewGroup.LayoutParams params = viewHolder.list_item_image_expanded.getLayoutParams();*/
+        if (DEBUG) {Log.i(TAG, "setImageDimensions() to " + targetSize.x + "x" + targetSize.y);}
         if (viewHolder.list_item_image_expanded_click_effect != null) {
             ViewGroup.LayoutParams params2 = viewHolder.list_item_image_expanded_click_effect.getLayoutParams();
             if (params2 != null) {
@@ -112,19 +112,19 @@ public class ThreadImageExpander {
         if (viewHolder.list_item_image_expanded_wrapper != null) {
             ViewGroup.LayoutParams params4 = viewHolder.list_item_image_expanded_wrapper.getLayoutParams();
             if (params4 != null) {
-                //params3.width = params.width; always match width
+                /*//params3.width = params.width; always match width*/
                 params4.height = targetSize.y;
             }
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.component.ThreadImageExpander.setImageDimensions(com.chanapps.four.viewer.ThreadViewHolder,android.graphics.Point)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander.setImageDimensions(com.chanapps.four.viewer.ThreadViewHolder,android.graphics.Point)",throwable);throw throwable;}
     }
 
     public void displayImage() {
-        viewHolder.isWebView = true;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander.displayImage()",this);try{viewHolder.isWebView = true;
         isVideo = ChanImage.isVideo(postExt, fsize, postW, postH);
         int width = isVideo ? thumbW : postW;
         int height = isVideo ? thumbH : postH;
         targetSize = ThreadViewer.sizeHeaderImage(width, height, showContextMenu);
-        if (DEBUG) Log.i(TAG, "inputSize=" + width + "x" + height + " targetSize=" + targetSize.x + "x" + targetSize.y);
+        if (DEBUG) {Log.i(TAG, "inputSize=" + width + "x" + height + " targetSize=" + targetSize.x + "x" + targetSize.y);}
         setImageDimensions(viewHolder, targetSize);
         displayWebView(width, height);
         /*
@@ -133,7 +133,7 @@ public class ThreadImageExpander {
             displayWebView();
         else
             displayImageView();
-        */
+        */com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander.displayImage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander.displayImage()",this,throwable);throw throwable;}
     }
     /*
     protected boolean isAnimatedGif() {
@@ -147,8 +147,8 @@ public class ThreadImageExpander {
     }
     */
     protected void displayWebView(int width, int height) {
-        if (viewHolder.list_item_image_expanded_wrapper != null)
-            viewHolder.list_item_image_expanded_wrapper.setVisibility(View.VISIBLE);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander.displayWebView(int,int)",this,width,height);try{if (viewHolder.list_item_image_expanded_wrapper != null)
+            {viewHolder.list_item_image_expanded_wrapper.setVisibility(View.VISIBLE);}
         /*
         if (viewHolder.list_item_expanded_progress_bar != null)
             viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
@@ -156,38 +156,38 @@ public class ThreadImageExpander {
             viewHolder.list_item_image_expanded.setVisibility(View.GONE);
         */
         if (viewHolder.list_item_image_wrapper != null)
-            viewHolder.list_item_image_wrapper.setVisibility(View.GONE);
+            {viewHolder.list_item_image_wrapper.setVisibility(View.GONE);}
         if (viewHolder.list_item_image_header != null)
-            viewHolder.list_item_image_header.setVisibility(View.GONE);
+            {viewHolder.list_item_image_header.setVisibility(View.GONE);}
 
         WebView v = viewHolder.list_item_image_expanded_webview;
         if (v == null)
-            return;
-        //v.loadUrl(WEBVIEW_BLANK_URL); // needed so we don't get old image showing
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander.displayWebView(int,int)",this);return;}}
+        /*//v.loadUrl(WEBVIEW_BLANK_URL); // needed so we don't get old image showing*/
         v.setVisibility(View.INVISIBLE);
-        //v.setWebViewClient(webViewClient);
+        /*//v.setWebViewClient(webViewClient);*/
 
-        if (DEBUG) Log.i(TAG, "Loading anim gif webview url=" + postImageUrl);
+        if (DEBUG) {Log.i(TAG, "Loading anim gif webview url=" + postImageUrl);}
         int scale = calcScale(width, height);
         v.setInitialScale(scale);
         displayClickEffect();
-        if (DEBUG) Log.i(TAG, "displayWebView() imageSize=" + width + "x" + height
+        if (DEBUG) {Log.i(TAG, "displayWebView() imageSize=" + width + "x" + height
                 + " targetSize=" + targetSize.x + "x" + targetSize.y
-                + " scale=" + scale);
+                + " scale=" + scale);}
 
         if (isVideo) {
             v.loadUrl(thumbUrl);
         }
         else {
             v.loadUrl(postImageUrl);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander.displayWebView(int,int)",this,throwable);throw throwable;}
     }
     private int calcScale(int width, int height) {
-        float maxWidth = width > 1 ? width : 250;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.component.ThreadImageExpander.calcScale(int,int)",this,width,height);try{float maxWidth = width > 1 ? width : 250;
         float maxHeight = height > 1 ? height : 250;
         float itemWidth = targetSize.x;
         float itemHeight = targetSize.y;
-        return (int)Math.min(Math.ceil(itemWidth * 100 / maxWidth), Math.ceil(itemWidth * 100 / maxWidth));
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.component.ThreadImageExpander.calcScale(int,int)",this);return (int)Math.min(Math.ceil(itemWidth * 100 / maxWidth), Math.ceil(itemWidth * 100 / maxWidth));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.component.ThreadImageExpander.calcScale(int,int)",this,throwable);throw throwable;}
     }
 
     /*
@@ -236,72 +236,72 @@ public class ThreadImageExpander {
     ImageLoadingListener expandedImageLoadingListener = new ImageLoadingListener() {
         @Override
         public void onLoadingStarted(String imageUri, View view) {
-            displayClickEffect();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingStarted(java.lang.String,android.view.View)",this,imageUri,view);try{displayClickEffect();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingStarted(java.lang.String,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingStarted(java.lang.String,android.view.View)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            String reason = failReason.toString();
-            if (DEBUG) Log.e(TAG, "Failed to download " + postImageUrl + " to file=" + fullImagePath + " reason=" + reason);
-            //if (viewHolder.list_item_expanded_progress_bar != null && withProgress)
-            //    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this,imageUri,view,failReason);try{String reason = failReason.toString();
+            if (DEBUG) {Log.e(TAG, "Failed to download " + postImageUrl + " to file=" + fullImagePath + " reason=" + reason);}
+            /*//if (viewHolder.list_item_expanded_progress_bar != null && withProgress)*/
+            /*//    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingFailed(java.lang.String,android.view.View,com.nostra13.universalimageloader.core.assist.FailReason)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            if (DEBUG) Log.v(TAG, "onLoadingComplete uri=" + imageUri);
-            //if (viewHolder.list_item_expanded_progress_bar != null && withProgress)
-            //    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this,imageUri,view,loadedImage);try{if (DEBUG) {Log.v(TAG, "onLoadingComplete uri=" + imageUri);}
+            /*//if (viewHolder.list_item_expanded_progress_bar != null && withProgress)*/
+            /*//    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);*/
             displayClickEffect();
             if (viewHolder.list_item_image_expansion_target != null) {
-                //viewHolder.list_item_image_expansion_target.setOnClickListener(null);
-                //viewHolder.list_item_image_expansion_target.setForeground(view.getResources().getDrawable(R.drawable.null_selector_bg));
+                /*//viewHolder.list_item_image_expansion_target.setOnClickListener(null);*/
+                /*//viewHolder.list_item_image_expansion_target.setForeground(view.getResources().getDrawable(R.drawable.null_selector_bg));*/
             }
 
-            //if (withProgress)
-            //     ThreadViewer.toggleExpandedImage(viewHolder);
+            /*//if (withProgress)*/
+            /*//     ThreadViewer.toggleExpandedImage(viewHolder);*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLoadingCancelled(String imageUri, View view) {
-            //if (viewHolder.list_item_expanded_progress_bar != null && withProgress)
-            //    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingCancelled(java.lang.String,android.view.View)",this,imageUri,view);try{/*//if (viewHolder.list_item_expanded_progress_bar != null && withProgress)*/
+            /*//    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingCancelled(java.lang.String,android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander$1.onLoadingCancelled(java.lang.String,android.view.View)",this,throwable);throw throwable;}
         }
     };
 
     private void displayClickEffect() {
-        if (viewHolder.list_item_image_expanded_click_effect != null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander.displayClickEffect()",this);try{if (viewHolder.list_item_image_expanded_click_effect != null) {
             viewHolder.list_item_image_expanded_click_effect.setVisibility(View.VISIBLE);
-            //viewHolder.list_item_image_expanded_click_effect.setOnClickListener(collapseImageListener);
+            /*//viewHolder.list_item_image_expanded_click_effect.setOnClickListener(collapseImageListener);*/
             if (isVideo) {
                 setVideoListener();
             }
             else {
                 setGalleryListener();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander.displayClickEffect()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander.displayClickEffect()",this,throwable);throw throwable;}
     }
 
     private void setVideoListener() {
-        viewHolder.list_item_image_expanded_click_effect.setOnClickListener(videoListener);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander.setVideoListener()",this);try{viewHolder.list_item_image_expanded_click_effect.setOnClickListener(videoListener);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander.setVideoListener()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander.setVideoListener()",this,throwable);throw throwable;}
     }
 
     private View.OnClickListener videoListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Context c = viewHolder.list_item != null ? viewHolder.list_item.getContext() : null;
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander$2.onClick(android.view.View)",this,v);try{Context c = viewHolder.list_item != null ? viewHolder.list_item.getContext() : null;
             if (c == null) {
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander$2.onClick(android.view.View)",this);return;}
             }
             Activity a = c instanceof Activity ? (Activity)c : null;
             String mimeType = ChanImage.videoMimeType(postExt);
             Uri uri = Uri.parse(postImageUrl);
-            ChanImage.startViewer(a, uri, mimeType);
+            ChanImage.startViewer(a, uri, mimeType);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander$2.onClick(android.view.View)",this,throwable);throw throwable;}
         }
     };
 
     private void setGalleryListener() {
-        viewHolder.list_item_image_expanded_click_effect.setOnClickListener(expandedImageListener);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageExpander.setGalleryListener()",this);try{viewHolder.list_item_image_expanded_click_effect.setOnClickListener(expandedImageListener);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageExpander.setGalleryListener()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageExpander.setGalleryListener()",this,throwable);throw throwable;}
     }
 
     /*
@@ -314,7 +314,7 @@ public class ThreadImageExpander {
     */
 
     private boolean shouldExpandImage() {
-        /*
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.ThreadImageExpander.shouldExpandImage()",this);try{/*
         if (viewHolder.list_item_image_expanded != null
                 && viewHolder.list_item_image_expanded.getVisibility() != View.GONE
                 && viewHolder.list_item_image_expanded.getHeight() > 0) {
@@ -326,12 +326,12 @@ public class ThreadImageExpander {
         if (viewHolder.list_item_image_expanded_webview != null
                 && viewHolder.list_item_image_expanded_webview.getVisibility() != View.GONE
                 && viewHolder.list_item_image_expanded_webview.getHeight() > 0) {
-            if (DEBUG) Log.i(TAG, "Image webview already expanded, skipping");
-            return false;
+            if (DEBUG) {Log.i(TAG, "Image webview already expanded, skipping");}
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ThreadImageExpander.shouldExpandImage()",this);return false;}
         }
         else {
-            return true;
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.ThreadImageExpander.shouldExpandImage()",this);return true;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.ThreadImageExpander.shouldExpandImage()",this,throwable);throw throwable;}
     }
 
     /*

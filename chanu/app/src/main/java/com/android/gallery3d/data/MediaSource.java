@@ -31,31 +31,29 @@ public abstract class MediaSource {
     }
 
     public String getPrefix() {
-        return mPrefix;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.MediaSource.getPrefix()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.MediaSource.getPrefix()",this);return mPrefix;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.MediaSource.getPrefix()",this,throwable);throw throwable;}
     }
 
     public Path findPathByUri(Uri uri) {
-        return null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaSource.findPathByUri(android.net.Uri)",this,uri);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaSource.findPathByUri(android.net.Uri)",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaSource.findPathByUri(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     public abstract MediaObject createMediaObject(Path path);
 
-    public void pause() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaSource.pause()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaSource.pause()",this);}
 
-    public void resume() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaSource.resume()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaSource.resume()",this);}
 
     public Path getDefaultSetOf(Path item) {
-        return null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaSource.getDefaultSetOf(com.android.gallery3d.data.Path)",this,item);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaSource.getDefaultSetOf(com.android.gallery3d.data.Path)",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.data.MediaSource.getDefaultSetOf(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     public long getTotalUsedCacheSize() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MediaSource.getTotalUsedCacheSize()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MediaSource.getTotalUsedCacheSize()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MediaSource.getTotalUsedCacheSize()",this,throwable);throw throwable;}
     }
 
     public long getTotalTargetCacheSize() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MediaSource.getTotalTargetCacheSize()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MediaSource.getTotalTargetCacheSize()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MediaSource.getTotalTargetCacheSize()",this,throwable);throw throwable;}
     }
 
     public static class PathId {
@@ -67,14 +65,14 @@ public abstract class MediaSource {
         public int id;
     }
 
-    // Maps a list of Paths (all belong to this MediaSource) to MediaItems,
-    // and invoke consumer.consume() for each MediaItem with the given id.
-    //
-    // This default implementation uses getMediaObject for each Path. Subclasses
-    // may override this and provide more efficient implementation (like
-    // batching the database query).
+    /*// Maps a list of Paths (all belong to this MediaSource) to MediaItems,*/
+    /*// and invoke consumer.consume() for each MediaItem with the given id.*/
+    /*//*/
+    /*// This default implementation uses getMediaObject for each Path. Subclasses*/
+    /*// may override this and provide more efficient implementation (like*/
+    /*// batching the database query).*/
     public void mapMediaItems(ArrayList<PathId> list, ItemConsumer consumer) {
-        int n = list.size();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaSource.mapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer)",this,list,consumer);try{int n = list.size();
         for (int i = 0; i < n; i++) {
             PathId pid = list.get(i);
             MediaObject obj = pid.path.getObject();
@@ -88,6 +86,6 @@ public abstract class MediaSource {
             if (obj != null) {
                 consumer.consume(pid.id, (MediaItem) obj);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaSource.mapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MediaSource.mapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer)",this,throwable);throw throwable;}
     }
 }

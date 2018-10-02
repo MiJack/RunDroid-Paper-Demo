@@ -57,43 +57,43 @@ public abstract class EffectAction extends LinearLayout {
     }
 
     public void setListener(Listener l) {
-        listener = l;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction.setListener(Listener)",this,l);try{listener = l;
         findViewById(R.id.effect_button).setOnClickListener(
                 (listener == null) ? null : new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                listener.onClick();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction$1.onClick(android.view.View)",this,v);try{listener.onClick();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction.setListener(Listener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction.setListener(Listener)",this,throwable);throw throwable;}
     }
 
     public CharSequence name() {
-        return ((TextView) findViewById(R.id.effect_label)).getText();
+        com.mijack.Xlog.logMethodEnter("java.lang.CharSequence com.android.gallery3d.photoeditor.actions.EffectAction.name()",this);try{com.mijack.Xlog.logMethodExit("java.lang.CharSequence com.android.gallery3d.photoeditor.actions.EffectAction.name()",this);return ((TextView) findViewById(R.id.effect_label)).getText();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.CharSequence com.android.gallery3d.photoeditor.actions.EffectAction.name()",this,throwable);throw throwable;}
     }
 
     public void begin(FilterStack filterStack, EffectToolFactory factory) {
-        // This view is already detached from UI view hierarchy by reaching here; findViewById()
-        // could only access its own child views from here.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction.begin(com.android.gallery3d.photoeditor.FilterStack,com.android.gallery3d.photoeditor.actions.EffectToolFactory)",this,filterStack,factory);try{/*// This view is already detached from UI view hierarchy by reaching here; findViewById()*/
+        /*// could only access its own child views from here.*/
         this.filterStack = filterStack;
         this.factory = factory;
 
-        // Shows the tooltip if it's available.
+        /*// Shows the tooltip if it's available.*/
         if (getTag() != null) {
             tooltip = Toast.makeText(getContext(), (String) getTag(), Toast.LENGTH_SHORT);
             tooltip.setGravity(Gravity.CENTER, 0, 0);
             tooltip.show();
         }
-        doBegin();
+        doBegin();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction.begin(com.android.gallery3d.photoeditor.FilterStack,com.android.gallery3d.photoeditor.actions.EffectToolFactory)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction.begin(com.android.gallery3d.photoeditor.FilterStack,com.android.gallery3d.photoeditor.actions.EffectToolFactory)",this,throwable);throw throwable;}
     }
 
     /**
      * Ends the effect and then executes the runnable after the effect is finished.
      */
     public void end(final Runnable runnableOnODone) {
-        doEnd();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction.end(java.lang.Runnable)",this,runnableOnODone);try{doEnd();
 
-        // Wait till last output callback is done before finishing.
+        /*// Wait till last output callback is done before finishing.*/
         if ((lastFilterChangedCallback == null) || lastFilterChangedCallback.done) {
             finish(runnableOnODone);
         } else {
@@ -101,14 +101,14 @@ public abstract class EffectAction extends LinearLayout {
 
                 @Override
                 public void run() {
-                    finish(runnableOnODone);
+                    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction$2.run()",this);try{finish(runnableOnODone);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction$2.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction$2.run()",this,throwable);throw throwable;}
                 }
             };
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction.end(java.lang.Runnable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction.end(java.lang.Runnable)",this,throwable);throw throwable;}
     }
 
     private void finish(Runnable runnableOnDone) {
-        // Close the tooltip if it's still showing.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction.finish(java.lang.Runnable)",this,runnableOnDone);try{/*// Close the tooltip if it's still showing.*/
         if ((tooltip != null) && (tooltip.getView().getParent() != null)) {
             tooltip.cancel();
             tooltip = null;
@@ -116,25 +116,25 @@ public abstract class EffectAction extends LinearLayout {
         pushedFilter = false;
         lastFilterChangedCallback = null;
 
-        runnableOnDone.run();
+        runnableOnDone.run();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction.finish(java.lang.Runnable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction.finish(java.lang.Runnable)",this,throwable);throw throwable;}
     }
 
     protected void notifyDone() {
-        if (listener != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction.notifyDone()",this);try{if (listener != null) {
             listener.onDone();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction.notifyDone()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction.notifyDone()",this,throwable);throw throwable;}
     }
 
     protected void notifyFilterChanged(Filter filter, boolean output) {
-        if (!pushedFilter && filter.isValid()) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction.notifyFilterChanged(com.android.gallery3d.photoeditor.filters.Filter,boolean)",this,filter,output);try{if (!pushedFilter && filter.isValid()) {
             filterStack.pushFilter(filter);
             pushedFilter = true;
         }
         if (pushedFilter && output) {
-            // Notify the stack to execute the changed top filter and output the results.
+            /*// Notify the stack to execute the changed top filter and output the results.*/
             lastFilterChangedCallback = new FilterChangedCallback();
             filterStack.topFilterChanged(lastFilterChangedCallback);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction.notifyFilterChanged(com.android.gallery3d.photoeditor.filters.Filter,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction.notifyFilterChanged(com.android.gallery3d.photoeditor.filters.Filter,boolean)",this,throwable);throw throwable;}
     }
 
     /**
@@ -158,11 +158,11 @@ public abstract class EffectAction extends LinearLayout {
 
         @Override
         public void onDone() {
-            done = true;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.EffectAction$FilterChangedCallback.onDone()",this);try{done = true;
 
             if (runnableOnReady != null) {
                 runnableOnReady.run();
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.EffectAction$FilterChangedCallback.onDone()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.EffectAction$FilterChangedCallback.onDone()",this,throwable);throw throwable;}
         }
     }
 }

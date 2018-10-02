@@ -23,12 +23,12 @@ public class ChanBoardStat {
 		this.usage = 0;
 	}
 	public long use() {
-		usage++;
+		com.mijack.Xlog.logMethodEnter("long com.chanapps.four.data.ChanBoardStat.use()",this);try{usage++;
 		lastUsage = Calendar.getInstance().getTimeInMillis();
-		return lastUsage;
+		{com.mijack.Xlog.logMethodExit("long com.chanapps.four.data.ChanBoardStat.use()",this);return lastUsage;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.data.ChanBoardStat.use()",this,throwable);throw throwable;}
 	}
 	
 	public String toString() {
-		return "board " + board + " used " + usage + " last at " + new Date(lastUsage);
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.ChanBoardStat.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.ChanBoardStat.toString()",this);return "board " + board + " used " + usage + " last at " + new Date(lastUsage);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.ChanBoardStat.toString()",this,throwable);throw throwable;}
 	}
 }

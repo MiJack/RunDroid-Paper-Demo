@@ -36,27 +36,27 @@ public class FisheyeAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final FisheyeFilter filter = new FisheyeFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FisheyeAction.doBegin()",this);try{final FisheyeFilter filter = new FisheyeFilter();
 
         scalePicker = factory.createScalePicker(EffectToolFactory.ScalePickerType.GENERIC);
         scalePicker.setOnScaleChangeListener(new ScaleSeekBar.OnScaleChangeListener() {
 
             @Override
             public void onProgressChanged(float progress, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FisheyeAction$1.onProgressChanged(float,boolean)",this,progress,fromUser);try{if (fromUser) {
                     filter.setScale(progress);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FisheyeAction$1.onProgressChanged(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FisheyeAction$1.onProgressChanged(float,boolean)",this,throwable);throw throwable;}
             }
         });
         scalePicker.setProgress(DEFAULT_SCALE);
 
         filter.setScale(DEFAULT_SCALE);
-        notifyFilterChanged(filter, true);
+        notifyFilterChanged(filter, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FisheyeAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FisheyeAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        scalePicker.setOnScaleChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FisheyeAction.doEnd()",this);try{scalePicker.setOnScaleChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FisheyeAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FisheyeAction.doEnd()",this,throwable);throw throwable;}
     }
 }

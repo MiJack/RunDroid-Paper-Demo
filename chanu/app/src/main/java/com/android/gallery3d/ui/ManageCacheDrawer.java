@@ -45,12 +45,10 @@ public class ManageCacheDrawer extends IconDrawer {
         mCachePinMargin = cachePinMargin;
     }
 
-    @Override
-    public void prepareDrawing() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ManageCacheDrawer.prepareDrawing()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ManageCacheDrawer.prepareDrawing()",this);}
 
     private static boolean isLocal(int dataSourceType) {
-        return dataSourceType != DATASOURCE_TYPE_PICASA;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.ui.ManageCacheDrawer.isLocal(int)",dataSourceType);try{com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.ui.ManageCacheDrawer.isLocal(int)");return dataSourceType != DATASOURCE_TYPE_PICASA;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.ui.ManageCacheDrawer.isLocal(int)",throwable);throw throwable;}
     }
 
     @Override
@@ -59,7 +57,7 @@ public class ManageCacheDrawer extends IconDrawer {
             int dataSourceType, int mediaType, boolean isPanorama,
             int labelBackgroundHeight, boolean wantCache, boolean isCaching) {
 
-        int x = -width / 2;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ManageCacheDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,canvas,content,width,height,rotation,path,dataSourceType,mediaType,isPanorama,labelBackgroundHeight,wantCache,isCaching);try{int x = -width / 2;
         int y = -height / 2;
 
         drawWithRotation(canvas, content, x, y, width, height, rotation);
@@ -80,12 +78,12 @@ public class ManageCacheDrawer extends IconDrawer {
 
         if (mSelectionManager.isPressedPath(path)) {
             drawPressedFrame(canvas, x, y, width, height);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ManageCacheDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ManageCacheDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,int,boolean,int,boolean,boolean)",this,throwable);throw throwable;}
     }
 
     private void drawCachingPin(GLCanvas canvas, Path path, int dataSourceType,
             boolean isCaching, boolean wantCache, int width, int height) {
-        boolean selected = mSelectionManager.isItemSelected(path);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ManageCacheDrawer.drawCachingPin(GLCanvas,com.android.gallery3d.data.Path,int,boolean,boolean,int,int)",this,canvas,path,dataSourceType,isCaching,wantCache,width,height);try{boolean selected = mSelectionManager.isItemSelected(path);
         boolean chooseToCache = wantCache ^ selected;
 
         ResourceTexture icon = null;
@@ -109,14 +107,12 @@ public class ManageCacheDrawer extends IconDrawer {
         if (isCaching) {
             int textWidth = mCachingText.getWidth();
             int textHeight = mCachingText.getHeight();
-            // Align the center of the text to the center of the pin icon
+            /*// Align the center of the text to the center of the pin icon*/
             x = right - mCachePinMargin - (textWidth + mCachePinSize) / 2;
             y = bottom - textHeight;
             mCachingText.draw(canvas, x, y);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ManageCacheDrawer.drawCachingPin(GLCanvas,com.android.gallery3d.data.Path,int,boolean,boolean,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ManageCacheDrawer.drawCachingPin(GLCanvas,com.android.gallery3d.data.Path,int,boolean,boolean,int,int)",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void drawFocus(GLCanvas canvas, int width, int height) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ManageCacheDrawer.drawFocus(GLCanvas,int,int)",this,canvas,width,height);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ManageCacheDrawer.drawFocus(GLCanvas,int,int)",this);}
 }

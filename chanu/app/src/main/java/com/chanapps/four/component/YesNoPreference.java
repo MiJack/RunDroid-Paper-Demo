@@ -48,11 +48,11 @@ public class YesNoPreference extends DialogPreference {
 
     @Override
     protected void onDialogClosed(boolean positiveResult) {
-        super.onDialogClosed(positiveResult);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.YesNoPreference.onDialogClosed(boolean)",this,positiveResult);try{super.onDialogClosed(positiveResult);
 
         if (callChangeListener(positiveResult)) {
             setValue(positiveResult);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.YesNoPreference.onDialogClosed(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.YesNoPreference.onDialogClosed(boolean)",this,throwable);throw throwable;}
     }
 
     /**
@@ -62,18 +62,18 @@ public class YesNoPreference extends DialogPreference {
      * @param value The value of the preference.
      */
     public void setValue(boolean value) {
-        mWasPositiveResult = value;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.YesNoPreference.setValue(boolean)",this,value);try{mWasPositiveResult = value;
         
         persistBoolean(value);
         
         notifyDependencyChange(!value);
-        setSummary(value);
+        setSummary(value);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.YesNoPreference.setValue(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.YesNoPreference.setValue(boolean)",this,throwable);throw throwable;}
     }
 
     protected void setSummary(boolean value) {
-        int id = value ? R.string.pref_show_nsfw_boards_summ_on : R.string.pref_show_nsfw_boards_summ_off;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.YesNoPreference.setSummary(boolean)",this,value);try{int id = value ? R.string.pref_show_nsfw_boards_summ_on : R.string.pref_show_nsfw_boards_summ_off;
         super.setSummary(id);
-        BoardActivity.refreshAllBoards(getContext());
+        BoardActivity.refreshAllBoards(getContext());com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.YesNoPreference.setSummary(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.YesNoPreference.setSummary(boolean)",this,throwable);throw throwable;}
     }
 
     /**
@@ -82,49 +82,49 @@ public class YesNoPreference extends DialogPreference {
      * @return The value of the preference.
      */
     public boolean getValue() {
-        return mWasPositiveResult;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.YesNoPreference.getValue()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.YesNoPreference.getValue()",this);return mWasPositiveResult;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.YesNoPreference.getValue()",this,throwable);throw throwable;}
     }
     
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
-        return a.getBoolean(index, false);
+        com.mijack.Xlog.logMethodEnter("java.lang.Object com.chanapps.four.component.YesNoPreference.onGetDefaultValue(android.content.res.TypedArray,int)",this,a,index);try{com.mijack.Xlog.logMethodExit("java.lang.Object com.chanapps.four.component.YesNoPreference.onGetDefaultValue(android.content.res.TypedArray,int)",this);return a.getBoolean(index, false);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.chanapps.four.component.YesNoPreference.onGetDefaultValue(android.content.res.TypedArray,int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
-        setValue(restorePersistedValue ? getPersistedBoolean(mWasPositiveResult) :
-            (Boolean) defaultValue);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.YesNoPreference.onSetInitialValue(boolean,java.lang.Object)",this,restorePersistedValue,defaultValue);try{setValue(restorePersistedValue ? getPersistedBoolean(mWasPositiveResult) :
+            (Boolean) defaultValue);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.YesNoPreference.onSetInitialValue(boolean,java.lang.Object)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.YesNoPreference.onSetInitialValue(boolean,java.lang.Object)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean shouldDisableDependents() {
-        return !mWasPositiveResult || super.shouldDisableDependents();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.YesNoPreference.shouldDisableDependents()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.YesNoPreference.shouldDisableDependents()",this);return !mWasPositiveResult || super.shouldDisableDependents();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.YesNoPreference.shouldDisableDependents()",this,throwable);throw throwable;}
     }
     
     @Override
     protected Parcelable onSaveInstanceState() {
-        final Parcelable superState = super.onSaveInstanceState();
+        com.mijack.Xlog.logMethodEnter("android.os.Parcelable com.chanapps.four.component.YesNoPreference.onSaveInstanceState()",this);try{final Parcelable superState = super.onSaveInstanceState();
         if (isPersistent()) {
-            // No need to save instance state since it's persistent
-            return superState;
+            /*// No need to save instance state since it's persistent*/
+            {com.mijack.Xlog.logMethodExit("android.os.Parcelable com.chanapps.four.component.YesNoPreference.onSaveInstanceState()",this);return superState;}
         }
         
         final SavedState myState = new SavedState(superState);
         myState.wasPositiveResult = getValue();
-        return myState;
+        {com.mijack.Xlog.logMethodExit("android.os.Parcelable com.chanapps.four.component.YesNoPreference.onSaveInstanceState()",this);return myState;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Parcelable com.chanapps.four.component.YesNoPreference.onSaveInstanceState()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        if (!state.getClass().equals(SavedState.class)) {
-            // Didn't save state for us in onSaveInstanceState
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.YesNoPreference.onRestoreInstanceState(android.os.Parcelable)",this,state);try{if (!state.getClass().equals(SavedState.class)) {
+            /*// Didn't save state for us in onSaveInstanceState*/
             super.onRestoreInstanceState(state);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.YesNoPreference.onRestoreInstanceState(android.os.Parcelable)",this);return;}
         }
          
         SavedState myState = (SavedState) state;
         super.onRestoreInstanceState(myState.getSuperState());
-        setValue(myState.wasPositiveResult);
+        setValue(myState.wasPositiveResult);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.YesNoPreference.onRestoreInstanceState(android.os.Parcelable)",this,throwable);throw throwable;}
     }
     
     private static class SavedState extends BaseSavedState {
@@ -137,8 +137,8 @@ public class YesNoPreference extends DialogPreference {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            super.writeToParcel(dest, flags);
-            dest.writeInt(wasPositiveResult ? 1 : 0);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.YesNoPreference$SavedState.writeToParcel(android.os.Parcel,int)",this,dest,flags);try{super.writeToParcel(dest, flags);
+            dest.writeInt(wasPositiveResult ? 1 : 0);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.YesNoPreference$SavedState.writeToParcel(android.os.Parcel,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.YesNoPreference$SavedState.writeToParcel(android.os.Parcel,int)",this,throwable);throw throwable;}
         }
 
         public SavedState(Parcelable superState) {
@@ -148,16 +148,16 @@ public class YesNoPreference extends DialogPreference {
         public static final Parcelable.Creator<SavedState> CREATOR =
                 new Parcelable.Creator<SavedState>() {
             public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
+                com.mijack.Xlog.logMethodEnter("com.chanapps.four.component.YesNoPreference$SavedState com.chanapps.four.component.YesNoPreference$SavedState$1.createFromParcel(android.os.Parcel)",this,in);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.component.YesNoPreference$SavedState com.chanapps.four.component.YesNoPreference$SavedState$1.createFromParcel(android.os.Parcel)",this);return new SavedState(in);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.component.YesNoPreference$SavedState com.chanapps.four.component.YesNoPreference$SavedState$1.createFromParcel(android.os.Parcel)",this,throwable);throw throwable;}
             }
 
             public SavedState[] newArray(int size) {
-                return new SavedState[size];
+                com.mijack.Xlog.logMethodEnter("[com.chanapps.four.component.YesNoPreference$SavedState com.chanapps.four.component.YesNoPreference$SavedState$1.newArray(int)",this,size);try{com.mijack.Xlog.logMethodExit("[com.chanapps.four.component.YesNoPreference$SavedState com.chanapps.four.component.YesNoPreference$SavedState$1.newArray(int)",this);return new SavedState[size];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[com.chanapps.four.component.YesNoPreference$SavedState com.chanapps.four.component.YesNoPreference$SavedState$1.newArray(int)",this,throwable);throw throwable;}
             }
         };
     }
 
     public void show() {
-        showDialog(null);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.YesNoPreference.show()",this);try{showDialog(null);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.YesNoPreference.show()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.YesNoPreference.show()",this,throwable);throw throwable;}
     }
 }

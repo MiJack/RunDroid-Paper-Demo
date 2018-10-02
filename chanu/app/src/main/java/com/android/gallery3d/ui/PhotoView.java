@@ -39,7 +39,7 @@ public class PhotoView extends GLView {
     private static final int MSG_TRANSITION_COMPLETE = 1;
     private static final int MSG_SHOW_LOADING = 2;
 
-    private static final long DELAY_SHOW_LOADING = 250; // 250ms;
+    private static final long DELAY_SHOW_LOADING = 250; /*// 250ms;*/
 
     private static final int TRANS_NONE = 0;
     private static final int TRANS_SWITCH_NEXT = 3;
@@ -67,7 +67,7 @@ public class PhotoView extends GLView {
         public void onSingleTapUp(int x, int y);
     }
 
-    // the previous/next image entries
+    /*// the previous/next image entries*/
     private final ScreenNailEntry mScreenNails[] = new ScreenNailEntry[2];
 
     private final ScaleGestureDetector mScaleDetector;
@@ -116,14 +116,14 @@ public class PhotoView extends GLView {
         mHandler = new SynchronizedHandler(activity.getGLRoot()) {
             @Override
             public void handleMessage(Message message) {
-                switch (message.what) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$1.handleMessage(android.os.Message)",this,message);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$1.handleMessage(android.os.Message)",this);switch (message.what) {
                     case MSG_TRANSITION_COMPLETE: {
                         onTransitionComplete();
                         break;
                     }
                     case MSG_SHOW_LOADING: {
                         if (mLoadingState == LOADING_INIT) {
-                            // We don't need the opening animation
+                            /*// We don't need the opening animation*/
                             mOpenedItemPath = null;
 
                             mLoadingSpinner.startAnimation();
@@ -133,7 +133,7 @@ public class PhotoView extends GLView {
                         break;
                     }
                     default: throw new AssertionError(message.what);
-                }
+                }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
             }
         };
 
@@ -152,54 +152,54 @@ public class PhotoView extends GLView {
 
 
     public void setModel(Model model) {
-        if (mModel == model) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.setModel(Model)",this,model);try{if (mModel == model) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.setModel(Model)",this);return;}}
         mModel = model;
         mTileView.setModel(model);
-        if (model != null) notifyOnNewImage();
+        if (model != null) {notifyOnNewImage();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.setModel(Model)",this,throwable);throw throwable;}
     }
 
     public void setPhotoTapListener(PhotoTapListener listener) {
-        mPhotoTapListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.setPhotoTapListener(PhotoTapListener)",this,listener);try{mPhotoTapListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.setPhotoTapListener(PhotoTapListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.setPhotoTapListener(PhotoTapListener)",this,throwable);throw throwable;}
     }
 
     private boolean setTileViewPosition(int centerX, int centerY, float scale) {
-        int inverseX = mPositionController.getImageWidth() - centerX;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView.setTileViewPosition(int,int,float)",this,centerX,centerY,scale);try{int inverseX = mPositionController.getImageWidth() - centerX;
         int inverseY = mPositionController.getImageHeight() - centerY;
         TileImageView t = mTileView;
         int rotation = mImageRotation;
         switch (rotation) {
-            case 0: return t.setPosition(centerX, centerY, scale, 0);
-            case 90: return t.setPosition(centerY, inverseX, scale, 90);
-            case 180: return t.setPosition(inverseX, inverseY, scale, 180);
-            case 270: return t.setPosition(inverseY, centerX, scale, 270);
+            case 0: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.setTileViewPosition(int,int,float)",this);return t.setPosition(centerX, centerY, scale, 0);}
+            case 90: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.setTileViewPosition(int,int,float)",this);return t.setPosition(centerY, inverseX, scale, 90);}
+            case 180: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.setTileViewPosition(int,int,float)",this);return t.setPosition(inverseX, inverseY, scale, 180);}
+            case 270: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.setTileViewPosition(int,int,float)",this);return t.setPosition(inverseY, centerX, scale, 270);}
             default: throw new IllegalArgumentException(String.valueOf(rotation));
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView.setTileViewPosition(int,int,float)",this,throwable);throw throwable;}
     }
 
     public void setPosition(int centerX, int centerY, float scale) {
-        Log.i(TAG, "setPosition x=" + centerX + " y=" + centerY + " scale=" + scale);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.setPosition(int,int,float)",this,centerX,centerY,scale);try{Log.i(TAG, "setPosition x=" + centerX + " y=" + centerY + " scale=" + scale);
         if (setTileViewPosition(centerX, centerY, scale)) {
             layoutScreenNails();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.setPosition(int,int,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.setPosition(int,int,float)",this,throwable);throw throwable;}
     }
 
     private void updateScreenNailEntry(int which, ImageData data) {
-        if (mTransitionMode == TRANS_SWITCH_NEXT
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.updateScreenNailEntry(int,com.android.gallery3d.ui.PhotoView$ImageData)",this,which,data);try{if (mTransitionMode == TRANS_SWITCH_NEXT
                 || mTransitionMode == TRANS_SWITCH_PREVIOUS) {
-            // ignore screen nail updating during switching
-            return;
+            /*// ignore screen nail updating during switching*/
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.updateScreenNailEntry(int,com.android.gallery3d.ui.PhotoView$ImageData)",this);return;}
         }
         ScreenNailEntry entry = mScreenNails[which];
         if (data == null) {
             entry.set(false, null, 0);
         } else {
             entry.set(true, data.bitmap, data.rotation);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.updateScreenNailEntry(int,com.android.gallery3d.ui.PhotoView$ImageData)",this,throwable);throw throwable;}
     }
 
-    // -1 previous, 0 current, 1 next
+    /*// -1 previous, 0 current, 1 next*/
     public void notifyImageInvalidated(int which) {
-        switch (which) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.notifyImageInvalidated(int)",this,which);try{switch (which) {
             case -1: {
                 updateScreenNailEntry(
                         ENTRY_PREVIOUS, mModel.getPreviousImage());
@@ -214,7 +214,7 @@ public class PhotoView extends GLView {
                 break;
             }
             case 0: {
-                // mImageWidth and mImageHeight will get updated
+                /*// mImageWidth and mImageHeight will get updated*/
                 mTileView.notifyModelInvalidated();
 
                 mImageRotation = mModel.getImageRotation();
@@ -228,15 +228,15 @@ public class PhotoView extends GLView {
                 updateLoadingState();
                 break;
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.notifyImageInvalidated(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.notifyImageInvalidated(int)",this,throwable);throw throwable;}
     }
 
     private void updateLoadingState() {
-        // Possible transitions of mLoadingState:
-        //        INIT --> TIMEOUT, COMPLETE, FAIL
-        //     TIMEOUT --> COMPLETE, FAIL, INIT
-        //    COMPLETE --> INIT
-        //        FAIL --> INIT
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.updateLoadingState()",this);try{/*// Possible transitions of mLoadingState:*/
+        /*//        INIT --> TIMEOUT, COMPLETE, FAIL*/
+        /*//     TIMEOUT --> COMPLETE, FAIL, INIT*/
+        /*//    COMPLETE --> INIT*/
+        /*//        FAIL --> INIT*/
         if (mModel.getLevelCount() != 0 || mModel.getBackupImage() != null) {
             mHandler.removeMessages(MSG_SHOW_LOADING);
             mLoadingState = LOADING_COMPLETE;
@@ -248,11 +248,11 @@ public class PhotoView extends GLView {
             mHandler.removeMessages(MSG_SHOW_LOADING);
             mHandler.sendEmptyMessageDelayed(
                     MSG_SHOW_LOADING, DELAY_SHOW_LOADING);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.updateLoadingState()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.updateLoadingState()",this,throwable);throw throwable;}
     }
 
     public void notifyModelInvalidated() {
-        if (mModel == null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.notifyModelInvalidated()",this);try{if (mModel == null) {
             updateScreenNailEntry(ENTRY_PREVIOUS, null);
             updateScreenNailEntry(ENTRY_NEXT, null);
         } else {
@@ -268,32 +268,32 @@ public class PhotoView extends GLView {
             updateLoadingState();
         } else {
             notifyImageInvalidated(0);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.notifyModelInvalidated()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.notifyModelInvalidated()",this,throwable);throw throwable;}
     }
 
     @Override
     protected boolean onTouch(MotionEvent event) {
-        mGestureDetector.onTouchEvent(event);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView.onTouch(android.view.MotionEvent)",this,event);try{mGestureDetector.onTouchEvent(event);
         mScaleDetector.onTouchEvent(event);
         mDownUpDetector.onTouchEvent(event);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.onTouch(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView.onTouch(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onLayout(
             boolean changeSize, int left, int top, int right, int bottom) {
-        mTileView.layout(left, top, right, bottom);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.onLayout(boolean,int,int,int,int)",this,changeSize,left,top,right,bottom);try{mTileView.layout(left, top, right, bottom);
         mEdgeView.layout(left, top, right, bottom);
         if (changeSize) {
             mPositionController.setViewSize(getWidth(), getHeight());
             for (ScreenNailEntry entry : mScreenNails) {
                 entry.updateDrawingSize();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.onLayout(boolean,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     private static int gapToSide(int imageWidth, int viewWidth) {
-        return Math.max(0, (viewWidth - imageWidth) / 2);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.PhotoView.gapToSide(int,int)",imageWidth,viewWidth);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.PhotoView.gapToSide(int,int)");return Math.max(0, (viewWidth - imageWidth) / 2);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.PhotoView.gapToSide(int,int)",throwable);throw throwable;}
     }
 
     /*
@@ -311,17 +311,17 @@ public class PhotoView extends GLView {
      * IMAGE_GAP + Max(previous.gapToSide(), current.gapToSide)
      */
     private void layoutScreenNails() {
-        int width = getWidth();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.layoutScreenNails()",this);try{int width = getWidth();
         int height = getHeight();
 
-        // Use the image width in AC, since we may fake the size if the
-        // image is unavailable
+        /*// Use the image width in AC, since we may fake the size if the*/
+        /*// image is unavailable*/
         RectF bounds = mPositionController.getImageBounds();
         int left = Math.round(bounds.left);
         int right = Math.round(bounds.right);
         int gap = gapToSide(right - left, width);
 
-        // layout the previous image
+        /*// layout the previous image*/
         ScreenNailEntry entry = mScreenNails[ENTRY_PREVIOUS];
 
         if (entry.isEnabled()) {
@@ -329,20 +329,20 @@ public class PhotoView extends GLView {
                     IMAGE_GAP + Math.max(gap, entry.gapToSide())));
         }
 
-        // layout the next image
+        /*// layout the next image*/
         entry = mScreenNails[ENTRY_NEXT];
         if (entry.isEnabled()) {
             entry.layoutLeftEdgeAt(right + (
                     IMAGE_GAP + Math.max(gap, entry.gapToSide())));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.layoutScreenNails()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.layoutScreenNails()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        PositionController p = mPositionController;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.render(GLCanvas)",this,canvas);try{PositionController p = mPositionController;
 
         try {
-	        // Draw the current photo
+	        /*// Draw the current photo*/
 	        if (mLoadingState == LOADING_COMPLETE) {
 	            super.render(canvas);
 	        }
@@ -350,23 +350,23 @@ public class PhotoView extends GLView {
         	Log.e(TAG, "Rendering error", e);
         }
 
-        // Draw the previous and the next photo
+        /*// Draw the previous and the next photo*/
         if (mTransitionMode != TRANS_SLIDE_IN_LEFT
                 && mTransitionMode != TRANS_SLIDE_IN_RIGHT
                 && mTransitionMode != TRANS_OPEN_ANIMATION) {
             ScreenNailEntry prevNail = mScreenNails[ENTRY_PREVIOUS];
             ScreenNailEntry nextNail = mScreenNails[ENTRY_NEXT];
 
-            if (prevNail.mVisible) prevNail.draw(canvas);
-            if (nextNail.mVisible) nextNail.draw(canvas);
+            if (prevNail.mVisible) {prevNail.draw(canvas);}
+            if (nextNail.mVisible) {nextNail.draw(canvas);}
         }
 
-        // Draw the progress spinner and the text below it
-        //
-        // (x, y) is where we put the center of the spinner.
-        // s is the size of the video play icon, and we use s to layout text
-        // because we want to keep the text at the same place when the video
-        // play icon is shown instead of the spinner.
+        /*// Draw the progress spinner and the text below it*/
+        /*//*/
+        /*// (x, y) is where we put the center of the spinner.*/
+        /*// s is the size of the video play icon, and we use s to layout text*/
+        /*// because we want to keep the text at the same place when the video*/
+        /*// play icon is shown instead of the spinner.*/
         int w = getWidth();
         int h = getHeight();
         int x = Math.round(mPositionController.getImageBounds().centerX());
@@ -379,28 +379,28 @@ public class PhotoView extends GLView {
                 ProgressSpinner r = mLoadingSpinner;
                 r.draw(canvas, x - r.getWidth() / 2, y - r.getHeight() / 2);
                 m.draw(canvas, x - m.getWidth() / 2, y + s / 2 + 5);
-                invalidate(); // we need to keep the spinner rotating
+                invalidate(); /*// we need to keep the spinner rotating*/
             } else if (mLoadingState == LOADING_FAIL) {
                 StringTexture m = mNoThumbnailText;
                 m.draw(canvas, x - m.getWidth() / 2, y + s / 2 + 5);
             }
 
-            // Draw the video play icon (in the place where the spinner was)
+            /*// Draw the video play icon (in the place where the spinner was)*/
             if (mShowVideoPlayIcon
                     && mLoadingState != LOADING_INIT
                     && mLoadingState != LOADING_TIMEOUT) {
                 mVideoPlayIcon.draw(canvas, x - s / 2, y - s / 2, s, s);
             }
 
-            if (mPositionController.advanceAnimation()) invalidate();
+            if (mPositionController.advanceAnimation()) {invalidate();}
         }
         catch (RuntimeException e) {
             Log.e(TAG, "Exception rentering spinner", e);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.render(GLCanvas)",this,throwable);throw throwable;}
     }
 
     private void stopCurrentSwipingIfNeeded() {
-        // Enable fast sweeping
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.stopCurrentSwipingIfNeeded()",this);try{/*// Enable fast sweeping*/
         if (mTransitionMode == TRANS_SWITCH_NEXT) {
             mTransitionMode = TRANS_NONE;
             mPositionController.stopAnimation();
@@ -409,21 +409,21 @@ public class PhotoView extends GLView {
             mTransitionMode = TRANS_NONE;
             mPositionController.stopAnimation();
             switchToPreviousImage();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.stopCurrentSwipingIfNeeded()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.stopCurrentSwipingIfNeeded()",this,throwable);throw throwable;}
     }
 
     private boolean swipeImages(float velocity) {
-        if (mTransitionMode != TRANS_NONE
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView.swipeImages(float)",this,velocity);try{if (mTransitionMode != TRANS_NONE
                 && mTransitionMode != TRANS_SWITCH_NEXT
-                && mTransitionMode != TRANS_SWITCH_PREVIOUS) return false;
+                && mTransitionMode != TRANS_SWITCH_PREVIOUS) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.swipeImages(float)",this);return false;}}
 
         ScreenNailEntry next = mScreenNails[ENTRY_NEXT];
         ScreenNailEntry prev = mScreenNails[ENTRY_PREVIOUS];
 
         int width = getWidth();
 
-        // If we are at the edge of the current photo and the sweeping velocity
-        // exceeds the threshold, switch to next / previous image.
+        /*// If we are at the edge of the current photo and the sweeping velocity*/
+        /*// exceeds the threshold, switch to next / previous image.*/
         PositionController controller = mPositionController;
         boolean isMinimal = controller.isAtMinimalScale();
 
@@ -433,7 +433,7 @@ public class PhotoView extends GLView {
             if (next.isEnabled()) {
                 mTransitionMode = TRANS_SWITCH_NEXT;
                 controller.startHorizontalSlide(next.mOffsetX - width / 2);
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.swipeImages(float)",this);return true;}
             }
         } else if (velocity > SWIPE_THRESHOLD &&
                 (isMinimal || controller.isAtLeftEdge())) {
@@ -441,15 +441,15 @@ public class PhotoView extends GLView {
             if (prev.isEnabled()) {
                 mTransitionMode = TRANS_SWITCH_PREVIOUS;
                 controller.startHorizontalSlide(prev.mOffsetX - width / 2);
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.swipeImages(float)",this);return true;}
             }
         }
 
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.swipeImages(float)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView.swipeImages(float)",this,throwable);throw throwable;}
     }
 
     public boolean snapToNeighborImage() {
-        if (mTransitionMode != TRANS_NONE) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView.snapToNeighborImage()",this);try{if (mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.snapToNeighborImage()",this);return false;}}
 
         ScreenNailEntry next = mScreenNails[ENTRY_NEXT];
         ScreenNailEntry prev = mScreenNails[ENTRY_PREVIOUS];
@@ -462,19 +462,19 @@ public class PhotoView extends GLView {
         int right = Math.round(bounds.right);
         int threshold = SWITCH_THRESHOLD + gapToSide(right - left, width);
 
-        // If we have moved the picture a lot, switching.
+        /*// If we have moved the picture a lot, switching.*/
         if (next.isEnabled() && threshold < width - right) {
             mTransitionMode = TRANS_SWITCH_NEXT;
             controller.startHorizontalSlide(next.mOffsetX - width / 2);
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.snapToNeighborImage()",this);return true;}
         }
         if (prev.isEnabled() && threshold < left) {
             mTransitionMode = TRANS_SWITCH_PREVIOUS;
             controller.startHorizontalSlide(prev.mOffsetX - width / 2);
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.snapToNeighborImage()",this);return true;}
         }
 
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.snapToNeighborImage()",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView.snapToNeighborImage()",this,throwable);throw throwable;}
     }
 
     private boolean mIgnoreUpEvent = false;
@@ -484,45 +484,45 @@ public class PhotoView extends GLView {
         @Override
         public boolean onScroll(
                 MotionEvent e1, MotionEvent e2, float dx, float dy) {
-            if (mTransitionMode != TRANS_NONE) return true;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,e1,e2,dx,dy);try{if (mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}
 
             ScreenNailEntry next = mScreenNails[ENTRY_NEXT];
             ScreenNailEntry prev = mScreenNails[ENTRY_PREVIOUS];
 
             mPositionController.startScroll(dx, dy, next.isEnabled(),
                     prev.isEnabled());
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            if (mPhotoTapListener != null) {
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onSingleTapUp(android.view.MotionEvent)",this,e);try{if (mPhotoTapListener != null) {
                 mPhotoTapListener.onSingleTapUp((int) e.getX(), (int) e.getY());
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onSingleTapUp(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onSingleTapUp(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                 float velocityY) {
-            if (mTransitionMode != TRANS_NONE) return true;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,e1,e2,velocityX,velocityY);try{if (mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}
             boolean zoomedOut = mPositionController == null || mPositionController.getCurrentScale() <= 1.0f || mPositionController.isAtMinimalScale();
-            if (!zoomedOut) return true;
+            if (!zoomedOut) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}
             if (swipeImages(velocityX)) {
                 mIgnoreUpEvent = true;
             } else if (mPositionController.fling(velocityX, velocityY)) {
                 mIgnoreUpEvent = true;
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            if (mTransitionMode != TRANS_NONE) return true;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onDoubleTap(android.view.MotionEvent)",this,e);try{if (mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onDoubleTap(android.view.MotionEvent)",this);return true;}}
             PositionController controller = mPositionController;
             float scale = controller.getCurrentScale();
-            // onDoubleTap happened on the second ACTION_DOWN.
-            // We need to ignore the next UP event.
+            /*// onDoubleTap happened on the second ACTION_DOWN.*/
+            /*// We need to ignore the next UP event.*/
             mIgnoreUpEvent = true;
             if (scale <= 1.0f || controller.isAtMinimalScale()) {
                 float newScale = controller.getScaleMax();
@@ -530,26 +530,26 @@ public class PhotoView extends GLView {
             } else {
                 controller.resetToFullView();
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onDoubleTap(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView$MyGestureListener.onDoubleTap(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLongPress(MotionEvent e) {
-            if (mTransitionMode != TRANS_NONE) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$MyGestureListener.onLongPress(android.view.MotionEvent)",this,e);try{if (mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$MyGestureListener.onLongPress(android.view.MotionEvent)",this);return;}}
             PositionController controller = mPositionController;
             float scale = controller.getCurrentScale();
-            // onDoubleTap happened on the second ACTION_DOWN.
-            // We need to ignore the next UP event.
+            /*// onDoubleTap happened on the second ACTION_DOWN.*/
+            /*// We need to ignore the next UP event.*/
             mIgnoreUpEvent = true;
             if (scale <= 1.0f || controller.isAtMinimalScale()) {
-            //if (scale <= 1.0f) {
-                // Convert the tap position to image coordinate
+            /*//if (scale <= 1.0f) {*/
+                /*// Convert the tap position to image coordinate*/
                 float newScale = controller.getScaleMax();
                 controller.zoomIn(e.getX(), e.getY(), newScale);
             } else {
                 controller.resetToFullView();
             }
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$MyGestureListener.onLongPress(android.view.MotionEvent)",this);return;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$MyGestureListener.onLongPress(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
     }
 
@@ -558,46 +558,46 @@ public class PhotoView extends GLView {
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            float s = mPositionController.getCurrentScale();
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScale(android.view.ScaleGestureDetector)",this,detector);try{float s = mPositionController.getCurrentScale();
             float f = detector.getScaleFactor();
             float t = s * f;
-            if (DEBUG) Log.v(TAG, "onScale() s=" + mPositionController.getCurrentScale() + " f=" + f + " newScale=" + t);
+            if (DEBUG) {Log.v(TAG, "onScale() s=" + mPositionController.getCurrentScale() + " f=" + f + " newScale=" + t);}
             if (Float.isNaN(t) || Float.isInfinite(t)
-                    || mTransitionMode != TRANS_NONE) return true;
+                    || mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScale(android.view.ScaleGestureDetector)",this);return true;}}
             mPositionController.scaleBy(t,
                     detector.getFocusX(), detector.getFocusY());
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScale(android.view.ScaleGestureDetector)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScale(android.view.ScaleGestureDetector)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
-            if (mTransitionMode != TRANS_NONE) return false;
-            if (DEBUG) Log.v(TAG, "onScaleBegin() s=" + mPositionController.getCurrentScale());
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScaleBegin(android.view.ScaleGestureDetector)",this,detector);try{if (mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScaleBegin(android.view.ScaleGestureDetector)",this);return false;}}
+            if (DEBUG) {Log.v(TAG, "onScaleBegin() s=" + mPositionController.getCurrentScale());}
             mPositionController.beginScale(
                 detector.getFocusX(), detector.getFocusY());
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScaleBegin(android.view.ScaleGestureDetector)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView$MyScaleListener.onScaleBegin(android.view.ScaleGestureDetector)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
-            if (DEBUG) Log.v(TAG, "onScaleEnd() s=" + mPositionController.getCurrentScale());
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$MyScaleListener.onScaleEnd(android.view.ScaleGestureDetector)",this,detector);try{if (DEBUG) {Log.v(TAG, "onScaleEnd() s=" + mPositionController.getCurrentScale());}
             mPositionController.endScale();
-            snapToNeighborImage();
+            snapToNeighborImage();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$MyScaleListener.onScaleEnd(android.view.ScaleGestureDetector)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$MyScaleListener.onScaleEnd(android.view.ScaleGestureDetector)",this,throwable);throw throwable;}
         }
     }
 
     public boolean jumpTo(int index) {
-        if (mTransitionMode != TRANS_NONE) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView.jumpTo(int)",this,index);try{if (mTransitionMode != TRANS_NONE) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.jumpTo(int)",this);return false;}}
         mModel.jumpTo(index);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.jumpTo(int)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView.jumpTo(int)",this,throwable);throw throwable;}
     }
 
     public void notifyOnNewImage() {
-        mPositionController.setImageSize(0, 0);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.notifyOnNewImage()",this);try{mPositionController.setImageSize(0, 0);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.notifyOnNewImage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.notifyOnNewImage()",this,throwable);throw throwable;}
     }
 
     public void startSlideInAnimation(int direction) {
-        PositionController a = mPositionController;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.startSlideInAnimation(int)",this,direction);try{PositionController a = mPositionController;
         a.stopAnimation();
         switch (direction) {
             case TRANS_SLIDE_IN_LEFT:
@@ -607,68 +607,67 @@ public class PhotoView extends GLView {
                 break;
             }
             default: throw new IllegalArgumentException(String.valueOf(direction));
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.startSlideInAnimation(int)",this,throwable);throw throwable;}
     }
 
     private class MyDownUpListener implements DownUpDetector.DownUpListener {
-        public void onDown(MotionEvent e) {
-        }
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$MyDownUpListener.onDown(android.view.MotionEvent)",this,e);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$MyDownUpListener.onDown(android.view.MotionEvent)",this);}
 
         public void onUp(MotionEvent e) {
-            mEdgeView.onRelease();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$MyDownUpListener.onUp(android.view.MotionEvent)",this,e);try{mEdgeView.onRelease();
 
             if (mIgnoreUpEvent) {
                 mIgnoreUpEvent = false;
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$MyDownUpListener.onUp(android.view.MotionEvent)",this);return;}
             }
             if (!snapToNeighborImage() && mTransitionMode == TRANS_NONE) {
                 mPositionController.up();
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$MyDownUpListener.onUp(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
     }
 
     private void switchToNextImage() {
-        // We update the texture here directly to prevent texture uploading.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.switchToNextImage()",this);try{/*// We update the texture here directly to prevent texture uploading.*/
         ScreenNailEntry prevNail = mScreenNails[ENTRY_PREVIOUS];
         ScreenNailEntry nextNail = mScreenNails[ENTRY_NEXT];
         mTileView.invalidateTiles();
-        if (prevNail.mTexture != null) prevNail.mTexture.recycle();
+        if (prevNail.mTexture != null) {prevNail.mTexture.recycle();}
         prevNail.mTexture = mTileView.mBackupImage;
         mTileView.mBackupImage = nextNail.mTexture;
         nextNail.mTexture = null;
-        mModel.next();
+        mModel.next();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.switchToNextImage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.switchToNextImage()",this,throwable);throw throwable;}
     }
 
     private void switchToPreviousImage() {
-        // We update the texture here directly to prevent texture uploading.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.switchToPreviousImage()",this);try{/*// We update the texture here directly to prevent texture uploading.*/
         ScreenNailEntry prevNail = mScreenNails[ENTRY_PREVIOUS];
         ScreenNailEntry nextNail = mScreenNails[ENTRY_NEXT];
         mTileView.invalidateTiles();
-        if (nextNail.mTexture != null) nextNail.mTexture.recycle();
+        if (nextNail.mTexture != null) {nextNail.mTexture.recycle();}
         nextNail.mTexture = mTileView.mBackupImage;
         mTileView.mBackupImage = prevNail.mTexture;
         nextNail.mTexture = null;
-        mModel.previous();
+        mModel.previous();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.switchToPreviousImage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.switchToPreviousImage()",this,throwable);throw throwable;}
     }
 
     public void notifyTransitionComplete() {
-        mHandler.sendEmptyMessage(MSG_TRANSITION_COMPLETE);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.notifyTransitionComplete()",this);try{mHandler.sendEmptyMessage(MSG_TRANSITION_COMPLETE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.notifyTransitionComplete()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.notifyTransitionComplete()",this,throwable);throw throwable;}
     }
 
     private void onTransitionComplete() {
-        int mode = mTransitionMode;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.onTransitionComplete()",this);try{int mode = mTransitionMode;
         mTransitionMode = TRANS_NONE;
 
-        if (mModel == null) return;
+        if (mModel == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.onTransitionComplete()",this);return;}}
         if (mode == TRANS_SWITCH_NEXT) {
             switchToNextImage();
         } else if (mode == TRANS_SWITCH_PREVIOUS) {
             switchToPreviousImage();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.onTransitionComplete()",this,throwable);throw throwable;}
     }
 
     public boolean isDown() {
-        return mDownUpDetector.isDown();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView.isDown()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.isDown()",this);return mDownUpDetector.isDown();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView.isDown()",this,throwable);throw throwable;}
     }
 
     public static interface Model extends TileImageView.Model {
@@ -677,7 +676,7 @@ public class PhotoView extends GLView {
         public void jumpTo(int index);
         public int getImageRotation();
 
-        // Return null if the specified image is unavailable.
+        /*// Return null if the specified image is unavailable.*/
         public ImageData getNextImage();
         public ImageData getPreviousImage();
     }
@@ -693,7 +692,7 @@ public class PhotoView extends GLView {
     }
 
     private static int getRotated(int degree, int original, int theother) {
-        return ((degree / 90) & 1) == 0 ? original : theother;
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.PhotoView.getRotated(int,int,int)",degree,original,theother);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.PhotoView.getRotated(int,int,int)");return ((degree / 90) & 1) == 0 ? original : theother;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.PhotoView.getRotated(int,int,int)",throwable);throw throwable;}
     }
 
     private class ScreenNailEntry {
@@ -708,10 +707,10 @@ public class PhotoView extends GLView {
         private BitmapTexture mTexture;
 
         public void set(boolean enabled, Bitmap bitmap, int rotation) {
-            mEnabled = enabled;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.set(boolean,android.graphics.Bitmap,int)",this,enabled,bitmap,rotation);try{mEnabled = enabled;
             mRotation = rotation;
             if (bitmap == null) {
-                if (mTexture != null) mTexture.recycle();
+                if (mTexture != null) {mTexture.recycle();}
                 mTexture = null;
             } else {
                 if (mTexture != null) {
@@ -723,56 +722,56 @@ public class PhotoView extends GLView {
                     mTexture = new BitmapTexture(bitmap);
                 }
                 updateDrawingSize();
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.set(boolean,android.graphics.Bitmap,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.set(boolean,android.graphics.Bitmap,int)",this,throwable);throw throwable;}
         }
 
         public void layoutRightEdgeAt(int x) {
-            mVisible = x > 0;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.layoutRightEdgeAt(int)",this,x);try{mVisible = x > 0;
             mOffsetX = x - getRotated(
-                    mRotation, mDrawWidth, mDrawHeight) / 2;
+                    mRotation, mDrawWidth, mDrawHeight) / 2;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.layoutRightEdgeAt(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.layoutRightEdgeAt(int)",this,throwable);throw throwable;}
         }
 
         public void layoutLeftEdgeAt(int x) {
-            mVisible = x < getWidth();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.layoutLeftEdgeAt(int)",this,x);try{mVisible = x < getWidth();
             mOffsetX = x + getRotated(
-                    mRotation, mDrawWidth, mDrawHeight) / 2;
+                    mRotation, mDrawWidth, mDrawHeight) / 2;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.layoutLeftEdgeAt(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.layoutLeftEdgeAt(int)",this,throwable);throw throwable;}
         }
 
         public int gapToSide() {
-            return ((mRotation / 90) & 1) != 0
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.PhotoView$ScreenNailEntry.gapToSide()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.PhotoView$ScreenNailEntry.gapToSide()",this);return ((mRotation / 90) & 1) != 0
                     ? PhotoView.gapToSide(mDrawHeight, getWidth())
-                    : PhotoView.gapToSide(mDrawWidth, getWidth());
+                    : PhotoView.gapToSide(mDrawWidth, getWidth());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.PhotoView$ScreenNailEntry.gapToSide()",this,throwable);throw throwable;}
         }
 
         public void updateDrawingSize() {
-            if (mTexture == null) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.updateDrawingSize()",this);try{if (mTexture == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.updateDrawingSize()",this);return;}}
 
             int width = mTexture.getWidth();
             int height = mTexture.getHeight();
 
-            // Calculate the initial scale that will used by PositionController
-            // (usually fit-to-screen)
+            /*// Calculate the initial scale that will used by PositionController*/
+            /*// (usually fit-to-screen)*/
             float s = ((mRotation / 90) & 0x01) == 0
                     ? mPositionController.getMinimalScale(width, height)
                     : mPositionController.getMinimalScale(height, width);
 
             mDrawWidth = Math.round(width * s);
-            mDrawHeight = Math.round(height * s);
+            mDrawHeight = Math.round(height * s);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.updateDrawingSize()",this,throwable);throw throwable;}
         }
 
         public boolean isEnabled() {
-            return mEnabled;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView$ScreenNailEntry.isEnabled()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView$ScreenNailEntry.isEnabled()",this);return mEnabled;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView$ScreenNailEntry.isEnabled()",this,throwable);throw throwable;}
         }
 
         public void draw(GLCanvas canvas) {
-            int x = mOffsetX;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.draw(GLCanvas)",this,canvas);try{int x = mOffsetX;
             int y = getHeight() / 2;
 
             if (mTexture != null) {
                 if (mRotation != 0) {
                     canvas.save(GLCanvas.SAVE_FLAG_MATRIX);
                     canvas.translate(x, y, 0);
-                    canvas.rotate(mRotation, 0, 0, 1); //mRotation
+                    canvas.rotate(mRotation, 0, 0, 1); /*//mRotation*/
                     canvas.translate(-x, -y, 0);
                 }
                 mTexture.draw(canvas, x - mDrawWidth / 2, y - mDrawHeight / 2,
@@ -780,48 +779,48 @@ public class PhotoView extends GLView {
                 if (mRotation != 0) {
                     canvas.restore();
                 }
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.draw(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView$ScreenNailEntry.draw(GLCanvas)",this,throwable);throw throwable;}
         }
     }
 
     public void pause() {
-        mPositionController.skipAnimation();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.pause()",this);try{mPositionController.skipAnimation();
         mTransitionMode = TRANS_NONE;
         mTileView.freeTextures();
         for (ScreenNailEntry entry : mScreenNails) {
             entry.set(false, null, 0);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.pause()",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        mTileView.prepareTextures();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.resume()",this);try{mTileView.prepareTextures();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.resume()",this,throwable);throw throwable;}
     }
 
     public void setOpenedItem(Path itemPath) {
-        mOpenedItemPath = itemPath;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.setOpenedItem(com.android.gallery3d.data.Path)",this,itemPath);try{mOpenedItemPath = itemPath;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.setOpenedItem(com.android.gallery3d.data.Path)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.setOpenedItem(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     public void showVideoPlayIcon(boolean show) {
-        mShowVideoPlayIcon = show;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.showVideoPlayIcon(boolean)",this,show);try{mShowVideoPlayIcon = show;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.showVideoPlayIcon(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.showVideoPlayIcon(boolean)",this,throwable);throw throwable;}
     }
 
-    // Returns the position saved by the previous page.
+    /*// Returns the position saved by the previous page.*/
     public Position retrieveSavedPosition() {
-        if (mOpenedItemPath != null) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.PositionRepository.Position com.android.gallery3d.ui.PhotoView.retrieveSavedPosition()",this);try{if (mOpenedItemPath != null) {
             Position position = PositionRepository
                     .getInstance(mActivity).get(Long.valueOf(
                     System.identityHashCode(mOpenedItemPath)));
             mOpenedItemPath = null;
-            return position;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PositionRepository.Position com.android.gallery3d.ui.PhotoView.retrieveSavedPosition()",this);return position;}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.PositionRepository.Position com.android.gallery3d.ui.PhotoView.retrieveSavedPosition()",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.PositionRepository.Position com.android.gallery3d.ui.PhotoView.retrieveSavedPosition()",this,throwable);throw throwable;}
     }
 
     public void openAnimationStarted() {
-        mTransitionMode = TRANS_OPEN_ANIMATION;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PhotoView.openAnimationStarted()",this);try{mTransitionMode = TRANS_OPEN_ANIMATION;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PhotoView.openAnimationStarted()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PhotoView.openAnimationStarted()",this,throwable);throw throwable;}
     }
 
     public boolean isInTransition() {
-        return mTransitionMode != TRANS_NONE;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PhotoView.isInTransition()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PhotoView.isInTransition()",this);return mTransitionMode != TRANS_NONE;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PhotoView.isInTransition()",this,throwable);throw throwable;}
     }
 }

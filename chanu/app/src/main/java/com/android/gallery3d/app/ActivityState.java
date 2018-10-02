@@ -52,46 +52,41 @@ abstract public class ActivityState {
     }
 
     protected void setContentPane(GLView content) {
-        mActivity.getGLRoot().setContentPane(content);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.setContentPane(com.android.gallery3d.ui.GLView)",this,content);try{mActivity.getGLRoot().setContentPane(content);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.setContentPane(com.android.gallery3d.ui.GLView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.ActivityState.setContentPane(com.android.gallery3d.ui.GLView)",this,throwable);throw throwable;}
     }
 
     void initialize(GalleryActivity activity, Bundle data) {
-        mActivity = activity;
-        mData = data;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.initialize(GalleryActivity,android.os.Bundle)",this,activity,data);try{mActivity = activity;
+        mData = data;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.initialize(GalleryActivity,android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.ActivityState.initialize(GalleryActivity,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public Bundle getData() {
-        return mData;
+        com.mijack.Xlog.logMethodEnter("android.os.Bundle com.android.gallery3d.app.ActivityState.getData()",this);try{com.mijack.Xlog.logMethodExit("android.os.Bundle com.android.gallery3d.app.ActivityState.getData()",this);return mData;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Bundle com.android.gallery3d.app.ActivityState.getData()",this,throwable);throw throwable;}
     }
 
     protected void onBackPressed() {
-        mActivity.getStateManager().finishState(this);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onBackPressed()",this);try{mActivity.getStateManager().finishState(this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onBackPressed()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.ActivityState.onBackPressed()",this,throwable);throw throwable;}
     }
 
     protected void setStateResult(int resultCode, Intent data) {
-        if (mResult == null) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.setStateResult(int,android.content.Intent)",this,resultCode,data);try{if (mResult == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.setStateResult(int,android.content.Intent)",this);return;}}
         mResult.resultCode = resultCode;
-        mResult.resultData = data;
+        mResult.resultData = data;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.ActivityState.setStateResult(int,android.content.Intent)",this,throwable);throw throwable;}
     }
 
-    protected void onConfigurationChanged(Configuration config) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onConfigurationChanged(android.content.res.Configuration)",this,config);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onConfigurationChanged(android.content.res.Configuration)",this);}
 
-    protected void onSaveState(Bundle outState) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onSaveState(android.os.Bundle)",this,outState);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onSaveState(android.os.Bundle)",this);}
 
-    protected void onStateResult(int requestCode, int resultCode, Intent data) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onStateResult(int,int,android.content.Intent)",this,requestCode,resultCode,data);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onStateResult(int,int,android.content.Intent)",this);}
 
-    protected void onCreate(Bundle data, Bundle storedState) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onCreate(android.os.Bundle,android.os.Bundle)",this,data,storedState);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onCreate(android.os.Bundle,android.os.Bundle)",this);}
 
-    protected void onPause() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onPause()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onPause()",this);}
 
-    // should only be called by StateManager
+    /*// should only be called by StateManager*/
     void resume() {
-        Activity activity = (Activity) mActivity;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.resume()",this);try{Activity activity = (Activity) mActivity;
         ActionBar actionBar = activity.getActionBar();
         if (actionBar != null) {
             if ((mFlags & FLAG_HIDE_ACTION_BAR) != 0) {
@@ -123,31 +118,30 @@ abstract public class ActivityState {
             mReceivedResults = null;
             onStateResult(entry.requestCode, entry.resultCode, entry.resultData);
         }
-        onResume();
+        onResume();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.ActivityState.resume()",this,throwable);throw throwable;}
     }
 
-    // a subclass of ActivityState should override the method to resume itself
-    protected void onResume() {
-    }
+    /*// a subclass of ActivityState should override the method to resume itself*/
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onResume()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onResume()",this);}
 
     protected boolean onCreateActionBar(Menu menu) {
-        // TODO: we should return false if there is no menu to show
-        //       this is a workaround for a bug in system
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.ActivityState.onCreateActionBar(android.view.Menu)",this,menu);try{/*// TODO: we should return false if there is no menu to show*/
+        /*//       this is a workaround for a bug in system*/
         GalleryActionBar actionBar = mActivity.getGalleryActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.ActivityState.onCreateActionBar(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.ActivityState.onCreateActionBar(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     protected boolean onItemSelected(MenuItem item) {
-        return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.ActivityState.onItemSelected(android.view.MenuItem)",this,item);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.ActivityState.onItemSelected(android.view.MenuItem)",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.ActivityState.onItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     protected void onDestroy() {
-        mDestroyed = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.ActivityState.onDestroy()",this);try{mDestroyed = true;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.ActivityState.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.ActivityState.onDestroy()",this,throwable);throw throwable;}
     }
 
     boolean isDestroyed() {
-        return mDestroyed;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.ActivityState.isDestroyed()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.ActivityState.isDestroyed()",this);return mDestroyed;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.ActivityState.isDestroyed()",this,throwable);throw throwable;}
     }
 }

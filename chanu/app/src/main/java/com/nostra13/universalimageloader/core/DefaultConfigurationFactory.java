@@ -57,38 +57,38 @@ public class DefaultConfigurationFactory {
 
 	/** Creates default implementation of task executor */
 	public static Executor createExecutor(int threadPoolSize, int threadPriority, QueueProcessingType tasksProcessingType) {
-		boolean lifo = tasksProcessingType == QueueProcessingType.LIFO;
+		com.mijack.Xlog.logStaticMethodEnter("java.util.concurrent.Executor com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createExecutor(int,int,com.nostra13.universalimageloader.core.assist.QueueProcessingType)",threadPoolSize,threadPriority,tasksProcessingType);try{boolean lifo = tasksProcessingType == QueueProcessingType.LIFO;
 		BlockingQueue<Runnable> taskQueue = lifo ? new LIFOLinkedBlockingDeque<Runnable>() : new LinkedBlockingQueue<Runnable>();
-		return new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L, TimeUnit.MILLISECONDS, taskQueue, createThreadFactory(threadPriority));
+		{com.mijack.Xlog.logStaticMethodExit("java.util.concurrent.Executor com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createExecutor(int,int,com.nostra13.universalimageloader.core.assist.QueueProcessingType)");return new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L, TimeUnit.MILLISECONDS, taskQueue, createThreadFactory(threadPriority));}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.concurrent.Executor com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createExecutor(int,int,com.nostra13.universalimageloader.core.assist.QueueProcessingType)",throwable);throw throwable;}
 	}
 
 	/** Creates {@linkplain HashCodeFileNameGenerator default implementation} of FileNameGenerator */
 	public static FileNameGenerator createFileNameGenerator() {
-		return new HashCodeFileNameGenerator();
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createFileNameGenerator()");try{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createFileNameGenerator()");return new HashCodeFileNameGenerator();}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createFileNameGenerator()",throwable);throw throwable;}
 	}
 
 	/** Creates default implementation of {@link DisckCacheAware} depends on incoming parameters */
 	public static DiscCacheAware createDiscCache(Context context, FileNameGenerator discCacheFileNameGenerator, int discCacheSize, int discCacheFileCount) {
-		if (discCacheSize > 0) {
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiscCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,int,int)",context,discCacheFileNameGenerator,discCacheSize,discCacheFileCount);try{if (discCacheSize > 0) {
 			File individualCacheDir = StorageUtils.getIndividualCacheDirectory(context);
-			return new TotalSizeLimitedDiscCache(individualCacheDir, discCacheFileNameGenerator, discCacheSize);
+			{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiscCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,int,int)");return new TotalSizeLimitedDiscCache(individualCacheDir, discCacheFileNameGenerator, discCacheSize);}
 		} else if (discCacheFileCount > 0) {
 			File individualCacheDir = StorageUtils.getIndividualCacheDirectory(context);
-			return new FileCountLimitedDiscCache(individualCacheDir, discCacheFileNameGenerator, discCacheFileCount);
+			{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiscCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,int,int)");return new FileCountLimitedDiscCache(individualCacheDir, discCacheFileNameGenerator, discCacheFileCount);}
 		} else {
 			File cacheDir = StorageUtils.getCacheDirectory(context);
-			return new UnlimitedDiscCache(cacheDir, discCacheFileNameGenerator);
-		}
+			{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiscCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,int,int)");return new UnlimitedDiscCache(cacheDir, discCacheFileNameGenerator);}
+		}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createDiscCache(android.content.Context,com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator,int,int)",throwable);throw throwable;}
 	}
 
 	/** Creates reserve disc cache which will be used if primary disc cache becomes unavailable */
 	public static DiscCacheAware createReserveDiscCache(Context context) {
-		File cacheDir = context.getCacheDir();
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createReserveDiscCache(android.content.Context)",context);try{File cacheDir = context.getCacheDir();
 		File individualDir = new File(cacheDir, "uil-images");
 		if (individualDir.exists() || individualDir.mkdir()) {
 			cacheDir = individualDir;
 		}
-		return new TotalSizeLimitedDiscCache(cacheDir, 2 * 1024 * 1024); // limit - 2 Mb
+		{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createReserveDiscCache(android.content.Context)");return new TotalSizeLimitedDiscCache(cacheDir, 2 * 1024 * 1024);} /*// limit - 2 Mb*/}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.cache.disc.DiscCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createReserveDiscCache(android.content.Context)",throwable);throw throwable;}
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class DefaultConfigurationFactory {
 	 * Default cache size = 1/8 of available app memory.
 	 */
 	public static MemoryCacheAware<String, Bitmap> createMemoryCache(int memoryCacheSize) {
-		if (memoryCacheSize == 0) {
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.cache.memory.MemoryCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(int)",memoryCacheSize);try{if (memoryCacheSize == 0) {
 			memoryCacheSize = (int) (Runtime.getRuntime().maxMemory() / 8);
 		}
 		MemoryCacheAware<String, Bitmap> memoryCache;
@@ -106,27 +106,27 @@ public class DefaultConfigurationFactory {
 		} else {
 			memoryCache = new LRULimitedMemoryCache(memoryCacheSize);
 		}
-		return memoryCache;
+		{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.cache.memory.MemoryCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(int)");return memoryCache;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.cache.memory.MemoryCacheAware com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createMemoryCache(int)",throwable);throw throwable;}
 	}
 
 	/** Creates default implementation of {@link ImageDownloader} - {@link BaseImageDownloader} */
 	public static ImageDownloader createImageDownloader(Context context) {
-		return new BaseImageDownloader(context);
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.download.BaseImageDownloader com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDownloader(android.content.Context)",context);try{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.download.BaseImageDownloader com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDownloader(android.content.Context)");return new BaseImageDownloader(context);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.download.BaseImageDownloader com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDownloader(android.content.Context)",throwable);throw throwable;}
 	}
 
 	/** Creates default implementation of {@link ImageDecoder} - {@link BaseImageDecoder} */
 	public static ImageDecoder createImageDecoder(boolean loggingEnabled) {
-		return new BaseImageDecoder(loggingEnabled);
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.decode.BaseImageDecoder com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDecoder(boolean)",loggingEnabled);try{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.decode.BaseImageDecoder com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDecoder(boolean)");return new BaseImageDecoder(loggingEnabled);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.decode.BaseImageDecoder com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createImageDecoder(boolean)",throwable);throw throwable;}
 	}
 
 	/** Creates default implementation of {@link BitmapDisplayer} - {@link SimpleBitmapDisplayer} */
 	public static BitmapDisplayer createBitmapDisplayer() {
-		return new SimpleBitmapDisplayer();
+		com.mijack.Xlog.logStaticMethodEnter("com.nostra13.universalimageloader.core.display.BitmapDisplayer com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createBitmapDisplayer()");try{com.mijack.Xlog.logStaticMethodExit("com.nostra13.universalimageloader.core.display.BitmapDisplayer com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createBitmapDisplayer()");return new SimpleBitmapDisplayer();}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.nostra13.universalimageloader.core.display.BitmapDisplayer com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createBitmapDisplayer()",throwable);throw throwable;}
 	}
 
 	/** Creates default implementation of {@linkplain ThreadFactory thread factory} for task executor */
 	private static ThreadFactory createThreadFactory(int threadPriority) {
-		return new DefaultThreadFactory(threadPriority);
+		com.mijack.Xlog.logStaticMethodEnter("java.util.concurrent.ThreadFactory com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createThreadFactory(int)",threadPriority);try{com.mijack.Xlog.logStaticMethodExit("java.util.concurrent.ThreadFactory com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createThreadFactory(int)");return new DefaultThreadFactory(threadPriority);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.util.concurrent.ThreadFactory com.nostra13.universalimageloader.core.DefaultConfigurationFactory.createThreadFactory(int)",throwable);throw throwable;}
 	}
 
 	private static class DefaultThreadFactory implements ThreadFactory {
@@ -146,10 +146,10 @@ public class DefaultConfigurationFactory {
 		}
 
 		public Thread newThread(Runnable r) {
-			Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
-			if (t.isDaemon()) t.setDaemon(false);
+			com.mijack.Xlog.logMethodEnter("java.lang.Thread com.nostra13.universalimageloader.core.DefaultConfigurationFactory$DefaultThreadFactory.newThread(java.lang.Runnable)",this,r);try{Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
+			if (t.isDaemon()) {t.setDaemon(false);}
 			t.setPriority(threadPriority);
-			return t;
+			{com.mijack.Xlog.logMethodExit("java.lang.Thread com.nostra13.universalimageloader.core.DefaultConfigurationFactory$DefaultThreadFactory.newThread(java.lang.Runnable)",this);return t;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Thread com.nostra13.universalimageloader.core.DefaultConfigurationFactory$DefaultThreadFactory.newThread(java.lang.Runnable)",this,throwable);throw throwable;}
 		}
 	}
 }

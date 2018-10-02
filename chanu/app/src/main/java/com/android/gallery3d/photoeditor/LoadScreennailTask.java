@@ -54,19 +54,19 @@ public class LoadScreennailTask extends AsyncTask<Uri, Void, Bitmap> {
      */
     @Override
     protected Bitmap doInBackground(Uri... params) {
-        if (params[0] == null) {
-            return null;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.photoeditor.LoadScreennailTask.doInBackground([android.net.Uri)",this,params);try{if (params[0] == null) {
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.LoadScreennailTask.doInBackground([android.net.Uri)",this);return null;}
         }
-        return new BitmapUtils(context).getBitmap(params[0], SCREENNAIL_WIDTH, SCREENNAIL_HEIGHT);
+        {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.photoeditor.LoadScreennailTask.doInBackground([android.net.Uri)",this);return new BitmapUtils(context).getBitmap(params[0], SCREENNAIL_WIDTH, SCREENNAIL_HEIGHT);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.photoeditor.LoadScreennailTask.doInBackground([android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostExecute(Bitmap result) {
-        if (result == null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.LoadScreennailTask.onPostExecute(android.graphics.Bitmap)",this,result);try{if (result == null) {
             Toast toast = Toast.makeText(context, R.string.loading_failure, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
-        callback.onComplete(result);
+        callback.onComplete(result);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.LoadScreennailTask.onPostExecute(android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.LoadScreennailTask.onPostExecute(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 }

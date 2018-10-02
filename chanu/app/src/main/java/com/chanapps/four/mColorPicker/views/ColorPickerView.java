@@ -155,7 +155,7 @@ public class ColorPickerView extends View{
 	}
 		
 	private void init(){
-		mDensity = getContext().getResources().getDisplayMetrics().density;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.init()",this);try{mDensity = getContext().getResources().getDisplayMetrics().density;
 		PALETTE_CIRCLE_TRACKER_RADIUS *= mDensity;		
 		RECTANGLE_TRACKER_OFFSET *= mDensity;
 		HUE_PANEL_WIDTH *= mDensity;
@@ -166,13 +166,13 @@ public class ColorPickerView extends View{
 		
 		initPaintTools();
 		
-		//Needed for receiving trackball motion events.
+		/*//Needed for receiving trackball motion events.*/
 		setFocusable(true);
-		setFocusableInTouchMode(true);
+		setFocusableInTouchMode(true);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.init()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.init()",this,throwable);throw throwable;}
 	}
 	
 	private void initPaintTools(){
-		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.initPaintTools()",this);try{
 		mSatValPaint = new Paint();
 		mSatValTrackerPaint = new Paint();
 		mHuePaint = new Paint();
@@ -197,18 +197,18 @@ public class ColorPickerView extends View{
 		mAlphaTextPaint.setTextAlign(Align.CENTER);
 		mAlphaTextPaint.setFakeBoldText(true);
 	
-		
+		com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.initPaintTools()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.initPaintTools()",this,throwable);throw throwable;}
 	}
 	
 	private float calculateRequiredOffset(){		
-		float offset = Math.max(PALETTE_CIRCLE_TRACKER_RADIUS, RECTANGLE_TRACKER_OFFSET);
+		com.mijack.Xlog.logMethodEnter("float com.chanapps.four.mColorPicker.views.ColorPickerView.calculateRequiredOffset()",this);try{float offset = Math.max(PALETTE_CIRCLE_TRACKER_RADIUS, RECTANGLE_TRACKER_OFFSET);
 		offset = Math.max(offset, BORDER_WIDTH_PX * mDensity);
 		
-		return offset * 1.5f;	
+		{com.mijack.Xlog.logMethodExit("float com.chanapps.four.mColorPicker.views.ColorPickerView.calculateRequiredOffset()",this);return offset * 1.5f;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.chanapps.four.mColorPicker.views.ColorPickerView.calculateRequiredOffset()",this,throwable);throw throwable;}	
 	}
 	
 	private int[] buildHueColorArray(){
-		
+		com.mijack.Xlog.logMethodEnter("[int com.chanapps.four.mColorPicker.views.ColorPickerView.buildHueColorArray()",this);try{
 		int[] hue = new int[361];
 		
 		int count = 0;
@@ -216,24 +216,24 @@ public class ColorPickerView extends View{
 			hue[count] = Color.HSVToColor(new float[]{i, 1f, 1f});
 		}
 		
-		return hue;
+		{com.mijack.Xlog.logMethodExit("[int com.chanapps.four.mColorPicker.views.ColorPickerView.buildHueColorArray()",this);return hue;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[int com.chanapps.four.mColorPicker.views.ColorPickerView.buildHueColorArray()",this,throwable);throw throwable;}
 	}
 	
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		
-		if(mDrawingRect.width() <= 0 || mDrawingRect.height() <= 0) return;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.onDraw(android.graphics.Canvas)",this,canvas);try{
+		if(mDrawingRect.width() <= 0 || mDrawingRect.height() <= 0) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.onDraw(android.graphics.Canvas)",this);return;}}
 		
 		drawSatValPanel(canvas);	
 		drawHuePanel(canvas);
-		drawAlphaPanel(canvas);
+		drawAlphaPanel(canvas);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.onDraw(android.graphics.Canvas)",this,throwable);throw throwable;}
 		
 	}
 	
 	private void drawSatValPanel(Canvas canvas){
 
-		final RectF	rect = mSatValRect;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawSatValPanel(android.graphics.Canvas)",this,canvas);try{final RectF	rect = mSatValRect;
 				
 		if(BORDER_WIDTH_PX > 0){			
 			mBorderPaint.setColor(mBorderColor);
@@ -260,12 +260,12 @@ public class ColorPickerView extends View{
 		canvas.drawCircle(p.x, p.y, PALETTE_CIRCLE_TRACKER_RADIUS - 1f * mDensity, mSatValTrackerPaint);
 				
 		mSatValTrackerPaint.setColor(0xffdddddd);
-		canvas.drawCircle(p.x, p.y, PALETTE_CIRCLE_TRACKER_RADIUS, mSatValTrackerPaint);
+		canvas.drawCircle(p.x, p.y, PALETTE_CIRCLE_TRACKER_RADIUS, mSatValTrackerPaint);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawSatValPanel(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawSatValPanel(android.graphics.Canvas)",this,throwable);throw throwable;}
 			
 	}
 	
 	private void drawHuePanel(Canvas canvas){
-	
+	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawHuePanel(android.graphics.Canvas)",this,canvas);try{
 		final RectF rect = mHueRect;
 		
 		if(BORDER_WIDTH_PX > 0){
@@ -295,13 +295,13 @@ public class ColorPickerView extends View{
 		r.bottom = p.y + rectHeight;
 		
 		
-		canvas.drawRoundRect(r, 2, 2, mHueTrackerPaint);
+		canvas.drawRoundRect(r, 2, 2, mHueTrackerPaint);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawHuePanel(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawHuePanel(android.graphics.Canvas)",this,throwable);throw throwable;}
 		
 	}
 	
 	private void drawAlphaPanel(Canvas canvas){
-		
-		if(!mShowAlphaPanel || mAlphaRect == null || mAlphaPattern == null) return;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawAlphaPanel(android.graphics.Canvas)",this,canvas);try{
+		if(!mShowAlphaPanel || mAlphaRect == null || mAlphaPattern == null) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawAlphaPanel(android.graphics.Canvas)",this);return;}}
 		
 		final RectF rect = mAlphaRect;
 		
@@ -343,13 +343,13 @@ public class ColorPickerView extends View{
 		r.top = rect.top - RECTANGLE_TRACKER_OFFSET;
 		r.bottom = rect.bottom + RECTANGLE_TRACKER_OFFSET;
 		
-		canvas.drawRoundRect(r, 2, 2, mHueTrackerPaint);
+		canvas.drawRoundRect(r, 2, 2, mHueTrackerPaint);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.drawAlphaPanel(android.graphics.Canvas)",this,throwable);throw throwable;}
 		
 	}
 	
 	
 	private Point hueToPoint(float hue){
-		
+		com.mijack.Xlog.logMethodEnter("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.hueToPoint(float)",this,hue);try{
 		final RectF rect = mHueRect;
 		final float height = rect.height();
 		
@@ -358,11 +358,11 @@ public class ColorPickerView extends View{
 		p.y = (int) (height - (hue * height / 360f) + rect.top);
 		p.x = (int) rect.left;
 		
-		return p;		
+		{com.mijack.Xlog.logMethodExit("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.hueToPoint(float)",this);return p;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.hueToPoint(float)",this,throwable);throw throwable;}		
 	}
 	
 	private Point satValToPoint(float sat, float val){
-		
+		com.mijack.Xlog.logMethodEnter("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.satValToPoint(float,float)",this,sat,val);try{
 		final RectF rect = mSatValRect;
 		final float height = rect.height();
 		final float width = rect.width();
@@ -372,11 +372,11 @@ public class ColorPickerView extends View{
 		p.x = (int) (sat * width + rect.left);
 		p.y = (int) ((1f - val) * height + rect.top);
 		
-		return p;
+		{com.mijack.Xlog.logMethodExit("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.satValToPoint(float,float)",this);return p;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.satValToPoint(float,float)",this,throwable);throw throwable;}
 	}
 	
 	private Point alphaToPoint(int alpha){
-		
+		com.mijack.Xlog.logMethodEnter("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.alphaToPoint(int)",this,alpha);try{
 		final RectF rect = mAlphaRect;
 		final float width = rect.width();
 		
@@ -385,12 +385,12 @@ public class ColorPickerView extends View{
 		p.x = (int) (width - (alpha * width / 0xff) + rect.left);
 		p.y = (int) rect.top;
 		
-		return p;
+		{com.mijack.Xlog.logMethodExit("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.alphaToPoint(int)",this);return p;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Point com.chanapps.four.mColorPicker.views.ColorPickerView.alphaToPoint(int)",this,throwable);throw throwable;}
 	
 	}
 	
 	private float[] pointToSatVal(float x, float y){
-	
+	com.mijack.Xlog.logMethodEnter("[float com.chanapps.four.mColorPicker.views.ColorPickerView.pointToSatVal(float,float)",this,x,y);try{
 		final RectF rect = mSatValRect;
 		float[] result = new float[2];
 		
@@ -421,11 +421,11 @@ public class ColorPickerView extends View{
 		result[0] = 1.f / width * x;
 		result[1] = 1.f - (1.f / height * y);
 		
-		return result;	
+		{com.mijack.Xlog.logMethodExit("[float com.chanapps.four.mColorPicker.views.ColorPickerView.pointToSatVal(float,float)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[float com.chanapps.four.mColorPicker.views.ColorPickerView.pointToSatVal(float,float)",this,throwable);throw throwable;}	
 	}
 	
 	private float pointToHue(float y){		
-		
+		com.mijack.Xlog.logMethodEnter("float com.chanapps.four.mColorPicker.views.ColorPickerView.pointToHue(float)",this,y);try{
 		final RectF rect = mHueRect;
 		
 		float height = rect.height();
@@ -440,11 +440,11 @@ public class ColorPickerView extends View{
 			y = y - rect.top;
 		}
 		
-		return 360f - (y * 360f / height);
+		{com.mijack.Xlog.logMethodExit("float com.chanapps.four.mColorPicker.views.ColorPickerView.pointToHue(float)",this);return 360f - (y * 360f / height);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.chanapps.four.mColorPicker.views.ColorPickerView.pointToHue(float)",this,throwable);throw throwable;}
 	}
 	
 	private int pointToAlpha(int x){
-		
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.pointToAlpha(int)",this,x);try{
 		final RectF rect = mAlphaRect;
 		final int width = (int) rect.width();
 		
@@ -458,14 +458,14 @@ public class ColorPickerView extends View{
 			x = x - (int)rect.left;
 		}
 		
-		return 0xff - (x * 0xff / width);
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.pointToAlpha(int)",this);return 0xff - (x * 0xff / width);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.pointToAlpha(int)",this,throwable);throw throwable;}
 		
 	}
 	
 			
 	@Override
 	public boolean onTrackballEvent(MotionEvent event) {
-		
+		com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTrackballEvent(android.view.MotionEvent)",this,event);try{
 		float x = event.getX();
 		float y = event.getY();
 		
@@ -557,16 +557,16 @@ public class ColorPickerView extends View{
 			}
 			
 			invalidate();
-			return true;
+			{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTrackballEvent(android.view.MotionEvent)",this);return true;}
 		}
 		
 	
-		return super.onTrackballEvent(event);
+		{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTrackballEvent(android.view.MotionEvent)",this);return super.onTrackballEvent(event);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTrackballEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
 	}
 		
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		
+		com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTouchEvent(android.view.MotionEvent)",this,event);try{
 		boolean update = false;
 				
 		switch(event.getAction()){
@@ -602,16 +602,16 @@ public class ColorPickerView extends View{
 			}
 			
 			invalidate();
-			return true;
+			{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTouchEvent(android.view.MotionEvent)",this);return true;}
 		}
 		
 	
-		return super.onTouchEvent(event);
+		{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTouchEvent(android.view.MotionEvent)",this);return super.onTouchEvent(event);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
 	}
 		
 	private boolean moveTrackersIfNeeded(MotionEvent event){
-		
-		if(mStartTouchPoint == null) return false;
+		com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.moveTrackersIfNeeded(android.view.MotionEvent)",this,event);try{
+		if(mStartTouchPoint == null) {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.moveTrackersIfNeeded(android.view.MotionEvent)",this);return false;}}
 		
 		boolean update = false;
 		
@@ -647,13 +647,13 @@ public class ColorPickerView extends View{
 		}
 		
 		
-		return update;
+		{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.moveTrackersIfNeeded(android.view.MotionEvent)",this);return update;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.mColorPicker.views.ColorPickerView.moveTrackersIfNeeded(android.view.MotionEvent)",this,throwable);throw throwable;}
 	}
 	
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.onMeasure(int,int)",this,widthMeasureSpec,heightMeasureSpec);try{
 		int width = 0;
 		int height = 0;
 			
@@ -671,7 +671,7 @@ public class ColorPickerView extends View{
 		if(!mShowAlphaPanel){
 			height = (int) (widthAllowed - PANEL_SPACING - HUE_PANEL_WIDTH);
 			
-			//If calculated height (based on the width) is more than the allowed height.
+			/*//If calculated height (based on the width) is more than the allowed height.*/
 			if(height > heightAllowed){
 				height = heightAllowed;
 				width = (int) (height + PANEL_SPACING + HUE_PANEL_WIDTH);
@@ -696,27 +696,27 @@ public class ColorPickerView extends View{
 		}
 		
 	
-		setMeasuredDimension(width, height);
+		setMeasuredDimension(width, height);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.onMeasure(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.onMeasure(int,int)",this,throwable);throw throwable;}
 	}
 	
 	private int chooseWidth(int mode, int size){
-		if (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.EXACTLY) {
-			return size;
-		} else { // (mode == MeasureSpec.UNSPECIFIED)
-			return getPrefferedWidth();
-		} 
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseWidth(int,int)",this,mode,size);try{if (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.EXACTLY) {
+			{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseWidth(int,int)",this);return size;}
+		} else { /*// (mode == MeasureSpec.UNSPECIFIED)*/
+			{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseWidth(int,int)",this);return getPrefferedWidth();}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseWidth(int,int)",this,throwable);throw throwable;} 
 	}
 	
 	private int chooseHeight(int mode, int size){
-		if (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.EXACTLY) {
-			return size;
-		} else { // (mode == MeasureSpec.UNSPECIFIED)
-			return getPrefferedHeight();
-		} 
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseHeight(int,int)",this,mode,size);try{if (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.EXACTLY) {
+			{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseHeight(int,int)",this);return size;}
+		} else { /*// (mode == MeasureSpec.UNSPECIFIED)*/
+			{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseHeight(int,int)",this);return getPrefferedHeight();}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.chooseHeight(int,int)",this,throwable);throw throwable;} 
 	}
 	
 	private int getPrefferedWidth(){
-		
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.getPrefferedWidth()",this);try{
 		int width = getPrefferedHeight();
 		
 		if(mShowAlphaPanel){
@@ -724,26 +724,26 @@ public class ColorPickerView extends View{
 		}
 		
 		
-		return (int) (width + HUE_PANEL_WIDTH + PANEL_SPACING);
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.getPrefferedWidth()",this);return (int) (width + HUE_PANEL_WIDTH + PANEL_SPACING);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.getPrefferedWidth()",this,throwable);throw throwable;}
 		
 	}
 	
 	private int getPrefferedHeight(){
-		
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.getPrefferedHeight()",this);try{
 		int height = (int)(200 * mDensity);
 		
 		if(mShowAlphaPanel){
 			height += PANEL_SPACING + ALPHA_PANEL_HEIGHT;
 		}
 		
-		return height;
+		{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.getPrefferedHeight()",this);return height;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.getPrefferedHeight()",this,throwable);throw throwable;}
 	}
 	
 	
 	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		super.onSizeChanged(w, h, oldw, oldh);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.onSizeChanged(int,int,int,int)",this,w,h,oldw,oldh);try{super.onSizeChanged(w, h, oldw, oldh);
 		
 		mDrawingRect = new RectF();		
 		mDrawingRect.left = mDrawingOffset + getPaddingLeft();
@@ -753,11 +753,11 @@ public class ColorPickerView extends View{
 		
 		setUpSatValRect();
 		setUpHueRect();
-		setUpAlphaRect();
+		setUpAlphaRect();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.onSizeChanged(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.onSizeChanged(int,int,int,int)",this,throwable);throw throwable;}
 	}
 	
 	private void setUpSatValRect(){
-		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpSatValRect()",this);try{
 		final RectF	dRect = mDrawingRect;		
 		float panelSide = dRect.height() - BORDER_WIDTH_PX * 2;
 		
@@ -770,23 +770,23 @@ public class ColorPickerView extends View{
 		float bottom = top + panelSide;
 		float right = left + panelSide;
 		
-		mSatValRect = new RectF(left,top, right, bottom);
+		mSatValRect = new RectF(left,top, right, bottom);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpSatValRect()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpSatValRect()",this,throwable);throw throwable;}
 	}
 	
 	private void setUpHueRect(){
-		final RectF	dRect = mDrawingRect;		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpHueRect()",this);try{final RectF	dRect = mDrawingRect;		
 		
 		float left = dRect.right - HUE_PANEL_WIDTH + BORDER_WIDTH_PX;
 		float top = dRect.top + BORDER_WIDTH_PX;
 		float bottom = dRect.bottom - BORDER_WIDTH_PX - (mShowAlphaPanel ? (PANEL_SPACING + ALPHA_PANEL_HEIGHT) : 0);
 		float right = dRect.right - BORDER_WIDTH_PX;
 		
-		mHueRect = new RectF(left, top, right, bottom);
+		mHueRect = new RectF(left, top, right, bottom);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpHueRect()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpHueRect()",this,throwable);throw throwable;}
 	}
 
 	private void setUpAlphaRect(){
-		
-		if(!mShowAlphaPanel) return;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpAlphaRect()",this);try{
+		if(!mShowAlphaPanel) {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpAlphaRect()",this);return;}}
 		
 		final RectF	dRect = mDrawingRect;		
 		
@@ -803,7 +803,7 @@ public class ColorPickerView extends View{
 				.round(mAlphaRect.top), Math.round(mAlphaRect.right), Math
 				.round(mAlphaRect.bottom));
 		
-		
+		}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setUpAlphaRect()",this,throwable);throw throwable;}
 		
 	}
 	
@@ -814,7 +814,7 @@ public class ColorPickerView extends View{
 	 * @param listener
 	 */
 	public void setOnColorChangedListener(OnColorChangedListener listener){
-		mListener = listener;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setOnColorChangedListener(OnColorChangedListener)",this,listener);try{mListener = listener;com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setOnColorChangedListener(OnColorChangedListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setOnColorChangedListener(OnColorChangedListener)",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -822,15 +822,15 @@ public class ColorPickerView extends View{
 	 * @param color
 	 */
 	public void setBorderColor(int color){
-		mBorderColor = color;
-		invalidate();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setBorderColor(int)",this,color);try{mBorderColor = color;
+		invalidate();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setBorderColor(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setBorderColor(int)",this,throwable);throw throwable;}
 	}
 	
 	/**
 	 * Get the color of the border surrounding all panels.
 	 */
 	public int getBorderColor(){
-		return mBorderColor;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.getBorderColor()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.getBorderColor()",this);return mBorderColor;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.getBorderColor()",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -838,7 +838,7 @@ public class ColorPickerView extends View{
 	 * @return the current color.
 	 */
 	public int getColor(){
-		return Color.HSVToColor(mAlpha, new float[]{mHue,mSat,mVal});
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.getColor()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.getColor()",this);return Color.HSVToColor(mAlpha, new float[]{mHue,mSat,mVal});}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.getColor()",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -846,7 +846,7 @@ public class ColorPickerView extends View{
 	 * @param color The color that should be selected.
 	 */
 	public void setColor(int color){
-		setColor(color, false);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setColor(int)",this,color);try{setColor(color, false);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setColor(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setColor(int)",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -856,7 +856,7 @@ public class ColorPickerView extends View{
 	 * your OnColorChangedListener.
 	 */
 	public void setColor(int color, boolean callback){
-	
+	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setColor(int,boolean)",this,color,callback);try{
 		int alpha = Color.alpha(color);
 		int red = Color.red(color);
 		int blue = Color.blue(color);
@@ -875,7 +875,7 @@ public class ColorPickerView extends View{
 			mListener.onColorChanged(Color.HSVToColor(mAlpha, new float[]{mHue, mSat, mVal}));				
 		}
 		
-		invalidate();
+		invalidate();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setColor(int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setColor(int,boolean)",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -887,7 +887,7 @@ public class ColorPickerView extends View{
 	 * @return The offset in pixels.
 	 */
 	public float getDrawingOffset(){
-		return mDrawingOffset;
+		com.mijack.Xlog.logMethodEnter("float com.chanapps.four.mColorPicker.views.ColorPickerView.getDrawingOffset()",this);try{com.mijack.Xlog.logMethodExit("float com.chanapps.four.mColorPicker.views.ColorPickerView.getDrawingOffset()",this);return mDrawingOffset;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.chanapps.four.mColorPicker.views.ColorPickerView.getDrawingOffset()",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -896,7 +896,7 @@ public class ColorPickerView extends View{
 	 * @param visible
 	 */
 	public void setAlphaSliderVisible(boolean visible){
-		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderVisible(boolean)",this,visible);try{
 		if(mShowAlphaPanel != visible){
 			mShowAlphaPanel = visible;
 			
@@ -911,20 +911,20 @@ public class ColorPickerView extends View{
 			mAlphaShader = null;;
 			
 			requestLayout();
-		}
+		}com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderVisible(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderVisible(boolean)",this,throwable);throw throwable;}
 		
 	}
 	
 	public void setSliderTrackerColor(int color){
-		mSliderTrackerColor = color;
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setSliderTrackerColor(int)",this,color);try{mSliderTrackerColor = color;
 
 		mHueTrackerPaint.setColor(mSliderTrackerColor);		
 		
-		invalidate();
+		invalidate();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setSliderTrackerColor(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setSliderTrackerColor(int)",this,throwable);throw throwable;}
 	}
 	
 	public int getSliderTrackerColor(){
-		return mSliderTrackerColor;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPickerView.getSliderTrackerColor()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPickerView.getSliderTrackerColor()",this);return mSliderTrackerColor;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPickerView.getSliderTrackerColor()",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -933,8 +933,8 @@ public class ColorPickerView extends View{
 	 * @param res string resource id.
 	 */
 	public void setAlphaSliderText(int res){		
-		String text = getContext().getString(res);
-		setAlphaSliderText(text);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderText(int)",this,res);try{String text = getContext().getString(res);
+		setAlphaSliderText(text);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderText(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderText(int)",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -943,8 +943,8 @@ public class ColorPickerView extends View{
 	 * @param text Text that should be shown.
 	 */
 	public void setAlphaSliderText(String text){
-		mAlphaSliderText = text;
-		invalidate();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderText(java.lang.String)",this,text);try{mAlphaSliderText = text;
+		invalidate();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderText(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPickerView.setAlphaSliderText(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -954,6 +954,6 @@ public class ColorPickerView extends View{
 	 * @return
 	 */
 	public String getAlphaSliderText(){
-		return mAlphaSliderText;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.mColorPicker.views.ColorPickerView.getAlphaSliderText()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.mColorPicker.views.ColorPickerView.getAlphaSliderText()",this);return mAlphaSliderText;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.mColorPicker.views.ColorPickerView.getAlphaSliderText()",this,throwable);throw throwable;}
 	}
 }

@@ -32,11 +32,9 @@ public class NegativeAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        notifyFilterChanged(new NegativeFilter(), true);
-        notifyDone();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.NegativeAction.doBegin()",this);try{notifyFilterChanged(new NegativeFilter(), true);
+        notifyDone();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.NegativeAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.NegativeAction.doBegin()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void doEnd() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.NegativeAction.doEnd()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.NegativeAction.doEnd()",this);}
 }

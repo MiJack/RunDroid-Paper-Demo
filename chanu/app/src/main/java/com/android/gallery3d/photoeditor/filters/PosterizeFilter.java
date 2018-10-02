@@ -31,7 +31,7 @@ public class PosterizeFilter extends Filter {
 
     @Override
     public void process(Photo src, Photo dst) {
-        getEffect(EffectFactory.EFFECT_POSTERIZE).apply(
-                src.texture(), src.width(), src.height(), dst.texture());
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.PosterizeFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{getEffect(EffectFactory.EFFECT_POSTERIZE).apply(
+                src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.PosterizeFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.PosterizeFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

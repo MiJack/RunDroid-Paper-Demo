@@ -40,72 +40,72 @@ public abstract class AbstractDisplayItem extends DisplayItem {
 
     public AbstractDisplayItem(MediaItem item) {
         mMediaItem = item;
-        if (item == null) mState = STATE_ERROR;
-        if (item != null) mRotation = mMediaItem.getRotation();
+        if (item == null) {mState = STATE_ERROR;}
+        if (item != null) {mRotation = mMediaItem.getRotation();}
     }
 
     protected void updateImage(Bitmap bitmap, boolean isCancelled) {
-        if (mRecycling) {
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AbstractDisplayItem.updateImage(android.graphics.Bitmap,boolean)",this,bitmap,isCancelled);try{if (mRecycling) {
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AbstractDisplayItem.updateImage(android.graphics.Bitmap,boolean)",this);return;}
         }
 
         if (isCancelled && bitmap == null) {
             mState = STATE_INVALID;
             if (mImageRequested) {
-                // request image again.
+                /*// request image again.*/
                 requestImage();
             }
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AbstractDisplayItem.updateImage(android.graphics.Bitmap,boolean)",this);return;}
         }
 
         mBitmap = bitmap;
         mState = bitmap == null ? STATE_ERROR : STATE_VALID ;
-        onBitmapAvailable(mBitmap);
+        onBitmapAvailable(mBitmap);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AbstractDisplayItem.updateImage(android.graphics.Bitmap,boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getRotation() {
-        return mRotation;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.AbstractDisplayItem.getRotation()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.AbstractDisplayItem.getRotation()",this);return mRotation;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.AbstractDisplayItem.getRotation()",this,throwable);throw throwable;}
     }
 
     @Override
     public long getIdentity() {
-        return mMediaItem != null
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.AbstractDisplayItem.getIdentity()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.AbstractDisplayItem.getIdentity()",this);return mMediaItem != null
                 ? System.identityHashCode(mMediaItem.getPath())
-                : System.identityHashCode(this);
+                : System.identityHashCode(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.AbstractDisplayItem.getIdentity()",this,throwable);throw throwable;}
     }
 
     public void requestImage() {
-        mImageRequested = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AbstractDisplayItem.requestImage()",this);try{mImageRequested = true;
         if (mState == STATE_INVALID) {
             mState = STATE_UPDATING;
             startLoadBitmap();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AbstractDisplayItem.requestImage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AbstractDisplayItem.requestImage()",this,throwable);throw throwable;}
     }
 
     public void cancelImageRequest() {
-        mImageRequested = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AbstractDisplayItem.cancelImageRequest()",this);try{mImageRequested = false;
         if (mState == STATE_UPDATING) {
             mState = STATE_CANCELING;
             cancelLoadBitmap();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AbstractDisplayItem.cancelImageRequest()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AbstractDisplayItem.cancelImageRequest()",this,throwable);throw throwable;}
     }
 
     private boolean inState(int states) {
-        return (mState & states) != 0;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.AbstractDisplayItem.inState(int)",this,states);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AbstractDisplayItem.inState(int)",this);return (mState & states) != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.AbstractDisplayItem.inState(int)",this,throwable);throw throwable;}
     }
 
     public void recycle() {
-        if (!inState(STATE_UPDATING | STATE_CANCELING)) {
-            if (mBitmap != null) mBitmap = null;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AbstractDisplayItem.recycle()",this);try{if (!inState(STATE_UPDATING | STATE_CANCELING)) {
+            if (mBitmap != null) {mBitmap = null;}
         } else {
             mRecycling = true;
             cancelImageRequest();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AbstractDisplayItem.recycle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AbstractDisplayItem.recycle()",this,throwable);throw throwable;}
     }
 
     public boolean isRequestInProgress() {
-        return mImageRequested && inState(STATE_UPDATING | STATE_CANCELING);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.AbstractDisplayItem.isRequestInProgress()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AbstractDisplayItem.isRequestInProgress()",this);return mImageRequested && inState(STATE_UPDATING | STATE_CANCELING);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.AbstractDisplayItem.isRequestInProgress()",this,throwable);throw throwable;}
     }
 
     abstract protected void startLoadBitmap();

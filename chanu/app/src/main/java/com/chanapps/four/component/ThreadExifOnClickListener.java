@@ -26,13 +26,13 @@ public class ThreadExifOnClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        ViewParent parent = v.getParent();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadExifOnClickListener.onClick(android.view.View)",this,v);try{ViewParent parent = v.getParent();
         if (parent == null || !(parent instanceof ViewGroup))
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadExifOnClickListener.onClick(android.view.View)",this);return;}}
         ViewGroup layout = (ViewGroup)parent;
         TextView listItemText = (TextView)layout.findViewById(R.id.list_item_exif_text);
         listItemText.setText(Html.fromHtml(exifText));
         listItemText.setVisibility(View.VISIBLE);
-        v.setVisibility(View.GONE);
+        v.setVisibility(View.GONE);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadExifOnClickListener.onClick(android.view.View)",this,throwable);throw throwable;}
     }
 }

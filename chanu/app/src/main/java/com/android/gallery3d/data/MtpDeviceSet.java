@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// MtpDeviceSet -- MtpDevice -- MtpImage
+/*// MtpDeviceSet -- MtpDevice -- MtpImage*/
 public class MtpDeviceSet extends MediaSet {
     private static final String TAG = "MtpDeviceSet";
 
@@ -47,8 +47,8 @@ public class MtpDeviceSet extends MediaSet {
     }
 
     private void loadDevices() {
-        DataManager dataManager = mApplication.getDataManager();
-        // Enumerate all devices
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpDeviceSet.loadDevices()",this);try{DataManager dataManager = mApplication.getDataManager();
+        /*// Enumerate all devices*/
         mDeviceSet.clear();
         List<android.mtp.MtpDevice> devices = mMtpContext.getMtpClient().getDeviceList();
         Log.v(TAG, "loadDevices: " + devices + ", size=" + devices.size());
@@ -66,44 +66,44 @@ public class MtpDeviceSet extends MediaSet {
         Collections.sort(mDeviceSet, MediaSetUtils.NAME_COMPARATOR);
         for (int i = 0, n = mDeviceSet.size(); i < n; i++) {
             mDeviceSet.get(i).reload();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpDeviceSet.loadDevices()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpDeviceSet.loadDevices()",this,throwable);throw throwable;}
     }
 
     public static String getDeviceName(MtpContext mtpContext, int deviceId) {
-        android.mtp.MtpDevice device = mtpContext.getMtpClient().getDevice(deviceId);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getDeviceName(com.android.gallery3d.data.MtpContext,int)",mtpContext,deviceId);try{android.mtp.MtpDevice device = mtpContext.getMtpClient().getDevice(deviceId);
         if (device == null) {
-            return "";
+            {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getDeviceName(com.android.gallery3d.data.MtpContext,int)");return "";}
         }
         MtpDeviceInfo info = device.getDeviceInfo();
         if (info == null) {
-            return "";
+            {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getDeviceName(com.android.gallery3d.data.MtpContext,int)");return "";}
         }
         String manufacturer = info.getManufacturer().trim();
         String model = info.getModel().trim();
-        return manufacturer + " " + model;
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getDeviceName(com.android.gallery3d.data.MtpContext,int)");return manufacturer + " " + model;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getDeviceName(com.android.gallery3d.data.MtpContext,int)",throwable);throw throwable;}
     }
 
     @Override
     public MediaSet getSubMediaSet(int index) {
-        return index < mDeviceSet.size() ? mDeviceSet.get(index) : null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.MtpDeviceSet.getSubMediaSet(int)",this,index);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.MtpDeviceSet.getSubMediaSet(int)",this);return index < mDeviceSet.size() ? mDeviceSet.get(index) : null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.MtpDeviceSet.getSubMediaSet(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getSubMediaSetCount() {
-        return mDeviceSet.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MtpDeviceSet.getSubMediaSetCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MtpDeviceSet.getSubMediaSetCount()",this);return mDeviceSet.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MtpDeviceSet.getSubMediaSetCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getName() {
-        return mName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getName()",this);return mName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.MtpDeviceSet.getName()",this,throwable);throw throwable;}
     }
 
     @Override
     public long reload() {
-        if (mNotifier.isDirty()) {
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MtpDeviceSet.reload()",this);try{if (mNotifier.isDirty()) {
             mDataVersion = nextVersionNumber();
             loadDevices();
         }
-        return mDataVersion;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MtpDeviceSet.reload()",this);return mDataVersion;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MtpDeviceSet.reload()",this,throwable);throw throwable;}
     }
 }

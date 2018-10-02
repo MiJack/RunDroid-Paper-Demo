@@ -22,7 +22,7 @@ import android.content.Context;
 
 public abstract class IconDrawer extends SelectionDrawer {
     private static final String TAG = "IconDrawer";
-    private static final int LABEL_BACKGROUND_COLOR = 0x99000000;  // 60% black
+    private static final int LABEL_BACKGROUND_COLOR = 0x99000000;  /*// 60% black*/
 
     private final ResourceTexture mLocalSetIcon;
     private final ResourceTexture mCameraIcon;
@@ -58,24 +58,22 @@ public abstract class IconDrawer extends SelectionDrawer {
                 R.dimen.albumset_icon_size);
     }
 
-    @Override
-    public void prepareDrawing() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.prepareDrawing()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.prepareDrawing()",this);}
 
     protected IconDimension drawIcon(GLCanvas canvas, int width, int height,
             int dataSourceType) {
-        ResourceTexture icon = getIcon(dataSourceType);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.IconDrawer$IconDimension com.android.gallery3d.ui.IconDrawer.drawIcon(GLCanvas,int,int,int)",this,canvas,width,height,dataSourceType);try{ResourceTexture icon = getIcon(dataSourceType);
 
         if (icon != null) {
             IconDimension id = getIconDimension(icon, width, height);
             icon.draw(canvas, id.x, id.y, id.width, id.height);
-            return id;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.IconDrawer$IconDimension com.android.gallery3d.ui.IconDrawer.drawIcon(GLCanvas,int,int,int)",this);return id;}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.IconDrawer$IconDimension com.android.gallery3d.ui.IconDrawer.drawIcon(GLCanvas,int,int,int)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.IconDrawer$IconDimension com.android.gallery3d.ui.IconDrawer.drawIcon(GLCanvas,int,int,int)",this,throwable);throw throwable;}
     }
 
     protected ResourceTexture getIcon(int dataSourceType) {
-        ResourceTexture icon = null;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.ResourceTexture com.android.gallery3d.ui.IconDrawer.getIcon(int)",this,dataSourceType);try{ResourceTexture icon = null;
         switch (dataSourceType) {
             case DATASOURCE_TYPE_LOCAL:
                 icon = mLocalSetIcon;
@@ -93,72 +91,70 @@ public abstract class IconDrawer extends SelectionDrawer {
                 break;
         }
 
-        return icon;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.ResourceTexture com.android.gallery3d.ui.IconDrawer.getIcon(int)",this);return icon;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.ResourceTexture com.android.gallery3d.ui.IconDrawer.getIcon(int)",this,throwable);throw throwable;}
     }
 
     protected IconDimension getIconDimension(ResourceTexture icon, int width,
             int height) {
-        IconDimension id = new IconDimension();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.IconDrawer$IconDimension com.android.gallery3d.ui.IconDrawer.getIconDimension(com.android.gallery3d.ui.ResourceTexture,int,int)",this,icon,width,height);try{IconDimension id = new IconDimension();
         float scale = (float) mIconSize / icon.getWidth();
         id.width = Math.round(scale * icon.getWidth());
         id.height = Math.round(scale * icon.getHeight());
         id.x = -width / 2;
         id.y = (height + 1) / 2 - id.height;
-        return id;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.IconDrawer$IconDimension com.android.gallery3d.ui.IconDrawer.getIconDimension(com.android.gallery3d.ui.ResourceTexture,int,int)",this);return id;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.IconDrawer$IconDimension com.android.gallery3d.ui.IconDrawer.getIconDimension(com.android.gallery3d.ui.ResourceTexture,int,int)",this,throwable);throw throwable;}
     }
 
     protected void drawMediaTypeOverlay(GLCanvas canvas, int mediaType,
             boolean isPanorama, int x, int y, int width, int height) {
-        if (mediaType == MediaObject.MEDIA_TYPE_VIDEO) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.drawMediaTypeOverlay(GLCanvas,int,boolean,int,int,int,int)",this,canvas,mediaType,isPanorama,x,y,width,height);try{if (mediaType == MediaObject.MEDIA_TYPE_VIDEO) {
             drawVideoOverlay(canvas, x, y, width, height);
         }
         if (isPanorama) {
             drawPanoramaBorder(canvas, x, y, width, height);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.drawMediaTypeOverlay(GLCanvas,int,boolean,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.IconDrawer.drawMediaTypeOverlay(GLCanvas,int,boolean,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     protected void drawVideoOverlay(GLCanvas canvas, int x, int y,
             int width, int height) {
-        // Scale the video overlay to the height of the thumbnail and put it
-        // on the left side.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.drawVideoOverlay(GLCanvas,int,int,int,int)",this,canvas,x,y,width,height);try{/*// Scale the video overlay to the height of the thumbnail and put it*/
+        /*// on the left side.*/
         float scale = (float) height / mVideoOverlay.getHeight();
         int w = Math.round(scale * mVideoOverlay.getWidth());
         int h = Math.round(scale * mVideoOverlay.getHeight());
         mVideoOverlay.draw(canvas, x, y, w, h);
 
         int side = Math.min(width, height) / 6;
-        mVideoPlayIcon.draw(canvas, -side / 2, -side / 2, side, side);
+        mVideoPlayIcon.draw(canvas, -side / 2, -side / 2, side, side);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.drawVideoOverlay(GLCanvas,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.IconDrawer.drawVideoOverlay(GLCanvas,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     protected void drawPanoramaBorder(GLCanvas canvas, int x, int y,
             int width, int height) {
-        float scale = (float) width / mPanoramaBorder.getWidth();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.drawPanoramaBorder(GLCanvas,int,int,int,int)",this,canvas,x,y,width,height);try{float scale = (float) width / mPanoramaBorder.getWidth();
         int w = Math.round(scale * mPanoramaBorder.getWidth());
         int h = Math.round(scale * mPanoramaBorder.getHeight());
-        // draw at the top
+        /*// draw at the top*/
         mPanoramaBorder.draw(canvas, x, y, w, h);
-        // draw at the bottom
-        mPanoramaBorder.draw(canvas, x, y + width - h, w, h);
+        /*// draw at the bottom*/
+        mPanoramaBorder.draw(canvas, x, y + width - h, w, h);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.drawPanoramaBorder(GLCanvas,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.IconDrawer.drawPanoramaBorder(GLCanvas,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     protected void drawLabelBackground(GLCanvas canvas, int width, int height,
             int drawLabelBackground) {
-        int x = -width / 2;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.drawLabelBackground(GLCanvas,int,int,int)",this,canvas,width,height,drawLabelBackground);try{int x = -width / 2;
         int y = (height + 1) / 2 - drawLabelBackground;
-        drawFrame(canvas, mDarkStrip, x, y, width, drawLabelBackground);
+        drawFrame(canvas, mDarkStrip, x, y, width, drawLabelBackground);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.drawLabelBackground(GLCanvas,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.IconDrawer.drawLabelBackground(GLCanvas,int,int,int)",this,throwable);throw throwable;}
     }
 
     protected void drawPressedFrame(GLCanvas canvas, int x, int y, int width,
             int height) {
-        drawFrame(canvas, mFramePressed, x, y, width, height);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.drawPressedFrame(GLCanvas,int,int,int,int)",this,canvas,x,y,width,height);try{drawFrame(canvas, mFramePressed, x, y, width, height);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.drawPressedFrame(GLCanvas,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.IconDrawer.drawPressedFrame(GLCanvas,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     protected void drawSelectedFrame(GLCanvas canvas, int x, int y, int width,
             int height) {
-        drawFrame(canvas, mFrameSelected, x, y, width, height);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.drawSelectedFrame(GLCanvas,int,int,int,int)",this,canvas,x,y,width,height);try{drawFrame(canvas, mFrameSelected, x, y, width, height);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.drawSelectedFrame(GLCanvas,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.IconDrawer.drawSelectedFrame(GLCanvas,int,int,int,int)",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void drawFocus(GLCanvas canvas, int width, int height) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.IconDrawer.drawFocus(GLCanvas,int,int)",this,canvas,width,height);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.IconDrawer.drawFocus(GLCanvas,int,int)",this);}
 }

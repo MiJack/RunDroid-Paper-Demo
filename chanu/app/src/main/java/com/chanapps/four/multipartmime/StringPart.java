@@ -64,7 +64,7 @@ public class StringPart extends PartBase {
     /** The String value of this part. */
     private String value;
 
-    public String getValue() { return value; }
+    public String getValue() { com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.StringPart.getValue()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.StringPart.getValue()",this);return value;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.StringPart.getValue()",this,throwable);throw throwable;} }
     /**
      * Constructor.
      *
@@ -84,7 +84,7 @@ public class StringPart extends PartBase {
             throw new IllegalArgumentException("Value may not be null");
         }
         if (value.indexOf(0) != -1) {
-            // See RFC 2048, 2.8. "8bit Data"
+            /*// See RFC 2048, 2.8. "8bit Data"*/
             throw new IllegalArgumentException("NULs may not be present in string parts");
         }
         this.value = value;
@@ -107,10 +107,10 @@ public class StringPart extends PartBase {
      * @return the content in bytes
      */
     private byte[] getContent() {
-        if (content == null) {
+        com.mijack.Xlog.logMethodEnter("[byte com.chanapps.four.multipartmime.StringPart.getContent()",this);try{if (content == null) {
             content = EncodingUtils.getBytes(value, getCharSet());
         }
-        return content;
+        {com.mijack.Xlog.logMethodExit("[byte com.chanapps.four.multipartmime.StringPart.getContent()",this);return content;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.chanapps.four.multipartmime.StringPart.getContent()",this,throwable);throw throwable;}
     }
     
     /**
@@ -120,8 +120,8 @@ public class StringPart extends PartBase {
      */
     @Override
     protected void sendData(OutputStream out) throws IOException {
-        if (DEBUG) Log.d(TAG, "enter sendData(OutputStream)");
-        out.write(getContent());
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.StringPart.sendData(java.io.OutputStream)",this,out);try{if (DEBUG) {Log.d(TAG, "enter sendData(OutputStream)");}
+        out.write(getContent());com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.StringPart.sendData(java.io.OutputStream)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.StringPart.sendData(java.io.OutputStream)",this,throwable);throw throwable;}
     }
     
     /**
@@ -131,8 +131,8 @@ public class StringPart extends PartBase {
      */
     @Override
     protected long lengthOfData() {
-        if (DEBUG) Log.d(TAG, "enter lengthOfData()");
-        return getContent().length;
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.multipartmime.StringPart.lengthOfData()",this);try{if (DEBUG) {Log.d(TAG, "enter lengthOfData()");}
+        {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.StringPart.lengthOfData()",this);return getContent().length;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.multipartmime.StringPart.lengthOfData()",this,throwable);throw throwable;}
     }
     
     /* (non-Javadoc)
@@ -140,8 +140,8 @@ public class StringPart extends PartBase {
      */
     @Override
     public void setCharSet(String charSet) {
-        super.setCharSet(charSet);
-        this.content = null;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.StringPart.setCharSet(java.lang.String)",this,charSet);try{super.setCharSet(charSet);
+        this.content = null;com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.StringPart.setCharSet(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.StringPart.setCharSet(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

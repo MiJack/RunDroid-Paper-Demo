@@ -75,21 +75,21 @@ class CropView extends FullscreenToolView {
     }
 
     public void setOnCropChangeListener(OnCropChangeListener listener) {
-        this.listener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.setOnCropChangeListener(OnCropChangeListener)",this,listener);try{this.listener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.setOnCropChangeListener(OnCropChangeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.setOnCropChangeListener(OnCropChangeListener)",this,throwable);throw throwable;}
     }
 
     private void refreshByCropChange(boolean fromUser) {
-        if (listener != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.refreshByCropChange(boolean)",this,fromUser);try{if (listener != null) {
             listener.onCropChanged(new RectF(cropBounds), fromUser);
         }
-        invalidate();
+        invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.refreshByCropChange(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.refreshByCropChange(boolean)",this,throwable);throw throwable;}
     }
 
     /**
      * Sets cropped bounds; modifies the bounds if it's smaller than the allowed dimensions.
      */
     public void setCropBounds(RectF bounds) {
-        // Avoid cropping smaller than minimum width or height.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.setCropBounds(android.graphics.RectF)",this,bounds);try{/*// Avoid cropping smaller than minimum width or height.*/
         if (bounds.width() * getPhotoWidth() < MIN_CROP_WIDTH_HEIGHT) {
             bounds.set(0, bounds.top, 1, bounds.bottom);
         }
@@ -97,23 +97,23 @@ class CropView extends FullscreenToolView {
             bounds.set(bounds.left, 0, bounds.right, 1);
         }
         cropBounds.set(bounds);
-        refreshByCropChange(false);
+        refreshByCropChange(false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.setCropBounds(android.graphics.RectF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.setCropBounds(android.graphics.RectF)",this,throwable);throw throwable;}
     }
 
     private RectF getCropBoundsDisplayed() {
-        float width = displayBounds.width();
+        com.mijack.Xlog.logMethodEnter("android.graphics.RectF com.android.gallery3d.photoeditor.actions.CropView.getCropBoundsDisplayed()",this);try{float width = displayBounds.width();
         float height = displayBounds.height();
         RectF cropped = new RectF(cropBounds.left * width, cropBounds.top * height,
                 cropBounds.right * width, cropBounds.bottom * height);
         cropped.offset(displayBounds.left, displayBounds.top);
-        return cropped;
+        {com.mijack.Xlog.logMethodExit("android.graphics.RectF com.android.gallery3d.photoeditor.actions.CropView.getCropBoundsDisplayed()",this);return cropped;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.RectF com.android.gallery3d.photoeditor.actions.CropView.getCropBoundsDisplayed()",this,throwable);throw throwable;}
     }
 
     private void detectMovingEdges(float x, float y) {
-        RectF cropped = getCropBoundsDisplayed();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.detectMovingEdges(float,float)",this,x,y);try{RectF cropped = getCropBoundsDisplayed();
         movingEdges = 0;
 
-        // Check left or right.
+        /*// Check left or right.*/
         float left = Math.abs(x - cropped.left);
         float right = Math.abs(x - cropped.right);
         if ((left <= TOUCH_TOLERANCE) && (left < right)) {
@@ -123,7 +123,7 @@ class CropView extends FullscreenToolView {
             movingEdges |= MOVE_RIGHT;
         }
 
-        // Check top or bottom.
+        /*// Check top or bottom.*/
         float top = Math.abs(y - cropped.top);
         float bottom = Math.abs(y - cropped.bottom);
         if ((top <= TOUCH_TOLERANCE) & (top < bottom)) {
@@ -133,24 +133,24 @@ class CropView extends FullscreenToolView {
             movingEdges |= MOVE_BOTTOM;
         }
 
-        // Check inside block.
+        /*// Check inside block.*/
         if (cropped.contains(x, y) && (movingEdges == 0)) {
             movingEdges = MOVE_BLOCK;
         }
-        invalidate();
+        invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.detectMovingEdges(float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.detectMovingEdges(float,float)",this,throwable);throw throwable;}
     }
 
     private void moveEdges(float deltaX, float deltaY) {
-        RectF cropped = getCropBoundsDisplayed();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.moveEdges(float,float)",this,deltaX,deltaY);try{RectF cropped = getCropBoundsDisplayed();
         if (movingEdges == MOVE_BLOCK) {
-            // Move the whole cropped bounds within the photo display bounds.
+            /*// Move the whole cropped bounds within the photo display bounds.*/
             deltaX = (deltaX > 0) ? Math.min(displayBounds.right - cropped.right, deltaX)
                     : Math.max(displayBounds.left - cropped.left, deltaX);
             deltaY = (deltaY > 0) ? Math.min(displayBounds.bottom - cropped.bottom, deltaY)
                     : Math.max(displayBounds.top - cropped.top, deltaY);
             cropped.offset(deltaX, deltaY);
         } else {
-            // Adjust cropped bound dimensions within the photo display bounds.
+            /*// Adjust cropped bound dimensions within the photo display bounds.*/
             float minWidth = MIN_CROP_WIDTH_HEIGHT * displayBounds.width() / getPhotoWidth();
             float minHeight = MIN_CROP_WIDTH_HEIGHT * displayBounds.height() / getPhotoHeight();
             if ((movingEdges & MOVE_LEFT) != 0) {
@@ -168,12 +168,12 @@ class CropView extends FullscreenToolView {
             cropped.intersect(displayBounds);
         }
         mapPhotoRect(cropped, cropBounds);
-        refreshByCropChange(true);
+        refreshByCropChange(true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.moveEdges(float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.moveEdges(float,float)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        super.onTouchEvent(event);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.CropView.onTouchEvent(android.view.MotionEvent)",this,event);try{super.onTouchEvent(event);
 
         if (isEnabled()) {
             float x = event.getX();
@@ -201,28 +201,28 @@ class CropView extends FullscreenToolView {
                     break;
             }
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.CropView.onTouchEvent(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.CropView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     private void drawIndicator(Canvas canvas, Drawable indicator, float centerX, float centerY) {
-        int left = (int) centerX - indicatorSize / 2;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.drawIndicator(android.graphics.Canvas,android.graphics.drawable.Drawable,float,float)",this,canvas,indicator,centerX,centerY);try{int left = (int) centerX - indicatorSize / 2;
         int top = (int) centerY - indicatorSize / 2;
         indicator.setBounds(left, top, left + indicatorSize, top + indicatorSize);
-        indicator.draw(canvas);
+        indicator.draw(canvas);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.drawIndicator(android.graphics.Canvas,android.graphics.drawable.Drawable,float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.drawIndicator(android.graphics.Canvas,android.graphics.drawable.Drawable,float,float)",this,throwable);throw throwable;}
     }
 
     private void drawShadow(Canvas canvas, float left, float top, float right, float bottom) {
-        canvas.save();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.drawShadow(android.graphics.Canvas,float,float,float,float)",this,canvas,left,top,right,bottom);try{canvas.save();
         canvas.clipRect(left, top, right, bottom);
         canvas.drawARGB(SHADOW_ALPHA, 0, 0, 0);
-        canvas.restore();
+        canvas.restore();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.drawShadow(android.graphics.Canvas,float,float,float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.drawShadow(android.graphics.Canvas,float,float,float,float)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropView.onDraw(android.graphics.Canvas)",this,canvas);try{super.onDraw(canvas);
 
-        // Draw shadow on non-cropped bounds and the border around cropped bounds.
+        /*// Draw shadow on non-cropped bounds and the border around cropped bounds.*/
         RectF cropped = getCropBoundsDisplayed();
         drawShadow(canvas, displayBounds.left, displayBounds.top, displayBounds.right, cropped.top);
         drawShadow(canvas, displayBounds.left, cropped.top, cropped.left, displayBounds.bottom);
@@ -242,6 +242,6 @@ class CropView extends FullscreenToolView {
         }
         if (((movingEdges & MOVE_RIGHT) != 0) || notMoving) {
             drawIndicator(canvas, cropIndicator, cropped.right, cropped.centerY());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropView.onDraw(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropView.onDraw(android.graphics.Canvas)",this,throwable);throw throwable;}
     }
 }

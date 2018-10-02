@@ -44,13 +44,13 @@ public class LruMemoryCache implements MemoryCacheAware<String, Bitmap> {
 	 */
 	@Override
 	public final Bitmap get(String key) {
-		if (key == null) {
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.get(java.lang.String)",this,key);try{if (key == null) {
 			throw new NullPointerException("key == null");
 		}
 
 		synchronized (this) {
-			return map.get(key);
-		}
+			{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.get(java.lang.String)",this);return map.get(key);}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.get(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class LruMemoryCache implements MemoryCacheAware<String, Bitmap> {
 	 */
 	@Override
 	public final boolean put(String key, Bitmap value) {
-		if (key == null || value == null) {
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.put(java.lang.String,android.graphics.Bitmap)",this,key,value);try{if (key == null || value == null) {
 			throw new NullPointerException("key == null || value == null");
 		}
 
@@ -71,7 +71,7 @@ public class LruMemoryCache implements MemoryCacheAware<String, Bitmap> {
 		}
 
 		trimToSize(maxSize);
-		return true;
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.put(java.lang.String,android.graphics.Bitmap)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.put(java.lang.String,android.graphics.Bitmap)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class LruMemoryCache implements MemoryCacheAware<String, Bitmap> {
 	 * @param maxSize the maximum size of the cache before returning. May be -1 to evict even 0-sized elements.
 	 */
 	private void trimToSize(int maxSize) {
-		while (true) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.trimToSize(int)",this,maxSize);try{com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.trimToSize(int)",this);while (true) {
 			String key;
 			Bitmap value;
 			synchronized (this) {
@@ -101,13 +101,13 @@ public class LruMemoryCache implements MemoryCacheAware<String, Bitmap> {
 				map.remove(key);
 				size -= sizeOf(key, value);
 			}
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.trimToSize(int)",this,throwable);throw throwable;}
 	}
 
 	/** Removes the entry for {@code key} if it exists. */
 	@Override
 	public final void remove(String key) {
-		if (key == null) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.remove(java.lang.String)",this,key);try{if (key == null) {
 			throw new NullPointerException("key == null");
 		}
 
@@ -116,17 +116,17 @@ public class LruMemoryCache implements MemoryCacheAware<String, Bitmap> {
 			if (previous != null) {
 				size -= sizeOf(key, previous);
 			}
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.remove(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public Collection<String> keys() {
-		return new HashSet<String>(map.keySet());
+		com.mijack.Xlog.logMethodEnter("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.keys()",this);try{com.mijack.Xlog.logMethodExit("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.keys()",this);return new HashSet<String>(map.keySet());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.keys()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		trimToSize(-1); // -1 will evict 0-sized elements
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.clear()",this);try{trimToSize(-1); /*// -1 will evict 0-sized elements*/com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.clear()",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -135,11 +135,11 @@ public class LruMemoryCache implements MemoryCacheAware<String, Bitmap> {
 	 * An entry's size must not change while it is in the cache.
 	 */
 	private int sizeOf(String key, Bitmap value) {
-		return value.getRowBytes() * value.getHeight();
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.sizeOf(java.lang.String,android.graphics.Bitmap)",this,key,value);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.sizeOf(java.lang.String,android.graphics.Bitmap)",this);return value.getRowBytes() * value.getHeight();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.sizeOf(java.lang.String,android.graphics.Bitmap)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public synchronized final String toString() {
-		return String.format("LruCache[maxSize=%d]", maxSize);
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.toString()",this);return String.format("LruCache[maxSize=%d]", maxSize);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.toString()",this,throwable);throw throwable;}
 	}
 }

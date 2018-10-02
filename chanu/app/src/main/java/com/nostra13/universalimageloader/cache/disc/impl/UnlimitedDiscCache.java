@@ -46,6 +46,6 @@ public class UnlimitedDiscCache extends BaseDiscCache {
 
 	@Override
 	public void put(String key, File file) {
-		// Do nothing
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache.put(java.lang.String,java.io.File)",this,key,file);try{/*// Do nothing*/com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache.put(java.lang.String,java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache.put(java.lang.String,java.io.File)",this,throwable);throw throwable;}
 	}
 }

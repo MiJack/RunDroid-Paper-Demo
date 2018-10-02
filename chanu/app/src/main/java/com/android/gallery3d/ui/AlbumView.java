@@ -58,12 +58,12 @@ public class AlbumView extends SlotView {
     }
 
     public void setSelectionDrawer(SelectionDrawer drawer) {
-        mSelectionDrawer = drawer;
-        if (mDataWindow != null) mDataWindow.setSelectionDrawer(drawer);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.setSelectionDrawer(com.android.gallery3d.ui.SelectionDrawer)",this,drawer);try{mSelectionDrawer = drawer;
+        if (mDataWindow != null) {mDataWindow.setSelectionDrawer(drawer);}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.setSelectionDrawer(com.android.gallery3d.ui.SelectionDrawer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.setSelectionDrawer(com.android.gallery3d.ui.SelectionDrawer)",this,throwable);throw throwable;}
     }
 
     public void setModel(Model model) {
-        if (mDataWindow != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.setModel(Model)",this,model);try{if (mDataWindow != null) {
             mDataWindow.setListener(null);
             setSlotCount(0);
             mDataWindow = null;
@@ -76,40 +76,40 @@ public class AlbumView extends SlotView {
             mDataWindow.setListener(new MyDataModelListener());
             setSlotCount(model.size());
             updateVisibleRange(getVisibleStart(), getVisibleEnd());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.setModel(Model)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.setModel(Model)",this,throwable);throw throwable;}
     }
 
     public void setFocusIndex(int slotIndex) {
-        if (mDataWindow != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.setFocusIndex(int)",this,slotIndex);try{if (mDataWindow != null) {
             mDataWindow.setFocusIndex(slotIndex);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.setFocusIndex(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.setFocusIndex(int)",this,throwable);throw throwable;}
     }
 
     private void putSlotContent(int slotIndex, DisplayItem item) {
-        Rect rect = getSlotRect(slotIndex);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.putSlotContent(int,com.android.gallery3d.ui.DisplayItem)",this,slotIndex,item);try{Rect rect = getSlotRect(slotIndex);
         Position position = new Position(
                 (rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2, 0);
-        putDisplayItem(position, position, item);
+        putDisplayItem(position, position, item);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.putSlotContent(int,com.android.gallery3d.ui.DisplayItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.putSlotContent(int,com.android.gallery3d.ui.DisplayItem)",this,throwable);throw throwable;}
     }
 
     private void updateVisibleRange(int start, int end) {
-        if (start == mVisibleStart && end == mVisibleEnd) {
-            // we need to set the mDataWindow active range in any case.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.updateVisibleRange(int,int)",this,start,end);try{if (start == mVisibleStart && end == mVisibleEnd) {
+            /*// we need to set the mDataWindow active range in any case.*/
             mDataWindow.setActiveWindow(start, end);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.updateVisibleRange(int,int)",this);return;}
         }
 
         if (!mIsActive) {
             mVisibleStart = start;
             mVisibleEnd = end;
             mDataWindow.setActiveWindow(start, end);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.updateVisibleRange(int,int)",this);return;}
         }
 
         if (start >= mVisibleEnd || mVisibleStart >= end) {
             for (int i = mVisibleStart, n = mVisibleEnd; i < n; ++i) {
                 DisplayItem item = mDataWindow.get(i);
-                if (item != null) removeDisplayItem(item);
+                if (item != null) {removeDisplayItem(item);}
             }
             mDataWindow.setActiveWindow(start, end);
             for (int i = start; i < end; ++i) {
@@ -118,11 +118,11 @@ public class AlbumView extends SlotView {
         } else {
             for (int i = mVisibleStart; i < start; ++i) {
                 DisplayItem item = mDataWindow.get(i);
-                if (item != null) removeDisplayItem(item);
+                if (item != null) {removeDisplayItem(item);}
             }
             for (int i = end, n = mVisibleEnd; i < n; ++i) {
                 DisplayItem item = mDataWindow.get(i);
-                if (item != null) removeDisplayItem(item);
+                if (item != null) {removeDisplayItem(item);}
             }
             mDataWindow.setActiveWindow(start, end);
             for (int i = start, n = mVisibleStart; i < n; ++i) {
@@ -134,68 +134,68 @@ public class AlbumView extends SlotView {
         }
 
         mVisibleStart = start;
-        mVisibleEnd = end;
+        mVisibleEnd = end;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.updateVisibleRange(int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onLayoutChanged(int width, int height) {
-        // Reput all the items
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.onLayoutChanged(int,int)",this,width,height);try{/*// Reput all the items*/
         updateVisibleRange(0, 0);
-        updateVisibleRange(getVisibleStart(), getVisibleEnd());
+        updateVisibleRange(getVisibleStart(), getVisibleEnd());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.onLayoutChanged(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.onLayoutChanged(int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onScrollPositionChanged(int position) {
-        super.onScrollPositionChanged(position);
-        updateVisibleRange(getVisibleStart(), getVisibleEnd());
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.onScrollPositionChanged(int)",this,position);try{super.onScrollPositionChanged(position);
+        updateVisibleRange(getVisibleStart(), getVisibleEnd());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.onScrollPositionChanged(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.onScrollPositionChanged(int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        mSelectionDrawer.prepareDrawing();
-        super.render(canvas);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.render(GLCanvas)",this,canvas);try{mSelectionDrawer.prepareDrawing();
+        super.render(canvas);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.render(GLCanvas)",this,throwable);throw throwable;}
     }
 
     private class MyDataModelListener implements AlbumSlidingWindow.Listener {
 
         public void onContentInvalidated() {
-            invalidate();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onContentInvalidated()",this);try{invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onContentInvalidated()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onContentInvalidated()",this,throwable);throw throwable;}
         }
 
         public void onSizeChanged(int size) {
-            if (setSlotCount(size)) {
-                // If the layout parameters are changed, we need reput all items.
-                // We keep the visible range at the same center but with size 0.
-                // So that we can:
-                //     1.) flush all visible items
-                //     2.) keep the cached data
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onSizeChanged(int)",this,size);try{if (setSlotCount(size)) {
+                /*// If the layout parameters are changed, we need reput all items.*/
+                /*// We keep the visible range at the same center but with size 0.*/
+                /*// So that we can:*/
+                /*//     1.) flush all visible items*/
+                /*//     2.) keep the cached data*/
                 int center = (getVisibleStart() + getVisibleEnd()) / 2;
                 updateVisibleRange(center, center);
             }
             updateVisibleRange(getVisibleStart(), getVisibleEnd());
-            invalidate();
+            invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onSizeChanged(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onSizeChanged(int)",this,throwable);throw throwable;}
         }
 
         public void onWindowContentChanged(
                 int slotIndex, DisplayItem old, DisplayItem update) {
-            removeDisplayItem(old);
-            putSlotContent(slotIndex, update);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onWindowContentChanged(int,com.android.gallery3d.ui.DisplayItem,com.android.gallery3d.ui.DisplayItem)",this,slotIndex,old,update);try{removeDisplayItem(old);
+            putSlotContent(slotIndex, update);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onWindowContentChanged(int,com.android.gallery3d.ui.DisplayItem,com.android.gallery3d.ui.DisplayItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView$MyDataModelListener.onWindowContentChanged(int,com.android.gallery3d.ui.DisplayItem,com.android.gallery3d.ui.DisplayItem)",this,throwable);throw throwable;}
         }
     }
 
     public void resume() {
-        mIsActive = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.resume()",this);try{mIsActive = true;
         mDataWindow.resume();
         for (int i = mVisibleStart, n = mVisibleEnd; i < n; ++i) {
             putSlotContent(i, mDataWindow.get(i));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.resume()",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        mIsActive = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumView.pause()",this);try{mIsActive = false;
         for (int i = mVisibleStart, n = mVisibleEnd; i < n; ++i) {
             removeDisplayItem(mDataWindow.get(i));
         }
-        mDataWindow.pause();
+        mDataWindow.pause();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumView.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumView.pause()",this,throwable);throw throwable;}
     }
 }

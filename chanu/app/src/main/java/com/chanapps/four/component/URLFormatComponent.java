@@ -64,17 +64,17 @@ public class URLFormatComponent {
     private static final Set<String> forceHttpsUrls = new HashSet<String>(FORCE_HTTPS_URLS.length);
 
     public static String getUrl(Context context, String url) {
-        if (url.startsWith("market://"))
-            return url;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.chanapps.four.component.URLFormatComponent.getUrl(android.content.Context,java.lang.String)",context,url);try{if (url.startsWith("market://"))
+            {{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.chanapps.four.component.URLFormatComponent.getUrl(android.content.Context,java.lang.String)");return url;}}
         boolean useHttps = PreferenceManager
                         .getDefaultSharedPreferences(context)
                         .getBoolean(SettingsActivity.PREF_USE_HTTPS, true);
         if (forceHttpsUrls.isEmpty() && FORCE_HTTPS_URLS.length > 0)
-            forceHttpsUrls.addAll(Arrays.asList(FORCE_HTTPS_URLS));
+            {forceHttpsUrls.addAll(Arrays.asList(FORCE_HTTPS_URLS));}
         if (forceHttpsUrls.contains(url))
-            useHttps = true;
+            {useHttps = true;}
         String protocol = useHttps ? "https:" : "http:";
-        return protocol + url;
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.chanapps.four.component.URLFormatComponent.getUrl(android.content.Context,java.lang.String)");return protocol + url;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.chanapps.four.component.URLFormatComponent.getUrl(android.content.Context,java.lang.String)",throwable);throw throwable;}
     }
 
 }

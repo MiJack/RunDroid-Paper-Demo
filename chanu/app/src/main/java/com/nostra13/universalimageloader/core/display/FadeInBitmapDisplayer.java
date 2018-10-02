@@ -36,11 +36,11 @@ public class FadeInBitmapDisplayer implements BitmapDisplayer {
 
 	@Override
 	public Bitmap display(Bitmap bitmap, ImageView imageView) {
-		imageView.setImageBitmap(bitmap);
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,bitmap,imageView);try{imageView.setImageBitmap(bitmap);
 
 		animate(imageView, durationMillis);
 
-		return bitmap;
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this);return bitmap;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer.display(android.graphics.Bitmap,android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -50,10 +50,10 @@ public class FadeInBitmapDisplayer implements BitmapDisplayer {
 	 * @param durationMillis The length of the animation in milliseconds
 	 */
 	public static void animate(ImageView imageView, int durationMillis) {
-		AlphaAnimation fadeImage = new AlphaAnimation(0, 1);
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer.animate(android.widget.ImageView,int)",imageView,durationMillis);try{AlphaAnimation fadeImage = new AlphaAnimation(0, 1);
 		fadeImage.setDuration(durationMillis);
 		fadeImage.setInterpolator(new DecelerateInterpolator());
-		imageView.startAnimation(fadeImage);
+		imageView.startAnimation(fadeImage);com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer.animate(android.widget.ImageView,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer.animate(android.widget.ImageView,int)",throwable);throw throwable;}
 	}
 
 }

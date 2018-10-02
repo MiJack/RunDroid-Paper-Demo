@@ -18,7 +18,7 @@ package com.android.gallery3d.util;
 
 import java.util.concurrent.Callable;
 
-// NOTE: If the Callable throws any Throwable, the result value will be null.
+/*// NOTE: If the Callable throws any Throwable, the result value will be null.*/
 public class FutureTask<T> implements Runnable, Future<T> {
     private static final String TAG = "FutureTask";
     private Callable<T> mCallable;
@@ -37,34 +37,34 @@ public class FutureTask<T> implements Runnable, Future<T> {
     }
 
     public void cancel() {
-        mIsCancelled = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.FutureTask<T>.cancel()",this);try{mIsCancelled = true;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.FutureTask<T>.cancel()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.FutureTask<T>.cancel()",this,throwable);throw throwable;}
     }
 
     public synchronized T get() {
-        while (!mIsDone) {
+        com.mijack.Xlog.logMethodEnter("T com.android.gallery3d.util.FutureTask<T>.get()",this);try{while (!mIsDone) {
             try {
                 wait();
             } catch (InterruptedException t) {
-                // ignore.
+                /*// ignore.*/
             }
         }
-        return mResult;
+        {com.mijack.Xlog.logMethodExit("T com.android.gallery3d.util.FutureTask<T>.get()",this);return mResult;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.android.gallery3d.util.FutureTask<T>.get()",this,throwable);throw throwable;}
     }
 
     public void waitDone() {
-        get();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.FutureTask<T>.waitDone()",this);try{get();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.FutureTask<T>.waitDone()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.FutureTask<T>.waitDone()",this,throwable);throw throwable;}
     }
 
     public synchronized boolean isDone() {
-        return mIsDone;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.util.FutureTask<T>.isDone()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.util.FutureTask<T>.isDone()",this);return mIsDone;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.util.FutureTask<T>.isDone()",this,throwable);throw throwable;}
     }
 
     public boolean isCancelled() {
-        return mIsCancelled;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.util.FutureTask<T>.isCancelled()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.util.FutureTask<T>.isCancelled()",this);return mIsCancelled;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.util.FutureTask<T>.isCancelled()",this,throwable);throw throwable;}
     }
 
     public void run() {
-        T result = null;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.FutureTask<T>.run()",this);try{T result = null;
 
         if (!mIsCancelled) {
             try {
@@ -81,6 +81,6 @@ public class FutureTask<T> implements Runnable, Future<T> {
                 mListener.onFutureDone(this);
             }
             notifyAll();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.FutureTask<T>.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.FutureTask<T>.run()",this,throwable);throw throwable;}
     }
 }

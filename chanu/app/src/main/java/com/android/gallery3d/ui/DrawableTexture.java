@@ -20,7 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
-// DrawableTexture is a texture whose content is from a Drawable.
+/*// DrawableTexture is a texture whose content is from a Drawable.*/
 public class DrawableTexture extends CanvasTexture {
 
     private final Drawable mDrawable;
@@ -32,7 +32,7 @@ public class DrawableTexture extends CanvasTexture {
 
     @Override
     protected void onDraw(Canvas canvas, Bitmap backing) {
-        mDrawable.setBounds(0, 0, mWidth, mHeight);
-        mDrawable.draw(canvas);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DrawableTexture.onDraw(android.graphics.Canvas,android.graphics.Bitmap)",this,canvas,backing);try{mDrawable.setBounds(0, 0, mWidth, mHeight);
+        mDrawable.draw(canvas);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DrawableTexture.onDraw(android.graphics.Canvas,android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DrawableTexture.onDraw(android.graphics.Canvas,android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 }

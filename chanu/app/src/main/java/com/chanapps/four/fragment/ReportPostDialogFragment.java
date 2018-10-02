@@ -56,7 +56,7 @@ public class ReportPostDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.ReportPostDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.report_post_dialog_fragment, null);
         builder
@@ -65,7 +65,7 @@ public class ReportPostDialogFragment extends DialogFragment {
             .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    ReportPostDialogFragment.this.dismiss();
+                    com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ReportPostDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{ReportPostDialogFragment.this.dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ReportPostDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                 }
             });
         reportTypeSpinner = (Spinner)view.findViewById(R.id.report_post_spinner);
@@ -88,41 +88,37 @@ public class ReportPostDialogFragment extends DialogFragment {
         recaptchaView.initCaptcha();
         AlertDialog dialog = builder.create();
         dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.report_post), (DialogInterface.OnClickListener)null);
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.ReportPostDialogFragment.onCreateDialog(android.os.Bundle)",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.ReportPostDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onActivityCreated(Bundle bundle) {
-        super.onActivityCreated(bundle);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ReportPostDialogFragment.onActivityCreated(android.os.Bundle)",this,bundle);try{super.onActivityCreated(bundle);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ReportPostDialogFragment.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void onCancel(DialogInterface dialog) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ReportPostDialogFragment.onCancel(android.content.DialogInterface)",this,dialog);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment.onCancel(android.content.DialogInterface)",this);}
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ReportPostDialogFragment.onDismiss(android.content.DialogInterface)",this,dialog);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment.onDismiss(android.content.DialogInterface)",this);}
 
     @Override
     public void onResume() {
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ReportPostDialogFragment.onResume()",this);try{super.onResume();
         AlertDialog dialog = (AlertDialog)getDialog();
         Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String reportType = reportTypeSpinner.getSelectedItem().toString();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ReportPostDialogFragment$2.onClick(android.view.View)",this,v);try{String reportType = reportTypeSpinner.getSelectedItem().toString();
                 if ("".equals(reportType)) {
                     Toast.makeText(getActivity(), R.string.report_post_select_type, Toast.LENGTH_SHORT).show();
-                    return;
+                    {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment.onResume()",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment$2.onClick(android.view.View)",this);return;}}
                 }
                 int reportTypeIndex = reportTypeSpinner.getSelectedItemPosition();
                 String recaptchaResponse = recaptchaView.getCaptchaResponse();
                 if ("".equals(recaptchaResponse)) {
                     Toast.makeText(getActivity(), R.string.post_reply_enter_captcha, Toast.LENGTH_SHORT).show();
-                    return;
+                    {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment.onResume()",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment$2.onClick(android.view.View)",this);return;}}
                 }
 
                 closeKeyboard();
@@ -132,19 +128,19 @@ public class ReportPostDialogFragment extends DialogFragment {
                 ReportingPostDialogFragment dialogFragment = new ReportingPostDialogFragment(reportPostTask);
                 dialogFragment.show(getActivity().getSupportFragmentManager(), ReportingPostDialogFragment.TAG);
                 if (!reportPostTask.isCancelled())
-                    reportPostTask.execute(dialogFragment);
-                dismiss();
+                    {reportPostTask.execute(dialogFragment);}
+                dismiss();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ReportPostDialogFragment$2.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ReportPostDialogFragment.onResume()",this,throwable);throw throwable;}
     }
 
     private void closeKeyboard() {
-        IBinder windowToken = getActivity().getCurrentFocus() != null ?
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ReportPostDialogFragment.closeKeyboard()",this);try{IBinder windowToken = getActivity().getCurrentFocus() != null ?
                 getActivity().getCurrentFocus().getWindowToken()
                 : null;
-        if (windowToken != null) { // close the keyboard
+        if (windowToken != null) { /*// close the keyboard*/
             InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(windowToken, 0);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ReportPostDialogFragment.closeKeyboard()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ReportPostDialogFragment.closeKeyboard()",this,throwable);throw throwable;}
     }
 }

@@ -62,37 +62,37 @@ public class DialogDetailsView implements DetailsViewContainer {
     }
 
     public void show() {
-        reloadDetails(mSource.getIndex());
-        mDialog.show();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView.show()",this);try{reloadDetails(mSource.getIndex());
+        mDialog.show();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView.show()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView.show()",this,throwable);throw throwable;}
     }
 
     public void hide() {
-        mDialog.hide();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView.hide()",this);try{mDialog.hide();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView.hide()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView.hide()",this,throwable);throw throwable;}
     }
 
     public void reloadDetails(int indexHint) {
-        int index = mSource.findIndex(indexHint);
-        if (index == -1) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView.reloadDetails(int)",this,indexHint);try{int index = mSource.findIndex(indexHint);
+        if (index == -1) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView.reloadDetails(int)",this);return;}}
         MediaDetails details = mSource.getDetails();
         if (details != null) {
-            if (mIndex == index && mDetails == details) return;
+            if (mIndex == index && mDetails == details) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView.reloadDetails(int)",this);return;}}
             mIndex = index;
             mDetails = details;
             setDetails(details);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView.reloadDetails(int)",this,throwable);throw throwable;}
     }
 
     public boolean isVisible() {
-        return mDialog.isShowing();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.DialogDetailsView.isVisible()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.DialogDetailsView.isVisible()",this);return mDialog.isShowing();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.DialogDetailsView.isVisible()",this,throwable);throw throwable;}
     }
 
     private void setDetails(MediaDetails details) {
-        mAdapter = new DetailsAdapter(details);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView.setDetails(com.android.gallery3d.data.MediaDetails)",this,details);try{mAdapter = new DetailsAdapter(details);
         String defaultTitle = String.format(
                 mContext.getAndroidContext().getString(R.string.details_title),
                 mIndex + 1, mSource.size());
         Object o = details.getDetail(MediaDetails.INDEX_TITLE);
-        //Log.e("PhotoPage", "index_title: " + o);
+        /*//Log.e("PhotoPage", "index_title: " + o);*/
         String s = o != null ? o.toString() : null;
         String title = s != null && !s.isEmpty() ? s : defaultTitle;
         ListView detailsList = (ListView) LayoutInflater.from(mContext.getAndroidContext()).inflate(
@@ -105,14 +105,14 @@ public class DialogDetailsView implements DetailsViewContainer {
             builder.setPositiveButton(mClickListenerStringId, mClickListener)
                     .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            mDialog.dismiss();
+                            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView$1.onClick(android.content.DialogInterface,int)",this,dialog,whichButton);try{mDialog.dismiss();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                         }
                     });
         }
         else {
             builder.setNeutralButton(R.string.close, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    mDialog.dismiss();
+                    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView$2.onClick(android.content.DialogInterface,int)",this,dialog,whichButton);try{mDialog.dismiss();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                 }
             });
         }
@@ -121,11 +121,11 @@ public class DialogDetailsView implements DetailsViewContainer {
 
         mDialog.setOnDismissListener(new OnDismissListener() {
             public void onDismiss(DialogInterface dialog) {
-                if (mCloseListener != null) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView$3.onDismiss(android.content.DialogInterface)",this,dialog);try{if (mCloseListener != null) {
                     mCloseListener.onClose();
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView$3.onDismiss(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView$3.onDismiss(android.content.DialogInterface)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView.setDetails(com.android.gallery3d.data.MediaDetails)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView.setDetails(com.android.gallery3d.data.MediaDetails)",this,throwable);throw throwable;}
     }
 
     private class DetailsAdapter extends BaseAdapter implements AddressResolvingListener {
@@ -140,7 +140,7 @@ public class DialogDetailsView implements DetailsViewContainer {
         }
 
         private void setDetails(Context context, MediaDetails details) {
-            for (Entry<Integer, Object> detail : details) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.setDetails(android.content.Context,com.android.gallery3d.data.MediaDetails)",this,context,details);try{for (Entry<Integer, Object> detail : details) {
                 String value;
                 switch (detail.getKey()) {
                     case MediaDetails.INDEX_LOCATION: {
@@ -163,8 +163,8 @@ public class DialogDetailsView implements DetailsViewContainer {
                     case MediaDetails.INDEX_FLASH: {
                         MediaDetails.FlashState flash =
                                 (MediaDetails.FlashState) detail.getValue();
-                        // TODO: camera doesn't fill in the complete values, show more information
-                        // when it is fixed.
+                        /*// TODO: camera doesn't fill in the complete values, show more information*/
+                        /*// when it is fixed.*/
                         if (flash.isFlashFired()) {
                             value = context.getString(R.string.flash_on);
                         } else {
@@ -189,7 +189,7 @@ public class DialogDetailsView implements DetailsViewContainer {
                     }
                     default: {
                         Object valueObj = detail.getValue();
-                        // This shouldn't happen, log its key to help us diagnose the problem.
+                        /*// This shouldn't happen, log its key to help us diagnose the problem.*/
                         Utils.assertTrue(valueObj != null, "%s's value is Null",
                                 DetailsHelper.getDetailsName(context, detail.getKey()));
                         value = valueObj.toString();
@@ -212,34 +212,34 @@ public class DialogDetailsView implements DetailsViewContainer {
                             context, key), value);
                 }
                 if (value != null)
-                    mItems.add(value);
-            }
+                    {mItems.add(value);}
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.setDetails(android.content.Context,com.android.gallery3d.data.MediaDetails)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.setDetails(android.content.Context,com.android.gallery3d.data.MediaDetails)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean areAllItemsEnabled() {
-            return false;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.areAllItemsEnabled()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.areAllItemsEnabled()",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.areAllItemsEnabled()",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean isEnabled(int position) {
-            return false;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.isEnabled(int)",this,position);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.isEnabled(int)",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.isEnabled(int)",this,throwable);throw throwable;}
         }
 
         public int getCount() {
-            return mItems.size();
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getCount()",this);return mItems.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getCount()",this,throwable);throw throwable;}
         }
 
         public Object getItem(int position) {
-            return mDetails.getDetail(position);
+            com.mijack.Xlog.logMethodEnter("java.lang.Object com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getItem(int)",this,position);try{com.mijack.Xlog.logMethodExit("java.lang.Object com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getItem(int)",this);return mDetails.getDetail(position);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getItem(int)",this,throwable);throw throwable;}
         }
 
         public long getItemId(int position) {
-            return position;
+            com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getItemId(int)",this,position);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getItemId(int)",this);return position;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getItemId(int)",this,throwable);throw throwable;}
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView tv;
+            com.mijack.Xlog.logMethodEnter("android.view.View com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,position,convertView,parent);try{TextView tv;
             if (convertView == null) {
                 tv = (TextView) LayoutInflater.from(mContext.getAndroidContext()).inflate(
                         R.layout.details, parent, false);
@@ -247,21 +247,21 @@ public class DialogDetailsView implements DetailsViewContainer {
                 tv = (TextView) convertView;
             }
             tv.setText(mItems.get(position));
-            return tv;
+            {com.mijack.Xlog.logMethodExit("android.view.View com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getView(int,android.view.View,android.view.ViewGroup)",this);return tv;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,throwable);throw throwable;}
         }
 
         public void onAddressAvailable(String address) {
-            mItems.set(mLocationIndex, address);
-            notifyDataSetChanged();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.onAddressAvailable(java.lang.String)",this,address);try{mItems.set(mLocationIndex, address);
+            notifyDataSetChanged();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.onAddressAvailable(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView$DetailsAdapter.onAddressAvailable(java.lang.String)",this,throwable);throw throwable;}
         }
     }
 
     public void setCloseListener(CloseListener listener) {
-        mCloseListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView.setCloseListener(com.android.gallery3d.ui.DetailsHelper.CloseListener)",this,listener);try{mCloseListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView.setCloseListener(com.android.gallery3d.ui.DetailsHelper.CloseListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView.setCloseListener(com.android.gallery3d.ui.DetailsHelper.CloseListener)",this,throwable);throw throwable;}
     }
 
     public void setClickListener(int stringId, DialogInterface.OnClickListener listener) {
-        mClickListenerStringId = stringId;
-        mClickListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.DialogDetailsView.setClickListener(int,DialogInterface.OnClickListener)",this,stringId,listener);try{mClickListenerStringId = stringId;
+        mClickListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.DialogDetailsView.setClickListener(int,DialogInterface.OnClickListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.DialogDetailsView.setClickListener(int,DialogInterface.OnClickListener)",this,throwable);throw throwable;}
     }
 }

@@ -69,32 +69,32 @@ public class SlideshowDataAdapter implements SlideshowPage.Model {
     }
 
     private MediaItem loadItem() {
-        if (mNeedReload.compareAndSet(true, false)) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.SlideshowDataAdapter.loadItem()",this);try{if (mNeedReload.compareAndSet(true, false)) {
             long v = mSource.reload();
             if (v != mDataVersion) {
                 mDataVersion = v;
                 mNeedReset = true;
-                return null;
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.SlideshowDataAdapter.loadItem()",this);return null;}
             }
         }
-        return mSource.getMediaItem(mLoadIndex);
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.SlideshowDataAdapter.loadItem()",this);return mSource.getMediaItem(mLoadIndex);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaItem com.android.gallery3d.app.SlideshowDataAdapter.loadItem()",this,throwable);throw throwable;}
     }
 
     private class ReloadTask implements Job<Void> {
         public Void run(JobContext jc) {
-            while (true) {
+            com.mijack.Xlog.logMethodEnter("java.lang.Void com.android.gallery3d.app.SlideshowDataAdapter$ReloadTask.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{com.mijack.Xlog.logMethodExit("java.lang.Void com.android.gallery3d.app.SlideshowDataAdapter$ReloadTask.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);while (true) {
                 synchronized (SlideshowDataAdapter.this) {
                     while (mIsActive && (!mDataReady
                             || mImageQueue.size() >= IMAGE_QUEUE_CAPACITY)) {
                         try {
                             SlideshowDataAdapter.this.wait();
                         } catch (InterruptedException ex) {
-                            // ignored.
+                            /*// ignored.*/
                         }
                         continue;
                     }
                 }
-                if (!mIsActive) return null;
+                if (!mIsActive) {return null;}
                 mNeedReset = false;
 
                 MediaItem item = loadItem();
@@ -109,7 +109,7 @@ public class SlideshowDataAdapter implements SlideshowPage.Model {
 
                 if (item == null) {
                     synchronized (SlideshowDataAdapter.this) {
-                        if (!mNeedReload.get()) mDataReady = false;
+                        if (!mNeedReload.get()) {mDataReady = false;}
                         SlideshowDataAdapter.this.notifyAll();
                     }
                     continue;
@@ -129,59 +129,59 @@ public class SlideshowDataAdapter implements SlideshowPage.Model {
                     }
                 }
                 ++mLoadIndex;
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Void com.android.gallery3d.app.SlideshowDataAdapter$ReloadTask.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 
     private class SourceListener implements ContentListener {
         public void onContentDirty() {
-            synchronized (SlideshowDataAdapter.this) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SlideshowDataAdapter$SourceListener.onContentDirty()",this);try{synchronized (SlideshowDataAdapter.this) {
                 mNeedReload.set(true);
                 mDataReady = true;
                 SlideshowDataAdapter.this.notifyAll();
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SlideshowDataAdapter$SourceListener.onContentDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SlideshowDataAdapter$SourceListener.onContentDirty()",this,throwable);throw throwable;}
         }
     }
 
     private synchronized Slide innerNextBitmap() {
-        while (mIsActive && mDataReady && mImageQueue.isEmpty()) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.app.SlideshowPage.Slide com.android.gallery3d.app.SlideshowDataAdapter.innerNextBitmap()",this);try{while (mIsActive && mDataReady && mImageQueue.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException t) {
                 throw new AssertionError();
             }
         }
-        if (mImageQueue.isEmpty()) return null;
+        if (mImageQueue.isEmpty()) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.app.SlideshowPage.Slide com.android.gallery3d.app.SlideshowDataAdapter.innerNextBitmap()",this);return null;}}
         mNextOutput++;
         this.notifyAll();
-        return mImageQueue.removeFirst();
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.app.SlideshowPage.Slide com.android.gallery3d.app.SlideshowDataAdapter.innerNextBitmap()",this);return mImageQueue.removeFirst();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.app.SlideshowPage.Slide com.android.gallery3d.app.SlideshowDataAdapter.innerNextBitmap()",this,throwable);throw throwable;}
     }
 
     public Future<Slide> nextSlide(FutureListener<Slide> listener) {
-        return mThreadPool.submit(new Job<Slide>() {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.Future com.android.gallery3d.app.SlideshowDataAdapter.nextSlide(com.android.gallery3d.util.FutureListener)",this,listener);try{{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.SlideshowDataAdapter.nextSlide(com.android.gallery3d.util.FutureListener)",this);return mThreadPool.submit(new Job<Slide>() {
             public Slide run(JobContext jc) {
-                jc.setMode(ThreadPool.MODE_NONE);
-                return innerNextBitmap();
+                com.mijack.Xlog.logMethodEnter("com.android.gallery3d.app.SlideshowPage.Slide com.android.gallery3d.app.SlideshowDataAdapter$1.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{jc.setMode(ThreadPool.MODE_NONE);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.app.SlideshowDataAdapter.nextSlide(com.android.gallery3d.util.FutureListener)",this);{com.mijack.Xlog.logMethodExit("com.android.gallery3d.app.SlideshowPage.Slide com.android.gallery3d.app.SlideshowDataAdapter$1.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return innerNextBitmap();}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.app.SlideshowPage.Slide com.android.gallery3d.app.SlideshowDataAdapter$1.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
             }
-        }, listener);
+        }, listener);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.Future com.android.gallery3d.app.SlideshowDataAdapter.nextSlide(com.android.gallery3d.util.FutureListener)",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        synchronized (this) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SlideshowDataAdapter.pause()",this);try{synchronized (this) {
             mIsActive = false;
             notifyAll();
         }
         mSource.removeContentListener(mSourceListener);
         mReloadTask.cancel();
         mReloadTask.waitDone();
-        mReloadTask = null;
+        mReloadTask = null;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SlideshowDataAdapter.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SlideshowDataAdapter.pause()",this,throwable);throw throwable;}
     }
 
     public synchronized void resume() {
-        mIsActive = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.SlideshowDataAdapter.resume()",this);try{mIsActive = true;
         mSource.addContentListener(mSourceListener);
         mNeedReload.set(true);
         mDataReady = true;
-        mReloadTask = mThreadPool.submit(new ReloadTask());
+        mReloadTask = mThreadPool.submit(new ReloadTask());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.SlideshowDataAdapter.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.SlideshowDataAdapter.resume()",this,throwable);throw throwable;}
     }
 }

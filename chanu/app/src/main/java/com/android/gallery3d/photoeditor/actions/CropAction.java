@@ -38,29 +38,29 @@ public class CropAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        filter = new CropFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropAction.doBegin()",this);try{filter = new CropFilter();
 
         cropView = factory.createCropView();
         cropView.setOnCropChangeListener(new CropView.OnCropChangeListener() {
 
             @Override
             public void onCropChanged(RectF cropBounds, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropAction$1.onCropChanged(android.graphics.RectF,boolean)",this,cropBounds,fromUser);try{if (fromUser) {
                     filter.setCropBounds(cropBounds);
                     notifyFilterChanged(filter, false);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropAction$1.onCropChanged(android.graphics.RectF,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropAction$1.onCropChanged(android.graphics.RectF,boolean)",this,throwable);throw throwable;}
             }
         });
 
         RectF bounds = new RectF(DEFAULT_CROP, DEFAULT_CROP, 1 - DEFAULT_CROP, 1 - DEFAULT_CROP);
         cropView.setCropBounds(bounds);
         filter.setCropBounds(bounds);
-        notifyFilterChanged(filter, false);
+        notifyFilterChanged(filter, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        cropView.setOnCropChangeListener(null);
-        notifyFilterChanged(filter, true);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.CropAction.doEnd()",this);try{cropView.setOnCropChangeListener(null);
+        notifyFilterChanged(filter, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.CropAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.CropAction.doEnd()",this,throwable);throw throwable;}
     }
 }

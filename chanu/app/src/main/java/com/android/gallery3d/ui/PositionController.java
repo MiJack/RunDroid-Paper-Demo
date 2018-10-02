@@ -40,18 +40,18 @@ class PositionController {
     private final static int ANIM_KIND_ZOOM = 4;
     private final static int ANIM_KIND_FLING = 5;
 
-    // Animation time in milliseconds. The order must match ANIM_KIND_* above.
+    /*// Animation time in milliseconds. The order must match ANIM_KIND_* above.*/
     private final static int ANIM_TIME[] = {
-        0,    // ANIM_KIND_SCROLL
-        50,   // ANIM_KIND_SCALE
-        600,  // ANIM_KIND_SNAPBACK
-        400,  // ANIM_KIND_SLIDE
-        300,  // ANIM_KIND_ZOOM
-        0,    // ANIM_KIND_FLING (the duration is calculated dynamically)
+        0,    /*// ANIM_KIND_SCROLL*/
+        50,   /*// ANIM_KIND_SCALE*/
+        600,  /*// ANIM_KIND_SNAPBACK*/
+        400,  /*// ANIM_KIND_SLIDE*/
+        300,  /*// ANIM_KIND_ZOOM*/
+        0,    /*// ANIM_KIND_FLING (the duration is calculated dynamically)*/
     };
 
-    // We try to scale up the image to fill the screen. But in order not to
-    // scale too much for small icons, we limit the max up-scaling factor here.
+    /*// We try to scale up the image to fill the screen. But in order not to*/
+    /*// scale too much for small icons, we limit the max up-scaling factor here.*/
     private static final float SCALE_LIMIT = 4;
 
     private PhotoView mViewer;
@@ -59,30 +59,30 @@ class PositionController {
     private int mImageW, mImageH;
     private int mViewW, mViewH;
 
-    // The X, Y are the coordinate on bitmap which shows on the center of
-    // the view. We always keep the mCurrent{X,Y,Scale} sync with the actual
-    // values used currently.
+    /*// The X, Y are the coordinate on bitmap which shows on the center of*/
+    /*// the view. We always keep the mCurrent{X,Y,Scale} sync with the actual*/
+    /*// values used currently.*/
     private int mCurrentX, mFromX, mToX;
     private int mCurrentY, mFromY, mToY;
     private float mCurrentScale, mFromScale, mToScale;
 
-    // The focus point of the scaling gesture (in bitmap coordinates).
+    /*// The focus point of the scaling gesture (in bitmap coordinates).*/
     private int mFocusBitmapX;
     private int mFocusBitmapY;
     private boolean mInScale;
 
-    // The minimum and maximum scale we allow.
+    /*// The minimum and maximum scale we allow.*/
     private float mScaleMin, mScaleMax = SCALE_LIMIT;
 
-    // This is used by the fling animation
+    /*// This is used by the fling animation*/
     private FlingScroller mScroller;
 
-    // The bound of the stable region, see the comments above
-    // calculateStableBound() for details.
+    /*// The bound of the stable region, see the comments above*/
+    /*// calculateStableBound() for details.*/
     private int mBoundLeft, mBoundRight, mBoundTop, mBoundBottom;
 
-    // Assume the image size is the same as view size before we know the actual
-    // size of image.
+    /*// Assume the image size is the same as view size before we know the actual*/
+    /*// size of image.*/
     private boolean mUseViewSize = true;
 
     private RectF mTempRect = new RectF();
@@ -96,9 +96,9 @@ class PositionController {
     }
 
     public void setImageSize(int width, int height) {
-        if (DEBUG) Log.i(TAG, "setImageSize() scale=" + mCurrentScale + " maxScale=" + mScaleMax);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.setImageSize(int,int)",this,width,height);try{if (DEBUG) {Log.i(TAG, "setImageSize() scale=" + mCurrentScale + " maxScale=" + mScaleMax);}
 
-        // If no image available, use view size.
+        /*// If no image available, use view size.*/
         if (width == 0 || height == 0) {
             mUseViewSize = true;
             mImageW = mViewW;
@@ -108,7 +108,7 @@ class PositionController {
             mCurrentScale = 1;
             mScaleMin = 1;
             mViewer.setPosition(mCurrentX, mCurrentY, mCurrentScale);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.setImageSize(int,int)",this);return;}
         }
 
         mUseViewSize = false;
@@ -116,7 +116,7 @@ class PositionController {
         float ratio = Math.min(
                 (float) mImageW / width, (float) mImageH / height);
 
-        // See the comment above translate() for details.
+        /*// See the comment above translate() for details.*/
         mCurrentX = translate(mCurrentX, mImageW, width, ratio);
         mCurrentY = translate(mCurrentY, mImageH, height, ratio);
         mCurrentScale = mCurrentScale * ratio;
@@ -137,11 +137,11 @@ class PositionController {
 
         mScaleMin = getMinimalScale(mImageW, mImageH);
 
-        // Start animation from the saved position if we have one.
+        /*// Start animation from the saved position if we have one.*/
         Position position = mViewer.retrieveSavedPosition();
         if (position != null) {
-            // The animation starts from 240 pixels and centers at the image
-            // at the saved position.
+            /*// The animation starts from 240 pixels and centers at the image*/
+            /*// at the saved position.*/
             float scale = 240f / Math.min(width, height);
             mCurrentX = Math.round((mViewW / 2f - position.x) / scale) + mImageW / 2;
             mCurrentY = Math.round((mViewH / 2f - position.y) / scale) + mImageH / 2;
@@ -151,15 +151,15 @@ class PositionController {
         } else if (mAnimationStartTime == NO_ANIMATION) {
             mCurrentScale = Utils.clamp(mCurrentScale, mScaleMin, mScaleMax);
         }
-        mViewer.setPosition(mCurrentX, mCurrentY, mCurrentScale);
+        mViewer.setPosition(mCurrentX, mCurrentY, mCurrentScale);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.setImageSize(int,int)",this,throwable);throw throwable;}
     }
 
     public void zoomIn(float tapX, float tapY, float targetScale) {
-        if (DEBUG) Log.i(TAG, "zoomIn() scale=" + mCurrentScale + " maxScale=" + mScaleMax);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.zoomIn(float,float,float)",this,tapX,tapY,targetScale);try{if (DEBUG) {Log.i(TAG, "zoomIn() scale=" + mCurrentScale + " maxScale=" + mScaleMax);}
 
-        if (targetScale > mScaleMax) targetScale = mScaleMax;
+        if (targetScale > mScaleMax) {targetScale = mScaleMax;}
 
-        // Convert the tap position to image coordinate
+        /*// Convert the tap position to image coordinate*/
         int tempX = Math.round((tapX - mViewW / 2) / mCurrentScale + mCurrentX);
         int tempY = Math.round((tapY - mViewH / 2) / mCurrentScale + mCurrentY);
 
@@ -167,53 +167,53 @@ class PositionController {
         int targetX = Utils.clamp(tempX, mBoundLeft, mBoundRight);
         int targetY = Utils.clamp(tempY, mBoundTop, mBoundBottom);
 
-        startAnimation(targetX, targetY, targetScale, ANIM_KIND_ZOOM);
+        startAnimation(targetX, targetY, targetScale, ANIM_KIND_ZOOM);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.zoomIn(float,float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.zoomIn(float,float,float)",this,throwable);throw throwable;}
     }
 
     public float getScaleMax() {
-        return mScaleMax;
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.ui.PositionController.getScaleMax()",this);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.ui.PositionController.getScaleMax()",this);return mScaleMax;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.ui.PositionController.getScaleMax()",this,throwable);throw throwable;}
     }
 
     public void resetToFullView() {
-        startAnimation(mImageW / 2, mImageH / 2, mScaleMin, ANIM_KIND_ZOOM);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.resetToFullView()",this);try{startAnimation(mImageW / 2, mImageH / 2, mScaleMin, ANIM_KIND_ZOOM);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.resetToFullView()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.resetToFullView()",this,throwable);throw throwable;}
     }
 
     public float getMinimalScale(int w, int h) {
-        return Math.min(SCALE_LIMIT,
-                Math.min((float) mViewW / w, (float) mViewH / h));
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.ui.PositionController.getMinimalScale(int,int)",this,w,h);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.ui.PositionController.getMinimalScale(int,int)",this);return Math.min(SCALE_LIMIT,
+                Math.min((float) mViewW / w, (float) mViewH / h));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.ui.PositionController.getMinimalScale(int,int)",this,throwable);throw throwable;}
     }
 
-    // Translate a coordinate on bitmap if the bitmap size changes.
-    // If the aspect ratio doesn't change, it's easy:
-    //
-    //         r  = w / w' (= h / h')
-    //         x' = x / r
-    //         y' = y / r
-    //
-    // However the aspect ratio may change. That happens when the user slides
-    // a image before it's loaded, we don't know the actual aspect ratio, so
-    // we will assume one. When we receive the actual bitmap size, we need to
-    // translate the coordinate from the old bitmap into the new bitmap.
-    //
-    // What we want to do is center the bitmap at the original position.
-    //
-    //         ...+--+...
-    //         .  |  |  .
-    //         .  |  |  .
-    //         ...+--+...
-    //
-    // First we scale down the new bitmap by a factor r = min(w/w', h/h').
-    // Overlay it onto the original bitmap. Now (0, 0) of the old bitmap maps
-    // to (-(w-w'*r)/2 / r, -(h-h'*r)/2 / r) in the new bitmap. So (x, y) of
-    // the old bitmap maps to (x', y') in the new bitmap, where
-    //         x' = (x-(w-w'*r)/2) / r = w'/2 + (x-w/2)/r
-    //         y' = (y-(h-h'*r)/2) / r = h'/2 + (y-h/2)/r
+    /*// Translate a coordinate on bitmap if the bitmap size changes.*/
+    /*// If the aspect ratio doesn't change, it's easy:*/
+    /*//*/
+    /*//         r  = w / w' (= h / h')*/
+    /*//         x' = x / r*/
+    /*//         y' = y / r*/
+    /*//*/
+    /*// However the aspect ratio may change. That happens when the user slides*/
+    /*// a image before it's loaded, we don't know the actual aspect ratio, so*/
+    /*// we will assume one. When we receive the actual bitmap size, we need to*/
+    /*// translate the coordinate from the old bitmap into the new bitmap.*/
+    /*//*/
+    /*// What we want to do is center the bitmap at the original position.*/
+    /*//*/
+    /*//         ...+--+...*/
+    /*//         .  |  |  .*/
+    /*//         .  |  |  .*/
+    /*//         ...+--+...*/
+    /*//*/
+    /*// First we scale down the new bitmap by a factor r = min(w/w', h/h').*/
+    /*// Overlay it onto the original bitmap. Now (0, 0) of the old bitmap maps*/
+    /*// to (-(w-w'*r)/2 / r, -(h-h'*r)/2 / r) in the new bitmap. So (x, y) of*/
+    /*// the old bitmap maps to (x', y') in the new bitmap, where*/
+    /*//         x' = (x-(w-w'*r)/2) / r = w'/2 + (x-w/2)/r*/
+    /*//         y' = (y-(h-h'*r)/2) / r = h'/2 + (y-h/2)/r*/
     private static int translate(int value, int size, int newSize, float ratio) {
-        return Math.round(newSize / 2f + (value - size / 2f) / ratio);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.PositionController.translate(int,int,int,float)",value,size,newSize,ratio);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.PositionController.translate(int,int,int,float)");return Math.round(newSize / 2f + (value - size / 2f) / ratio);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.PositionController.translate(int,int,int,float)",throwable);throw throwable;}
     }
 
     public void setViewSize(int viewW, int viewH) {
-        boolean needLayout = mViewW == 0 || mViewH == 0;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.setViewSize(int,int)",this,viewW,viewH);try{boolean needLayout = mViewW == 0 || mViewH == 0;
 
         mViewW = viewW;
         mViewH = viewH;
@@ -226,14 +226,14 @@ class PositionController {
             mCurrentScale = 1;
             mScaleMin = 1;
             mViewer.setPosition(mCurrentX, mCurrentY, mCurrentScale);
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.setViewSize(int,int)",this);return;}
         }
 
-        // In most cases we want to keep the scaling factor intact when the
-        // view size changes. The cases we want to reset the scaling factor
-        // (to fit the view if possible) are (1) the scaling factor is too
-        // small for the new view size (2) the scaling factor has not been
-        // changed by the user.
+        /*// In most cases we want to keep the scaling factor intact when the*/
+        /*// view size changes. The cases we want to reset the scaling factor*/
+        /*// (to fit the view if possible) are (1) the scaling factor is too*/
+        /*// small for the new view size (2) the scaling factor has not been*/
+        /*// changed by the user.*/
         boolean wasMinScale = (mCurrentScale == mScaleMin);
         mScaleMin = getMinimalScale(mImageW, mImageH);
 
@@ -242,38 +242,38 @@ class PositionController {
             mCurrentY = mImageH / 2;
             mCurrentScale = mScaleMin;
             mViewer.setPosition(mCurrentX, mCurrentY, mCurrentScale);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.setViewSize(int,int)",this,throwable);throw throwable;}
     }
 
     public void stopAnimation() {
-        mAnimationStartTime = NO_ANIMATION;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.stopAnimation()",this);try{mAnimationStartTime = NO_ANIMATION;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.stopAnimation()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.stopAnimation()",this,throwable);throw throwable;}
     }
 
     public void skipAnimation() {
-        if (mAnimationStartTime == NO_ANIMATION) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.skipAnimation()",this);try{if (mAnimationStartTime == NO_ANIMATION) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.skipAnimation()",this);return;}}
         mAnimationStartTime = NO_ANIMATION;
         mCurrentX = mToX;
         mCurrentY = mToY;
-        mCurrentScale = mToScale;
+        mCurrentScale = mToScale;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.skipAnimation()",this,throwable);throw throwable;}
     }
 
     public void beginScale(float focusX, float focusY) {
-        mInScale = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.beginScale(float,float)",this,focusX,focusY);try{mInScale = true;
         mFocusBitmapX = Math.round(mCurrentX +
                 (focusX - mViewW / 2f) / mCurrentScale);
         mFocusBitmapY = Math.round(mCurrentY +
-                (focusY - mViewH / 2f) / mCurrentScale);
+                (focusY - mViewH / 2f) / mCurrentScale);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.beginScale(float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.beginScale(float,float)",this,throwable);throw throwable;}
     }
 
-    private static final float MIN_SCALE_FOR_EVENT = 0.001f; // 0.005f;
-    private static final float MIN_SCALE_DELTA = 0.001f; //0.005f;
+    private static final float MIN_SCALE_FOR_EVENT = 0.001f; /*// 0.005f;*/
+    private static final float MIN_SCALE_DELTA = 0.001f; /*//0.005f;*/
     private static final float MIN_SCALE_TO_GROW = 1.0f + MIN_SCALE_DELTA;
     private static final float MAX_SCALE_TO_SHRINK = 1.0f - MIN_SCALE_DELTA;
     private static final float SCALE_GROW_FACTOR = 1.05f;
     private static final float SCALE_SHRINK_FACTOR = 0.95f;
 
     public void scaleBy(float s, float focusX, float focusY) {
-        /*
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.scaleBy(float,float,float)",this,s,focusX,focusY);try{/*
         // We want to keep the focus point (on the bitmap) the same as when
         // we begin the scale guesture, that is,
         //
@@ -303,8 +303,8 @@ class PositionController {
         int targetY = Math.round(mFocusBitmapY - (focusY - mViewH / 2f) / s);
         float scale = s;
 
-        //if (targetX == mCurrentX && targetY == mCurrentY
-        //        && scale == mCurrentScale) return;
+        /*//if (targetX == mCurrentX && targetY == mCurrentY*/
+        /*//        && scale == mCurrentScale) return;*/
         /*
         mFromX = mCurrentX;
         mFromY = mCurrentY;
@@ -317,81 +317,81 @@ class PositionController {
         mCurrentX = targetX;
         mCurrentY = targetY;
         mCurrentScale = s;
-        if (DEBUG) Log.v(TAG, "Exception: scaleBy s=" + s + " (" + targetX + ", " + targetY + ")");
-        //mToScale = Utils.clamp(scale, 0.6f * mScaleMin, 1.4f * mScaleMax);
-        //mCurrentScale = mToScale;
+        if (DEBUG) {Log.v(TAG, "Exception: scaleBy s=" + s + " (" + targetX + ", " + targetY + ")");}
+        /*//mToScale = Utils.clamp(scale, 0.6f * mScaleMin, 1.4f * mScaleMax);*/
+        /*//mCurrentScale = mToScale;*/
 
         if (mViewer != null) {
             mViewer.setPosition(mCurrentX, mCurrentY, mCurrentScale);
             mViewer.invalidate();
         }
 
-        //startAnimation(targetX, targetY, s, ANIM_KIND_SCALE);
+        /*//startAnimation(targetX, targetY, s, ANIM_KIND_SCALE);*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.scaleBy(float,float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.scaleBy(float,float,float)",this,throwable);throw throwable;}
     }
 
     public void endScale() {
-        mInScale = false;
-        startSnapbackIfNeeded();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.endScale()",this);try{mInScale = false;
+        startSnapbackIfNeeded();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.endScale()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.endScale()",this,throwable);throw throwable;}
     }
 
     public float getCurrentScale() {
-        return mCurrentScale;
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.ui.PositionController.getCurrentScale()",this);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.ui.PositionController.getCurrentScale()",this);return mCurrentScale;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.ui.PositionController.getCurrentScale()",this,throwable);throw throwable;}
     }
 
     public boolean isAtMinimalScale() {
-        return isAlmostEquals(mCurrentScale, mScaleMin);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.isAtMinimalScale()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.isAtMinimalScale()",this);return isAlmostEquals(mCurrentScale, mScaleMin);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.isAtMinimalScale()",this,throwable);throw throwable;}
     }
 
     private static boolean isAlmostEquals(float a, float b) {
-        float diff = a - b;
-        return (diff < 0 ? -diff : diff) < 0.02f;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.ui.PositionController.isAlmostEquals(float,float)",a,b);try{float diff = a - b;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.ui.PositionController.isAlmostEquals(float,float)");return (diff < 0 ? -diff : diff) < 0.02f;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.isAlmostEquals(float,float)",throwable);throw throwable;}
     }
 
     public void up() {
-        startSnapback();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.up()",this);try{startSnapback();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.up()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.up()",this,throwable);throw throwable;}
     }
 
-    //             |<--| (1/2) * mImageW
-    // +-------+-------+-------+
-    // |       |       |       |
-    // |       |   o   |       |
-    // |       |       |       |
-    // +-------+-------+-------+
-    // |<----------| (3/2) * mImageW
-    // Slide in the image from left or right.
-    // Precondition: mCurrentScale = 1 (mView{W|H} == mImage{W|H}).
-    // Sliding from left:  mCurrentX = (1/2) * mImageW
-    //              right: mCurrentX = (3/2) * mImageW
+    /*//             |<--| (1/2) * mImageW*/
+    /*// +-------+-------+-------+*/
+    /*// |       |       |       |*/
+    /*// |       |   o   |       |*/
+    /*// |       |       |       |*/
+    /*// +-------+-------+-------+*/
+    /*// |<----------| (3/2) * mImageW*/
+    /*// Slide in the image from left or right.*/
+    /*// Precondition: mCurrentScale = 1 (mView{W|H} == mImage{W|H}).*/
+    /*// Sliding from left:  mCurrentX = (1/2) * mImageW*/
+    /*//              right: mCurrentX = (3/2) * mImageW*/
     public void startSlideInAnimation(int direction) {
-        int fromX = (direction == PhotoView.TRANS_SLIDE_IN_LEFT) ?
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.startSlideInAnimation(int)",this,direction);try{int fromX = (direction == PhotoView.TRANS_SLIDE_IN_LEFT) ?
                 mImageW / 2 : 3 * mImageW / 2;
         mFromX = Math.round(fromX);
         mFromY = Math.round(mImageH / 2f);
         mCurrentX = mFromX;
         mCurrentY = mFromY;
         startAnimation(
-                mImageW / 2, mImageH / 2, mCurrentScale, ANIM_KIND_SLIDE);
+                mImageW / 2, mImageH / 2, mCurrentScale, ANIM_KIND_SLIDE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.startSlideInAnimation(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.startSlideInAnimation(int)",this,throwable);throw throwable;}
     }
 
     public void startHorizontalSlide(int distance) {
-        scrollBy(distance, 0, ANIM_KIND_SLIDE);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.startHorizontalSlide(int)",this,distance);try{scrollBy(distance, 0, ANIM_KIND_SLIDE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.startHorizontalSlide(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.startHorizontalSlide(int)",this,throwable);throw throwable;}
     }
 
     private void scrollBy(float dx, float dy, int type) {
-        startAnimation(getTargetX() + Math.round(dx / mCurrentScale),
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.scrollBy(float,float,int)",this,dx,dy,type);try{startAnimation(getTargetX() + Math.round(dx / mCurrentScale),
                 getTargetY() + Math.round(dy / mCurrentScale),
-                mCurrentScale, type);
+                mCurrentScale, type);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.scrollBy(float,float,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.scrollBy(float,float,int)",this,throwable);throw throwable;}
     }
 
     public void startScroll(float dx, float dy, boolean hasNext,
             boolean hasPrev) {
-        int x = getTargetX() + Math.round(dx / mCurrentScale);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.startScroll(float,float,boolean,boolean)",this,dx,dy,hasNext,hasPrev);try{int x = getTargetX() + Math.round(dx / mCurrentScale);
         int y = getTargetY() + Math.round(dy / mCurrentScale);
 
         calculateStableBound(mCurrentScale);
 
-        // Vertical direction: If we have space to move in the vertical
-        // direction, we show the edge effect when scrolling reaches the edge.
+        /*// Vertical direction: If we have space to move in the vertical*/
+        /*// direction, we show the edge effect when scrolling reaches the edge.*/
         if (mBoundTop != mBoundBottom) {
             if (y < mBoundTop) {
                 mEdgeView.onPull(mBoundTop - y, EdgeView.TOP);
@@ -402,8 +402,8 @@ class PositionController {
 
         y = Utils.clamp(y, mBoundTop, mBoundBottom);
 
-        // Horizontal direction: we show the edge effect when the scrolling
-        // tries to go left of the first image or go right of the last image.
+        /*// Horizontal direction: we show the edge effect when the scrolling*/
+        /*// tries to go left of the first image or go right of the last image.*/
         boolean zoomedOut = getCurrentScale() <= 1.0f || isAtMinimalScale();
         if (!zoomedOut) {
             if (x < mBoundLeft) {
@@ -428,14 +428,14 @@ class PositionController {
             }
         }
 
-        startAnimation(x, y, mCurrentScale, ANIM_KIND_SCROLL);
+        startAnimation(x, y, mCurrentScale, ANIM_KIND_SCROLL);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.startScroll(float,float,boolean,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.startScroll(float,float,boolean,boolean)",this,throwable);throw throwable;}
     }
 
     public boolean fling(float velocityX, float velocityY) {
-        // We only want to do fling when the picture is zoomed-in.
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.fling(float,float)",this,velocityX,velocityY);try{/*// We only want to do fling when the picture is zoomed-in.*/
         if (mImageW * mCurrentScale <= mViewW &&
             mImageH * mCurrentScale <= mViewH) {
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.fling(float,float)",this);return false;}
         }
 
         calculateStableBound(mCurrentScale);
@@ -447,13 +447,13 @@ class PositionController {
         int targetY = mScroller.getFinalY();
         mAnimationDuration = mScroller.getDuration();
         startAnimation(targetX, targetY, mCurrentScale, ANIM_KIND_FLING);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.fling(float,float)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.fling(float,float)",this,throwable);throw throwable;}
     }
 
     private void startAnimation(
             int targetX, int targetY, float scale, int kind) {
-        if (targetX == mCurrentX && targetY == mCurrentY
-                && scale == mCurrentScale) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.startAnimation(int,int,float,int)",this,targetX,targetY,scale,kind);try{if (targetX == mCurrentX && targetY == mCurrentY
+                && scale == mCurrentScale) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.startAnimation(int,int,float,int)",this);return;}}
 
         mFromX = mCurrentX;
         mFromY = mCurrentY;
@@ -463,10 +463,10 @@ class PositionController {
         mToY = targetY;
         mToScale = Utils.clamp(scale, 0.6f * mScaleMin, 1.4f * mScaleMax);
 
-        // If the scaled height is smaller than the view height,
-        // force it to be in the center.
-        // (We do for height only, not width, because the user may
-        // want to scroll to the previous/next image.)
+        /*// If the scaled height is smaller than the view height,*/
+        /*// force it to be in the center.*/
+        /*// (We do for height only, not width, because the user may*/
+        /*// want to scroll to the previous/next image.)*/
         if (Math.floor(mImageH * mToScale) <= mViewH) {
             mToY = mImageH / 2;
         }
@@ -476,20 +476,20 @@ class PositionController {
         if (mAnimationKind != ANIM_KIND_FLING) {
             mAnimationDuration = ANIM_TIME[mAnimationKind];
         }
-        if (advanceAnimation()) mViewer.invalidate();
+        if (advanceAnimation()) {mViewer.invalidate();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.startAnimation(int,int,float,int)",this,throwable);throw throwable;}
     }
 
-    // Returns true if redraw is needed.
+    /*// Returns true if redraw is needed.*/
     public boolean advanceAnimation() {
-        if (mAnimationStartTime == NO_ANIMATION) {
-            return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.advanceAnimation()",this);try{if (mAnimationStartTime == NO_ANIMATION) {
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.advanceAnimation()",this);return false;}
         } else if (mAnimationStartTime == LAST_ANIMATION) {
             mAnimationStartTime = NO_ANIMATION;
             if (mViewer.isInTransition()) {
                 mViewer.notifyTransitionComplete();
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.advanceAnimation()",this);return false;}
             } else {
-                return startSnapbackIfNeeded();
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.advanceAnimation()",this);return startSnapbackIfNeeded();}
             }
         }
 
@@ -512,15 +512,15 @@ class PositionController {
             switch (mAnimationKind) {
                 case ANIM_KIND_SCROLL:
                 case ANIM_KIND_FLING:
-                    progress = 1 - f;  // linear
+                    progress = 1 - f;  /*// linear*/
                     break;
                 case ANIM_KIND_SCALE:
-                    progress = 1 - f * f;  // quadratic
+                    progress = 1 - f * f;  /*// quadratic*/
                     break;
                 case ANIM_KIND_SNAPBACK:
                 case ANIM_KIND_ZOOM:
                 case ANIM_KIND_SLIDE:
-                    progress = 1 - f * f * f * f * f; // x^5
+                    progress = 1 - f * f * f * f * f; /*// x^5*/
                     break;
             }
             if (mAnimationKind == ANIM_KIND_FLING) {
@@ -530,17 +530,17 @@ class PositionController {
             }
         }
         mViewer.setPosition(mCurrentX, mCurrentY, mCurrentScale);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.advanceAnimation()",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.advanceAnimation()",this,throwable);throw throwable;}
     }
 
     private void flingInterpolate(float progress) {
-        mScroller.computeScrollOffset(progress);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.flingInterpolate(float)",this,progress);try{mScroller.computeScrollOffset(progress);
         int oldX = mCurrentX;
         int oldY = mCurrentY;
         mCurrentX = mScroller.getCurrX();
         mCurrentY = mScroller.getCurrY();
 
-        // Check if we hit the edges; show edge effects if we do.
+        /*// Check if we hit the edges; show edge effects if we do.*/
         if (oldX > mBoundLeft && mCurrentX == mBoundLeft) {
             int v = Math.round(-mScroller.getCurrVelocityX() * mCurrentScale);
             mEdgeView.onAbsorb(v, EdgeView.LEFT);
@@ -555,25 +555,25 @@ class PositionController {
         } else if (oldY < mBoundBottom && mCurrentY == mBoundBottom) {
             int v = Math.round(mScroller.getCurrVelocityY() * mCurrentScale);
             mEdgeView.onAbsorb(v, EdgeView.BOTTOM);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.flingInterpolate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.flingInterpolate(float)",this,throwable);throw throwable;}
     }
 
-    // Interpolates mCurrent{X,Y,Scale} given the progress in [0, 1].
+    /*// Interpolates mCurrent{X,Y,Scale} given the progress in [0, 1].*/
     private void linearInterpolate(float progress) {
-        // To linearly interpolate the position on view coordinates, we do the
-        // following steps:
-        // (1) convert a bitmap position (x, y) to view coordinates:
-        //     from: (x - mFromX) * mFromScale + mViewW / 2
-        //     to: (x - mToX) * mToScale + mViewW / 2
-        // (2) interpolate between the "from" and "to" coordinates:
-        //     (x - mFromX) * mFromScale * (1 - p) + (x - mToX) * mToScale * p
-        //     + mViewW / 2
-        //     should be equal to
-        //     (x - mCurrentX) * mCurrentScale + mViewW / 2
-        // (3) The x-related terms in the above equation can be removed because
-        //     mFromScale * (1 - p) + ToScale * p = mCurrentScale
-        // (4) Solve for mCurrentX, we have mCurrentX =
-        // (mFromX * mFromScale * (1 - p) + mToX * mToScale * p) / mCurrentScale
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.linearInterpolate(float)",this,progress);try{/*// To linearly interpolate the position on view coordinates, we do the*/
+        /*// following steps:*/
+        /*// (1) convert a bitmap position (x, y) to view coordinates:*/
+        /*//     from: (x - mFromX) * mFromScale + mViewW / 2*/
+        /*//     to: (x - mToX) * mToScale + mViewW / 2*/
+        /*// (2) interpolate between the "from" and "to" coordinates:*/
+        /*//     (x - mFromX) * mFromScale * (1 - p) + (x - mToX) * mToScale * p*/
+        /*//     + mViewW / 2*/
+        /*//     should be equal to*/
+        /*//     (x - mCurrentX) * mCurrentScale + mViewW / 2*/
+        /*// (3) The x-related terms in the above equation can be removed because*/
+        /*//     mFromScale * (1 - p) + ToScale * p = mCurrentScale*/
+        /*// (4) Solve for mCurrentX, we have mCurrentX =*/
+        /*// (mFromX * mFromScale * (1 - p) + mToX * mToScale * p) / mCurrentScale*/
         float fromX = mFromX * mFromScale;
         float toX = mToX * mToScale;
         float currentX = fromX + progress * (toX - fromX);
@@ -584,21 +584,21 @@ class PositionController {
 
         mCurrentScale = mFromScale + progress * (mToScale - mFromScale);
         mCurrentX = Math.round(currentX / mCurrentScale);
-        mCurrentY = Math.round(currentY / mCurrentScale);
+        mCurrentY = Math.round(currentY / mCurrentScale);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.linearInterpolate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.linearInterpolate(float)",this,throwable);throw throwable;}
     }
 
-    // Returns true if redraw is needed.
+    /*// Returns true if redraw is needed.*/
     private boolean startSnapbackIfNeeded() {
-        if (mAnimationStartTime != NO_ANIMATION) return false;
-        if (mInScale) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.startSnapbackIfNeeded()",this);try{if (mAnimationStartTime != NO_ANIMATION) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.startSnapbackIfNeeded()",this);return false;}}
+        if (mInScale) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.startSnapbackIfNeeded()",this);return false;}}
         if (mAnimationKind == ANIM_KIND_SCROLL && mViewer.isDown()) {
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.startSnapbackIfNeeded()",this);return false;}
         }
-        return startSnapback();
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.startSnapbackIfNeeded()",this);return startSnapback();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.startSnapbackIfNeeded()",this,throwable);throw throwable;}
     }
 
     public boolean startSnapback() {
-        boolean needAnimation = false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.startSnapback()",this);try{boolean needAnimation = false;
         float scale = mCurrentScale;
 
         if (mCurrentScale < mScaleMin || mCurrentScale > mScaleMax) {
@@ -618,61 +618,61 @@ class PositionController {
             startAnimation(x, y, scale, ANIM_KIND_SNAPBACK);
         }
 
-        return needAnimation;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.startSnapback()",this);return needAnimation;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.startSnapback()",this,throwable);throw throwable;}
     }
 
-    // Calculates the stable region of mCurrent{X/Y}, where "stable" means
-    //
-    // (1) If the dimension of scaled image >= view dimension, we will not
-    // see black region outside the image (at that dimension).
-    // (2) If the dimension of scaled image < view dimension, we will center
-    // the scaled image.
-    //
-    // We might temporarily go out of this stable during user interaction,
-    // but will "snap back" after user stops interaction.
-    //
-    // The results are stored in mBound{Left/Right/Top/Bottom}.
-    //
+    /*// Calculates the stable region of mCurrent{X/Y}, where "stable" means*/
+    /*//*/
+    /*// (1) If the dimension of scaled image >= view dimension, we will not*/
+    /*// see black region outside the image (at that dimension).*/
+    /*// (2) If the dimension of scaled image < view dimension, we will center*/
+    /*// the scaled image.*/
+    /*//*/
+    /*// We might temporarily go out of this stable during user interaction,*/
+    /*// but will "snap back" after user stops interaction.*/
+    /*//*/
+    /*// The results are stored in mBound{Left/Right/Top/Bottom}.*/
+    /*//*/
     private void calculateStableBound(float scale) {
-        // The number of pixels between the center of the view
-        // and the edge when the edge is aligned.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.PositionController.calculateStableBound(float)",this,scale);try{/*// The number of pixels between the center of the view*/
+        /*// and the edge when the edge is aligned.*/
         mBoundLeft = (int) Math.ceil(mViewW / (2 * scale));
         mBoundRight = mImageW - mBoundLeft;
         mBoundTop = (int) Math.ceil(mViewH / (2 * scale));
         mBoundBottom = mImageH - mBoundTop;
 
-        // If the scaled height is smaller than the view height,
-        // force it to be in the center.
+        /*// If the scaled height is smaller than the view height,*/
+        /*// force it to be in the center.*/
         if (Math.floor(mImageH * scale) <= mViewH) {
             mBoundTop = mBoundBottom = mImageH / 2;
         }
 
-        // Same for width
+        /*// Same for width*/
         if (Math.floor(mImageW * scale) <= mViewW) {
             mBoundLeft = mBoundRight = mImageW / 2;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.PositionController.calculateStableBound(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.PositionController.calculateStableBound(float)",this,throwable);throw throwable;}
     }
 
     private boolean useCurrentValueAsTarget() {
-        return mAnimationStartTime == NO_ANIMATION ||
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.useCurrentValueAsTarget()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.useCurrentValueAsTarget()",this);return mAnimationStartTime == NO_ANIMATION ||
                 mAnimationKind == ANIM_KIND_SNAPBACK ||
-                mAnimationKind == ANIM_KIND_FLING;
+                mAnimationKind == ANIM_KIND_FLING;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.useCurrentValueAsTarget()",this,throwable);throw throwable;}
     }
 
     private float getTargetScale() {
-        return useCurrentValueAsTarget() ? mCurrentScale : mToScale;
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.ui.PositionController.getTargetScale()",this);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.ui.PositionController.getTargetScale()",this);return useCurrentValueAsTarget() ? mCurrentScale : mToScale;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.ui.PositionController.getTargetScale()",this,throwable);throw throwable;}
     }
 
     private int getTargetX() {
-        return useCurrentValueAsTarget() ? mCurrentX : mToX;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.PositionController.getTargetX()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.PositionController.getTargetX()",this);return useCurrentValueAsTarget() ? mCurrentX : mToX;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.PositionController.getTargetX()",this,throwable);throw throwable;}
     }
 
     private int getTargetY() {
-        return useCurrentValueAsTarget() ? mCurrentY : mToY;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.PositionController.getTargetY()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.PositionController.getTargetY()",this);return useCurrentValueAsTarget() ? mCurrentY : mToY;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.PositionController.getTargetY()",this,throwable);throw throwable;}
     }
 
     public RectF getImageBounds() {
-        float points[] = mTempPoints;
+        com.mijack.Xlog.logMethodEnter("android.graphics.RectF com.android.gallery3d.ui.PositionController.getImageBounds()",this);try{float points[] = mTempPoints;
 
         /*
          * (p0,p1)----------(p2,p3)
@@ -695,29 +695,29 @@ class PositionController {
         for (int i = 0; i < 4; ++i) {
             float x = points[i + i] * scale + offsetX;
             float y = points[i + i + 1] * scale + offsetY;
-            if (x < rect.left) rect.left = x;
-            if (x > rect.right) rect.right = x;
-            if (y < rect.top) rect.top = y;
-            if (y > rect.bottom) rect.bottom = y;
+            if (x < rect.left) {rect.left = x;}
+            if (x > rect.right) {rect.right = x;}
+            if (y < rect.top) {rect.top = y;}
+            if (y > rect.bottom) {rect.bottom = y;}
         }
-        return rect;
+        {com.mijack.Xlog.logMethodExit("android.graphics.RectF com.android.gallery3d.ui.PositionController.getImageBounds()",this);return rect;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.RectF com.android.gallery3d.ui.PositionController.getImageBounds()",this,throwable);throw throwable;}
     }
 
     public int getImageWidth() {
-        return mImageW;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.PositionController.getImageWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.PositionController.getImageWidth()",this);return mImageW;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.PositionController.getImageWidth()",this,throwable);throw throwable;}
     }
 
     public int getImageHeight() {
-        return mImageH;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.PositionController.getImageHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.PositionController.getImageHeight()",this);return mImageH;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.PositionController.getImageHeight()",this,throwable);throw throwable;}
     }
 
     public boolean isAtLeftEdge() {
-        calculateStableBound(mCurrentScale);
-        return mCurrentX <= mBoundLeft;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.isAtLeftEdge()",this);try{calculateStableBound(mCurrentScale);
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.isAtLeftEdge()",this);return mCurrentX <= mBoundLeft;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.isAtLeftEdge()",this,throwable);throw throwable;}
     }
 
     public boolean isAtRightEdge() {
-        calculateStableBound(mCurrentScale);
-        return mCurrentX >= mBoundRight;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.PositionController.isAtRightEdge()",this);try{calculateStableBound(mCurrentScale);
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.PositionController.isAtRightEdge()",this);return mCurrentX >= mBoundRight;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.PositionController.isAtRightEdge()",this,throwable);throw throwable;}
     }
 }

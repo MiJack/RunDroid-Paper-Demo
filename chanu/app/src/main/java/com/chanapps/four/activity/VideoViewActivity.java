@@ -23,7 +23,7 @@ public class VideoViewActivity extends Activity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.VideoViewActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
@@ -32,24 +32,24 @@ public class VideoViewActivity extends Activity {
     	myWebView.getRootView().setBackgroundColor(0xffffff);
     	getWindow().getDecorView().setBackgroundColor(0xffffff);
 
-    	setActionBarTitle();
+    	setActionBarTitle();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.VideoViewActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.VideoViewActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
     
     @Override
 	protected void onResume () {
-    	super.onResume();
-    	play();
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.VideoViewActivity.onResume()",this);try{super.onResume();
+    	play();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.VideoViewActivity.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.VideoViewActivity.onResume()",this,throwable);throw throwable;}
     }
     
     private void setActionBarTitle() {
-        if (getActionBar() != null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.VideoViewActivity.setActionBarTitle()",this);try{if (getActionBar() != null) {
             getActionBar().setTitle(getIntent().getStringExtra(Intent.EXTRA_TITLE));
             getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.VideoViewActivity.setActionBarTitle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.VideoViewActivity.setActionBarTitle()",this,throwable);throw throwable;}
     }
     
     private void play() {
-    	try {
+    	com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.VideoViewActivity.play()",this);try{try {
 	    	WebView myWebView = (WebView) findViewById(R.id.video_view);
 	    	myWebView.getRootView().setBackgroundColor(0xffffff);
 	    	myWebView.setBackgroundColor(0xffffff);
@@ -60,26 +60,26 @@ public class VideoViewActivity extends Activity {
 	    	myWebView.loadDataWithBaseURL("/", html, "text/html", "UTF-8", null);
     	} catch (Throwable e) {
     		Log.e(TAG, "Web view loading error", e);
-    	}
+    	}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.VideoViewActivity.play()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.VideoViewActivity.play()",this,throwable);throw throwable;}
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.VideoViewActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
             case android.R.id.home:
             	onBackPressed();
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.VideoViewActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.VideoViewActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onStart() {
-        super.onStart();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.VideoViewActivity.onStart()",this);try{super.onStart();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.VideoViewActivity.onStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.VideoViewActivity.onStart()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onStop() {
-        super.onStop();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.VideoViewActivity.onStop()",this);try{super.onStop();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.VideoViewActivity.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.VideoViewActivity.onStop()",this,throwable);throw throwable;}
     }
 
 }

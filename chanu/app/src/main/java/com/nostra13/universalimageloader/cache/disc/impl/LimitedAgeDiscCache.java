@@ -54,19 +54,19 @@ public class LimitedAgeDiscCache extends BaseDiscCache {
 	 */
 	public LimitedAgeDiscCache(File cacheDir, FileNameGenerator fileNameGenerator, long maxAge) {
 		super(cacheDir, fileNameGenerator);
-		this.maxFileAge = maxAge * 1000; // to milliseconds
+		this.maxFileAge = maxAge * 1000; /*// to milliseconds*/
 	}
 
 	@Override
 	public void put(String key, File file) {
-		long currentTime = System.currentTimeMillis();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiscCache.put(java.lang.String,java.io.File)",this,key,file);try{long currentTime = System.currentTimeMillis();
 		file.setLastModified(currentTime);
-		loadingDates.put(file, currentTime);
+		loadingDates.put(file, currentTime);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiscCache.put(java.lang.String,java.io.File)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiscCache.put(java.lang.String,java.io.File)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public File get(String key) {
-		File file = super.get(key);
+		com.mijack.Xlog.logMethodEnter("java.io.File com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiscCache.get(java.lang.String)",this,key);try{File file = super.get(key);
 		if (file.exists()) {
 			boolean cached;
 			Long loadingDate = loadingDates.get(file);
@@ -84,6 +84,6 @@ public class LimitedAgeDiscCache extends BaseDiscCache {
 				loadingDates.put(file, loadingDate);
 			}
 		}
-		return file;
+		{com.mijack.Xlog.logMethodExit("java.io.File com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiscCache.get(java.lang.String)",this);return file;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiscCache.get(java.lang.String)",this,throwable);throw throwable;}
 	}
 }

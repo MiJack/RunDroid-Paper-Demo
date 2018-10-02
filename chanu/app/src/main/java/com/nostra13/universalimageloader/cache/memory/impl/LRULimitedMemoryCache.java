@@ -54,40 +54,40 @@ public class LRULimitedMemoryCache extends LimitedMemoryCache<String, Bitmap> {
 
 	@Override
 	public boolean put(String key, Bitmap value) {
-		if (super.put(key, value)) {
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.put(java.lang.String,android.graphics.Bitmap)",this,key,value);try{if (super.put(key, value)) {
 			lruCache.put(key, value);
-			return true;
+			{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.put(java.lang.String,android.graphics.Bitmap)",this);return true;}
 		} else {
-			return false;
-		}
+			{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.put(java.lang.String,android.graphics.Bitmap)",this);return false;}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.put(java.lang.String,android.graphics.Bitmap)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public Bitmap get(String key) {
-		lruCache.get(key); // call "get" for LRU logic
-		return super.get(key);
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.get(java.lang.String)",this,key);try{lruCache.get(key); /*// call "get" for LRU logic*/
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.get(java.lang.String)",this);return super.get(key);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.get(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void remove(String key) {
-		lruCache.remove(key);
-		super.remove(key);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.remove(java.lang.String)",this,key);try{lruCache.remove(key);
+		super.remove(key);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.remove(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.remove(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		lruCache.clear();
-		super.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.clear()",this);try{lruCache.clear();
+		super.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.clear()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected int getSize(Bitmap value) {
-		return value.getRowBytes() * value.getHeight();
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.getSize(android.graphics.Bitmap)",this,value);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.getSize(android.graphics.Bitmap)",this);return value.getRowBytes() * value.getHeight();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.getSize(android.graphics.Bitmap)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected Bitmap removeNext() {
-		Bitmap mostLongUsedValue = null;
+		com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.removeNext()",this);try{Bitmap mostLongUsedValue = null;
 		synchronized (lruCache) {
 			Iterator<Entry<String, Bitmap>> it = lruCache.entrySet().iterator();
 			if (it.hasNext()) {
@@ -96,11 +96,11 @@ public class LRULimitedMemoryCache extends LimitedMemoryCache<String, Bitmap> {
 				it.remove();
 			}
 		}
-		return mostLongUsedValue;
+		{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.removeNext()",this);return mostLongUsedValue;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.removeNext()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected Reference<Bitmap> createReference(Bitmap value) {
-		return new WeakReference<Bitmap>(value);
+		com.mijack.Xlog.logMethodEnter("java.lang.ref.Reference com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.createReference(android.graphics.Bitmap)",this,value);try{com.mijack.Xlog.logMethodExit("java.lang.ref.Reference com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.createReference(android.graphics.Bitmap)",this);return new WeakReference<Bitmap>(value);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.ref.Reference com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache.createReference(android.graphics.Bitmap)",this,throwable);throw throwable;}
 	}
 }

@@ -21,10 +21,10 @@ import com.android.gallery3d.util.ThreadPool.Job;
 import android.graphics.Bitmap;
 import android.graphics.BitmapRegionDecoder;
 
-// MediaItem represents an image or a video item.
+/*// MediaItem represents an image or a video item.*/
 public abstract class MediaItem extends MediaObject {
-    // NOTE: These type numbers are stored in the image cache, so it should not
-    // not be changed without resetting the cache.
+    /*// NOTE: These type numbers are stored in the image cache, so it should not*/
+    /*// not be changed without resetting the cache.*/
     public static final int TYPE_THUMBNAIL = 1;
     public static final int TYPE_MICROTHUMBNAIL = 2;
 
@@ -32,7 +32,7 @@ public abstract class MediaItem extends MediaObject {
     public static final int IMAGE_WAIT = 1;
     public static final int IMAGE_ERROR = -1;
 
-    // TODO: fix default value for latlng and change this.
+    /*// TODO: fix default value for latlng and change this.*/
     public static final double INVALID_LATLNG = 0f;
 
     public abstract Job<Bitmap> requestImage(int type);
@@ -43,44 +43,44 @@ public abstract class MediaItem extends MediaObject {
     }
 
     public long getDateInMs() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MediaItem.getDateInMs()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MediaItem.getDateInMs()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MediaItem.getDateInMs()",this,throwable);throw throwable;}
     }
 
     public String getName() {
-        return null;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.MediaItem.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.MediaItem.getName()",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.MediaItem.getName()",this,throwable);throw throwable;}
     }
 
     public void getLatLong(double[] latLong) {
-        latLong[0] = INVALID_LATLNG;
-        latLong[1] = INVALID_LATLNG;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaItem.getLatLong([double)",this,latLong);try{latLong[0] = INVALID_LATLNG;
+        latLong[1] = INVALID_LATLNG;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaItem.getLatLong([double)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MediaItem.getLatLong([double)",this,throwable);throw throwable;}
     }
 
     public String[] getTags() {
-        return null;
+        com.mijack.Xlog.logMethodEnter("[java.lang.String com.android.gallery3d.data.MediaItem.getTags()",this);try{com.mijack.Xlog.logMethodExit("[java.lang.String com.android.gallery3d.data.MediaItem.getTags()",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[java.lang.String com.android.gallery3d.data.MediaItem.getTags()",this,throwable);throw throwable;}
     }
 
     public Face[] getFaces() {
-        return null;
+        com.mijack.Xlog.logMethodEnter("[com.android.gallery3d.data.Face com.android.gallery3d.data.MediaItem.getFaces()",this);try{com.mijack.Xlog.logMethodExit("[com.android.gallery3d.data.Face com.android.gallery3d.data.MediaItem.getFaces()",this);return null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[com.android.gallery3d.data.Face com.android.gallery3d.data.MediaItem.getFaces()",this,throwable);throw throwable;}
     }
 
-    // The rotation of the full-resolution image. By default, it returns the value of
-    // getRotation().
+    /*// The rotation of the full-resolution image. By default, it returns the value of*/
+    /*// getRotation().*/
     public int getFullImageRotation() {
-        return getRotation();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaItem.getFullImageRotation()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaItem.getFullImageRotation()",this);return getRotation();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaItem.getFullImageRotation()",this,throwable);throw throwable;}
     }
 
     public int getRotation() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaItem.getRotation()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaItem.getRotation()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaItem.getRotation()",this,throwable);throw throwable;}
     }
 
     public long getSize() {
-        return 0;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.MediaItem.getSize()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.MediaItem.getSize()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.MediaItem.getSize()",this,throwable);throw throwable;}
     }
 
     public abstract String getMimeType();
 
-    // Returns width and height of the media item.
-    // Returns 0, 0 if the information is not available.
+    /*// Returns width and height of the media item.*/
+    /*// Returns 0, 0 if the information is not available.*/
     public abstract int getWidth();
     public abstract int getHeight();
 }

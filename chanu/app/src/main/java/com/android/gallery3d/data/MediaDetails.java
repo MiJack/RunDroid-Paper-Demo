@@ -44,7 +44,7 @@ public class MediaDetails implements Iterable<Entry<Integer, Object>> {
     public static final int INDEX_MIMETYPE = 9;
     public static final int INDEX_SIZE = 10;
 
-    // for EXIF
+    /*// for EXIF*/
     public static final int INDEX_MAKE = 100;
     public static final int INDEX_MODEL = 101;
     public static final int INDEX_FLASH = 102;
@@ -55,7 +55,7 @@ public class MediaDetails implements Iterable<Entry<Integer, Object>> {
     public static final int INDEX_EXPOSURE_TIME = 107;
     public static final int INDEX_ISO = 108;
 
-    // Put this last because it may be long.
+    /*// Put this last because it may be long.*/
     public static final int INDEX_PATH = 200;
 
     public static class FlashState {
@@ -71,57 +71,57 @@ public class MediaDetails implements Iterable<Entry<Integer, Object>> {
         }
 
         public boolean isFlashFired() {
-            return (mState & FLASH_FIRED_MASK) != 0;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MediaDetails$FlashState.isFlashFired()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MediaDetails$FlashState.isFlashFired()",this);return (mState & FLASH_FIRED_MASK) != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MediaDetails$FlashState.isFlashFired()",this,throwable);throw throwable;}
         }
 
         public int getFlashReturn() {
-            return (mState & FLASH_RETURN_MASK) >> 1;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaDetails$FlashState.getFlashReturn()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaDetails$FlashState.getFlashReturn()",this);return (mState & FLASH_RETURN_MASK) >> 1;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaDetails$FlashState.getFlashReturn()",this,throwable);throw throwable;}
         }
 
         public int getFlashMode() {
-            return (mState & FLASH_MODE_MASK) >> 3;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaDetails$FlashState.getFlashMode()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaDetails$FlashState.getFlashMode()",this);return (mState & FLASH_MODE_MASK) >> 3;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaDetails$FlashState.getFlashMode()",this,throwable);throw throwable;}
         }
 
         public boolean isFlashPresent() {
-            return (mState & FLASH_FUNCTION_MASK) != 0;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MediaDetails$FlashState.isFlashPresent()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MediaDetails$FlashState.isFlashPresent()",this);return (mState & FLASH_FUNCTION_MASK) != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MediaDetails$FlashState.isFlashPresent()",this,throwable);throw throwable;}
         }
 
         public boolean isRedEyeModePresent() {
-            return (mState & FLASH_RED_EYE_MASK) != 0;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MediaDetails$FlashState.isRedEyeModePresent()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MediaDetails$FlashState.isRedEyeModePresent()",this);return (mState & FLASH_RED_EYE_MASK) != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MediaDetails$FlashState.isRedEyeModePresent()",this,throwable);throw throwable;}
         }
     }
 
     public void addDetail(int index, Object value) {
-        mDetails.put(index, value);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaDetails.addDetail(int,java.lang.Object)",this,index,value);try{mDetails.put(index, value);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaDetails.addDetail(int,java.lang.Object)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MediaDetails.addDetail(int,java.lang.Object)",this,throwable);throw throwable;}
     }
 
     public Object getDetail(int index) {
-        return mDetails.get(index);
+        com.mijack.Xlog.logMethodEnter("java.lang.Object com.android.gallery3d.data.MediaDetails.getDetail(int)",this,index);try{com.mijack.Xlog.logMethodExit("java.lang.Object com.android.gallery3d.data.MediaDetails.getDetail(int)",this);return mDetails.get(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.android.gallery3d.data.MediaDetails.getDetail(int)",this,throwable);throw throwable;}
     }
 
     public int size() {
-        return mDetails.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaDetails.size()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaDetails.size()",this);return mDetails.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaDetails.size()",this,throwable);throw throwable;}
     }
 
     public Iterator<Entry<Integer, Object>> iterator() {
-        return mDetails.entrySet().iterator();
+        com.mijack.Xlog.logMethodEnter("java.util.Iterator com.android.gallery3d.data.MediaDetails.iterator()",this);try{com.mijack.Xlog.logMethodExit("java.util.Iterator com.android.gallery3d.data.MediaDetails.iterator()",this);return mDetails.entrySet().iterator();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Iterator com.android.gallery3d.data.MediaDetails.iterator()",this,throwable);throw throwable;}
     }
 
     public void setUnit(int index, int unit) {
-        mUnits.put(index, unit);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MediaDetails.setUnit(int,int)",this,index,unit);try{mUnits.put(index, unit);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MediaDetails.setUnit(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MediaDetails.setUnit(int,int)",this,throwable);throw throwable;}
     }
 
     public boolean hasUnit(int index) {
-        return mUnits.containsKey(index);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MediaDetails.hasUnit(int)",this,index);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MediaDetails.hasUnit(int)",this);return mUnits.containsKey(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MediaDetails.hasUnit(int)",this,throwable);throw throwable;}
     }
 
     public int getUnit(int index) {
-        return mUnits.get(index);
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.MediaDetails.getUnit(int)",this,index);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.MediaDetails.getUnit(int)",this);return mUnits.get(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.MediaDetails.getUnit(int)",this,throwable);throw throwable;}
     }
 
     private static void setExifData(MediaDetails details, ExifInterface exif, String tag,
             int key) {
-        String value = exif.getAttribute(tag);
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.data.MediaDetails.setExifData(com.android.gallery3d.data.MediaDetails,android.media.ExifInterface,java.lang.String,int)",details,exif,tag,key);try{String value = exif.getAttribute(tag);
         if (value != null) {
             if (key == MediaDetails.INDEX_FLASH) {
                 MediaDetails.FlashState state = new MediaDetails.FlashState(
@@ -130,11 +130,11 @@ public class MediaDetails implements Iterable<Entry<Integer, Object>> {
             } else {
                 details.addDetail(key, value);
             }
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.data.MediaDetails.setExifData(com.android.gallery3d.data.MediaDetails,android.media.ExifInterface,java.lang.String,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.data.MediaDetails.setExifData(com.android.gallery3d.data.MediaDetails,android.media.ExifInterface,java.lang.String,int)",throwable);throw throwable;}
     }
 
     public static void extractExifInfo(MediaDetails details, String filePath) {
-        try {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.data.MediaDetails.extractExifInfo(com.android.gallery3d.data.MediaDetails,java.lang.String)",details,filePath);try{try {
             ExifInterface exif = new ExifInterface(filePath);
             setExifData(details, exif, ExifInterface.TAG_FLASH, MediaDetails.INDEX_FLASH);
             setExifData(details, exif, ExifInterface.TAG_IMAGE_WIDTH, MediaDetails.INDEX_WIDTH);
@@ -155,8 +155,8 @@ public class MediaDetails implements Iterable<Entry<Integer, Object>> {
                 details.setUnit(MediaDetails.INDEX_FOCAL_LENGTH, R.string.unit_mm);
             }
         } catch (IOException ex) {
-            // ignore it.
+            /*// ignore it.*/
             Log.w(TAG, "", ex);
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.data.MediaDetails.extractExifInfo(com.android.gallery3d.data.MediaDetails,java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.data.MediaDetails.extractExifInfo(com.android.gallery3d.data.MediaDetails,java.lang.String)",throwable);throw throwable;}
     }
 }

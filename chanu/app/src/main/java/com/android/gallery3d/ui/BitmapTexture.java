@@ -21,11 +21,11 @@ import com.android.gallery3d.common.Utils;
 
 import android.graphics.Bitmap;
 
-// BitmapTexture is a texture whose content is specified by a fixed Bitmap.
-//
-// The texture does not own the Bitmap. The user should make sure the Bitmap
-// is valid during the texture's lifetime. When the texture is recycled, it
-// does not free the Bitmap.
+/*// BitmapTexture is a texture whose content is specified by a fixed Bitmap.*/
+/*//*/
+/*// The texture does not own the Bitmap. The user should make sure the Bitmap*/
+/*// is valid during the texture's lifetime. When the texture is recycled, it*/
+/*// does not free the Bitmap.*/
 public class BitmapTexture extends UploadedTexture {
     protected Bitmap mContentBitmap;
 
@@ -41,17 +41,17 @@ public class BitmapTexture extends UploadedTexture {
 
     @Override
     protected void onFreeBitmap(Bitmap bitmap) {
-        // Do nothing.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.BitmapTexture.onFreeBitmap(android.graphics.Bitmap)",this,bitmap);try{/*// Do nothing.*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.BitmapTexture.onFreeBitmap(android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.BitmapTexture.onFreeBitmap(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     @Override
     protected Bitmap onGetBitmap() {
-        return mContentBitmap;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTexture.onGetBitmap()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTexture.onGetBitmap()",this);return mContentBitmap;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTexture.onGetBitmap()",this,throwable);throw throwable;}
     }
 
     @Override
     protected BitmapFactory.Options onGetBitmapBounds() {
-        BitmapFactory.Options options = new BitmapFactory.Options();
+        com.mijack.Xlog.logMethodEnter("BitmapFactory.Options com.android.gallery3d.ui.BitmapTexture.onGetBitmapBounds()",this);try{BitmapFactory.Options options = new BitmapFactory.Options();
         if (mContentBitmap != null) {
             options.outWidth = mContentBitmap.getWidth();
             options.outHeight = mContentBitmap.getHeight();
@@ -60,10 +60,10 @@ public class BitmapTexture extends UploadedTexture {
             options.outWidth = 0;
             options.outHeight = 0;
         }
-        return options;
+        {com.mijack.Xlog.logMethodExit("BitmapFactory.Options com.android.gallery3d.ui.BitmapTexture.onGetBitmapBounds()",this);return options;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("BitmapFactory.Options com.android.gallery3d.ui.BitmapTexture.onGetBitmapBounds()",this,throwable);throw throwable;}
     }
 
     public Bitmap getBitmap() {
-        return mContentBitmap;
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTexture.getBitmap()",this);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTexture.getBitmap()",this);return mContentBitmap;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.ui.BitmapTexture.getBitmap()",this,throwable);throw throwable;}
     }
 }

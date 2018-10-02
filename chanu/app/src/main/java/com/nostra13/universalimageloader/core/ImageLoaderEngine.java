@@ -64,42 +64,42 @@ class ImageLoaderEngine {
 
 	/** Submits task to execution pool */
 	void submit(final LoadAndDisplayImageTask task) {
-		taskDistributor.execute(new Runnable() {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.submit(com.nostra13.universalimageloader.core.LoadAndDisplayImageTask)",this,task);try{taskDistributor.execute(new Runnable() {
 			@Override
 			public void run() {
-				boolean isImageCachedOnDisc = configuration.discCache.get(task.getLoadingUri()).exists();
+				com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine$1.run()",this);try{boolean isImageCachedOnDisc = configuration.discCache.get(task.getLoadingUri()).exists();
 				initExecutorsIfNeed();
 				if (isImageCachedOnDisc) {
 					taskExecutorForCachedImages.execute(task);
 				} else {
 					taskExecutor.execute(task);
-				}
+				}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine$1.run()",this,throwable);throw throwable;}
 			}
-		});
+		});com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.submit(com.nostra13.universalimageloader.core.LoadAndDisplayImageTask)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.submit(com.nostra13.universalimageloader.core.LoadAndDisplayImageTask)",this,throwable);throw throwable;}
 	}
 
 	/** Submits task to execution pool */
 	void submit(ProcessAndDisplayImageTask task) {
-		initExecutorsIfNeed();
-		taskExecutorForCachedImages.execute(task);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.submit(com.nostra13.universalimageloader.core.ProcessAndDisplayImageTask)",this,task);try{initExecutorsIfNeed();
+		taskExecutorForCachedImages.execute(task);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.submit(com.nostra13.universalimageloader.core.ProcessAndDisplayImageTask)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.submit(com.nostra13.universalimageloader.core.ProcessAndDisplayImageTask)",this,throwable);throw throwable;}
 	}
 
 	private void initExecutorsIfNeed() {
-		if (taskExecutor == null) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.initExecutorsIfNeed()",this);try{if (taskExecutor == null) {
 			taskExecutor = createTaskExecutor();
 		}
 		if (taskExecutorForCachedImages == null) {
 			taskExecutorForCachedImages = createTaskExecutor();
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.initExecutorsIfNeed()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.initExecutorsIfNeed()",this,throwable);throw throwable;}
 	}
 
 	private Executor createTaskExecutor() {
-		return DefaultConfigurationFactory.createExecutor(configuration.threadPoolSize, configuration.threadPriority, configuration.tasksProcessingType);
+		com.mijack.Xlog.logMethodEnter("java.util.concurrent.Executor com.nostra13.universalimageloader.core.ImageLoaderEngine.createTaskExecutor()",this);try{com.mijack.Xlog.logMethodExit("java.util.concurrent.Executor com.nostra13.universalimageloader.core.ImageLoaderEngine.createTaskExecutor()",this);return DefaultConfigurationFactory.createExecutor(configuration.threadPoolSize, configuration.threadPriority, configuration.tasksProcessingType);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.concurrent.Executor com.nostra13.universalimageloader.core.ImageLoaderEngine.createTaskExecutor()",this,throwable);throw throwable;}
 	}
 
 	/** Returns URI of image which is loading at this moment into passed {@link ImageView} */
 	String getLoadingUriForView(ImageView imageView) {
-		return cacheKeysForImageViews.get(imageView.hashCode());
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.ImageLoaderEngine.getLoadingUriForView(android.widget.ImageView)",this,imageView);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.ImageLoaderEngine.getLoadingUriForView(android.widget.ImageView)",this);return cacheKeysForImageViews.get(imageView.hashCode());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.ImageLoaderEngine.getLoadingUriForView(android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -107,7 +107,7 @@ class ImageLoaderEngine {
 	 * ImageView at exact moment.
 	 */
 	void prepareDisplayTaskFor(ImageView imageView, String memoryCacheKey) {
-		cacheKeysForImageViews.put(imageView.hashCode(), memoryCacheKey);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.prepareDisplayTaskFor(android.widget.ImageView,java.lang.String)",this,imageView,memoryCacheKey);try{cacheKeysForImageViews.put(imageView.hashCode(), memoryCacheKey);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.prepareDisplayTaskFor(android.widget.ImageView,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.prepareDisplayTaskFor(android.widget.ImageView,java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -116,7 +116,7 @@ class ImageLoaderEngine {
 	 * @param imageView {@link ImageView} for which display task will be cancelled
 	 */
 	void cancelDisplayTaskFor(ImageView imageView) {
-		cacheKeysForImageViews.remove(imageView.hashCode());
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.cancelDisplayTaskFor(android.widget.ImageView)",this,imageView);try{cacheKeysForImageViews.remove(imageView.hashCode());com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.cancelDisplayTaskFor(android.widget.ImageView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.cancelDisplayTaskFor(android.widget.ImageView)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -130,7 +130,7 @@ class ImageLoaderEngine {
 	 *            to allow engine to download images from network.
 	 */
 	void denyNetworkDownloads(boolean denyNetworkDownloads) {
-		networkDenied.set(denyNetworkDownloads);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.denyNetworkDownloads(boolean)",this,denyNetworkDownloads);try{networkDenied.set(denyNetworkDownloads);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.denyNetworkDownloads(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.denyNetworkDownloads(boolean)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -141,7 +141,7 @@ class ImageLoaderEngine {
 	 *            - otherwise.
 	 */
 	void handleSlowNetwork(boolean handleSlowNetwork) {
-		slowNetwork.set(handleSlowNetwork);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.handleSlowNetwork(boolean)",this,handleSlowNetwork);try{slowNetwork.set(handleSlowNetwork);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.handleSlowNetwork(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.handleSlowNetwork(boolean)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -149,20 +149,20 @@ class ImageLoaderEngine {
 	 * Already running tasks are not paused.
 	 */
 	void pause() {
-		paused.set(true);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.pause()",this);try{paused.set(true);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.pause()",this,throwable);throw throwable;}
 	}
 
 	/** Resumes engine work. Paused "load&display" tasks will continue its work. */
 	void resume() {
-		synchronized (paused) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.resume()",this);try{synchronized (paused) {
 			paused.set(false);
 			paused.notifyAll();
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.resume()",this,throwable);throw throwable;}
 	}
 
 	/** Stops engine, cancels all running and scheduled display image tasks. Clears internal data. */
 	void stop() {
-		if (!configuration.customExecutor) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.ImageLoaderEngine.stop()",this);try{if (!configuration.customExecutor) {
 			taskExecutor = null;
 		}
 		if (!configuration.customExecutorForCachedImages) {
@@ -170,27 +170,27 @@ class ImageLoaderEngine {
 		}
 
 		cacheKeysForImageViews.clear();
-		uriLocks.clear();
+		uriLocks.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.ImageLoaderEngine.stop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.ImageLoaderEngine.stop()",this,throwable);throw throwable;}
 	}
 
 	ReentrantLock getLockForUri(String uri) {
-		ReentrantLock lock = uriLocks.get(uri);
+		com.mijack.Xlog.logMethodEnter("java.util.concurrent.locks.ReentrantLock com.nostra13.universalimageloader.core.ImageLoaderEngine.getLockForUri(java.lang.String)",this,uri);try{ReentrantLock lock = uriLocks.get(uri);
 		if (lock == null) {
 			lock = new ReentrantLock();
 			uriLocks.put(uri, lock);
 		}
-		return lock;
+		{com.mijack.Xlog.logMethodExit("java.util.concurrent.locks.ReentrantLock com.nostra13.universalimageloader.core.ImageLoaderEngine.getLockForUri(java.lang.String)",this);return lock;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.concurrent.locks.ReentrantLock com.nostra13.universalimageloader.core.ImageLoaderEngine.getLockForUri(java.lang.String)",this,throwable);throw throwable;}
 	}
 
 	AtomicBoolean getPause() {
-		return paused;
+		com.mijack.Xlog.logMethodEnter("java.util.concurrent.atomic.AtomicBoolean com.nostra13.universalimageloader.core.ImageLoaderEngine.getPause()",this);try{com.mijack.Xlog.logMethodExit("java.util.concurrent.atomic.AtomicBoolean com.nostra13.universalimageloader.core.ImageLoaderEngine.getPause()",this);return paused;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.concurrent.atomic.AtomicBoolean com.nostra13.universalimageloader.core.ImageLoaderEngine.getPause()",this,throwable);throw throwable;}
 	}
 
 	boolean isNetworkDenied() {
-		return networkDenied.get();
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.ImageLoaderEngine.isNetworkDenied()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.ImageLoaderEngine.isNetworkDenied()",this);return networkDenied.get();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.ImageLoaderEngine.isNetworkDenied()",this,throwable);throw throwable;}
 	}
 
 	boolean isSlowNetwork() {
-		return slowNetwork.get();
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.ImageLoaderEngine.isSlowNetwork()",this);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.ImageLoaderEngine.isSlowNetwork()",this);return slowNetwork.get();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.ImageLoaderEngine.isSlowNetwork()",this,throwable);throw throwable;}
 	}
 }

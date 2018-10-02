@@ -39,14 +39,14 @@ public abstract class SelectionDrawer {
 
     public void draw(GLCanvas canvas, Texture content, int width, int height,
             int rotation, Path path, int mediaType, boolean isPanorama) {
-        draw(canvas, content, width, height, rotation, path,
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SelectionDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,boolean)",this,canvas,content,width,height,rotation,path,mediaType,isPanorama);try{draw(canvas, content, width, height, rotation, path,
                 DATASOURCE_TYPE_NOT_CATEGORIZED, mediaType, isPanorama,
-                0, false, false);
+                0, false, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SelectionDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionDrawer.draw(GLCanvas,Texture,int,int,int,com.android.gallery3d.data.Path,int,boolean)",this,throwable);throw throwable;}
     }
 
     public static void drawWithRotation(GLCanvas canvas, Texture content,
             int x, int y, int width, int height, int rotation) {
-        if (rotation != 0) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.SelectionDrawer.drawWithRotation(GLCanvas,Texture,int,int,int,int,int)",canvas,content,x,y,width,height,rotation);try{if (rotation != 0) {
             canvas.save(GLCanvas.SAVE_FLAG_MATRIX);
             canvas.rotate(rotation, 0, 0, 1);
         }
@@ -55,13 +55,13 @@ public abstract class SelectionDrawer {
 
         if (rotation != 0) {
             canvas.restore();
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.SelectionDrawer.drawWithRotation(GLCanvas,Texture,int,int,int,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionDrawer.drawWithRotation(GLCanvas,Texture,int,int,int,int,int)",throwable);throw throwable;}
     }
 
     public static void drawFrame(GLCanvas canvas, NinePatchTexture frame,
             int x, int y, int width, int height) {
-        Rect p = frame.getPaddings();
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.SelectionDrawer.drawFrame(GLCanvas,com.android.gallery3d.ui.NinePatchTexture,int,int,int,int)",canvas,frame,x,y,width,height);try{Rect p = frame.getPaddings();
         frame.draw(canvas, x - p.left, y - p.top, width + p.left + p.right,
-                 height + p.top + p.bottom);
+                 height + p.top + p.bottom);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.SelectionDrawer.drawFrame(GLCanvas,com.android.gallery3d.ui.NinePatchTexture,int,int,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.SelectionDrawer.drawFrame(GLCanvas,com.android.gallery3d.ui.NinePatchTexture,int,int,int,int)",throwable);throw throwable;}
     }
 }

@@ -24,7 +24,7 @@ public class PasswordInfoDialogFragment extends DialogFragment {
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.PasswordInfoDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{LayoutInflater inflater = getActivity().getLayoutInflater();
         View layout = inflater.inflate(R.layout.message_dialog_fragment, null);
         TextView title = (TextView)layout.findViewById(R.id.title);
         TextView message = (TextView)layout.findViewById(R.id.message);
@@ -35,12 +35,10 @@ public class PasswordInfoDialogFragment extends DialogFragment {
                 .setView(layout)
                 .setNeutralButton(R.string.thread_context_select,
                         new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
+                            {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PasswordInfoDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PasswordInfoDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}
                         })
                 .create();
         dialog.setCanceledOnTouchOutside(true);
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.PasswordInfoDialogFragment.onCreateDialog(android.os.Bundle)",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.PasswordInfoDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

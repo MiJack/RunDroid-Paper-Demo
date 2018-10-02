@@ -77,7 +77,7 @@ public class ActionModeHandler implements ActionMode.Callback {
     }
 
     public ActionMode startActionMode() {
-        Activity a = (Activity) mActivity;
+        com.mijack.Xlog.logMethodEnter("android.view.ActionMode com.android.gallery3d.ui.ActionModeHandler.startActionMode()",this);try{Activity a = (Activity) mActivity;
         final ActionMode actionMode = a.startActionMode(this);
         CustomMenu customMenu = new CustomMenu(a);
         View customView = LayoutInflater.from(a).inflate(
@@ -89,27 +89,27 @@ public class ActionModeHandler implements ActionMode.Callback {
         updateSelectionMenu();
         customMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                return onActionItemClicked(actionMode, item);
+                com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.ActionModeHandler$1.onMenuItemClick(android.view.MenuItem)",this,item);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ActionModeHandler$1.onMenuItemClick(android.view.MenuItem)",this);{com.mijack.Xlog.logMethodExit("android.view.ActionMode com.android.gallery3d.ui.ActionModeHandler.startActionMode()",this);return onActionItemClicked(actionMode, item);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.ActionModeHandler$1.onMenuItemClick(android.view.MenuItem)",this,throwable);throw throwable;}
             }
         });
-        return actionMode;
+        {com.mijack.Xlog.logMethodExit("android.view.ActionMode com.android.gallery3d.ui.ActionModeHandler.startActionMode()",this);return actionMode;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.ActionMode com.android.gallery3d.ui.ActionModeHandler.startActionMode()",this,throwable);throw throwable;}
     }
 
     public void setTitle(String title) {
-        mSelectionMenu.setTitle(title);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.setTitle(java.lang.String)",this,title);try{mSelectionMenu.setTitle(title);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.setTitle(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.setTitle(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public void setActionModeListener(ActionModeListener listener) {
-        mListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.setActionModeListener(ActionModeListener)",this,listener);try{mListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.setActionModeListener(ActionModeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.setActionModeListener(ActionModeListener)",this,throwable);throw throwable;}
     }
 
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        boolean result;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.ActionModeHandler.onActionItemClicked(android.view.ActionMode,android.view.MenuItem)",this,mode,item);try{boolean result;
         if (mListener != null) {
             result = mListener.onActionItemClicked(item);
             if (result) {
                 mSelectionManager.leaveSelectionMode();
-                return result;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ActionModeHandler.onActionItemClicked(android.view.ActionMode,android.view.MenuItem)",this);return result;}
             }
         }
         ProgressListener listener = null;
@@ -121,17 +121,17 @@ public class ActionModeHandler implements ActionMode.Callback {
             updateSupportedOperation();
             updateSelectionMenu();
         }
-        return result;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ActionModeHandler.onActionItemClicked(android.view.ActionMode,android.view.MenuItem)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.ActionModeHandler.onActionItemClicked(android.view.ActionMode,android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     private void updateSelectionMenu() {
-        // update title
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.updateSelectionMenu()",this);try{/*// update title*/
         int count = mSelectionManager.getSelectedCount();
         String format = mActivity.getResources().getQuantityString(
                 R.plurals.number_of_items_selected, count);
         setTitle(String.format(format, count));
-        // For clients who call SelectionManager.selectAll() directly, we need to ensure the
-        // menu status is consistent with selection manager.
+        /*// For clients who call SelectionManager.selectAll() directly, we need to ensure the*/
+        /*// menu status is consistent with selection manager.*/
         MenuItem item = mSelectionMenu.findItem(R.id.action_select_all);
         if (item != null) {
             if (mSelectionManager.inSelectAllMode()) {
@@ -141,47 +141,47 @@ public class ActionModeHandler implements ActionMode.Callback {
                 item.setChecked(false);
                 item.setTitle(R.string.select_all);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.updateSelectionMenu()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.updateSelectionMenu()",this,throwable);throw throwable;}
     }
 
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-        MenuInflater inflater = mode.getMenuInflater();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.ActionModeHandler.onCreateActionMode(android.view.ActionMode,com.android.gallery3d.ui.CustomMenu.DropDownMenu)",this,mode,menu);try{MenuInflater inflater = mode.getMenuInflater();
         inflater.inflate(R.menu.operation, menu);
 
         mShareActionProvider = GalleryActionBar.initializeShareActionProvider(menu);
         OnShareTargetSelectedListener listener = new OnShareTargetSelectedListener() {
             public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
-                mSelectionManager.leaveSelectionMode();
-                return false;
+                com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.ActionModeHandler$2.onShareTargetSelected(android.widget.ShareActionProvider,android.content.Intent)",this,source,intent);try{mSelectionManager.leaveSelectionMode();
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ActionModeHandler.onCreateActionMode(android.view.ActionMode,com.android.gallery3d.ui.CustomMenu.DropDownMenu)",this);{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ActionModeHandler$2.onShareTargetSelected(android.widget.ShareActionProvider,android.content.Intent)",this);return false;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.ActionModeHandler$2.onShareTargetSelected(android.widget.ShareActionProvider,android.content.Intent)",this,throwable);throw throwable;}
             }
         };
 
         mShareActionProvider.setOnShareTargetSelectedListener(listener);
         mMenu = menu;
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ActionModeHandler.onCreateActionMode(android.view.ActionMode,com.android.gallery3d.ui.CustomMenu.DropDownMenu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.ActionModeHandler.onCreateActionMode(android.view.ActionMode,com.android.gallery3d.ui.CustomMenu.DropDownMenu)",this,throwable);throw throwable;}
     }
 
     public void onDestroyActionMode(ActionMode mode) {
-        mSelectionManager.leaveSelectionMode();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.onDestroyActionMode(android.view.ActionMode)",this,mode);try{mSelectionManager.leaveSelectionMode();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.onDestroyActionMode(android.view.ActionMode)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.onDestroyActionMode(android.view.ActionMode)",this,throwable);throw throwable;}
     }
 
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.ActionModeHandler.onPrepareActionMode(android.view.ActionMode,com.android.gallery3d.ui.CustomMenu.DropDownMenu)",this,mode,menu);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.ActionModeHandler.onPrepareActionMode(android.view.ActionMode,com.android.gallery3d.ui.CustomMenu.DropDownMenu)",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.ActionModeHandler.onPrepareActionMode(android.view.ActionMode,com.android.gallery3d.ui.CustomMenu.DropDownMenu)",this,throwable);throw throwable;}
     }
 
-    // Menu options are determined by selection set itself.
-    // We cannot expand it because MenuExecuter executes it based on
-    // the selection set instead of the expanded result.
-    // e.g. LocalImage can be rotated but collections of them (LocalAlbum) can't.
+    /*// Menu options are determined by selection set itself.*/
+    /*// We cannot expand it because MenuExecuter executes it based on*/
+    /*// the selection set instead of the expanded result.*/
+    /*// e.g. LocalImage can be rotated but collections of them (LocalAlbum) can't.*/
     private void updateMenuOptions(JobContext jc) {
-        ArrayList<Path> paths = mSelectionManager.getSelected(false);
-        if (paths.size() == 0) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.updateMenuOptions(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{ArrayList<Path> paths = mSelectionManager.getSelected(false);
+        if (paths.size() == 0) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.updateMenuOptions(com.android.gallery3d.util.ThreadPool.JobContext)",this);return;}}
 
         int operation = MediaObject.SUPPORT_ALL;
         DataManager manager = mActivity.getDataManager();
         int type = 0;
         for (Path path : paths) {
-            if (jc.isCancelled()) return;
+            if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.updateMenuOptions(com.android.gallery3d.util.ThreadPool.JobContext)",this);return;}}
             int support = manager.getSupportedOperations(path);
             type |= manager.getMediaType(path);
             operation &= support;
@@ -201,18 +201,18 @@ public class ActionModeHandler implements ActionMode.Callback {
         mMainHandler.post(new Runnable() {
             @Override
             public void run() {
-                mMenuTask = null;
-                MenuExecutor.updateMenuOperation(mMenu, supportedOperation);
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler$3.run()",this);try{mMenuTask = null;
+                MenuExecutor.updateMenuOperation(mMenu, supportedOperation);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler$3.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler$3.run()",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.updateMenuOptions(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
     }
 
-    // Share intent needs to expand the selection set so we can get URI of
-    // each media item
+    /*// Share intent needs to expand the selection set so we can get URI of*/
+    /*// each media item*/
     private void updateSharingIntent(JobContext jc) {
-        if (mShareActionProvider == null) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.updateSharingIntent(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{if (mShareActionProvider == null) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.updateSharingIntent(com.android.gallery3d.util.ThreadPool.JobContext)",this);return;}}
         ArrayList<Path> paths = mSelectionManager.getSelected(true);
-        if (paths.size() == 0) return;
+        if (paths.size() == 0) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.updateSharingIntent(com.android.gallery3d.util.ThreadPool.JobContext)",this);return;}}
 
         final ArrayList<Uri> uris = new ArrayList<Uri>();
 
@@ -244,48 +244,48 @@ public class ActionModeHandler implements ActionMode.Callback {
             mMainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Log.v(TAG, "Sharing intent is ready: action = " + intent.getAction());
-                    mShareActionProvider.setShareIntent(intent);
+                    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler$4.run()",this);try{Log.v(TAG, "Sharing intent is ready: action = " + intent.getAction());
+                    mShareActionProvider.setShareIntent(intent);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler$4.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler$4.run()",this,throwable);throw throwable;}
                 }
             });
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.updateSharingIntent(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
     }
 
     public void updateSupportedOperation(Path path, boolean selected) {
-        // TODO: We need to improve the performance
-        updateSupportedOperation();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.updateSupportedOperation(com.android.gallery3d.data.Path,boolean)",this,path,selected);try{/*// TODO: We need to improve the performance*/
+        updateSupportedOperation();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.updateSupportedOperation(com.android.gallery3d.data.Path,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.updateSupportedOperation(com.android.gallery3d.data.Path,boolean)",this,throwable);throw throwable;}
     }
 
     public void updateSupportedOperation() {
-        if (mMenuTask != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.updateSupportedOperation()",this);try{if (mMenuTask != null) {
             mMenuTask.cancel();
         }
 
-        // Disable share action until share intent is in good shape
+        /*// Disable share action until share intent is in good shape*/
         if (mShareActionProvider != null) {
             Log.v(TAG, "Disable sharing until intent is ready");
             mShareActionProvider.setShareIntent(null);
         }
 
-        // Generate sharing intent and update supported operations in the background
+        /*// Generate sharing intent and update supported operations in the background*/
         mMenuTask = mActivity.getThreadPool().submit(new Job<Void>() {
             public Void run(JobContext jc) {
-                updateMenuOptions(jc);
+                com.mijack.Xlog.logMethodEnter("java.lang.Void com.android.gallery3d.ui.ActionModeHandler$5.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{updateMenuOptions(jc);
                 updateSharingIntent(jc);
-                return null;
+                {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.updateSupportedOperation()",this);{com.mijack.Xlog.logMethodExit("java.lang.Void com.android.gallery3d.ui.ActionModeHandler$5.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Void com.android.gallery3d.ui.ActionModeHandler$5.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.updateSupportedOperation()",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        if (mMenuTask != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.pause()",this);try{if (mMenuTask != null) {
             mMenuTask.cancel();
             mMenuTask = null;
         }
-        mMenuExecutor.pause();
+        mMenuExecutor.pause();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.pause()",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        updateSupportedOperation();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ActionModeHandler.resume()",this);try{updateSupportedOperation();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ActionModeHandler.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ActionModeHandler.resume()",this,throwable);throw throwable;}
     }
 }

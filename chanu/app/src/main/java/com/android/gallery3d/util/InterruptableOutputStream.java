@@ -35,33 +35,33 @@ public class InterruptableOutputStream extends OutputStream {
 
     @Override
     public void write(int oneByte) throws IOException {
-        if (mIsInterrupted) throw new InterruptedIOException();
-        mOutputStream.write(oneByte);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.InterruptableOutputStream.write(int)",this,oneByte);try{if (mIsInterrupted) {throw new InterruptedIOException();}
+        mOutputStream.write(oneByte);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.InterruptableOutputStream.write(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void write(byte[] buffer, int offset, int count) throws IOException {
-        int end = offset + count;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.InterruptableOutputStream.write([byte,int,int)",this,buffer,offset,count);try{int end = offset + count;
         while (offset < end) {
-            if (mIsInterrupted) throw new InterruptedIOException();
+            if (mIsInterrupted) {throw new InterruptedIOException();}
             int bytesCount = Math.min(MAX_WRITE_BYTES, end - offset);
             mOutputStream.write(buffer, offset, bytesCount);
             offset += bytesCount;
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.InterruptableOutputStream.write([byte,int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void close() throws IOException {
-        mOutputStream.close();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.InterruptableOutputStream.close()",this);try{mOutputStream.close();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.InterruptableOutputStream.close()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.InterruptableOutputStream.close()",this,throwable);throw throwable;}
     }
 
     @Override
     public void flush() throws IOException {
-        if (mIsInterrupted) throw new InterruptedIOException();
-        mOutputStream.flush();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.InterruptableOutputStream.flush()",this);try{if (mIsInterrupted) {throw new InterruptedIOException();}
+        mOutputStream.flush();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.InterruptableOutputStream.flush()",this,throwable);throw throwable;}
     }
 
     public void interrupt() {
-        mIsInterrupted = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.InterruptableOutputStream.interrupt()",this);try{mIsInterrupted = true;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.InterruptableOutputStream.interrupt()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.InterruptableOutputStream.interrupt()",this,throwable);throw throwable;}
     }
 }

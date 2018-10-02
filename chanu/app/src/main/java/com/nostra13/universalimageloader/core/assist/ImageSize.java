@@ -23,7 +23,7 @@ package com.nostra13.universalimageloader.core.assist;
  */
 public class ImageSize {
 
-	private static final int TO_STRING_MAX_LENGHT = 9; // "9999x9999".length()
+	private static final int TO_STRING_MAX_LENGHT = 9; /*// "9999x9999".length()*/
 	private static final String SEPARATOR = "x";
 
 	private final int width;
@@ -45,25 +45,25 @@ public class ImageSize {
 	}
 
 	public int getWidth() {
-		return width;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.assist.ImageSize.getWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.assist.ImageSize.getWidth()",this);return width;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.assist.ImageSize.getWidth()",this,throwable);throw throwable;}
 	}
 
 	public int getHeight() {
-		return height;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.core.assist.ImageSize.getHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.core.assist.ImageSize.getHeight()",this);return height;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.core.assist.ImageSize.getHeight()",this,throwable);throw throwable;}
 	}
 
 	/** Scales down dimensions in <b>sampleSize</b> times. Returns new object. */
 	public ImageSize scaleDown(int sampleSize) {
-		return new ImageSize(width / sampleSize, height / sampleSize);
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.assist.ImageSize.scaleDown(int)",this,sampleSize);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.assist.ImageSize.scaleDown(int)",this);return new ImageSize(width / sampleSize, height / sampleSize);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.assist.ImageSize.scaleDown(int)",this,throwable);throw throwable;}
 	}
 
 	/** Scales dimensions according to incoming scale. Returns new object. */
 	public ImageSize scale(float scale) {
-		return new ImageSize((int) (width * scale), (int) (height * scale));
+		com.mijack.Xlog.logMethodEnter("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.assist.ImageSize.scale(float)",this,scale);try{com.mijack.Xlog.logMethodExit("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.assist.ImageSize.scale(float)",this);return new ImageSize((int) (width * scale), (int) (height * scale));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.nostra13.universalimageloader.core.assist.ImageSize com.nostra13.universalimageloader.core.assist.ImageSize.scale(float)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public String toString() {
-		return new StringBuilder(TO_STRING_MAX_LENGHT).append(width).append(SEPARATOR).append(height).toString();
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.nostra13.universalimageloader.core.assist.ImageSize.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.nostra13.universalimageloader.core.assist.ImageSize.toString()",this);return new StringBuilder(TO_STRING_MAX_LENGHT).append(width).append(SEPARATOR).append(height).toString();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.nostra13.universalimageloader.core.assist.ImageSize.toString()",this,throwable);throw throwable;}
 	}
 }

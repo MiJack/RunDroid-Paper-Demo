@@ -33,7 +33,7 @@ public class StringResourceDialog extends Dialog {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setContentView(layoutId);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.StringResourceDialog.onCreate(android.os.Bundle)",this,savedInstanceState);try{setContentView(layoutId);
         setTitle(headerId);
         View v = findViewById(R.id.detail_html);
         if (v instanceof TextView) {
@@ -47,9 +47,9 @@ public class StringResourceDialog extends Dialog {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.StringResourceDialog$1.onClick(android.view.View)",this,v);try{dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.StringResourceDialog$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.StringResourceDialog$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.StringResourceDialog.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.StringResourceDialog.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
 
     }
 

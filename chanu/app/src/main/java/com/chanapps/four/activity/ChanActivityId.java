@@ -83,7 +83,7 @@ public class ChanActivityId implements Serializable {
 		this.threadNo = threadNo;
 		this.postNo = postNo;
         this.viewType = viewType;
-        if (DEBUG) Log.i(TAG, "set viewType=" + viewType);
+        if (DEBUG) {Log.i(TAG, "set viewType=" + viewType);}
 	}
 
     public ChanActivityId (LastActivity activity, String boardCode, long threadNo, long postNo, String text) {
@@ -96,94 +96,94 @@ public class ChanActivityId implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof ChanActivityId) {
+		com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this,o);try{if (o instanceof ChanActivityId) {
 			ChanActivityId obj = (ChanActivityId)o;
 			if (obj.activity == activity) {
 				if (boardCode == null) {
 					if (obj.boardCode != null) {
-						return false;
+						{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return false;}
 					}
 				} else if (!boardCode.equals(obj.boardCode)) {
-					return false;
+					{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return false;}
 				} else if (pageNo != obj.pageNo) {
-					return false;
+					{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return false;}
 				}
 
 				if (obj.threadNo != threadNo) {
-					return false;
+					{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return false;}
 				}
 				if (obj.postNo != postNo) {
-					return false;
+					{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return false;}
 				}
                 if (obj.viewType != viewType) {
-                    return false;
+                    {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return false;}
                 }
 
-				return true;
+				{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return true;}
 			}
 		}
-		return false;
+		{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.ChanActivityId.equals(java.lang.Object)",this,throwable);throw throwable;}
 	}
 	
 	@Override
 	public String toString() {
-		StringBuffer buffer = new StringBuffer();
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.ChanActivityId.toString()",this);try{StringBuffer buffer = new StringBuffer();
 		if (activity != null)
-			buffer.append(activity);
+			{buffer.append(activity);}
 		else
-            buffer.append("Service for ");
+            {buffer.append("Service for ");}
         if (boardCode != null)
-            buffer.append("/").append(boardCode);
+            {buffer.append("/").append(boardCode);}
         if (threadNo != 0)
-            buffer.append("/").append(threadNo);
+            {buffer.append("/").append(threadNo);}
         if (postNo != 0)
-            buffer.append("#").append(postNo);
+            {buffer.append("#").append(postNo);}
         if (viewType != null)
-            buffer.append(" viewType=" + viewType);
+            {buffer.append(" viewType=" + viewType);}
         if (text != null && !text.isEmpty())
-            buffer.append(" text=" + text);
-        return buffer.toString();
+            {buffer.append(" text=" + text);}
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.ChanActivityId.toString()",this);return buffer.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.ChanActivityId.toString()",this,throwable);throw throwable;}
 	}
 
     public Intent createIntent(Context context) {
-        switch (activity) {
+        com.mijack.Xlog.logMethodEnter("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this,context);try{switch (activity) {
             case ABOUT_ACTIVITY:
-                return AboutActivity.createIntent(context);
+                {com.mijack.Xlog.logMethodExit("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this);return AboutActivity.createIntent(context);}
             case SETTINGS_ACTIVITY:
-                return SettingsActivity.createIntent(context);
+                {com.mijack.Xlog.logMethodExit("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this);return SettingsActivity.createIntent(context);}
             case GALLERY_ACTIVITY:
-                return GalleryViewActivity.createIntent(
+                {com.mijack.Xlog.logMethodExit("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this);return GalleryViewActivity.createIntent(
                         context,
                         boardCode,
                         threadNo,
                         postNo,
-                        viewType);
+                        viewType);}
             case POST_REPLY_ACTIVITY:
-                return PostReplyActivity.createIntent(
+                {com.mijack.Xlog.logMethodExit("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this);return PostReplyActivity.createIntent(
                         context,
                         boardCode,
                         threadNo,
                         postNo,
                         text,
-                        text);
+                        text);}
             case THREAD_ACTIVITY:
-                return ThreadActivity.createIntent(
+                {com.mijack.Xlog.logMethodExit("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this);return ThreadActivity.createIntent(
                         context,
                         boardCode,
                         threadNo,
                         postNo,
-                        text);
+                        text);}
             case BOARD_ACTIVITY:
             default:
-                return BoardActivity.createIntent(
+                {com.mijack.Xlog.logMethodExit("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this);return BoardActivity.createIntent(
                         context,
                         boardCode,
-                        text);
-        }
+                        text);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.Intent com.chanapps.four.activity.ChanActivityId.createIntent(android.content.Context)",this,throwable);throw throwable;}
     }
 
     public String serialize() {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.activity.ChanActivityId.serialize()",this);try{ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(baos);
@@ -191,25 +191,25 @@ public class ChanActivityId implements Serializable {
             oos.close();
             byte[] bytes = baos.toByteArray();
             byte[] encodedBytes = Base64.encode(bytes, Base64.DEFAULT);
-            return new String(encodedBytes);
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.ChanActivityId.serialize()",this);return new String(encodedBytes);}
         }
         catch (IOException e) {
-            if (DEBUG) Log.e(TAG, "serialize() io exception " + this, e);
-            return null;
+            if (DEBUG) {Log.e(TAG, "serialize() io exception " + this, e);}
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.activity.ChanActivityId.serialize()",this);return null;}
         }
         finally {
             try {
                 if (oos != null)
-                    oos.close();
+                    {oos.close();}
             }
             catch (IOException e) {
-                if (DEBUG) Log.e(TAG, "serialize() close io exception " + this);
+                if (DEBUG) {Log.e(TAG, "serialize() close io exception " + this);}
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.activity.ChanActivityId.serialize()",this,throwable);throw throwable;}
     }
 
     public static ChanActivityId deserialize(String s) {
-        byte[] data = Base64.decode(s, Base64.DEFAULT);
+        com.mijack.Xlog.logStaticMethodEnter("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.ChanActivityId.deserialize(java.lang.String)",s);try{byte[] data = Base64.decode(s, Base64.DEFAULT);
         InputStream bais = new BufferedInputStream(new ByteArrayInputStream(data));
         ObjectInputStream ois = null;
         try {
@@ -217,28 +217,28 @@ public class ChanActivityId implements Serializable {
             Object o = ois.readObject();
             ois.close();
             if (!(o instanceof ChanActivityId)) {
-                if (DEBUG) Log.e(TAG, "deserialize() wrong class " + o.getClass());
-                return null;
+                if (DEBUG) {Log.e(TAG, "deserialize() wrong class " + o.getClass());}
+                {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.ChanActivityId.deserialize(java.lang.String)");return null;}
             }
-            return (ChanActivityId)o;
+            {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.ChanActivityId.deserialize(java.lang.String)");return (ChanActivityId)o;}
         }
         catch (IOException e) {
-            if (DEBUG) Log.e(TAG, "deseriliaze() io exception " + s, e);
-            return null;
+            if (DEBUG) {Log.e(TAG, "deseriliaze() io exception " + s, e);}
+            {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.ChanActivityId.deserialize(java.lang.String)");return null;}
         }
         catch (ClassNotFoundException e) {
-            if (DEBUG) Log.e(TAG, "deseriliaze() class not found exception " + s, e);
-            return null;
+            if (DEBUG) {Log.e(TAG, "deseriliaze() class not found exception " + s, e);}
+            {com.mijack.Xlog.logStaticMethodExit("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.ChanActivityId.deserialize(java.lang.String)");return null;}
         }
         finally {
             try {
                 if (ois != null)
-                    ois.close();
+                    {ois.close();}
             }
             catch (IOException e) {
-                if (DEBUG) Log.e(TAG, "deserialize() close io exception " + s);
+                if (DEBUG) {Log.e(TAG, "deserialize() close io exception " + s);}
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.chanapps.four.activity.ChanActivityId com.chanapps.four.activity.ChanActivityId.deserialize(java.lang.String)",throwable);throw throwable;}
     }
 
 }

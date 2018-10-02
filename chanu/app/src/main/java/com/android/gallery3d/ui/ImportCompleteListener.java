@@ -32,24 +32,23 @@ public class ImportCompleteListener implements MenuExecutor.ProgressListener {
     }
 
     public void onProgressComplete(int result) {
-        int message;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ImportCompleteListener.onProgressComplete(int)",this,result);try{int message;
         if (result == MenuExecutor.EXECUTION_RESULT_SUCCESS) {
             message = R.string.import_complete;
             goToImportedAlbum();
         } else {
             message = R.string.import_fail;
         }
-        Toast.makeText(mActivity.getAndroidContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(mActivity.getAndroidContext(), message, Toast.LENGTH_LONG).show();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ImportCompleteListener.onProgressComplete(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ImportCompleteListener.onProgressComplete(int)",this,throwable);throw throwable;}
     }
 
-    public void onProgressUpdate(int index) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ImportCompleteListener.onProgressUpdate(int)",this,index);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ImportCompleteListener.onProgressUpdate(int)",this);}
 
     private void goToImportedAlbum() {
-        String pathOfImportedAlbum = "/local/all/" + MediaSetUtils.IMPORTED_BUCKET_ID;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.ImportCompleteListener.goToImportedAlbum()",this);try{String pathOfImportedAlbum = "/local/all/" + MediaSetUtils.IMPORTED_BUCKET_ID;
         Bundle data = new Bundle();
         data.putString(AlbumPage.KEY_MEDIA_PATH, pathOfImportedAlbum);
-        mActivity.getStateManager().startState(AlbumPage.class, data);
+        mActivity.getStateManager().startState(AlbumPage.class, data);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.ImportCompleteListener.goToImportedAlbum()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.ImportCompleteListener.goToImportedAlbum()",this,throwable);throw throwable;}
     }
 
 }

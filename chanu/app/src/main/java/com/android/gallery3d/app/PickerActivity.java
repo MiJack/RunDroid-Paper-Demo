@@ -35,10 +35,10 @@ public class PickerActivity extends AbstractGalleryActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PickerActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
-        // We show the picker in two ways. One smaller screen we use a full
-        // screen window with an action bar. On larger screen we use a dialog.
+        /*// We show the picker in two ways. One smaller screen we use a full*/
+        /*// screen window with an action bar. On larger screen we use a dialog.*/
         boolean isDialog = getResources().getBoolean(R.bool.picker_is_dialog);
 
         if (!isDialog) {
@@ -49,48 +49,48 @@ public class PickerActivity extends AbstractGalleryActivity
         setContentView(R.layout.dialog_picker);
 
         if (isDialog) {
-            // In dialog mode, we don't have the action bar to show the
-            // "cancel" action, so we show an additional "cancel" button.
+            /*// In dialog mode, we don't have the action bar to show the*/
+            /*// "cancel" action, so we show an additional "cancel" button.*/
             View view = findViewById(R.id.cancel);
             view.setOnClickListener(this);
             view.setVisibility(View.VISIBLE);
 
-            // We need this, otherwise the view will be dimmed because it
-            // is "behind" the dialog.
+            /*// We need this, otherwise the view will be dimmed because it*/
+            /*// is "behind" the dialog.*/
             ((GLRootView) findViewById(R.id.gl_root_view)).setZOrderOnTop(true);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PickerActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PickerActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.PickerActivity.onCreateOptionsMenu(android.view.Menu)",this,menu);try{MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.pickup, menu);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.PickerActivity.onCreateOptionsMenu(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.PickerActivity.onCreateOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_cancel) {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.app.PickerActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{if (item.getItemId() == R.id.action_cancel) {
             finish();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.PickerActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.app.PickerActivity.onOptionsItemSelected(android.view.MenuItem)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.app.PickerActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onBackPressed() {
-        // send the back event to the top sub-state
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PickerActivity.onBackPressed()",this);try{/*// send the back event to the top sub-state*/
         GLRoot root = getGLRoot();
         root.lockRenderThread();
         try {
             getStateManager().getTopState().onBackPressed();
         } finally {
             root.unlockRenderThread();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PickerActivity.onBackPressed()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PickerActivity.onBackPressed()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.cancel) finish();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.PickerActivity.onClick(com.android.gallery3d.ui.GLRootView)",this,v);try{if (v.getId() == R.id.cancel) {finish();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.PickerActivity.onClick(com.android.gallery3d.ui.GLRootView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.PickerActivity.onClick(com.android.gallery3d.ui.GLRootView)",this,throwable);throw throwable;}
     }
 }

@@ -35,65 +35,65 @@ public class WidgetConfigureCoverFlowActivity extends AbstractWidgetConfigureAct
 
     @Override
     protected int getContentViewLayout() {
-        return R.layout.widget_configure_coverflow_layout;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getContentViewLayout()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getContentViewLayout()",this);return R.layout.widget_configure_coverflow_layout;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getContentViewLayout()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void setBoardImages() {
-        final Context context = this;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.setBoardImages()",this);try{final Context context = this;
         final Handler handler = new Handler();
-        if (DEBUG) Log.i(TAG, "setBoardImages() /" + widgetConf.boardCode + "/");
+        if (DEBUG) {Log.i(TAG, "setBoardImages() /" + widgetConf.boardCode + "/");}
         new Thread(new Runnable() {
             @Override
             public void run() {
-                urls = boardThreadUrls(context, widgetConf.boardCode, MAX_CONFIG_THREADS);
-                if (DEBUG) Log.i(TAG, "setBoardImages() /" + widgetConf.boardCode + "/ found " + urls.length
-                        + " urls=" + Arrays.toString(urls));
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$1.run()",this);try{urls = boardThreadUrls(context, widgetConf.boardCode, MAX_CONFIG_THREADS);
+                if (DEBUG) {Log.i(TAG, "setBoardImages() /" + widgetConf.boardCode + "/ found " + urls.length
+                        + " urls=" + Arrays.toString(urls));}
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (emptyView == null)
-                            emptyView = findViewById(R.id.stack_view_empty);
+                        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$1$1.run()",this);try{if (emptyView == null)
+                            {emptyView = findViewById(R.id.stack_view_empty);}
                         if (emptyView != null)
-                            emptyView.setVisibility(View.VISIBLE);
+                            {emptyView.setVisibility(View.VISIBLE);}
                         if (stackView == null)
-                            stackView = (StackView)findViewById(R.id.stack_view_coverflow);
+                            {stackView = (StackView)findViewById(R.id.stack_view_coverflow);}
                         if (stackView == null)
-                            return;
+                            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.setBoardImages()",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$1.run()",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$1$1.run()",this);return;}}}}
                         if (adapter == null) {
-                            if (DEBUG) Log.i(TAG, "setBoardImages() /" + widgetConf.boardCode + "/ stackView.setAdapter");
+                            if (DEBUG) {Log.i(TAG, "setBoardImages() /" + widgetConf.boardCode + "/ stackView.setAdapter");}
                             adapter = createAdapter();
                             stackView.setAdapter(adapter);
                         }
                         else {
                             adapter.notifyDataSetChanged();
-                        }
+                        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$1$1.run()",this,throwable);throw throwable;}
                     }
-                });
+                });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$1.run()",this,throwable);throw throwable;}
             }
-        }).start();
+        }).start();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.setBoardImages()",this,throwable);throw throwable;}
     }
 
     @Override
     protected String getWidgetType() {
-        return WidgetConstants.WIDGET_TYPE_COVER_FLOW;
+        com.mijack.Xlog.logMethodEnter("android.widget.String com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getWidgetType()",this);try{com.mijack.Xlog.logMethodExit("android.widget.String com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getWidgetType()",this);return WidgetConstants.WIDGET_TYPE_COVER_FLOW;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.String com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getWidgetType()",this,throwable);throw throwable;}
     }
 
     protected Class getWidgetProviderClass() {
-        return BoardCoverFlowWidgetProvider.class;
+        com.mijack.Xlog.logMethodEnter("android.widget.Class com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getWidgetProviderClass()",this);try{com.mijack.Xlog.logMethodExit("android.widget.Class com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getWidgetProviderClass()",this);return BoardCoverFlowWidgetProvider.class;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.Class com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.getWidgetProviderClass()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void addDoneClickHandler() {
-        Button doneButton = (Button) findViewById(R.id.done);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.addDoneClickHandler()",this);try{Button doneButton = (Button) findViewById(R.id.done);
         if (doneButton == null)
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.addDoneClickHandler()",this);return;}}
         final WidgetConfigureCoverFlowActivity activity = this;
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (DEBUG)
-                    Log.i(TAG, "Configured widget=" + appWidgetId + " configuring for board=" + widgetConf.boardCode);
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$2.onClick(android.view.View)",this,v);try{if (DEBUG)
+                    {Log.i(TAG, "Configured widget=" + appWidgetId + " configuring for board=" + widgetConf.boardCode);}
                 WidgetProviderUtils.storeWidgetConf(activity, widgetConf);
                 Intent intent = new Intent();
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
@@ -105,13 +105,13 @@ public class WidgetConfigureCoverFlowActivity extends AbstractWidgetConfigureAct
                 updateWidget.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
                 updateWidget.putExtra(WidgetProviderUtils.WIDGET_PROVIDER_UTILS, activity.getWidgetType());
                 activity.sendBroadcast(updateWidget);
-                activity.finish();
+                activity.finish();com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$2.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$2.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.addDoneClickHandler()",this,throwable);throw throwable;}
     }
 
     protected BaseAdapter createAdapter() {
-        return new CoverflowStackAdapter(this, R.layout.widget_coverflow_item, R.id.image_coverflow_item);
+        com.mijack.Xlog.logMethodEnter("android.widget.BaseAdapter com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.createAdapter()",this);try{com.mijack.Xlog.logMethodExit("android.widget.BaseAdapter com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.createAdapter()",this);return new CoverflowStackAdapter(this, R.layout.widget_coverflow_item, R.id.image_coverflow_item);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.BaseAdapter com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.createAdapter()",this,throwable);throw throwable;}
     }
 
     protected class CoverflowStackAdapter extends BaseAdapter {
@@ -127,50 +127,50 @@ public class WidgetConfigureCoverFlowActivity extends AbstractWidgetConfigureAct
 
         @Override
         public int getCount() {
-            if (DEBUG) Log.i(TAG, "getCount()=" + urls.length);
-            return urls.length;
+            com.mijack.Xlog.logMethodEnter("int com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getCount()",this);try{if (DEBUG) {Log.i(TAG, "getCount()=" + urls.length);}
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getCount()",this);return urls.length;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getCount()",this,throwable);throw throwable;}
         }
 
         @Override
         public Object getItem(int position) {
-            return urls[position];
+            com.mijack.Xlog.logMethodEnter("android.widget.Object com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getItem(int)",this,position);try{com.mijack.Xlog.logMethodExit("android.widget.Object com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getItem(int)",this);return urls[position];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.widget.Object com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getItem(int)",this,throwable);throw throwable;}
         }
 
         @Override
         public long getItemId(int position) {
-            return (new String(widgetConf.boardCode + "/" + position)).hashCode();
+            com.mijack.Xlog.logMethodEnter("long com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getItemId(int)",this,position);try{com.mijack.Xlog.logMethodExit("long com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getItemId(int)",this);return (new String(widgetConf.boardCode + "/" + position)).hashCode();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getItemId(int)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean hasStableIds() {
-            return false;
+            com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.hasStableIds()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.hasStableIds()",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.hasStableIds()",this,throwable);throw throwable;}
         }
 
         @Override
         public View getView(int position, View view, ViewGroup parent) {
-            if (DEBUG) Log.i(TAG, "getView() pos=" + position + " url=" + urls[position]);
+            com.mijack.Xlog.logMethodEnter("android.view.View com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,position,view,parent);try{if (DEBUG) {Log.i(TAG, "getView() pos=" + position + " url=" + urls[position]);}
             if (view == null) {
                 if (inflater == null)
-                    inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    {inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);}
                 view = inflater.inflate(layoutId, parent, false);
             }
             ImageView imageView = (ImageView) view.findViewById(imageId);
             imageView.setImageDrawable(null);
             ChanImageLoader.getInstance(context).displayImage(urls[position], imageView);
             if (emptyView != null && emptyView.getVisibility() != View.GONE)
-                emptyView.setVisibility(View.GONE);
-            return view;
+                {emptyView.setVisibility(View.GONE);}
+            {com.mijack.Xlog.logMethodExit("android.view.View com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getView(int,android.view.View,android.view.ViewGroup)",this);return view;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.chanapps.four.widget.WidgetConfigureCoverFlowActivity$CoverflowStackAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,throwable);throw throwable;}
         }
     }
 
     @Override
     public void onStart() {
-        super.onStart();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.onStart()",this);try{super.onStart();com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.onStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.onStart()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onStop() {
-        super.onStop();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.onStop()",this);try{super.onStop();com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.onStop()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.WidgetConfigureCoverFlowActivity.onStop()",this,throwable);throw throwable;}
     }
 
 }

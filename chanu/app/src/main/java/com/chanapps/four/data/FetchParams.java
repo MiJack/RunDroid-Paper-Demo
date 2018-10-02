@@ -12,7 +12,7 @@ public class FetchParams {
 	public long forceRefreshDelay;
 	public int readTimeout;
 	public int connectTimeout;
-    public int maxAutoLoadFSize; // in bytes
+    public int maxAutoLoadFSize; /*// in bytes*/
     public int maxThumbnailPrefetches;
 
 	public FetchParams(long refreshDelay, long forceRefreshDelay, int readTimeout, int connectTimeout, int maxAutoLoadFSize, int maxThumbnailPrefetches) {

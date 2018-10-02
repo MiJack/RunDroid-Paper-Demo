@@ -41,16 +41,16 @@ public class MediaSetUtils {
             Path.fromString("/local/video/" + CAMERA_BUCKET_ID)};
 
     public static boolean isCameraSource(Path path) {
-        return CAMERA_PATHS[0] == path || CAMERA_PATHS[1] == path
-                || CAMERA_PATHS[2] == path;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.util.MediaSetUtils.isCameraSource(com.android.gallery3d.data.Path)",path);try{com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.util.MediaSetUtils.isCameraSource(com.android.gallery3d.data.Path)");return CAMERA_PATHS[0] == path || CAMERA_PATHS[1] == path
+                || CAMERA_PATHS[2] == path;}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.util.MediaSetUtils.isCameraSource(com.android.gallery3d.data.Path)",throwable);throw throwable;}
     }
 
-    // Sort MediaSets by name
+    /*// Sort MediaSets by name*/
     public static class NameComparator implements Comparator<MediaSet> {
         public int compare(MediaSet set1, MediaSet set2) {
-            int result = set1.getName().compareToIgnoreCase(set2.getName());
-            if (result != 0) return result;
-            return set1.getPath().toString().compareTo(set2.getPath().toString());
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.util.MediaSetUtils$NameComparator.compare(com.android.gallery3d.data.MediaSet,com.android.gallery3d.data.MediaSet)",this,set1,set2);try{int result = set1.getName().compareToIgnoreCase(set2.getName());
+            if (result != 0) {{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.util.MediaSetUtils$NameComparator.compare(com.android.gallery3d.data.MediaSet,com.android.gallery3d.data.MediaSet)",this);return result;}}
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.util.MediaSetUtils$NameComparator.compare(com.android.gallery3d.data.MediaSet,com.android.gallery3d.data.MediaSet)",this);return set1.getPath().toString().compareTo(set2.getPath().toString());}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.util.MediaSetUtils$NameComparator.compare(com.android.gallery3d.data.MediaSet,com.android.gallery3d.data.MediaSet)",this,throwable);throw throwable;}
         }
     }
 }

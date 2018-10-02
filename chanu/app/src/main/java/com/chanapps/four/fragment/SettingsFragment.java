@@ -31,13 +31,13 @@ import com.chanapps.four.data.ChanFileStorage;
  */
 public class SettingsFragment
         extends PreferenceFragment
-//        implements SharedPreferences.OnSharedPreferenceChangeListener
+/*//        implements SharedPreferences.OnSharedPreferenceChangeListener*/
 {
 
     protected static final boolean DEBUG = false;
     protected static final String TAG = SettingsFragment.class.getSimpleName();
 
-    protected static final int STARTUP_INTENT = 0x80134148; // magic number
+    protected static final int STARTUP_INTENT = 0x80134148; /*// magic number*/
     protected static final int RESTART_DELAY_MS = 250;
 
     protected Preference downloadLocationButton;
@@ -46,13 +46,13 @@ public class SettingsFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         initPreferenceScreen();
-//        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+/*//        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public void initPreferenceScreen() {
-        addPreferencesFromResource(R.xml.preferences);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment.initPreferenceScreen()",this);try{addPreferencesFromResource(R.xml.preferences);
         /*
         Preference blocklistButton = findPreference(SettingsActivity.PREF_BLOCKLIST_BUTTON);
         blocklistButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -68,9 +68,9 @@ public class SettingsFragment
         resetPrefsButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                (new ResetPreferencesDialogFragment(SettingsFragment.this))
+     com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.SettingsFragment$1.onPreferenceClick(android.preference.Preference)",this,preference);try{           (new ResetPreferencesDialogFragment(SettingsFragment.this))
                         .show(getFragmentManager(), SettingsFragment.TAG);
-                return true;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.initPreferenceScreen()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.SettingsFragment$1.onPreferenceClick(android.preference.Preference)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.SettingsFragment$1.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
             }
         });
 
@@ -78,9 +78,9 @@ public class SettingsFragment
         clearCacheButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                (new ClearCacheDialogFragment(SettingsFragment.this))
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.SettingsFragment$2.onPreferenceClick(android.preference.Preference)",this,preference);try{(new ClearCacheDialogFragment(SettingsFragment.this))
                         .show(getFragmentManager(), SettingsFragment.TAG);
-                return true;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.initPreferenceScreen()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.SettingsFragment$2.onPreferenceClick(android.preference.Preference)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.SettingsFragment$2.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
             }
         });
         /*
@@ -108,9 +108,9 @@ public class SettingsFragment
         aboutButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), AboutActivity.class);
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.SettingsFragment$3.onPreferenceClick(android.preference.Preference)",this,preference);try{Intent intent = new Intent(getActivity(), AboutActivity.class);
                 startActivity(intent);
-                return true;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.initPreferenceScreen()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.SettingsFragment$3.onPreferenceClick(android.preference.Preference)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.SettingsFragment$3.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
             }
         });
 
@@ -118,10 +118,10 @@ public class SettingsFragment
         downloadLocationButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                File downloadFolder = ChanFileStorage.getDownloadFolder(getActivity(), null, 0, true);
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.SettingsFragment$4.onPreferenceClick(android.preference.Preference)",this,preference);try{File downloadFolder = ChanFileStorage.getDownloadFolder(getActivity(), null, 0, true);
                 DialogChooseDirectory d = new DialogChooseDirectory(getActivity(), chooseDirectoryHandler,
                         downloadFolder.getAbsolutePath());
-                return true;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.initPreferenceScreen()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.SettingsFragment$4.onPreferenceClick(android.preference.Preference)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.SettingsFragment$4.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
             }
         });
         File downloadFolder = ChanFileStorage.getDownloadFolder(getActivity(), null, 0, true);
@@ -132,11 +132,11 @@ public class SettingsFragment
         forceEnglish.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                //Toast.makeText(getActivity(), "onChange", Toast.LENGTH_SHORT).show();
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.SettingsFragment$5.onPreferenceChange(android.preference.Preference,java.lang.Object)",this,preference,newValue);try{/*//Toast.makeText(getActivity(), "onChange", Toast.LENGTH_SHORT).show();*/
                 restartApp();
-                return true;  //To change body of implemented methods use File | Settings | File Templates.
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.initPreferenceScreen()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.SettingsFragment$5.onPreferenceChange(android.preference.Preference,java.lang.Object)",this);return true;}}  /*//To change body of implemented methods use File | Settings | File Templates.*/}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.SettingsFragment$5.onPreferenceChange(android.preference.Preference,java.lang.Object)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment.initPreferenceScreen()",this,throwable);throw throwable;}
 
     };
 
@@ -234,12 +234,12 @@ public class SettingsFragment
         */
 
     private void restartApp() {
-        new Handler().postDelayed(new Runnable() {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment.restartApp()",this);try{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.restartApp()",this);new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Context context = getActivity();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment$6.run()",this);try{Context context = getActivity();
                 if (context == null) {
-                    return;
+                    {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment$6.run()",this);return;}
                 }
                 Intent mStartActivity = new Intent(context, StartupActivity.class);
                 int mPendingIntentId = STARTUP_INTENT;
@@ -247,9 +247,9 @@ public class SettingsFragment
                         PendingIntent.FLAG_CANCEL_CURRENT);
                 AlarmManager mgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + RESTART_DELAY_MS, mPendingIntent);
-                System.exit(0);
+                System.exit(0);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment$6.run()",this,throwable);throw throwable;}
             }
-        }, RESTART_DELAY_MS);
+        }, RESTART_DELAY_MS);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment.restartApp()",this,throwable);throw throwable;}
     }
 
     /*
@@ -292,9 +292,9 @@ public class SettingsFragment
 */
 
     public Handler ensureHandler() {
-        if (handler == null)
-            handler = new ReloadPrefsHandler(this);
-        return handler;
+        com.mijack.Xlog.logMethodEnter("android.os.Handler com.chanapps.four.fragment.SettingsFragment.ensureHandler()",this);try{if (handler == null)
+            {handler = new ReloadPrefsHandler(this);}
+        {com.mijack.Xlog.logMethodExit("android.os.Handler com.chanapps.four.fragment.SettingsFragment.ensureHandler()",this);return handler;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.Handler com.chanapps.four.fragment.SettingsFragment.ensureHandler()",this,throwable);throw throwable;}
     }
 
     protected class ReloadPrefsHandler extends Handler {
@@ -305,24 +305,24 @@ public class SettingsFragment
         }
         @Override
         public void handleMessage(Message msg) {
-            ((BaseAdapter)fragment.getPreferenceScreen().getRootAdapter()).notifyDataSetInvalidated();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment$ReloadPrefsHandler.handleMessage(android.os.Message)",this,msg);try{((BaseAdapter)fragment.getPreferenceScreen().getRootAdapter()).notifyDataSetInvalidated();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment$ReloadPrefsHandler.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment$ReloadPrefsHandler.handleMessage(android.os.Message)",this,throwable);throw throwable;}
         }
     }
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment.onAttach(android.app.Activity)",this,activity);try{super.onAttach(activity);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.onAttach(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment.onAttach(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment.onDetach()",this);try{super.onDetach();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment.onDetach()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment.onDetach()",this,throwable);throw throwable;}
     }
 
     protected DialogChooseDirectory.Result chooseDirectoryHandler = new DialogChooseDirectory.Result() {
         @Override
         public void onChooseDirectory(String dir) {
-            try {
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.SettingsFragment$7.onChooseDirectory(java.lang.String)",this,dir);try{try {
                 File file = new File(dir);
                 if (file.exists() && file.isDirectory() && file.canWrite()) {
                     String msg = String.format(getString(R.string.pref_download_location_set), file.getAbsolutePath());
@@ -339,7 +339,7 @@ public class SettingsFragment
                 }
             } catch (Exception e) {
                 Toast.makeText(getActivity(), R.string.pref_download_location_error, Toast.LENGTH_SHORT).show();
-            }
+            }com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.SettingsFragment$7.onChooseDirectory(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.SettingsFragment$7.onChooseDirectory(java.lang.String)",this,throwable);throw throwable;}
         }
     };
 

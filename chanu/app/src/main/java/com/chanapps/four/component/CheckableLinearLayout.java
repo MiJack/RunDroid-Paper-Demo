@@ -23,30 +23,30 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
 
     @Override
     protected void onFinishInflate() {
-        super.onFinishInflate();
-        setBackground();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableLinearLayout.onFinishInflate()",this);try{super.onFinishInflate();
+        setBackground();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableLinearLayout.onFinishInflate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableLinearLayout.onFinishInflate()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean isChecked() {
-        return isChecked;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.component.CheckableLinearLayout.isChecked()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.component.CheckableLinearLayout.isChecked()",this);return isChecked;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.component.CheckableLinearLayout.isChecked()",this,throwable);throw throwable;}
     }
 
     @Override
     public void setChecked(boolean checked) {
-        isChecked = checked;
-        setBackground();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableLinearLayout.setChecked(boolean)",this,checked);try{isChecked = checked;
+        setBackground();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableLinearLayout.setChecked(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableLinearLayout.setChecked(boolean)",this,throwable);throw throwable;}
     }
 
     @Override
     public void toggle() {
-        isChecked = !isChecked;
-        setBackground();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableLinearLayout.toggle()",this);try{isChecked = !isChecked;
+        setBackground();com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableLinearLayout.toggle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableLinearLayout.toggle()",this,throwable);throw throwable;}
     }
 
     protected void setBackground() {
-        if (isChecked) {
-            //setBackgroundColor(R.color.PaletteChanuGreenHalfOpacity);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableLinearLayout.setBackground()",this);try{if (isChecked) {
+            /*//setBackgroundColor(R.color.PaletteChanuGreenHalfOpacity);*/
             /*
             setBackgroundColor(R.color.blue_base);
             View v = getChildAt(0);
@@ -57,15 +57,15 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
         }
         else {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
-                deprecatedSetBackgroundDrawable(null);
+                {deprecatedSetBackgroundDrawable(null);}
             else
-                setBackground(null);
-        }
+                {setBackground(null);}
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableLinearLayout.setBackground()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableLinearLayout.setBackground()",this,throwable);throw throwable;}
     }
 
     @SuppressWarnings("deprecation")
     protected void deprecatedSetBackgroundDrawable(Drawable d) {
-        setBackgroundDrawable(d);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CheckableLinearLayout.deprecatedSetBackgroundDrawable(android.graphics.drawable.Drawable)",this,d);try{setBackgroundDrawable(d);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CheckableLinearLayout.deprecatedSetBackgroundDrawable(android.graphics.drawable.Drawable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CheckableLinearLayout.deprecatedSetBackgroundDrawable(android.graphics.drawable.Drawable)",this,throwable);throw throwable;}
     }
 
 }

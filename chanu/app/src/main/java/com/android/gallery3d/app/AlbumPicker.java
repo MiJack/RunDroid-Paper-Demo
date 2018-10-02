@@ -28,7 +28,7 @@ public class AlbumPicker extends PickerActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.AlbumPicker.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setTitle(R.string.select_album);
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -37,6 +37,6 @@ public class AlbumPicker extends PickerActivity {
         data.putBoolean(Gallery.KEY_GET_ALBUM, true);
         data.putString(AlbumSetPage.KEY_MEDIA_PATH,
                 getDataManager().getTopSetPath(DataManager.INCLUDE_IMAGE));
-        getStateManager().startState(AlbumSetPage.class, data);
+        getStateManager().startState(AlbumSetPage.class, data);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.AlbumPicker.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.AlbumPicker.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

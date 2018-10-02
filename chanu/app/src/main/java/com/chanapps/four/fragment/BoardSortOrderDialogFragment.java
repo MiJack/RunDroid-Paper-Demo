@@ -37,7 +37,7 @@ public class BoardSortOrderDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        array = getResources().getTextArray(R.array.sort_order_types);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.BoardSortOrderDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{array = getResources().getTextArray(R.array.sort_order_types);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder
                 .setTitle(R.string.sort_order_menu)
@@ -45,31 +45,31 @@ public class BoardSortOrderDialogFragment extends DialogFragment {
         ;
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);
-        return dialog;
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.BoardSortOrderDialogFragment.onCreateDialog(android.os.Bundle)",this);return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.BoardSortOrderDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 
     public BoardSortOrderDialogFragment setNotifySortOrderListener(NotifySortOrderListener notifySortOrderListener) {
-        this.notifySortOrderListener = notifySortOrderListener;
-        return this;
+        com.mijack.Xlog.logMethodEnter("com.chanapps.four.fragment.BoardSortOrderDialogFragment com.chanapps.four.fragment.BoardSortOrderDialogFragment.setNotifySortOrderListener(NotifySortOrderListener)",this,notifySortOrderListener);try{this.notifySortOrderListener = notifySortOrderListener;
+        {com.mijack.Xlog.logMethodExit("com.chanapps.four.fragment.BoardSortOrderDialogFragment com.chanapps.four.fragment.BoardSortOrderDialogFragment.setNotifySortOrderListener(NotifySortOrderListener)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.fragment.BoardSortOrderDialogFragment com.chanapps.four.fragment.BoardSortOrderDialogFragment.setNotifySortOrderListener(NotifySortOrderListener)",this,throwable);throw throwable;}
     }
 
 
     private DialogInterface.OnClickListener selectSortOrderListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            CharSequence item = array[which];
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BoardSortOrderDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{CharSequence item = array[which];
             sortType = BoardSortType.valueOfDisplayString(getActivity(), item.toString());
             if (notifySortOrderListener != null)
-                notifySortOrderListener.onSortOrderChanged(sortType);
-            dismiss();
+                {notifySortOrderListener.onSortOrderChanged(sortType);}
+            dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BoardSortOrderDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BoardSortOrderDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
         }
     };
 
     @Override
     public void onActivityCreated(Bundle bundle) {
-        super.onActivityCreated(bundle);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.BoardSortOrderDialogFragment.onActivityCreated(android.os.Bundle)",this,bundle);try{super.onActivityCreated(bundle);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.BoardSortOrderDialogFragment.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.BoardSortOrderDialogFragment.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 }

@@ -44,7 +44,7 @@ import javax.microedition.khronos.opengles.GL11;
 public class CropView extends GLView {
     private static final String TAG = "CropView";
 
-    private static final int FACE_PIXEL_COUNT = 120000; // around 400x300
+    private static final int FACE_PIXEL_COUNT = 120000; /*// around 400x300*/
 
     private static final int COLOR_OUTLINE = 0xFF008AFF;
     private static final int COLOR_FACE_OUTLINE = 0xFF000000;
@@ -117,24 +117,24 @@ public class CropView extends GLView {
         mMainHandler = new SynchronizedHandler(activity.getGLRoot()) {
             @Override
             public void handleMessage(Message message) {
-                Utils.assertTrue(message.what == MSG_UPDATE_FACES);
-                ((DetectFaceTask) message.obj).updateFaces();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$1.handleMessage(android.os.Message)",this,message);try{Utils.assertTrue(message.what == MSG_UPDATE_FACES);
+                ((DetectFaceTask) message.obj).updateFaces();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$1.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
             }
         };
     }
 
     public void setAspectRatio(float ratio) {
-        mAspectRatio = ratio;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.setAspectRatio(float)",this,ratio);try{mAspectRatio = ratio;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.setAspectRatio(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.setAspectRatio(float)",this,throwable);throw throwable;}
     }
 
     public void setSpotlightRatio(float ratioX, float ratioY) {
-        mSpotlightRatioX = ratioX;
-        mSpotlightRatioY = ratioY;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.setSpotlightRatio(float,float)",this,ratioX,ratioY);try{mSpotlightRatioX = ratioX;
+        mSpotlightRatioY = ratioY;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.setSpotlightRatio(float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.setSpotlightRatio(float,float)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onLayout(boolean changed, int l, int t, int r, int b) {
-        int width = r - l;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.onLayout(boolean,int,int,int,int)",this,changed,l,t,r,b);try{int width = r - l;
         int height = b - t;
 
         mFaceDetectionView.layout(0, 0, width, height);
@@ -146,50 +146,50 @@ public class CropView extends GLView {
                 mAnimation.parkNow(
                         mHighlightRectangle.mHighlightRect);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.onLayout(boolean,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     private boolean setImageViewPosition(int centerX, int centerY, float scale) {
-        int inverseX = mImageWidth - centerX;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.CropView.setImageViewPosition(int,int,float)",this,centerX,centerY,scale);try{int inverseX = mImageWidth - centerX;
         int inverseY = mImageHeight - centerY;
         TileImageView t = mImageView;
         int rotation = mImageRotation;
         switch (rotation) {
-            case 0: return t.setPosition(centerX, centerY, scale, 0);
-            case 90: return t.setPosition(centerY, inverseX, scale, 90);
-            case 180: return t.setPosition(inverseX, inverseY, scale, 180);
-            case 270: return t.setPosition(inverseY, centerX, scale, 270);
+            case 0: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView.setImageViewPosition(int,int,float)",this);return t.setPosition(centerX, centerY, scale, 0);}
+            case 90: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView.setImageViewPosition(int,int,float)",this);return t.setPosition(centerY, inverseX, scale, 90);}
+            case 180: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView.setImageViewPosition(int,int,float)",this);return t.setPosition(inverseX, inverseY, scale, 180);}
+            case 270: {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView.setImageViewPosition(int,int,float)",this);return t.setPosition(inverseY, centerX, scale, 270);}
             default: throw new IllegalArgumentException(String.valueOf(rotation));
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.CropView.setImageViewPosition(int,int,float)",this,throwable);throw throwable;}
     }
 
     @Override
     public void render(GLCanvas canvas) {
-        AnimationController a = mAnimation;
-        if (a.calculate(canvas.currentAnimationTimeMillis())) invalidate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.render(GLCanvas)",this,canvas);try{AnimationController a = mAnimation;
+        if (a.calculate(canvas.currentAnimationTimeMillis())) {invalidate();}
         setImageViewPosition(a.getCenterX(), a.getCenterY(), a.getScale());
-        super.render(canvas);
+        super.render(canvas);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.render(GLCanvas)",this,throwable);throw throwable;}
     }
 
     @Override
     public void renderBackground(GLCanvas canvas) {
-        canvas.clearBuffer();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.renderBackground(GLCanvas)",this,canvas);try{canvas.clearBuffer();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.renderBackground(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.renderBackground(GLCanvas)",this,throwable);throw throwable;}
     }
 
     public RectF getCropRectangle() {
-        if (mHighlightRectangle.getVisibility() == GLView.INVISIBLE) return null;
+        com.mijack.Xlog.logMethodEnter("android.graphics.RectF com.android.gallery3d.ui.CropView.getCropRectangle()",this);try{if (mHighlightRectangle.getVisibility() == GLView.INVISIBLE) {{com.mijack.Xlog.logMethodExit("android.graphics.RectF com.android.gallery3d.ui.CropView.getCropRectangle()",this);return null;}}
         RectF rect = mHighlightRectangle.mHighlightRect;
         RectF result = new RectF(rect.left * mImageWidth, rect.top * mImageHeight,
                 rect.right * mImageWidth, rect.bottom * mImageHeight);
-        return result;
+        {com.mijack.Xlog.logMethodExit("android.graphics.RectF com.android.gallery3d.ui.CropView.getCropRectangle()",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.RectF com.android.gallery3d.ui.CropView.getCropRectangle()",this,throwable);throw throwable;}
     }
 
     public int getImageWidth() {
-        return mImageWidth;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.CropView.getImageWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.CropView.getImageWidth()",this);return mImageWidth;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.CropView.getImageWidth()",this,throwable);throw throwable;}
     }
 
     public int getImageHeight() {
-        return mImageHeight;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.CropView.getImageHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.CropView.getImageHeight()",this);return mImageHeight;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.CropView.getImageHeight()",this,throwable);throw throwable;}
     }
 
     private class FaceHighlightView extends GLView {
@@ -199,12 +199,12 @@ public class CropView extends GLView {
         private int mPressedFaceIndex = INDEX_NONE;
 
         public void addFace(RectF faceRect) {
-            mFaces.add(faceRect);
-            invalidate();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$FaceHighlightView.addFace(android.graphics.RectF)",this,faceRect);try{mFaces.add(faceRect);
+            invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$FaceHighlightView.addFace(android.graphics.RectF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$FaceHighlightView.addFace(android.graphics.RectF)",this,throwable);throw throwable;}
         }
 
         private void renderFace(GLCanvas canvas, RectF face, boolean pressed) {
-            GL11 gl = canvas.getGLInstance();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$FaceHighlightView.renderFace(GLCanvas,android.graphics.RectF,boolean)",this,canvas,face,pressed);try{GL11 gl = canvas.getGLInstance();
             if (pressed) {
                 gl.glEnable(GL11.GL_STENCIL_TEST);
                 gl.glClear(GL11.GL_STENCIL_BUFFER_BIT);
@@ -218,12 +218,12 @@ public class CropView extends GLView {
 
             if (pressed) {
                 gl.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_KEEP);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$FaceHighlightView.renderFace(GLCanvas,android.graphics.RectF,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$FaceHighlightView.renderFace(GLCanvas,android.graphics.RectF,boolean)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void renderBackground(GLCanvas canvas) {
-            ArrayList<RectF> faces = mFaces;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$FaceHighlightView.renderBackground(GLCanvas)",this,canvas);try{ArrayList<RectF> faces = mFaces;
             for (int i = 0, n = faces.size(); i < n; ++i) {
                 renderFace(canvas, faces.get(i), i == mPressedFaceIndex);
             }
@@ -233,27 +233,27 @@ public class CropView extends GLView {
                 gl.glStencilFunc(GL11.GL_NOTEQUAL, 1, 1);
                 canvas.fillRect(0, 0, getWidth(), getHeight(), 0x66000000);
                 gl.glDisable(GL11.GL_STENCIL_TEST);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$FaceHighlightView.renderBackground(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$FaceHighlightView.renderBackground(GLCanvas)",this,throwable);throw throwable;}
         }
 
         private void setPressedFace(int index) {
-            if (mPressedFaceIndex == index) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$FaceHighlightView.setPressedFace(int)",this,index);try{if (mPressedFaceIndex == index) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$FaceHighlightView.setPressedFace(int)",this);return;}}
             mPressedFaceIndex = index;
-            invalidate();
+            invalidate();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$FaceHighlightView.setPressedFace(int)",this,throwable);throw throwable;}
         }
 
         private int getFaceIndexByPosition(float x, float y) {
-            ArrayList<RectF> faces = mFaces;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.CropView$FaceHighlightView.getFaceIndexByPosition(float,float)",this,x,y);try{ArrayList<RectF> faces = mFaces;
             for (int i = 0, n = faces.size(); i < n; ++i) {
                 RectF r = mAnimation.mapRect(faces.get(i), mRect);
-                if (r.contains(x, y)) return i;
+                if (r.contains(x, y)) {{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.CropView$FaceHighlightView.getFaceIndexByPosition(float,float)",this);return i;}}
             }
-            return INDEX_NONE;
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.CropView$FaceHighlightView.getFaceIndexByPosition(float,float)",this);return INDEX_NONE;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.CropView$FaceHighlightView.getFaceIndexByPosition(float,float)",this,throwable);throw throwable;}
         }
 
         @Override
         protected boolean onTouch(MotionEvent event) {
-            float x = event.getX();
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.CropView$FaceHighlightView.onTouch(android.view.MotionEvent)",this,event);try{float x = event.getX();
             float y = event.getY();
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -272,7 +272,7 @@ public class CropView extends GLView {
                     }
                 }
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView$FaceHighlightView.onTouch(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.CropView$FaceHighlightView.onTouch(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
     }
 
@@ -293,15 +293,15 @@ public class CropView extends GLView {
         }
 
         public void initialize() {
-            mCurrentX = mImageWidth / 2;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$AnimationController.initialize()",this);try{mCurrentX = mImageWidth / 2;
             mCurrentY = mImageHeight / 2;
             mCurrentScale = Math.min(2, Math.min(
                     (float) getWidth() / mImageWidth,
-                    (float) getHeight() / mImageHeight));
+                    (float) getHeight() / mImageHeight));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$AnimationController.initialize()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$AnimationController.initialize()",this,throwable);throw throwable;}
         }
 
         public void startParkingAnimation(RectF highlight) {
-            RectF r = mAnimation.mapRect(highlight, new RectF());
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$AnimationController.startParkingAnimation(android.graphics.RectF)",this,highlight);try{RectF r = mAnimation.mapRect(highlight, new RectF());
             int width = getWidth();
             int height = getHeight();
 
@@ -311,33 +311,33 @@ public class CropView extends GLView {
             if (wr >= MIN_SELECTION_RATIO && wr < MAX_SELECTION_RATIO
                     && hr >= MIN_SELECTION_RATIO && hr < MAX_SELECTION_RATIO
                     && r.left >= d && r.right < width - d
-                    && r.top >= d && r.bottom < height - d) return;
+                    && r.top >= d && r.bottom < height - d) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$AnimationController.startParkingAnimation(android.graphics.RectF)",this);return;}}
 
             mStartX = mCurrentX;
             mStartY = mCurrentY;
             mStartScale = mCurrentScale;
             calculateTarget(highlight);
-            start();
+            start();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$AnimationController.startParkingAnimation(android.graphics.RectF)",this,throwable);throw throwable;}
         }
 
         public void parkNow(RectF highlight) {
-            calculateTarget(highlight);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$AnimationController.parkNow(android.graphics.RectF)",this,highlight);try{calculateTarget(highlight);
             forceStop();
             mStartX = mCurrentX = mTargetX;
             mStartY = mCurrentY = mTargetY;
-            mStartScale = mCurrentScale = mTargetScale;
+            mStartScale = mCurrentScale = mTargetScale;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$AnimationController.parkNow(android.graphics.RectF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$AnimationController.parkNow(android.graphics.RectF)",this,throwable);throw throwable;}
         }
 
         public void inverseMapPoint(PointF point) {
-            float s = mCurrentScale;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$AnimationController.inverseMapPoint(android.graphics.PointF)",this,point);try{float s = mCurrentScale;
             point.x = Utils.clamp(((point.x - getWidth() * 0.5f) / s
                     + mCurrentX) / mImageWidth, 0, 1);
             point.y = Utils.clamp(((point.y - getHeight() * 0.5f) / s
-                    + mCurrentY) / mImageHeight, 0, 1);
+                    + mCurrentY) / mImageHeight, 0, 1);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$AnimationController.inverseMapPoint(android.graphics.PointF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$AnimationController.inverseMapPoint(android.graphics.PointF)",this,throwable);throw throwable;}
         }
 
         public RectF mapRect(RectF input, RectF output) {
-            float offsetX = getWidth() * 0.5f;
+            com.mijack.Xlog.logMethodEnter("android.graphics.RectF com.android.gallery3d.ui.CropView$AnimationController.mapRect(android.graphics.RectF,android.graphics.RectF)",this,input,output);try{float offsetX = getWidth() * 0.5f;
             float offsetY = getHeight() * 0.5f;
             int x = mCurrentX;
             int y = mCurrentY;
@@ -347,33 +347,33 @@ public class CropView extends GLView {
                     offsetY + (input.top * mImageHeight - y) * s,
                     offsetX + (input.right * mImageWidth - x) * s,
                     offsetY + (input.bottom * mImageHeight - y) * s);
-            return output;
+            {com.mijack.Xlog.logMethodExit("android.graphics.RectF com.android.gallery3d.ui.CropView$AnimationController.mapRect(android.graphics.RectF,android.graphics.RectF)",this);return output;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.RectF com.android.gallery3d.ui.CropView$AnimationController.mapRect(android.graphics.RectF,android.graphics.RectF)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onCalculate(float progress) {
-            mCurrentX = Math.round(mStartX + (mTargetX - mStartX) * progress);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$AnimationController.onCalculate(float)",this,progress);try{mCurrentX = Math.round(mStartX + (mTargetX - mStartX) * progress);
             mCurrentY = Math.round(mStartY + (mTargetY - mStartY) * progress);
             mCurrentScale = mStartScale + (mTargetScale - mStartScale) * progress;
 
             if (mCurrentX == mTargetX && mCurrentY == mTargetY
-                    && mCurrentScale == mTargetScale) forceStop();
+                    && mCurrentScale == mTargetScale) {forceStop();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$AnimationController.onCalculate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$AnimationController.onCalculate(float)",this,throwable);throw throwable;}
         }
 
         public int getCenterX() {
-            return mCurrentX;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.CropView$AnimationController.getCenterX()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.CropView$AnimationController.getCenterX()",this);return mCurrentX;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.CropView$AnimationController.getCenterX()",this,throwable);throw throwable;}
         }
 
         public int getCenterY() {
-            return mCurrentY;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.CropView$AnimationController.getCenterY()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.CropView$AnimationController.getCenterY()",this);return mCurrentY;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.CropView$AnimationController.getCenterY()",this,throwable);throw throwable;}
         }
 
         public float getScale() {
-            return mCurrentScale;
+            com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.ui.CropView$AnimationController.getScale()",this);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.ui.CropView$AnimationController.getScale()",this);return mCurrentScale;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.ui.CropView$AnimationController.getScale()",this,throwable);throw throwable;}
         }
 
         private void calculateTarget(RectF highlight) {
-            float width = getWidth();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$AnimationController.calculateTarget(android.graphics.RectF)",this,highlight);try{float width = getWidth();
             float height = getHeight();
 
             if (mImageWidth != SIZE_UNKNOWN) {
@@ -405,7 +405,7 @@ public class CropView extends GLView {
                 mTargetX = centerX;
                 mTargetY = centerY;
                 mTargetScale = scale;
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$AnimationController.calculateTarget(android.graphics.RectF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$AnimationController.calculateTarget(android.graphics.RectF)",this,throwable);throw throwable;}
         }
 
     }
@@ -427,7 +427,7 @@ public class CropView extends GLView {
         }
 
         public void setInitRectangle() {
-            float targetRatio = mAspectRatio == UNSPECIFIED
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$HighlightRectangle.setInitRectangle()",this);try{float targetRatio = mAspectRatio == UNSPECIFIED
                     ? 1f
                     : mAspectRatio * mImageHeight / mImageWidth;
             float w = SELECTION_RATIO / 2f;
@@ -437,17 +437,17 @@ public class CropView extends GLView {
             } else {
                 w = h * targetRatio;
             }
-            mHighlightRect.set(0.5f - w, 0.5f - h, 0.5f + w, 0.5f + h);
+            mHighlightRect.set(0.5f - w, 0.5f - h, 0.5f + w, 0.5f + h);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$HighlightRectangle.setInitRectangle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$HighlightRectangle.setInitRectangle()",this,throwable);throw throwable;}
         }
 
         public void setRectangle(RectF faceRect) {
-            mHighlightRect.set(faceRect);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$HighlightRectangle.setRectangle(android.graphics.RectF)",this,faceRect);try{mHighlightRect.set(faceRect);
             mAnimation.startParkingAnimation(faceRect);
-            invalidate();
+            invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$HighlightRectangle.setRectangle(android.graphics.RectF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$HighlightRectangle.setRectangle(android.graphics.RectF)",this,throwable);throw throwable;}
         }
 
         private void moveEdges(MotionEvent event) {
-            float scale = mAnimation.getScale();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$HighlightRectangle.moveEdges(android.view.MotionEvent)",this,event);try{float scale = mAnimation.getScale();
             float dx = (event.getX() - mReferenceX) / scale / mImageWidth;
             float dy = (event.getY() - mReferenceY) / scale / mImageHeight;
             mReferenceX = event.getX();
@@ -515,18 +515,18 @@ public class CropView extends GLView {
                     }
                 }
             }
-            invalidate();
+            invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$HighlightRectangle.moveEdges(android.view.MotionEvent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$HighlightRectangle.moveEdges(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         private void setMovingEdges(MotionEvent event) {
-            RectF r = mAnimation.mapRect(mHighlightRect, mTempRect);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$HighlightRectangle.setMovingEdges(android.view.MotionEvent)",this,event);try{RectF r = mAnimation.mapRect(mHighlightRect, mTempRect);
             float x = event.getX();
             float y = event.getY();
 
             if (x > r.left + TOUCH_TOLERANCE && x < r.right - TOUCH_TOLERANCE
                     && y > r.top + TOUCH_TOLERANCE && y < r.bottom - TOUCH_TOLERANCE) {
                 mMovingEdges = MOVE_BLOCK;
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$HighlightRectangle.setMovingEdges(android.view.MotionEvent)",this);return;}
             }
 
             boolean inVerticalRange = (r.top - TOUCH_TOLERANCE) <= y
@@ -541,8 +541,8 @@ public class CropView extends GLView {
                     left = Math.abs(x - r.left) < Math.abs(x - r.right);
                     right = !left;
                 }
-                if (left) mMovingEdges |= MOVE_LEFT;
-                if (right) mMovingEdges |= MOVE_RIGHT;
+                if (left) {mMovingEdges |= MOVE_LEFT;}
+                if (right) {mMovingEdges |= MOVE_RIGHT;}
                 if (mAspectRatio != UNSPECIFIED && inHorizontalRange) {
                     mMovingEdges |= (y >
                             (r.top + r.bottom) / 2) ? MOVE_BOTTOM : MOVE_TOP;
@@ -555,24 +555,24 @@ public class CropView extends GLView {
                     top = Math.abs(y - r.top) < Math.abs(y - r.bottom);
                     bottom = !top;
                 }
-                if (top) mMovingEdges |= MOVE_TOP;
-                if (bottom) mMovingEdges |= MOVE_BOTTOM;
+                if (top) {mMovingEdges |= MOVE_TOP;}
+                if (bottom) {mMovingEdges |= MOVE_BOTTOM;}
                 if (mAspectRatio != UNSPECIFIED && inVerticalRange) {
                     mMovingEdges |= (x >
                             (r.left + r.right) / 2) ? MOVE_RIGHT : MOVE_LEFT;
                 }
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$HighlightRectangle.setMovingEdges(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         @Override
         protected boolean onTouch(MotionEvent event) {
-            switch (event.getAction()) {
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.CropView$HighlightRectangle.onTouch(android.view.MotionEvent)",this,event);try{switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: {
                     mReferenceX = event.getX();
                     mReferenceY = event.getY();
                     setMovingEdges(event);
                     invalidate();
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView$HighlightRectangle.onTouch(android.view.MotionEvent)",this);return true;}
                 }
                 case MotionEvent.ACTION_MOVE:
                     moveEdges(event);
@@ -582,15 +582,15 @@ public class CropView extends GLView {
                     mMovingEdges = 0;
                     mAnimation.startParkingAnimation(mHighlightRect);
                     invalidate();
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView$HighlightRectangle.onTouch(android.view.MotionEvent)",this);return true;}
                 }
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.CropView$HighlightRectangle.onTouch(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.CropView$HighlightRectangle.onTouch(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void renderBackground(GLCanvas canvas) {
-            RectF r = mAnimation.mapRect(mHighlightRect, mTempRect);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$HighlightRectangle.renderBackground(GLCanvas)",this,canvas);try{RectF r = mAnimation.mapRect(mHighlightRect, mTempRect);
             drawHighlightRectangle(canvas, r);
 
             float centerY = (r.top + r.bottom) / 2;
@@ -615,11 +615,11 @@ public class CropView extends GLView {
                 mArrow.draw(canvas,
                         Math.round(centerX - mArrow.getWidth() / 2),
                         Math.round(r.bottom - mArrow.getHeight() / 2));
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$HighlightRectangle.renderBackground(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$HighlightRectangle.renderBackground(GLCanvas)",this,throwable);throw throwable;}
         }
 
         private void drawHighlightRectangle(GLCanvas canvas, RectF r) {
-            GL11 gl = canvas.getGLInstance();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$HighlightRectangle.drawHighlightRectangle(GLCanvas,android.graphics.RectF)",this,canvas,r);try{GL11 gl = canvas.getGLInstance();
             gl.glLineWidth(3.0f);
             gl.glEnable(GL11.GL_LINE_SMOOTH);
 
@@ -654,7 +654,7 @@ public class CropView extends GLView {
 
             canvas.fillRect(0, 0, getWidth(), getHeight(), 0xA0000000);
 
-            gl.glDisable(GL11.GL_STENCIL_TEST);
+            gl.glDisable(GL11.GL_STENCIL_TEST);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$HighlightRectangle.drawHighlightRectangle(GLCanvas,android.graphics.RectF)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$HighlightRectangle.drawHighlightRectangle(GLCanvas,android.graphics.RectF)",this,throwable);throw throwable;}
         }
     }
 
@@ -670,16 +670,16 @@ public class CropView extends GLView {
 
         @Override
         public void run() {
-            Bitmap bitmap = mFaceBitmap;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$DetectFaceTask.run()",this);try{Bitmap bitmap = mFaceBitmap;
             FaceDetector detector = new FaceDetector(
                     bitmap.getWidth(), bitmap.getHeight(), MAX_FACE_COUNT);
             mFaceCount = detector.findFaces(bitmap, mFaces);
             mMainHandler.sendMessage(
-                    mMainHandler.obtainMessage(MSG_UPDATE_FACES, this));
+                    mMainHandler.obtainMessage(MSG_UPDATE_FACES, this));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$DetectFaceTask.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$DetectFaceTask.run()",this,throwable);throw throwable;}
         }
 
         private RectF getFaceRect(FaceDetector.Face face) {
-            PointF point = new PointF();
+            com.mijack.Xlog.logMethodEnter("android.graphics.RectF com.android.gallery3d.ui.CropView$DetectFaceTask.getFaceRect(FaceDetector.Face)",this,face);try{PointF point = new PointF();
             face.getMidPoint(point);
 
             int width = mFaceBitmap.getWidth();
@@ -715,11 +715,11 @@ public class CropView extends GLView {
             r.right /= width;
             r.top /= height;
             r.bottom /= height;
-            return r;
+            {com.mijack.Xlog.logMethodExit("android.graphics.RectF com.android.gallery3d.ui.CropView$DetectFaceTask.getFaceRect(FaceDetector.Face)",this);return r;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.RectF com.android.gallery3d.ui.CropView$DetectFaceTask.getFaceRect(FaceDetector.Face)",this,throwable);throw throwable;}
         }
 
         public void updateFaces() {
-            if (mFaceCount > 1) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView$DetectFaceTask.updateFaces()",this);try{if (mFaceCount > 1) {
                 for (int i = 0, n = mFaceCount; i < n; ++i) {
                     mFaceDetectionView.addFace(getFaceRect(mFaces[i]));
                 }
@@ -733,12 +733,12 @@ public class CropView extends GLView {
             } else /*mFaceCount == 0*/ {
                 mHighlightRectangle.setInitRectangle();
                 mHighlightRectangle.setVisibility(GLView.VISIBLE);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView$DetectFaceTask.updateFaces()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView$DetectFaceTask.updateFaces()",this,throwable);throw throwable;}
         }
     }
 
     public void setDataModel(TileImageView.Model dataModel, int rotation) {
-        if (((rotation / 90) & 0x01) != 0) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.setDataModel(TileImageView.Model,int)",this,dataModel,rotation);try{if (((rotation / 90) & 0x01) != 0) {
             mImageWidth = dataModel.getImageHeight();
             mImageHeight = dataModel.getImageWidth();
         } else {
@@ -749,20 +749,20 @@ public class CropView extends GLView {
         mImageRotation = rotation;
 
         mImageView.setModel(dataModel);
-        mAnimation.initialize();
+        mAnimation.initialize();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.setDataModel(TileImageView.Model,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.setDataModel(TileImageView.Model,int)",this,throwable);throw throwable;}
     }
 
     public void detectFaces(Bitmap bitmap) {
-        int rotation = mImageRotation;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.detectFaces(android.graphics.Bitmap)",this,bitmap);try{int rotation = mImageRotation;
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         float scale = (float) Math.sqrt(
                 (double) FACE_PIXEL_COUNT / (width * height));
 
-        // faceBitmap is a correctly rotated bitmap, as viewed by a user.
+        /*// faceBitmap is a correctly rotated bitmap, as viewed by a user.*/
         Bitmap faceBitmap;
         if (((rotation / 90) & 1) == 0) {
-            int w = (Math.round(width * scale) & ~1); // must be even
+            int w = (Math.round(width * scale) & ~1); /*// must be even*/
             int h = Math.round(height * scale);
             faceBitmap = Bitmap.createBitmap(w, h, Config.RGB_565);
             Canvas canvas = new Canvas(faceBitmap);
@@ -770,7 +770,7 @@ public class CropView extends GLView {
             canvas.scale((float) w / width, (float) h / height);
             canvas.drawBitmap(bitmap, 0, 0, new Paint(Paint.FILTER_BITMAP_FLAG));
         } else {
-            int w = (Math.round(height * scale) & ~1); // must be even
+            int w = (Math.round(height * scale) & ~1); /*// must be even*/
             int h = Math.round(width * scale);
             faceBitmap = Bitmap.createBitmap(w, h, Config.RGB_565);
             Canvas canvas = new Canvas(faceBitmap);
@@ -780,20 +780,20 @@ public class CropView extends GLView {
             canvas.scale((float) w / height, (float) h / width);
             canvas.drawBitmap(bitmap, 0, 0, new Paint(Paint.FILTER_BITMAP_FLAG));
         }
-        new DetectFaceTask(faceBitmap).start();
+        new DetectFaceTask(faceBitmap).start();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.detectFaces(android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.detectFaces(android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     public void initializeHighlightRectangle() {
-        mHighlightRectangle.setInitRectangle();
-        mHighlightRectangle.setVisibility(GLView.VISIBLE);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.initializeHighlightRectangle()",this);try{mHighlightRectangle.setInitRectangle();
+        mHighlightRectangle.setVisibility(GLView.VISIBLE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.initializeHighlightRectangle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.initializeHighlightRectangle()",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        mImageView.prepareTextures();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.resume()",this);try{mImageView.prepareTextures();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.resume()",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        mImageView.freeTextures();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CropView.pause()",this);try{mImageView.freeTextures();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CropView.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CropView.pause()",this,throwable);throw throwable;}
     }
 }
 

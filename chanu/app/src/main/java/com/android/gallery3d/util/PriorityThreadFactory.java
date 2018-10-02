@@ -36,13 +36,13 @@ public class PriorityThreadFactory implements ThreadFactory {
     }
 
     public Thread newThread(Runnable r) {
-        return new Thread(r, mName + '-' + mNumber.getAndIncrement()) {
+        com.mijack.Xlog.logMethodEnter("java.lang.Thread com.android.gallery3d.util.PriorityThreadFactory.newThread(java.lang.Runnable)",this,r);try{com.mijack.Xlog.logMethodExit("java.lang.Thread com.android.gallery3d.util.PriorityThreadFactory.newThread(java.lang.Runnable)",this);return new Thread(r, mName + '-' + mNumber.getAndIncrement()) {
             @Override
             public void run() {
-                Process.setThreadPriority(mPriority);
-                super.run();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.util.PriorityThreadFactory$1.run()",this);try{Process.setThreadPriority(mPriority);
+                super.run();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.util.PriorityThreadFactory$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.util.PriorityThreadFactory$1.run()",this,throwable);throw throwable;}
             }
-        };
+        };}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Thread com.android.gallery3d.util.PriorityThreadFactory.newThread(java.lang.Runnable)",this,throwable);throw throwable;}
     }
 
 }

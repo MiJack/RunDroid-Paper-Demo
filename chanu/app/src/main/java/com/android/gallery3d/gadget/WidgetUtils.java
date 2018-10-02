@@ -39,23 +39,23 @@ public class WidgetUtils {
     }
 
     public static void initialize(Context context) {
-        Resources r = context.getResources();
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.gadget.WidgetUtils.initialize(android.content.Context)",context);try{Resources r = context.getResources();
         sStackPhotoWidth = r.getDimensionPixelSize(R.dimen.stack_photo_width);
-        sStackPhotoHeight = r.getDimensionPixelSize(R.dimen.stack_photo_height);
+        sStackPhotoHeight = r.getDimensionPixelSize(R.dimen.stack_photo_height);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.gadget.WidgetUtils.initialize(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetUtils.initialize(android.content.Context)",throwable);throw throwable;}
     }
 
     public static Bitmap createWidgetBitmap(MediaItem image) {
-        Bitmap bitmap = image.requestImage(MediaItem.TYPE_THUMBNAIL)
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetUtils.createWidgetBitmap(com.android.gallery3d.data.MediaItem)",image);try{Bitmap bitmap = image.requestImage(MediaItem.TYPE_THUMBNAIL)
                .run(ThreadPool.JOB_CONTEXT_STUB);
         if (bitmap == null) {
             Log.w(TAG, "fail to get image of " + image.toString());
-            return null;
+            {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetUtils.createWidgetBitmap(com.android.gallery3d.data.MediaItem)");return null;}
         }
-        return createWidgetBitmap(bitmap, image.getRotation());
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetUtils.createWidgetBitmap(com.android.gallery3d.data.MediaItem)");return createWidgetBitmap(bitmap, image.getRotation());}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetUtils.createWidgetBitmap(com.android.gallery3d.data.MediaItem)",throwable);throw throwable;}
     }
 
     public static Bitmap createWidgetBitmap(Bitmap bitmap, int rotation) {
-        int w = bitmap.getWidth();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetUtils.createWidgetBitmap(android.graphics.Bitmap,int)",bitmap,rotation);try{int w = bitmap.getWidth();
         int h = bitmap.getHeight();
 
         float scale;
@@ -75,6 +75,6 @@ public class WidgetUtils {
         canvas.scale(scale, scale);
         Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG);
         canvas.drawBitmap(bitmap, -w / 2, -h / 2, paint);
-        return target;
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetUtils.createWidgetBitmap(android.graphics.Bitmap,int)");return target;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.gadget.WidgetUtils.createWidgetBitmap(android.graphics.Bitmap,int)",throwable);throw throwable;}
     }
 }

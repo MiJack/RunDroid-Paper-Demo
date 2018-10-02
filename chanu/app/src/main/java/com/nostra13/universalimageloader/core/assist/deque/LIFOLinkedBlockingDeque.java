@@ -29,7 +29,7 @@ public class LIFOLinkedBlockingDeque<T> extends LinkedBlockingDeque<T> {
 	 */
 	@Override
 	public boolean offer(T e) {
-		return super.offerFirst(e);
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.assist.deque.LIFOLinkedBlockingDeque<T>.offer(T)",this,e);try{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.assist.deque.LIFOLinkedBlockingDeque<T>.offer(T)",this);return super.offerFirst(e);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.assist.deque.LIFOLinkedBlockingDeque<T>.offer(T)",this,throwable);throw throwable;}
 	}
 
 	/**
@@ -42,6 +42,6 @@ public class LIFOLinkedBlockingDeque<T> extends LinkedBlockingDeque<T> {
 	 */
 	@Override
 	public T remove() {
-		return super.removeFirst();
+		com.mijack.Xlog.logMethodEnter("T com.nostra13.universalimageloader.core.assist.deque.LIFOLinkedBlockingDeque<T>.remove()",this);try{com.mijack.Xlog.logMethodExit("T com.nostra13.universalimageloader.core.assist.deque.LIFOLinkedBlockingDeque<T>.remove()",this);return super.removeFirst();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("T com.nostra13.universalimageloader.core.assist.deque.LIFOLinkedBlockingDeque<T>.remove()",this,throwable);throw throwable;}
 	}
 }

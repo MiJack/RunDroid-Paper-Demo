@@ -25,8 +25,8 @@ public enum FontSize {
 
     public static final FontSize valueOfDisplayString(Context context, String displayString) {
         for (FontSize fontSize : FontSize.values())
-            if (context.getString(fontSize.displayStringId).equals(displayString))
-                return fontSize;
+            {if (context.getString(fontSize.displayStringId).equals(displayString))
+                {return fontSize;}}
         return MEDIUM;
     }
 

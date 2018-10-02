@@ -50,7 +50,7 @@ public class SlideshowView extends GLView {
 
     public void next(Bitmap bitmap, int rotation) {
 
-        mTransitionAnimation.start();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlideshowView.next(android.graphics.Bitmap,int)",this,bitmap,rotation);try{mTransitionAnimation.start();
 
         if (mPrevTexture != null) {
             mPrevTexture.getBitmap().recycle();
@@ -74,23 +74,23 @@ public class SlideshowView extends GLView {
         }
         mCurrentAnimation.start();
 
-        invalidate();
+        invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlideshowView.next(android.graphics.Bitmap,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlideshowView.next(android.graphics.Bitmap,int)",this,throwable);throw throwable;}
     }
 
     public void release() {
-        if (mPrevTexture != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlideshowView.release()",this);try{if (mPrevTexture != null) {
             mPrevTexture.recycle();
             mPrevTexture = null;
         }
         if (mCurrentTexture != null) {
             mCurrentTexture.recycle();
             mCurrentTexture = null;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlideshowView.release()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlideshowView.release()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        long currentTimeMillis = canvas.currentAnimationTimeMillis();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlideshowView.render(GLCanvas)",this,canvas);try{long currentTimeMillis = canvas.currentAnimationTimeMillis();
         boolean requestRender = mTransitionAnimation.calculate(currentTimeMillis);
         GL11 gl = canvas.getGLInstance();
         gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
@@ -116,8 +116,8 @@ public class SlideshowView extends GLView {
                     -mCurrentTexture.getHeight() / 2);
             canvas.restore();
         }
-        if (requestRender) invalidate();
-        gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        if (requestRender) {invalidate();}
+        gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlideshowView.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlideshowView.render(GLCanvas)",this,throwable);throw throwable;}
     }
 
     private class SlideshowAnimation extends CanvasAnimation {
@@ -138,7 +138,7 @@ public class SlideshowView extends GLView {
 
         @Override
         public void apply(GLCanvas canvas) {
-            int viewWidth = getWidth();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.apply(GLCanvas)",this,canvas);try{int viewWidth = getWidth();
             int viewHeight = getHeight();
 
             float initScale = Math.min(2f, Math.min((float)
@@ -149,17 +149,17 @@ public class SlideshowView extends GLView {
             float centerY = viewHeight / 2 + mMovingVector.y * mProgress;
 
             canvas.translate(centerX, centerY, 0);
-            canvas.scale(scale, scale, 0);
+            canvas.scale(scale, scale, 0);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.apply(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.apply(GLCanvas)",this,throwable);throw throwable;}
         }
 
         @Override
         public int getCanvasSaveFlags() {
-            return GLCanvas.SAVE_FLAG_MATRIX;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.getCanvasSaveFlags()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.getCanvasSaveFlags()",this);return GLCanvas.SAVE_FLAG_MATRIX;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.getCanvasSaveFlags()",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onCalculate(float progress) {
-            mProgress = progress;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.onCalculate(float)",this,progress);try{mProgress = progress;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.onCalculate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlideshowView$SlideshowAnimation.onCalculate(float)",this,throwable);throw throwable;}
         }
     }
 }

@@ -38,7 +38,7 @@ public class PassSettingsFragment extends PreferenceFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PassSettingsFragment.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.pass_preferences);
 
@@ -46,9 +46,9 @@ public class PassSettingsFragment extends PreferenceFragment
         authButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                authorizePass();
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.PassSettingsFragment$1.onPreferenceClick(android.preference.Preference)",this,preference);try{authorizePass();
                 PassSettingsFragment.this.dismiss();
-                return true;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.onCreate(android.os.Bundle)",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PassSettingsFragment$1.onPreferenceClick(android.preference.Preference)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.PassSettingsFragment$1.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
             }
         });
         updateAuthorizeVisibility();
@@ -57,10 +57,10 @@ public class PassSettingsFragment extends PreferenceFragment
         purchaseButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                // we're cheating
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.PassSettingsFragment$2.onPreferenceClick(android.preference.Preference)",this,preference);try{/*// we're cheating*/
                 ActivityDispatcher.launchUrlInBrowser(getActivity(),
                         URLFormatComponent.getUrl(getActivity(), URLFormatComponent.CHAN_PASS_PURCHASE_URL));
-                return true;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.onCreate(android.os.Bundle)",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PassSettingsFragment$2.onPreferenceClick(android.preference.Preference)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.PassSettingsFragment$2.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
             }
         });
 
@@ -68,67 +68,67 @@ public class PassSettingsFragment extends PreferenceFragment
         closeButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                ensurePrefs().edit().putBoolean(SettingsActivity.PREF_PASS_ENABLED, false).commit();
+                com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.PassSettingsFragment$3.onPreferenceClick(android.preference.Preference)",this,preference);try{ensurePrefs().edit().putBoolean(SettingsActivity.PREF_PASS_ENABLED, false).commit();
                 PassSettingsFragment.this.dismiss();
-                return true;
+                {com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.onCreate(android.os.Bundle)",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PassSettingsFragment$3.onPreferenceClick(android.preference.Preference)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.PassSettingsFragment$3.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PassSettingsFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     public void show(FragmentTransaction transaction, String tag) {
-        transaction.add(this, tag);
-        transaction.commit();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PassSettingsFragment.show(android.app.FragmentTransaction,com.chanapps.four.activity.String)",this,transaction,tag);try{transaction.add(this, tag);
+        transaction.commit();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.show(android.app.FragmentTransaction,com.chanapps.four.activity.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PassSettingsFragment.show(android.app.FragmentTransaction,com.chanapps.four.activity.String)",this,throwable);throw throwable;}
     }
 
     public void setOnDismissListener(DialogInterface.OnDismissListener dismissListener) {
-        this.dismissListener = dismissListener;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PassSettingsFragment.setOnDismissListener(com.chanapps.four.activity.DialogInterface.OnDismissListener)",this,dismissListener);try{this.dismissListener = dismissListener;com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.setOnDismissListener(com.chanapps.four.activity.DialogInterface.OnDismissListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PassSettingsFragment.setOnDismissListener(com.chanapps.four.activity.DialogInterface.OnDismissListener)",this,throwable);throw throwable;}
     }
 
     public void dismiss() {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PassSettingsFragment.dismiss()",this);try{FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.remove(this);
         ft.commit();
         if (dismissListener != null)
-            dismissListener.onDismiss(null);
+            {dismissListener.onDismiss(null);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.dismiss()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PassSettingsFragment.dismiss()",this,throwable);throw throwable;}
     }
 
     public SharedPreferences ensurePrefs() {
-        if (prefs == null)
-            prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        return prefs;
+        com.mijack.Xlog.logMethodEnter("android.content.SharedPreferences com.chanapps.four.fragment.PassSettingsFragment.ensurePrefs()",this);try{if (prefs == null)
+            {prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());}
+        {com.mijack.Xlog.logMethodExit("android.content.SharedPreferences com.chanapps.four.fragment.PassSettingsFragment.ensurePrefs()",this);return prefs;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.SharedPreferences com.chanapps.four.fragment.PassSettingsFragment.ensurePrefs()",this,throwable);throw throwable;}
     }
 
     private boolean isPassEnabled() {
-        return ensurePrefs().getBoolean(SettingsActivity.PREF_PASS_ENABLED, false);
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.PassSettingsFragment.isPassEnabled()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PassSettingsFragment.isPassEnabled()",this);return ensurePrefs().getBoolean(SettingsActivity.PREF_PASS_ENABLED, false);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.PassSettingsFragment.isPassEnabled()",this,throwable);throw throwable;}
     }
 
     private boolean isPassAvailable() {
-        switch (NetworkProfileManager.instance().getCurrentProfile().getConnectionType()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.PassSettingsFragment.isPassAvailable()",this);try{switch (NetworkProfileManager.instance().getCurrentProfile().getConnectionType()) {
             case WIFI:
             case MOBILE:
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PassSettingsFragment.isPassAvailable()",this);return true;}
             case NO_CONNECTION:
             default:
-                return false;
-        }
+                {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PassSettingsFragment.isPassAvailable()",this);return false;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.PassSettingsFragment.isPassAvailable()",this,throwable);throw throwable;}
     }
 
     private void updateAuthorizeVisibility() {
-        if (isPassAvailable())
-            authButton.setEnabled(true);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PassSettingsFragment.updateAuthorizeVisibility()",this);try{if (isPassAvailable())
+            {authButton.setEnabled(true);}
         else
-            authButton.setEnabled(false);
+            {authButton.setEnabled(false);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.updateAuthorizeVisibility()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PassSettingsFragment.updateAuthorizeVisibility()",this,throwable);throw throwable;}
     }
 
     private void authorizePass() {
-        String passToken = ensurePrefs().getString(SettingsActivity.PREF_PASS_TOKEN, "");
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PassSettingsFragment.authorizePass()",this);try{String passToken = ensurePrefs().getString(SettingsActivity.PREF_PASS_TOKEN, "");
         String passPIN = ensurePrefs().getString(SettingsActivity.PREF_PASS_PIN, "");
         AuthorizePassTask authorizePassTask = new AuthorizePassTask((ChanIdentifiedActivity)getActivity(), passToken, passPIN);
         AuthorizingPassDialogFragment passDialogFragment = new AuthorizingPassDialogFragment(authorizePassTask);
         passDialogFragment.show(getFragmentManager(), AuthorizingPassDialogFragment.TAG);
         if (!authorizePassTask.isCancelled()) {
             authorizePassTask.execute(passDialogFragment);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PassSettingsFragment.authorizePass()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PassSettingsFragment.authorizePass()",this,throwable);throw throwable;}
     }
 
 }

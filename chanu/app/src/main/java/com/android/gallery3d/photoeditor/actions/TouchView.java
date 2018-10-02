@@ -63,25 +63,25 @@ class TouchView extends FullscreenToolView {
 
             @Override
             public boolean onDown(MotionEvent e) {
-                // GestureDetector onTouchEvent returns true for fling events only when their
-                // preceding down events are consumed.
-                return true;
+                com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onDown(android.view.MotionEvent)",this,e);try{/*// GestureDetector onTouchEvent returns true for fling events only when their*/
+                /*// preceding down events are consumed.*/
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onDown(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onDown(android.view.MotionEvent)",this,throwable);throw throwable;}
             }
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                if (singleTapListener != null) {
+                com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onSingleTapUp(android.view.MotionEvent)",this,e);try{if (singleTapListener != null) {
                     PointF point = new PointF();
                     mapPhotoPoint(e.getX(), e.getY(), point);
                     singleTapListener.onSingleTap(point);
                 }
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onSingleTapUp(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onSingleTapUp(android.view.MotionEvent)",this,throwable);throw throwable;}
             }
 
             @Override
             public boolean onFling(
                     MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
-                if (swipeListener != null) {
+                com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,me1,me2,velocityX,velocityY);try{if (swipeListener != null) {
                     float absX = Math.abs(velocityX);
                     float absY = Math.abs(velocityY);
                     float deltaX = me2.getX() - me1.getX();
@@ -98,22 +98,22 @@ class TouchView extends FullscreenToolView {
                         swipeListener.onSwipeDown();
                     }
                 }
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.TouchView$1.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,throwable);throw throwable;}
             }
         });
         gestureDetector.setIsLongpressEnabled(false);
     }
 
     public void setSwipeListener(SwipeListener listener) {
-        swipeListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.TouchView.setSwipeListener(SwipeListener)",this,listener);try{swipeListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.TouchView.setSwipeListener(SwipeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.TouchView.setSwipeListener(SwipeListener)",this,throwable);throw throwable;}
     }
 
     public void setSingleTapListener(SingleTapListener listener) {
-        singleTapListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.TouchView.setSingleTapListener(SingleTapListener)",this,listener);try{singleTapListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.TouchView.setSingleTapListener(SingleTapListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.TouchView.setSingleTapListener(SingleTapListener)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return isEnabled() && gestureDetector.onTouchEvent(event);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.TouchView.onTouchEvent(android.view.MotionEvent)",this,event);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.TouchView.onTouchEvent(android.view.MotionEvent)",this);return isEnabled() && gestureDetector.onTouchEvent(event);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.TouchView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 }

@@ -24,9 +24,9 @@ public class URLConnectionImageDownloader extends BaseImageDownloader {
     public static final String TAG = URLConnectionImageDownloader.class.getSimpleName();
 
 	/** {@value} */
-	public static final int DEFAULT_HTTP_CONNECT_TIMEOUT = 5 * 1000; // milliseconds
+	public static final int DEFAULT_HTTP_CONNECT_TIMEOUT = 5 * 1000; /*// milliseconds*/
 	/** {@value} */
-	public static final int DEFAULT_HTTP_READ_TIMEOUT = 20 * 1000; // milliseconds
+	public static final int DEFAULT_HTTP_READ_TIMEOUT = 20 * 1000; /*// milliseconds*/
 
 	private int connectTimeout;
 	private int readTimeout;
@@ -43,11 +43,11 @@ public class URLConnectionImageDownloader extends BaseImageDownloader {
 
 	@Override
 	public InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
-        NetworkProfile activeProfile = NetworkProfileManager.instance().getCurrentProfile();
+        com.mijack.Xlog.logMethodEnter("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.URLConnectionImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this,imageUri,extra);try{NetworkProfile activeProfile = NetworkProfileManager.instance().getCurrentProfile();
         if (activeProfile.getConnectionType() == NetworkProfile.Type.NO_CONNECTION
                 || activeProfile.getConnectionHealth() == NetworkProfile.Health.NO_CONNECTION) {
             Log.e(TAG, "Slow network, bypassed downloading url=" + imageUri);
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.URLConnectionImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this);return null;}
         }
         else {
             URLConnection conn = new URL(imageUri).openConnection();
@@ -56,14 +56,14 @@ public class URLConnectionImageDownloader extends BaseImageDownloader {
             FlushedInputStream fis;
             try {
                 fis = new FlushedInputStream(new BufferedInputStream(conn.getInputStream()));
-                return fis;
+                {com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.URLConnectionImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this);return fis;}
             }
             catch (FileNotFoundException e) {
                 Log.e(TAG, "Couldn't get image from network", e);
                 NetworkProfileManager.instance().failedFetchingData(
                         null, NetworkProfile.Failure.NETWORK);
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.URLConnectionImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this);return null;}
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.BufferedInputStream com.nostra13.universalimageloader.core.download.URLConnectionImageDownloader.getStreamFromNetwork(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
     }
 }

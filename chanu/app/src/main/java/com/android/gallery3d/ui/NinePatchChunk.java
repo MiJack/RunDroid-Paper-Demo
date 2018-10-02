@@ -21,8 +21,8 @@ import android.graphics.Rect;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-// See "frameworks/base/include/utils/ResourceTypes.h" for the format of
-// NinePatch chunk.
+/*// See "frameworks/base/include/utils/ResourceTypes.h" for the format of*/
+/*// NinePatch chunk.*/
 class NinePatchChunk {
 
     public static final int NO_COLOR = 0x00000001;
@@ -35,23 +35,23 @@ class NinePatchChunk {
     public int mColor[];
 
     private static void readIntArray(int[] data, ByteBuffer buffer) {
-        for (int i = 0, n = data.length; i < n; ++i) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.NinePatchChunk.readIntArray([int,java.nio.ByteBuffer)",data,buffer);try{for (int i = 0, n = data.length; i < n; ++i) {
             data[i] = buffer.getInt();
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.NinePatchChunk.readIntArray([int,java.nio.ByteBuffer)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.NinePatchChunk.readIntArray([int,java.nio.ByteBuffer)",throwable);throw throwable;}
     }
 
     private static void checkDivCount(int length) {
-        if (length == 0 || (length & 0x01) != 0) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.NinePatchChunk.checkDivCount(int)",length);try{com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.NinePatchChunk.checkDivCount(int)");if (length == 0 || (length & 0x01) != 0) {
             throw new RuntimeException("invalid nine-patch: " + length);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.NinePatchChunk.checkDivCount(int)",throwable);throw throwable;}
     }
 
     public static NinePatchChunk deserialize(byte[] data) {
-        ByteBuffer byteBuffer =
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.ui.NinePatchChunk com.android.gallery3d.ui.NinePatchChunk.deserialize([byte)",data);try{ByteBuffer byteBuffer =
                 ByteBuffer.wrap(data).order(ByteOrder.nativeOrder());
 
         byte wasSerialized = byteBuffer.get();
-        if (wasSerialized == 0) return null;
+        if (wasSerialized == 0) {{com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.ui.NinePatchChunk com.android.gallery3d.ui.NinePatchChunk.deserialize([byte)");return null;}}
 
         NinePatchChunk chunk = new NinePatchChunk();
         chunk.mDivX = new int[byteBuffer.get()];
@@ -61,7 +61,7 @@ class NinePatchChunk {
         checkDivCount(chunk.mDivX.length);
         checkDivCount(chunk.mDivY.length);
 
-        // skip 8 bytes
+        /*// skip 8 bytes*/
         byteBuffer.getInt();
         byteBuffer.getInt();
 
@@ -70,13 +70,13 @@ class NinePatchChunk {
         chunk.mPaddings.top = byteBuffer.getInt();
         chunk.mPaddings.bottom = byteBuffer.getInt();
 
-        // skip 4 bytes
+        /*// skip 4 bytes*/
         byteBuffer.getInt();
 
         readIntArray(chunk.mDivX, byteBuffer);
         readIntArray(chunk.mDivY, byteBuffer);
         readIntArray(chunk.mColor, byteBuffer);
 
-        return chunk;
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.ui.NinePatchChunk com.android.gallery3d.ui.NinePatchChunk.deserialize([byte)");return chunk;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.ui.NinePatchChunk com.android.gallery3d.ui.NinePatchChunk.deserialize([byte)",throwable);throw throwable;}
     }
 }

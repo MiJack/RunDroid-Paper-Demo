@@ -29,28 +29,28 @@ public class Face implements Comparable<Face> {
     }
 
     public String getName() {
-        return mName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.Face.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.Face.getName()",this);return mName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.Face.getName()",this,throwable);throw throwable;}
     }
 
     public String getPersonId() {
-        return mPersonId;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.Face.getPersonId()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.Face.getPersonId()",this);return mPersonId;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.Face.getPersonId()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Face) {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.Face.equals(java.lang.Object)",this,obj);try{if (obj instanceof Face) {
             Face face = (Face) obj;
-            return mPersonId.equals(face.mPersonId);
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.Face.equals(java.lang.Object)",this);return mPersonId.equals(face.mPersonId);}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.Face.equals(java.lang.Object)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.Face.equals(java.lang.Object)",this,throwable);throw throwable;}
     }
 
     @Override
     public int hashCode() {
-        return mPersonId.hashCode();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.Face.hashCode()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.Face.hashCode()",this);return mPersonId.hashCode();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.Face.hashCode()",this,throwable);throw throwable;}
     }
 
     public int compareTo(Face another) {
-        return mPersonId.compareTo(another.mPersonId);
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.Face.compareTo(com.android.gallery3d.data.Face)",this,another);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.Face.compareTo(com.android.gallery3d.data.Face)",this);return mPersonId.compareTo(another.mPersonId);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.Face.compareTo(com.android.gallery3d.data.Face)",this,throwable);throw throwable;}
     }
 }

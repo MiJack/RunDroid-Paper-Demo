@@ -36,27 +36,27 @@ public class SharpenAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final SharpenFilter filter = new SharpenFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SharpenAction.doBegin()",this);try{final SharpenFilter filter = new SharpenFilter();
 
         scalePicker = factory.createScalePicker(EffectToolFactory.ScalePickerType.GENERIC);
         scalePicker.setOnScaleChangeListener(new ScaleSeekBar.OnScaleChangeListener() {
 
             @Override
             public void onProgressChanged(float progress, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SharpenAction$1.onProgressChanged(float,boolean)",this,progress,fromUser);try{if (fromUser) {
                     filter.setSharpen(progress);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SharpenAction$1.onProgressChanged(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.SharpenAction$1.onProgressChanged(float,boolean)",this,throwable);throw throwable;}
             }
         });
         scalePicker.setProgress(DEFAULT_SCALE);
 
         filter.setSharpen(DEFAULT_SCALE);
-        notifyFilterChanged(filter, true);
+        notifyFilterChanged(filter, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SharpenAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.SharpenAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        scalePicker.setOnScaleChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SharpenAction.doEnd()",this);try{scalePicker.setOnScaleChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SharpenAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.SharpenAction.doEnd()",this,throwable);throw throwable;}
     }
 }

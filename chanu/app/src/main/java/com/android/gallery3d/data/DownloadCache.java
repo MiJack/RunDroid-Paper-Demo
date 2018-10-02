@@ -91,7 +91,7 @@ public class DownloadCache {
     }
 
     private Entry findEntryInDatabase(String stringUrl) {
-        long hash = Utils.crc64Long(stringUrl);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.findEntryInDatabase(java.lang.String)",this,stringUrl);try{long hash = Utils.crc64Long(stringUrl);
         String whereArgs[] = {String.valueOf(hash), stringUrl};
         Cursor cursor = mDatabase.query(TABLE_NAME, QUERY_PROJECTION,
                 WHERE_HASH_AND_URL, whereArgs, null, null, null);
@@ -107,66 +107,66 @@ public class DownloadCache {
                         mEntryMap.put(stringUrl, entry);
                     }
                 }
-                return entry;
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.findEntryInDatabase(java.lang.String)",this);return entry;}
             }
         } finally {
             cursor.close();
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.findEntryInDatabase(java.lang.String)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.findEntryInDatabase(java.lang.String)",this,throwable);throw throwable;}
     }
 
     public Entry lookup(URL url) {
-        if (!mInitialized) initialize();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.lookup(java.net.URL)",this,url);try{if (!mInitialized) {initialize();}
         String stringUrl = url.toString();
 
-        // First find in the entry-pool
+        /*// First find in the entry-pool*/
         synchronized (mEntryMap) {
             Entry entry = mEntryMap.get(stringUrl);
             if (entry != null) {
                 updateLastAccess(entry.mId);
-                return entry;
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.lookup(java.net.URL)",this);return entry;}
             }
         }
 
-        // Then, find it in database
+        /*// Then, find it in database*/
         TaskProxy proxy = new TaskProxy();
         synchronized (mTaskMap) {
             Entry entry = findEntryInDatabase(stringUrl);
             if (entry != null) {
                 updateLastAccess(entry.mId);
-                return entry;
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.lookup(java.net.URL)",this);return entry;}
             }
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.lookup(java.net.URL)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.lookup(java.net.URL)",this,throwable);throw throwable;}
     }
 
     public Entry download(JobContext jc, URL url) {
-        if (!mInitialized) initialize();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)",this,jc,url);try{if (!mInitialized) {initialize();}
 
         String stringUrl = url.toString();
 
-        // First find in the entry-pool
+        /*// First find in the entry-pool*/
         synchronized (mEntryMap) {
             Entry entry = mEntryMap.get(stringUrl);
             if (entry != null) {
                 updateLastAccess(entry.mId);
-                return entry;
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)",this);return entry;}
             }
         }
 
-        // Then, find it in database
+        /*// Then, find it in database*/
         TaskProxy proxy = new TaskProxy();
         synchronized (mTaskMap) {
             Entry entry = findEntryInDatabase(stringUrl);
             if (entry != null) {
                 updateLastAccess(entry.mId);
-                return entry;
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)",this);return entry;}
             }
 
-            // Finally, we need to download the file ....
-            // First check if we are downloading it now ...
+            /*// Finally, we need to download the file ....*/
+            /*// First check if we are downloading it now ...*/
             DownloadTask task = mTaskMap.get(stringUrl);
-            if (task == null) { // if not, start the download task now
+            if (task == null) { /*// if not, start the download task now*/
                 task = new DownloadTask(stringUrl);
                 mTaskMap.put(stringUrl, task);
                 task.mFuture = mApplication.getThreadPool().submit(task, task);
@@ -174,18 +174,18 @@ public class DownloadCache {
             task.addProxy(proxy);
         }
 
-        return proxy.get(jc);
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)",this);return proxy.get(jc);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache.download(com.android.gallery3d.util.ThreadPool.JobContext,java.net.URL)",this,throwable);throw throwable;}
     }
 
     private void updateLastAccess(long id) {
-        ContentValues values = new ContentValues();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache.updateLastAccess(long)",this,id);try{ContentValues values = new ContentValues();
         values.put(Columns.LAST_ACCESS, System.currentTimeMillis());
         mDatabase.update(TABLE_NAME, values,
-                ID_WHERE, new String[] {String.valueOf(id)});
+                ID_WHERE, new String[] {String.valueOf(id)});com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache.updateLastAccess(long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache.updateLastAccess(long)",this,throwable);throw throwable;}
     }
 
     private synchronized void freeSomeSpaceIfNeed(int maxDeleteFileCount) {
-        if (mTotalBytes <= mCapacity) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache.freeSomeSpaceIfNeed(int)",this,maxDeleteFileCount);try{if (mTotalBytes <= mCapacity) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache.freeSomeSpaceIfNeed(int)",this);return;}}
         Cursor cursor = mDatabase.query(TABLE_NAME,
                 FREESPACE_PROJECTION, null, null, null, null, FREESPACE_ORDER_BY);
         try {
@@ -206,16 +206,16 @@ public class DownloadCache {
                     mDatabase.delete(TABLE_NAME,
                             ID_WHERE, new String[]{String.valueOf(id)});
                 } else {
-                    // skip delete, since it is being used
+                    /*// skip delete, since it is being used*/
                 }
             }
         } finally {
             cursor.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache.freeSomeSpaceIfNeed(int)",this,throwable);throw throwable;}
     }
 
     private synchronized long insertEntry(String url, File file) {
-        long size = file.length();
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.DownloadCache.insertEntry(java.lang.String,java.io.File)",this,url,file);try{long size = file.length();
         mTotalBytes += size;
 
         ContentValues values = new ContentValues();
@@ -225,13 +225,13 @@ public class DownloadCache {
         values.put(Columns.CONTENT_URL, url);
         values.put(Columns.CONTENT_SIZE, size);
         values.put(Columns.LAST_UPDATED, System.currentTimeMillis());
-        return mDatabase.insert(TABLE_NAME, "", values);
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.DownloadCache.insertEntry(java.lang.String,java.io.File)",this);return mDatabase.insert(TABLE_NAME, "", values);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.DownloadCache.insertEntry(java.lang.String,java.io.File)",this,throwable);throw throwable;}
     }
 
     private synchronized void initialize() {
-        if (mInitialized) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache.initialize()",this);try{if (mInitialized) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache.initialize()",this);return;}}
         mInitialized = true;
-        if (!mRoot.isDirectory()) mRoot.mkdirs();
+        if (!mRoot.isDirectory()) {mRoot.mkdirs();}
         if (!mRoot.isDirectory()) {
             throw new RuntimeException("cannot create " + mRoot.getAbsolutePath());
         }
@@ -246,7 +246,7 @@ public class DownloadCache {
         } finally {
             cursor.close();
         }
-        if (mTotalBytes > mCapacity) freeSomeSpaceIfNeed(MAX_DELETE_COUNT);
+        if (mTotalBytes > mCapacity) {freeSomeSpaceIfNeed(MAX_DELETE_COUNT);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache.initialize()",this,throwable);throw throwable;}
     }
 
     private final class DatabaseHelper extends SQLiteOpenHelper {
@@ -259,20 +259,20 @@ public class DownloadCache {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            DownloadEntry.SCHEMA.createTables(db);
-            // Delete old files
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,db);try{DownloadEntry.SCHEMA.createTables(db);
+            /*// Delete old files*/
             for (File file : mRoot.listFiles()) {
                 if (!file.delete()) {
                     Log.w(TAG, "fail to remove: " + file.getAbsolutePath());
                 }
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            //reset everything
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,db,oldVersion,newVersion);try{/*//reset everything*/
             DownloadEntry.SCHEMA.dropTables(db);
-            onCreate(db);
+            onCreate(db);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,throwable);throw throwable;}
         }
     }
 
@@ -286,7 +286,7 @@ public class DownloadCache {
         }
 
         public void associateWith(Object object) {
-            mAssociateMap.put(Utils.checkNotNull(object), this);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$Entry.associateWith(java.lang.Object)",this,object);try{mAssociateMap.put(Utils.checkNotNull(object), this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$Entry.associateWith(java.lang.Object)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$Entry.associateWith(java.lang.Object)",this,throwable);throw throwable;}
         }
     }
 
@@ -300,31 +300,31 @@ public class DownloadCache {
         }
 
         public void removeProxy(TaskProxy proxy) {
-            synchronized (mTaskMap) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$DownloadTask.removeProxy(com.android.gallery3d.data.DownloadCache$TaskProxy)",this,proxy);try{synchronized (mTaskMap) {
                 Utils.assertTrue(mProxySet.remove(proxy));
                 if (mProxySet.isEmpty()) {
                     mFuture.cancel();
                     mTaskMap.remove(mUrl);
                 }
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$DownloadTask.removeProxy(com.android.gallery3d.data.DownloadCache$TaskProxy)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$DownloadTask.removeProxy(com.android.gallery3d.data.DownloadCache$TaskProxy)",this,throwable);throw throwable;}
         }
 
-        // should be used in synchronized block of mDatabase
+        /*// should be used in synchronized block of mDatabase*/
         public void addProxy(TaskProxy proxy) {
-            proxy.mTask = this;
-            mProxySet.add(proxy);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$DownloadTask.addProxy(com.android.gallery3d.data.DownloadCache$TaskProxy)",this,proxy);try{proxy.mTask = this;
+            mProxySet.add(proxy);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$DownloadTask.addProxy(com.android.gallery3d.data.DownloadCache$TaskProxy)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$DownloadTask.addProxy(com.android.gallery3d.data.DownloadCache$TaskProxy)",this,throwable);throw throwable;}
         }
 
         public void onFutureDone(Future<File> future) {
-            File file = future.get();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$DownloadTask.onFutureDone(com.android.gallery3d.util.Future)",this,future);try{File file = future.get();
             long id = 0;
-            if (file != null) { // insert to database
+            if (file != null) { /*// insert to database*/
                 id = insertEntry(mUrl, file);
             }
 
             if (future.isCancelled()) {
                 Utils.assertTrue(mProxySet.isEmpty());
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$DownloadTask.onFutureDone(com.android.gallery3d.util.Future)",this);return;}
             }
 
             synchronized (mTaskMap) {
@@ -340,11 +340,11 @@ public class DownloadCache {
                 }
                 mTaskMap.remove(mUrl);
                 freeSomeSpaceIfNeed(MAX_DELETE_COUNT);
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$DownloadTask.onFutureDone(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
         }
 
         public File run(JobContext jc) {
-            // TODO: utilize etag
+            com.mijack.Xlog.logMethodEnter("java.io.File com.android.gallery3d.data.DownloadCache$DownloadTask.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{/*// TODO: utilize etag*/
             jc.setMode(ThreadPool.MODE_NETWORK);
             File tempFile = null;
             try {
@@ -353,22 +353,22 @@ public class DownloadCache {
                 try {
                     File f = new File(mRoot, ".nomedia");
                     if (!f.exists())
-                        f.createNewFile();
+                        {f.createNewFile();}
                 } catch (IOException e) {
                     L.i("Can't create \".nomedia\" file in gallery cache directory " + mRoot);
                 }
-                // download from url to tempFile
+                /*// download from url to tempFile*/
                 jc.setMode(ThreadPool.MODE_NETWORK);
                 boolean downloaded = DownloadUtils.requestDownload(jc, url, tempFile);
                 jc.setMode(ThreadPool.MODE_NONE);
-                if (downloaded) return tempFile;
+                if (downloaded) {{com.mijack.Xlog.logMethodExit("java.io.File com.android.gallery3d.data.DownloadCache$DownloadTask.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return tempFile;}}
             } catch (Exception e) {
                 Log.e(TAG, String.format("fail to download %s", mUrl), e);
             } finally {
                 jc.setMode(ThreadPool.MODE_NONE);
             }
-            if (tempFile != null) tempFile.delete();
-            return null;
+            if (tempFile != null) {tempFile.delete();}
+            {com.mijack.Xlog.logMethodExit("java.io.File com.android.gallery3d.data.DownloadCache$DownloadTask.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.File com.android.gallery3d.data.DownloadCache$DownloadTask.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 
@@ -378,19 +378,19 @@ public class DownloadCache {
         private Entry mEntry;
 
         synchronized void setResult(Entry entry) {
-            if (mIsCancelled) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$TaskProxy.setResult(com.android.gallery3d.data.DownloadCache$Entry)",this,entry);try{if (mIsCancelled) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$TaskProxy.setResult(com.android.gallery3d.data.DownloadCache$Entry)",this);return;}}
             mEntry = entry;
-            notifyAll();
+            notifyAll();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$TaskProxy.setResult(com.android.gallery3d.data.DownloadCache$Entry)",this,throwable);throw throwable;}
         }
 
         public synchronized Entry get(JobContext jc) {
-            jc.setCancelListener(new CancelListener() {
+            com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache$TaskProxy.get(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{jc.setCancelListener(new CancelListener() {
                 public void onCancel() {
-                    mTask.removeProxy(TaskProxy.this);
+                    com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.DownloadCache$TaskProxy$1.onCancel()",this);try{mTask.removeProxy(TaskProxy.this);
                     synchronized (TaskProxy.this) {
                         mIsCancelled = true;
                         TaskProxy.this.notifyAll();
-                    }
+                    }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.DownloadCache$TaskProxy$1.onCancel()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.DownloadCache$TaskProxy$1.onCancel()",this,throwable);throw throwable;}
                 }
             });
             while (!mIsCancelled && mEntry == null) {
@@ -401,7 +401,7 @@ public class DownloadCache {
                 }
             }
             jc.setCancelListener(null);
-            return mEntry;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache$TaskProxy.get(com.android.gallery3d.util.ThreadPool.JobContext)",this);return mEntry;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DownloadCache$Entry com.android.gallery3d.data.DownloadCache$TaskProxy.get(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 }

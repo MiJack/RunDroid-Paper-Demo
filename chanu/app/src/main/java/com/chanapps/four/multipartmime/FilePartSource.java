@@ -98,11 +98,11 @@ public class FilePartSource implements PartSource {
      * @see PartSource#getLength()
      */
     public long getLength() {
-        if (this.file != null) {
-            return this.file.length();
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.multipartmime.FilePartSource.getLength()",this);try{if (this.file != null) {
+            {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.FilePartSource.getLength()",this);return this.file.length();}
         } else {
-            return 0;
-        }
+            {com.mijack.Xlog.logMethodExit("long com.chanapps.four.multipartmime.FilePartSource.getLength()",this);return 0;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.multipartmime.FilePartSource.getLength()",this,throwable);throw throwable;}
     }
 
     /**
@@ -111,7 +111,7 @@ public class FilePartSource implements PartSource {
      * @see PartSource#getFileName()
      */
     public String getFileName() {
-        return (fileName == null) ? "noname" : fileName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.FilePartSource.getFileName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.FilePartSource.getFileName()",this);return (fileName == null) ? "noname" : fileName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.FilePartSource.getFileName()",this,throwable);throw throwable;}
     }
 
     /**
@@ -121,11 +121,11 @@ public class FilePartSource implements PartSource {
      * @see PartSource#createInputStream()
      */
     public InputStream createInputStream() throws IOException {
-        if (this.file != null) {
-            return new FileInputStream(this.file);
+        com.mijack.Xlog.logMethodEnter("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.FilePartSource.createInputStream()",this);try{if (this.file != null) {
+            {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.FilePartSource.createInputStream()",this);return new FileInputStream(this.file);}
         } else {
-            return new ByteArrayInputStream(new byte[] {});
-        }
+            {com.mijack.Xlog.logMethodExit("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.FilePartSource.createInputStream()",this);return new ByteArrayInputStream(new byte[] {});}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.ByteArrayInputStream com.chanapps.four.multipartmime.FilePartSource.createInputStream()",this,throwable);throw throwable;}
     }
 
 }

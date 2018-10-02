@@ -23,18 +23,18 @@ public class WifiProfile extends MobileProfile {
 	
 	@Override
 	public Type getConnectionType() {
-		return Type.WIFI;
+		com.mijack.Xlog.logMethodEnter("Type com.chanapps.four.service.profile.WifiProfile.getConnectionType()",this);try{com.mijack.Xlog.logMethodExit("Type com.chanapps.four.service.profile.WifiProfile.getConnectionType()",this);return Type.WIFI;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("Type com.chanapps.four.service.profile.WifiProfile.getConnectionType()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public FetchParams getFetchParams() {
-		return REFRESH_TIME.get(getConnectionHealth());
+		com.mijack.Xlog.logMethodEnter("com.chanapps.four.data.FetchParams com.chanapps.four.service.profile.WifiProfile.getFetchParams()",this);try{com.mijack.Xlog.logMethodExit("com.chanapps.four.data.FetchParams com.chanapps.four.service.profile.WifiProfile.getFetchParams()",this);return REFRESH_TIME.get(getConnectionHealth());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.chanapps.four.data.FetchParams com.chanapps.four.service.profile.WifiProfile.getFetchParams()",this,throwable);throw throwable;}
 	}
 
     @Override
     public void onBoardSelected(Context context, String boardCode) {
-        super.onBoardSelected(context, boardCode);
-        // seems to overload phone on wifi
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.profile.WifiProfile.onBoardSelected(android.content.Context,java.lang.String)",this,context,boardCode);try{super.onBoardSelected(context, boardCode);
+        /*// seems to overload phone on wifi*/
         /*
         NetworkProfileManager.NetworkBroadcastReceiver.checkNetwork(context);
         Health health = getConnectionHealth();
@@ -53,7 +53,7 @@ public class WifiProfile extends MobileProfile {
                 }
             }
         }
-        */
+        */com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.profile.WifiProfile.onBoardSelected(android.content.Context,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.profile.WifiProfile.onBoardSelected(android.content.Context,java.lang.String)",this,throwable);throw throwable;}
 
     }
 

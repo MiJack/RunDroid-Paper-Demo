@@ -31,10 +31,10 @@ public class FloatAnimation extends Animation {
 
     @Override
     protected void onCalculate(float progress) {
-        mCurrent = mFrom + (mTo - mFrom) * progress;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.anim.FloatAnimation.onCalculate(float)",this,progress);try{mCurrent = mFrom + (mTo - mFrom) * progress;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.anim.FloatAnimation.onCalculate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.anim.FloatAnimation.onCalculate(float)",this,throwable);throw throwable;}
     }
 
     public float get() {
-        return mCurrent;
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.anim.FloatAnimation.get()",this);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.anim.FloatAnimation.get()",this);return mCurrent;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.anim.FloatAnimation.get()",this,throwable);throw throwable;}
     }
 }

@@ -22,7 +22,7 @@ public class CaptchaView extends WebView {
 
         @JavascriptInterface
         public void captchaEntered(String response) {
-            setCaptchaResponse(response);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CaptchaView$CaptchaCallback.captchaEntered(java.lang.String)",this,response);try{setCaptchaResponse(response);com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CaptchaView$CaptchaCallback.captchaEntered(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CaptchaView$CaptchaCallback.captchaEntered(java.lang.String)",this,throwable);throw throwable;}
         }
     }
 
@@ -39,7 +39,7 @@ public class CaptchaView extends WebView {
     }
 
     public void initCaptcha() {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CaptchaView.initCaptcha()",this);try{try {
             String body = IOUtils.toString(new BufferedInputStream(getResources().getAssets().open("captcha.html")));
             
             getSettings().setJavaScriptEnabled(true);
@@ -51,14 +51,14 @@ public class CaptchaView extends WebView {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CaptchaView.initCaptcha()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CaptchaView.initCaptcha()",this,throwable);throw throwable;}
     }
 
     public String getCaptchaResponse() {
-        return captchaResponse;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.component.CaptchaView.getCaptchaResponse()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.component.CaptchaView.getCaptchaResponse()",this);return captchaResponse;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.component.CaptchaView.getCaptchaResponse()",this,throwable);throw throwable;}
     }
 
     public void setCaptchaResponse(String captchaResponse) {
-        this.captchaResponse = captchaResponse;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.CaptchaView.setCaptchaResponse(java.lang.String)",this,captchaResponse);try{this.captchaResponse = captchaResponse;com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.CaptchaView.setCaptchaResponse(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.CaptchaView.setCaptchaResponse(java.lang.String)",this,throwable);throw throwable;}
     }
 }

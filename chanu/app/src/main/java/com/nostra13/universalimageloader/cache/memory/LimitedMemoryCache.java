@@ -62,8 +62,8 @@ public abstract class LimitedMemoryCache<K, V> extends BaseMemoryCache<K, V> {
 
 	@Override
 	public boolean put(K key, V value) {
-		boolean putSuccessfully = false;
-		// Try to add value to hard cache
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.put(K,V)",this,key,value);try{boolean putSuccessfully = false;
+		/*// Try to add value to hard cache*/
 		int valueSize = getSize(value);
 		int sizeLimit = getSizeLimit();
 		int curCacheSize = cacheSize.get();
@@ -79,31 +79,31 @@ public abstract class LimitedMemoryCache<K, V> extends BaseMemoryCache<K, V> {
 
 			putSuccessfully = true;
 		}
-		// Add value to soft cache
+		/*// Add value to soft cache*/
 		super.put(key, value);
-		return putSuccessfully;
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.put(K,V)",this);return putSuccessfully;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.put(K,V)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void remove(K key) {
-		V value = super.get(key);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.remove(K)",this,key);try{V value = super.get(key);
 		if (value != null) {
 			if (hardCache.remove(value)) {
 				cacheSize.addAndGet(-getSize(value));
 			}
 		}
-		super.remove(key);
+		super.remove(key);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.remove(K)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.remove(K)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		hardCache.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.clear()",this);try{hardCache.clear();
 		cacheSize.set(0);
-		super.clear();
+		super.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.clear()",this,throwable);throw throwable;}
 	}
 
 	protected int getSizeLimit() {
-		return sizeLimit;
+		com.mijack.Xlog.logMethodEnter("int com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.getSizeLimit()",this);try{com.mijack.Xlog.logMethodExit("int com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.getSizeLimit()",this);return sizeLimit;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache<K, V>.getSizeLimit()",this,throwable);throw throwable;}
 	}
 
 	protected abstract int getSize(V value);

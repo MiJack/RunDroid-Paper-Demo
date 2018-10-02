@@ -53,56 +53,56 @@ abstract public class
     protected boolean hasWatchlist = false;
 
     protected int activityLayout() {
-        return R.layout.drawer_activity_layout;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.activity.AbstractDrawerActivity.activityLayout()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.activity.AbstractDrawerActivity.activityLayout()",this);return R.layout.drawer_activity_layout;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.activity.AbstractDrawerActivity.activityLayout()",this,throwable);throw throwable;}
     }
 
     protected void createPreViews() {
-        createDrawer();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.createPreViews()",this);try{createDrawer();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.createPreViews()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.createPreViews()",this,throwable);throw throwable;}
     }
 
     abstract protected void createViews(Bundle bundle);
 
     @Override
     protected void onPostCreate(Bundle bundle) {
-        super.onPostCreate(bundle);
-        mDrawerToggle.syncState();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.onPostCreate(android.os.Bundle)",this,bundle);try{super.onPostCreate(bundle);
+        mDrawerToggle.syncState();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.onPostCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.onPostCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onConfigurationChanged(Configuration config) {
-        super.onConfigurationChanged(config);
-        mDrawerToggle.onConfigurationChanged(config);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.onConfigurationChanged(android.content.res.Configuration)",this,config);try{super.onConfigurationChanged(config);
+        mDrawerToggle.onConfigurationChanged(config);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.onConfigurationChanged(android.content.res.Configuration)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.onConfigurationChanged(android.content.res.Configuration)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void setAdapters() {
-        super.setAdapters();
-        setDrawerAdapter();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.setAdapters()",this);try{super.setAdapters();
+        setDrawerAdapter();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.setAdapters()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.setAdapters()",this,throwable);throw throwable;}
     }
 
     @Override
     protected boolean allAdaptersSet() {
-        return super.allAdaptersSet() && mDrawerAdapter != null;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.AbstractDrawerActivity.allAdaptersSet()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.AbstractDrawerActivity.allAdaptersSet()",this);return super.allAdaptersSet() && mDrawerAdapter != null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.AbstractDrawerActivity.allAdaptersSet()",this,throwable);throw throwable;}
     }
 
     protected void loadDrawerArray() {
-        List<String> drawer = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.long_drawer_array)));
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.loadDrawerArray()",this);try{List<String> drawer = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.long_drawer_array)));
         loadFavorites(drawer);
         loadWatchlist(drawer);
         loadFooter(drawer);
         mDrawerArray = drawer.toArray(new String[drawer.size()]);
         Handler callbackHandler = getChanHandler();
         if (callbackHandler != null)
-            callbackHandler.post(setAdaptersCallback);
+            {callbackHandler.post(setAdaptersCallback);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.loadDrawerArray()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.loadDrawerArray()",this,throwable);throw throwable;}
     }
 
     protected void loadFooter(List<String> drawer) {
-        List<String> items = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.long_drawer_array_footer)));
-        drawer.addAll(items);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.loadFooter(android.widget.List)",this,drawer);try{List<String> items = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.long_drawer_array_footer)));
+        drawer.addAll(items);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.loadFooter(android.widget.List)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.loadFooter(android.widget.List)",this,throwable);throw throwable;}
     }
 
     protected void loadFavorites(List<String> drawer) {
-        List<String> items = new ArrayList<String>();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.loadFavorites(android.widget.List)",this,drawer);try{List<String> items = new ArrayList<String>();
         ChanBoard board = ChanFileStorage.loadBoardData(this, ChanBoard.FAVORITES_BOARD_CODE);
         if (board != null && board.hasData()) {
             for (ChanThread thread : board.threads) {
@@ -113,11 +113,11 @@ abstract public class
         hasFavorites = items.size() > 0;
         drawer.add(getString(R.string.board_favorites));
         Collections.sort(items);
-        drawer.addAll(items);
+        drawer.addAll(items);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.loadFavorites(android.widget.List)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.loadFavorites(android.widget.List)",this,throwable);throw throwable;}
     }
     
     protected void loadWatchlist(List<String> drawer) {
-        List<String> items = new ArrayList<String>();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.loadWatchlist(android.widget.List)",this,drawer);try{List<String> items = new ArrayList<String>();
         ChanBoard board = ChanFileStorage.loadBoardData(this, ChanBoard.WATCHLIST_BOARD_CODE);
         if (board != null && board.hasData()) {
             for (ChanThread thread : board.threads) {
@@ -128,35 +128,35 @@ abstract public class
         hasWatchlist = items.size() > 0;
         drawer.add(getString(R.string.board_watch));
         Collections.sort(items);
-        drawer.addAll(items);
+        drawer.addAll(items);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.loadWatchlist(android.widget.List)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.loadWatchlist(android.widget.List)",this,throwable);throw throwable;}
     }
 
     protected void setDrawerAdapter() {
-        new Thread(new Runnable() {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.setDrawerAdapter()",this);try{new Thread(new Runnable() {
             @Override
             public void run() {
-                loadDrawerArray();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity$1.run()",this);try{loadDrawerArray();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity$1.run()",this,throwable);throw throwable;}
             }
-        }).start();
+        }).start();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.setDrawerAdapter()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.setDrawerAdapter()",this,throwable);throw throwable;}
     }
 
     protected Runnable setAdaptersCallback = new Runnable() {
         @Override
         public void run() {
-            List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity$2.run()",this);try{List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
             for (int i = 0; i < mDrawerArray.length; i++) {
                 String drawerText = mDrawerArray[i];
                 BoardType type = BoardType.valueOfDrawerString(AbstractDrawerActivity.this, drawerText);
                 int drawableId;
                 if (type != null)
-                    drawableId = type.drawableId();
+                    {drawableId = type.drawableId();}
                 else if (getString(R.string.settings_menu).equals(drawerText))
-                    drawableId = R.drawable.gear;
+                    {drawableId = R.drawable.gear;}
                 else if (getString(R.string.send_feedback_menu).equals(drawerText))
-                    drawableId = R.drawable.speech_bubble_ellipsis;
+                    {drawableId = R.drawable.speech_bubble_ellipsis;}
                 else
-                    drawableId = 0;
-                if (DEBUG) Log.v(TAG, "row=" + i + " text=" + drawerText + " drawableId=" + drawableId);
+                    {drawableId = 0;}
+                if (DEBUG) {Log.v(TAG, "row=" + i + " text=" + drawerText + " drawableId=" + drawableId);}
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put(ROW_ID, "" + i);
                 map.put(TEXT, drawerText);
@@ -166,35 +166,35 @@ abstract public class
             mDrawerAdapter = new SimpleAdapter(AbstractDrawerActivity.this, fillMaps, R.layout.drawer_list_item, adapterFrom, adapterTo) {
                 @Override
                 public boolean isEnabled(int position) {
-                    String drawerText = mDrawerArray[position];
+                    com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.AbstractDrawerActivity$2$1.isEnabled(int)",this,position);try{String drawerText = mDrawerArray[position];
                     BoardType type = BoardType.valueOfDrawerString(AbstractDrawerActivity.this, drawerText);
-                    //if (type == BoardType.META)
-                    //    return false;
-                    //else
-                        return true;
+                    /*//if (type == BoardType.META)*/
+                    /*//    return false;*/
+                    /*//else*/
+                        {com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity$2.run()",this);{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.AbstractDrawerActivity$2$1.isEnabled(int)",this);return true;}}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.AbstractDrawerActivity$2$1.isEnabled(int)",this,throwable);throw throwable;}
                 }
             };
             mDrawerAdapter.setViewBinder(mViewBinder);
-            mDrawerList.setAdapter(mDrawerAdapter);
+            mDrawerList.setAdapter(mDrawerAdapter);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity$2.run()",this,throwable);throw throwable;}
         }
     };
 
     protected SimpleAdapter.ViewBinder mViewBinder = new SimpleAdapter.ViewBinder() {
         protected int pickSelector(BoardType type) {
-            int selector;
+            com.mijack.Xlog.logMethodEnter("int com.chanapps.four.activity.AbstractDrawerActivity$3.pickSelector(com.chanapps.four.data.BoardType)",this,type);try{int selector;
             if (type != null && type.boardCode() != null && boardCode != null && type.boardCode().equals(boardCode))
-                selector = R.drawable.drawer_list_selector_checked_bg;
+                {selector = R.drawable.drawer_list_selector_checked_bg;}
 
             else if (getApplicationContext() != null && ThemeSelector.instance(getApplicationContext()).isDark())
-                selector = R.drawable.drawer_list_selector_inverse_bg_dark;
+                {selector = R.drawable.drawer_list_selector_inverse_bg_dark;}
             else
-                selector = R.drawable.drawer_list_selector_inverse_bg;
-            return selector;
+                {selector = R.drawable.drawer_list_selector_inverse_bg;}
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.activity.AbstractDrawerActivity$3.pickSelector(com.chanapps.four.data.BoardType)",this);return selector;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.activity.AbstractDrawerActivity$3.pickSelector(com.chanapps.four.data.BoardType)",this,throwable);throw throwable;}
         }
         public boolean setViewValue(View view, Object data, String textRepresentation) {
-            switch (view.getId()) {
+            com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.AbstractDrawerActivity$3.setViewValue(android.widget.View,android.widget.Object,android.widget.String)",this,view,data,textRepresentation);try{switch (view.getId()) {
                 case R.id.drawer_list_item:
-                    // find item
+                    /*// find item*/
                     int pos = Integer.valueOf((String)data);
                     Map<String, String> item = (Map<String, String>)mDrawerAdapter.getItem(pos);
                     String drawerText = item.get(TEXT);
@@ -205,14 +205,14 @@ abstract public class
                     Drawable selectorDrawable = getLayoutInflater().getContext().getResources().getDrawable(selector);
                     child.setForeground(selectorDrawable);
 
-                    // set title state
+                    /*// set title state*/
                     ImageView icon = (ImageView)view.findViewById(R.id.drawer_list_item_icon);
                     TextView text = (TextView)view.findViewById(R.id.drawer_list_item_text);
                     TextView title = (TextView)view.findViewById(R.id.drawer_list_item_title);
                     TextView detail = (TextView)view.findViewById(R.id.drawer_list_item_detail);
                     View divider = view.findViewById(R.id.drawer_list_item_divider);
 
-                    if (//type == BoardType.META ||
+                    if (/*//type == BoardType.META ||*/
                             (type != null && type == BoardType.FAVORITES && hasFavorites) ||
                                     (type != null && type == BoardType.WATCHLIST && hasWatchlist)) {
                         title.setText(drawerText);
@@ -267,7 +267,7 @@ abstract public class
                         divider.setVisibility(View.GONE);
                     }
 
-                    // set text color
+                    /*// set text color*/
                     /*
                     int textColor;
                     if (type == BoardType.valueOfBoardCode(boardCode))
@@ -277,20 +277,20 @@ abstract public class
                     text.setTextColor(getResources().getColor(textColor));
                     */
 
-                    if (DEBUG) Log.v(TAG, "mViewBinder:setViewValue() item pos=" + pos
+                    if (DEBUG) {Log.v(TAG, "mViewBinder:setViewValue() item pos=" + pos
                             + " checked=" + (selector == R.drawable.drawer_list_selector_checked_bg) + " type=" + type
-                            + " text=" + text + " item=" + item);
+                            + " text=" + text + " item=" + item);}
 
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.AbstractDrawerActivity$3.setViewValue(android.widget.View,android.widget.Object,android.widget.String)",this);return true;}
 
                 default:
-                    return false;
-            }
+                    {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.AbstractDrawerActivity$3.setViewValue(android.widget.View,android.widget.Object,android.widget.String)",this);return false;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.AbstractDrawerActivity$3.setViewValue(android.widget.View,android.widget.Object,android.widget.String)",this,throwable);throw throwable;}
         }
     };
 
     protected void createDrawer() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.createDrawer()",this);try{mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
@@ -308,74 +308,70 @@ abstract public class
                 R.string.drawer_close  /* "close drawer" description for accessibility */
         ) {
             public void onDrawerClosed(View view) {
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity$4.onDrawerClosed(android.widget.View)",this,view);try{invalidateOptionsMenu(); /*// creates call to onPrepareOptionsMenu()*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity$4.onDrawerClosed(android.widget.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity$4.onDrawerClosed(android.widget.View)",this,throwable);throw throwable;}
             }
 
             public void onDrawerOpened(View drawerView) {
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-                loadDrawerArray();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity$4.onDrawerOpened(android.widget.View)",this,drawerView);try{invalidateOptionsMenu(); /*// creates call to onPrepareOptionsMenu()*/
+                loadDrawerArray();com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity$4.onDrawerOpened(android.widget.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity$4.onDrawerOpened(android.widget.View)",this,throwable);throw throwable;}
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.createDrawer()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.createDrawer()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.onNewIntent(android.content.Intent)",this,intent);try{super.onNewIntent(intent);
+        setIntent(intent);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.onNewIntent(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.onNewIntent(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item))
-            return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.activity.AbstractDrawerActivity.onOptionsItemSelected(android.widget.MenuItem)",this,item);try{if (mDrawerToggle.onOptionsItemSelected(item))
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.AbstractDrawerActivity.onOptionsItemSelected(android.widget.MenuItem)",this);return true;}}
         closeDrawer();
-        return super.onOptionsItemSelected(item);
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.activity.AbstractDrawerActivity.onOptionsItemSelected(android.widget.MenuItem)",this);return super.onOptionsItemSelected(item);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.activity.AbstractDrawerActivity.onOptionsItemSelected(android.widget.MenuItem)",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void refresh() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.refresh()",this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.refresh()",this);}
 
-    @Override
-    public void closeSearch() {}
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.closeSearch()",this);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.closeSearch()",this);}
 
     abstract public boolean isSelfDrawerMenu(String boardAsMenu);
 
     protected ListView.OnItemClickListener drawerClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (DEBUG) Log.i(TAG, "onItemClick parent=" + parent + " view=" + view + " pos=" + position + " id=" + id);
+            com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity$5.onItemClick(android.widget.AdapterView,android.widget.View,int,long)",this,parent,view,position,id);try{if (DEBUG) {Log.i(TAG, "onItemClick parent=" + parent + " view=" + view + " pos=" + position + " id=" + id);}
             closeDrawer();
             HashMap<String, String> item = (HashMap<String, String>)parent.getItemAtPosition(position);
             String boardAsMenu = item.get(TEXT);
-            if (DEBUG) Log.i(TAG, "onItemClick boardAsMenu=" + boardAsMenu + " calling handleSelectItem");
+            if (DEBUG) {Log.i(TAG, "onItemClick boardAsMenu=" + boardAsMenu + " calling handleSelectItem");}
             handleSelectItem(boardAsMenu);
-            if (DEBUG) Log.i(TAG, "onItemClick boardAsMenu=" + boardAsMenu + " complete");
+            if (DEBUG) {Log.i(TAG, "onItemClick boardAsMenu=" + boardAsMenu + " complete");}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity$5.onItemClick(android.widget.AdapterView,android.widget.View,int,long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity$5.onItemClick(android.widget.AdapterView,android.widget.View,int,long)",this,throwable);throw throwable;}
         }
     };
 
     @Override
     protected void closeDrawer() {
-        if (mDrawerLayout != null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.closeDrawer()",this);try{if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mDrawerList);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.closeDrawer()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.closeDrawer()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.onResume()",this);try{super.onResume();
         boolean drawerEnabled;
-        //if (threadNo > 0)
-        //    drawerEnabled = false;
-        //else
+        /*//if (threadNo > 0)*/
+        /*//    drawerEnabled = false;*/
+        /*//else*/
             drawerEnabled = true;
-        if (DEBUG) Log.i(TAG, "onResume() drawerEnabled setting to=" + drawerEnabled);
+        if (DEBUG) {Log.i(TAG, "onResume() drawerEnabled setting to=" + drawerEnabled);}
         mDrawerToggle.setDrawerIndicatorEnabled(drawerEnabled);
-        if (DEBUG) Log.i(TAG, "onResume() drawerEnabled set to=" + drawerEnabled);
+        if (DEBUG) {Log.i(TAG, "onResume() drawerEnabled set to=" + drawerEnabled);}com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.activity.AbstractDrawerActivity.onResume()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void switchBoard(String boardCode, String query) {}
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.activity.AbstractDrawerActivity.switchBoard(android.widget.String,android.widget.String)",this,boardCode,query);com.mijack.Xlog.logMethodExit("void com.chanapps.four.activity.AbstractDrawerActivity.switchBoard(android.widget.String,android.widget.String)",this);}
 
 }

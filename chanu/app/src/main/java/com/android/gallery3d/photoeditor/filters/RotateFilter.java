@@ -29,17 +29,17 @@ public class RotateFilter extends Filter {
     private float degrees;
 
     public void setAngle(float degrees) {
-        this.degrees = degrees;
-        validate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.RotateFilter.setAngle(float)",this,degrees);try{this.degrees = degrees;
+        validate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.RotateFilter.setAngle(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.RotateFilter.setAngle(float)",this,throwable);throw throwable;}
     }
 
     @Override
     public void process(Photo src, Photo dst) {
-        if (degrees % 180 != 0) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.filters.RotateFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,src,dst);try{if (degrees % 180 != 0) {
             dst.changeDimension(src.height(), src.width());
         }
         Effect effect = getEffect(EffectFactory.EFFECT_ROTATE);
         effect.setParameter("angle", (int) degrees);
-        effect.apply(src.texture(), src.width(), src.height(), dst.texture());
+        effect.apply(src.texture(), src.width(), src.height(), dst.texture());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.filters.RotateFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.filters.RotateFilter.process(com.android.gallery3d.photoeditor.Photo,com.android.gallery3d.photoeditor.Photo)",this,throwable);throw throwable;}
     }
 }

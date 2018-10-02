@@ -28,27 +28,27 @@ import java.io.OutputStream;
  */
 public final class IoUtils {
 
-	private static final int BUFFER_SIZE = 8 * 1024; // 8 KB 
+	private static final int BUFFER_SIZE = 8 * 1024; /*// 8 KB */
 
 	private IoUtils() {
 	}
 
 	public static void copyStream(InputStream is, OutputStream os) throws IOException {
-		byte[] bytes = new byte[BUFFER_SIZE];
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.IoUtils.copyStream(java.io.InputStream,java.io.OutputStream)",is,os);try{byte[] bytes = new byte[BUFFER_SIZE];
 		while (true) {
 			int count = is.read(bytes, 0, BUFFER_SIZE);
 			if (count == -1) {
 				break;
 			}
 			os.write(bytes, 0, count);
-		}
+		}com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.IoUtils.copyStream(java.io.InputStream,java.io.OutputStream)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.IoUtils.copyStream(java.io.InputStream,java.io.OutputStream)",throwable);throw throwable;}
 	}
 
 	public static void closeSilently(Closeable closeable) {
-		try {
+		com.mijack.Xlog.logStaticMethodEnter("void com.nostra13.universalimageloader.utils.IoUtils.closeSilently(java.io.Closeable)",closeable);try{try {
 			closeable.close();
 		} catch (Exception e) {
-			// Do nothing
-		}
+			/*// Do nothing*/
+		}com.mijack.Xlog.logStaticMethodExit("void com.nostra13.universalimageloader.utils.IoUtils.closeSilently(java.io.Closeable)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.nostra13.universalimageloader.utils.IoUtils.closeSilently(java.io.Closeable)",throwable);throw throwable;}
 	}
 }

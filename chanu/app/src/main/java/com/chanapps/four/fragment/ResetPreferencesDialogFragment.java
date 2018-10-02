@@ -39,22 +39,22 @@ public class ResetPreferencesDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.chanapps.four.fragment.ResetPreferencesDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{LayoutInflater inflater = getActivity().getLayoutInflater();
         View layout = inflater.inflate(R.layout.message_dialog_fragment, null);
         TextView title = (TextView) layout.findViewById(R.id.title);
         TextView message = (TextView) layout.findViewById(R.id.message);
         title.setText(R.string.dialog_reset_preferences);
         message.setText(R.string.dialog_reset_preferences_confirm);
         setStyle(STYLE_NO_TITLE, 0);
-        return (new AlertDialog.Builder(getActivity()))
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.chanapps.four.fragment.ResetPreferencesDialogFragment.onCreateDialog(android.os.Bundle)",this);return (new AlertDialog.Builder(getActivity()))
                 .setView(layout)
                 .setPositiveButton(R.string.pref_reset_to_defaults,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Context context = getActivity();
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ResetPreferencesDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{Context context = getActivity();
 
-                                // do this jazz to save widget conf even on clear because you can't programmatically remove widgets
+                                /*// do this jazz to save widget conf even on clear because you can't programmatically remove widgets*/
                                 Set<String> savedWidgetConf = WidgetProviderUtils.getActiveWidgetPref(context);
 
                                 PreferenceManager.getDefaultSharedPreferences(context)
@@ -65,19 +65,19 @@ public class ResetPreferencesDialogFragment extends DialogFragment {
 
                                 UserStatistics stats = NetworkProfileManager.instance().getUserStatistics();
                                 if (stats != null)
-                                    stats.reset();
+                                    {stats.reset();}
                                 fragment.setPreferenceScreen(null);
                                 fragment.initPreferenceScreen();
-                                Toast.makeText(getActivity(), R.string.dialog_reset_preferences, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), R.string.dialog_reset_preferences, Toast.LENGTH_SHORT).show();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ResetPreferencesDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ResetPreferencesDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
                 .setNegativeButton(R.string.dialog_cancel,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // ignore
+                                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.ResetPreferencesDialogFragment$2.onClick(android.content.DialogInterface,int)",this,dialog,which);try{/*// ignore*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.ResetPreferencesDialogFragment$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.ResetPreferencesDialogFragment$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                             }
                         })
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.chanapps.four.fragment.ResetPreferencesDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

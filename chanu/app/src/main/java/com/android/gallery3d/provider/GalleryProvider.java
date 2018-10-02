@@ -62,85 +62,85 @@ public class GalleryProvider extends ContentProvider {
     private static Uri sBaseUri;
 
     public static String getAuthority(Context context) {
-        return context.getPackageName() + ".provider";
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.provider.GalleryProvider.getAuthority(android.content.Context)",context);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.provider.GalleryProvider.getAuthority(android.content.Context)");return context.getPackageName() + ".provider";}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.provider.GalleryProvider.getAuthority(android.content.Context)",throwable);throw throwable;}
     }
 
     public static Uri getUriFor(Context context, Path path) {
-        if (sBaseUri == null) {
+        com.mijack.Xlog.logStaticMethodEnter("android.net.Uri com.android.gallery3d.provider.GalleryProvider.getUriFor(android.content.Context,com.android.gallery3d.data.Path)",context,path);try{if (sBaseUri == null) {
             sBaseUri = Uri.parse("content://" + context.getPackageName() + ".provider");
         }
-        return sBaseUri.buildUpon()
-                .appendEncodedPath(path.toString().substring(1)) // ignore the leading '/'
-                .build();
+        {com.mijack.Xlog.logStaticMethodExit("android.net.Uri com.android.gallery3d.provider.GalleryProvider.getUriFor(android.content.Context,com.android.gallery3d.data.Path)");return sBaseUri.buildUpon()
+                .appendEncodedPath(path.toString().substring(1)) /*// ignore the leading '/'*/
+                .build();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.net.Uri com.android.gallery3d.provider.GalleryProvider.getUriFor(android.content.Context,com.android.gallery3d.data.Path)",throwable);throw throwable;}
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.provider.GalleryProvider.delete(android.net.Uri,java.lang.String,[java.lang.String)",this,uri,selection,selectionArgs);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.provider.GalleryProvider.delete(android.net.Uri,java.lang.String,[java.lang.String)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.provider.GalleryProvider.delete(android.net.Uri,java.lang.String,[java.lang.String)",this,throwable);throw throwable;}
     }
 
-    // TODO: consider concurrent access
+    /*// TODO: consider concurrent access*/
     @Override
     public String getType(Uri uri) {
-        long token = Binder.clearCallingIdentity();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.provider.GalleryProvider.getType(android.net.Uri)",this,uri);try{long token = Binder.clearCallingIdentity();
         try {
             Path path = Path.fromString(uri.getPath());
             MediaItem item = (MediaItem) mDataManager.getMediaObject(path);
-            return item != null ? item.getMimeType() : null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.provider.GalleryProvider.getType(android.net.Uri)",this);return item != null ? item.getMimeType() : null;}
         } finally {
             Binder.restoreCallingIdentity(token);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.provider.GalleryProvider.getType(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.android.gallery3d.provider.GalleryProvider.insert(android.net.Uri,android.content.ContentValues)",this,uri,values);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.android.gallery3d.provider.GalleryProvider.insert(android.net.Uri,android.content.ContentValues)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.android.gallery3d.provider.GalleryProvider.insert(android.net.Uri,android.content.ContentValues)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onCreate() {
-        GalleryApp app = (GalleryApp) getContext().getApplicationContext();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.provider.GalleryProvider.onCreate()",this);try{GalleryApp app = (GalleryApp) getContext().getApplicationContext();
         mDataManager = app.getDataManager();
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.provider.GalleryProvider.onCreate()",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.provider.GalleryProvider.onCreate()",this,throwable);throw throwable;}
     }
 
     private DownloadCache getDownloadCache() {
-        if (mDownloadCache == null) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DownloadCache com.android.gallery3d.provider.GalleryProvider.getDownloadCache()",this);try{if (mDownloadCache == null) {
             GalleryApp app = (GalleryApp) getContext().getApplicationContext();
             mDownloadCache = app.getDownloadCache();
         }
-        return mDownloadCache;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache com.android.gallery3d.provider.GalleryProvider.getDownloadCache()",this);return mDownloadCache;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DownloadCache com.android.gallery3d.provider.GalleryProvider.getDownloadCache()",this,throwable);throw throwable;}
     }
 
-    // TODO: consider concurrent access
+    /*// TODO: consider concurrent access*/
     @Override
     public Cursor query(Uri uri, String[] projection,
             String selection, String[] selectionArgs, String sortOrder) {
-        long token = Binder.clearCallingIdentity();
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,uri,projection,selection,selectionArgs,sortOrder);try{long token = Binder.clearCallingIdentity();
         try {
             Path path = Path.fromString(uri.getPath());
             MediaObject object = mDataManager.getMediaObject(path);
             if (object == null) {
                 Log.w(TAG, "cannot find: " + uri);
-                return null;
+                {com.mijack.Xlog.logMethodExit("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this);return null;}
             }
             if (PicasaSource.isPicasaImage(object)) {
-                return queryPicasaItem(object,
-                        projection, selection, selectionArgs, sortOrder);
+                {com.mijack.Xlog.logMethodExit("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this);return queryPicasaItem(object,
+                        projection, selection, selectionArgs, sortOrder);}
             } else if (object instanceof MtpImage) {
-                return queryMtpItem((MtpImage) object,
-                        projection, selection, selectionArgs, sortOrder);
+                {com.mijack.Xlog.logMethodExit("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this);return queryMtpItem((MtpImage) object,
+                        projection, selection, selectionArgs, sortOrder);}
             } else {
-                    return null;
+                    {com.mijack.Xlog.logMethodExit("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this);return null;}
             }
         } finally {
             Binder.restoreCallingIdentity(token);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     private Cursor queryMtpItem(MtpImage image, String[] projection,
             String selection, String[] selectionArgs, String sortOrder) {
-        Object[] columnValues = new Object[projection.length];
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.queryMtpItem(com.android.gallery3d.data.MtpImage,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,image,projection,selection,selectionArgs,sortOrder);try{Object[] columnValues = new Object[projection.length];
         for (int i = 0, n = projection.length; i < n; ++i) {
             String column = projection[i];
             if (ImageColumns.DISPLAY_NAME.equals(column)) {
@@ -157,12 +157,12 @@ public class GalleryProvider extends ContentProvider {
         }
         MatrixCursor cursor = new MatrixCursor(projection);
         cursor.addRow(columnValues);
-        return cursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.queryMtpItem(com.android.gallery3d.data.MtpImage,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this);return cursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.queryMtpItem(com.android.gallery3d.data.MtpImage,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     private Cursor queryPicasaItem(MediaObject image, String[] projection,
             String selection, String[] selectionArgs, String sortOrder) {
-        if (projection == null) projection = SUPPORTED_PICASA_COLUMNS;
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.queryPicasaItem(com.android.gallery3d.data.MediaObject,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,image,projection,selection,selectionArgs,sortOrder);try{if (projection == null) {projection = SUPPORTED_PICASA_COLUMNS;}
         Object[] columnValues = new Object[projection.length];
         double latitude = PicasaSource.getLatitude(image);
         double longitude = PicasaSource.getLongitude(image);
@@ -190,13 +190,13 @@ public class GalleryProvider extends ContentProvider {
         }
         MatrixCursor cursor = new MatrixCursor(projection);
         cursor.addRow(columnValues);
-        return cursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.queryPicasaItem(com.android.gallery3d.data.MediaObject,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this);return cursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.android.gallery3d.provider.GalleryProvider.queryPicasaItem(com.android.gallery3d.data.MediaObject,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String mode)
             throws FileNotFoundException {
-        long token = Binder.clearCallingIdentity();
+        com.mijack.Xlog.logMethodEnter("android.os.ParcelFileDescriptor com.android.gallery3d.provider.GalleryProvider.openFile(android.net.Uri,java.lang.String)",this,uri,mode);try{long token = Binder.clearCallingIdentity();
         try {
             if (mode.contains("w")) {
                 throw new FileNotFoundException("cannot open file for write");
@@ -207,21 +207,21 @@ public class GalleryProvider extends ContentProvider {
                 throw new FileNotFoundException(uri.toString());
             }
             if (PicasaSource.isPicasaImage(object)) {
-                return PicasaSource.openFile(getContext(), object, mode);
+                {com.mijack.Xlog.logMethodExit("android.os.ParcelFileDescriptor com.android.gallery3d.provider.GalleryProvider.openFile(android.net.Uri,java.lang.String)",this);return PicasaSource.openFile(getContext(), object, mode);}
             } else if (object instanceof MtpImage) {
-                return openPipeHelper(uri, null, null, null,
-                        new MtpPipeDataWriter((MtpImage) object));
+                {com.mijack.Xlog.logMethodExit("android.os.ParcelFileDescriptor com.android.gallery3d.provider.GalleryProvider.openFile(android.net.Uri,java.lang.String)",this);return openPipeHelper(uri, null, null, null,
+                        new MtpPipeDataWriter((MtpImage) object));}
             } else {
                 throw new FileNotFoundException("unspported type: " + object);
             }
         } finally {
             Binder.restoreCallingIdentity(token);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.os.ParcelFileDescriptor com.android.gallery3d.provider.GalleryProvider.openFile(android.net.Uri,java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.provider.GalleryProvider.update(android.net.Uri,android.content.ContentValues,java.lang.String,[java.lang.String)",this,uri,values,selection,selectionArgs);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.provider.GalleryProvider.update(android.net.Uri,android.content.ContentValues,java.lang.String,[java.lang.String)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.provider.GalleryProvider.update(android.net.Uri,android.content.ContentValues,java.lang.String,[java.lang.String)",this,throwable);throw throwable;}
     }
 
     private final class MtpPipeDataWriter implements PipeDataWriter<Object> {
@@ -234,7 +234,7 @@ public class GalleryProvider extends ContentProvider {
         @Override
         public void writeDataToPipe(ParcelFileDescriptor output,
                 Uri uri, String mimeType, Bundle opts, Object args) {
-            OutputStream os = null;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.provider.GalleryProvider$MtpPipeDataWriter.writeDataToPipe(android.os.ParcelFileDescriptor,android.net.Uri,java.lang.String,android.os.Bundle,com.android.gallery3d.data.MediaObject)",this,output,uri,mimeType,opts,args);try{OutputStream os = null;
             try {
                 os = new ParcelFileDescriptor.AutoCloseOutputStream(output);
                 os.write(mImage.getImageData());
@@ -242,7 +242,7 @@ public class GalleryProvider extends ContentProvider {
                 Log.w(TAG, "fail to download: " + uri, e);
             } finally {
                 Utils.closeSilently(os);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.provider.GalleryProvider$MtpPipeDataWriter.writeDataToPipe(android.os.ParcelFileDescriptor,android.net.Uri,java.lang.String,android.os.Bundle,com.android.gallery3d.data.MediaObject)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.provider.GalleryProvider$MtpPipeDataWriter.writeDataToPipe(android.os.ParcelFileDescriptor,android.net.Uri,java.lang.String,android.os.Bundle,com.android.gallery3d.data.MediaObject)",this,throwable);throw throwable;}
         }
     }
 }

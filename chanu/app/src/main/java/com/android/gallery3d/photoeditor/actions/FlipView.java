@@ -55,24 +55,24 @@ class FlipView extends FullscreenToolView {
     }
 
     public void setOnFlipChangeListener(OnFlipChangeListener listener) {
-        this.listener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipView.setOnFlipChangeListener(OnFlipChangeListener)",this,listener);try{this.listener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipView.setOnFlipChangeListener(OnFlipChangeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipView.setOnFlipChangeListener(OnFlipChangeListener)",this,throwable);throw throwable;}
     }
 
     public void setFlippedAngles(float horizontalDegrees, float verticalDegrees) {
-        refreshAngle(horizontalDegrees, verticalDegrees, false);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipView.setFlippedAngles(float,float)",this,horizontalDegrees,verticalDegrees);try{refreshAngle(horizontalDegrees, verticalDegrees, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipView.setFlippedAngles(float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipView.setFlippedAngles(float,float)",this,throwable);throw throwable;}
     }
 
     /**
      * Sets allowed degrees for every flip before flipping the view.
      */
     public void setFlipSpan(float degrees) {
-        // Flip-span limits allowed flipping degrees of every flip for usability purpose; the max.
-        // flipped angles could be accumulated and larger than allowed flip-span.
-        maxFlipSpan = degrees;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipView.setFlipSpan(float)",this,degrees);try{/*// Flip-span limits allowed flipping degrees of every flip for usability purpose; the max.*/
+        /*// flipped angles could be accumulated and larger than allowed flip-span.*/
+        maxFlipSpan = degrees;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipView.setFlipSpan(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipView.setFlipSpan(float)",this,throwable);throw throwable;}
     }
 
     private float calculateAngle(boolean flipHorizontal, float x, float y) {
-        // Use partial length along the moving direction to calculate the flip angle.
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.photoeditor.actions.FlipView.calculateAngle(boolean,float,float)",this,flipHorizontal,x,y);try{/*// Use partial length along the moving direction to calculate the flip angle.*/
         float maxDistance = (flipHorizontal ? getWidth() : getHeight()) * 0.35f;
         float moveDistance = flipHorizontal ? (x - touchStartX) : (touchStartY - y);
 
@@ -85,12 +85,12 @@ class FlipView extends FullscreenToolView {
                 touchStartY = moveDistance + y;
             }
         }
-        return (moveDistance / maxDistance) * maxFlipSpan;
+        {com.mijack.Xlog.logMethodExit("float com.android.gallery3d.photoeditor.actions.FlipView.calculateAngle(boolean,float,float)",this);return (moveDistance / maxDistance) * maxFlipSpan;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.photoeditor.actions.FlipView.calculateAngle(boolean,float,float)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        super.onTouchEvent(ev);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.FlipView.onTouchEvent(android.view.MotionEvent)",this,ev);try{super.onTouchEvent(ev);
 
         if (isEnabled()) {
             switch (ev.getAction()) {
@@ -107,8 +107,8 @@ class FlipView extends FullscreenToolView {
                     break;
 
                 case MotionEvent.ACTION_MOVE:
-                    // Allow only one direction for flipping during movements, and make the
-                    // direction fixed once it exceeds threshold.
+                    /*// Allow only one direction for flipping during movements, and make the*/
+                    /*// direction fixed once it exceeds threshold.*/
                     float x = ev.getX();
                     float y = ev.getY();
                     boolean flipHorizontal = fixedDirection ? fixedDirectionHorizontal
@@ -134,14 +134,14 @@ class FlipView extends FullscreenToolView {
                     break;
             }
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.FlipView.onTouchEvent(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.FlipView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     private void refreshAngle(float horizontalDegrees, float verticalDegrees, boolean fromUser) {
-        currentHorizontalDegrees = horizontalDegrees;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.FlipView.refreshAngle(float,float,boolean)",this,horizontalDegrees,verticalDegrees,fromUser);try{currentHorizontalDegrees = horizontalDegrees;
         currentVerticalDegrees = verticalDegrees;
         if (listener != null) {
             listener.onAngleChanged(horizontalDegrees, verticalDegrees, fromUser);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.FlipView.refreshAngle(float,float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.FlipView.refreshAngle(float,float,boolean)",this,throwable);throw throwable;}
     }
 }

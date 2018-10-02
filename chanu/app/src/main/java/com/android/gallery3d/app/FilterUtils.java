@@ -20,39 +20,39 @@ import com.chanapps.four.gallery3d.R;
 import com.android.gallery3d.data.MediaObject;
 import com.android.gallery3d.data.Path;
 
-// This class handles filtering and clustering.
-//
-// We allow at most only one filter operation at a time (Currently it
-// doesn't make sense to use more than one). Also each clustering operation
-// can be applied at most once. In addition, there is one more constraint
-// ("fixed set constraint") described below.
-//
-// A clustered album (not including album set) and its base sets are fixed.
-// For example,
-//
-// /cluster/{base_set}/time/7
-//
-// This set and all sets inside base_set (recursively) are fixed because
-// 1. We can not change this set to use another clustering condition (like
-//    changing "time" to "location").
-// 2. Neither can we change any set in the base_set.
-// The reason is in both cases the 7th set may not exist in the new clustering.
-// ---------------------
-// newPath operation: create a new path based on a source path and put an extra
-// condition on top of it:
-//
-// T = newFilterPath(S, filterType);
-// T = newClusterPath(S, clusterType);
-//
-// Similar functions can be used to replace the current condition (if there is one).
-//
-// T = switchFilterPath(S, filterType);
-// T = switchClusterPath(S, clusterType);
-//
-// For all fixed set in the path defined above, if some clusterType and
-// filterType are already used, they cannot not be used as parameter for these
-// functions. setupMenuItems() makes sure those types cannot be selected.
-//
+/*// This class handles filtering and clustering.*/
+/*//*/
+/*// We allow at most only one filter operation at a time (Currently it*/
+/*// doesn't make sense to use more than one). Also each clustering operation*/
+/*// can be applied at most once. In addition, there is one more constraint*/
+/*// ("fixed set constraint") described below.*/
+/*//*/
+/*// A clustered album (not including album set) and its base sets are fixed.*/
+/*// For example,*/
+/*//*/
+/*// /cluster/{base_set}/time/7*/
+/*//*/
+/*// This set and all sets inside base_set (recursively) are fixed because*/
+/*// 1. We can not change this set to use another clustering condition (like*/
+/*//    changing "time" to "location").*/
+/*// 2. Neither can we change any set in the base_set.*/
+/*// The reason is in both cases the 7th set may not exist in the new clustering.*/
+/*// ---------------------*/
+/*// newPath operation: create a new path based on a source path and put an extra*/
+/*// condition on top of it:*/
+/*//*/
+/*// T = newFilterPath(S, filterType);*/
+/*// T = newClusterPath(S, clusterType);*/
+/*//*/
+/*// Similar functions can be used to replace the current condition (if there is one).*/
+/*//*/
+/*// T = switchFilterPath(S, filterType);*/
+/*// T = switchClusterPath(S, clusterType);*/
+/*//*/
+/*// For all fixed set in the path defined above, if some clusterType and*/
+/*// filterType are already used, they cannot not be used as parameter for these*/
+/*// functions. setupMenuItems() makes sure those types cannot be selected.*/
+/*//*/
 public class FilterUtils {
     private static final String TAG = "FilterUtils";
 
@@ -67,8 +67,8 @@ public class FilterUtils {
     public static final int FILTER_VIDEO_ONLY = 2;
     public static final int FILTER_ALL = 4;
 
-    // These are indices of the return values of getAppliedFilters().
-    // The _F suffix means "fixed".
+    /*// These are indices of the return values of getAppliedFilters().*/
+    /*// The _F suffix means "fixed".*/
     private static final int CLUSTER_TYPE = 0;
     private static final int FILTER_TYPE = 1;
     private static final int CLUSTER_TYPE_F = 2;
@@ -77,7 +77,7 @@ public class FilterUtils {
     private static final int FILTER_CURRENT_TYPE = 5;
 
     public static void setupMenuItems(GalleryActionBar model, Path path, boolean inAlbum) {
-        int[] result = new int[6];
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.app.FilterUtils.setupMenuItems(com.android.gallery3d.app.GalleryActionBar,com.android.gallery3d.data.Path,boolean)",model,path,inAlbum);try{int[] result = new int[6];
         getAppliedFilters(path, result);
         int ctype = result[CLUSTER_TYPE];
         int ftype = result[FILTER_TYPE];
@@ -96,8 +96,8 @@ public class FilterUtils {
 
         model.setClusterItemVisibility(CLUSTER_BY_ALBUM, !inAlbum || ctype == 0);
 
-        // A filtering is available if it's not applied, and the old filtering
-        // (if any) is not fixed.
+        /*// A filtering is available if it's not applied, and the old filtering*/
+        /*// (if any) is not fixed.*/
         setMenuItemAppliedEnabled(model, R.string.show_images_only,
                 (ftype & FILTER_IMAGE_ONLY) != 0,
                 (ftype & FILTER_IMAGE_ONLY) == 0 && ftypef == 0,
@@ -107,17 +107,17 @@ public class FilterUtils {
                 (ftype & FILTER_VIDEO_ONLY) == 0 && ftypef == 0,
                 (fcurrent & FILTER_VIDEO_ONLY) != 0);
         setMenuItemAppliedEnabled(model, R.string.show_all,
-                ftype == 0, ftype != 0 && ftypef == 0, fcurrent == 0);
+                ftype == 0, ftype != 0 && ftypef == 0, fcurrent == 0);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.app.FilterUtils.setupMenuItems(com.android.gallery3d.app.GalleryActionBar,com.android.gallery3d.data.Path,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.app.FilterUtils.setupMenuItems(com.android.gallery3d.app.GalleryActionBar,com.android.gallery3d.data.Path,boolean)",throwable);throw throwable;}
     }
 
-    // Gets the filters applied in the path.
+    /*// Gets the filters applied in the path.*/
     private static void getAppliedFilters(Path path, int[] result) {
-        getAppliedFilters(path, result, false);
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.app.FilterUtils.getAppliedFilters(com.android.gallery3d.data.Path,[int)",path,result);try{getAppliedFilters(path, result, false);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.app.FilterUtils.getAppliedFilters(com.android.gallery3d.data.Path,[int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.app.FilterUtils.getAppliedFilters(com.android.gallery3d.data.Path,[int)",throwable);throw throwable;}
     }
 
     private static void getAppliedFilters(Path path, int[] result, boolean underCluster) {
-        String[] segments = path.split();
-        // Recurse into sub media sets.
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.app.FilterUtils.getAppliedFilters(com.android.gallery3d.data.Path,[int,boolean)",path,result,underCluster);try{String[] segments = path.split();
+        /*// Recurse into sub media sets.*/
         for (int i = 0; i < segments.length; i++) {
             if (segments[i].startsWith("{")) {
                 String[] sets = Path.splitSequence(segments[i]);
@@ -128,9 +128,9 @@ public class FilterUtils {
             }
         }
 
-        // update current selection
+        /*// update current selection*/
         if (segments[0].equals("cluster")) {
-            // if this is a clustered album, set underCluster to true.
+            /*// if this is a clustered album, set underCluster to true.*/
             if (segments.length == 4) {
                 underCluster = true;
             }
@@ -141,36 +141,36 @@ public class FilterUtils {
             if (underCluster) {
                 result[CLUSTER_TYPE_F] |= ctype;
             }
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.app.FilterUtils.getAppliedFilters(com.android.gallery3d.data.Path,[int,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.app.FilterUtils.getAppliedFilters(com.android.gallery3d.data.Path,[int,boolean)",throwable);throw throwable;}
     }
 
     private static int toClusterType(String s) {
-        if (s.equals("time")) {
-            return CLUSTER_BY_TIME;
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)",s);try{if (s.equals("time")) {
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)");return CLUSTER_BY_TIME;}
         } else if (s.equals("location")) {
-            return CLUSTER_BY_LOCATION;
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)");return CLUSTER_BY_LOCATION;}
         } else if (s.equals("tag")) {
-            return CLUSTER_BY_TAG;
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)");return CLUSTER_BY_TAG;}
         } else if (s.equals("size")) {
-            return CLUSTER_BY_SIZE;
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)");return CLUSTER_BY_SIZE;}
         } else if (s.equals("face")) {
-            return CLUSTER_BY_FACE;
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)");return CLUSTER_BY_FACE;}
         }
-        return 0;
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)");return 0;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.app.FilterUtils.toClusterType(java.lang.String)",throwable);throw throwable;}
     }
 
     private static void setMenuItemApplied(
             GalleryActionBar model, int id, boolean applied, boolean updateTitle) {
-        model.setClusterItemEnabled(id, !applied);
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.app.FilterUtils.setMenuItemApplied(com.android.gallery3d.app.GalleryActionBar,int,boolean,boolean)",model,id,applied,updateTitle);try{model.setClusterItemEnabled(id, !applied);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.app.FilterUtils.setMenuItemApplied(com.android.gallery3d.app.GalleryActionBar,int,boolean,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.app.FilterUtils.setMenuItemApplied(com.android.gallery3d.app.GalleryActionBar,int,boolean,boolean)",throwable);throw throwable;}
     }
 
     private static void setMenuItemAppliedEnabled(GalleryActionBar model, int id, boolean applied, boolean enabled, boolean updateTitle) {
-        model.setClusterItemEnabled(id, enabled);
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.app.FilterUtils.setMenuItemAppliedEnabled(com.android.gallery3d.app.GalleryActionBar,int,boolean,boolean,boolean)",model,id,applied,enabled,updateTitle);try{model.setClusterItemEnabled(id, enabled);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.app.FilterUtils.setMenuItemAppliedEnabled(com.android.gallery3d.app.GalleryActionBar,int,boolean,boolean,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.app.FilterUtils.setMenuItemAppliedEnabled(com.android.gallery3d.app.GalleryActionBar,int,boolean,boolean,boolean)",throwable);throw throwable;}
     }
 
-    // Add a specified filter to the path.
+    /*// Add a specified filter to the path.*/
     public static String newFilterPath(String base, int filterType) {
-        int mediaType;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.newFilterPath(java.lang.String,int)",base,filterType);try{int mediaType;
         switch (filterType) {
             case FILTER_IMAGE_ONLY:
                 mediaType = MediaObject.MEDIA_TYPE_IMAGE;
@@ -179,15 +179,15 @@ public class FilterUtils {
                 mediaType = MediaObject.MEDIA_TYPE_VIDEO;
                 break;
             default:  /* FILTER_ALL */
-                return base;
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.newFilterPath(java.lang.String,int)");return base;}
         }
 
-        return "/filter/mediatype/" + mediaType + "/{" + base + "}";
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.newFilterPath(java.lang.String,int)");return "/filter/mediatype/" + mediaType + "/{" + base + "}";}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.newFilterPath(java.lang.String,int)",throwable);throw throwable;}
     }
 
-    // Add a specified clustering to the path.
+    /*// Add a specified clustering to the path.*/
     public static String newClusterPath(String base, int clusterType) {
-        String kind;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.newClusterPath(java.lang.String,int)",base,clusterType);try{String kind;
         switch (clusterType) {
             case CLUSTER_BY_TIME:
                 kind = "time";
@@ -205,35 +205,35 @@ public class FilterUtils {
                 kind = "face";
                 break;
             default: /* CLUSTER_BY_ALBUM */
-                return base;
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.newClusterPath(java.lang.String,int)");return base;}
         }
 
-        return "/cluster/{" + base + "}/" + kind;
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.newClusterPath(java.lang.String,int)");return "/cluster/{" + base + "}/" + kind;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.newClusterPath(java.lang.String,int)",throwable);throw throwable;}
     }
 
-    // Change the topmost filter to the specified type.
+    /*// Change the topmost filter to the specified type.*/
     public static String switchFilterPath(String base, int filterType) {
-        return newFilterPath(removeOneFilterFromPath(base), filterType);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.switchFilterPath(java.lang.String,int)",base,filterType);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.switchFilterPath(java.lang.String,int)");return newFilterPath(removeOneFilterFromPath(base), filterType);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.switchFilterPath(java.lang.String,int)",throwable);throw throwable;}
     }
 
-    // Change the topmost clustering to the specified type.
+    /*// Change the topmost clustering to the specified type.*/
     public static String switchClusterPath(String base, int clusterType) {
-        return newClusterPath(removeOneClusterFromPath(base), clusterType);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.switchClusterPath(java.lang.String,int)",base,clusterType);try{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.switchClusterPath(java.lang.String,int)");return newClusterPath(removeOneClusterFromPath(base), clusterType);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.switchClusterPath(java.lang.String,int)",throwable);throw throwable;}
     }
 
-    // Remove the topmost clustering (if any) from the path.
+    /*// Remove the topmost clustering (if any) from the path.*/
     private static String removeOneClusterFromPath(String base) {
-        boolean[] done = new boolean[1];
-        return removeOneClusterFromPath(base, done);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String)",base);try{boolean[] done = new boolean[1];
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String)");return removeOneClusterFromPath(base, done);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String)",throwable);throw throwable;}
     }
 
     private static String removeOneClusterFromPath(String base, boolean[] done) {
-        if (done[0]) return base;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String,[boolean)",base,done);try{if (done[0]) {{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String,[boolean)");return base;}}
 
         String[] segments = Path.split(base);
         if (segments[0].equals("cluster")) {
             done[0] = true;
-            return Path.splitSequence(segments[1])[0];
+            {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String,[boolean)");return Path.splitSequence(segments[1])[0];}
         }
 
         StringBuilder sb = new StringBuilder();
@@ -253,22 +253,22 @@ public class FilterUtils {
                 sb.append(segments[i]);
             }
         }
-        return sb.toString();
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String,[boolean)");return sb.toString();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneClusterFromPath(java.lang.String,[boolean)",throwable);throw throwable;}
     }
 
-    // Remove the topmost filter (if any) from the path.
+    /*// Remove the topmost filter (if any) from the path.*/
     private static String removeOneFilterFromPath(String base) {
-        boolean[] done = new boolean[1];
-        return removeOneFilterFromPath(base, done);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String)",base);try{boolean[] done = new boolean[1];
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String)");return removeOneFilterFromPath(base, done);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String)",throwable);throw throwable;}
     }
 
     private static String removeOneFilterFromPath(String base, boolean[] done) {
-        if (done[0]) return base;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String,[boolean)",base,done);try{if (done[0]) {{com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String,[boolean)");return base;}}
 
         String[] segments = Path.split(base);
         if (segments[0].equals("filter") && segments[1].equals("mediatype")) {
             done[0] = true;
-            return Path.splitSequence(segments[3])[0];
+            {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String,[boolean)");return Path.splitSequence(segments[3])[0];}
         }
 
         StringBuilder sb = new StringBuilder();
@@ -288,6 +288,6 @@ public class FilterUtils {
                 sb.append(segments[i]);
             }
         }
-        return sb.toString();
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String,[boolean)");return sb.toString();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.app.FilterUtils.removeOneFilterFromPath(java.lang.String,[boolean)",throwable);throw throwable;}
     }
 }

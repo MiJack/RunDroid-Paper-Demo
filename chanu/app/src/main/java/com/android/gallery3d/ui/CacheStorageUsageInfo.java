@@ -28,16 +28,16 @@ import java.io.File;
 public class CacheStorageUsageInfo {
     private static final String TAG = "CacheStorageUsageInfo";
 
-    // number of bytes the storage has.
+    /*// number of bytes the storage has.*/
     private long mTotalBytes;
 
-    // number of bytes already used.
+    /*// number of bytes already used.*/
     private long mUsedBytes;
 
-    // number of bytes used for the cache (should be less then usedBytes).
+    /*// number of bytes used for the cache (should be less then usedBytes).*/
     private long mUsedCacheBytes;
 
-    // number of bytes used for the cache if all pending downloads (and removals) are completed.
+    /*// number of bytes used for the cache if all pending downloads (and removals) are completed.*/
     private long mTargetCacheBytes;
 
     private GalleryActivity mActivity;
@@ -50,11 +50,11 @@ public class CacheStorageUsageInfo {
     }
 
     public void increaseTargetCacheSize(long delta) {
-        mUserChangeDelta += delta;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CacheStorageUsageInfo.increaseTargetCacheSize(long)",this,delta);try{mUserChangeDelta += delta;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CacheStorageUsageInfo.increaseTargetCacheSize(long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CacheStorageUsageInfo.increaseTargetCacheSize(long)",this,throwable);throw throwable;}
     }
 
     public void loadStorageInfo(JobContext jc) {
-        File cacheDir = mContext.getExternalCacheDir();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CacheStorageUsageInfo.loadStorageInfo(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{File cacheDir = mContext.getExternalCacheDir();
         if (cacheDir == null) {
             cacheDir = mContext.getCacheDir();
         }
@@ -62,45 +62,45 @@ public class CacheStorageUsageInfo {
         String path = cacheDir.getAbsolutePath();
         StatFs stat = new StatFs(path);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
-            deprecatedSetTotalUsedBytes(stat);
+            {deprecatedSetTotalUsedBytes(stat);}
         else
-            setTotalUsedBytes(stat);
+            {setTotalUsedBytes(stat);}
 
         mUsedCacheBytes = mActivity.getDataManager().getTotalUsedCacheSize();
-        mTargetCacheBytes = mActivity.getDataManager().getTotalTargetCacheSize();
+        mTargetCacheBytes = mActivity.getDataManager().getTotalTargetCacheSize();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CacheStorageUsageInfo.loadStorageInfo(com.android.gallery3d.util.ThreadPool.JobContext)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CacheStorageUsageInfo.loadStorageInfo(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
     }
 
     @SuppressWarnings("deprecation")
     protected void deprecatedSetTotalUsedBytes(StatFs stat) {
-        long blockSize = stat.getBlockSize();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CacheStorageUsageInfo.deprecatedSetTotalUsedBytes(android.os.StatFs)",this,stat);try{long blockSize = stat.getBlockSize();
         long availableBlocks = stat.getAvailableBlocks();
         long totalBlocks = stat.getBlockCount();
         mTotalBytes = blockSize * totalBlocks;
-        mUsedBytes = blockSize * (totalBlocks - availableBlocks);
+        mUsedBytes = blockSize * (totalBlocks - availableBlocks);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CacheStorageUsageInfo.deprecatedSetTotalUsedBytes(android.os.StatFs)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CacheStorageUsageInfo.deprecatedSetTotalUsedBytes(android.os.StatFs)",this,throwable);throw throwable;}
     }
 
     protected void setTotalUsedBytes(StatFs stat) {
-        long blockSize = stat.getBlockSizeLong();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.CacheStorageUsageInfo.setTotalUsedBytes(android.os.StatFs)",this,stat);try{long blockSize = stat.getBlockSizeLong();
         long availableBlocks = stat.getAvailableBlocksLong();
         long totalBlocks = stat.getBlockCountLong();
         mTotalBytes = blockSize * totalBlocks;
-        mUsedBytes = blockSize * (totalBlocks - availableBlocks);
+        mUsedBytes = blockSize * (totalBlocks - availableBlocks);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.CacheStorageUsageInfo.setTotalUsedBytes(android.os.StatFs)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.CacheStorageUsageInfo.setTotalUsedBytes(android.os.StatFs)",this,throwable);throw throwable;}
     }
 
     public long getTotalBytes() {
-        return mTotalBytes;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.CacheStorageUsageInfo.getTotalBytes()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.CacheStorageUsageInfo.getTotalBytes()",this);return mTotalBytes;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.CacheStorageUsageInfo.getTotalBytes()",this,throwable);throw throwable;}
     }
 
     public long getExpectedUsedBytes() {
-        return mUsedBytes - mUsedCacheBytes + mTargetCacheBytes + mUserChangeDelta;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.CacheStorageUsageInfo.getExpectedUsedBytes()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.CacheStorageUsageInfo.getExpectedUsedBytes()",this);return mUsedBytes - mUsedCacheBytes + mTargetCacheBytes + mUserChangeDelta;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.CacheStorageUsageInfo.getExpectedUsedBytes()",this,throwable);throw throwable;}
     }
 
     public long getUsedBytes() {
-        // Should it be usedBytes - usedCacheBytes + targetCacheBytes ?
-        return mUsedBytes;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.CacheStorageUsageInfo.getUsedBytes()",this);try{/*// Should it be usedBytes - usedCacheBytes + targetCacheBytes ?*/
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.CacheStorageUsageInfo.getUsedBytes()",this);return mUsedBytes;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.CacheStorageUsageInfo.getUsedBytes()",this,throwable);throw throwable;}
     }
 
     public long getFreeBytes() {
-        return mTotalBytes - mUsedBytes;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.CacheStorageUsageInfo.getFreeBytes()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.CacheStorageUsageInfo.getFreeBytes()",this);return mTotalBytes - mUsedBytes;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.CacheStorageUsageInfo.getFreeBytes()",this,throwable);throw throwable;}
     }
 }

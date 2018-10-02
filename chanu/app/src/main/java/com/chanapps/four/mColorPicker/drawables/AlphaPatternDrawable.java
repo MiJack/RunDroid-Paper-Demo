@@ -54,27 +54,27 @@ public class AlphaPatternDrawable extends Drawable {
 
 	@Override
 	public void draw(Canvas canvas) {
-		canvas.drawBitmap(mBitmap, null, getBounds(), mPaint);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.draw(android.graphics.Canvas)",this,canvas);try{canvas.drawBitmap(mBitmap, null, getBounds(), mPaint);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.draw(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.draw(android.graphics.Canvas)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public int getOpacity() {
-		return 0;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.getOpacity()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.getOpacity()",this);return 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.getOpacity()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void setAlpha(int alpha) {
-		throw new UnsupportedOperationException("Alpha is not supported by this drawwable.");
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.setAlpha(int)",this,alpha);try{com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.setAlpha(int)",this);throw new UnsupportedOperationException("Alpha is not supported by this drawwable.");}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.setAlpha(int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void setColorFilter(ColorFilter cf) {
-		throw new UnsupportedOperationException("ColorFilter is not supported by this drawwable.");
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.setColorFilter(android.graphics.ColorFilter)",this,cf);try{com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.setColorFilter(android.graphics.ColorFilter)",this);throw new UnsupportedOperationException("ColorFilter is not supported by this drawwable.");}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.setColorFilter(android.graphics.ColorFilter)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	protected void onBoundsChange(Rect bounds) {
-		super.onBoundsChange(bounds);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.onBoundsChange(android.graphics.Rect)",this,bounds);try{super.onBoundsChange(bounds);
 
 		int height = bounds.height();
 		int width = bounds.width();
@@ -82,7 +82,7 @@ public class AlphaPatternDrawable extends Drawable {
 		numRectanglesHorizontal = (int) Math.ceil((width / mRectangleSize));
 		numRectanglesVertical = (int) Math.ceil(height / mRectangleSize);
 
-		generatePatternBitmap();
+		generatePatternBitmap();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.onBoundsChange(android.graphics.Rect)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.onBoundsChange(android.graphics.Rect)",this,throwable);throw throwable;}
 
 	}
 	
@@ -94,9 +94,9 @@ public class AlphaPatternDrawable extends Drawable {
 	 * takes a few milliseconds.
 	 */
 	private void generatePatternBitmap(){
-		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.generatePatternBitmap()",this);try{
 		if(getBounds().width() <= 0 || getBounds().height() <= 0){
-			return;
+			{com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.generatePatternBitmap()",this);return;}
 		}
 		
 		mBitmap = Bitmap.createBitmap(getBounds().width(), getBounds().height(), Config.ARGB_8888);			
@@ -121,7 +121,7 @@ public class AlphaPatternDrawable extends Drawable {
 
 			verticalStartWhite = !verticalStartWhite;
 
-		}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.drawables.AlphaPatternDrawable.generatePatternBitmap()",this,throwable);throw throwable;}
 		
 	}
 	

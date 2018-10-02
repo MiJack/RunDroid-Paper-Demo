@@ -52,13 +52,13 @@ public class EyePosition {
     private Context mContext;
     private EyePositionListener mListener;
     private Display mDisplay;
-    // The eyes' position of the user, the origin is at the center of the
-    // device and the unit is in pixels.
+    /*// The eyes' position of the user, the origin is at the center of the*/
+    /*// device and the unit is in pixels.*/
     private float mX;
     private float mY;
     private float mZ;
 
-    private final float mUserDistance; // in pixel
+    private final float mUserDistance; /*// in pixel*/
     private final float mLimit;
     private long mStartTime = NOT_STARTED;
     private Sensor mSensor;
@@ -76,8 +76,8 @@ public class EyePosition {
                 .getSystemService(Context.WINDOW_SERVICE);
         mDisplay = wManager.getDefaultDisplay();
 
-        // The 3D effect where the photo albums fan out in 3D based on angle
-        // of device tilt is currently disabled.
+        /*// The 3D effect where the photo albums fan out in 3D based on angle*/
+        /*// of device tilt is currently disabled.*/
 /*
         SensorManager sManager = (SensorManager) mContext
                 .getSystemService(Context.SENSOR_SERVICE);
@@ -93,10 +93,10 @@ public class EyePosition {
     }
 
     public void resetPosition() {
-        mStartTime = NOT_STARTED;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.EyePosition.resetPosition()",this);try{mStartTime = NOT_STARTED;
         mX = mY = 0;
         mZ = -mUserDistance;
-        mListener.onEyePositionChanged(mX, mY, mZ);
+        mListener.onEyePositionChanged(mX, mY, mZ);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.EyePosition.resetPosition()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.EyePosition.resetPosition()",this,throwable);throw throwable;}
     }
 
     /*
@@ -111,7 +111,7 @@ public class EyePosition {
      */
     private void onAccelerometerChanged(float gx, float gy, float gz) {
 
-        float x = gx, y = gy, z = gz;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.EyePosition.onAccelerometerChanged(float,float,float)",this,gx,gy,gz);try{float x = gx, y = gy, z = gz;
 
         switch (mDisplay.getRotation()) {
             case Surface.ROTATION_90: x = -gy; y= gx; break;
@@ -137,11 +137,11 @@ public class EyePosition {
                 -mLimit, mLimit);
         mZ = (float) -Math.sqrt(
                 mUserDistance * mUserDistance - mX * mX - mY * mY);
-        mListener.onEyePositionChanged(mX, mY, mZ);
+        mListener.onEyePositionChanged(mX, mY, mZ);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.EyePosition.onAccelerometerChanged(float,float,float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.EyePosition.onAccelerometerChanged(float,float,float)",this,throwable);throw throwable;}
     }
 
     private void onGyroscopeChanged(float gx, float gy, float gz) {
-        long now = SystemClock.elapsedRealtime();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.EyePosition.onGyroscopeChanged(float,float,float)",this,gx,gy,gz);try{long now = SystemClock.elapsedRealtime();
         float distance = (gx > 0 ? gx : -gx) + (gy > 0 ? gy : - gy);
         if (distance < GYROSCOPE_THRESHOLD
                 || distance > GYROSCOPE_LIMIT || mGyroscopeCountdown > 0) {
@@ -155,7 +155,7 @@ public class EyePosition {
                         mUserDistance * mUserDistance - mX * mX - mY * mY);
                 mListener.onEyePositionChanged(mX, mY, mZ);
             }
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.EyePosition.onGyroscopeChanged(float,float,float)",this);return;}
         }
 
         float t = (now - mStartTime) / 1000f * mUserDistance * (-mZ);
@@ -175,15 +175,14 @@ public class EyePosition {
 
         mZ = (float) -Math.sqrt(
                 mUserDistance * mUserDistance - mX * mX - mY * mY);
-        mListener.onEyePositionChanged(mX, mY, mZ);
+        mListener.onEyePositionChanged(mX, mY, mZ);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.EyePosition.onGyroscopeChanged(float,float,float)",this,throwable);throw throwable;}
     }
 
     private class PositionListener implements SensorEventListener {
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        }
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.EyePosition$PositionListener.onAccuracyChanged(android.hardware.Sensor,int)",this,sensor,accuracy);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.EyePosition$PositionListener.onAccuracyChanged(android.hardware.Sensor,int)",this);}
 
         public void onSensorChanged(SensorEvent event) {
-            switch (event.sensor.getType()) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.EyePosition$PositionListener.onSensorChanged(android.hardware.SensorEvent)",this,event);try{switch (event.sensor.getType()) {
                 case Sensor.TYPE_GYROSCOPE: {
                     onGyroscopeChanged(
                             event.values[0], event.values[1], event.values[2]);
@@ -193,20 +192,20 @@ public class EyePosition {
                     onAccelerometerChanged(
                             event.values[0], event.values[1], event.values[2]);
                 }
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.EyePosition$PositionListener.onSensorChanged(android.hardware.SensorEvent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.EyePosition$PositionListener.onSensorChanged(android.hardware.SensorEvent)",this,throwable);throw throwable;}
         }
     }
 
     public void pause() {
-        if (mSensor != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.EyePosition.pause()",this);try{if (mSensor != null) {
             SensorManager sManager = (SensorManager) mContext
                     .getSystemService(Context.SENSOR_SERVICE);
             sManager.unregisterListener(mPositionListener);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.EyePosition.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.EyePosition.pause()",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        if (mSensor != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.EyePosition.resume()",this);try{if (mSensor != null) {
             SensorManager sManager = (SensorManager) mContext
                     .getSystemService(Context.SENSOR_SERVICE);
             sManager.registerListener(mPositionListener,
@@ -217,6 +216,6 @@ public class EyePosition {
         mGyroscopeCountdown = GYROSCOPE_SETTLE_DOWN;
         mX = mY = 0;
         mZ = -mUserDistance;
-        mListener.onEyePositionChanged(mX, mY, mZ);
+        mListener.onEyePositionChanged(mX, mY, mZ);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.EyePosition.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.EyePosition.resume()",this,throwable);throw throwable;}
     }
 }

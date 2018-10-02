@@ -35,12 +35,12 @@ public class NetworkDeniedImageDownloader implements ImageDownloader {
 
 	@Override
 	public InputStream getStream(String imageUri, Object extra) throws IOException {
-		switch (Scheme.ofUri(imageUri)) {
+		com.mijack.Xlog.logMethodEnter("java.io.InputStream com.nostra13.universalimageloader.core.download.NetworkDeniedImageDownloader.getStream(java.lang.String,java.lang.Object)",this,imageUri,extra);try{switch (Scheme.ofUri(imageUri)) {
 			case HTTP:
 			case HTTPS:
 				throw new IllegalStateException();
 			default:
-				return wrappedDownloader.getStream(imageUri, extra);
-		}
+				{com.mijack.Xlog.logMethodExit("java.io.InputStream com.nostra13.universalimageloader.core.download.NetworkDeniedImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return wrappedDownloader.getStream(imageUri, extra);}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.InputStream com.nostra13.universalimageloader.core.download.NetworkDeniedImageDownloader.getStream(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 }

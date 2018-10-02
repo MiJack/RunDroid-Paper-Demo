@@ -44,43 +44,43 @@ public class LimitedAgeMemoryCache<K, V> implements MemoryCacheAware<K, V> {
 	 */
 	public LimitedAgeMemoryCache(MemoryCacheAware<K, V> cache, long maxAge) {
 		this.cache = cache;
-		this.maxAge = maxAge * 1000; // to milliseconds
+		this.maxAge = maxAge * 1000; /*// to milliseconds*/
 	}
 
 	@Override
 	public boolean put(K key, V value) {
-		boolean putSuccesfully = cache.put(key, value);
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.put(K,V)",this,key,value);try{boolean putSuccesfully = cache.put(key, value);
 		if (putSuccesfully) {
 			loadingDates.put(key, System.currentTimeMillis());
 		}
-		return putSuccesfully;
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.put(K,V)",this);return putSuccesfully;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.put(K,V)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public V get(K key) {
-		Long loadingDate = loadingDates.get(key);
+		com.mijack.Xlog.logMethodEnter("V com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.get(K)",this,key);try{Long loadingDate = loadingDates.get(key);
 		if (loadingDate != null && System.currentTimeMillis() - loadingDate > maxAge) {
 			cache.remove(key);
 			loadingDates.remove(key);
 		}
 
-		return cache.get(key);
+		{com.mijack.Xlog.logMethodExit("V com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.get(K)",this);return cache.get(key);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("V com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.get(K)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void remove(K key) {
-		cache.remove(key);
-		loadingDates.remove(key);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.remove(K)",this,key);try{cache.remove(key);
+		loadingDates.remove(key);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.remove(K)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.remove(K)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public Collection<K> keys() {
-		return cache.keys();
+		com.mijack.Xlog.logMethodEnter("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.keys()",this);try{com.mijack.Xlog.logMethodExit("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.keys()",this);return cache.keys();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.keys()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		cache.clear();
-		loadingDates.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.clear()",this);try{cache.clear();
+		loadingDates.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.LimitedAgeMemoryCache<K, V>.clear()",this,throwable);throw throwable;}
 	}
 }

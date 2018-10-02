@@ -37,13 +37,13 @@ public class SlowNetworkImageDownloader implements ImageDownloader {
 
 	@Override
 	public InputStream getStream(String imageUri, Object extra) throws IOException {
-		InputStream imageStream = wrappedDownloader.getStream(imageUri, extra);
+		com.mijack.Xlog.logMethodEnter("java.io.InputStream com.nostra13.universalimageloader.core.download.SlowNetworkImageDownloader.getStream(java.lang.String,java.lang.Object)",this,imageUri,extra);try{InputStream imageStream = wrappedDownloader.getStream(imageUri, extra);
 		switch (Scheme.ofUri(imageUri)) {
 			case HTTP:
 			case HTTPS:
-				return new FlushedInputStream(imageStream);
+				{com.mijack.Xlog.logMethodExit("java.io.InputStream com.nostra13.universalimageloader.core.download.SlowNetworkImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return new FlushedInputStream(imageStream);}
 			default:
-				return imageStream;
-		}
+				{com.mijack.Xlog.logMethodExit("java.io.InputStream com.nostra13.universalimageloader.core.download.SlowNetworkImageDownloader.getStream(java.lang.String,java.lang.Object)",this);return imageStream;}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.InputStream com.nostra13.universalimageloader.core.download.SlowNetworkImageDownloader.getStream(java.lang.String,java.lang.Object)",this,throwable);throw throwable;}
 	}
 }

@@ -92,8 +92,8 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
         mHandler = new SynchronizedHandler(activity.getGLRoot()) {
             @Override
             public void handleMessage(Message message) {
-                Utils.assertTrue(message.what == MSG_LOAD_BITMAP_DONE);
-                ((GalleryDisplayItem) message.obj).onLoadBitmapDone();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow$1.handleMessage(android.os.Message)",this,message);try{Utils.assertTrue(message.what == MSG_LOAD_BITMAP_DONE);
+                ((GalleryDisplayItem) message.obj).onLoadBitmapDone();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow$1.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
             }
         };
 
@@ -101,30 +101,30 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
     }
 
     public void setSelectionDrawer(SelectionDrawer drawer) {
-        mSelectionDrawer = drawer;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setSelectionDrawer(com.android.gallery3d.ui.SelectionDrawer)",this,drawer);try{mSelectionDrawer = drawer;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setSelectionDrawer(com.android.gallery3d.ui.SelectionDrawer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setSelectionDrawer(com.android.gallery3d.ui.SelectionDrawer)",this,throwable);throw throwable;}
     }
 
     public void setListener(Listener listener) {
-        mListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setListener(com.android.gallery3d.util.FutureListener)",this,listener);try{mListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setListener(com.android.gallery3d.util.FutureListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setListener(com.android.gallery3d.util.FutureListener)",this,throwable);throw throwable;}
     }
 
     public AlbumSetItem get(int slotIndex) {
-        Utils.assertTrue(isActiveSlot(slotIndex),
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.ui.AlbumSetView.AlbumSetItem com.android.gallery3d.ui.AlbumSetSlidingWindow.get(int)",this,slotIndex);try{Utils.assertTrue(isActiveSlot(slotIndex),
                 "invalid slot: %s outsides (%s, %s)",
                 slotIndex, mActiveStart, mActiveEnd);
-        return mData[slotIndex % mData.length];
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.ui.AlbumSetView.AlbumSetItem com.android.gallery3d.ui.AlbumSetSlidingWindow.get(int)",this);return mData[slotIndex % mData.length];}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.ui.AlbumSetView.AlbumSetItem com.android.gallery3d.ui.AlbumSetSlidingWindow.get(int)",this,throwable);throw throwable;}
     }
 
     public int size() {
-        return mSize;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.AlbumSetSlidingWindow.size()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.size()",this);return mSize;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.AlbumSetSlidingWindow.size()",this,throwable);throw throwable;}
     }
 
     public boolean isActiveSlot(int slotIndex) {
-        return slotIndex >= mActiveStart && slotIndex < mActiveEnd;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isActiveSlot(int)",this,slotIndex);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isActiveSlot(int)",this);return slotIndex >= mActiveStart && slotIndex < mActiveEnd;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isActiveSlot(int)",this,throwable);throw throwable;}
     }
 
     private void setContentWindow(int contentStart, int contentEnd) {
-        if (contentStart == mContentStart && contentEnd == mContentEnd) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setContentWindow(int,int)",this,contentStart,contentEnd);try{if (contentStart == mContentStart && contentEnd == mContentEnd) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setContentWindow(int,int)",this);return;}}
 
         if (contentStart >= mContentEnd || mContentStart >= contentEnd) {
             for (int i = mContentStart, n = mContentEnd; i < n; ++i) {
@@ -151,11 +151,11 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
         }
 
         mContentStart = contentStart;
-        mContentEnd = contentEnd;
+        mContentEnd = contentEnd;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setContentWindow(int,int)",this,throwable);throw throwable;}
     }
 
     public void setActiveWindow(int start, int end) {
-        Utils.assertTrue(
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setActiveWindow(int,int)",this,start,end);try{Utils.assertTrue(
                 start <= end && end - start <= mData.length && end <= mSize,
                 "start = %s, end = %s, length = %s, size = %s",
                 start, end, mData.length, mSize);
@@ -169,50 +169,50 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
                 0, Math.max(0, mSize - data.length));
         int contentEnd = Math.min(contentStart + data.length, mSize);
         setContentWindow(contentStart, contentEnd);
-        if (mIsActive) updateAllImageRequests();
+        if (mIsActive) {updateAllImageRequests();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setActiveWindow(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.setActiveWindow(int,int)",this,throwable);throw throwable;}
     }
 
-    // We would like to request non active slots in the following order:
-    // Order:    8 6 4 2                   1 3 5 7
-    //         |---------|---------------|---------|
-    //                   |<-  active  ->|
-    //         |<-------- cached range ----------->|
+    /*// We would like to request non active slots in the following order:*/
+    /*// Order:    8 6 4 2                   1 3 5 7*/
+    /*//         |---------|---------------|---------|*/
+    /*//                   |<-  active  ->|*/
+    /*//         |<-------- cached range ----------->|*/
     private void requestNonactiveImages() {
-        int range = Math.max(
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.requestNonactiveImages()",this);try{int range = Math.max(
                 mContentEnd - mActiveEnd, mActiveStart - mContentStart);
         for (int i = 0 ;i < range; ++i) {
             requestImagesInSlot(mActiveEnd + i);
             requestImagesInSlot(mActiveStart - 1 - i);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.requestNonactiveImages()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.requestNonactiveImages()",this,throwable);throw throwable;}
     }
 
     private void cancelNonactiveImages() {
-        int range = Math.max(
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.cancelNonactiveImages()",this);try{int range = Math.max(
                 mContentEnd - mActiveEnd, mActiveStart - mContentStart);
         for (int i = 0 ;i < range; ++i) {
             cancelImagesInSlot(mActiveEnd + i);
             cancelImagesInSlot(mActiveStart - 1 - i);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.cancelNonactiveImages()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.cancelNonactiveImages()",this,throwable);throw throwable;}
     }
 
     private void requestImagesInSlot(int slotIndex) {
-        if (slotIndex < mContentStart || slotIndex >= mContentEnd) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.requestImagesInSlot(int)",this,slotIndex);try{if (slotIndex < mContentStart || slotIndex >= mContentEnd) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.requestImagesInSlot(int)",this);return;}}
         AlbumSetItem items = mData[slotIndex % mData.length];
         for (DisplayItem item : items.covers) {
             ((GalleryDisplayItem) item).requestImage();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.requestImagesInSlot(int)",this,throwable);throw throwable;}
     }
 
     private void cancelImagesInSlot(int slotIndex) {
-        if (slotIndex < mContentStart || slotIndex >= mContentEnd) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.cancelImagesInSlot(int)",this,slotIndex);try{if (slotIndex < mContentStart || slotIndex >= mContentEnd) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.cancelImagesInSlot(int)",this);return;}}
         AlbumSetItem items = mData[slotIndex % mData.length];
         for (DisplayItem item : items.covers) {
             ((GalleryDisplayItem) item).cancelImageRequest();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.cancelImagesInSlot(int)",this,throwable);throw throwable;}
     }
 
     private void freeSlotContent(int slotIndex) {
-        AlbumSetItem data[] = mData;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.freeSlotContent(int)",this,slotIndex);try{AlbumSetItem data[] = mData;
         int index = slotIndex % data.length;
         AlbumSetItem original = data[index];
         if (original != null) {
@@ -220,17 +220,17 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
             for (DisplayItem item : original.covers) {
                 ((GalleryDisplayItem) item).recycle();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.freeSlotContent(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.freeSlotContent(int)",this,throwable);throw throwable;}
     }
 
     private long getMediaSetDataVersion(MediaSet set) {
-        return set == null
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.AlbumSetSlidingWindow.getMediaSetDataVersion(com.android.gallery3d.data.MediaSet)",this,set);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.AlbumSetSlidingWindow.getMediaSetDataVersion(com.android.gallery3d.data.MediaSet)",this);return set == null
                 ? MediaSet.INVALID_DATA_VERSION
-                : set.getDataVersion();
+                : set.getDataVersion();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.AlbumSetSlidingWindow.getMediaSetDataVersion(com.android.gallery3d.data.MediaSet)",this,throwable);throw throwable;}
     }
 
     private void prepareSlotContent(int slotIndex) {
-        MediaSet set = mSource.getMediaSet(slotIndex);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.prepareSlotContent(int)",this,slotIndex);try{MediaSet set = mSource.getMediaSet(slotIndex);
 
         MyAlbumSetItem item = new MyAlbumSetItem();
         MediaItem[] coverItems = mSource.getCoverItems(slotIndex);
@@ -245,25 +245,25 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
         }
         item.labelItem = new LabelDisplayItem(slotIndex);
         item.setDataVersion = getMediaSetDataVersion(set);
-        mData[slotIndex % mData.length] = item;
+        mData[slotIndex % mData.length] = item;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.prepareSlotContent(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.prepareSlotContent(int)",this,throwable);throw throwable;}
     }
 
     private boolean isCoverItemsChanged(int slotIndex) {
-        AlbumSetItem original = mData[slotIndex % mData.length];
-        if (original == null) return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isCoverItemsChanged(int)",this,slotIndex);try{AlbumSetItem original = mData[slotIndex % mData.length];
+        if (original == null) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isCoverItemsChanged(int)",this);return true;}}
         MediaItem[] coverItems = mSource.getCoverItems(slotIndex);
 
-        if (original.covers.length != coverItems.length) return true;
+        if (original.covers.length != coverItems.length) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isCoverItemsChanged(int)",this);return true;}}
         for (int i = 0, n = coverItems.length; i < n; ++i) {
             GalleryDisplayItem g = (GalleryDisplayItem) original.covers[i];
-            if (g.mDataVersion != coverItems[i].getDataVersion()) return true;
+            if (g.mDataVersion != coverItems[i].getDataVersion()) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isCoverItemsChanged(int)",this);return true;}}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isCoverItemsChanged(int)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow.isCoverItemsChanged(int)",this,throwable);throw throwable;}
     }
 
     private void updateSlotContent(final int slotIndex) {
 
-        MyAlbumSetItem data[] = mData;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.updateSlotContent(int)",this,slotIndex);try{MyAlbumSetItem data[] = mData;
         int pos = slotIndex % data.length;
         MyAlbumSetItem original = data[pos];
 
@@ -274,8 +274,8 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
             original.cacheStatus = identifyCacheStatus(set);
             original.setPath = set == null ? null : set.getPath();
             ((LabelDisplayItem) original.labelItem).updateContent();
-            if (mListener != null) mListener.onContentInvalidated();
-            return;
+            if (mListener != null) {mListener.onContentInvalidated();}
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.updateSlotContent(int)",this);return;}
         }
 
         prepareSlotContent(slotIndex);
@@ -288,16 +288,16 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
             for (DisplayItem item : original.covers) {
                 ((GalleryDisplayItem) item).recycle();
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.updateSlotContent(int)",this,throwable);throw throwable;}
     }
 
     private void notifySlotChanged(int slotIndex) {
-        // If the updated content is not cached, ignore it
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.notifySlotChanged(int)",this,slotIndex);try{/*// If the updated content is not cached, ignore it*/
         if (slotIndex < mContentStart || slotIndex >= mContentEnd) {
             Log.w(TAG, String.format(
                     "invalid update: %s is outside (%s, %s)",
                     slotIndex, mContentStart, mContentEnd) );
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.notifySlotChanged(int)",this);return;}
         }
         updateSlotContent(slotIndex);
         boolean isActiveSlot = isActiveSlot(slotIndex);
@@ -309,23 +309,23 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
                     ++mActiveRequestCount;
                 }
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.notifySlotChanged(int)",this,throwable);throw throwable;}
     }
 
     private void updateAllImageRequests() {
-        mActiveRequestCount = 0;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.updateAllImageRequests()",this);try{mActiveRequestCount = 0;
         for (int i = mActiveStart, n = mActiveEnd; i < n; ++i) {
             for (DisplayItem item : mData[i % mData.length].covers) {
                 GalleryDisplayItem coverItem = (GalleryDisplayItem) item;
                 coverItem.requestImage();
-                if (coverItem.isRequestInProgress()) ++mActiveRequestCount;
+                if (coverItem.isRequestInProgress()) {++mActiveRequestCount;}
             }
         }
         if (mActiveRequestCount == 0) {
             requestNonactiveImages();
         } else {
             cancelNonactiveImages();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.updateAllImageRequests()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.updateAllImageRequests()",this,throwable);throw throwable;}
     }
 
     private class GalleryDisplayItem extends AbstractDisplayItem
@@ -351,9 +351,9 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
 
         @Override
         protected void onBitmapAvailable(Bitmap bitmap) {
-            if (isActiveSlot(mSlotIndex)) {
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onBitmapAvailable(android.graphics.Bitmap)",this,bitmap);try{if (isActiveSlot(mSlotIndex)) {
                 --mActiveRequestCount;
-                if (mActiveRequestCount == 0) requestNonactiveImages();
+                if (mActiveRequestCount == 0) {requestNonactiveImages();}
             }
             if (bitmap != null) {
                 BitmapTexture texture = new BitmapTexture(bitmap, true);
@@ -363,17 +363,17 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
                 } else {
                     updateContent(texture);
                 }
-                if (mListener != null) mListener.onContentInvalidated();
-            }
+                if (mListener != null) {mListener.onContentInvalidated();}
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onBitmapAvailable(android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onBitmapAvailable(android.graphics.Bitmap)",this,throwable);throw throwable;}
         }
 
         private void updateContent(Texture content) {
-            mContent = content;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.updateContent(Texture)",this,content);try{mContent = content;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.updateContent(Texture)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.updateContent(Texture)",this,throwable);throw throwable;}
         }
 
         @Override
         public int render(GLCanvas canvas, int pass) {
-            // Fit the content into the box
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.render(GLCanvas,int)",this,canvas,pass);try{/*// Fit the content into the box*/
             int width = mContent.getWidth();
             int height = mContent.getHeight();
 
@@ -384,7 +384,7 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
             width = (int) Math.floor(width * scale);
             height = (int) Math.floor(height * scale);
 
-            // Now draw it
+            /*// Now draw it*/
             int sourceType = SelectionDrawer.DATASOURCE_TYPE_NOT_CATEGORIZED;
             int cacheFlag = MediaSet.CACHE_FLAG_NO;
             int cacheStatus = MediaSet.CACHE_STATUS_NOT_CACHED;
@@ -409,48 +409,48 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
 
             if ((mContent instanceof FadeInTexture) &&
                     ((FadeInTexture) mContent).isAnimating()) {
-                return RENDER_MORE_FRAME;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.render(GLCanvas,int)",this);return RENDER_MORE_FRAME;}
             } else {
-                return 0;
-            }
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.render(GLCanvas,int)",this);return 0;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.render(GLCanvas,int)",this,throwable);throw throwable;}
         }
 
         @Override
         public void startLoadBitmap() {
-            mFuture = mThreadPool.submit(mMediaItem.requestImage(
-                    MediaItem.TYPE_MICROTHUMBNAIL), this);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.startLoadBitmap()",this);try{mFuture = mThreadPool.submit(mMediaItem.requestImage(
+                    MediaItem.TYPE_MICROTHUMBNAIL), this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.startLoadBitmap()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.startLoadBitmap()",this,throwable);throw throwable;}
         }
 
         @Override
         public void cancelLoadBitmap() {
-            mFuture.cancel();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.cancelLoadBitmap()",this);try{mFuture.cancel();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.cancelLoadBitmap()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.cancelLoadBitmap()",this,throwable);throw throwable;}
         }
 
         @Override
         public void onFutureDone(Future<Bitmap> future) {
-            mHandler.sendMessage(mHandler.obtainMessage(MSG_LOAD_BITMAP_DONE, this));
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onFutureDone(com.android.gallery3d.util.Future)",this,future);try{mHandler.sendMessage(mHandler.obtainMessage(MSG_LOAD_BITMAP_DONE, this));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onFutureDone(com.android.gallery3d.util.Future)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onFutureDone(com.android.gallery3d.util.Future)",this,throwable);throw throwable;}
         }
 
         private void onLoadBitmapDone() {
-            Future<Bitmap> future = mFuture;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onLoadBitmapDone()",this);try{Future<Bitmap> future = mFuture;
             mFuture = null;
-            updateImage(future.get(), future.isCancelled());
+            updateImage(future.get(), future.isCancelled());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onLoadBitmapDone()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.onLoadBitmapDone()",this,throwable);throw throwable;}
         }
 
         @Override
         public String toString() {
-            return String.format("GalleryDisplayItem(%s, %s)", mSlotIndex, mCoverIndex);
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.toString()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.toString()",this);return String.format("GalleryDisplayItem(%s, %s)", mSlotIndex, mCoverIndex);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.ui.AlbumSetSlidingWindow$GalleryDisplayItem.toString()",this,throwable);throw throwable;}
         }
     }
 
     private static int identifySourceType(MediaSet set) {
-        if (set == null) {
-            return SelectionDrawer.DATASOURCE_TYPE_NOT_CATEGORIZED;
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifySourceType(com.android.gallery3d.data.MediaSet)",set);try{if (set == null) {
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifySourceType(com.android.gallery3d.data.MediaSet)");return SelectionDrawer.DATASOURCE_TYPE_NOT_CATEGORIZED;}
         }
 
         Path path = set.getPath();
         if (MediaSetUtils.isCameraSource(path)) {
-            return SelectionDrawer.DATASOURCE_TYPE_CAMERA;
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifySourceType(com.android.gallery3d.data.MediaSet)");return SelectionDrawer.DATASOURCE_TYPE_CAMERA;}
         }
 
         int type = SelectionDrawer.DATASOURCE_TYPE_NOT_CATEGORIZED;
@@ -464,30 +464,30 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
             type = SelectionDrawer.DATASOURCE_TYPE_MTP;
         }
 
-        return type;
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifySourceType(com.android.gallery3d.data.MediaSet)");return type;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifySourceType(com.android.gallery3d.data.MediaSet)",throwable);throw throwable;}
     }
 
     private static int identifyCacheFlag(MediaSet set) {
-        if (set == null || (set.getSupportedOperations()
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheFlag(com.android.gallery3d.data.MediaSet)",set);try{if (set == null || (set.getSupportedOperations()
                 & MediaSet.SUPPORT_CACHE) == 0) {
-            return MediaSet.CACHE_FLAG_NO;
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheFlag(com.android.gallery3d.data.MediaSet)");return MediaSet.CACHE_FLAG_NO;}
         }
 
-        return set.getCacheFlag();
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheFlag(com.android.gallery3d.data.MediaSet)");return set.getCacheFlag();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheFlag(com.android.gallery3d.data.MediaSet)",throwable);throw throwable;}
     }
 
     private static int identifyCacheStatus(MediaSet set) {
-        if (set == null || (set.getSupportedOperations()
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheStatus(com.android.gallery3d.data.MediaSet)",set);try{if (set == null || (set.getSupportedOperations()
                 & MediaSet.SUPPORT_CACHE) == 0) {
-            return MediaSet.CACHE_STATUS_NOT_CACHED;
+            {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheStatus(com.android.gallery3d.data.MediaSet)");return MediaSet.CACHE_STATUS_NOT_CACHED;}
         }
 
-        return set.getCacheStatus();
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheStatus(com.android.gallery3d.data.MediaSet)");return set.getCacheStatus();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.ui.AlbumSetSlidingWindow.identifyCacheStatus(com.android.gallery3d.data.MediaSet)",throwable);throw throwable;}
     }
 
     private class LabelDisplayItem extends DisplayItem {
         private static final int FONT_COLOR_TITLE = Color.WHITE;
-        private static final int FONT_COLOR_COUNT = 0x80FFFFFF;  // 50% white
+        private static final int FONT_COLOR_COUNT = 0x80FFFFFF;  /*// 50% white*/
 
         private StringTexture mTextureTitle;
         private StringTexture mTextureCount;
@@ -502,7 +502,7 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
         }
 
         public boolean updateContent() {
-            String title = mLoadingLabel;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.updateContent()",this);try{String title = mLoadingLabel;
             String count = "";
             MediaSet set = mSource.getMediaSet(mSlotIndex);
             if (set != null) {
@@ -512,7 +512,7 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
             if (Utils.equals(title, mTitle)
                     && Utils.equals(count, mCount)
                     && Utils.equals(mBoxWidth, mLastWidth)) {
-                    return false;
+                    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.updateContent()",this);return false;}
             }
             mTitle = title;
             mCount = count;
@@ -528,12 +528,12 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
                     count, s.countFontSize, FONT_COLOR_COUNT,
                     mBoxWidth - s.leftMargin, true);
 
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.updateContent()",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.updateContent()",this,throwable);throw throwable;}
         }
 
         @Override
         public int render(GLCanvas canvas, int pass) {
-            if (mBoxWidth != mLastWidth) {
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.render(GLCanvas,int)",this,canvas,pass);try{if (mBoxWidth != mLastWidth) {
                 updateContent();
             }
 
@@ -545,42 +545,42 @@ public class AlbumSetSlidingWindow implements AlbumSetView.ModelListener {
             y += s.titleFontSize + s.countOffset;
             x += mHasIcon ? s.iconSize : s.leftMargin;
             mTextureCount.draw(canvas, x, y);
-            return 0;
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.render(GLCanvas,int)",this);return 0;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.render(GLCanvas,int)",this,throwable);throw throwable;}
         }
 
         @Override
         public long getIdentity() {
-            return System.identityHashCode(this);
+            com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.getIdentity()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.getIdentity()",this);return System.identityHashCode(this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.ui.AlbumSetSlidingWindow$LabelDisplayItem.getIdentity()",this,throwable);throw throwable;}
         }
     }
 
     public void onSizeChanged(int size) {
-        if (mIsActive && mSize != size) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.onSizeChanged(int)",this,size);try{if (mIsActive && mSize != size) {
             mSize = size;
-            if (mListener != null) mListener.onSizeChanged(mSize);
-        }
+            if (mListener != null) {mListener.onSizeChanged(mSize);}
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.onSizeChanged(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.onSizeChanged(int)",this,throwable);throw throwable;}
     }
 
     public void onWindowContentChanged(int index) {
-        if (!mIsActive) {
-            // paused, ignore slot changed event
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.onWindowContentChanged(int)",this,index);try{if (!mIsActive) {
+            /*// paused, ignore slot changed event*/
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.onWindowContentChanged(int)",this);return;}
         }
-        notifySlotChanged(index);
+        notifySlotChanged(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.onWindowContentChanged(int)",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        mIsActive = false;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.pause()",this);try{mIsActive = false;
         for (int i = mContentStart, n = mContentEnd; i < n; ++i) {
             freeSlotContent(i);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.pause()",this,throwable);throw throwable;}
     }
 
     public void resume() {
-        mIsActive = true;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.AlbumSetSlidingWindow.resume()",this);try{mIsActive = true;
         for (int i = mContentStart, n = mContentEnd; i < n; ++i) {
             prepareSlotContent(i);
         }
-        updateAllImageRequests();
+        updateAllImageRequests();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.AlbumSetSlidingWindow.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.AlbumSetSlidingWindow.resume()",this,throwable);throw throwable;}
     }
 }

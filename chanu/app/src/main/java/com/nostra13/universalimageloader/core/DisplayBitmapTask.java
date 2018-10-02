@@ -56,24 +56,24 @@ final class DisplayBitmapTask implements Runnable {
 	}
 
 	public void run() {
-		if (isViewWasReused()) {
-			if (loggingEnabled) L.i(LOG_TASK_CANCELLED, memoryCacheKey);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.DisplayBitmapTask.run()",this);try{if (isViewWasReused()) {
+			if (loggingEnabled) {L.i(LOG_TASK_CANCELLED, memoryCacheKey);}
 			listener.onLoadingCancelled(imageUri, imageView);
 		} else {
-			if (loggingEnabled) L.i(LOG_DISPLAY_IMAGE_IN_IMAGEVIEW, memoryCacheKey);
+			if (loggingEnabled) {L.i(LOG_DISPLAY_IMAGE_IN_IMAGEVIEW, memoryCacheKey);}
 			Bitmap displayedBitmap = displayer.display(bitmap, imageView);
 			listener.onLoadingComplete(imageUri, imageView, displayedBitmap);
 			engine.cancelDisplayTaskFor(imageView);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.DisplayBitmapTask.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.DisplayBitmapTask.run()",this,throwable);throw throwable;}
 	}
 
 	/** Checks whether memory cache key (image URI) for current ImageView is actual */
 	private boolean isViewWasReused() {
-		String currentCacheKey = engine.getLoadingUriForView(imageView);
-		return !memoryCacheKey.equals(currentCacheKey);
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.core.DisplayBitmapTask.isViewWasReused()",this);try{String currentCacheKey = engine.getLoadingUriForView(imageView);
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.core.DisplayBitmapTask.isViewWasReused()",this);return !memoryCacheKey.equals(currentCacheKey);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.core.DisplayBitmapTask.isViewWasReused()",this,throwable);throw throwable;}
 	}
 
 	void setLoggingEnabled(boolean loggingEnabled) {
-		this.loggingEnabled = loggingEnabled;
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.DisplayBitmapTask.setLoggingEnabled(boolean)",this,loggingEnabled);try{this.loggingEnabled = loggingEnabled;com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.DisplayBitmapTask.setLoggingEnabled(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.DisplayBitmapTask.setLoggingEnabled(boolean)",this,throwable);throw throwable;}
 	}
 }

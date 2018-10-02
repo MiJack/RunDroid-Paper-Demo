@@ -80,7 +80,7 @@ public abstract class PartBase extends Part {
      */
     @Override
     public String getName() { 
-        return this.name; 
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.PartBase.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.PartBase.getName()",this);return this.name;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.PartBase.getName()",this,throwable);throw throwable;} 
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class PartBase extends Part {
      */
     @Override
     public String getContentType() {
-        return this.contentType;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.PartBase.getContentType()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.PartBase.getContentType()",this);return this.contentType;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.PartBase.getContentType()",this,throwable);throw throwable;}
     }
 
     /**
@@ -98,7 +98,7 @@ public abstract class PartBase extends Part {
      */
     @Override
     public String getCharSet() {
-        return this.charSet;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.PartBase.getCharSet()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.PartBase.getCharSet()",this);return this.charSet;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.PartBase.getCharSet()",this,throwable);throw throwable;}
     }
 
     /**
@@ -107,7 +107,7 @@ public abstract class PartBase extends Part {
      */
     @Override
     public String getTransferEncoding() {
-        return transferEncoding;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.multipartmime.PartBase.getTransferEncoding()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.multipartmime.PartBase.getTransferEncoding()",this);return transferEncoding;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.multipartmime.PartBase.getTransferEncoding()",this,throwable);throw throwable;}
     }
 
     /**
@@ -117,7 +117,7 @@ public abstract class PartBase extends Part {
      * encoding header
      */
     public void setCharSet(String charSet) {
-        this.charSet = charSet;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.PartBase.setCharSet(java.lang.String)",this,charSet);try{this.charSet = charSet;com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.PartBase.setCharSet(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.PartBase.setCharSet(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -126,7 +126,7 @@ public abstract class PartBase extends Part {
      * @param contentType the content type, or <code>null</code> to exclude the content type header
      */
     public void setContentType(String contentType) {
-        this.contentType = contentType;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.PartBase.setContentType(java.lang.String)",this,contentType);try{this.contentType = contentType;com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.PartBase.setContentType(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.PartBase.setContentType(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -135,10 +135,10 @@ public abstract class PartBase extends Part {
      * @param name
      */
     public void setName(String name) {
-        if (name == null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.PartBase.setName(java.lang.String)",this,name);try{if (name == null) {
             throw new IllegalArgumentException("Name must not be null");
         }
-        this.name = name;
+        this.name = name;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.PartBase.setName(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -148,7 +148,7 @@ public abstract class PartBase extends Part {
      * transfer encoding header
      */
     public void setTransferEncoding(String transferEncoding) {
-        this.transferEncoding = transferEncoding;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.multipartmime.PartBase.setTransferEncoding(java.lang.String)",this,transferEncoding);try{this.transferEncoding = transferEncoding;com.mijack.Xlog.logMethodExit("void com.chanapps.four.multipartmime.PartBase.setTransferEncoding(java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.multipartmime.PartBase.setTransferEncoding(java.lang.String)",this,throwable);throw throwable;}
     }
 
 }

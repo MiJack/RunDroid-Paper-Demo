@@ -28,7 +28,7 @@ import java.util.List;
  * MD5-based digest Wrapper.
  */
 public class Fingerprint {
-    // Instance of the MessageDigest using our specified digest algorithm.
+    /*// Instance of the MessageDigest using our specified digest algorithm.*/
     private static final MessageDigest DIGESTER;
 
     /**
@@ -36,14 +36,14 @@ public class Fingerprint {
      */
     private static final String DIGEST_MD5 = "md5";
 
-    // Version 1 streamId prefix.
-    // Hard coded stream id length limit is 40-chars. Don't ask!
+    /*// Version 1 streamId prefix.*/
+    /*// Hard coded stream id length limit is 40-chars. Don't ask!*/
     private static final String STREAM_ID_CS_PREFIX = "cs_01_";
 
-    // 16 bytes for 128-bit fingerprint
+    /*// 16 bytes for 128-bit fingerprint*/
     private static final int FINGERPRINT_BYTE_LENGTH;
 
-    // length of prefix + 32 hex chars for 128-bit fingerprint
+    /*// length of prefix + 32 hex chars for 128-bit fingerprint*/
     private static final int STREAM_ID_CS_01_LENGTH;
 
     static {
@@ -53,12 +53,12 @@ public class Fingerprint {
             STREAM_ID_CS_01_LENGTH = STREAM_ID_CS_PREFIX.length()
                     + (FINGERPRINT_BYTE_LENGTH * 2);
         } catch (NoSuchAlgorithmException e) {
-            // can't continue, but really shouldn't happen
+            /*// can't continue, but really shouldn't happen*/
             throw new IllegalStateException(e);
         }
     }
 
-    // md5 digest bytes.
+    /*// md5 digest bytes.*/
     private final byte[] mMd5Digest;
 
     /**
@@ -80,35 +80,35 @@ public class Fingerprint {
      */
     public static Fingerprint fromInputStream(InputStream stream, long[] byteCount)
             throws IOException {
-        DigestInputStream in = null;
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.fromInputStream(java.io.InputStream,[long)",stream,byteCount);try{DigestInputStream in = null;
         long count = 0;
         try {
             in = new DigestInputStream(stream, DIGESTER);
             byte[] bytes = new byte[8192];
             while (true) {
-                // scan through file to compute a fingerprint.
+                /*// scan through file to compute a fingerprint.*/
                 int n = in.read(bytes);
-                if (n < 0) break;
+                if (n < 0) {break;}
                 count += n;
             }
         } finally {
-            if (in != null) in.close();
+            if (in != null) {in.close();}
         }
-        if ((byteCount != null) && (byteCount.length > 0)) byteCount[0] = count;
-        return new Fingerprint(in.getMessageDigest().digest());
+        if ((byteCount != null) && (byteCount.length > 0)) {byteCount[0] = count;}
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.fromInputStream(java.io.InputStream,[long)");return new Fingerprint(in.getMessageDigest().digest());}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.fromInputStream(java.io.InputStream,[long)",throwable);throw throwable;}
     }
 
     /**
      * Decodes a string stream id to a 128-bit fingerprint.
      */
     public static Fingerprint fromStreamId(String streamId) {
-        if ((streamId == null)
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.fromStreamId(java.lang.String)",streamId);try{if ((streamId == null)
                 || !streamId.startsWith(STREAM_ID_CS_PREFIX)
                 || (streamId.length() != STREAM_ID_CS_01_LENGTH)) {
             throw new IllegalArgumentException("bad streamId: " + streamId);
         }
 
-        // decode the hex bytes of the fingerprint portion
+        /*// decode the hex bytes of the fingerprint portion*/
         byte[] bytes = new byte[FINGERPRINT_BYTE_LENGTH];
         int byteIdx = 0;
         for (int idx = STREAM_ID_CS_PREFIX.length(); idx < STREAM_ID_CS_01_LENGTH;
@@ -116,7 +116,7 @@ public class Fingerprint {
             int value = (toDigit(streamId, idx) << 4) | toDigit(streamId, idx + 1);
             bytes[byteIdx++] = (byte) (value & 0xff);
         }
-        return new Fingerprint(bytes);
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.fromStreamId(java.lang.String)");return new Fingerprint(bytes);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.fromStreamId(java.lang.String)",throwable);throw throwable;}
     }
 
     /**
@@ -126,12 +126,12 @@ public class Fingerprint {
      * @return valid fingerprint or null if it can't be found
      */
     public static Fingerprint extractFingerprint(List<String> streamIdList) {
-        for (String streamId : streamIdList) {
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.extractFingerprint(java.util.List)",streamIdList);try{for (String streamId : streamIdList) {
             if (streamId.startsWith(STREAM_ID_CS_PREFIX)) {
-                return fromStreamId(streamId);
+                {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.extractFingerprint(java.util.List)");return fromStreamId(streamId);}
             }
         }
-        return null;
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.extractFingerprint(java.util.List)");return null;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.common.Fingerprint com.android.gallery3d.common.Fingerprint.extractFingerprint(java.util.List)",throwable);throw throwable;}
     }
 
     /**
@@ -141,47 +141,47 @@ public class Fingerprint {
      * underscores.
      */
     public String toStreamId() {
-        StringBuilder streamId = new StringBuilder(STREAM_ID_CS_PREFIX);
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.common.Fingerprint.toStreamId()",this);try{StringBuilder streamId = new StringBuilder(STREAM_ID_CS_PREFIX);
         appendHexFingerprint(streamId, mMd5Digest);
-        return streamId.toString();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.common.Fingerprint.toStreamId()",this);return streamId.toString();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.common.Fingerprint.toStreamId()",this,throwable);throw throwable;}
     }
 
     public byte[] getBytes() {
-        return mMd5Digest;
+        com.mijack.Xlog.logMethodEnter("[byte com.android.gallery3d.common.Fingerprint.getBytes()",this);try{com.mijack.Xlog.logMethodExit("[byte com.android.gallery3d.common.Fingerprint.getBytes()",this);return mMd5Digest;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.android.gallery3d.common.Fingerprint.getBytes()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Fingerprint)) return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.Fingerprint.equals(java.lang.Object)",this,obj);try{if (this == obj) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.Fingerprint.equals(java.lang.Object)",this);return true;}}
+        if (!(obj instanceof Fingerprint)) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.Fingerprint.equals(java.lang.Object)",this);return false;}}
         Fingerprint other = (Fingerprint) obj;
-        return Arrays.equals(mMd5Digest, other.mMd5Digest);
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.Fingerprint.equals(java.lang.Object)",this);return Arrays.equals(mMd5Digest, other.mMd5Digest);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.Fingerprint.equals(java.lang.Object)",this,throwable);throw throwable;}
     }
 
     public boolean equals(byte[] md5Digest) {
-        return Arrays.equals(mMd5Digest, md5Digest);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.Fingerprint.equals([byte)",this,md5Digest);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.Fingerprint.equals([byte)",this);return Arrays.equals(mMd5Digest, md5Digest);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.Fingerprint.equals([byte)",this,throwable);throw throwable;}
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(mMd5Digest);
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.common.Fingerprint.hashCode()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.common.Fingerprint.hashCode()",this);return Arrays.hashCode(mMd5Digest);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.common.Fingerprint.hashCode()",this,throwable);throw throwable;}
     }
 
-    // Utility methods.
+    /*// Utility methods.*/
 
     private static int toDigit(String streamId, int index) {
-        int digit = Character.digit(streamId.charAt(index), 16);
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.common.Fingerprint.toDigit(java.lang.String,int)",streamId,index);try{int digit = Character.digit(streamId.charAt(index), 16);
         if (digit < 0) {
             throw new IllegalArgumentException("illegal hex digit in " + streamId);
         }
-        return digit;
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.common.Fingerprint.toDigit(java.lang.String,int)");return digit;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.common.Fingerprint.toDigit(java.lang.String,int)",throwable);throw throwable;}
     }
 
     private static void appendHexFingerprint(StringBuilder sb, byte[] bytes) {
-        for (int idx = 0; idx < FINGERPRINT_BYTE_LENGTH; idx++) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.Fingerprint.appendHexFingerprint(java.lang.StringBuilder,[byte)",sb,bytes);try{for (int idx = 0; idx < FINGERPRINT_BYTE_LENGTH; idx++) {
             int value = bytes[idx];
             sb.append(Integer.toHexString((value >> 4) & 0x0f));
             sb.append(Integer.toHexString(value& 0x0f));
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.common.Fingerprint.appendHexFingerprint(java.lang.StringBuilder,[byte)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.Fingerprint.appendHexFingerprint(java.lang.StringBuilder,[byte)",throwable);throw throwable;}
     }
 }

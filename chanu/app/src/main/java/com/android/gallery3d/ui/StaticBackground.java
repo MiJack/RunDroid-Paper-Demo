@@ -33,30 +33,30 @@ public class StaticBackground extends GLView {
 
     @Override
     protected void onLayout(boolean changeSize, int l, int t, int r, int b) {
-        setOrientation(getWidth() >= getHeight());
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StaticBackground.onLayout(boolean,int,int,int,int)",this,changeSize,l,t,r,b);try{setOrientation(getWidth() >= getHeight());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StaticBackground.onLayout(boolean,int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.StaticBackground.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
     }
 
     private void setOrientation(boolean isLandscape) {
-        if (mIsLandscape == isLandscape) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StaticBackground.setOrientation(boolean)",this,isLandscape);try{if (mIsLandscape == isLandscape) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StaticBackground.setOrientation(boolean)",this);return;}}
         mIsLandscape = isLandscape;
-        if (mBackground != null) mBackground.recycle();
+        if (mBackground != null) {mBackground.recycle();}
         mBackground = new ResourceTexture(
                 mContext, mIsLandscape ? mLandscapeResource : mPortraitResource);
-        invalidate();
+        invalidate();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.StaticBackground.setOrientation(boolean)",this,throwable);throw throwable;}
     }
 
     public void setImage(int landscapeId, int portraitId) {
-        mLandscapeResource = landscapeId;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StaticBackground.setImage(int,int)",this,landscapeId,portraitId);try{mLandscapeResource = landscapeId;
         mPortraitResource = portraitId;
-        if (mBackground != null) mBackground.recycle();
+        if (mBackground != null) {mBackground.recycle();}
         mBackground = new ResourceTexture(
                 mContext, mIsLandscape ? landscapeId : portraitId);
-        invalidate();
+        invalidate();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StaticBackground.setImage(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.StaticBackground.setImage(int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        //mBackground.draw(canvas, 0, 0, getWidth(), getHeight());
-        canvas.fillRect(0, 0, getWidth(), getHeight(), 0xFF000000);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.StaticBackground.render(GLCanvas)",this,canvas);try{/*//mBackground.draw(canvas, 0, 0, getWidth(), getHeight());*/
+        canvas.fillRect(0, 0, getWidth(), getHeight(), 0xFF000000);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.StaticBackground.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.StaticBackground.render(GLCanvas)",this,throwable);throw throwable;}
     }
 }

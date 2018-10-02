@@ -36,24 +36,24 @@ public class SaturationAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final SaturationFilter filter = new SaturationFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SaturationAction.doBegin()",this);try{final SaturationFilter filter = new SaturationFilter();
 
         scalePicker = factory.createScalePicker(EffectToolFactory.ScalePickerType.COLOR);
         scalePicker.setOnScaleChangeListener(new ScaleSeekBar.OnScaleChangeListener() {
 
             @Override
             public void onProgressChanged(float progress, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SaturationAction$1.onProgressChanged(float,boolean)",this,progress,fromUser);try{if (fromUser) {
                     filter.setSaturation(progress);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SaturationAction$1.onProgressChanged(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.SaturationAction$1.onProgressChanged(float,boolean)",this,throwable);throw throwable;}
             }
         });
-        scalePicker.setProgress(DEFAULT_SCALE);
+        scalePicker.setProgress(DEFAULT_SCALE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SaturationAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.SaturationAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        scalePicker.setOnScaleChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.SaturationAction.doEnd()",this);try{scalePicker.setOnScaleChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.SaturationAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.SaturationAction.doEnd()",this,throwable);throw throwable;}
     }
 }

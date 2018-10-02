@@ -24,13 +24,13 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-// This is copied from android.widget.EdgeEffect with some small modifications:
-// (1) Copy the images (overscroll_{edge|glow}.png) to local resources.
-// (2) Use "GLCanvas" instead of "Canvas" for draw()'s parameter.
-// (3) Use a private Drawable class (which inherits from ResourceTexture)
-//     instead of android.graphics.drawable.Drawable to hold the images.
-//     The private Drawable class is used to translate original Canvas calls to
-//     corresponding GLCanvas calls.
+/*// This is copied from android.widget.EdgeEffect with some small modifications:*/
+/*// (1) Copy the images (overscroll_{edge|glow}.png) to local resources.*/
+/*// (2) Use "GLCanvas" instead of "Canvas" for draw()'s parameter.*/
+/*// (3) Use a private Drawable class (which inherits from ResourceTexture)*/
+/*//     instead of android.graphics.drawable.Drawable to hold the images.*/
+/*//     The private Drawable class is used to translate original Canvas calls to*/
+/*//     corresponding GLCanvas calls.*/
 
 /**
  * This class performs the graphical effect used at the edges of scrollable widgets
@@ -53,13 +53,13 @@ import android.view.animation.Interpolator;
 public class EdgeEffect {
     private static final String TAG = "EdgeEffect";
 
-    // Time it will take the effect to fully recede in ms
+    /*// Time it will take the effect to fully recede in ms*/
     private static final int RECEDE_TIME = 1000;
 
-    // Time it will take before a pulled glow begins receding in ms
+    /*// Time it will take before a pulled glow begins receding in ms*/
     private static final int PULL_TIME = 167;
 
-    // Time it will take in ms for a pulled glow to decay to partial strength before release
+    /*// Time it will take in ms for a pulled glow to decay to partial strength before release*/
     private static final int PULL_DECAY_TIME = 1000;
 
     private static final float MAX_ALPHA = 0.8f;
@@ -73,7 +73,7 @@ public class EdgeEffect {
     private static final float PULL_GLOW_BEGIN = 1.f;
     private static final float PULL_EDGE_BEGIN = 0.6f;
 
-    // Minimum velocity that will be absorbed
+    /*// Minimum velocity that will be absorbed*/
     private static final int MIN_VELOCITY = 100;
 
     private static final float EPSILON = 0.001f;
@@ -110,12 +110,12 @@ public class EdgeEffect {
     private static final int STATE_RECEDE = 3;
     private static final int STATE_PULL_DECAY = 4;
 
-    // How much dragging should effect the height of the edge image.
-    // Number determined by user testing.
+    /*// How much dragging should effect the height of the edge image.*/
+    /*// Number determined by user testing.*/
     private static final int PULL_DISTANCE_EDGE_FACTOR = 7;
 
-    // How much dragging should effect the height of the glow image.
-    // Number determined by user testing.
+    /*// How much dragging should effect the height of the glow image.*/
+    /*// Number determined by user testing.*/
     private static final int PULL_DISTANCE_GLOW_FACTOR = 7;
     private static final float PULL_DISTANCE_ALPHA_GLOW_FACTOR = 1.1f;
 
@@ -145,8 +145,8 @@ public class EdgeEffect {
      * @param height Effect height in pixels
      */
     public void setSize(int width, int height) {
-        mWidth = width;
-        mHeight = height;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect.setSize(int,int)",this,width,height);try{mWidth = width;
+        mHeight = height;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect.setSize(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect.setSize(int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -157,7 +157,7 @@ public class EdgeEffect {
      * @return true if animation is finished, false if drawing should continue on the next frame.
      */
     public boolean isFinished() {
-        return mState == STATE_IDLE;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.EdgeEffect.isFinished()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.EdgeEffect.isFinished()",this);return mState == STATE_IDLE;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.EdgeEffect.isFinished()",this,throwable);throw throwable;}
     }
 
     /**
@@ -165,7 +165,7 @@ public class EdgeEffect {
      * After this call {@link #isFinished()} will return true.
      */
     public void finish() {
-        mState = STATE_IDLE;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect.finish()",this);try{mState = STATE_IDLE;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect.finish()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect.finish()",this,throwable);throw throwable;}
     }
 
     /**
@@ -179,9 +179,9 @@ public class EdgeEffect {
      *                      back toward the edge reached to initiate the effect.
      */
     public void onPull(float deltaDistance) {
-        final long now = AnimationUtils.currentAnimationTimeMillis();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect.onPull(float)",this,deltaDistance);try{final long now = AnimationUtils.currentAnimationTimeMillis();
         if (mState == STATE_PULL_DECAY && now - mStartTime < mDuration) {
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect.onPull(float)",this);return;}
         }
         if (mState != STATE_PULL) {
             mGlowScaleY = PULL_GLOW_BEGIN;
@@ -210,14 +210,14 @@ public class EdgeEffect {
             mGlowScaleY = 0;
         }
 
-        // Do not allow glow to get larger than MAX_GLOW_HEIGHT.
+        /*// Do not allow glow to get larger than MAX_GLOW_HEIGHT.*/
         mGlowScaleY = mGlowScaleYStart = Math.min(MAX_GLOW_HEIGHT, Math.max(
                 0, mGlowScaleY + glowChange * PULL_DISTANCE_GLOW_FACTOR));
 
         mEdgeAlphaFinish = mEdgeAlpha;
         mEdgeScaleYFinish = mEdgeScaleY;
         mGlowAlphaFinish = mGlowAlpha;
-        mGlowScaleYFinish = mGlowScaleY;
+        mGlowScaleYFinish = mGlowScaleY;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect.onPull(float)",this,throwable);throw throwable;}
     }
 
     /**
@@ -227,10 +227,10 @@ public class EdgeEffect {
      * draw the results accordingly.
      */
     public void onRelease() {
-        mPullDistance = 0;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect.onRelease()",this);try{mPullDistance = 0;
 
         if (mState != STATE_PULL && mState != STATE_PULL_DECAY) {
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect.onRelease()",this);return;}
         }
 
         mState = STATE_RECEDE;
@@ -245,7 +245,7 @@ public class EdgeEffect {
         mGlowScaleYFinish = 0.f;
 
         mStartTime = AnimationUtils.currentAnimationTimeMillis();
-        mDuration = RECEDE_TIME;
+        mDuration = RECEDE_TIME;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect.onRelease()",this,throwable);throw throwable;}
     }
 
     /**
@@ -259,36 +259,36 @@ public class EdgeEffect {
      * @param velocity Velocity at impact in pixels per second.
      */
     public void onAbsorb(int velocity) {
-        mState = STATE_ABSORB;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect.onAbsorb(int)",this,velocity);try{mState = STATE_ABSORB;
         velocity = Math.max(MIN_VELOCITY, Math.abs(velocity));
 
         mStartTime = AnimationUtils.currentAnimationTimeMillis();
         mDuration = 0.1f + (velocity * 0.03f);
 
-        // The edge should always be at least partially visible, regardless
-        // of velocity.
+        /*// The edge should always be at least partially visible, regardless*/
+        /*// of velocity.*/
         mEdgeAlphaStart = 0.f;
         mEdgeScaleY = mEdgeScaleYStart = 0.f;
-        // The glow depends more on the velocity, and therefore starts out
-        // nearly invisible.
+        /*// The glow depends more on the velocity, and therefore starts out*/
+        /*// nearly invisible.*/
         mGlowAlphaStart = 0.5f;
         mGlowScaleYStart = 0.f;
 
-        // Factor the velocity by 8. Testing on device shows this works best to
-        // reflect the strength of the user's scrolling.
+        /*// Factor the velocity by 8. Testing on device shows this works best to*/
+        /*// reflect the strength of the user's scrolling.*/
         mEdgeAlphaFinish = Math.max(0, Math.min(velocity * VELOCITY_EDGE_FACTOR, 1));
-        // Edge should never get larger than the size of its asset.
+        /*// Edge should never get larger than the size of its asset.*/
         mEdgeScaleYFinish = Math.max(
                 HELD_EDGE_SCALE_Y, Math.min(velocity * VELOCITY_EDGE_FACTOR, 1.f));
 
-        // Growth for the size of the glow should be quadratic to properly
-        // respond
-        // to a user's scrolling speed. The faster the scrolling speed, the more
-        // intense the effect should be for both the size and the saturation.
+        /*// Growth for the size of the glow should be quadratic to properly*/
+        /*// respond*/
+        /*// to a user's scrolling speed. The faster the scrolling speed, the more*/
+        /*// intense the effect should be for both the size and the saturation.*/
         mGlowScaleYFinish = Math.min(0.025f + (velocity * (velocity / 100) * 0.00015f), 1.75f);
-        // Alpha should change for the glow as well as size.
+        /*// Alpha should change for the glow as well as size.*/
         mGlowAlphaFinish = Math.max(
-                mGlowAlphaStart, Math.min(velocity * VELOCITY_GLOW_FACTOR * .00001f, MAX_ALPHA));
+                mGlowAlphaStart, Math.min(velocity * VELOCITY_GLOW_FACTOR * .00001f, MAX_ALPHA));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect.onAbsorb(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect.onAbsorb(int)",this,throwable);throw throwable;}
     }
 
 
@@ -303,7 +303,7 @@ public class EdgeEffect {
      *         animation
      */
     public boolean draw(GLCanvas canvas) {
-        update();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.EdgeEffect.draw(GLCanvas)",this,canvas);try{update();
 
         final int edgeHeight = mEdge.getIntrinsicHeight();
         final int edgeWidth = mEdge.getIntrinsicWidth();
@@ -316,11 +316,11 @@ public class EdgeEffect {
                 glowHeight * mGlowScaleY * glowHeight/ glowWidth * 0.6f,
                 glowHeight * MAX_GLOW_HEIGHT);
         if (mWidth < mMinWidth) {
-            // Center the glow and clip it.
+            /*// Center the glow and clip it.*/
             int glowLeft = (mWidth - mMinWidth)/2;
             mGlow.setBounds(glowLeft, 0, mWidth - glowLeft, glowBottom);
         } else {
-            // Stretch the glow to fit.
+            /*// Stretch the glow to fit.*/
             mGlow.setBounds(0, 0, mWidth, glowBottom);
         }
 
@@ -330,20 +330,20 @@ public class EdgeEffect {
 
         int edgeBottom = (int) (edgeHeight * mEdgeScaleY);
         if (mWidth < mMinWidth) {
-            // Center the edge and clip it.
+            /*// Center the edge and clip it.*/
             int edgeLeft = (mWidth - mMinWidth)/2;
             mEdge.setBounds(edgeLeft, 0, mWidth - edgeLeft, edgeBottom);
         } else {
-            // Stretch the edge to fit.
+            /*// Stretch the edge to fit.*/
             mEdge.setBounds(0, 0, mWidth, edgeBottom);
         }
         mEdge.draw(canvas);
 
-        return mState != STATE_IDLE;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.EdgeEffect.draw(GLCanvas)",this);return mState != STATE_IDLE;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.EdgeEffect.draw(GLCanvas)",this,throwable);throw throwable;}
     }
 
     private void update() {
-        final long time = AnimationUtils.currentAnimationTimeMillis();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect.update()",this);try{final long time = AnimationUtils.currentAnimationTimeMillis();
         final float t = Math.min((time - mStartTime) / mDuration, 1.f);
 
         final float interp = mInterpolator.getInterpolation(t);
@@ -365,7 +365,7 @@ public class EdgeEffect {
                     mGlowAlphaStart = mGlowAlpha;
                     mGlowScaleYStart = mGlowScaleY;
 
-                    // After absorb, the glow and edge should fade to nothing.
+                    /*// After absorb, the glow and edge should fade to nothing.*/
                     mEdgeAlphaFinish = 0.f;
                     mEdgeScaleYFinish = 0.f;
                     mGlowAlphaFinish = 0.f;
@@ -381,15 +381,15 @@ public class EdgeEffect {
                     mGlowAlphaStart = mGlowAlpha;
                     mGlowScaleYStart = mGlowScaleY;
 
-                    // After pull, the glow and edge should fade to nothing.
+                    /*// After pull, the glow and edge should fade to nothing.*/
                     mEdgeAlphaFinish = 0.f;
                     mEdgeScaleYFinish = 0.f;
                     mGlowAlphaFinish = 0.f;
                     mGlowScaleYFinish = 0.f;
                     break;
                 case STATE_PULL_DECAY:
-                    // When receding, we want edge to decrease more slowly
-                    // than the glow.
+                    /*// When receding, we want edge to decrease more slowly*/
+                    /*// than the glow.*/
                     float factor = mGlowScaleYFinish != 0 ? 1
                             / (mGlowScaleYFinish * mGlowScaleYFinish)
                             : Float.MAX_VALUE;
@@ -402,7 +402,7 @@ public class EdgeEffect {
                     mState = STATE_IDLE;
                     break;
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect.update()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect.update()",this,throwable);throw throwable;}
     }
 
     private static class Drawable extends ResourceTexture {
@@ -414,27 +414,27 @@ public class EdgeEffect {
         }
 
         public int getIntrinsicWidth() {
-            return getWidth();
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.EdgeEffect$Drawable.getIntrinsicWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.EdgeEffect$Drawable.getIntrinsicWidth()",this);return getWidth();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.EdgeEffect$Drawable.getIntrinsicWidth()",this,throwable);throw throwable;}
         }
 
         public int getIntrinsicHeight() {
-            return getHeight();
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.EdgeEffect$Drawable.getIntrinsicHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.EdgeEffect$Drawable.getIntrinsicHeight()",this);return getHeight();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.EdgeEffect$Drawable.getIntrinsicHeight()",this,throwable);throw throwable;}
         }
 
         public void setBounds(int left, int top, int right, int bottom) {
-            mBounds.set(left, top, right, bottom);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect$Drawable.setBounds(int,int,int,int)",this,left,top,right,bottom);try{mBounds.set(left, top, right, bottom);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect$Drawable.setBounds(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect$Drawable.setBounds(int,int,int,int)",this,throwable);throw throwable;}
         }
 
         public void setAlpha(int alpha) {
-            mAlpha = alpha;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect$Drawable.setAlpha(int)",this,alpha);try{mAlpha = alpha;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect$Drawable.setAlpha(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect$Drawable.setAlpha(int)",this,throwable);throw throwable;}
         }
 
         public void draw(GLCanvas canvas) {
-            canvas.save(GLCanvas.SAVE_FLAG_ALPHA);
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.EdgeEffect$Drawable.draw(GLCanvas)",this,canvas);try{canvas.save(GLCanvas.SAVE_FLAG_ALPHA);
             canvas.multiplyAlpha(mAlpha / 255.0f);
             Rect b = mBounds;
             draw(canvas, b.left, b.top, b.width(), b.height());
-            canvas.restore();
+            canvas.restore();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.EdgeEffect$Drawable.draw(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.EdgeEffect$Drawable.draw(GLCanvas)",this,throwable);throw throwable;}
         }
     }
 }

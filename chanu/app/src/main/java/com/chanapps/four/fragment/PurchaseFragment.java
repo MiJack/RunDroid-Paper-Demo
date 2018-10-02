@@ -23,38 +23,38 @@ public class PurchaseFragment extends PreferenceFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PurchaseFragment.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.purchase_preferences);
 
         linkPreference("pref_about_store_chanapps",
                 URLFormatComponent.getUrl(getActivity(), URLFormatComponent.SKREENED_CHANU_STORE_URL));
-        emailPreference("pref_about_contact_us", getString(R.string.pref_about_contact_email));
+        emailPreference("pref_about_contact_us", getString(R.string.pref_about_contact_email));com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PurchaseFragment.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PurchaseFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     protected void linkPreference(final String pref, final String url) {
-        findPreference(pref).setOnPreferenceClickListener(
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PurchaseFragment.linkPreference(java.lang.String,java.lang.String)",this,pref,url);try{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PurchaseFragment.linkPreference(java.lang.String,java.lang.String)",this);findPreference(pref).setOnPreferenceClickListener(
                 new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick(Preference preference) {
-                        ActivityDispatcher.launchUrlInBrowser(getActivity(), url);
-                        return true;
+                        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.PurchaseFragment$1.onPreferenceClick(android.preference.Preference)",this,preference);try{ActivityDispatcher.launchUrlInBrowser(getActivity(), url);
+                        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PurchaseFragment$1.onPreferenceClick(android.preference.Preference)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.PurchaseFragment$1.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
                     }
-                });
+                });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PurchaseFragment.linkPreference(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     protected void emailPreference(final String pref, final String email) {
-        findPreference(pref).setOnPreferenceClickListener(
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.PurchaseFragment.emailPreference(java.lang.String,java.lang.String)",this,pref,email);try{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.PurchaseFragment.emailPreference(java.lang.String,java.lang.String)",this);findPreference(pref).setOnPreferenceClickListener(
                 new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick(Preference preference) {
-                        Uri uri = Uri.fromParts("mailto", email, null);
+                        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.fragment.PurchaseFragment$2.onPreferenceClick(android.preference.Preference)",this,preference);try{Uri uri = Uri.fromParts("mailto", email, null);
                         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
                         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                         getActivity().startActivity(
                                 Intent.createChooser(intent, getString(R.string.pref_about_send_email)));
-                        return true;
+                        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.fragment.PurchaseFragment$2.onPreferenceClick(android.preference.Preference)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.fragment.PurchaseFragment$2.onPreferenceClick(android.preference.Preference)",this,throwable);throw throwable;}
                     }
-                });
+                });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.PurchaseFragment.emailPreference(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 }

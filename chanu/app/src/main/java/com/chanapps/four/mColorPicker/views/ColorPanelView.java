@@ -69,15 +69,15 @@ public class ColorPanelView extends View{
 	}
 	
 	private void init(){
-		mBorderPaint = new Paint();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPanelView.init()",this);try{mBorderPaint = new Paint();
 		mColorPaint = new Paint();
-		mDensity = getContext().getResources().getDisplayMetrics().density;
+		mDensity = getContext().getResources().getDisplayMetrics().density;com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPanelView.init()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPanelView.init()",this,throwable);throw throwable;}
 	}
 	
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPanelView.onDraw(android.graphics.Canvas)",this,canvas);try{
 		final RectF	rect = mColorRect;
 				
 		if(BORDER_WIDTH_PX > 0){
@@ -91,21 +91,21 @@ public class ColorPanelView extends View{
 					
 		mColorPaint.setColor(mColor);
 		
-		canvas.drawRect(rect, mColorPaint);
+		canvas.drawRect(rect, mColorPaint);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPanelView.onDraw(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPanelView.onDraw(android.graphics.Canvas)",this,throwable);throw throwable;}
 	}
 		
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPanelView.onMeasure(int,int)",this,widthMeasureSpec,heightMeasureSpec);try{
 		int width = MeasureSpec.getSize(widthMeasureSpec);
 		int height = MeasureSpec.getSize(heightMeasureSpec);
 		
-		setMeasuredDimension(width, height);
+		setMeasuredDimension(width, height);com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPanelView.onMeasure(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPanelView.onMeasure(int,int)",this,throwable);throw throwable;}
 	}
 	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		super.onSizeChanged(w, h, oldw, oldh);
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPanelView.onSizeChanged(int,int,int,int)",this,w,h,oldw,oldh);try{super.onSizeChanged(w, h, oldw, oldh);
 		
 		mDrawingRect = new RectF();		
 		mDrawingRect.left =  getPaddingLeft();
@@ -113,12 +113,12 @@ public class ColorPanelView extends View{
 		mDrawingRect.top = getPaddingTop();
 		mDrawingRect.bottom = h - getPaddingBottom();
 		
-		setUpColorRect();
+		setUpColorRect();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPanelView.onSizeChanged(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPanelView.onSizeChanged(int,int,int,int)",this,throwable);throw throwable;}
 		
 	}
 	
 	private void setUpColorRect(){
-		final RectF	dRect = mDrawingRect;		
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPanelView.setUpColorRect()",this);try{final RectF	dRect = mDrawingRect;		
 		
 		float left = dRect.left + BORDER_WIDTH_PX;
 		float top = dRect.top + BORDER_WIDTH_PX;
@@ -132,7 +132,7 @@ public class ColorPanelView extends View{
 		mAlphaPattern.setBounds(Math.round(mColorRect.left), 
 				Math.round(mColorRect.top), 
 				Math.round(mColorRect.right), 
-				Math.round(mColorRect.bottom));
+				Math.round(mColorRect.bottom));com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPanelView.setUpColorRect()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPanelView.setUpColorRect()",this,throwable);throw throwable;}
 		
 	}
 	
@@ -141,8 +141,8 @@ public class ColorPanelView extends View{
 	 * @param color
 	 */
 	public void setColor(int color){
-		mColor = color;
-		invalidate();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPanelView.setColor(int)",this,color);try{mColor = color;
+		invalidate();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPanelView.setColor(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPanelView.setColor(int)",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -150,7 +150,7 @@ public class ColorPanelView extends View{
 	 * @return
 	 */
 	public int getColor(){
-		return mColor;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPanelView.getColor()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPanelView.getColor()",this);return mColor;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPanelView.getColor()",this,throwable);throw throwable;}
 	}
 	
 	/**
@@ -158,15 +158,15 @@ public class ColorPanelView extends View{
 	 * @param color
 	 */
 	public void setBorderColor(int color){
-		mBorderColor = color;
-		invalidate();
+		com.mijack.Xlog.logMethodEnter("void com.chanapps.four.mColorPicker.views.ColorPanelView.setBorderColor(int)",this,color);try{mBorderColor = color;
+		invalidate();com.mijack.Xlog.logMethodExit("void com.chanapps.four.mColorPicker.views.ColorPanelView.setBorderColor(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.mColorPicker.views.ColorPanelView.setBorderColor(int)",this,throwable);throw throwable;}
 	}
 
 	/**
 	 * Get the color of the border surrounding the panel.
 	 */
 	public int getBorderColor(){
-		return mBorderColor;
+		com.mijack.Xlog.logMethodEnter("int com.chanapps.four.mColorPicker.views.ColorPanelView.getBorderColor()",this);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.mColorPicker.views.ColorPanelView.getBorderColor()",this);return mBorderColor;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.mColorPicker.views.ColorPanelView.getBorderColor()",this,throwable);throw throwable;}
 	}
 	
 }

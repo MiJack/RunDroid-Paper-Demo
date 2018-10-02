@@ -41,7 +41,7 @@ public class FuzzyKeyMemoryCache<K, V> implements MemoryCacheAware<K, V> {
 
 	@Override
 	public boolean put(K key, V value) {
-		// Search equal key and remove this entry
+		com.mijack.Xlog.logMethodEnter("boolean com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.put(K,V)",this,key,value);try{/*// Search equal key and remove this entry*/
 		synchronized (cache) {
 			K keyToRemove = null;
 			for (K cacheKey : cache.keys()) {
@@ -54,26 +54,26 @@ public class FuzzyKeyMemoryCache<K, V> implements MemoryCacheAware<K, V> {
 				cache.remove(keyToRemove);
 			}
 		}
-		return cache.put(key, value);
+		{com.mijack.Xlog.logMethodExit("boolean com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.put(K,V)",this);return cache.put(key, value);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.put(K,V)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public V get(K key) {
-		return cache.get(key);
+		com.mijack.Xlog.logMethodEnter("V com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.get(K)",this,key);try{com.mijack.Xlog.logMethodExit("V com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.get(K)",this);return cache.get(key);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("V com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.get(K)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void remove(K key) {
-		cache.remove(key);
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.remove(K)",this,key);try{cache.remove(key);com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.remove(K)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.remove(K)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void clear() {
-		cache.clear();
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.clear()",this);try{cache.clear();com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.clear()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.clear()",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public Collection<K> keys() {
-		return cache.keys();
+		com.mijack.Xlog.logMethodEnter("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.keys()",this);try{com.mijack.Xlog.logMethodExit("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.keys()",this);return cache.keys();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.Collection com.nostra13.universalimageloader.cache.memory.impl.FuzzyKeyMemoryCache<K, V>.keys()",this,throwable);throw throwable;}
 	}
 }

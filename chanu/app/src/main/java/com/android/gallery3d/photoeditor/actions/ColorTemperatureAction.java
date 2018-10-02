@@ -36,24 +36,24 @@ public class ColorTemperatureAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        final ColorTemperatureFilter filter = new ColorTemperatureFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction.doBegin()",this);try{final ColorTemperatureFilter filter = new ColorTemperatureFilter();
 
         scalePicker = factory.createScalePicker(EffectToolFactory.ScalePickerType.COLOR);
         scalePicker.setOnScaleChangeListener(new ScaleSeekBar.OnScaleChangeListener() {
 
             @Override
             public void onProgressChanged(float progress, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction$1.onProgressChanged(float,boolean)",this,progress,fromUser);try{if (fromUser) {
                     filter.setColorTemperature(progress);
                     notifyFilterChanged(filter, true);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction$1.onProgressChanged(float,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction$1.onProgressChanged(float,boolean)",this,throwable);throw throwable;}
             }
         });
-        scalePicker.setProgress(DEFAULT_SCALE);
+        scalePicker.setProgress(DEFAULT_SCALE);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        scalePicker.setOnScaleChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction.doEnd()",this);try{scalePicker.setOnScaleChangeListener(null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorTemperatureAction.doEnd()",this,throwable);throw throwable;}
     }
 }

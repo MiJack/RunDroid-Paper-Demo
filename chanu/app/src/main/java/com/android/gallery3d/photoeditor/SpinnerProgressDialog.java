@@ -33,10 +33,10 @@ public class SpinnerProgressDialog extends Dialog {
     private final ViewGroup tools;
 
     public static SpinnerProgressDialog show(ViewGroup tools) {
-        SpinnerProgressDialog dialog = new SpinnerProgressDialog(tools);
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.photoeditor.SpinnerProgressDialog com.android.gallery3d.photoeditor.SpinnerProgressDialog.show(android.view.ViewGroup)",tools);try{SpinnerProgressDialog dialog = new SpinnerProgressDialog(tools);
         dialog.setCancelable(false);
         dialog.show();
-        return dialog;
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.photoeditor.SpinnerProgressDialog com.android.gallery3d.photoeditor.SpinnerProgressDialog.show(android.view.ViewGroup)");return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.photoeditor.SpinnerProgressDialog com.android.gallery3d.photoeditor.SpinnerProgressDialog.show(android.view.ViewGroup)",throwable);throw throwable;}
     }
 
     private SpinnerProgressDialog(ViewGroup tools) {
@@ -51,22 +51,22 @@ public class SpinnerProgressDialog extends Dialog {
 
     @Override
     public void dismiss() {
-        super.dismiss();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.SpinnerProgressDialog.dismiss()",this);try{super.dismiss();
 
-        enableTools(true);
+        enableTools(true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.SpinnerProgressDialog.dismiss()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.SpinnerProgressDialog.dismiss()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        super.onTouchEvent(event);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.SpinnerProgressDialog.onTouchEvent(android.view.MotionEvent)",this,event);try{super.onTouchEvent(event);
 
-        // Pass touch events to tools for killing idle even when the progress dialog is shown.
-        return tools.dispatchTouchEvent(event);
+        /*// Pass touch events to tools for killing idle even when the progress dialog is shown.*/
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.SpinnerProgressDialog.onTouchEvent(android.view.MotionEvent)",this);return tools.dispatchTouchEvent(event);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.SpinnerProgressDialog.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     private void enableTools(boolean enabled) {
-        for (int i = 0; i < tools.getChildCount(); i++) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.SpinnerProgressDialog.enableTools(boolean)",this,enabled);try{for (int i = 0; i < tools.getChildCount(); i++) {
             tools.getChildAt(i).setEnabled(enabled);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.SpinnerProgressDialog.enableTools(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.SpinnerProgressDialog.enableTools(boolean)",this,throwable);throw throwable;}
     }
 }

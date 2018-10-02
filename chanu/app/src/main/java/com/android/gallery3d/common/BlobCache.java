@@ -14,55 +14,55 @@
  * limitations under the License.
  */
 
-// This is an on-disk cache which maps a 64-bits key to a byte array.
-//
-// It consists of three files: one index file and two data files. One of the
-// data files is "active", and the other is "inactive". New entries are
-// appended into the active region until it reaches the size limit. At that
-// point the active file and the inactive file are swapped, and the new active
-// file is truncated to empty (and the index for that file is also cleared).
-// The index is a hash table with linear probing. When the load factor reaches
-// 0.5, it does the same thing like when the size limit is reached.
-//
-// The index file format: (all numbers are stored in little-endian)
-// [0]  Magic number: 0xB3273030
-// [4]  MaxEntries: Max number of hash entries per region.
-// [8]  MaxBytes: Max number of data bytes per region (including header).
-// [12] ActiveRegion: The active growing region: 0 or 1.
-// [16] ActiveEntries: The number of hash entries used in the active region.
-// [20] ActiveBytes: The number of data bytes used in the active region.
-// [24] Version number.
-// [28] Checksum of [0..28).
-// [32] Hash entries for region 0. The size is X = (12 * MaxEntries bytes).
-// [32 + X] Hash entries for region 1. The size is also X.
-//
-// Each hash entry is 12 bytes: 8 bytes key and 4 bytes offset into the data
-// file. The offset is 0 when the slot is free. Note that 0 is a valid value
-// for key. The keys are used directly as index into a hash table, so they
-// should be suitably distributed.
-//
-// Each data file stores data for one region. The data file is concatenated
-// blobs followed by the magic number 0xBD248510.
-//
-// The blob format:
-// [0]  Key of this blob
-// [8]  Checksum of this blob
-// [12] Offset of this blob
-// [16] Length of this blob (not including header)
-// [20] Blob
-//
-// Below are the interface for BlobCache. The instance of this class does not
-// support concurrent use by multiple threads.
-//
-// public BlobCache(String path, int maxEntries, int maxBytes, boolean reset) throws IOException;
-// public void insert(long key, byte[] data) throws IOException;
-// public byte[] lookup(long key) throws IOException;
-// public void lookup(LookupRequest req) throws IOException;
-// public void close();
-// public void syncIndex();
-// public void syncAll();
-// public static void deleteFiles(String path);
-//
+/*// This is an on-disk cache which maps a 64-bits key to a byte array.*/
+/*//*/
+/*// It consists of three files: one index file and two data files. One of the*/
+/*// data files is "active", and the other is "inactive". New entries are*/
+/*// appended into the active region until it reaches the size limit. At that*/
+/*// point the active file and the inactive file are swapped, and the new active*/
+/*// file is truncated to empty (and the index for that file is also cleared).*/
+/*// The index is a hash table with linear probing. When the load factor reaches*/
+/*// 0.5, it does the same thing like when the size limit is reached.*/
+/*//*/
+/*// The index file format: (all numbers are stored in little-endian)*/
+/*// [0]  Magic number: 0xB3273030*/
+/*// [4]  MaxEntries: Max number of hash entries per region.*/
+/*// [8]  MaxBytes: Max number of data bytes per region (including header).*/
+/*// [12] ActiveRegion: The active growing region: 0 or 1.*/
+/*// [16] ActiveEntries: The number of hash entries used in the active region.*/
+/*// [20] ActiveBytes: The number of data bytes used in the active region.*/
+/*// [24] Version number.*/
+/*// [28] Checksum of [0..28).*/
+/*// [32] Hash entries for region 0. The size is X = (12 * MaxEntries bytes).*/
+/*// [32 + X] Hash entries for region 1. The size is also X.*/
+/*//*/
+/*// Each hash entry is 12 bytes: 8 bytes key and 4 bytes offset into the data*/
+/*// file. The offset is 0 when the slot is free. Note that 0 is a valid value*/
+/*// for key. The keys are used directly as index into a hash table, so they*/
+/*// should be suitably distributed.*/
+/*//*/
+/*// Each data file stores data for one region. The data file is concatenated*/
+/*// blobs followed by the magic number 0xBD248510.*/
+/*//*/
+/*// The blob format:*/
+/*// [0]  Key of this blob*/
+/*// [8]  Checksum of this blob*/
+/*// [12] Offset of this blob*/
+/*// [16] Length of this blob (not including header)*/
+/*// [20] Blob*/
+/*//*/
+/*// Below are the interface for BlobCache. The instance of this class does not*/
+/*// support concurrent use by multiple threads.*/
+/*//*/
+/*// public BlobCache(String path, int maxEntries, int maxBytes, boolean reset) throws IOException;*/
+/*// public void insert(long key, byte[] data) throws IOException;*/
+/*// public byte[] lookup(long key) throws IOException;*/
+/*// public void lookup(LookupRequest req) throws IOException;*/
+/*// public void close();*/
+/*// public void syncIndex();*/
+/*// public void syncAll();*/
+/*// public static void deleteFiles(String path);*/
+/*//*/
 package com.android.gallery3d.common;
 
 import android.util.Log;
@@ -82,7 +82,7 @@ public class BlobCache {
     private static final int MAGIC_INDEX_FILE = 0xB3273030;
     private static final int MAGIC_DATA_FILE = 0xBD248510;
 
-    // index header offset
+    /*// index header offset*/
     private static final int IH_MAGIC = 0;
     private static final int IH_MAX_ENTRIES = 4;
     private static final int IH_MAX_BYTES = 8;
@@ -95,7 +95,7 @@ public class BlobCache {
 
     private static final int DATA_HEADER_SIZE = 4;
 
-    // blob header offset
+    /*// blob header offset*/
     private static final int BH_KEY = 0;
     private static final int BH_CHECKSUM = 8;
     private static final int BH_OFFSET = 12;
@@ -123,12 +123,12 @@ public class BlobCache {
     private byte[] mBlobHeader = new byte[BLOB_HEADER_SIZE];
     private Adler32 mAdler32 = new Adler32();
 
-    // Creates the cache. Three files will be created:
-    // path + ".idx", path + ".0", and path + ".1"
-    // The ".0" file and the ".1" file each stores data for a region. Each of
-    // them can grow to the size specified by maxBytes. The maxEntries parameter
-    // specifies the maximum number of entries each region can have. If the
-    // "reset" parameter is true, the cache will be cleared before use.
+    /*// Creates the cache. Three files will be created:*/
+    /*// path + ".idx", path + ".0", and path + ".1"*/
+    /*// The ".0" file and the ".1" file each stores data for a region. Each of*/
+    /*// them can grow to the size specified by maxBytes. The maxEntries parameter*/
+    /*// specifies the maximum number of entries each region can have. If the*/
+    /*// "reset" parameter is true, the cache will be cleared before use.*/
     public BlobCache(String path, int maxEntries, int maxBytes, boolean reset)
             throws IOException {
         this(path, maxEntries, maxBytes, reset, 0);
@@ -153,40 +153,40 @@ public class BlobCache {
         }
     }
 
-    // Delete the files associated with the given path previously created
-    // by the BlobCache constructor.
+    /*// Delete the files associated with the given path previously created*/
+    /*// by the BlobCache constructor.*/
     public static void deleteFiles(String path) {
-        deleteFileSilently(path + ".idx");
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.BlobCache.deleteFiles(java.lang.String)",path);try{deleteFileSilently(path + ".idx");
         deleteFileSilently(path + ".0");
-        deleteFileSilently(path + ".1");
+        deleteFileSilently(path + ".1");com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.common.BlobCache.deleteFiles(java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.deleteFiles(java.lang.String)",throwable);throw throwable;}
     }
 
     private static void deleteFileSilently(String path) {
-        try {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.BlobCache.deleteFileSilently(java.lang.String)",path);try{try {
             new File(path).delete();
         } catch (Throwable t) {
-            // ignore;
-        }
+            /*// ignore;*/
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.common.BlobCache.deleteFileSilently(java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.deleteFileSilently(java.lang.String)",throwable);throw throwable;}
     }
 
-    // Close the cache. All resources are released. No other method should be
-    // called after this is called.
+    /*// Close the cache. All resources are released. No other method should be*/
+    /*// called after this is called.*/
     public void close() {
-        syncAll();
-        closeAll();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.close()",this);try{syncAll();
+        closeAll();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.close()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.close()",this,throwable);throw throwable;}
     }
 
     private void closeAll() {
-        closeSilently(mIndexChannel);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.closeAll()",this);try{closeSilently(mIndexChannel);
         closeSilently(mIndexFile);
         closeSilently(mDataFile0);
-        closeSilently(mDataFile1);
+        closeSilently(mDataFile1);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.closeAll()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.closeAll()",this,throwable);throw throwable;}
     }
 
-    // Returns true if loading index is successful. After this method is called,
-    // mIndexHeader and index header in file should be kept sync.
+    /*// Returns true if loading index is successful. After this method is called,*/
+    /*// mIndexHeader and index header in file should be kept sync.*/
     private boolean loadIndex() {
-        try {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);try{try {
             mIndexFile.seek(0);
             mDataFile0.seek(0);
             mDataFile1.seek(0);
@@ -194,17 +194,17 @@ public class BlobCache {
             byte[] buf = mIndexHeader;
             if (mIndexFile.read(buf) != INDEX_HEADER_SIZE) {
                 Log.w(TAG, "cannot read header");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
 
             if (readInt(buf, IH_MAGIC) != MAGIC_INDEX_FILE) {
                 Log.w(TAG, "cannot read header magic");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
 
             if (readInt(buf, IH_VERSION) != mVersion) {
                 Log.w(TAG, "version mismatch");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
 
             mMaxEntries = readInt(buf, IH_MAX_ENTRIES);
@@ -216,71 +216,71 @@ public class BlobCache {
             int sum = readInt(buf, IH_CHECKSUM);
             if (checkSum(buf, 0, IH_CHECKSUM) != sum) {
                 Log.w(TAG, "header checksum does not match");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
 
-            // Sanity check
+            /*// Sanity check*/
             if (mMaxEntries <= 0) {
                 Log.w(TAG, "invalid max entries");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (mMaxBytes <= 0) {
                 Log.w(TAG, "invalid max bytes");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (mActiveRegion != 0 && mActiveRegion != 1) {
                 Log.w(TAG, "invalid active region");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (mActiveEntries < 0 || mActiveEntries > mMaxEntries) {
                 Log.w(TAG, "invalid active entries");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (mActiveBytes < DATA_HEADER_SIZE || mActiveBytes > mMaxBytes) {
                 Log.w(TAG, "invalid active bytes");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (mIndexFile.length() !=
                     INDEX_HEADER_SIZE + mMaxEntries * 12 * 2) {
                 Log.w(TAG, "invalid index file length");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
 
-            // Make sure data file has magic
+            /*// Make sure data file has magic*/
             byte[] magic = new byte[4];
             if (mDataFile0.read(magic) != 4) {
                 Log.w(TAG, "cannot read data file magic");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (readInt(magic, 0) != MAGIC_DATA_FILE) {
                 Log.w(TAG, "invalid data file magic");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (mDataFile1.read(magic) != 4) {
                 Log.w(TAG, "cannot read data file magic");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
             if (readInt(magic, 0) != MAGIC_DATA_FILE) {
                 Log.w(TAG, "invalid data file magic");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
             }
 
-            // Map index file to memory
+            /*// Map index file to memory*/
             mIndexChannel = mIndexFile.getChannel();
             mIndexBuffer = mIndexChannel.map(FileChannel.MapMode.READ_WRITE,
                     0, mIndexFile.length());
             mIndexBuffer.order(ByteOrder.LITTLE_ENDIAN);
 
             setActiveVariables();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return true;}
         } catch (IOException ex) {
             Log.e(TAG, "loadIndex failed.", ex);
-            return false;
-        }
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this);return false;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.BlobCache.loadIndex()",this,throwable);throw throwable;}
     }
 
     private void setActiveVariables() throws IOException {
-        mActiveDataFile = (mActiveRegion == 0) ? mDataFile0 : mDataFile1;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.setActiveVariables()",this);try{mActiveDataFile = (mActiveRegion == 0) ? mDataFile0 : mDataFile1;
         mInactiveDataFile = (mActiveRegion == 1) ? mDataFile0 : mDataFile1;
         mActiveDataFile.setLength(mActiveBytes);
         mActiveDataFile.seek(mActiveBytes);
@@ -292,11 +292,11 @@ public class BlobCache {
             mInactiveHashStart += mMaxEntries * 12;
         } else {
             mActiveHashStart += mMaxEntries * 12;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.setActiveVariables()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.setActiveVariables()",this,throwable);throw throwable;}
     }
 
     private void resetCache(int maxEntries, int maxBytes) throws IOException {
-        mIndexFile.setLength(0);  // truncate to zero the index
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.resetCache(int,int)",this,maxEntries,maxBytes);try{mIndexFile.setLength(0);  /*// truncate to zero the index*/
         mIndexFile.setLength(INDEX_HEADER_SIZE + maxEntries * 12 * 2);
         mIndexFile.seek(0);
         byte[] buf = mIndexHeader;
@@ -309,8 +309,8 @@ public class BlobCache {
         writeInt(buf, IH_VERSION, mVersion);
         writeInt(buf, IH_CHECKSUM, checkSum(buf, 0, IH_CHECKSUM));
         mIndexFile.write(buf);
-        // This is only needed if setLength does not zero the extended part.
-        // writeZero(mIndexFile, maxEntries * 12 * 2);
+        /*// This is only needed if setLength does not zero the extended part.*/
+        /*// writeZero(mIndexFile, maxEntries * 12 * 2);*/
 
         mDataFile0.setLength(0);
         mDataFile1.setLength(0);
@@ -318,12 +318,12 @@ public class BlobCache {
         mDataFile1.seek(0);
         writeInt(buf, 0, MAGIC_DATA_FILE);
         mDataFile0.write(buf, 0, 4);
-        mDataFile1.write(buf, 0, 4);
+        mDataFile1.write(buf, 0, 4);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.resetCache(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.resetCache(int,int)",this,throwable);throw throwable;}
     }
 
-    // Flip the active region and the inactive region.
+    /*// Flip the active region and the inactive region.*/
     private void flipRegion() throws IOException {
-        mActiveRegion = 1 - mActiveRegion;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.flipRegion()",this);try{mActiveRegion = 1 - mActiveRegion;
         mActiveEntries = 0;
         mActiveBytes = DATA_HEADER_SIZE;
 
@@ -334,31 +334,31 @@ public class BlobCache {
 
         setActiveVariables();
         clearHash(mActiveHashStart);
-        syncIndex();
+        syncIndex();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.flipRegion()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.flipRegion()",this,throwable);throw throwable;}
     }
 
-    // Sync mIndexHeader to the index file.
+    /*// Sync mIndexHeader to the index file.*/
     private void updateIndexHeader() {
-        writeInt(mIndexHeader, IH_CHECKSUM,
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.updateIndexHeader()",this);try{writeInt(mIndexHeader, IH_CHECKSUM,
                 checkSum(mIndexHeader, 0, IH_CHECKSUM));
         mIndexBuffer.position(0);
-        mIndexBuffer.put(mIndexHeader);
+        mIndexBuffer.put(mIndexHeader);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.updateIndexHeader()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.updateIndexHeader()",this,throwable);throw throwable;}
     }
 
-    // Clear the hash table starting from the specified offset.
+    /*// Clear the hash table starting from the specified offset.*/
     private void clearHash(int hashStart) {
-        byte[] zero = new byte[1024];
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.clearHash(int)",this,hashStart);try{byte[] zero = new byte[1024];
         mIndexBuffer.position(hashStart);
         for (int count = mMaxEntries * 12; count > 0;) {
             int todo = Math.min(count, 1024);
             mIndexBuffer.put(zero, 0, todo);
             count -= todo;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.clearHash(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.clearHash(int)",this,throwable);throw throwable;}
     }
 
-    // Inserts a (key, data) pair into the cache.
+    /*// Inserts a (key, data) pair into the cache.*/
     public void insert(long key, byte[] data) throws IOException {
-        if (DATA_HEADER_SIZE + BLOB_HEADER_SIZE + data.length > mMaxBytes) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.insert(long,[byte)",this,key,data);try{if (DATA_HEADER_SIZE + BLOB_HEADER_SIZE + data.length > mMaxBytes) {
             throw new RuntimeException("blob is too large!");
         }
 
@@ -368,22 +368,22 @@ public class BlobCache {
         }
 
         if (!lookupInternal(key, mActiveHashStart)) {
-            // If we don't have an existing entry with the same key, increase
-            // the entry count.
+            /*// If we don't have an existing entry with the same key, increase*/
+            /*// the entry count.*/
             mActiveEntries++;
             writeInt(mIndexHeader, IH_ACTIVE_ENTRIES, mActiveEntries);
         }
 
         insertInternal(key, data, data.length);
-        updateIndexHeader();
+        updateIndexHeader();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.insert(long,[byte)",this,throwable);throw throwable;}
     }
 
-    // Appends the data to the active file. It also updates the hash entry.
-    // The proper hash entry (suitable for insertion or replacement) must be
-    // pointed by mSlotOffset.
+    /*// Appends the data to the active file. It also updates the hash entry.*/
+    /*// The proper hash entry (suitable for insertion or replacement) must be*/
+    /*// pointed by mSlotOffset.*/
     private void insertInternal(long key, byte[] data, int length)
             throws IOException {
-        byte[] header = mBlobHeader;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.insertInternal(long,[byte,int)",this,key,data,length);try{byte[] header = mBlobHeader;
         int sum = checkSum(data);
         writeLong(header, BH_KEY, key);
         writeInt(header, BH_CHECKSUM, sum);
@@ -395,61 +395,61 @@ public class BlobCache {
         mIndexBuffer.putLong(mSlotOffset, key);
         mIndexBuffer.putInt(mSlotOffset + 8, mActiveBytes);
         mActiveBytes += BLOB_HEADER_SIZE + length;
-        writeInt(mIndexHeader, IH_ACTIVE_BYTES, mActiveBytes);
+        writeInt(mIndexHeader, IH_ACTIVE_BYTES, mActiveBytes);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.insertInternal(long,[byte,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.insertInternal(long,[byte,int)",this,throwable);throw throwable;}
     }
 
     public static class LookupRequest {
-        public long key;        // input: the key to find
-        public byte[] buffer;   // input/output: the buffer to store the blob
-        public int length;      // output: the length of the blob
+        public long key;        /*// input: the key to find*/
+        public byte[] buffer;   /*// input/output: the buffer to store the blob*/
+        public int length;      /*// output: the length of the blob*/
     }
 
-    // This method is for one-off lookup. For repeated lookup, use the version
-    // accepting LookupRequest to avoid repeated memory allocation.
+    /*// This method is for one-off lookup. For repeated lookup, use the version*/
+    /*// accepting LookupRequest to avoid repeated memory allocation.*/
     private LookupRequest mLookupRequest = new LookupRequest();
     public byte[] lookup(long key) throws IOException {
-        mLookupRequest.key = key;
+        com.mijack.Xlog.logMethodEnter("[byte com.android.gallery3d.common.BlobCache.lookup(long)",this,key);try{mLookupRequest.key = key;
         mLookupRequest.buffer = null;
         if (lookup(mLookupRequest)) {
-            return mLookupRequest.buffer;
+            {com.mijack.Xlog.logMethodExit("[byte com.android.gallery3d.common.BlobCache.lookup(long)",this);return mLookupRequest.buffer;}
         } else {
-            return null;
-        }
+            {com.mijack.Xlog.logMethodExit("[byte com.android.gallery3d.common.BlobCache.lookup(long)",this);return null;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.android.gallery3d.common.BlobCache.lookup(long)",this,throwable);throw throwable;}
     }
 
-    // Returns true if the associated blob for the given key is available.
-    // The blob is stored in the buffer pointed by req.buffer, and the length
-    // is in stored in the req.length variable.
-    //
-    // The user can input a non-null value in req.buffer, and this method will
-    // try to use that buffer. If that buffer is not large enough, this method
-    // will allocate a new buffer and assign it to req.buffer.
-    //
-    // This method tries not to throw IOException even if the data file is
-    // corrupted, but it can still throw IOException if things get strange.
+    /*// Returns true if the associated blob for the given key is available.*/
+    /*// The blob is stored in the buffer pointed by req.buffer, and the length*/
+    /*// is in stored in the req.length variable.*/
+    /*//*/
+    /*// The user can input a non-null value in req.buffer, and this method will*/
+    /*// try to use that buffer. If that buffer is not large enough, this method*/
+    /*// will allocate a new buffer and assign it to req.buffer.*/
+    /*//*/
+    /*// This method tries not to throw IOException even if the data file is*/
+    /*// corrupted, but it can still throw IOException if things get strange.*/
     public boolean lookup(LookupRequest req) throws IOException {
-        // Look up in the active region first.
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.BlobCache.lookup(com.android.gallery3d.common.BlobCache$LookupRequest)",this,req);try{/*// Look up in the active region first.*/
         if (lookupInternal(req.key, mActiveHashStart)) {
             if (getBlob(mActiveDataFile, mFileOffset, req)) {
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.lookup(com.android.gallery3d.common.BlobCache$LookupRequest)",this);return true;}
             }
         }
 
-        // We want to copy the data from the inactive file to the active file
-        // if it's available. So we keep the offset of the hash entry so we can
-        // avoid looking it up again.
+        /*// We want to copy the data from the inactive file to the active file*/
+        /*// if it's available. So we keep the offset of the hash entry so we can*/
+        /*// avoid looking it up again.*/
         int insertOffset = mSlotOffset;
 
-        // Look up in the inactive region.
+        /*// Look up in the inactive region.*/
         if (lookupInternal(req.key, mInactiveHashStart)) {
             if (getBlob(mInactiveDataFile, mFileOffset, req)) {
-                // If we don't have enough space to insert this blob into
-                // the active file, just return it.
+                /*// If we don't have enough space to insert this blob into*/
+                /*// the active file, just return it.*/
                 if (mActiveBytes + BLOB_HEADER_SIZE + req.length > mMaxBytes
                     || mActiveEntries * 2 >= mMaxEntries) {
-                    return true;
+                    {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.lookup(com.android.gallery3d.common.BlobCache$LookupRequest)",this);return true;}
                 }
-                // Otherwise copy it over.
+                /*// Otherwise copy it over.*/
                 mSlotOffset = insertOffset;
                 try {
                     insertInternal(req.key, req.buffer, req.length);
@@ -459,45 +459,45 @@ public class BlobCache {
                 } catch (Throwable t) {
                     Log.e(TAG, "cannot copy over");
                 }
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.lookup(com.android.gallery3d.common.BlobCache$LookupRequest)",this);return true;}
             }
         }
 
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.lookup(com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.BlobCache.lookup(com.android.gallery3d.common.BlobCache$LookupRequest)",this,throwable);throw throwable;}
     }
 
 
-    // Copies the blob for the specified offset in the specified file to
-    // req.buffer. If req.buffer is null or too small, allocate a buffer and
-    // assign it to req.buffer.
-    // Returns false if the blob is not available (either the index file is
-    // not sync with the data file, or one of them is corrupted). The length
-    // of the blob is stored in the req.length variable.
+    /*// Copies the blob for the specified offset in the specified file to*/
+    /*// req.buffer. If req.buffer is null or too small, allocate a buffer and*/
+    /*// assign it to req.buffer.*/
+    /*// Returns false if the blob is not available (either the index file is*/
+    /*// not sync with the data file, or one of them is corrupted). The length*/
+    /*// of the blob is stored in the req.length variable.*/
     private boolean getBlob(RandomAccessFile file, int offset,
             LookupRequest req) throws IOException {
-        byte[] header = mBlobHeader;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this,file,offset,req);try{byte[] header = mBlobHeader;
         long oldPosition = file.getFilePointer();
         try {
             file.seek(offset);
             if (file.read(header) != BLOB_HEADER_SIZE) {
                 Log.w(TAG, "cannot read blob header");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}
             }
             long blobKey = readLong(header, BH_KEY);
             if (blobKey != req.key) {
                 Log.w(TAG, "blob key does not match: " + blobKey);
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}
             }
             int sum = readInt(header, BH_CHECKSUM);
             int blobOffset = readInt(header, BH_OFFSET);
             if (blobOffset != offset) {
                 Log.w(TAG, "blob offset does not match: " + blobOffset);
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}
             }
             int length = readInt(header, BH_LENGTH);
             if (length < 0 || length > mMaxBytes - offset - BLOB_HEADER_SIZE) {
                 Log.w(TAG, "invalid blob length: " + length);
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}
             }
             if (req.buffer == null || req.buffer.length < length) {
                 req.buffer = new byte[length];
@@ -508,33 +508,33 @@ public class BlobCache {
 
             if (file.read(blob, 0, length) != length) {
                 Log.w(TAG, "cannot read blob data");
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}
             }
             if (checkSum(blob, 0, length) != sum) {
                 Log.w(TAG, "blob checksum does not match: " + sum);
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return true;}
         } catch (Throwable t)  {
             Log.e(TAG, "getBlob failed.", t);
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this);return false;}
         } finally {
             file.seek(oldPosition);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.BlobCache.getBlob(java.io.RandomAccessFile,int,com.android.gallery3d.common.BlobCache$LookupRequest)",this,throwable);throw throwable;}
     }
 
-    // Tries to look up a key in the specified hash region.
-    // Returns true if the lookup is successful.
-    // The slot offset in the index file is saved in mSlotOffset. If the lookup
-    // is successful, it's the slot found. Otherwise it's the slot suitable for
-    // insertion.
-    // If the lookup is successful, the file offset is also saved in
-    // mFileOffset.
+    /*// Tries to look up a key in the specified hash region.*/
+    /*// Returns true if the lookup is successful.*/
+    /*// The slot offset in the index file is saved in mSlotOffset. If the lookup*/
+    /*// is successful, it's the slot found. Otherwise it's the slot suitable for*/
+    /*// insertion.*/
+    /*// If the lookup is successful, the file offset is also saved in*/
+    /*// mFileOffset.*/
     private int mSlotOffset;
     private int mFileOffset;
     private boolean lookupInternal(long key, int hashStart) {
-        int slot = (int) (key % mMaxEntries);
-        if (slot < 0) slot += mMaxEntries;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.common.BlobCache.lookupInternal(long,int)",this,key,hashStart);try{int slot = (int) (key % mMaxEntries);
+        if (slot < 0) {slot += mMaxEntries;}
         int slotBegin = slot;
         while (true) {
             int offset = hashStart + slot * 12;
@@ -542,11 +542,11 @@ public class BlobCache {
             int candidateOffset = mIndexBuffer.getInt(offset + 8);
             if (candidateOffset == 0) {
                 mSlotOffset = offset;
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.lookupInternal(long,int)",this);return false;}
             } else if (candidateKey == key) {
                 mSlotOffset = offset;
                 mFileOffset = candidateOffset;
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.common.BlobCache.lookupInternal(long,int)",this);return true;}
             } else {
                 if (++slot >= mMaxEntries) {
                     slot = 0;
@@ -556,19 +556,19 @@ public class BlobCache {
                     mIndexBuffer.putInt(hashStart + slot * 12 + 8, 0);
                 }
             }
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.common.BlobCache.lookupInternal(long,int)",this,throwable);throw throwable;}
     }
 
     public void syncIndex() {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.syncIndex()",this);try{try {
             mIndexBuffer.force();
         } catch (Throwable t) {
             Log.w(TAG, "sync index failed", t);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.syncIndex()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.syncIndex()",this,throwable);throw throwable;}
     }
 
     public void syncAll() {
-        syncIndex();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.common.BlobCache.syncAll()",this);try{syncIndex();
         try {
             mDataFile0.getFD().sync();
         } catch (Throwable t) {
@@ -578,76 +578,76 @@ public class BlobCache {
             mDataFile1.getFD().sync();
         } catch (Throwable t) {
             Log.w(TAG, "sync data file 1 failed", t);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.common.BlobCache.syncAll()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.syncAll()",this,throwable);throw throwable;}
     }
 
-    // This is for testing only.
-    //
-    // Returns the active count (mActiveEntries). This also verifies that
-    // the active count matches matches what's inside the hash region.
+    /*// This is for testing only.*/
+    /*//*/
+    /*// Returns the active count (mActiveEntries). This also verifies that*/
+    /*// the active count matches matches what's inside the hash region.*/
     int getActiveCount() {
-        int count = 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.common.BlobCache.getActiveCount()",this);try{int count = 0;
         for (int i = 0; i < mMaxEntries; i++) {
             int offset = mActiveHashStart + i * 12;
             long candidateKey = mIndexBuffer.getLong(offset);
             int candidateOffset = mIndexBuffer.getInt(offset + 8);
-            if (candidateOffset != 0) ++count;
+            if (candidateOffset != 0) {++count;}
         }
         if (count == mActiveEntries) {
-            return count;
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.common.BlobCache.getActiveCount()",this);return count;}
         } else {
             Log.e(TAG, "wrong active count: " + mActiveEntries + " vs " + count);
-            return -1;  // signal failure.
-        }
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.common.BlobCache.getActiveCount()",this);return -1;}  /*// signal failure.*/
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.common.BlobCache.getActiveCount()",this,throwable);throw throwable;}
     }
 
     int checkSum(byte[] data) {
-        mAdler32.reset();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.common.BlobCache.checkSum([byte)",this,data);try{mAdler32.reset();
         mAdler32.update(data);
-        return (int) mAdler32.getValue();
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.common.BlobCache.checkSum([byte)",this);return (int) mAdler32.getValue();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.common.BlobCache.checkSum([byte)",this,throwable);throw throwable;}
     }
 
     int checkSum(byte[] data, int offset, int nbytes) {
-        mAdler32.reset();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.common.BlobCache.checkSum([byte,int,int)",this,data,offset,nbytes);try{mAdler32.reset();
         mAdler32.update(data, offset, nbytes);
-        return (int) mAdler32.getValue();
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.common.BlobCache.checkSum([byte,int,int)",this);return (int) mAdler32.getValue();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.common.BlobCache.checkSum([byte,int,int)",this,throwable);throw throwable;}
     }
 
     static void closeSilently(Closeable c) {
-        if (c == null) return;
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.BlobCache.closeSilently(java.io.Closeable)",c);try{if (c == null) {{com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.common.BlobCache.closeSilently(java.io.Closeable)");return;}}
         try {
             c.close();
         } catch (Throwable t) {
-            // do nothing
-        }
+            /*// do nothing*/
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.closeSilently(java.io.Closeable)",throwable);throw throwable;}
     }
 
     static int readInt(byte[] buf, int offset) {
-        return (buf[offset] & 0xff)
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.common.BlobCache.readInt([byte,int)",buf,offset);try{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.common.BlobCache.readInt([byte,int)");return (buf[offset] & 0xff)
                 | ((buf[offset + 1] & 0xff) << 8)
                 | ((buf[offset + 2] & 0xff) << 16)
-                | ((buf[offset + 3] & 0xff) << 24);
+                | ((buf[offset + 3] & 0xff) << 24);}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.common.BlobCache.readInt([byte,int)",throwable);throw throwable;}
     }
 
     static long readLong(byte[] buf, int offset) {
-        long result = buf[offset + 7] & 0xff;
+        com.mijack.Xlog.logStaticMethodEnter("long com.android.gallery3d.common.BlobCache.readLong([byte,int)",buf,offset);try{long result = buf[offset + 7] & 0xff;
         for (int i = 6; i >= 0; i--) {
             result = (result << 8) | (buf[offset + i] & 0xff);
         }
-        return result;
+        {com.mijack.Xlog.logStaticMethodExit("long com.android.gallery3d.common.BlobCache.readLong([byte,int)");return result;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("long com.android.gallery3d.common.BlobCache.readLong([byte,int)",throwable);throw throwable;}
     }
 
     static void writeInt(byte[] buf, int offset, int value) {
-        for (int i = 0; i < 4; i++) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.BlobCache.writeInt([byte,int,int)",buf,offset,value);try{for (int i = 0; i < 4; i++) {
             buf[offset + i] = (byte) (value & 0xff);
             value >>= 8;
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.common.BlobCache.writeInt([byte,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.writeInt([byte,int,int)",throwable);throw throwable;}
     }
 
     static void writeLong(byte[] buf, int offset, long value) {
-        for (int i = 0; i < 8; i++) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.common.BlobCache.writeLong([byte,int,long)",buf,offset,value);try{for (int i = 0; i < 8; i++) {
             buf[offset + i] = (byte) (value & 0xff);
             value >>= 8;
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.common.BlobCache.writeLong([byte,int,long)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.common.BlobCache.writeLong([byte,int,long)",throwable);throw throwable;}
     }
 }

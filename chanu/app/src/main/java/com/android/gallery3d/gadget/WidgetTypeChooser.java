@@ -33,16 +33,16 @@ public class WidgetTypeChooser extends Activity {
     private OnCheckedChangeListener mListener = new OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            Intent data = new Intent()
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetTypeChooser$1.onCheckedChanged(android.widget.RadioGroup,int)",this,group,checkedId);try{Intent data = new Intent()
                     .putExtra(PhotoAppWidgetConfigure.KEY_WIDGET_TYPE, checkedId);
             setResult(RESULT_OK, data);
-            finish();
+            finish();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetTypeChooser$1.onCheckedChanged(android.widget.RadioGroup,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetTypeChooser$1.onCheckedChanged(android.widget.RadioGroup,int)",this,throwable);throw throwable;}
         }
     };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetTypeChooser.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setTitle(R.string.widget_type);
         setContentView(R.layout.choose_widget_type);
         RadioGroup rg = (RadioGroup) findViewById(R.id.widget_type);
@@ -52,9 +52,9 @@ public class WidgetTypeChooser extends Activity {
         cancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(RESULT_CANCELED);
-                finish();
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.gadget.WidgetTypeChooser$2.onClick(android.view.View)",this,v);try{setResult(RESULT_CANCELED);
+                finish();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetTypeChooser$2.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetTypeChooser$2.onClick(android.view.View)",this,throwable);throw throwable;}
             }
-        });
+        });com.mijack.Xlog.logMethodExit("void com.android.gallery3d.gadget.WidgetTypeChooser.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.gadget.WidgetTypeChooser.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

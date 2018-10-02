@@ -40,7 +40,7 @@ public class IconPreferenceScreen extends Preference {
 
     @Override
     public void onBindView(View view) {
-        super.onBindView(view);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.IconPreferenceScreen.onBindView(android.view.View)",this,view);try{super.onBindView(view);
         ImageView imageView = (ImageView) view.findViewById(R.id.icon);
         int resourceId = typedArray.getResourceId(R.styleable.IconPreferenceScreen_icon, 0);
         if (imageView != null && resourceId > 0) {
@@ -49,15 +49,15 @@ public class IconPreferenceScreen extends Preference {
                     .cacheInMemory()
                     .build();
             ChanImageLoader.getInstance(context).displayImage(uri, imageView, options);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.IconPreferenceScreen.onBindView(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.IconPreferenceScreen.onBindView(android.view.View)",this,throwable);throw throwable;}
     }
 
     public void setIcon(Drawable icon) {
-        // ignore
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.IconPreferenceScreen.setIcon(android.graphics.drawable.Drawable)",this,icon);try{/*// ignore*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.IconPreferenceScreen.setIcon(android.graphics.drawable.Drawable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.IconPreferenceScreen.setIcon(android.graphics.drawable.Drawable)",this,throwable);throw throwable;}
     }
 
     public Drawable getIcon() {
-        // ignore
-        return null;
+        com.mijack.Xlog.logMethodEnter("android.graphics.drawable.Drawable com.chanapps.four.component.IconPreferenceScreen.getIcon()",this);try{/*// ignore*/
+        {com.mijack.Xlog.logMethodExit("android.graphics.drawable.Drawable com.chanapps.four.component.IconPreferenceScreen.getIcon()",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.drawable.Drawable com.chanapps.four.component.IconPreferenceScreen.getIcon()",this,throwable);throw throwable;}
     }
 }

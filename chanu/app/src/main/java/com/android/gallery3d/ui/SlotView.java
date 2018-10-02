@@ -47,11 +47,11 @@ public class SlotView extends GLView {
     }
 
     public static class SimpleListener implements Listener {
-        public void onDown(int index) {}
-        public void onUp() {}
-        public void onSingleTapUp(int index) {}
-        public void onLongTap(int index) {}
-        public void onScrollPositionChanged(int position, int total) {}
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$SimpleListener.onDown(int)",this,index);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$SimpleListener.onDown(int)",this);}
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$SimpleListener.onUp()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$SimpleListener.onUp()",this);}
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$SimpleListener.onSingleTapUp(int)",this,index);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$SimpleListener.onSingleTapUp(int)",this);}
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$SimpleListener.onLongTap(int)",this,index);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$SimpleListener.onLongTap(int)",this);}
+        {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$SimpleListener.onScrollPositionChanged(int,int)",this,position,total);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$SimpleListener.onScrollPositionChanged(int,int)",this);}
     }
 
     private final GestureDetector mGestureDetector;
@@ -61,13 +61,13 @@ public class SlotView extends GLView {
     private Listener mListener;
     private UserInteractionListener mUIListener;
 
-    // Use linked hash map to keep the rendering order
+    /*// Use linked hash map to keep the rendering order*/
     private final HashMap<DisplayItem, ItemEntry> mItems =
             new HashMap<DisplayItem, ItemEntry>();
 
     public LinkedNode.List<ItemEntry> mItemList = LinkedNode.newList();
 
-    // This is used for multipass rendering
+    /*// This is used for multipass rendering*/
     private ArrayList<ItemEntry> mCurrentItems = new ArrayList<ItemEntry>();
     private ArrayList<ItemEntry> mNextItems = new ArrayList<ItemEntry>();
 
@@ -78,7 +78,7 @@ public class SlotView extends GLView {
     private PositionProvider mPositions;
     private int mStartIndex = INDEX_NONE;
 
-    // whether the down action happened while the view is scrolling.
+    /*// whether the down action happened while the view is scrolling.*/
     private boolean mDownInScrolling;
     private int mOverscrollEffect = OVERSCROLL_3D;
 
@@ -93,19 +93,19 @@ public class SlotView extends GLView {
     }
 
     public void setCenterIndex(int index) {
-        int slotCount = mLayout.mSlotCount;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.setCenterIndex(int)",this,index);try{int slotCount = mLayout.mSlotCount;
         if (index < 0 || index >= slotCount) {
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.setCenterIndex(int)",this);return;}
         }
         Rect rect = mLayout.getSlotRect(index);
         int position = WIDE
                 ? (rect.left + rect.right - getWidth()) / 2
                 : (rect.top + rect.bottom - getHeight()) / 2;
-        setScrollPosition(position);
+        setScrollPosition(position);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.setCenterIndex(int)",this,throwable);throw throwable;}
     }
 
     public void makeSlotVisible(int index) {
-        Rect rect = mLayout.getSlotRect(index);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.makeSlotVisible(int)",this,index);try{Rect rect = mLayout.getSlotRect(index);
         int visibleBegin = WIDE ? mScrollX : mScrollY;
         int visibleLength = WIDE ? getWidth() : getHeight();
         int visibleEnd = visibleBegin + visibleLength;
@@ -121,36 +121,36 @@ public class SlotView extends GLView {
             position = slotEnd - visibleLength;
         }
 
-        setScrollPosition(position);
+        setScrollPosition(position);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.makeSlotVisible(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.makeSlotVisible(int)",this,throwable);throw throwable;}
     }
 
     public void setScrollPosition(int position) {
-        position = Utils.clamp(position, 0, mLayout.getScrollLimit());
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.setScrollPosition(int)",this,position);try{position = Utils.clamp(position, 0, mLayout.getScrollLimit());
         mScroller.setPosition(position);
-        updateScrollPosition(position, false);
+        updateScrollPosition(position, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.setScrollPosition(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.setScrollPosition(int)",this,throwable);throw throwable;}
     }
 
     public void setSlotSpec(Spec spec) {
-        mLayout.setSlotSpec(spec);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.setSlotSpec(com.android.gallery3d.ui.SlotView$Spec)",this,spec);try{mLayout.setSlotSpec(spec);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.setSlotSpec(com.android.gallery3d.ui.SlotView$Spec)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.setSlotSpec(com.android.gallery3d.ui.SlotView$Spec)",this,throwable);throw throwable;}
     }
 
     @Override
     public void addComponent(GLView view) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.addComponent(com.android.gallery3d.ui.GLView)",this,view);try{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.addComponent(com.android.gallery3d.ui.GLView)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.addComponent(com.android.gallery3d.ui.GLView)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean removeComponent(GLView view) {
-        throw new UnsupportedOperationException();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView.removeComponent(com.android.gallery3d.ui.GLView)",this,view);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView.removeComponent(com.android.gallery3d.ui.GLView)",this);throw new UnsupportedOperationException();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView.removeComponent(com.android.gallery3d.ui.GLView)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onLayout(boolean changeSize, int l, int t, int r, int b) {
-        if (!changeSize) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.onLayout(boolean,int,int,int,int)",this,changeSize,l,t,r,b);try{if (!changeSize) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.onLayout(boolean,int,int,int,int)",this);return;}}
 
-        // Make sure we are still at a resonable scroll position after the size
-        // is changed (like orientation change). We choose to keep the center
-        // visible slot still visible. This is arbitrary but reasonable.
+        /*// Make sure we are still at a resonable scroll position after the size*/
+        /*// is changed (like orientation change). We choose to keep the center*/
+        /*// visible slot still visible. This is arbitrary but reasonable.*/
         int visibleIndex =
                 (mLayout.getVisibleStart() + mLayout.getVisibleEnd()) / 2;
         mLayout.setSize(r - l, b - t);
@@ -159,21 +159,20 @@ public class SlotView extends GLView {
         onLayoutChanged(r - l, b - t);
         if (mOverscrollEffect == OVERSCROLL_3D) {
             mPaper.setSize(r - l, b - t);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.onLayout(boolean,int,int,int,int)",this,throwable);throw throwable;}
     }
 
-    protected void onLayoutChanged(int width, int height) {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.onLayoutChanged(int,int)",this,width,height);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.onLayoutChanged(int,int)",this);}
 
     public void startTransition(PositionProvider position) {
-        mPositions = position;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.startTransition(PositionProvider)",this,position);try{mPositions = position;
         mAnimation = new MyAnimation();
         mAnimation.start();
-        if (mItems.size() != 0) invalidate();
+        if (mItems.size() != 0) {invalidate();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.startTransition(PositionProvider)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.startTransition(PositionProvider)",this,throwable);throw throwable;}
     }
 
     public void savePositions(PositionRepository repository) {
-        repository.clear();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.savePositions(com.android.gallery3d.ui.PositionRepository)",this,repository);try{repository.clear();
         LinkedNode.List<ItemEntry> list = mItemList;
         ItemEntry entry = list.getFirst();
         Position position = new Position();
@@ -183,44 +182,44 @@ public class SlotView extends GLView {
             position.y -= mScrollY;
             repository.putPosition(entry.item.getIdentity(), position);
             entry = list.nextOf(entry);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.savePositions(com.android.gallery3d.ui.PositionRepository)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.savePositions(com.android.gallery3d.ui.PositionRepository)",this,throwable);throw throwable;}
     }
 
     private void updateScrollPosition(int position, boolean force) {
-        if (!force && (WIDE ? position == mScrollX : position == mScrollY)) return;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.updateScrollPosition(int,boolean)",this,position,force);try{if (!force && (WIDE ? position == mScrollX : position == mScrollY)) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.updateScrollPosition(int,boolean)",this);return;}}
         if (WIDE) {
             mScrollX = position;
         } else {
             mScrollY = position;
         }
         mLayout.setScrollPosition(position);
-        onScrollPositionChanged(position);
+        onScrollPositionChanged(position);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.updateScrollPosition(int,boolean)",this,throwable);throw throwable;}
     }
 
     protected void onScrollPositionChanged(int newPosition) {
-        int limit = mLayout.getScrollLimit();
-        mListener.onScrollPositionChanged(newPosition, limit);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.onScrollPositionChanged(int)",this,newPosition);try{int limit = mLayout.getScrollLimit();
+        mListener.onScrollPositionChanged(newPosition, limit);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.onScrollPositionChanged(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.onScrollPositionChanged(int)",this,throwable);throw throwable;}
     }
 
     public void putDisplayItem(Position target, Position base, DisplayItem item) {
-        item.setBox(mLayout.getSlotWidth(), mLayout.getSlotHeight());
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.putDisplayItem(com.android.gallery3d.ui.PositionRepository.Position,com.android.gallery3d.ui.PositionRepository.Position,com.android.gallery3d.ui.DisplayItem)",this,target,base,item);try{item.setBox(mLayout.getSlotWidth(), mLayout.getSlotHeight());
         ItemEntry entry = new ItemEntry(item, target, base);
         mItemList.insertLast(entry);
-        mItems.put(item, entry);
+        mItems.put(item, entry);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.putDisplayItem(com.android.gallery3d.ui.PositionRepository.Position,com.android.gallery3d.ui.PositionRepository.Position,com.android.gallery3d.ui.DisplayItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.putDisplayItem(com.android.gallery3d.ui.PositionRepository.Position,com.android.gallery3d.ui.PositionRepository.Position,com.android.gallery3d.ui.DisplayItem)",this,throwable);throw throwable;}
     }
 
     public void removeDisplayItem(DisplayItem item) {
-        ItemEntry entry = mItems.remove(item);
-        if (entry != null) entry.remove();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.removeDisplayItem(com.android.gallery3d.ui.DisplayItem)",this,item);try{ItemEntry entry = mItems.remove(item);
+        if (entry != null) {entry.remove();}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.removeDisplayItem(com.android.gallery3d.ui.DisplayItem)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.removeDisplayItem(com.android.gallery3d.ui.DisplayItem)",this,throwable);throw throwable;}
     }
 
     public Rect getSlotRect(int slotIndex) {
-        return mLayout.getSlotRect(slotIndex);
+        com.mijack.Xlog.logMethodEnter("android.graphics.Rect com.android.gallery3d.ui.SlotView.getSlotRect(int)",this,slotIndex);try{com.mijack.Xlog.logMethodExit("android.graphics.Rect com.android.gallery3d.ui.SlotView.getSlotRect(int)",this);return mLayout.getSlotRect(slotIndex);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Rect com.android.gallery3d.ui.SlotView.getSlotRect(int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected boolean onTouch(MotionEvent event) {
-        if (mUIListener != null) mUIListener.onUserInteraction();
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView.onTouch(android.view.MotionEvent)",this,event);try{if (mUIListener != null) {mUIListener.onUserInteraction();}
         mGestureDetector.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -232,25 +231,25 @@ public class SlotView extends GLView {
                 invalidate();
                 break;
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView.onTouch(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView.onTouch(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     public void setListener(Listener listener) {
-        mListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.setListener(Listener)",this,listener);try{mListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.setListener(Listener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.setListener(Listener)",this,throwable);throw throwable;}
     }
 
     public void setUserInteractionListener(UserInteractionListener listener) {
-        mUIListener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.setUserInteractionListener(UserInteractionListener)",this,listener);try{mUIListener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.setUserInteractionListener(UserInteractionListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.setUserInteractionListener(UserInteractionListener)",this,throwable);throw throwable;}
     }
 
     public void setOverscrollEffect(int kind) {
-        mOverscrollEffect = kind;
-        mScroller.setOverfling(kind == OVERSCROLL_SYSTEM);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.setOverscrollEffect(int)",this,kind);try{mOverscrollEffect = kind;
+        mScroller.setOverfling(kind == OVERSCROLL_SYSTEM);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.setOverscrollEffect(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.setOverscrollEffect(int)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void render(GLCanvas canvas) {
-        super.render(canvas);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.render(GLCanvas)",this,canvas);try{super.render(canvas);
 
         long currentTimeMillis = canvas.currentAnimationTimeMillis();
         boolean more = mScroller.advanceAnimation(currentTimeMillis);
@@ -259,14 +258,14 @@ public class SlotView extends GLView {
 
         boolean paperActive = false;
         if (mOverscrollEffect == OVERSCROLL_3D) {
-            // Check if an edge is reached and notify mPaper if so.
+            /*// Check if an edge is reached and notify mPaper if so.*/
             int newX = mScrollX;
             int limit = mLayout.getScrollLimit();
             if (oldX > 0 && newX == 0 || oldX < limit && newX == limit) {
                 float v = mScroller.getCurrVelocity();
-                if (newX == limit) v = -v;
+                if (newX == limit) {v = -v;}
 
-                // I don't know why, but getCurrVelocity() can return NaN.
+                /*// I don't know why, but getCurrVelocity() can return NaN.*/
                 if (!Float.isNaN(v)) {
                     mPaper.edgeReached(v);
                 }
@@ -309,7 +308,7 @@ public class SlotView extends GLView {
                 more |= ((r & DisplayItem.RENDER_MORE_FRAME) != 0);
             }
             mCurrentItems.clear();
-            // swap mNextItems with mCurrentItems
+            /*// swap mNextItems with mCurrentItems*/
             ArrayList<ItemEntry> tmp = mNextItems;
             mNextItems = mCurrentItems;
             mCurrentItems = tmp;
@@ -322,16 +321,16 @@ public class SlotView extends GLView {
             canvas.translate(0, mScrollY, 0);
         }
 
-        if (more) invalidate();
+        if (more) {invalidate();}
         if (mMoreAnimation && !more && mUIListener != null) {
             mUIListener.onUserInteractionEnd();
         }
-        mMoreAnimation = more;
+        mMoreAnimation = more;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.render(GLCanvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.render(GLCanvas)",this,throwable);throw throwable;}
     }
 
     private int renderItem(GLCanvas canvas, ItemEntry entry,
             float interpolate, int pass, boolean paperActive) {
-        canvas.save(GLCanvas.SAVE_FLAG_ALPHA | GLCanvas.SAVE_FLAG_MATRIX);
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView.renderItem(GLCanvas,com.android.gallery3d.ui.SlotView$ItemEntry,float,int,boolean)",this,canvas,entry,interpolate,pass,paperActive);try{canvas.save(GLCanvas.SAVE_FLAG_ALPHA | GLCanvas.SAVE_FLAG_MATRIX);
         Position position = entry.target;
         if (mPositions != null) {
             position = mTempPosition;
@@ -356,7 +355,7 @@ public class SlotView extends GLView {
         canvas.rotate(position.theta, 0, 0, 1);
         int more = entry.item.render(canvas, pass);
         canvas.restore();
-        return more;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView.renderItem(GLCanvas,com.android.gallery3d.ui.SlotView$ItemEntry,float,int,boolean)",this);return more;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView.renderItem(GLCanvas,com.android.gallery3d.ui.SlotView$ItemEntry,float,int,boolean)",this,throwable);throw throwable;}
     }
 
     public static class MyAnimation extends Animation {
@@ -369,7 +368,7 @@ public class SlotView extends GLView {
 
         @Override
         protected void onCalculate(float progress) {
-            value = progress;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$MyAnimation.onCalculate(float)",this,progress);try{value = progress;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$MyAnimation.onCalculate(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$MyAnimation.onCalculate(float)",this,throwable);throw throwable;}
         }
     }
 
@@ -385,17 +384,17 @@ public class SlotView extends GLView {
         }
     }
 
-    // This Spec class is used to specify the size of each slot in the SlotView.
-    // There are two ways to do it:
-    //
-    // (1) Specify slotWidth and slotHeight: they specify the width and height
-    //     of each slot. The number of rows and the gap between slots will be
-    //     determined automatically.
-    // (2) Specify rowsLand, rowsPort, and slotGap: they specify the number
-    //     of rows in landscape/portrait mode and the gap between slots. The
-    //     width and height of each slot is determined automatically.
-    //
-    // The initial value of -1 means they are not specified.
+    /*// This Spec class is used to specify the size of each slot in the SlotView.*/
+    /*// There are two ways to do it:*/
+    /*//*/
+    /*// (1) Specify slotWidth and slotHeight: they specify the width and height*/
+    /*//     of each slot. The number of rows and the gap between slots will be*/
+    /*//     determined automatically.*/
+    /*// (2) Specify rowsLand, rowsPort, and slotGap: they specify the number*/
+    /*//     of rows in landscape/portrait mode and the gap between slots. The*/
+    /*//     width and height of each slot is determined automatically.*/
+    /*//*/
+    /*// The initial value of -1 means they are not specified.*/
     public static class Spec {
         public int slotWidth = -1;
         public int slotHeight = -1;
@@ -405,18 +404,18 @@ public class SlotView extends GLView {
         public int slotGap = -1;
 
         static Spec newWithSize(int width, int height) {
-            Spec s = new Spec();
+            com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.ui.SlotView$Spec com.android.gallery3d.ui.SlotView$Spec.newWithSize(int,int)",width,height);try{Spec s = new Spec();
             s.slotWidth = width;
             s.slotHeight = height;
-            return s;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.ui.SlotView$Spec com.android.gallery3d.ui.SlotView$Spec.newWithSize(int,int)");return s;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.ui.SlotView$Spec com.android.gallery3d.ui.SlotView$Spec.newWithSize(int,int)",throwable);throw throwable;}
         }
 
         static Spec newWithRows(int rowsLand, int rowsPort, int slotGap) {
-            Spec s = new Spec();
+            com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.ui.SlotView$Spec com.android.gallery3d.ui.SlotView$Spec.newWithRows(int,int,int)",rowsLand,rowsPort,slotGap);try{Spec s = new Spec();
             s.rowsLand = rowsLand;
             s.rowsPort = rowsPort;
             s.slotGap = slotGap;
-            return s;
+            {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.ui.SlotView$Spec com.android.gallery3d.ui.SlotView$Spec.newWithRows(int,int,int)");return s;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.ui.SlotView$Spec com.android.gallery3d.ui.SlotView$Spec.newWithRows(int,int,int)",throwable);throw throwable;}
         }
     }
 
@@ -443,19 +442,19 @@ public class SlotView extends GLView {
         private int mHorizontalPadding;
 
         public void setSlotSpec(Spec spec) {
-            mSpec = spec;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$Layout.setSlotSpec(com.android.gallery3d.ui.SlotView$Spec)",this,spec);try{mSpec = spec;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$Layout.setSlotSpec(com.android.gallery3d.ui.SlotView$Spec)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$Layout.setSlotSpec(com.android.gallery3d.ui.SlotView$Spec)",this,throwable);throw throwable;}
         }
 
         public boolean setSlotCount(int slotCount) {
-            mSlotCount = slotCount;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView$Layout.setSlotCount(int)",this,slotCount);try{mSlotCount = slotCount;
             int hPadding = mHorizontalPadding;
             int vPadding = mVerticalPadding;
             initLayoutParameters();
-            return vPadding != mVerticalPadding || hPadding != mHorizontalPadding;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView$Layout.setSlotCount(int)",this);return vPadding != mVerticalPadding || hPadding != mHorizontalPadding;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView$Layout.setSlotCount(int)",this,throwable);throw throwable;}
         }
 
         public Rect getSlotRect(int index) {
-            int col, row;
+            com.mijack.Xlog.logMethodEnter("android.graphics.Rect com.android.gallery3d.ui.SlotView$Layout.getSlotRect(int)",this,index);try{int col, row;
             if (WIDE) {
                 col = index / mUnitCount;
                 row = index - col * mUnitCount;
@@ -466,58 +465,58 @@ public class SlotView extends GLView {
 
             int x = mHorizontalPadding + col * (mSlotWidth + mSlotGap);
             int y = mVerticalPadding + row * (mSlotHeight + mSlotGap);
-            return new Rect(x, y, x + mSlotWidth, y + mSlotHeight);
+            {com.mijack.Xlog.logMethodExit("android.graphics.Rect com.android.gallery3d.ui.SlotView$Layout.getSlotRect(int)",this);return new Rect(x, y, x + mSlotWidth, y + mSlotHeight);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Rect com.android.gallery3d.ui.SlotView$Layout.getSlotRect(int)",this,throwable);throw throwable;}
         }
 
         public int getSlotWidth() {
-            return mSlotWidth;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView$Layout.getSlotWidth()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getSlotWidth()",this);return mSlotWidth;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView$Layout.getSlotWidth()",this,throwable);throw throwable;}
         }
 
         public int getSlotHeight() {
-            return mSlotHeight;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView$Layout.getSlotHeight()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getSlotHeight()",this);return mSlotHeight;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView$Layout.getSlotHeight()",this,throwable);throw throwable;}
         }
 
         public int getContentLength() {
-            return mContentLength;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView$Layout.getContentLength()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getContentLength()",this);return mContentLength;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView$Layout.getContentLength()",this,throwable);throw throwable;}
         }
 
-        // Calculate
-        // (1) mUnitCount: the number of slots we can fit into one column (or row).
-        // (2) mContentLength: the width (or height) we need to display all the
-        //     columns (rows).
-        // (3) padding[]: the vertical and horizontal padding we need in order
-        //     to put the slots towards to the center of the display.
-        //
-        // The "major" direction is the direction the user can scroll. The other
-        // direction is the "minor" direction.
-        //
-        // The comments inside this method are the description when the major
-        // directon is horizontal (X), and the minor directon is vertical (Y).
+        /*// Calculate*/
+        /*// (1) mUnitCount: the number of slots we can fit into one column (or row).*/
+        /*// (2) mContentLength: the width (or height) we need to display all the*/
+        /*//     columns (rows).*/
+        /*// (3) padding[]: the vertical and horizontal padding we need in order*/
+        /*//     to put the slots towards to the center of the display.*/
+        /*//*/
+        /*// The "major" direction is the direction the user can scroll. The other*/
+        /*// direction is the "minor" direction.*/
+        /*//*/
+        /*// The comments inside this method are the description when the major*/
+        /*// directon is horizontal (X), and the minor directon is vertical (Y).*/
         private void initLayoutParameters(
                 int majorLength, int minorLength,  /* The view width and height */
                 int majorUnitSize, int minorUnitSize,  /* The slot width and height */
                 int[] padding) {
-            int unitCount = (minorLength + mSlotGap) / (minorUnitSize + mSlotGap);
-            if (unitCount == 0) unitCount = 1;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$Layout.initLayoutParameters(int,int,int,int,[int)",this,majorLength,minorLength,majorUnitSize,minorUnitSize,padding);try{int unitCount = (minorLength + mSlotGap) / (minorUnitSize + mSlotGap);
+            if (unitCount == 0) {unitCount = 1;}
             mUnitCount = unitCount;
 
-            // We put extra padding above and below the column.
+            /*// We put extra padding above and below the column.*/
             int availableUnits = Math.min(mUnitCount, mSlotCount);
             int usedMinorLength = availableUnits * minorUnitSize +
                     (availableUnits - 1) * mSlotGap;
             padding[0] = (minorLength - usedMinorLength) / 2;
 
-            // Then calculate how many columns we need for all slots.
+            /*// Then calculate how many columns we need for all slots.*/
             int count = ((mSlotCount + mUnitCount - 1) / mUnitCount);
             mContentLength = count * majorUnitSize + (count - 1) * mSlotGap;
 
-            // If the content length is less then the screen width, put
-            // extra padding in left and right.
-            padding[1] = Math.max(0, (majorLength - mContentLength) / 2);
+            /*// If the content length is less then the screen width, put*/
+            /*// extra padding in left and right.*/
+            padding[1] = Math.max(0, (majorLength - mContentLength) / 2);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$Layout.initLayoutParameters(int,int,int,int,[int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$Layout.initLayoutParameters(int,int,int,int,[int)",this,throwable);throw throwable;}
         }
 
         private void initLayoutParameters() {
-            // Initialize mSlotWidth and mSlotHeight from mSpec
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$Layout.initLayoutParameters()",this);try{/*// Initialize mSlotWidth and mSlotHeight from mSpec*/
             if (mSpec.slotWidth != -1) {
                 mSlotGap = 0;
                 mSlotWidth = mSpec.slotWidth;
@@ -539,17 +538,17 @@ public class SlotView extends GLView {
                 mVerticalPadding = padding[1];
                 mHorizontalPadding = padding[0];
             }
-            updateVisibleSlotRange();
+            updateVisibleSlotRange();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$Layout.initLayoutParameters()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$Layout.initLayoutParameters()",this,throwable);throw throwable;}
         }
 
         public void setSize(int width, int height) {
-            mWidth = width;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$Layout.setSize(int,int)",this,width,height);try{mWidth = width;
             mHeight = height;
-            initLayoutParameters();
+            initLayoutParameters();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$Layout.setSize(int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$Layout.setSize(int,int)",this,throwable);throw throwable;}
         }
 
         private void updateVisibleSlotRange() {
-            int position = mScrollPosition;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$Layout.updateVisibleSlotRange()",this);try{int position = mScrollPosition;
 
             if (WIDE) {
                 int startCol = position / (mSlotWidth + mSlotGap);
@@ -565,35 +564,35 @@ public class SlotView extends GLView {
                         (mSlotHeight + mSlotGap);
                 int end = Math.min(mSlotCount, mUnitCount * endRow);
                 setVisibleRange(start, end);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$Layout.updateVisibleSlotRange()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$Layout.updateVisibleSlotRange()",this,throwable);throw throwable;}
         }
 
         public void setScrollPosition(int position) {
-            if (mScrollPosition == position) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$Layout.setScrollPosition(int)",this,position);try{if (mScrollPosition == position) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$Layout.setScrollPosition(int)",this);return;}}
             mScrollPosition = position;
-            updateVisibleSlotRange();
+            updateVisibleSlotRange();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$Layout.setScrollPosition(int)",this,throwable);throw throwable;}
         }
 
         private void setVisibleRange(int start, int end) {
-            if (start == mVisibleStart && end == mVisibleEnd) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$Layout.setVisibleRange(int,int)",this,start,end);try{if (start == mVisibleStart && end == mVisibleEnd) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$Layout.setVisibleRange(int,int)",this);return;}}
             if (start < end) {
                 mVisibleStart = start;
                 mVisibleEnd = end;
             } else {
                 mVisibleStart = mVisibleEnd = 0;
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$Layout.setVisibleRange(int,int)",this,throwable);throw throwable;}
         }
 
         public int getVisibleStart() {
-            return mVisibleStart;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView$Layout.getVisibleStart()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getVisibleStart()",this);return mVisibleStart;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView$Layout.getVisibleStart()",this,throwable);throw throwable;}
         }
 
         public int getVisibleEnd() {
-            return mVisibleEnd;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView$Layout.getVisibleEnd()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getVisibleEnd()",this);return mVisibleEnd;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView$Layout.getVisibleEnd()",this,throwable);throw throwable;}
         }
 
         public int getSlotIndexByPosition(float x, float y) {
-            int absoluteX = Math.round(x) + (WIDE ? mScrollPosition : 0);
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView$Layout.getSlotIndexByPosition(float,float)",this,x,y);try{int absoluteX = Math.round(x) + (WIDE ? mScrollPosition : 0);
             int absoluteY = Math.round(y) + (WIDE ? 0 : mScrollPosition);
 
             absoluteX -= mHorizontalPadding;
@@ -603,31 +602,31 @@ public class SlotView extends GLView {
             int rowIdx = absoluteY / (mSlotHeight + mSlotGap);
 
             if (columnIdx < 0 || (!WIDE && columnIdx >= mUnitCount)) {
-                return INDEX_NONE;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getSlotIndexByPosition(float,float)",this);return INDEX_NONE;}
             }
 
             if (rowIdx < 0 || (WIDE && rowIdx >= mUnitCount)) {
-                return INDEX_NONE;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getSlotIndexByPosition(float,float)",this);return INDEX_NONE;}
             }
 
             if (absoluteX % (mSlotWidth + mSlotGap) >= mSlotWidth) {
-                return INDEX_NONE;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getSlotIndexByPosition(float,float)",this);return INDEX_NONE;}
             }
 
             if (absoluteY % (mSlotHeight + mSlotGap) >= mSlotHeight) {
-                return INDEX_NONE;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getSlotIndexByPosition(float,float)",this);return INDEX_NONE;}
             }
 
             int index = WIDE
                     ? (columnIdx * mUnitCount + rowIdx)
                     : (rowIdx * mUnitCount + columnIdx);
 
-            return index >= mSlotCount ? INDEX_NONE : index;
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getSlotIndexByPosition(float,float)",this);return index >= mSlotCount ? INDEX_NONE : index;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView$Layout.getSlotIndexByPosition(float,float)",this,throwable);throw throwable;}
         }
 
         public int getScrollLimit() {
-            int limit = WIDE ? mContentLength - mWidth : mContentLength - mHeight;
-            return limit <= 0 ? 0 : limit;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView$Layout.getScrollLimit()",this);try{int limit = WIDE ? mContentLength - mWidth : mContentLength - mHeight;
+            {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView$Layout.getScrollLimit()",this);return limit <= 0 ? 0 : limit;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView$Layout.getScrollLimit()",this,throwable);throw throwable;}
         }
     }
 
@@ -635,46 +634,46 @@ public class SlotView extends GLView {
             GestureDetector.OnGestureListener {
         private boolean isDown;
 
-        // We call the listener's onDown() when our onShowPress() is called and
-        // call the listener's onUp() when we receive any further event.
+        /*// We call the listener's onDown() when our onShowPress() is called and*/
+        /*// call the listener's onUp() when we receive any further event.*/
         @Override
         public void onShowPress(MotionEvent e) {
-            if (isDown) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$MyGestureListener.onShowPress(android.view.MotionEvent)",this,e);try{if (isDown) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$MyGestureListener.onShowPress(android.view.MotionEvent)",this);return;}}
             int index = mLayout.getSlotIndexByPosition(e.getX(), e.getY());
             if (index != INDEX_NONE) {
                 isDown = true;
                 mListener.onDown(index);
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$MyGestureListener.onShowPress(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         private void cancelDown() {
-            if (!isDown) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$MyGestureListener.cancelDown()",this);try{if (!isDown) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$MyGestureListener.cancelDown()",this);return;}}
             isDown = false;
-            mListener.onUp();
+            mListener.onUp();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$MyGestureListener.cancelDown()",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onDown(MotionEvent e) {
-            return false;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onDown(android.view.MotionEvent)",this,e);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onDown(android.view.MotionEvent)",this);return false;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onDown(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onFling(MotionEvent e1,
                 MotionEvent e2, float velocityX, float velocityY) {
-            cancelDown();
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,e1,e2,velocityX,velocityY);try{cancelDown();
             int scrollLimit = mLayout.getScrollLimit();
-            if (scrollLimit == 0) return false;
+            if (scrollLimit == 0) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return false;}}
             float velocity = WIDE ? velocityX : velocityY;
             mScroller.fling((int) -velocity, 0, scrollLimit);
-            if (mUIListener != null) mUIListener.onUserInteractionBegin();
+            if (mUIListener != null) {mUIListener.onUserInteractionBegin();}
             invalidate();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onScroll(MotionEvent e1,
                 MotionEvent e2, float distanceX, float distanceY) {
-            cancelDown();
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,e1,e2,distanceX,distanceY);try{cancelDown();
             float distance = WIDE ? distanceX : distanceY;
             int overDistance = mScroller.startScroll(
                     Math.round(distance), 0, mLayout.getScrollLimit());
@@ -682,62 +681,62 @@ public class SlotView extends GLView {
                 mPaper.overScroll(overDistance);
             }
             invalidate();
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            cancelDown();
-            if (mDownInScrolling) return true;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onSingleTapUp(android.view.MotionEvent)",this,e);try{cancelDown();
+            if (mDownInScrolling) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onSingleTapUp(android.view.MotionEvent)",this);return true;}}
             int index = mLayout.getSlotIndexByPosition(e.getX(), e.getY());
-            if (index != INDEX_NONE) mListener.onSingleTapUp(index);
-            return true;
+            if (index != INDEX_NONE) {mListener.onSingleTapUp(index);}
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onSingleTapUp(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView$MyGestureListener.onSingleTapUp(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
 
         @Override
         public void onLongPress(MotionEvent e) {
-            cancelDown();
-            if (mDownInScrolling) return;
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView$MyGestureListener.onLongPress(android.view.MotionEvent)",this,e);try{cancelDown();
+            if (mDownInScrolling) {{com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView$MyGestureListener.onLongPress(android.view.MotionEvent)",this);return;}}
             lockRendering();
             try {
                 int index = mLayout.getSlotIndexByPosition(e.getX(), e.getY());
-                if (index != INDEX_NONE) mListener.onLongTap(index);
+                if (index != INDEX_NONE) {mListener.onLongTap(index);}
             } finally {
                 unlockRendering();
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView$MyGestureListener.onLongPress(android.view.MotionEvent)",this,throwable);throw throwable;}
         }
     }
 
     public void setStartIndex(int index) {
-        mStartIndex = index;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.SlotView.setStartIndex(int)",this,index);try{mStartIndex = index;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.SlotView.setStartIndex(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.SlotView.setStartIndex(int)",this,throwable);throw throwable;}
     }
 
-    // Return true if the layout parameters have been changed
+    /*// Return true if the layout parameters have been changed*/
     public boolean setSlotCount(int slotCount) {
-        boolean changed = mLayout.setSlotCount(slotCount);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.SlotView.setSlotCount(int)",this,slotCount);try{boolean changed = mLayout.setSlotCount(slotCount);
 
-        // mStartIndex is applied the first time setSlotCount is called.
+        /*// mStartIndex is applied the first time setSlotCount is called.*/
         if (mStartIndex != INDEX_NONE) {
             setCenterIndex(mStartIndex);
             mStartIndex = INDEX_NONE;
         }
         updateScrollPosition(WIDE ? mScrollX : mScrollY, true);
-        return changed;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.SlotView.setSlotCount(int)",this);return changed;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.SlotView.setSlotCount(int)",this,throwable);throw throwable;}
     }
 
     public int getVisibleStart() {
-        return mLayout.getVisibleStart();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView.getVisibleStart()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView.getVisibleStart()",this);return mLayout.getVisibleStart();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView.getVisibleStart()",this,throwable);throw throwable;}
     }
 
     public int getVisibleEnd() {
-        return mLayout.getVisibleEnd();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView.getVisibleEnd()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView.getVisibleEnd()",this);return mLayout.getVisibleEnd();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView.getVisibleEnd()",this,throwable);throw throwable;}
     }
 
     public int getScrollX() {
-        return mScrollX;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView.getScrollX()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView.getScrollX()",this);return mScrollX;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView.getScrollX()",this,throwable);throw throwable;}
     }
 
     public int getScrollY() {
-        return mScrollY;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.SlotView.getScrollY()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.SlotView.getScrollY()",this);return mScrollY;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.SlotView.getScrollY()",this,throwable);throw throwable;}
     }
 }

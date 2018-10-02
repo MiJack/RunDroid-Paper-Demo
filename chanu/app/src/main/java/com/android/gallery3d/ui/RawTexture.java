@@ -18,10 +18,10 @@ package com.android.gallery3d.ui;
 
 import javax.microedition.khronos.opengles.GL11;
 
-// RawTexture is used for texture created by glCopyTexImage2D.
-//
-// It will throw RuntimeException in onBind() if used with a different GL
-// context. It is only used internally by copyTexture() in GLCanvas.
+/*// RawTexture is used for texture created by glCopyTexImage2D.*/
+/*//*/
+/*// It will throw RuntimeException in onBind() if used with a different GL*/
+/*// context. It is only used internally by copyTexture() in GLCanvas.*/
 class RawTexture extends BasicTexture {
 
     private RawTexture(GLCanvas canvas, int id) {
@@ -29,26 +29,26 @@ class RawTexture extends BasicTexture {
     }
 
     public static RawTexture newInstance(GLCanvas canvas) {
-        int[] textureId = new int[1];
+        com.mijack.Xlog.logStaticMethodEnter("com.android.gallery3d.ui.RawTexture com.android.gallery3d.ui.RawTexture.newInstance(GLCanvas)",canvas);try{int[] textureId = new int[1];
         GL11 gl = canvas.getGLInstance();
         gl.glGenTextures(1, textureId, 0);
-        return new RawTexture(canvas, textureId[0]);
+        {com.mijack.Xlog.logStaticMethodExit("com.android.gallery3d.ui.RawTexture com.android.gallery3d.ui.RawTexture.newInstance(GLCanvas)");return new RawTexture(canvas, textureId[0]);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.android.gallery3d.ui.RawTexture com.android.gallery3d.ui.RawTexture.newInstance(GLCanvas)",throwable);throw throwable;}
     }
 
     @Override
     protected boolean onBind(GLCanvas canvas) {
-        if (mCanvasRef.get() != canvas) {
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.RawTexture.onBind(GLCanvas)",this,canvas);try{if (mCanvasRef.get() != canvas) {
             throw new RuntimeException("cannot bind to different canvas");
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.RawTexture.onBind(GLCanvas)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.RawTexture.onBind(GLCanvas)",this,throwable);throw throwable;}
     }
 
     public boolean isOpaque() {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.RawTexture.isOpaque()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.RawTexture.isOpaque()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.RawTexture.isOpaque()",this,throwable);throw throwable;}
     }
 
     @Override
     public void yield() {
-        // we cannot free the texture because we have no backup.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.RawTexture.yield()",this);try{/*// we cannot free the texture because we have no backup.*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.RawTexture.yield()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.RawTexture.yield()",this,throwable);throw throwable;}
     }
 }

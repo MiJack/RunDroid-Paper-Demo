@@ -23,16 +23,16 @@ import android.database.Cursor;
 import java.text.DateFormat;
 import java.util.Date;
 
-//
-// LocalMediaItem is an abstract class captures those common fields
-// in LocalImage and LocalVideo.
-//
+/*//*/
+/*// LocalMediaItem is an abstract class captures those common fields*/
+/*// in LocalImage and LocalVideo.*/
+/*//*/
 public abstract class LocalMediaItem extends MediaItem {
 
     @SuppressWarnings("unused")
     private static final String TAG = "LocalMediaItem";
 
-    // database fields
+    /*// database fields*/
     public int id;
     public String caption;
     public String mimeType;
@@ -51,35 +51,35 @@ public abstract class LocalMediaItem extends MediaItem {
 
     @Override
     public long getDateInMs() {
-        return dateTakenInMs;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.LocalMediaItem.getDateInMs()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.LocalMediaItem.getDateInMs()",this);return dateTakenInMs;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.LocalMediaItem.getDateInMs()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getName() {
-        return caption;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.LocalMediaItem.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.LocalMediaItem.getName()",this);return caption;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.LocalMediaItem.getName()",this,throwable);throw throwable;}
     }
 
     @Override
     public void getLatLong(double[] latLong) {
-        latLong[0] = latitude;
-        latLong[1] = longitude;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalMediaItem.getLatLong([double)",this,latLong);try{latLong[0] = latitude;
+        latLong[1] = longitude;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalMediaItem.getLatLong([double)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalMediaItem.getLatLong([double)",this,throwable);throw throwable;}
     }
 
     abstract protected boolean updateFromCursor(Cursor cursor);
 
     public int getBucketId() {
-        return bucketId;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalMediaItem.getBucketId()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalMediaItem.getBucketId()",this);return bucketId;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalMediaItem.getBucketId()",this,throwable);throw throwable;}
     }
 
     protected void updateContent(Cursor cursor) {
-        if (updateFromCursor(cursor)) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalMediaItem.updateContent(android.database.Cursor)",this,cursor);try{if (updateFromCursor(cursor)) {
             mDataVersion = nextVersionNumber();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalMediaItem.updateContent(android.database.Cursor)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalMediaItem.updateContent(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     @Override
     public MediaDetails getDetails() {
-        MediaDetails details = super.getDetails();
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalMediaItem.getDetails()",this);try{MediaDetails details = super.getDetails();
         details.addDetail(MediaDetails.INDEX_PATH, filePath);
         details.addDetail(MediaDetails.INDEX_TITLE, caption);
         DateFormat formater = DateFormat.getDateTimeInstance();
@@ -88,16 +88,16 @@ public abstract class LocalMediaItem extends MediaItem {
         if (GalleryUtils.isValidLocation(latitude, longitude)) {
             details.addDetail(MediaDetails.INDEX_LOCATION, new double[] {latitude, longitude});
         }
-        if (fileSize > 0) details.addDetail(MediaDetails.INDEX_SIZE, fileSize);
-        return details;
+        if (fileSize > 0) {details.addDetail(MediaDetails.INDEX_SIZE, fileSize);}
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalMediaItem.getDetails()",this);return details;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaDetails com.android.gallery3d.data.LocalMediaItem.getDetails()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getMimeType() {
-        return mimeType;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.LocalMediaItem.getMimeType()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.LocalMediaItem.getMimeType()",this);return mimeType;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.LocalMediaItem.getMimeType()",this,throwable);throw throwable;}
     }
 
     public long getSize() {
-        return fileSize;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.LocalMediaItem.getSize()",this);try{com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.LocalMediaItem.getSize()",this);return fileSize;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.LocalMediaItem.getSize()",this,throwable);throw throwable;}
     }
 }

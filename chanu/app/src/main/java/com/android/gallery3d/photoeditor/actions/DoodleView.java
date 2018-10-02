@@ -60,12 +60,12 @@ class DoodleView extends FullscreenToolView {
     }
 
     public void setOnDoodleChangeListener(OnDoodleChangeListener listener) {
-        this.listener = listener;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleView.setOnDoodleChangeListener(OnDoodleChangeListener)",this,listener);try{this.listener = listener;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleView.setOnDoodleChangeListener(OnDoodleChangeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleView.setOnDoodleChangeListener(OnDoodleChangeListener)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleView.onSizeChanged(int,int,int,int)",this,w,h,oldw,oldh);try{super.onSizeChanged(w, h, oldw, oldh);
 
         RectF r = new RectF(0, 0, getPhotoWidth(), getPhotoHeight());
         if ((bitmap == null) && !r.isEmpty()) {
@@ -74,53 +74,53 @@ class DoodleView extends FullscreenToolView {
             bitmap.eraseColor(0x00000000);
             bitmapCanvas = new Canvas(bitmap);
 
-            // Set up a matrix that maps back normalized paths to be drawn on the bitmap or canvas.
+            /*// Set up a matrix that maps back normalized paths to be drawn on the bitmap or canvas.*/
             pathMatrix.setRectToRect(new RectF(0, 0, 1, 1), r, Matrix.ScaleToFit.FILL);
         }
-        displayMatrix.setRectToRect(r, displayBounds, Matrix.ScaleToFit.FILL);
+        displayMatrix.setRectToRect(r, displayBounds, Matrix.ScaleToFit.FILL);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleView.onSizeChanged(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleView.onSizeChanged(int,int,int,int)",this,throwable);throw throwable;}
     }
 
     private void drawDoodle(Canvas canvas) {
-        if ((canvas != null) && !normalizedPath.isEmpty()) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleView.drawDoodle(android.graphics.Canvas)",this,canvas);try{if ((canvas != null) && !normalizedPath.isEmpty()) {
             drawingPath.set(normalizedPath);
             drawingPath.transform(pathMatrix);
             canvas.drawPath(drawingPath, doodlePaint);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleView.drawDoodle(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleView.drawDoodle(android.graphics.Canvas)",this,throwable);throw throwable;}
     }
 
     public void setColor(int color) {
-        // Reset path to draw in a new color.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleView.setColor(int)",this,color);try{/*// Reset path to draw in a new color.*/
         finishCurrentPath();
         normalizedPath.moveTo(lastPoint.x, lastPoint.y);
         doodlePaint.setColor(Color.argb(192, Color.red(color), Color.green(color),
-                Color.blue(color)));
+                Color.blue(color)));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleView.setColor(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleView.setColor(int)",this,throwable);throw throwable;}
     }
 
     private void finishCurrentPath() {
-        if (!normalizedPath.isEmpty()) {
-            // Update the finished path to the bitmap.
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleView.finishCurrentPath()",this);try{if (!normalizedPath.isEmpty()) {
+            /*// Update the finished path to the bitmap.*/
             drawDoodle(bitmapCanvas);
             if (listener != null) {
                 listener.onDoodleFinished(new Path(normalizedPath), doodlePaint.getColor());
             }
             normalizedPath.rewind();
             invalidate();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleView.finishCurrentPath()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleView.finishCurrentPath()",this,throwable);throw throwable;}
     }
 
     private void checkCurrentPathInBounds() {
-        if ((listener != null) && !normalizedPath.isEmpty()) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleView.checkCurrentPathInBounds()",this);try{if ((listener != null) && !normalizedPath.isEmpty()) {
             RectF r = new RectF();
             normalizedPath.computeBounds(r, false);
             if (r.intersects(0, 0, 1, 1)) {
                 listener.onDoodleInPhotoBounds();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleView.checkCurrentPathInBounds()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleView.checkCurrentPathInBounds()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        super.onTouchEvent(event);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.photoeditor.actions.DoodleView.onTouchEvent(android.view.MotionEvent)",this,event);try{super.onTouchEvent(event);
 
         if (isEnabled()) {
             float x = event.getX();
@@ -144,7 +144,7 @@ class DoodleView extends FullscreenToolView {
 
                 case MotionEvent.ACTION_CANCEL:
                 case MotionEvent.ACTION_UP:
-                    // Line to last position with offset to draw at least dots for single clicks.
+                    /*// Line to last position with offset to draw at least dots for single clicks.*/
                     mapPhotoPoint(x + 1, y + 1, lastPoint);
                     normalizedPath.lineTo(lastPoint.x, lastPoint.y);
                     checkCurrentPathInBounds();
@@ -152,12 +152,12 @@ class DoodleView extends FullscreenToolView {
                     break;
             }
         }
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.photoeditor.actions.DoodleView.onTouchEvent(android.view.MotionEvent)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.photoeditor.actions.DoodleView.onTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleView.onDraw(android.graphics.Canvas)",this,canvas);try{super.onDraw(canvas);
 
         canvas.save();
         canvas.clipRect(displayBounds);
@@ -166,6 +166,6 @@ class DoodleView extends FullscreenToolView {
             canvas.drawBitmap(bitmap, 0, 0, bitmapPaint);
         }
         drawDoodle(canvas);
-        canvas.restore();
+        canvas.restore();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleView.onDraw(android.graphics.Canvas)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleView.onDraw(android.graphics.Canvas)",this,throwable);throw throwable;}
     }
 }

@@ -395,7 +395,7 @@ public interface BlockingDeque<E> extends BlockingQueue<E>, Deque<E> {
      */
     boolean removeLastOccurrence(Object o);
 
-    // *** BlockingQueue methods ***
+    /*// *** BlockingQueue methods ****/
 
     /**
      * Inserts the specified element into the queue represented by this deque
@@ -598,7 +598,7 @@ public interface BlockingDeque<E> extends BlockingQueue<E>, Deque<E> {
      */
     Iterator<E> iterator();
 
-    // *** Stack methods ***
+    /*// *** Stack methods ****/
 
     /**
      * Pushes an element onto the stack represented by this deque.  In other

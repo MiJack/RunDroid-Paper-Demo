@@ -37,10 +37,10 @@ public class ThreadImageOnClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ThreadImageOnClickListener.onClick(android.view.View)",this,v);try{ChanIdentifiedActivity activity = NetworkProfileManager.instance().getActivity();
         if (activity != null && activity instanceof Activity) {
             GalleryViewActivity.startActivity((Activity)activity, boardCode, threadNo, postId);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ThreadImageOnClickListener.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ThreadImageOnClickListener.onClick(android.view.View)",this,throwable);throw throwable;}
     }
 
 }

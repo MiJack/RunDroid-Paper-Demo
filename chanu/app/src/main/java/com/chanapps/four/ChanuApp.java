@@ -30,35 +30,35 @@ public class ChanuApp extends GalleryAppImpl
     private static Locale locale = null;
 
     public synchronized DataManager getDataManager() {
-        if (mDataManager == null) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DataManager com.chanapps.four.ChanuApp.getDataManager()",this);try{if (mDataManager == null) {
             mDataManager = new DataManager(this);
             mDataManager.initializeSourceMap();
             mDataManager.addSource(new ChanSource(this));
             mDataManager.addSource(new ChanOffLineSource(this));
         }
-        return mDataManager;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DataManager com.chanapps.four.ChanuApp.getDataManager()",this);return mDataManager;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DataManager com.chanapps.four.ChanuApp.getDataManager()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCreate() {
-        super.onCreate();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.ChanuApp.onCreate()",this);try{super.onCreate();
         ChanFileStorage.migrateIfNecessary(getApplicationContext());
         forceLocaleIfConfigured();
-        if (DEBUG) Log.i(TAG, "onCreate() activity=" + NetworkProfileManager.instance().getActivityId());
+        if (DEBUG) {Log.i(TAG, "onCreate() activity=" + NetworkProfileManager.instance().getActivityId());}com.mijack.Xlog.logMethodExit("void com.chanapps.four.ChanuApp.onCreate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.ChanuApp.onCreate()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.ChanuApp.onConfigurationChanged(android.content.res.Configuration)",this,newConfig);try{super.onConfigurationChanged(newConfig);
         if (locale != null) {
             newConfig.locale = locale;
             Locale.setDefault(locale);
             getBaseContext().getResources().updateConfiguration(newConfig, getBaseContext().getResources().getDisplayMetrics());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.ChanuApp.onConfigurationChanged(android.content.res.Configuration)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.ChanuApp.onConfigurationChanged(android.content.res.Configuration)",this,throwable);throw throwable;}
     }
 
     private void forceLocaleIfConfigured() {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.ChanuApp.forceLocaleIfConfigured()",this);try{SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         Configuration config = getBaseContext().getResources().getConfiguration();
         boolean forceEnglish = settings.getBoolean(SettingsActivity.PREF_FORCE_ENGLISH, false);
         String lang = getString(R.string.pref_force_english_lang);
@@ -67,6 +67,6 @@ public class ChanuApp extends GalleryAppImpl
             Locale.setDefault(locale);
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.ChanuApp.forceLocaleIfConfigured()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.ChanuApp.forceLocaleIfConfigured()",this,throwable);throw throwable;}
     }
 }

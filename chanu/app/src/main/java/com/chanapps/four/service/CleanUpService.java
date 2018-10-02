@@ -27,8 +27,8 @@ public class CleanUpService extends BaseChanService {
     protected static final String TAG = CleanUpService.class.getSimpleName();
     private static final boolean DEBUG = false;
 
-    private static final long MIN_DELAY_BETWEEN_CLEANUPS_MS = 4 * 60 * 1000; // 2min
-    private static final long MAX_DELAY_BETWEEN_CLEANUPS_MS = 30 * 60 * 1000; // 10min
+    private static final long MIN_DELAY_BETWEEN_CLEANUPS_MS = 4 * 60 * 1000; /*// 2min*/
+    private static final long MAX_DELAY_BETWEEN_CLEANUPS_MS = 30 * 60 * 1000; /*// 10min*/
     private static long scheduleDelay = MIN_DELAY_BETWEEN_CLEANUPS_MS;
     private static long lastScheduled = 0;
 
@@ -62,7 +62,7 @@ public class CleanUpService extends BaseChanService {
     private long otherSize = 0;
 
     public static void startService(Context context) {
-        /*
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.service.CleanUpService.startService(android.content.Context)",context);try{/*
         if (lastScheduled > Calendar.getInstance().getTimeInMillis() - scheduleDelay) {
             if (DEBUG) Log.i(TAG, "Cleanup service was called less than " + (scheduleDelay / 1000) + "s ago, skipping call");
             return;
@@ -73,11 +73,11 @@ public class CleanUpService extends BaseChanService {
         	scheduleDelay = MIN_DELAY_BETWEEN_CLEANUPS_MS;
         }
         */
-        if (DEBUG) Log.w(TAG, "Scheduling clean up service");
+        if (DEBUG) {Log.w(TAG, "Scheduling clean up service");}
         lastScheduled = Calendar.getInstance().getTimeInMillis();
         Intent intent = new Intent(context, CleanUpService.class);
         intent.putExtra(PRIORITY_MESSAGE_FETCH, 1);
-        context.startService(intent);
+        context.startService(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.service.CleanUpService.startService(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.startService(android.content.Context)",throwable);throw throwable;}
     }
 
     public CleanUpService() {
@@ -90,27 +90,27 @@ public class CleanUpService extends BaseChanService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.onHandleIntent(android.content.Intent)",this,intent);try{try {
             cleanUpCache();
         } catch (Exception e) {
             Log.e(TAG, "Error in clean up service", e);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.onHandleIntent(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     private void cleanUpCache() throws Exception {
-        long startTime = Calendar.getInstance().getTimeInMillis();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.cleanUpCache()",this);try{long startTime = Calendar.getInstance().getTimeInMillis();
         prepareCache();
         prepareTopWatchedBoards();
         scanFiles();
         long endTime = Calendar.getInstance().getTimeInMillis();
-        if (DEBUG) logCacheFileInfo("ClearUp init.", startTime, endTime);
+        if (DEBUG) {logCacheFileInfo("ClearUp init.", startTime, endTime);}
         long diffSec = (endTime - startTime) / 1000;
-        if (DEBUG) Log.i(TAG, "cache files=" + totalFiles + " size=" + (totalSize / 1024) + "KB scanned in " +  diffSec + "s.");
+        if (DEBUG) {Log.i(TAG, "cache files=" + totalFiles + " size=" + (totalSize / 1024) + "KB scanned in " +  diffSec + "s.");}
 
         startTime = Calendar.getInstance().getTimeInMillis();
         long maxCacheSize = getPreferredCacheSize() * ONE_MB_BYTES;
         targetCacheSize = maxCacheSize * 80 / 100;
-        if (DEBUG) Log.i(TAG, "cache size current=" + (totalSize/ONE_MB_BYTES) + "MB target=" + (targetCacheSize/ONE_MB_BYTES) + "MB  max=" + (maxCacheSize / ONE_MB_BYTES) + "MB");
+        if (DEBUG) {Log.i(TAG, "cache size current=" + (totalSize/ONE_MB_BYTES) + "MB target=" + (targetCacheSize/ONE_MB_BYTES) + "MB  max=" + (maxCacheSize / ONE_MB_BYTES) + "MB");}
 
         /*
         for (int daysAgo = 6; daysAgo > 0; daysAgo--)
@@ -136,28 +136,28 @@ public class CleanUpService extends BaseChanService {
         cleanUp(0, DeleteType.BY_DATE_INCL_WATCHED);
 
         endTime = Calendar.getInstance().getTimeInMillis();
-        if (DEBUG) logCacheFileInfo("Deletion report.", startTime, endTime);
+        if (DEBUG) {logCacheFileInfo("Deletion report.", startTime, endTime);}
         diffSec = (endTime - startTime) / 1000;
-        if (DEBUG) Log.i(TAG, "deleted cache files=" + totalDeletedFiles + " out of original=" + totalFiles + " in " + diffSec + "s");
-        if (DEBUG) Log.i(TAG, "final cache size=" + (totalSize/ONE_MB_BYTES) + "MB target=" + (targetCacheSize/ONE_MB_BYTES) + "MB  max=" + (maxCacheSize / ONE_MB_BYTES) + "MB");
+        if (DEBUG) {Log.i(TAG, "deleted cache files=" + totalDeletedFiles + " out of original=" + totalFiles + " in " + diffSec + "s");}
+        if (DEBUG) {Log.i(TAG, "final cache size=" + (totalSize/ONE_MB_BYTES) + "MB target=" + (targetCacheSize/ONE_MB_BYTES) + "MB  max=" + (maxCacheSize / ONE_MB_BYTES) + "MB");}
 
-        cleanVars();
+        cleanVars();com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.cleanUpCache()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.cleanUpCache()",this,throwable);throw throwable;}
     }
 
     private void cleanUp(long ago, DeleteType deleteType) {
-        cleanUpBoards(ago, deleteType);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.cleanUp(long,com.chanapps.four.data.DeleteType)",this,ago,deleteType);try{cleanUpBoards(ago, deleteType);
         cleanUpOthers(ago, deleteType);
-        cleanUpWidgets(ago, deleteType);
+        cleanUpWidgets(ago, deleteType);com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.cleanUp(long,com.chanapps.four.data.DeleteType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.cleanUp(long,com.chanapps.four.data.DeleteType)",this,throwable);throw throwable;}
     }
 
     private int getPreferredCacheSize() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.CleanUpService.getPreferredCacheSize()",this);try{SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int prefSize = prefs.getInt(SettingsActivity.PREF_CACHE_SIZE, CacheSizePreference.DEFAULT_VALUE);
-        return prefSize < CacheSizePreference.MIN_VALUE ? CacheSizePreference.MIN_VALUE : prefSize;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.getPreferredCacheSize()",this);return prefSize < CacheSizePreference.MIN_VALUE ? CacheSizePreference.MIN_VALUE : prefSize;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.CleanUpService.getPreferredCacheSize()",this,throwable);throw throwable;}
     }
 
     private void prepareTopWatchedBoards() {
-        Context context = getBaseContext();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.prepareTopWatchedBoards()",this);try{Context context = getBaseContext();
         DiscCacheAware imageCache = ChanImageLoader.getInstance(context).getDiscCache();
         watchedThreads = new HashMap<String, Set<Long>>();
         watchedImagePath = new HashSet<String>();
@@ -167,18 +167,18 @@ public class CleanUpService extends BaseChanService {
         if (board != null && board.threads != null) {
             for (ChanPost threadPost : board.threads) {
                 if (!watchedOrTopBoardCode.contains(threadPost.board))
-                    watchedOrTopBoardCode.add(threadPost.board);
+                    {watchedOrTopBoardCode.add(threadPost.board);}
                 if (!watchedThreads.containsKey(threadPost.board))
-                    watchedThreads.put(threadPost.board, new HashSet<Long>());
+                    {watchedThreads.put(threadPost.board, new HashSet<Long>());}
                 watchedThreads.get(threadPost.board).add(threadPost.no);
                 addWatchedImagePaths(context, imageCache, threadPost.board, threadPost.no);
             }
             for (String boardCode : watchedThreads.keySet())
-            if (DEBUG) Log.i(TAG, "watchedThreads /" + boardCode + "/ = "
-                    + Arrays.toString(watchedThreads.get(boardCode).toArray()));
+            {if (DEBUG) {Log.i(TAG, "watchedThreads /" + boardCode + "/ = "
+                    + Arrays.toString(watchedThreads.get(boardCode).toArray()));}}
         }
-        if (DEBUG) Log.i(TAG, "watchedImagePaths = "
-                + Arrays.toString(watchedImagePath.toArray()));
+        if (DEBUG) {Log.i(TAG, "watchedImagePaths = "
+                + Arrays.toString(watchedImagePath.toArray()));}
 
         UserStatistics userStats = NetworkProfileManager.instance().getUserStatistics();
         if (userStats != null) {
@@ -196,34 +196,34 @@ public class CleanUpService extends BaseChanService {
                     watchedOrTopBoardCode.add(thread.board);
                 }
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.prepareTopWatchedBoards()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.prepareTopWatchedBoards()",this,throwable);throw throwable;}
     }
 
     private void addWatchedImagePaths(Context context, DiscCacheAware imageCache, String boardCode, long threadNo) {
-        if (imageCache == null)
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.addWatchedImagePaths(android.content.Context,com.nostra13.universalimageloader.cache.disc.DiscCacheAware,com.chanapps.four.data.String,long)",this,context,imageCache,boardCode,threadNo);try{if (imageCache == null)
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.addWatchedImagePaths(android.content.Context,com.nostra13.universalimageloader.cache.disc.DiscCacheAware,com.chanapps.four.data.String,long)",this);return;}}
         ChanThread thread = ChanFileStorage.loadThreadData(context, boardCode, threadNo);
         if (thread == null || thread.posts == null)
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.addWatchedImagePaths(android.content.Context,com.nostra13.universalimageloader.cache.disc.DiscCacheAware,com.chanapps.four.data.String,long)",this);return;}}
 
         try {
             for (ChanPost post : thread.posts) {
 
                 String thumb = post.thumbnailUrl(context);
                 if (thumb == null)
-                    continue;
+                    {continue;}
                 File thumbImage = imageCache.get(thumb);
                 if (thumbImage == null)
-                    continue;
+                    {continue;}
                 String thumbPath = thumbImage.getAbsolutePath();
                 watchedImagePath.add(thumbPath);
 
                 String full = post.imageUrl(context);
                 if (full == null)
-                    continue;
-                File fullImage = imageCache.get(full); // FIXME: doesn't work for web-cache-stored animated gifs
+                    {continue;}
+                File fullImage = imageCache.get(full); /*// FIXME: doesn't work for web-cache-stored animated gifs*/
                 if (fullImage == null)
-                    continue;
+                    {continue;}
                 String fullPath = fullImage.getAbsolutePath();
                 watchedImagePath.add(fullPath);
 
@@ -231,36 +231,36 @@ public class CleanUpService extends BaseChanService {
         }
         catch (OutOfMemoryError e) {
             Log.e(TAG, "out of memory adding watched files, skipping more files");
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.addWatchedImagePaths(android.content.Context,com.nostra13.universalimageloader.cache.disc.DiscCacheAware,com.chanapps.four.data.String,long)",this,throwable);throw throwable;}
     }
 
     private void logCacheFileInfo(String logMsg, long startTime, long endTime) {
-        Log.i(TAG, logMsg + " Cache folder contains " + totalFiles + " files of size " + (totalSize / ONE_MB_BYTES )
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.logCacheFileInfo(com.chanapps.four.data.String,long,long)",this,logMsg,startTime,endTime);try{Log.i(TAG, logMsg + " Cache folder contains " + totalFiles + " files of size " + (totalSize / ONE_MB_BYTES )
                 + "MB. Calculated in " + (endTime - startTime) + "ms.");
         for (Map.Entry<String, Long> entry : sizeByBoard.entrySet()) {
             if (filesByBoard.get(entry.getKey()).size() == 0)
-                continue;
+                {continue;}
             Log.i(TAG, "Board " + entry.getKey() + " size=" + (entry.getValue() / ONE_MB_BYTES) + "MB "
                     + filesByBoard.get(entry.getKey()).size() + " files.");
         }
-        Log.i(TAG, "Other files' size=" + (otherSize / ONE_MB_BYTES) + "MB " + otherFiles.size() + " files.");
+        Log.i(TAG, "Other files' size=" + (otherSize / ONE_MB_BYTES) + "MB " + otherFiles.size() + " files.");com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.logCacheFileInfo(com.chanapps.four.data.String,long,long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.logCacheFileInfo(com.chanapps.four.data.String,long,long)",this,throwable);throw throwable;}
     }
 
     private int trimByDate(List<FileDesc> files, long timeOffset) {
-        if (files == null || files.size() == 0) {
-            return 0;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.CleanUpService.trimByDate(com.chanapps.four.data.List,long)",this,files,timeOffset);try{if (files == null || files.size() == 0) {
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimByDate(com.chanapps.four.data.List,long)",this);return 0;}
         }
         try {
             Collections.sort(files, new Comparator<FileDesc>() {
                 public int compare(FileDesc o1, FileDesc o2) {
-                    return o1.lastModified > o2.lastModified ? 1
-                            : o1.lastModified < o2.lastModified ? -1 : 0;
+                    com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.CleanUpService$1.compare(com.chanapps.four.data.FileDesc,com.chanapps.four.data.FileDesc)",this,o1,o2);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService$1.compare(com.chanapps.four.data.FileDesc,com.chanapps.four.data.FileDesc)",this);{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimByDate(com.chanapps.four.data.List,long)",this);return o1.lastModified > o2.lastModified ? 1
+                            : o1.lastModified < o2.lastModified ? -1 : 0;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.CleanUpService$1.compare(com.chanapps.four.data.FileDesc,com.chanapps.four.data.FileDesc)",this,throwable);throw throwable;}
                 }
             });
         }
         catch (Error e) {
             Log.e(TAG, "error while trimBySize()", e);
-            return 0;
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimByDate(com.chanapps.four.data.List,long)",this);return 0;}
         }
 
         int i = 0;
@@ -272,30 +272,30 @@ public class CleanUpService extends BaseChanService {
                 new File(file.path).delete();
                 totalSize -= file.size;
                 iter.remove();
-                if (DEBUG) Log.i(TAG, "removed old file: " + file);
+                if (DEBUG) {Log.i(TAG, "removed old file: " + file);}
                 i++;
             }
             if (totalSize < targetCacheSize)
-                break;
+                {break;}
         }
-        return i;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimByDate(com.chanapps.four.data.List,long)",this);return i;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.CleanUpService.trimByDate(com.chanapps.four.data.List,long)",this,throwable);throw throwable;}
     }
 
     private int trimBySize(List<FileDesc> files, long size) {
-        if (files == null || files.size() == 0) {
-            return 0;
+        com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.CleanUpService.trimBySize(com.chanapps.four.data.List,long)",this,files,size);try{if (files == null || files.size() == 0) {
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimBySize(com.chanapps.four.data.List,long)",this);return 0;}
         }
         try {
             Collections.sort(files, new Comparator<FileDesc>() {
                 public int compare(FileDesc o1, FileDesc o2) {
-                    return o1.size > o2.size ? -1
-                            : o1.size < o2.size ? 1 : 0;
+                    com.mijack.Xlog.logMethodEnter("int com.chanapps.four.service.CleanUpService$2.compare(com.chanapps.four.data.FileDesc,com.chanapps.four.data.FileDesc)",this,o1,o2);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService$2.compare(com.chanapps.four.data.FileDesc,com.chanapps.four.data.FileDesc)",this);{com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimBySize(com.chanapps.four.data.List,long)",this);return o1.size > o2.size ? -1
+                            : o1.size < o2.size ? 1 : 0;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.CleanUpService$2.compare(com.chanapps.four.data.FileDesc,com.chanapps.four.data.FileDesc)",this,throwable);throw throwable;}
                 }
             });
         }
         catch (Error e) {
             Log.e(TAG, "error while trimBySize()", e);
-            return 0;
+            {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimBySize(com.chanapps.four.data.List,long)",this);return 0;}
         }
 
         int i = 0;
@@ -306,18 +306,18 @@ public class CleanUpService extends BaseChanService {
                 new File(file.path).delete();
                 totalSize -= file.size;
                 iter.remove();
-                if (DEBUG) Log.i(TAG, "removed large file: " + file);
+                if (DEBUG) {Log.i(TAG, "removed large file: " + file);}
                 i++;
             }
             if (totalSize < targetCacheSize)
-                break;
+                {break;}
         }
-        return i;
+        {com.mijack.Xlog.logMethodExit("int com.chanapps.four.service.CleanUpService.trimBySize(com.chanapps.four.data.List,long)",this);return i;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.service.CleanUpService.trimBySize(com.chanapps.four.data.List,long)",this,throwable);throw throwable;}
     }
 
     private void prepareCache() {
-        cacheFolder = ChanFileStorage.getCacheDirectory(getBaseContext());
-        if (DEBUG) Log.i(TAG, "Cache dir: " + cacheFolder.getAbsolutePath());
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.prepareCache()",this);try{cacheFolder = ChanFileStorage.getCacheDirectory(getBaseContext());
+        if (DEBUG) {Log.i(TAG, "Cache dir: " + cacheFolder.getAbsolutePath());}
         otherFiles = new ArrayList<FileDesc>();
         sizeByBoard = new HashMap<String, Long>();
         filesByBoard = new HashMap<String, List<FileDesc>>();
@@ -327,13 +327,13 @@ public class CleanUpService extends BaseChanService {
         totalSize = 0;
         totalFiles = 0;
         totalDeletedFiles = 0;
-        otherSize = 0;
+        otherSize = 0;com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.prepareCache()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.prepareCache()",this,throwable);throw throwable;}
     }
 
     private void scanFiles() {
-        File[] children = cacheFolder.listFiles();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.scanFiles()",this);try{File[] children = cacheFolder.listFiles();
         if (children == null)
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.scanFiles()",this);return;}}
         try{
             for (File child : children) {
                 if (child.isDirectory()) {
@@ -368,15 +368,15 @@ public class CleanUpService extends BaseChanService {
         catch (OutOfMemoryError e) {
             Log.e(TAG, "out of memory adding files, skipping more files");
         }
-        totalFiles += otherFiles.size();
+        totalFiles += otherFiles.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.scanFiles()",this,throwable);throw throwable;}
     }
 
     private long addFiles(File file, List<FileDesc> all) {
-        long totalSize = 0;
-        if (DEBUG) Log.i(TAG, "Checking folder " + file.getAbsolutePath());
+        com.mijack.Xlog.logMethodEnter("long com.chanapps.four.service.CleanUpService.addFiles(java.io.File,com.chanapps.four.data.List)",this,file,all);try{long totalSize = 0;
+        if (DEBUG) {Log.i(TAG, "Checking folder " + file.getAbsolutePath());}
         File[] children = file.listFiles();
         if (children == null)
-            return totalSize;
+            {{com.mijack.Xlog.logMethodExit("long com.chanapps.four.service.CleanUpService.addFiles(java.io.File,com.chanapps.four.data.List)",this);return totalSize;}}
         try {
             for (File child : children) {
                 if (child.isDirectory()) {
@@ -391,7 +391,7 @@ public class CleanUpService extends BaseChanService {
         catch (OutOfMemoryError e) {
             Log.e(TAG, "out of memory adding files, skipping more files");
         }
-        return totalSize;
+        {com.mijack.Xlog.logMethodExit("long com.chanapps.four.service.CleanUpService.addFiles(java.io.File,com.chanapps.four.data.List)",this);return totalSize;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.chanapps.four.service.CleanUpService.addFiles(java.io.File,com.chanapps.four.data.List)",this,throwable);throw throwable;}
     }
 
     private static enum DeleteType {
@@ -401,13 +401,13 @@ public class CleanUpService extends BaseChanService {
     }
 
     private void cleanUpBoards(long olderThanMsOrMaxKeepSizeBytes, DeleteType deleteType) {
-        if (totalSize < targetCacheSize)
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.cleanUpBoards(long,com.chanapps.four.data.DeleteType)",this,olderThanMsOrMaxKeepSizeBytes,deleteType);try{if (totalSize < targetCacheSize)
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.cleanUpBoards(long,com.chanapps.four.data.DeleteType)",this);return;}}
         for (String board : filesByBoard.keySet()) {
             if (totalSize < targetCacheSize)
-                break;
-            //if (watchedOrTopBoardCode.contains(board))
-            //    continue;
+                {break;}
+            /*//if (watchedOrTopBoardCode.contains(board))*/
+            /*//    continue;*/
 
             List<FileDesc> preBoardFiles = filesByBoard.get(board);
             List<FileDesc> boardFiles = new ArrayList<FileDesc>();
@@ -418,11 +418,11 @@ public class CleanUpService extends BaseChanService {
             try {
                 for (FileDesc d : preBoardFiles) {
                     if (isNomediaFile(d))
-                        continue;
+                        {continue;}
                     if (isRootBoardFile(d, boardFilePattern))
-                        continue;
+                        {continue;}
                     if (isWatchedThreadFile(d, watchedBoardThreadNos))
-                        continue;
+                        {continue;}
                     boardFiles.add(d);
                 }
             }
@@ -431,11 +431,11 @@ public class CleanUpService extends BaseChanService {
             }
 
             deleteByType(boardFiles, olderThanMsOrMaxKeepSizeBytes, deleteType);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.cleanUpBoards(long,com.chanapps.four.data.DeleteType)",this,throwable);throw throwable;}
     }
 
     private void deleteByType(List<FileDesc> inFiles, long olderThanMsOrMaxKeepSizeBytes, DeleteType deleteType) {
-        List<FileDesc> files;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.deleteByType(com.chanapps.four.data.List,long,com.chanapps.four.data.DeleteType)",this,inFiles,olderThanMsOrMaxKeepSizeBytes,deleteType);try{List<FileDesc> files;
         if (deleteType == DeleteType.BY_DATE_INCL_WATCHED) {
             files = inFiles;
         }
@@ -444,7 +444,7 @@ public class CleanUpService extends BaseChanService {
             try {
                 for (FileDesc inFile : inFiles) {
                     if (!watchedImagePath.contains(inFile.path))
-                        files.add(inFile);
+                        {files.add(inFile);}
                 }
             }
             catch (OutOfMemoryError e) {
@@ -457,67 +457,67 @@ public class CleanUpService extends BaseChanService {
             case BY_DATE_INCL_WATCHED:
                 numDeletedFiles = trimByDate(files, olderThanMsOrMaxKeepSizeBytes);
                 if (DEBUG)
-                    Log.i(TAG, "Deleted " + numDeletedFiles + " old files");
+                    {Log.i(TAG, "Deleted " + numDeletedFiles + " old files");}
                 break;
             case BY_SIZE:
             default:
                 numDeletedFiles = trimBySize(files, olderThanMsOrMaxKeepSizeBytes);
                 if (DEBUG)
-                    Log.i(TAG, "Deleted " + numDeletedFiles + " large files");
+                    {Log.i(TAG, "Deleted " + numDeletedFiles + " large files");}
         }
-        totalDeletedFiles += numDeletedFiles;
+        totalDeletedFiles += numDeletedFiles;com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.deleteByType(com.chanapps.four.data.List,long,com.chanapps.four.data.DeleteType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.deleteByType(com.chanapps.four.data.List,long,com.chanapps.four.data.DeleteType)",this,throwable);throw throwable;}
     }
 
-    private void cleanUpOthers(long olderThanDateOrMaxKeepSizeBytes, DeleteType deleteType) { // e.g. thumbnails
+    private void cleanUpOthers(long olderThanDateOrMaxKeepSizeBytes, DeleteType deleteType) { com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.cleanUpOthers(long,com.chanapps.four.data.DeleteType)",this,olderThanDateOrMaxKeepSizeBytes,deleteType);try{/*// e.g. thumbnails*/
         if (totalSize < targetCacheSize)
-            return;
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.cleanUpOthers(long,com.chanapps.four.data.DeleteType)",this);return;}}
         if (otherFiles != null && otherFiles.size() > 0) {
-            if (DEBUG) Log.i(TAG, "deleting other files...");
+            if (DEBUG) {Log.i(TAG, "deleting other files...");}
             deleteByType(otherFiles, olderThanDateOrMaxKeepSizeBytes, deleteType);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.cleanUpOthers(long,com.chanapps.four.data.DeleteType)",this,throwable);throw throwable;}
     }
 
     private void cleanUpWidgets(long olderThanDateOrMaxKeepSizeBytes, DeleteType deleteType) {
-        if (totalSize < targetCacheSize)
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.cleanUpWidgets(long,com.chanapps.four.data.DeleteType)",this,olderThanDateOrMaxKeepSizeBytes,deleteType);try{if (totalSize < targetCacheSize)
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.cleanUpWidgets(long,com.chanapps.four.data.DeleteType)",this);return;}}
         if (sizeOfWidget > 0 && filesOfWidget != null && filesOfWidget.size() > 0) {
-            if (DEBUG) Log.i(TAG, "deleting widget files...");
+            if (DEBUG) {Log.i(TAG, "deleting widget files...");}
             deleteByType(filesOfWidget, olderThanDateOrMaxKeepSizeBytes, deleteType);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.cleanUpWidgets(long,com.chanapps.four.data.DeleteType)",this,throwable);throw throwable;}
     }
 
     private boolean isNomediaFile(FileDesc d) {
-        return nomediaFilePattern.matcher(d.path).matches();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.service.CleanUpService.isNomediaFile(com.chanapps.four.data.FileDesc)",this,d);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.CleanUpService.isNomediaFile(com.chanapps.four.data.FileDesc)",this);return nomediaFilePattern.matcher(d.path).matches();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.service.CleanUpService.isNomediaFile(com.chanapps.four.data.FileDesc)",this,throwable);throw throwable;}
     }
 
     private boolean isRootBoardFile(FileDesc d, Pattern boardFilePattern) {
-        return boardFilePattern.matcher(d.path).matches();
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.service.CleanUpService.isRootBoardFile(com.chanapps.four.data.FileDesc,java.util.regex.Pattern)",this,d,boardFilePattern);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.CleanUpService.isRootBoardFile(com.chanapps.four.data.FileDesc,java.util.regex.Pattern)",this);return boardFilePattern.matcher(d.path).matches();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.service.CleanUpService.isRootBoardFile(com.chanapps.four.data.FileDesc,java.util.regex.Pattern)",this,throwable);throw throwable;}
     }
 
     private boolean isWatchedThreadFile(FileDesc d, Set<Long> threadNos) {
-        if (threadNos == null || threadNos.size() == 0)
-            return false;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.service.CleanUpService.isWatchedThreadFile(com.chanapps.four.data.FileDesc,com.chanapps.four.data.Set)",this,d,threadNos);try{if (threadNos == null || threadNos.size() == 0)
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.CleanUpService.isWatchedThreadFile(com.chanapps.four.data.FileDesc,com.chanapps.four.data.Set)",this);return false;}}
         Matcher m = threadFilePattern.matcher(d.path);
         if (!m.matches())
-            return false;
+            {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.CleanUpService.isWatchedThreadFile(com.chanapps.four.data.FileDesc,com.chanapps.four.data.Set)",this);return false;}}
         long threadNo = 0;
         try {
             String threadStr = m.group(1);
             threadNo = Long.valueOf(threadNo);
             if (threadNos.contains(threadNo))
-                return true;
+                {{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.CleanUpService.isWatchedThreadFile(com.chanapps.four.data.FileDesc,com.chanapps.four.data.Set)",this);return true;}}
         }
         catch (IllegalStateException e) {
-            if (DEBUG) Log.i(TAG, "bad match thread number, adding file to cleanup: " + d.path, e);
+            if (DEBUG) {Log.i(TAG, "bad match thread number, adding file to cleanup: " + d.path, e);}
         }
         catch (NumberFormatException e) {
-            if (DEBUG) Log.i(TAG, "unmatched thread number, adding file to cleanup: " + d.path, e);
+            if (DEBUG) {Log.i(TAG, "unmatched thread number, adding file to cleanup: " + d.path, e);}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.service.CleanUpService.isWatchedThreadFile(com.chanapps.four.data.FileDesc,com.chanapps.four.data.Set)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.service.CleanUpService.isWatchedThreadFile(com.chanapps.four.data.FileDesc,com.chanapps.four.data.Set)",this,throwable);throw throwable;}
     }
 
     protected void cleanVars() {
-        cacheFolder = null;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.service.CleanUpService.cleanVars()",this);try{cacheFolder = null;
         otherFiles = null;
         sizeByBoard = null;
         filesByBoard = null;
@@ -529,7 +529,7 @@ public class CleanUpService extends BaseChanService {
         totalSize = 0;
         totalFiles = 0;
         totalDeletedFiles = 0;
-        otherSize = 0;
+        otherSize = 0;com.mijack.Xlog.logMethodExit("void com.chanapps.four.service.CleanUpService.cleanVars()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.service.CleanUpService.cleanVars()",this,throwable);throw throwable;}
     }
 
 

@@ -31,10 +31,10 @@ public class DataTransfer {
 	public boolean failed;
 	
 	public String toString() {
-		if (failed) {
-			return "failed at " + time;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.DataTransfer.toString()",this);try{if (failed) {
+			{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.DataTransfer.toString()",this);return "failed at " + time;}
 		} else {
-			return "size " + size + "b during " + duration + "ms at " + dataRate + "kB/s on " + time;
-		}
+			{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.DataTransfer.toString()",this);return "size " + size + "b during " + duration + "ms at " + dataRate + "kB/s on " + time;}
+		}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.DataTransfer.toString()",this,throwable);throw throwable;}
 	}
 }

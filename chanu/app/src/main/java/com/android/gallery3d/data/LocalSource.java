@@ -79,16 +79,16 @@ class LocalSource extends MediaSource {
 
     @Override
     public MediaObject createMediaObject(Path path) {
-        GalleryApp app = mApplication;
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this,path);try{GalleryApp app = mApplication;
         switch (mMatcher.match(path)) {
             case LOCAL_ALL_ALBUMSET:
             case LOCAL_IMAGE_ALBUMSET:
             case LOCAL_VIDEO_ALBUMSET:
-                return new LocalAlbumSet(path, mApplication);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new LocalAlbumSet(path, mApplication);}
             case LOCAL_IMAGE_ALBUM:
-                return new LocalAlbum(path, app, mMatcher.getIntVar(0), true);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new LocalAlbum(path, app, mMatcher.getIntVar(0), true);}
             case LOCAL_VIDEO_ALBUM:
-                return new LocalAlbum(path, app, mMatcher.getIntVar(0), false);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new LocalAlbum(path, app, mMatcher.getIntVar(0), false);}
             case LOCAL_ALL_ALBUM: {
                 int bucketId = mMatcher.getIntVar(0);
                 DataManager dataManager = app.getDataManager();
@@ -97,36 +97,36 @@ class LocalSource extends MediaSource {
                 MediaSet videoSet = (MediaSet) dataManager.getMediaObject(
                         LocalAlbumSet.PATH_VIDEO.getChild(bucketId));
                 Comparator<MediaItem> comp = DataManager.sDateTakenComparator;
-                return new LocalMergeAlbum(
-                        path, comp, new MediaSet[] {imageSet, videoSet});
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new LocalMergeAlbum(
+                        path, comp, new MediaSet[] {imageSet, videoSet});}
             }
             case LOCAL_IMAGE_ITEM:
-                return new LocalImage(path, mApplication, mMatcher.getIntVar(0));
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new LocalImage(path, mApplication, mMatcher.getIntVar(0));}
             case LOCAL_VIDEO_ITEM:
-                return new LocalVideo(path, mApplication, mMatcher.getIntVar(0));
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this);return new LocalVideo(path, mApplication, mMatcher.getIntVar(0));}
             default:
                 throw new RuntimeException("bad path: " + path);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaObject com.android.gallery3d.data.LocalSource.createMediaObject(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     private static int getMediaType(String type, int defaultType) {
-        if (type == null) return defaultType;
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.data.LocalSource.getMediaType(java.lang.String,int)",type,defaultType);try{if (type == null) {{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalSource.getMediaType(java.lang.String,int)");return defaultType;}}
         try {
             int value = Integer.parseInt(type);
             if ((value & (MEDIA_TYPE_IMAGE
-                    | MEDIA_TYPE_VIDEO)) != 0) return value;
+                    | MEDIA_TYPE_VIDEO)) != 0) {{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalSource.getMediaType(java.lang.String,int)");return value;}}
         } catch (NumberFormatException e) {
             Log.w(TAG, "invalid type: " + type, e);
         }
-        return defaultType;
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalSource.getMediaType(java.lang.String,int)");return defaultType;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.data.LocalSource.getMediaType(java.lang.String,int)",throwable);throw throwable;}
     }
 
-    // The media type bit passed by the intent
+    /*// The media type bit passed by the intent*/
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int MEDIA_TYPE_VIDEO = 4;
 
     private Path getAlbumPath(Uri uri, int defaultType) {
-        int mediaType = getMediaType(
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getAlbumPath(android.net.Uri,int)",this,uri,defaultType);try{int mediaType = getMediaType(
                 uri.getQueryParameter(Gallery.KEY_MEDIA_TYPES),
                 defaultType);
         String bucketId = uri.getQueryParameter(KEY_BUCKET_ID);
@@ -135,62 +135,62 @@ class LocalSource extends MediaSource {
             id = Integer.parseInt(bucketId);
         } catch (NumberFormatException e) {
             Log.w(TAG, "invalid bucket id: " + bucketId, e);
-            return null;
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getAlbumPath(android.net.Uri,int)",this);return null;}
         }
         switch (mediaType) {
             case MEDIA_TYPE_IMAGE:
-                return Path.fromString("/local/image").getChild(id);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getAlbumPath(android.net.Uri,int)",this);return Path.fromString("/local/image").getChild(id);}
             case MEDIA_TYPE_VIDEO:
-                return Path.fromString("/local/video").getChild(id);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getAlbumPath(android.net.Uri,int)",this);return Path.fromString("/local/video").getChild(id);}
             default:
-                return Path.fromString("/local/all").getChild(id);
-        }
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getAlbumPath(android.net.Uri,int)",this);return Path.fromString("/local/all").getChild(id);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getAlbumPath(android.net.Uri,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public Path findPathByUri(Uri uri) {
-        try {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.findPathByUri(android.net.Uri)",this,uri);try{try {
             switch (mUriMatcher.match(uri)) {
                 case LOCAL_IMAGE_ITEM: {
                     long id = ContentUris.parseId(uri);
-                    return id >= 0 ? LocalImage.ITEM_PATH.getChild(id) : null;
+                    {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.findPathByUri(android.net.Uri)",this);return id >= 0 ? LocalImage.ITEM_PATH.getChild(id) : null;}
                 }
                 case LOCAL_VIDEO_ITEM: {
                     long id = ContentUris.parseId(uri);
-                    return id >= 0 ? LocalVideo.ITEM_PATH.getChild(id) : null;
+                    {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.findPathByUri(android.net.Uri)",this);return id >= 0 ? LocalVideo.ITEM_PATH.getChild(id) : null;}
                 }
                 case LOCAL_IMAGE_ALBUM: {
-                    return getAlbumPath(uri, MEDIA_TYPE_IMAGE);
+                    {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.findPathByUri(android.net.Uri)",this);return getAlbumPath(uri, MEDIA_TYPE_IMAGE);}
                 }
                 case LOCAL_VIDEO_ALBUM: {
-                    return getAlbumPath(uri, MEDIA_TYPE_VIDEO);
+                    {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.findPathByUri(android.net.Uri)",this);return getAlbumPath(uri, MEDIA_TYPE_VIDEO);}
                 }
             }
         } catch (NumberFormatException e) {
             Log.w(TAG, "uri: " + uri.toString(), e);
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.findPathByUri(android.net.Uri)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.findPathByUri(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     public Path getDefaultSetOf(Path item) {
-        MediaObject object = mApplication.getDataManager().getMediaObject(item);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getDefaultSetOf(com.android.gallery3d.data.Path)",this,item);try{MediaObject object = mApplication.getDataManager().getMediaObject(item);
         if (object instanceof LocalMediaItem) {
-            return Path.fromString("/local/all").getChild(
-                    String.valueOf(((LocalMediaItem) object).getBucketId()));
+            {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getDefaultSetOf(com.android.gallery3d.data.Path)",this);return Path.fromString("/local/all").getChild(
+                    String.valueOf(((LocalMediaItem) object).getBucketId()));}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getDefaultSetOf(com.android.gallery3d.data.Path)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.data.LocalSource.getDefaultSetOf(com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     @Override
     public void mapMediaItems(ArrayList<PathId> list, ItemConsumer consumer) {
-        ArrayList<PathId> imageList = new ArrayList<PathId>();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalSource.mapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer)",this,list,consumer);try{ArrayList<PathId> imageList = new ArrayList<PathId>();
         ArrayList<PathId> videoList = new ArrayList<PathId>();
         int n = list.size();
         for (int i = 0; i < n; i++) {
             PathId pid = list.get(i);
-            // We assume the form is: "/local/{image,video}/item/#"
-            // We don't use mMatcher for efficiency's reason.
+            /*// We assume the form is: "/local/{image,video}/item/#"*/
+            /*// We don't use mMatcher for efficiency's reason.*/
             Path parent = pid.path.getParent();
             if (parent == LocalImage.ITEM_PATH) {
                 imageList.add(pid);
@@ -198,20 +198,20 @@ class LocalSource extends MediaSource {
                 videoList.add(pid);
             }
         }
-        // TODO: use "files" table so we can merge the two cases.
+        /*// TODO: use "files" table so we can merge the two cases.*/
         processMapMediaItems(imageList, consumer, true);
-        processMapMediaItems(videoList, consumer, false);
+        processMapMediaItems(videoList, consumer, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalSource.mapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalSource.mapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer)",this,throwable);throw throwable;}
     }
 
     private void processMapMediaItems(ArrayList<PathId> list,
             ItemConsumer consumer, boolean isImage) {
-        // Sort path by path id
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalSource.processMapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer,boolean)",this,list,consumer,isImage);try{/*// Sort path by path id*/
         Collections.sort(list, sIdComparator);
         int n = list.size();
         for (int i = 0; i < n; ) {
             PathId pid = list.get(i);
 
-            // Find a range of items.
+            /*// Find a range of items.*/
             ArrayList<Integer> ids = new ArrayList<Integer>();
             int startId = Integer.parseInt(pid.path.getSuffix());
             ids.add(startId);
@@ -234,35 +234,35 @@ class LocalSource extends MediaSource {
             }
 
             i = j;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalSource.processMapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalSource.processMapMediaItems(java.util.ArrayList,com.android.gallery3d.data.MediaSet.ItemConsumer,boolean)",this,throwable);throw throwable;}
     }
 
-    // This is a comparator which compares the suffix number in two Paths.
+    /*// This is a comparator which compares the suffix number in two Paths.*/
     private static class IdComparator implements Comparator<PathId> {
         public int compare(PathId p1, PathId p2) {
-            String s1 = p1.path.getSuffix();
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalSource$IdComparator.compare(PathId,PathId)",this,p1,p2);try{String s1 = p1.path.getSuffix();
             String s2 = p2.path.getSuffix();
             int len1 = s1.length();
             int len2 = s2.length();
             if (len1 < len2) {
-                return -1;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalSource$IdComparator.compare(PathId,PathId)",this);return -1;}
             } else if (len1 > len2) {
-                return 1;
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalSource$IdComparator.compare(PathId,PathId)",this);return 1;}
             } else {
-                return s1.compareTo(s2);
-            }
+                {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalSource$IdComparator.compare(PathId,PathId)",this);return s1.compareTo(s2);}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalSource$IdComparator.compare(PathId,PathId)",this,throwable);throw throwable;}
         }
     }
 
     @Override
     public void resume() {
-        mClient = mApplication.getContentResolver()
-                .acquireContentProviderClient(MediaStore.AUTHORITY);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalSource.resume()",this);try{mClient = mApplication.getContentResolver()
+                .acquireContentProviderClient(MediaStore.AUTHORITY);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalSource.resume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalSource.resume()",this,throwable);throw throwable;}
     }
 
     @Override
     public void pause() {
-        mClient.release();
-        mClient = null;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalSource.pause()",this);try{mClient.release();
+        mClient = null;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalSource.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalSource.pause()",this,throwable);throw throwable;}
     }
 }

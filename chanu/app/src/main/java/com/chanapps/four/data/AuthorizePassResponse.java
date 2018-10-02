@@ -60,39 +60,39 @@ RESPONSE ERROR:
     }
 
     public void processResponse() {
-        isAuthorized = false;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.data.AuthorizePassResponse.processResponse()",this);try{isAuthorized = false;
         try {
             Matcher successMatch = SUCCESS_REG.matcher(response);
             Matcher banMatch = BAN_REG.matcher(response);
             Matcher errorMatch = ERROR_REG.matcher(response);
             Matcher genericErrorMatch = GENERIC_ERROR_REG.matcher(response);
             if ("".equals(response))
-                error = ctx.getString(R.string.delete_post_response_error);
+                {error = ctx.getString(R.string.delete_post_response_error);}
             else if (successMatch.find())
-                isAuthorized = true;
+                {isAuthorized = true;}
             else if (banMatch.find())
-                error = banMatch.group(1) + " " + banMatch.group(2) + " " + banMatch.group(3);
+                {error = banMatch.group(1) + " " + banMatch.group(2) + " " + banMatch.group(3);}
             else if (errorMatch.find())
-                error = errorMatch.group(2).replaceFirst("Error: ", "");
+                {error = errorMatch.group(2).replaceFirst("Error: ", "");}
             else if (genericErrorMatch.find())
-                error = genericErrorMatch.group(2).replaceFirst("Error: ", "");
+                {error = genericErrorMatch.group(2).replaceFirst("Error: ", "");}
         }
         catch (Exception e) {
             error = e.getLocalizedMessage();
             isAuthorized = false;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.data.AuthorizePassResponse.processResponse()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.data.AuthorizePassResponse.processResponse()",this,throwable);throw throwable;}
     }
 
     public String getResponse() {
-        return response;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.AuthorizePassResponse.getResponse()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.AuthorizePassResponse.getResponse()",this);return response;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.AuthorizePassResponse.getResponse()",this,throwable);throw throwable;}
     }
 
     public boolean isAuthorized() {
-        return isAuthorized;
+        com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.data.AuthorizePassResponse.isAuthorized()",this);try{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.data.AuthorizePassResponse.isAuthorized()",this);return isAuthorized;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.data.AuthorizePassResponse.isAuthorized()",this,throwable);throw throwable;}
     }
 
     public String getError(Context ctx) {
-        return error;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.chanapps.four.data.AuthorizePassResponse.getError(android.content.Context)",this,ctx);try{com.mijack.Xlog.logMethodExit("java.lang.String com.chanapps.four.data.AuthorizePassResponse.getError(android.content.Context)",this);return error;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.chanapps.four.data.AuthorizePassResponse.getError(android.content.Context)",this,throwable);throw throwable;}
     }
 
 }

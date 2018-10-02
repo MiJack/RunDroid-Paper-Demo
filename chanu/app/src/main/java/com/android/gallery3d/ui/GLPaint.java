@@ -27,39 +27,39 @@ public class GLPaint {
     private int mColor = 0;
 
     public int getFlags() {
-        return mFlags;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.GLPaint.getFlags()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.GLPaint.getFlags()",this);return mFlags;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.GLPaint.getFlags()",this,throwable);throw throwable;}
     }
 
     public void setFlags(int flags) {
-        mFlags = flags;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GLPaint.setFlags(int)",this,flags);try{mFlags = flags;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GLPaint.setFlags(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GLPaint.setFlags(int)",this,throwable);throw throwable;}
     }
 
     public void setColor(int color) {
-        mColor = color;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GLPaint.setColor(int)",this,color);try{mColor = color;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GLPaint.setColor(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GLPaint.setColor(int)",this,throwable);throw throwable;}
     }
 
     public int getColor() {
-        return mColor;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.ui.GLPaint.getColor()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.ui.GLPaint.getColor()",this);return mColor;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.ui.GLPaint.getColor()",this,throwable);throw throwable;}
     }
 
     public void setLineWidth(float width) {
-        Utils.assertTrue(width >= 0);
-        mLineWidth = width;
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GLPaint.setLineWidth(float)",this,width);try{Utils.assertTrue(width >= 0);
+        mLineWidth = width;com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GLPaint.setLineWidth(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GLPaint.setLineWidth(float)",this,throwable);throw throwable;}
     }
 
     public float getLineWidth() {
-        return mLineWidth;
+        com.mijack.Xlog.logMethodEnter("float com.android.gallery3d.ui.GLPaint.getLineWidth()",this);try{com.mijack.Xlog.logMethodExit("float com.android.gallery3d.ui.GLPaint.getLineWidth()",this);return mLineWidth;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("float com.android.gallery3d.ui.GLPaint.getLineWidth()",this,throwable);throw throwable;}
     }
 
     public void setAntiAlias(boolean enabled) {
-        if (enabled) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.GLPaint.setAntiAlias(boolean)",this,enabled);try{if (enabled) {
             mFlags |= FLAG_ANTI_ALIAS;
         } else {
             mFlags &= ~FLAG_ANTI_ALIAS;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.GLPaint.setAntiAlias(boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.GLPaint.setAntiAlias(boolean)",this,throwable);throw throwable;}
     }
 
     public boolean getAntiAlias(){
-        return (mFlags & FLAG_ANTI_ALIAS) != 0;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.GLPaint.getAntiAlias()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.GLPaint.getAntiAlias()",this);return (mFlags & FLAG_ANTI_ALIAS) != 0;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.GLPaint.getAntiAlias()",this,throwable);throw throwable;}
     }
 }

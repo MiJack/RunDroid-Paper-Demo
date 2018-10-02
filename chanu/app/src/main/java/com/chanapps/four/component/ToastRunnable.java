@@ -27,12 +27,12 @@ public class ToastRunnable implements Runnable {
 
     @Override
     public void run(){
-        if (text == null) {
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.component.ToastRunnable.run()",this);try{if (text == null) {
             Toast.makeText(ctx, strId, Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.chanapps.four.component.ToastRunnable.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.component.ToastRunnable.run()",this,throwable);throw throwable;}
     }
 }
 

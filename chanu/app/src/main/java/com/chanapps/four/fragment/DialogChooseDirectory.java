@@ -47,16 +47,16 @@ public class DialogChooseDirectory implements AdapterView.OnItemClickListener, D
             super( m_context, resid, m_entries );
         }
 
-        // This function is called to show each view item
+        /*// This function is called to show each view item*/
         @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
-            TextView textview = (TextView) super.getView( position, convertView, parent );
+            com.mijack.Xlog.logMethodEnter("android.view.View com.chanapps.four.fragment.DialogChooseDirectory$DirAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,position,convertView,parent);try{TextView textview = (TextView) super.getView( position, convertView, parent );
 
             if ( m_entries.get(position) == null )
             {
                 textview.setText( ".." );
-                //textview.setCompoundDrawablesWithIntrinsicBounds( m_context.getResources().getDrawable( R.drawable.collections_collection ), null, null, null );
+                /*//textview.setCompoundDrawablesWithIntrinsicBounds( m_context.getResources().getDrawable( R.drawable.collections_collection ), null, null, null );*/
             }
             else
             {
@@ -68,27 +68,27 @@ public class DialogChooseDirectory implements AdapterView.OnItemClickListener, D
                         m_context.getResources().getDrawable(iconId), null, null, null );
             }
 
-            return textview;
+            {com.mijack.Xlog.logMethodExit("android.view.View com.chanapps.four.fragment.DialogChooseDirectory$DirAdapter.getView(int,android.view.View,android.view.ViewGroup)",this);return textview;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.chanapps.four.fragment.DialogChooseDirectory$DirAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,throwable);throw throwable;}
         }
     }
 
     private void listDirs()
     {
-        m_entries.clear();
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DialogChooseDirectory.listDirs()",this);try{m_entries.clear();
 
-        // Get files
+        /*// Get files*/
         File[] files = m_currentDir.listFiles();
 
-        // Add the ".." entry
+        /*// Add the ".." entry*/
         if ( m_currentDir.getParent() != null )
-            m_entries.add( new File("..") );
+            {m_entries.add( new File("..") );}
 
         if ( files != null )
         {
             for ( File file : files )
             {
                 if ( !file.isDirectory() )
-                    continue;
+                    {continue;}
 
                 m_entries.add( file );
             }
@@ -96,9 +96,9 @@ public class DialogChooseDirectory implements AdapterView.OnItemClickListener, D
 
         Collections.sort(m_entries, new Comparator<File>() {
             public int compare(File f1, File f2) {
-                return f1.getName().toLowerCase().compareTo(f2.getName().toLowerCase());
+                com.mijack.Xlog.logMethodEnter("int com.chanapps.four.fragment.DialogChooseDirectory$1.compare(java.io.File,java.io.File)",this,f1,f2);try{com.mijack.Xlog.logMethodExit("int com.chanapps.four.fragment.DialogChooseDirectory$1.compare(java.io.File,java.io.File)",this);{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DialogChooseDirectory.listDirs()",this);return f1.getName().toLowerCase().compareTo(f2.getName().toLowerCase());}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.chanapps.four.fragment.DialogChooseDirectory$1.compare(java.io.File,java.io.File)",this,throwable);throw throwable;}
             }
-        });
+        });}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DialogChooseDirectory.listDirs()",this,throwable);throw throwable;}
     }
 
     public DialogChooseDirectory( Context ctx, Result res, String startDir )
@@ -107,9 +107,9 @@ public class DialogChooseDirectory implements AdapterView.OnItemClickListener, D
         m_result = res;
 
         if ( startDir != null )
-            m_currentDir = new File( startDir );
+            {m_currentDir = new File( startDir );}
         else
-            m_currentDir = Environment.getExternalStorageDirectory();
+            {m_currentDir = Environment.getExternalStorageDirectory();}
 
         listDirs();
         DirAdapter adapter = new DirAdapter(ITEM_LAYOUT_ID);
@@ -120,15 +120,15 @@ public class DialogChooseDirectory implements AdapterView.OnItemClickListener, D
 
         builder.setPositiveButton(R.string.dialog_choose, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if ( m_result != null )
-                    m_result.onChooseDirectory( m_currentDir.getAbsolutePath() );
-                dialog.dismiss();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DialogChooseDirectory$2.onClick(android.content.DialogInterface,int)",this,dialog,id);try{if ( m_result != null )
+                    {m_result.onChooseDirectory( m_currentDir.getAbsolutePath() );}
+                dialog.dismiss();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DialogChooseDirectory$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DialogChooseDirectory$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
             }
         });
 
         builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
+                com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DialogChooseDirectory$3.onClick(android.content.DialogInterface,int)",this,dialog,id);try{dialog.cancel();com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DialogChooseDirectory$3.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DialogChooseDirectory$3.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
             }
         });
 
@@ -141,25 +141,23 @@ public class DialogChooseDirectory implements AdapterView.OnItemClickListener, D
     @Override
     public void onItemClick(AdapterView<?> arg0, View list, int pos, long id )
     {
-        if ( pos < 0 || pos >= m_entries.size() )
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DialogChooseDirectory.onItemClick(android.widget.AdapterView,android.view.View,int,long)",this,arg0,list,pos,id);try{if ( pos < 0 || pos >= m_entries.size() )
+            {{com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DialogChooseDirectory.onItemClick(android.widget.AdapterView,android.view.View,int,long)",this);return;}}
 
         if ( m_entries.get( pos ).getName().equals( ".." ) )
-            m_currentDir = m_currentDir.getParentFile();
+            {m_currentDir = m_currentDir.getParentFile();}
         else
-            m_currentDir = m_entries.get( pos );
+            {m_currentDir = m_entries.get( pos );}
 
         String title = m_currentDir.getAbsolutePath();
         m_alertDialog.setTitle(title);
         listDirs();
         DirAdapter adapter = new DirAdapter(ITEM_LAYOUT_ID);
-        m_list.setAdapter( adapter );
+        m_list.setAdapter( adapter );}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.fragment.DialogChooseDirectory.onItemClick(android.widget.AdapterView,android.view.View,int,long)",this,throwable);throw throwable;}
     }
 
-    public void onClick(DialogInterface dialog, int which)
-    {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.chanapps.four.fragment.DialogChooseDirectory.onClick(android.content.DialogInterface,int)",this,dialog,which);com.mijack.Xlog.logMethodExit("void com.chanapps.four.fragment.DialogChooseDirectory.onClick(android.content.DialogInterface,int)",this);}
 
-    protected static final int ITEM_LAYOUT_ID = android.R.layout.simple_list_item_1; // listitem_row_textview;
+    protected static final int ITEM_LAYOUT_ID = android.R.layout.simple_list_item_1; /*// listitem_row_textview;*/
 
 }

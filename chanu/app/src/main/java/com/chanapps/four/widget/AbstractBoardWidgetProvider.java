@@ -30,17 +30,17 @@ public abstract class AbstractBoardWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        for (int i = 0; i < appWidgetIds.length; i++)
-            WidgetProviderUtils.update(context, appWidgetIds[i], getWidgetType());
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onUpdate(android.content.Context,android.appwidget.AppWidgetManager,[int)",this,context,appWidgetManager,appWidgetIds);try{for (int i = 0; i < appWidgetIds.length; i++)
+            {WidgetProviderUtils.update(context, appWidgetIds[i], getWidgetType());}
+        super.onUpdate(context, appWidgetManager, appWidgetIds);com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onUpdate(android.content.Context,android.appwidget.AppWidgetManager,[int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onUpdate(android.content.Context,android.appwidget.AppWidgetManager,[int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
-        if (DEBUG) Log.i(TAG, "deleting widgets: " + Arrays.toString(appWidgetIds));
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onDeleted(android.content.Context,[int)",this,context,appWidgetIds);try{if (DEBUG) {Log.i(TAG, "deleting widgets: " + Arrays.toString(appWidgetIds));}
         Set<Integer> widgetsToDelete = new HashSet<Integer>();
         for (int i = 0; i < appWidgetIds.length; i++)
-            widgetsToDelete.add(appWidgetIds[i]);
+            {widgetsToDelete.add(appWidgetIds[i]);}
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> widgetBoards = prefs.getStringSet(SettingsActivity.PREF_WIDGET_BOARDS, new HashSet<String>());
         Set<String> newWidgetBoards = new HashSet<String>();
@@ -48,22 +48,22 @@ public abstract class AbstractBoardWidgetProvider extends AppWidgetProvider {
             String[] components = widgetBoard.split(WidgetConf.DELIM);
             int widgetId = Integer.valueOf(components[0]);
             if (!widgetsToDelete.contains(widgetId))
-                newWidgetBoards.add(widgetBoard);
+                {newWidgetBoards.add(widgetBoard);}
         }
         SharedPreferences.Editor editor = prefs.edit();
         editor.putStringSet(SettingsActivity.PREF_WIDGET_BOARDS, newWidgetBoards);
-        editor.commit();
+        editor.commit();com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onDeleted(android.content.Context,[int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onDeleted(android.content.Context,[int)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onEnabled(Context context) {
-        // handled by config task
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onEnabled(android.content.Context)",this,context);try{/*// handled by config task*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onEnabled(android.content.Context)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onEnabled(android.content.Context)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDisabled(Context context) {
-        if (DEBUG) Log.i(TAG, "disabled all widgets");
-        GlobalAlarmReceiver.scheduleGlobalAlarm(context); // will deschedule if appropriate
+        com.mijack.Xlog.logMethodEnter("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onDisabled(android.content.Context)",this,context);try{if (DEBUG) {Log.i(TAG, "disabled all widgets");}
+        GlobalAlarmReceiver.scheduleGlobalAlarm(context); /*// will deschedule if appropriate*/com.mijack.Xlog.logMethodExit("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onDisabled(android.content.Context)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.chanapps.four.widget.AbstractBoardWidgetProvider.onDisabled(android.content.Context)",this,throwable);throw throwable;}
     }
 
 }

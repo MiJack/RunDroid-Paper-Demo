@@ -25,7 +25,7 @@ public class GalleryFrameLayout extends FrameLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev)
     {
-    	WebView myWebView = (WebView) findViewById(com.chanapps.four.activity.R.id.video_view);
+    	com.mijack.Xlog.logMethodEnter("boolean com.chanapps.four.gallery.GalleryFrameLayout.onInterceptTouchEvent(android.view.MotionEvent)",this,ev);try{WebView myWebView = (WebView) findViewById(com.chanapps.four.activity.R.id.video_view);
     	String html = "<html><body bgcolor=\"black\"></body></html>";
     	myWebView.loadDataWithBaseURL("/", html, "text/html", "UTF-8", null);
     	
@@ -33,7 +33,7 @@ public class GalleryFrameLayout extends FrameLayout {
     	if (view.getVisibility() != View.GONE) {
     		view.setVisibility(View.GONE);
     	}
-		return false;
+		{com.mijack.Xlog.logMethodExit("boolean com.chanapps.four.gallery.GalleryFrameLayout.onInterceptTouchEvent(android.view.MotionEvent)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.chanapps.four.gallery.GalleryFrameLayout.onInterceptTouchEvent(android.view.MotionEvent)",this,throwable);throw throwable;}
     }
 
 }

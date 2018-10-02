@@ -63,7 +63,7 @@ public class MenuExecutor {
 
     private static ProgressDialog showProgressDialog(
             Context context, int titleId, int progressMax) {
-        ProgressDialog dialog = new ProgressDialog(context);
+        com.mijack.Xlog.logStaticMethodEnter("android.app.ProgressDialog com.android.gallery3d.ui.MenuExecutor.showProgressDialog(com.android.gallery3d.util.ThreadPool.JobContext,int,int)",context,titleId,progressMax);try{ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle(titleId);
         dialog.setMax(progressMax);
         dialog.setCancelable(false);
@@ -72,7 +72,7 @@ public class MenuExecutor {
             dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         }
         dialog.show();
-        return dialog;
+        {com.mijack.Xlog.logStaticMethodExit("android.app.ProgressDialog com.android.gallery3d.ui.MenuExecutor.showProgressDialog(com.android.gallery3d.util.ThreadPool.JobContext,int,int)");return dialog;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.app.ProgressDialog com.android.gallery3d.ui.MenuExecutor.showProgressDialog(com.android.gallery3d.util.ThreadPool.JobContext,int,int)",throwable);throw throwable;}
     }
 
     public interface ProgressListener {
@@ -87,7 +87,7 @@ public class MenuExecutor {
         mHandler = new SynchronizedHandler(mActivity.getGLRoot()) {
             @Override
             public void handleMessage(Message message) {
-                switch (message.what) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MenuExecutor$1.handleMessage(android.os.Message)",this,message);try{switch (message.what) {
                     case MSG_TASK_COMPLETE: {
                         stopTaskAndDismissDialog();
                         if (message.obj != null) {
@@ -98,7 +98,7 @@ public class MenuExecutor {
                         break;
                     }
                     case MSG_TASK_UPDATE: {
-                        if (mDialog != null) mDialog.setProgress(message.arg1);
+                        if (mDialog != null) {mDialog.setProgress(message.arg1);}
                         if (message.obj != null) {
                             ProgressListener listener = (ProgressListener) message.obj;
                             listener.onProgressUpdate(message.arg1);
@@ -109,46 +109,46 @@ public class MenuExecutor {
                         ((Activity) mActivity).startActivity((Intent) message.obj);
                         break;
                     }
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MenuExecutor$1.handleMessage(android.os.Message)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor$1.handleMessage(android.os.Message)",this,throwable);throw throwable;}
             }
         };
     }
 
     private void stopTaskAndDismissDialog() {
-        if (mTask != null) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MenuExecutor.stopTaskAndDismissDialog()",this);try{if (mTask != null) {
             mTask.cancel();
             mTask.waitDone();
             mDialog.dismiss();
             mDialog = null;
             mTask = null;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MenuExecutor.stopTaskAndDismissDialog()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor.stopTaskAndDismissDialog()",this,throwable);throw throwable;}
     }
 
     public void pause() {
-        stopTaskAndDismissDialog();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MenuExecutor.pause()",this);try{stopTaskAndDismissDialog();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MenuExecutor.pause()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor.pause()",this,throwable);throw throwable;}
     }
 
     private void onProgressUpdate(int index, ProgressListener listener) {
-        mHandler.sendMessage(
-                mHandler.obtainMessage(MSG_TASK_UPDATE, index, 0, listener));
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MenuExecutor.onProgressUpdate(int,ProgressListener)",this,index,listener);try{mHandler.sendMessage(
+                mHandler.obtainMessage(MSG_TASK_UPDATE, index, 0, listener));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MenuExecutor.onProgressUpdate(int,ProgressListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor.onProgressUpdate(int,ProgressListener)",this,throwable);throw throwable;}
     }
 
     private void onProgressComplete(int result, ProgressListener listener) {
-        mHandler.sendMessage(mHandler.obtainMessage(MSG_TASK_COMPLETE, result, 0, listener));
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MenuExecutor.onProgressComplete(int,ProgressListener)",this,result,listener);try{mHandler.sendMessage(mHandler.obtainMessage(MSG_TASK_COMPLETE, result, 0, listener));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MenuExecutor.onProgressComplete(int,ProgressListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor.onProgressComplete(int,ProgressListener)",this,throwable);throw throwable;}
     }
 
     private static void setMenuItemVisibility(
             Menu menu, int id, boolean visibility) {
-        MenuItem item = menu.findItem(id);
-        if (item != null) item.setVisible(visibility);
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.MenuExecutor.setMenuItemVisibility(android.view.Menu,int,boolean)",menu,id,visibility);try{MenuItem item = menu.findItem(id);
+        if (item != null) {item.setVisible(visibility);}com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.MenuExecutor.setMenuItemVisibility(android.view.Menu,int,boolean)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor.setMenuItemVisibility(android.view.Menu,int,boolean)",throwable);throw throwable;}
     }
 
     public static void updateMenuOperation(Menu menu, int supported) {
-        boolean supportDelete = (supported & MediaObject.SUPPORT_DELETE) != 0;
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.ui.MenuExecutor.updateMenuOperation(android.view.Menu,int)",menu,supported);try{boolean supportDelete = (supported & MediaObject.SUPPORT_DELETE) != 0;
         boolean supportRotate = (supported & MediaObject.SUPPORT_ROTATE) != 0;
         boolean supportCrop = (supported & MediaObject.SUPPORT_CROP) != 0;
         boolean supportShare = (supported & MediaObject.SUPPORT_SHARE) != 0;
-        //boolean supportShare = false; // doesn't work
+        /*//boolean supportShare = false; // doesn't work*/
         boolean supportSetAs = (supported & MediaObject.SUPPORT_SETAS) != 0;
         boolean supportShowOnMap = (supported & MediaObject.SUPPORT_SHOW_ON_MAP) != 0;
         boolean supportCache = (supported & MediaObject.SUPPORT_CACHE) != 0;
@@ -166,17 +166,17 @@ public class MenuExecutor {
         setMenuItemVisibility(menu, R.id.action_show_on_map, supportShowOnMap);
         setMenuItemVisibility(menu, R.id.action_edit, supportEdit);
         setMenuItemVisibility(menu, R.id.action_details, supportInfo);
-        setMenuItemVisibility(menu, R.id.action_import, supportImport);
+        setMenuItemVisibility(menu, R.id.action_import, supportImport);com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.ui.MenuExecutor.updateMenuOperation(android.view.Menu,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor.updateMenuOperation(android.view.Menu,int)",throwable);throw throwable;}
     }
 
     private Path getSingleSelectedPath() {
-        ArrayList<Path> ids = mSelectionManager.getSelected(true);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.Path com.android.gallery3d.ui.MenuExecutor.getSingleSelectedPath()",this);try{ArrayList<Path> ids = mSelectionManager.getSelected(true);
         Utils.assertTrue(ids.size() == 1);
-        return ids.get(0);
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.Path com.android.gallery3d.ui.MenuExecutor.getSingleSelectedPath()",this);return ids.get(0);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.Path com.android.gallery3d.ui.MenuExecutor.getSingleSelectedPath()",this,throwable);throw throwable;}
     }
 
     public boolean onMenuClicked(MenuItem menuItem, ProgressListener listener) {
-        int title;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this,menuItem,listener);try{int title;
         DataManager manager = mActivity.getDataManager();
         int action = menuItem.getItemId();
         if (action == R.id.action_select_all) {
@@ -185,20 +185,20 @@ public class MenuExecutor {
             } else {
                 mSelectionManager.selectAll();
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this);return true;}
         } else if (action == R.id.action_download) {
         	ArrayList<Path> ids = mSelectionManager.getSelected(true);
         	if (ids != null && ids.size() > 0) {
         		ThreadImageDownloadService.startDownloadViaGalleryView(mActivity.getAndroidContext(), ids.get(0), ids);
         	}
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this);return true;}
         } else if (action == R.id.action_crop) {
             Path path = getSingleSelectedPath();
             String mimeType = getMimeType(manager.getMediaType(path));
             Intent intent = new Intent(CropImage.ACTION_CROP)
                     .setDataAndType(manager.getContentUri(path), mimeType);
             ((Activity) mActivity).startActivity(intent);
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this);return true;}
         } else if (action == R.id.action_setas) {
             Path path = getSingleSelectedPath();
             int type = manager.getMediaType(path);
@@ -210,7 +210,7 @@ public class MenuExecutor {
             Activity activity = (Activity) mActivity;
             activity.startActivity(Intent.createChooser(
                     intent, activity.getString(R.string.set_as)));
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this);return true;}
         } else if (action == R.id.action_confirm_delete) {
             title = R.string.delete;
         } else if (action == R.id.action_rotate_cw) {
@@ -224,35 +224,35 @@ public class MenuExecutor {
         } else if (action == R.id.action_import) {
             title = R.string.Import;
         } else {
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this);return false;}
         }
         startAction(action, title, listener);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.MenuExecutor.onMenuClicked(android.view.MenuItem,ProgressListener)",this,throwable);throw throwable;}
     }
 
     public void startAction(int action, int title, ProgressListener listener) {
-        ArrayList<Path> ids = mSelectionManager.getSelected(false);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.ui.MenuExecutor.startAction(int,int,ProgressListener)",this,action,title,listener);try{ArrayList<Path> ids = mSelectionManager.getSelected(false);
         stopTaskAndDismissDialog();
 
         Activity activity = (Activity) mActivity;
         mDialog = showProgressDialog(activity, title, ids.size());
         MediaOperation operation = new MediaOperation(action, ids, listener);
-        mTask = mActivity.getThreadPool().submit(operation, null);
+        mTask = mActivity.getThreadPool().submit(operation, null);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.ui.MenuExecutor.startAction(int,int,ProgressListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.ui.MenuExecutor.startAction(int,int,ProgressListener)",this,throwable);throw throwable;}
     }
 
     public static String getMimeType(int type) {
-        switch (type) {
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.ui.MenuExecutor.getMimeType(int)",type);try{switch (type) {
             case MediaObject.MEDIA_TYPE_IMAGE :
-                return "image/*";
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.MenuExecutor.getMimeType(int)");return "image/*";}
             case MediaObject.MEDIA_TYPE_VIDEO :
-                return "video/*";
-            default: return "*/*";
-        }
+                {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.MenuExecutor.getMimeType(int)");return "video/*";}
+            default: {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.ui.MenuExecutor.getMimeType(int)");return "*/*";}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.ui.MenuExecutor.getMimeType(int)",throwable);throw throwable;}
     }
 
     private boolean execute(
             DataManager manager, JobContext jc, int cmd, Path path) {
-        boolean result = true;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.ui.MenuExecutor.execute(com.android.gallery3d.data.DataManager,com.android.gallery3d.util.ThreadPool.JobContext,int,com.android.gallery3d.data.Path)",this,manager,jc,cmd,path);try{boolean result = true;
         Log.v(TAG, "Execute cmd: " + cmd + " for " + path);
         long startTime = System.currentTimeMillis();
 
@@ -301,7 +301,7 @@ public class MenuExecutor {
         }
         Log.v(TAG, "It takes " + (System.currentTimeMillis() - startTime) +
                 " ms to execute cmd for " + path);
-        return result;
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.ui.MenuExecutor.execute(com.android.gallery3d.data.DataManager,com.android.gallery3d.util.ThreadPool.JobContext,int,com.android.gallery3d.data.Path)",this);return result;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.ui.MenuExecutor.execute(com.android.gallery3d.data.DataManager,com.android.gallery3d.util.ThreadPool.JobContext,int,com.android.gallery3d.data.Path)",this,throwable);throw throwable;}
     }
 
     private class MediaOperation implements Job<Void> {
@@ -316,7 +316,7 @@ public class MenuExecutor {
         }
 
         public Void run(JobContext jc) {
-            int index = 0;
+            com.mijack.Xlog.logMethodEnter("java.lang.Void com.android.gallery3d.ui.MenuExecutor$MediaOperation.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{int index = 0;
             DataManager manager = mActivity.getDataManager();
             int result = EXECUTION_RESULT_SUCCESS;
             try {
@@ -336,7 +336,7 @@ public class MenuExecutor {
             } finally {
                onProgressComplete(result, mListener);
             }
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.Void com.android.gallery3d.ui.MenuExecutor$MediaOperation.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Void com.android.gallery3d.ui.MenuExecutor$MediaOperation.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
         }
     }
 }

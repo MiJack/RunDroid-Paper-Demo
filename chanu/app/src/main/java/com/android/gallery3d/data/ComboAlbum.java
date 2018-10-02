@@ -20,9 +20,9 @@ import com.android.gallery3d.util.Future;
 
 import java.util.ArrayList;
 
-// ComboAlbum combines multiple media sets into one. It lists all media items
-// from the input albums.
-// This only handles SubMediaSets, not MediaItems. (That's all we need now)
+/*// ComboAlbum combines multiple media sets into one. It lists all media items*/
+/*// from the input albums.*/
+/*// This only handles SubMediaSets, not MediaItems. (That's all we need now)*/
 public class ComboAlbum extends MediaSet implements ContentListener {
     private static final String TAG = "ComboAlbum";
     private final MediaSet[] mSets;
@@ -39,10 +39,10 @@ public class ComboAlbum extends MediaSet implements ContentListener {
 
     @Override
     public ArrayList<MediaItem> getMediaItem(int start, int count) {
-        ArrayList<MediaItem> items = new ArrayList<MediaItem>();
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.ComboAlbum.getMediaItem(int,int)",this,start,count);try{ArrayList<MediaItem> items = new ArrayList<MediaItem>();
         for (MediaSet set : mSets) {
             int size = set.getMediaItemCount();
-            if (count < 1) break;
+            if (count < 1) {break;}
             if (start < size) {
                 int fetchCount = (start + count <= size) ? count : size - start;
                 ArrayList<MediaItem> fetchItems = set.getMediaItem(start, fetchCount);
@@ -53,40 +53,40 @@ public class ComboAlbum extends MediaSet implements ContentListener {
                 start -= size;
             }
         }
-        return items;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.ComboAlbum.getMediaItem(int,int)",this);return items;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.ComboAlbum.getMediaItem(int,int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getMediaItemCount() {
-        int count = 0;
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.ComboAlbum.getMediaItemCount()",this);try{int count = 0;
         for (MediaSet set : mSets) {
             count += set.getMediaItemCount();
         }
-        return count;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.ComboAlbum.getMediaItemCount()",this);return count;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.ComboAlbum.getMediaItemCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getName() {
-        return mName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.ComboAlbum.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.ComboAlbum.getName()",this);return mName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.ComboAlbum.getName()",this,throwable);throw throwable;}
     }
 
     @Override
     public long reload() {
-        boolean changed = false;
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.ComboAlbum.reload()",this);try{boolean changed = false;
         for (int i = 0, n = mSets.length; i < n; ++i) {
             long version = mSets[i].reload();
-            if (version > mDataVersion) changed = true;
+            if (version > mDataVersion) {changed = true;}
         }
-        if (changed) mDataVersion = nextVersionNumber();
-        return mDataVersion;
+        if (changed) {mDataVersion = nextVersionNumber();}
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.ComboAlbum.reload()",this);return mDataVersion;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.ComboAlbum.reload()",this,throwable);throw throwable;}
     }
 
     public void onContentDirty() {
-        notifyContentChanged();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.ComboAlbum.onContentDirty()",this);try{notifyContentChanged();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.ComboAlbum.onContentDirty()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.ComboAlbum.onContentDirty()",this,throwable);throw throwable;}
     }
 
     @Override
     public Future<Integer> requestSync(SyncListener listener) {
-        return requestSyncOnEmptySets(mSets, listener);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.Future com.android.gallery3d.data.ComboAlbum.requestSync(SyncListener)",this,listener);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.Future com.android.gallery3d.data.ComboAlbum.requestSync(SyncListener)",this);return requestSyncOnEmptySets(mSets, listener);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.Future com.android.gallery3d.data.ComboAlbum.requestSync(SyncListener)",this,throwable);throw throwable;}
     }
 }

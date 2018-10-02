@@ -50,16 +50,16 @@ public class MtpClient {
     private final Context mContext;
     private final UsbManager mUsbManager;
     private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
-    // mDevices contains all MtpDevices that have been seen by our client,
-    // so we can inform when the device has been detached.
-    // mDevices is also used for synchronization in this class.
+    /*// mDevices contains all MtpDevices that have been seen by our client,*/
+    /*// so we can inform when the device has been detached.*/
+    /*// mDevices is also used for synchronization in this class.*/
     private final HashMap<String, MtpDevice> mDevices = new HashMap<String, MtpDevice>();
-    // List of MTP devices we should not try to open for which we are currently
-    // asking for permission to open.
+    /*// List of MTP devices we should not try to open for which we are currently*/
+    /*// asking for permission to open.*/
     private final ArrayList<String> mRequestPermissionDevices = new ArrayList<String>();
-    // List of MTP devices we should not try to open.
-    // We add devices to this list if the user canceled a permission request or we were
-    // unable to open the device.
+    /*// List of MTP devices we should not try to open.*/
+    /*// We add devices to this list if the user canceled a permission request or we were*/
+    /*// unable to open the device.*/
     private final ArrayList<String> mIgnoredDevices = new ArrayList<String>();
 
     private final PendingIntent mPermissionIntent;
@@ -67,7 +67,7 @@ public class MtpClient {
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
+            com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpClient$1.onReceive(android.content.Context,android.app.PendingIntent)",this,context,intent);try{String action = intent.getAction();
             UsbDevice usbDevice = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
             String deviceName = usbDevice.getDeviceName();
 
@@ -107,11 +107,11 @@ public class MtpClient {
                             }
                         }
                     } else {
-                        // so we don't ask for permission again
+                        /*// so we don't ask for permission again*/
                         mIgnoredDevices.add(deviceName);
                     }
                 }
-            }
+            }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpClient$1.onReceive(android.content.Context,android.app.PendingIntent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpClient$1.onReceive(android.content.Context,android.app.PendingIntent)",this,throwable);throw throwable;}
         }
     };
 
@@ -143,16 +143,16 @@ public class MtpClient {
      * @return true if the device is a PTP device.
      */
     static public boolean isCamera(UsbDevice device) {
-        int count = device.getInterfaceCount();
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.android.gallery3d.data.MtpClient.isCamera(android.hardware.usb.UsbDevice)",device);try{int count = device.getInterfaceCount();
         for (int i = 0; i < count; i++) {
             UsbInterface intf = device.getInterface(i);
             if (intf.getInterfaceClass() == UsbConstants.USB_CLASS_STILL_IMAGE &&
                     intf.getInterfaceSubclass() == 1 &&
                     intf.getInterfaceProtocol() == 1) {
-                return true;
+                {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.MtpClient.isCamera(android.hardware.usb.UsbDevice)");return true;}
             }
         }
-        return false;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.android.gallery3d.data.MtpClient.isCamera(android.hardware.usb.UsbDevice)");return false;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.android.gallery3d.data.MtpClient.isCamera(android.hardware.usb.UsbDevice)",throwable);throw throwable;}
     }
 
     /**
@@ -179,10 +179,10 @@ public class MtpClient {
      * @return an MtpDevice for the device.
      */
     private MtpDevice openDeviceLocked(UsbDevice usbDevice) {
-        String deviceName = usbDevice.getDeviceName();
+        com.mijack.Xlog.logMethodEnter("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.openDeviceLocked(android.hardware.usb.UsbDevice)",this,usbDevice);try{String deviceName = usbDevice.getDeviceName();
 
-        // don't try to open devices that we have decided to ignore
-        // or are currently asking permission for
+        /*// don't try to open devices that we have decided to ignore*/
+        /*// or are currently asking permission for*/
         if (isCamera(usbDevice) && !mIgnoredDevices.contains(deviceName)
                 && !mRequestPermissionDevices.contains(deviceName)) {
             if (!mUsbManager.hasPermission(usbDevice)) {
@@ -194,25 +194,25 @@ public class MtpClient {
                     MtpDevice mtpDevice = new MtpDevice(usbDevice);
                     if (mtpDevice.open(connection)) {
                         mDevices.put(usbDevice.getDeviceName(), mtpDevice);
-                        return mtpDevice;
+                        {com.mijack.Xlog.logMethodExit("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.openDeviceLocked(android.hardware.usb.UsbDevice)",this);return mtpDevice;}
                     } else {
-                        // so we don't try to open it again
+                        /*// so we don't try to open it again*/
                         mIgnoredDevices.add(deviceName);
                     }
                 } else {
-                    // so we don't try to open it again
+                    /*// so we don't try to open it again*/
                     mIgnoredDevices.add(deviceName);
                 }
             }
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.openDeviceLocked(android.hardware.usb.UsbDevice)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.openDeviceLocked(android.hardware.usb.UsbDevice)",this,throwable);throw throwable;}
     }
 
     /**
      * Closes all resources related to the MtpClient object
      */
     public void close() {
-        mContext.unregisterReceiver(mUsbReceiver);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpClient.close()",this);try{mContext.unregisterReceiver(mUsbReceiver);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpClient.close()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpClient.close()",this,throwable);throw throwable;}
     }
 
     /**
@@ -222,11 +222,11 @@ public class MtpClient {
      * @param listener the listener to register
      */
     public void addListener(Listener listener) {
-        synchronized (mDevices) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpClient.addListener(Listener)",this,listener);try{synchronized (mDevices) {
             if (!mListeners.contains(listener)) {
                 mListeners.add(listener);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpClient.addListener(Listener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpClient.addListener(Listener)",this,throwable);throw throwable;}
     }
 
     /**
@@ -235,9 +235,9 @@ public class MtpClient {
      * @param listener the listener to unregister
      */
     public void removeListener(Listener listener) {
-        synchronized (mDevices) {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.MtpClient.removeListener(Listener)",this,listener);try{synchronized (mDevices) {
             mListeners.remove(listener);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.MtpClient.removeListener(Listener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.MtpClient.removeListener(Listener)",this,throwable);throw throwable;}
     }
 
     /**
@@ -248,9 +248,9 @@ public class MtpClient {
      * @return the MtpDevice, or null if it does not exist
      */
     public MtpDevice getDevice(String deviceName) {
-        synchronized (mDevices) {
+        com.mijack.Xlog.logMethodEnter("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.getDevice(java.lang.String)",this,deviceName);try{com.mijack.Xlog.logMethodExit("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.getDevice(java.lang.String)",this);synchronized (mDevices) {
             return mDevices.get(deviceName);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.getDevice(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -261,9 +261,9 @@ public class MtpClient {
      * @return the MtpDevice, or null if it does not exist
      */
     public MtpDevice getDevice(int id) {
-        synchronized (mDevices) {
+        com.mijack.Xlog.logMethodEnter("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.getDevice(int)",this,id);try{com.mijack.Xlog.logMethodExit("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.getDevice(int)",this);synchronized (mDevices) {
             return mDevices.get(UsbDevice.getDeviceName(id));
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.mtp.MtpDevice com.android.gallery3d.data.MtpClient.getDevice(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -272,9 +272,9 @@ public class MtpClient {
      * @return the list of MtpDevices
      */
     public List<MtpDevice> getDeviceList() {
-        synchronized (mDevices) {
-            // Query the USB manager since devices might have attached
-            // before we added our listener.
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.MtpClient.getDeviceList()",this);try{com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpClient.getDeviceList()",this);synchronized (mDevices) {
+            /*// Query the USB manager since devices might have attached*/
+            /*// before we added our listener.*/
             for (UsbDevice usbDevice : mUsbManager.getDeviceList().values()) {
                 if (mDevices.get(usbDevice.getDeviceName()) == null) {
                     openDeviceLocked(usbDevice);
@@ -282,7 +282,7 @@ public class MtpClient {
             }
 
             return new ArrayList<MtpDevice>(mDevices.values());
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.MtpClient.getDeviceList()",this,throwable);throw throwable;}
     }
 
     /**
@@ -293,13 +293,13 @@ public class MtpClient {
      * @return the list of MtpStorageInfo
      */
     public List<MtpStorageInfo> getStorageList(String deviceName) {
-        MtpDevice device = getDevice(deviceName);
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.MtpClient.getStorageList(java.lang.String)",this,deviceName);try{MtpDevice device = getDevice(deviceName);
         if (device == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpClient.getStorageList(java.lang.String)",this);return null;}
         }
         int[] storageIds = device.getStorageIds();
         if (storageIds == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpClient.getStorageList(java.lang.String)",this);return null;}
         }
 
         int length = storageIds.length;
@@ -312,7 +312,7 @@ public class MtpClient {
                 storageList.add(info);
             }
         }
-        return storageList;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpClient.getStorageList(java.lang.String)",this);return storageList;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.MtpClient.getStorageList(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -325,11 +325,11 @@ public class MtpClient {
      * @return the MtpObjectInfo
      */
     public MtpObjectInfo getObjectInfo(String deviceName, int objectHandle) {
-        MtpDevice device = getDevice(deviceName);
+        com.mijack.Xlog.logMethodEnter("android.mtp.MtpObjectInfo com.android.gallery3d.data.MtpClient.getObjectInfo(java.lang.String,int)",this,deviceName,objectHandle);try{MtpDevice device = getDevice(deviceName);
         if (device == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.mtp.MtpObjectInfo com.android.gallery3d.data.MtpClient.getObjectInfo(java.lang.String,int)",this);return null;}
         }
-        return device.getObjectInfo(objectHandle);
+        {com.mijack.Xlog.logMethodExit("android.mtp.MtpObjectInfo com.android.gallery3d.data.MtpClient.getObjectInfo(java.lang.String,int)",this);return device.getObjectInfo(objectHandle);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.mtp.MtpObjectInfo com.android.gallery3d.data.MtpClient.getObjectInfo(java.lang.String,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -340,11 +340,11 @@ public class MtpClient {
      * @return true if the deletion succeeds
      */
     public boolean deleteObject(String deviceName, int objectHandle) {
-        MtpDevice device = getDevice(deviceName);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MtpClient.deleteObject(java.lang.String,int)",this,deviceName,objectHandle);try{MtpDevice device = getDevice(deviceName);
         if (device == null) {
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MtpClient.deleteObject(java.lang.String,int)",this);return false;}
         }
-        return device.deleteObject(objectHandle);
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MtpClient.deleteObject(java.lang.String,int)",this);return device.deleteObject(objectHandle);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MtpClient.deleteObject(java.lang.String,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -361,17 +361,17 @@ public class MtpClient {
      * @return the list of MtpObjectInfo
      */
     public List<MtpObjectInfo> getObjectList(String deviceName, int storageId, int objectHandle) {
-        MtpDevice device = getDevice(deviceName);
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.MtpClient.getObjectList(java.lang.String,int,int)",this,deviceName,storageId,objectHandle);try{MtpDevice device = getDevice(deviceName);
         if (device == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpClient.getObjectList(java.lang.String,int,int)",this);return null;}
         }
         if (objectHandle == 0) {
-            // all objects in root of storage
+            /*// all objects in root of storage*/
             objectHandle = 0xFFFFFFFF;
         }
         int[] handles = device.getObjectHandles(storageId, 0, objectHandle);
         if (handles == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpClient.getObjectList(java.lang.String,int,int)",this);return null;}
         }
 
         int length = handles.length;
@@ -384,7 +384,7 @@ public class MtpClient {
                 objectList.add(info);
             }
         }
-        return objectList;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.MtpClient.getObjectList(java.lang.String,int,int)",this);return objectList;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.MtpClient.getObjectList(java.lang.String,int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -397,11 +397,11 @@ public class MtpClient {
      * @return the object's data, or null if reading fails
      */
     public byte[] getObject(String deviceName, int objectHandle, int objectSize) {
-        MtpDevice device = getDevice(deviceName);
+        com.mijack.Xlog.logMethodEnter("[byte com.android.gallery3d.data.MtpClient.getObject(java.lang.String,int,int)",this,deviceName,objectHandle,objectSize);try{MtpDevice device = getDevice(deviceName);
         if (device == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("[byte com.android.gallery3d.data.MtpClient.getObject(java.lang.String,int,int)",this);return null;}
         }
-        return device.getObject(objectHandle, objectSize);
+        {com.mijack.Xlog.logMethodExit("[byte com.android.gallery3d.data.MtpClient.getObject(java.lang.String,int,int)",this);return device.getObject(objectHandle, objectSize);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.android.gallery3d.data.MtpClient.getObject(java.lang.String,int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -412,11 +412,11 @@ public class MtpClient {
      * @return the object's thumbnail, or null if reading fails
      */
     public byte[] getThumbnail(String deviceName, int objectHandle) {
-        MtpDevice device = getDevice(deviceName);
+        com.mijack.Xlog.logMethodEnter("[byte com.android.gallery3d.data.MtpClient.getThumbnail(java.lang.String,int)",this,deviceName,objectHandle);try{MtpDevice device = getDevice(deviceName);
         if (device == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("[byte com.android.gallery3d.data.MtpClient.getThumbnail(java.lang.String,int)",this);return null;}
         }
-        return device.getThumbnail(objectHandle);
+        {com.mijack.Xlog.logMethodExit("[byte com.android.gallery3d.data.MtpClient.getThumbnail(java.lang.String,int)",this);return device.getThumbnail(objectHandle);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[byte com.android.gallery3d.data.MtpClient.getThumbnail(java.lang.String,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -430,10 +430,10 @@ public class MtpClient {
      * @return true if the file transfer succeeds
      */
     public boolean importFile(String deviceName, int objectHandle, String destPath) {
-        MtpDevice device = getDevice(deviceName);
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.MtpClient.importFile(java.lang.String,int,java.lang.String)",this,deviceName,objectHandle,destPath);try{MtpDevice device = getDevice(deviceName);
         if (device == null) {
-            return false;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MtpClient.importFile(java.lang.String,int,java.lang.String)",this);return false;}
         }
-        return device.importFile(objectHandle, destPath);
+        {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.MtpClient.importFile(java.lang.String,int,java.lang.String)",this);return device.importFile(objectHandle, destPath);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.MtpClient.importFile(java.lang.String,int,java.lang.String)",this,throwable);throw throwable;}
     }
 }

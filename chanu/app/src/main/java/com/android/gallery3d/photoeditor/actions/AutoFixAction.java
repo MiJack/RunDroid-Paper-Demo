@@ -34,13 +34,11 @@ public class AutoFixAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        AutoFixFilter filter = new AutoFixFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.AutoFixAction.doBegin()",this);try{AutoFixFilter filter = new AutoFixFilter();
         filter.setScale(DEFAULT_SCALE);
         notifyFilterChanged(filter, true);
-        notifyDone();
+        notifyDone();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.AutoFixAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.AutoFixAction.doBegin()",this,throwable);throw throwable;}
     }
 
-    @Override
-    public void doEnd() {
-    }
+    {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.AutoFixAction.doEnd()",this);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.AutoFixAction.doEnd()",this);}
 }

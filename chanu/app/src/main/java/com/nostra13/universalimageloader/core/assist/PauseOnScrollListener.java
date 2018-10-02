@@ -69,7 +69,7 @@ public class PauseOnScrollListener implements OnScrollListener {
 
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		switch (scrollState) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.PauseOnScrollListener.onScrollStateChanged(android.widget.AbsListView,int)",this,view,scrollState);try{switch (scrollState) {
 			case OnScrollListener.SCROLL_STATE_IDLE:
 				imageLoader.resume();
 				break;
@@ -86,13 +86,13 @@ public class PauseOnScrollListener implements OnScrollListener {
 		}
 		if (externalListener != null) {
 			externalListener.onScrollStateChanged(view, scrollState);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.PauseOnScrollListener.onScrollStateChanged(android.widget.AbsListView,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.PauseOnScrollListener.onScrollStateChanged(android.widget.AbsListView,int)",this,throwable);throw throwable;}
 	}
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-		if (externalListener != null) {
+		com.mijack.Xlog.logMethodEnter("void com.nostra13.universalimageloader.core.assist.PauseOnScrollListener.onScroll(android.widget.AbsListView,int,int,int)",this,view,firstVisibleItem,visibleItemCount,totalItemCount);try{if (externalListener != null) {
 			externalListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
-		}
+		}com.mijack.Xlog.logMethodExit("void com.nostra13.universalimageloader.core.assist.PauseOnScrollListener.onScroll(android.widget.AbsListView,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.nostra13.universalimageloader.core.assist.PauseOnScrollListener.onScroll(android.widget.AbsListView,int,int,int)",this,throwable);throw throwable;}
 	}
 }

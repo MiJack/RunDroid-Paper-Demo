@@ -30,7 +30,7 @@ import com.android.gallery3d.util.ThreadPool;
 public class GalleryAppImpl extends Application implements GalleryApp {
 
     private static final String DOWNLOAD_FOLDER = "download";
-    private static final long DOWNLOAD_CAPACITY = 64 * 1024 * 1024; // 64M
+    private static final long DOWNLOAD_CAPACITY = 64 * 1024 * 1024; /*// 64M*/
 
     private ImageCacheService mImageCacheService;
     protected DataManager mDataManager;
@@ -39,43 +39,43 @@ public class GalleryAppImpl extends Application implements GalleryApp {
 
     @Override
     public void onCreate() {
-        super.onCreate();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.GalleryAppImpl.onCreate()",this);try{super.onCreate();
         GalleryUtils.initialize(this);
-        //WidgetUtils.initialize(this);
-        //PicasaSource.initialize(this);
+        /*//WidgetUtils.initialize(this);*/
+        /*//PicasaSource.initialize(this);*/com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.GalleryAppImpl.onCreate()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.GalleryAppImpl.onCreate()",this,throwable);throw throwable;}
     }
 
     public Context getAndroidContext() {
-        return this;
+        com.mijack.Xlog.logMethodEnter("android.content.Context com.android.gallery3d.app.GalleryAppImpl.getAndroidContext()",this);try{com.mijack.Xlog.logMethodExit("android.content.Context com.android.gallery3d.app.GalleryAppImpl.getAndroidContext()",this);return this;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.Context com.android.gallery3d.app.GalleryAppImpl.getAndroidContext()",this,throwable);throw throwable;}
     }
 
     public synchronized DataManager getDataManager() {
-        if (mDataManager == null) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DataManager com.android.gallery3d.app.GalleryAppImpl.getDataManager()",this);try{if (mDataManager == null) {
             mDataManager = new DataManager(this);
             mDataManager.initializeSourceMap();
         }
-        return mDataManager;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DataManager com.android.gallery3d.app.GalleryAppImpl.getDataManager()",this);return mDataManager;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DataManager com.android.gallery3d.app.GalleryAppImpl.getDataManager()",this,throwable);throw throwable;}
     }
 
     public synchronized ImageCacheService getImageCacheService() {
-        if (mImageCacheService == null) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.ImageCacheService com.android.gallery3d.app.GalleryAppImpl.getImageCacheService()",this);try{if (mImageCacheService == null) {
             mImageCacheService = new ImageCacheService(getAndroidContext());
         }
-        return mImageCacheService;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.ImageCacheService com.android.gallery3d.app.GalleryAppImpl.getImageCacheService()",this);return mImageCacheService;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.ImageCacheService com.android.gallery3d.app.GalleryAppImpl.getImageCacheService()",this,throwable);throw throwable;}
     }
 
     public synchronized ThreadPool getThreadPool() {
-        if (mThreadPool == null) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.util.ThreadPool com.android.gallery3d.app.GalleryAppImpl.getThreadPool()",this);try{if (mThreadPool == null) {
             mThreadPool = new ThreadPool();
         }
-        return mThreadPool;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.util.ThreadPool com.android.gallery3d.app.GalleryAppImpl.getThreadPool()",this);return mThreadPool;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.util.ThreadPool com.android.gallery3d.app.GalleryAppImpl.getThreadPool()",this,throwable);throw throwable;}
     }
 
     public synchronized DownloadCache getDownloadCache() {
-        if (mDownloadCache == null) {
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.DownloadCache com.android.gallery3d.app.GalleryAppImpl.getDownloadCache()",this);try{if (mDownloadCache == null) {
             File cacheDir = new File(getExternalCacheDir(), DOWNLOAD_FOLDER);
 
-            if (!cacheDir.isDirectory()) cacheDir.mkdirs();
+            if (!cacheDir.isDirectory()) {cacheDir.mkdirs();}
 
             if (!cacheDir.isDirectory()) {
                 throw new RuntimeException(
@@ -83,6 +83,6 @@ public class GalleryAppImpl extends Application implements GalleryApp {
             }
             mDownloadCache = new DownloadCache(this, cacheDir, DOWNLOAD_CAPACITY);
         }
-        return mDownloadCache;
+        {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.DownloadCache com.android.gallery3d.app.GalleryAppImpl.getDownloadCache()",this);return mDownloadCache;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.DownloadCache com.android.gallery3d.app.GalleryAppImpl.getDownloadCache()",this,throwable);throw throwable;}
     }
 }

@@ -25,7 +25,7 @@ public class DialogPicker extends PickerActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.app.DialogPicker.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         int typeBits = GalleryUtils.determineTypeBits(this, getIntent());
         setTitle(GalleryUtils.getSelectionModePrompt(typeBits));
@@ -36,6 +36,6 @@ public class DialogPicker extends PickerActivity {
         data.putBoolean(Gallery.KEY_GET_CONTENT, true);
         data.putString(AlbumSetPage.KEY_MEDIA_PATH,
                 getDataManager().getTopSetPath(typeBits));
-        getStateManager().startState(AlbumSetPage.class, data);
+        getStateManager().startState(AlbumSetPage.class, data);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.app.DialogPicker.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.app.DialogPicker.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 }

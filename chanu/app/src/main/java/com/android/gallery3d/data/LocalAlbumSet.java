@@ -34,8 +34,8 @@ import android.provider.MediaStore.Video;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-// LocalAlbumSet lists all image or video albums in the local storage.
-// The path should be "/local/image", "local/video" or "/local/all"
+/*// LocalAlbumSet lists all image or video albums in the local storage.*/
+/*// The path should be "/local/image", "local/video" or "/local/all"*/
 public class LocalAlbumSet extends MediaSet {
     public static final Path PATH_ALL = Path.fromString("/local/all");
     public static final Path PATH_IMAGE = Path.fromString("/local/image");
@@ -44,7 +44,7 @@ public class LocalAlbumSet extends MediaSet {
     private static final String TAG = "LocalAlbumSet";
     private static final String EXTERNAL_MEDIA = "external";
 
-    // The indices should match the following projections.
+    /*// The indices should match the following projections.*/
     private static final int INDEX_BUCKET_ID = 0;
     private static final int INDEX_MEDIA_TYPE = 1;
     private static final int INDEX_BUCKET_NAME = 2;
@@ -53,36 +53,36 @@ public class LocalAlbumSet extends MediaSet {
     private static final Uri mWatchUriImage = Images.Media.EXTERNAL_CONTENT_URI;
     private static final Uri mWatchUriVideo = Video.Media.EXTERNAL_CONTENT_URI;
 
-    // BUCKET_DISPLAY_NAME is a string like "Camera" which is the directory
-    // name of where an image or video is in. BUCKET_ID is a hash of the path
-    // name of that directory (see computeBucketValues() in MediaProvider for
-    // details). MEDIA_TYPE is video, image, audio, etc.
-    //
-    // The "albums" are not explicitly recorded in the database, but each image
-    // or video has the two columns (BUCKET_ID, MEDIA_TYPE). We define an
-    // "album" to be the collection of images/videos which have the same value
-    // for the two columns.
-    //
-    // The goal of the query (used in loadSubMediaSets()) is to find all albums,
-    // that is, all unique values for (BUCKET_ID, MEDIA_TYPE). In the meantime
-    // sort them by the timestamp of the latest image/video in each of the album.
-    //
-    // The order of columns below is important: it must match to the index in
-    // MediaStore.
+    /*// BUCKET_DISPLAY_NAME is a string like "Camera" which is the directory*/
+    /*// name of where an image or video is in. BUCKET_ID is a hash of the path*/
+    /*// name of that directory (see computeBucketValues() in MediaProvider for*/
+    /*// details). MEDIA_TYPE is video, image, audio, etc.*/
+    /*//*/
+    /*// The "albums" are not explicitly recorded in the database, but each image*/
+    /*// or video has the two columns (BUCKET_ID, MEDIA_TYPE). We define an*/
+    /*// "album" to be the collection of images/videos which have the same value*/
+    /*// for the two columns.*/
+    /*//*/
+    /*// The goal of the query (used in loadSubMediaSets()) is to find all albums,*/
+    /*// that is, all unique values for (BUCKET_ID, MEDIA_TYPE). In the meantime*/
+    /*// sort them by the timestamp of the latest image/video in each of the album.*/
+    /*//*/
+    /*// The order of columns below is important: it must match to the index in*/
+    /*// MediaStore.*/
     private static final String[] PROJECTION_BUCKET = {
             ImageColumns.BUCKET_ID,
             FileColumns.MEDIA_TYPE,
             ImageColumns.BUCKET_DISPLAY_NAME };
 
-    // We want to order the albums by reverse chronological order. We abuse the
-    // "WHERE" parameter to insert a "GROUP BY" clause into the SQL statement.
-    // The template for "WHERE" parameter is like:
-    //    SELECT ... FROM ... WHERE (%s)
-    // and we make it look like:
-    //    SELECT ... FROM ... WHERE (1) GROUP BY 1,(2)
-    // The "(1)" means true. The "1,(2)" means the first two columns specified
-    // after SELECT. Note that because there is a ")" in the template, we use
-    // "(2" to match it.
+    /*// We want to order the albums by reverse chronological order. We abuse the*/
+    /*// "WHERE" parameter to insert a "GROUP BY" clause into the SQL statement.*/
+    /*// The template for "WHERE" parameter is like:*/
+    /*//    SELECT ... FROM ... WHERE (%s)*/
+    /*// and we make it look like:*/
+    /*//    SELECT ... FROM ... WHERE (1) GROUP BY 1,(2)*/
+    /*// The "(1)" means true. The "1,(2)" means the first two columns specified*/
+    /*// after SELECT. Note that because there is a ")" in the template, we use*/
+    /*// "(2" to match it.*/
     private static final String BUCKET_GROUP_BY =
             "1) GROUP BY 1,(2";
     private static final String BUCKET_ORDER_BY = "MAX(datetaken) DESC";
@@ -105,33 +105,33 @@ public class LocalAlbumSet extends MediaSet {
     }
 
     private static int getTypeFromPath(Path path) {
-        String name[] = path.split();
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.data.LocalAlbumSet.getTypeFromPath(com.android.gallery3d.data.Path)",path);try{String name[] = path.split();
         if (name.length < 2) {
             throw new IllegalArgumentException(path.toString());
         }
-        if ("all".equals(name[1])) return MEDIA_TYPE_ALL;
-        if ("image".equals(name[1])) return MEDIA_TYPE_IMAGE;
-        if ("video".equals(name[1])) return MEDIA_TYPE_VIDEO;
-        throw new IllegalArgumentException(path.toString());
+        if ("all".equals(name[1])) {{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalAlbumSet.getTypeFromPath(com.android.gallery3d.data.Path)");return MEDIA_TYPE_ALL;}}
+        if ("image".equals(name[1])) {{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalAlbumSet.getTypeFromPath(com.android.gallery3d.data.Path)");return MEDIA_TYPE_IMAGE;}}
+        if ("video".equals(name[1])) {{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalAlbumSet.getTypeFromPath(com.android.gallery3d.data.Path)");return MEDIA_TYPE_VIDEO;}}
+        throw new IllegalArgumentException(path.toString());}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.data.LocalAlbumSet.getTypeFromPath(com.android.gallery3d.data.Path)",throwable);throw throwable;}
     }
 
     @Override
     public MediaSet getSubMediaSet(int index) {
-        return mAlbums.get(index);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getSubMediaSet(int)",this,index);try{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getSubMediaSet(int)",this);return mAlbums.get(index);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getSubMediaSet(int)",this,throwable);throw throwable;}
     }
 
     @Override
     public int getSubMediaSetCount() {
-        return mAlbums.size();
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalAlbumSet.getSubMediaSetCount()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalAlbumSet.getSubMediaSetCount()",this);return mAlbums.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalAlbumSet.getSubMediaSetCount()",this,throwable);throw throwable;}
     }
 
     @Override
     public String getName() {
-        return mName;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.android.gallery3d.data.LocalAlbumSet.getName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.android.gallery3d.data.LocalAlbumSet.getName()",this);return mName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.LocalAlbumSet.getName()",this,throwable);throw throwable;}
     }
 
     private BucketEntry[] loadBucketEntries(Cursor cursor) {
-        ArrayList<BucketEntry> buffer = new ArrayList<BucketEntry>();
+        com.mijack.Xlog.logMethodEnter("[com.android.gallery3d.data.LocalAlbumSet$BucketEntry com.android.gallery3d.data.LocalAlbumSet.loadBucketEntries(android.database.Cursor)",this,cursor);try{ArrayList<BucketEntry> buffer = new ArrayList<BucketEntry>();
         int typeBits = 0;
         if ((mType & MEDIA_TYPE_IMAGE) != 0) {
             typeBits |= (1 << FileColumns.MEDIA_TYPE_IMAGE);
@@ -153,21 +153,21 @@ public class LocalAlbumSet extends MediaSet {
         } finally {
             cursor.close();
         }
-        return buffer.toArray(new BucketEntry[buffer.size()]);
+        {com.mijack.Xlog.logMethodExit("[com.android.gallery3d.data.LocalAlbumSet$BucketEntry com.android.gallery3d.data.LocalAlbumSet.loadBucketEntries(android.database.Cursor)",this);return buffer.toArray(new BucketEntry[buffer.size()]);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[com.android.gallery3d.data.LocalAlbumSet$BucketEntry com.android.gallery3d.data.LocalAlbumSet.loadBucketEntries(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
 
     private static int findBucket(BucketEntry entries[], int bucketId) {
-        for (int i = 0, n = entries.length; i < n ; ++i) {
-            if (entries[i].bucketId == bucketId) return i;
+        com.mijack.Xlog.logStaticMethodEnter("int com.android.gallery3d.data.LocalAlbumSet.findBucket(com.android.gallery3d.data.LocalAlbumSet$BucketEntry,int)",entries[],bucketId);try{for (int i = 0, n = entries.length; i < n ; ++i) {
+            if (entries[i].bucketId == bucketId) {{com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalAlbumSet.findBucket(com.android.gallery3d.data.LocalAlbumSet$BucketEntry,int)");return i;}}
         }
-        return -1;
+        {com.mijack.Xlog.logStaticMethodExit("int com.android.gallery3d.data.LocalAlbumSet.findBucket(com.android.gallery3d.data.LocalAlbumSet$BucketEntry,int)");return -1;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("int com.android.gallery3d.data.LocalAlbumSet.findBucket(com.android.gallery3d.data.LocalAlbumSet$BucketEntry,int)",throwable);throw throwable;}
     }
 
     @SuppressWarnings("unchecked")
     protected ArrayList<MediaSet> loadSubMediaSets() {
-        // Note: it will be faster if we only select media_type and bucket_id.
-        //       need to test the performance if that is worth
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.android.gallery3d.data.LocalAlbumSet.loadSubMediaSets()",this);try{/*// Note: it will be faster if we only select media_type and bucket_id.*/
+        /*//       need to test the performance if that is worth*/
 
         Uri uri = mBaseUri;
         GalleryUtils.assertNotInRenderThread();
@@ -175,13 +175,13 @@ public class LocalAlbumSet extends MediaSet {
                 uri, PROJECTION_BUCKET, BUCKET_GROUP_BY, null, BUCKET_ORDER_BY);
         if (cursor == null) {
             Log.w(TAG, "cannot open local database: " + uri);
-            return new ArrayList<MediaSet>();
+            {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.LocalAlbumSet.loadSubMediaSets()",this);return new ArrayList<MediaSet>();}
         }
         BucketEntry[] entries = loadBucketEntries(cursor);
         int offset = 0;
 
-        // Move camera and download bucket to the front, while keeping the
-        // order of others.
+        /*// Move camera and download bucket to the front, while keeping the*/
+        /*// order of others.*/
         int index = findBucket(entries, MediaSetUtils.CAMERA_BUCKET_ID);
         if (index != -1) {
             circularShiftRight(entries, offset++, index);
@@ -200,30 +200,30 @@ public class LocalAlbumSet extends MediaSet {
         for (int i = 0, n = albums.size(); i < n; ++i) {
             albums.get(i).reload();
         }
-        return albums;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.android.gallery3d.data.LocalAlbumSet.loadSubMediaSets()",this);return albums;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.android.gallery3d.data.LocalAlbumSet.loadSubMediaSets()",this,throwable);throw throwable;}
     }
 
     private MediaSet getLocalAlbum(
             DataManager manager, int type, Path parent, int id, String name) {
-        Path path = parent.getChild(id);
+        com.mijack.Xlog.logMethodEnter("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getLocalAlbum(com.android.gallery3d.data.DataManager,int,com.android.gallery3d.data.Path,int,java.lang.String)",this,manager,type,parent,id,name);try{Path path = parent.getChild(id);
         MediaObject object = manager.peekMediaObject(path);
-        if (object != null) return (MediaSet) object;
+        if (object != null) {{com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getLocalAlbum(com.android.gallery3d.data.DataManager,int,com.android.gallery3d.data.Path,int,java.lang.String)",this);return (MediaSet) object;}}
         switch (type) {
             case MEDIA_TYPE_IMAGE:
-                return new LocalAlbum(path, mApplication, id, true, name);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getLocalAlbum(com.android.gallery3d.data.DataManager,int,com.android.gallery3d.data.Path,int,java.lang.String)",this);return new LocalAlbum(path, mApplication, id, true, name);}
             case MEDIA_TYPE_VIDEO:
-                return new LocalAlbum(path, mApplication, id, false, name);
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getLocalAlbum(com.android.gallery3d.data.DataManager,int,com.android.gallery3d.data.Path,int,java.lang.String)",this);return new LocalAlbum(path, mApplication, id, false, name);}
             case MEDIA_TYPE_ALL:
                 Comparator<MediaItem> comp = DataManager.sDateTakenComparator;
-                return new LocalMergeAlbum(path, comp, new MediaSet[] {
+                {com.mijack.Xlog.logMethodExit("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getLocalAlbum(com.android.gallery3d.data.DataManager,int,com.android.gallery3d.data.Path,int,java.lang.String)",this);return new LocalMergeAlbum(path, comp, new MediaSet[] {
                         getLocalAlbum(manager, MEDIA_TYPE_IMAGE, PATH_IMAGE, id, name),
-                        getLocalAlbum(manager, MEDIA_TYPE_VIDEO, PATH_VIDEO, id, name)});
+                        getLocalAlbum(manager, MEDIA_TYPE_VIDEO, PATH_VIDEO, id, name)});}
         }
-        throw new IllegalArgumentException(String.valueOf(type));
+        throw new IllegalArgumentException(String.valueOf(type));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.android.gallery3d.data.MediaSet com.android.gallery3d.data.LocalAlbumSet.getLocalAlbum(com.android.gallery3d.data.DataManager,int,com.android.gallery3d.data.Path,int,java.lang.String)",this,throwable);throw throwable;}
     }
 
     public static String getBucketName(ContentResolver resolver, int bucketId) {
-        Uri uri = mBaseUri.buildUpon()
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.android.gallery3d.data.LocalAlbumSet.getBucketName(android.content.ContentResolver,int)",resolver,bucketId);try{Uri uri = mBaseUri.buildUpon()
                 .appendQueryParameter("limit", "1")
                 .build();
 
@@ -233,31 +233,31 @@ public class LocalAlbumSet extends MediaSet {
 
         if (cursor == null) {
             Log.w(TAG, "query fail: " + uri);
-            return "";
+            {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.LocalAlbumSet.getBucketName(android.content.ContentResolver,int)");return "";}
         }
         try {
-            return cursor.moveToNext()
+            {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.android.gallery3d.data.LocalAlbumSet.getBucketName(android.content.ContentResolver,int)");return cursor.moveToNext()
                     ? cursor.getString(INDEX_BUCKET_NAME)
-                    : "";
+                    : "";}
         } finally {
             cursor.close();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.android.gallery3d.data.LocalAlbumSet.getBucketName(android.content.ContentResolver,int)",throwable);throw throwable;}
     }
 
     @Override
     public long reload() {
-        // "|" is used instead of "||" because we want to clear both flags.
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.data.LocalAlbumSet.reload()",this);try{/*// "|" is used instead of "||" because we want to clear both flags.*/
         if (mNotifierImage.isDirty() | mNotifierVideo.isDirty()) {
             mDataVersion = nextVersionNumber();
             mAlbums = loadSubMediaSets();
         }
-        return mDataVersion;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.data.LocalAlbumSet.reload()",this);return mDataVersion;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.data.LocalAlbumSet.reload()",this,throwable);throw throwable;}
     }
 
-    // For debug only. Fake there is a ContentObserver.onChange() event.
+    /*// For debug only. Fake there is a ContentObserver.onChange() event.*/
     void fakeChange() {
-        mNotifierImage.fakeChange();
-        mNotifierVideo.fakeChange();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.data.LocalAlbumSet.fakeChange()",this);try{mNotifierImage.fakeChange();
+        mNotifierVideo.fakeChange();com.mijack.Xlog.logMethodExit("void com.android.gallery3d.data.LocalAlbumSet.fakeChange()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.data.LocalAlbumSet.fakeChange()",this,throwable);throw throwable;}
     }
 
     private static class BucketEntry {
@@ -271,24 +271,24 @@ public class LocalAlbumSet extends MediaSet {
 
         @Override
         public int hashCode() {
-            return bucketId;
+            com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.data.LocalAlbumSet$BucketEntry.hashCode()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.data.LocalAlbumSet$BucketEntry.hashCode()",this);return bucketId;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.data.LocalAlbumSet$BucketEntry.hashCode()",this,throwable);throw throwable;}
         }
 
         @Override
         public boolean equals(Object object) {
-            if (!(object instanceof BucketEntry)) return false;
+            com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.data.LocalAlbumSet$BucketEntry.equals(java.lang.Object)",this,object);try{if (!(object instanceof BucketEntry)) {{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.LocalAlbumSet$BucketEntry.equals(java.lang.Object)",this);return false;}}
             BucketEntry entry = (BucketEntry) object;
-            return bucketId == entry.bucketId;
+            {com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.data.LocalAlbumSet$BucketEntry.equals(java.lang.Object)",this);return bucketId == entry.bucketId;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.data.LocalAlbumSet$BucketEntry.equals(java.lang.Object)",this,throwable);throw throwable;}
         }
     }
 
-    // Circular shift the array range from a[i] to a[j] (inclusive). That is,
-    // a[i] -> a[i+1] -> a[i+2] -> ... -> a[j], and a[j] -> a[i]
+    /*// Circular shift the array range from a[i] to a[j] (inclusive). That is,*/
+    /*// a[i] -> a[i+1] -> a[i+2] -> ... -> a[j], and a[j] -> a[i]*/
     private static <T> void circularShiftRight(T[] array, int i, int j) {
-        T temp = array[j];
+        com.mijack.Xlog.logStaticMethodEnter("void com.android.gallery3d.data.LocalAlbumSet.circularShiftRight([java.lang.Object,int,int)",array,i,j);try{T temp = array[j];
         for (int k = j; k > i; k--) {
             array[k] = array[k - 1];
         }
-        array[i] = temp;
+        array[i] = temp;com.mijack.Xlog.logStaticMethodExit("void com.android.gallery3d.data.LocalAlbumSet.circularShiftRight([java.lang.Object,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.android.gallery3d.data.LocalAlbumSet.circularShiftRight([java.lang.Object,int,int)",throwable);throw throwable;}
     }
 }

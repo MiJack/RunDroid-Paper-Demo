@@ -40,24 +40,20 @@ class ScaleSeekBar extends AbstractSeekBar {
     }
 
     public void setOnScaleChangeListener(final OnScaleChangeListener listener) {
-        setOnSeekBarChangeListener((listener == null) ? null : new OnSeekBarChangeListener() {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar.setOnScaleChangeListener(OnScaleChangeListener)",this,listener);try{setOnSeekBarChangeListener((listener == null) ? null : new OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                listener.onProgressChanged((float) progress / getMax(), fromUser);
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar$1.onProgressChanged(android.widget.SeekBar,int,boolean)",this,seekBar,progress,fromUser);try{listener.onProgressChanged((float) progress / getMax(), fromUser);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar$1.onProgressChanged(android.widget.SeekBar,int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar$1.onProgressChanged(android.widget.SeekBar,int,boolean)",this,throwable);throw throwable;}
             }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar$1.onStartTrackingTouch(android.widget.SeekBar)",this,seekBar);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar$1.onStartTrackingTouch(android.widget.SeekBar)",this);}
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
+            {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar$1.onStopTrackingTouch(android.widget.SeekBar)",this,seekBar);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar$1.onStopTrackingTouch(android.widget.SeekBar)",this);}
+        });com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar.setOnScaleChangeListener(OnScaleChangeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar.setOnScaleChangeListener(OnScaleChangeListener)",this,throwable);throw throwable;}
     }
 
     public void setProgress(float progress) {
-        setProgress((int) (progress * getMax()));
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar.setProgress(float)",this,progress);try{setProgress((int) (progress * getMax()));com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar.setProgress(float)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ScaleSeekBar.setProgress(float)",this,throwable);throw throwable;}
     }
 }

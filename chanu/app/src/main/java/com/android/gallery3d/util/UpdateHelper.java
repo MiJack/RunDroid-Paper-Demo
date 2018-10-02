@@ -22,46 +22,46 @@ public class UpdateHelper {
     private boolean mUpdated = false;
 
     public int update(int original, int update) {
-        if (original != update) {
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.util.UpdateHelper.update(int,int)",this,original,update);try{if (original != update) {
             mUpdated = true;
             original = update;
         }
-        return original;
+        {com.mijack.Xlog.logMethodExit("int com.android.gallery3d.util.UpdateHelper.update(int,int)",this);return original;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.util.UpdateHelper.update(int,int)",this,throwable);throw throwable;}
     }
 
     public long update(long original, long update) {
-        if (original != update) {
+        com.mijack.Xlog.logMethodEnter("long com.android.gallery3d.util.UpdateHelper.update(long,long)",this,original,update);try{if (original != update) {
             mUpdated = true;
             original = update;
         }
-        return original;
+        {com.mijack.Xlog.logMethodExit("long com.android.gallery3d.util.UpdateHelper.update(long,long)",this);return original;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.android.gallery3d.util.UpdateHelper.update(long,long)",this,throwable);throw throwable;}
     }
 
     public double update(double original, double update) {
-        if (original != update) {
+        com.mijack.Xlog.logMethodEnter("double com.android.gallery3d.util.UpdateHelper.update(double,double)",this,original,update);try{if (original != update) {
             mUpdated = true;
             original = update;
         }
-        return original;
+        {com.mijack.Xlog.logMethodExit("double com.android.gallery3d.util.UpdateHelper.update(double,double)",this);return original;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("double com.android.gallery3d.util.UpdateHelper.update(double,double)",this,throwable);throw throwable;}
     }
 
     public double update(float original, float update) {
-        if (original != update) {
+        com.mijack.Xlog.logMethodEnter("double com.android.gallery3d.util.UpdateHelper.update(float,float)",this,original,update);try{if (original != update) {
             mUpdated = true;
             original = update;
         }
-        return original;
+        {com.mijack.Xlog.logMethodExit("double com.android.gallery3d.util.UpdateHelper.update(float,float)",this);return original;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("double com.android.gallery3d.util.UpdateHelper.update(float,float)",this,throwable);throw throwable;}
     }
 
     public <T> T update(T original, T update) {
-        if (!Utils.equals(original, update)) {
+        com.mijack.Xlog.logMethodEnter("java.lang.Object com.android.gallery3d.util.UpdateHelper.update(java.lang.Object,java.lang.Object)",this,original,update);try{if (!Utils.equals(original, update)) {
             mUpdated = true;
             original = update;
         }
-        return original;
+        {com.mijack.Xlog.logMethodExit("java.lang.Object com.android.gallery3d.util.UpdateHelper.update(java.lang.Object,java.lang.Object)",this);return original;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.Object com.android.gallery3d.util.UpdateHelper.update(java.lang.Object,java.lang.Object)",this,throwable);throw throwable;}
     }
 
     public boolean isUpdated() {
-        return mUpdated;
+        com.mijack.Xlog.logMethodEnter("boolean com.android.gallery3d.util.UpdateHelper.isUpdated()",this);try{com.mijack.Xlog.logMethodExit("boolean com.android.gallery3d.util.UpdateHelper.isUpdated()",this);return mUpdated;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.android.gallery3d.util.UpdateHelper.isUpdated()",this,throwable);throw throwable;}
     }
 }

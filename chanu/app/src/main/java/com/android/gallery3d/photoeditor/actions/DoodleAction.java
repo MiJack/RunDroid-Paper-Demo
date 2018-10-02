@@ -39,16 +39,16 @@ public class DoodleAction extends EffectAction {
 
     @Override
     public void doBegin() {
-        filter = new DoodleFilter();
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleAction.doBegin()",this);try{filter = new DoodleFilter();
 
         colorPicker = factory.createColorPicker();
         colorPicker.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
 
             @Override
             public void onColorChanged(int color, boolean fromUser) {
-                if (fromUser) {
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleAction$1.onColorChanged(int,boolean)",this,color,fromUser);try{if (fromUser) {
                     doodleView.setColor(color);
-                }
+                }com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleAction$1.onColorChanged(int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleAction$1.onColorChanged(int,boolean)",this,throwable);throw throwable;}
             }
         });
         colorPicker.setColorIndex(DEFAULT_COLOR_INDEX);
@@ -58,24 +58,24 @@ public class DoodleAction extends EffectAction {
 
             @Override
             public void onDoodleInPhotoBounds() {
-                // Notify the user has drawn within photo bounds and made visible changes on photo.
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleAction$2.onDoodleInPhotoBounds()",this);try{/*// Notify the user has drawn within photo bounds and made visible changes on photo.*/
                 filter.setDoodledInPhotoBounds();
-                notifyFilterChanged(filter, false);
+                notifyFilterChanged(filter, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleAction$2.onDoodleInPhotoBounds()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleAction$2.onDoodleInPhotoBounds()",this,throwable);throw throwable;}
             }
 
             @Override
             public void onDoodleFinished(Path path, int color) {
-                filter.addPath(path, color);
-                notifyFilterChanged(filter, false);
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleAction$2.onDoodleFinished(android.graphics.Path,int)",this,path,color);try{filter.addPath(path, color);
+                notifyFilterChanged(filter, false);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleAction$2.onDoodleFinished(android.graphics.Path,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleAction$2.onDoodleFinished(android.graphics.Path,int)",this,throwable);throw throwable;}
             }
         });
-        doodleView.setColor(colorPicker.getColor());
+        doodleView.setColor(colorPicker.getColor());com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleAction.doBegin()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleAction.doBegin()",this,throwable);throw throwable;}
     }
 
     @Override
     public void doEnd() {
-        colorPicker.setOnColorChangeListener(null);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.DoodleAction.doEnd()",this);try{colorPicker.setOnColorChangeListener(null);
         doodleView.setOnDoodleChangeListener(null);
-        notifyFilterChanged(filter, true);
+        notifyFilterChanged(filter, true);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.DoodleAction.doEnd()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.DoodleAction.doEnd()",this,throwable);throw throwable;}
     }
 }

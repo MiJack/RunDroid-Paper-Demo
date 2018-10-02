@@ -31,16 +31,16 @@ public class ActivityDispatcher {
     public static final String IGNORE_DISPATCH = "ignoreDispatch";
 
     public static void store(ChanIdentifiedActivity activity) {
-        ChanActivityId activityId = activity.getChanActivityId();
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.component.ActivityDispatcher.store(com.chanapps.four.activity.ChanIdentifiedActivity)",activity);try{ChanActivityId activityId = activity.getChanActivityId();
         String serialized = activityId.serialize();
         if (serialized == null || serialized.isEmpty()) {
-            if (DEBUG) Log.e(TAG, "store() serialize empty");
-            return;
+            if (DEBUG) {Log.e(TAG, "store() serialize empty");}
+            {com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.component.ActivityDispatcher.store(com.chanapps.four.activity.ChanIdentifiedActivity)");return;}
         }
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(activity.getBaseContext()).edit();
         editor.putString(LAST_ACTIVITY, serialized);
         editor.commit();
-        if (DEBUG) Log.i(TAG, "store() stored " + activityId);
+        if (DEBUG) {Log.i(TAG, "store() stored " + activityId);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.component.ActivityDispatcher.store(com.chanapps.four.activity.ChanIdentifiedActivity)",throwable);throw throwable;}
     }
 
     /*
@@ -131,7 +131,7 @@ public class ActivityDispatcher {
     */
 
     public static void launchUrlInBrowser(Context context, String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.component.ActivityDispatcher.launchUrlInBrowser(android.content.Context,com.chanapps.four.activity.String)",context,url);try{Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         PackageManager packageManager = context.getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
@@ -146,47 +146,47 @@ public class ActivityDispatcher {
         }
         else {
             Log.e(TAG, "error: no application found for url=[" + url + "]");
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.component.ActivityDispatcher.launchUrlInBrowser(android.content.Context,com.chanapps.four.activity.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.component.ActivityDispatcher.launchUrlInBrowser(android.content.Context,com.chanapps.four.activity.String)",throwable);throw throwable;}
     }
 
     public static void exitApplication(Context context) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
+        com.mijack.Xlog.logStaticMethodEnter("void com.chanapps.four.component.ActivityDispatcher.exitApplication(android.content.Context)",context);try{Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        context.startActivity(intent);com.mijack.Xlog.logStaticMethodExit("void com.chanapps.four.component.ActivityDispatcher.exitApplication(android.content.Context)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.chanapps.four.component.ActivityDispatcher.exitApplication(android.content.Context)",throwable);throw throwable;}
     }
 
     public static boolean onUIThread() {
-        return Looper.getMainLooper().equals(Looper.myLooper());
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.component.ActivityDispatcher.onUIThread()");try{com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.ActivityDispatcher.onUIThread()");return Looper.getMainLooper().equals(Looper.myLooper());}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.component.ActivityDispatcher.onUIThread()",throwable);throw throwable;}
     }
 
     private static final int MAX_RUNNING_TASKS = 2;
 
     public static Pair<Integer, ActivityManager.RunningTaskInfo> safeGetRunningTasks(final Context context) {
-        try {
+        com.mijack.Xlog.logStaticMethodEnter("android.util.Pair com.chanapps.four.component.ActivityDispatcher.safeGetRunningTasks(android.content.Context)",context);try{try {
             ActivityManager manager = (ActivityManager)context.getSystemService( Activity.ACTIVITY_SERVICE );
             List<ActivityManager.RunningTaskInfo> tasks = manager.getRunningTasks(MAX_RUNNING_TASKS);
             int numTasks = tasks == null ? 0 : tasks.size();
             ActivityManager.RunningTaskInfo topTask = (tasks == null || tasks.size() == 0) ? null : tasks.get(0);
-            return new Pair(numTasks, topTask);
+            {com.mijack.Xlog.logStaticMethodExit("android.util.Pair com.chanapps.four.component.ActivityDispatcher.safeGetRunningTasks(android.content.Context)");return new Pair(numTasks, topTask);}
         }
         catch (Exception e) {
             Log.e(TAG, "Exception getting running task", e);
-            return new Pair(0, null);
-        }
+            {com.mijack.Xlog.logStaticMethodExit("android.util.Pair com.chanapps.four.component.ActivityDispatcher.safeGetRunningTasks(android.content.Context)");return new Pair(0, null);}
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.util.Pair com.chanapps.four.component.ActivityDispatcher.safeGetRunningTasks(android.content.Context)",throwable);throw throwable;}
     }
 
     public static boolean safeGetIsChanForegroundActivity(final Context context) {
-        boolean isFg = true;
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.chanapps.four.component.ActivityDispatcher.safeGetIsChanForegroundActivity(android.content.Context)",context);try{boolean isFg = true;
         Pair<Integer, ActivityManager.RunningTaskInfo> p = ActivityDispatcher.safeGetRunningTasks(context);
         int numTasks = p.first;
         ActivityManager.RunningTaskInfo task = p.second;
         if (task != null && task.topActivity != null) {
-            if (DEBUG) Log.d(TAG, "foreground activity: " + task.topActivity.getClass().getSimpleName());
+            if (DEBUG) {Log.d(TAG, "foreground activity: " + task.topActivity.getClass().getSimpleName());}
             ComponentName componentInfo = task.topActivity;
             isFg = componentInfo != null && componentInfo.getPackageName().startsWith("com.chanapps");
         }
-        return isFg;
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.chanapps.four.component.ActivityDispatcher.safeGetIsChanForegroundActivity(android.content.Context)");return isFg;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.chanapps.four.component.ActivityDispatcher.safeGetIsChanForegroundActivity(android.content.Context)",throwable);throw throwable;}
     }
 
 }

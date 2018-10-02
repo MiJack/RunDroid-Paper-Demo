@@ -49,7 +49,7 @@ class ColorSeekBar extends AbstractSeekBar {
     public ColorSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        // Set up the predefined colors that could be indexed in the seek-bar.
+        /*// Set up the predefined colors that could be indexed in the seek-bar.*/
         TypedArray a = getResources().obtainTypedArray(R.array.color_picker_colors);
         colors = new int[a.length()];
         for (int i = 0; i < a.length(); i++) {
@@ -61,7 +61,7 @@ class ColorSeekBar extends AbstractSeekBar {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.onSizeChanged(int,int,int,int)",this,w,h,oldw,oldh);try{super.onSizeChanged(w, h, oldw, oldh);
 
         if (background != null) {
             background.recycle();
@@ -72,7 +72,7 @@ class ColorSeekBar extends AbstractSeekBar {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setStyle(Paint.Style.FILL);
 
-        // Draw two half circles in the first and last colors at seek-bar left/right ends.
+        /*// Draw two half circles in the first and last colors at seek-bar left/right ends.*/
         int radius = getThumbOffset();
         float left = radius;
         float right = w - radius;
@@ -86,7 +86,7 @@ class ColorSeekBar extends AbstractSeekBar {
         canvas.drawCircle(right, cy, radius, paint);
         canvas.restore();
 
-        // Draw color strips that make the thumb stop at every strip's center during seeking.
+        /*// Draw color strips that make the thumb stop at every strip's center during seeking.*/
         float strip = (right - left) / (colors.length - 1);
         right = left + strip / 2;
         paint.setColor(colors[0]);
@@ -104,40 +104,36 @@ class ColorSeekBar extends AbstractSeekBar {
 
         Drawable d = new BitmapDrawable(getResources(), background);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
-            deprecatedSetBackground(d);
+            {deprecatedSetBackground(d);}
         else
-            setBackground(d);
+            {setBackground(d);}com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.onSizeChanged(int,int,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.onSizeChanged(int,int,int,int)",this,throwable);throw throwable;}
 
     }
 
     @SuppressWarnings("deprecation")
     protected void deprecatedSetBackground(Drawable d) {
-        setBackgroundDrawable(d);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.deprecatedSetBackground(android.graphics.drawable.BitmapDrawable)",this,d);try{setBackgroundDrawable(d);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.deprecatedSetBackground(android.graphics.drawable.BitmapDrawable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.deprecatedSetBackground(android.graphics.drawable.BitmapDrawable)",this,throwable);throw throwable;}
     }
 
     public void setOnColorChangeListener(final OnColorChangeListener listener) {
-        setOnSeekBarChangeListener((listener == null) ? null : new OnSeekBarChangeListener() {
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.setOnColorChangeListener(OnColorChangeListener)",this,listener);try{setOnSeekBarChangeListener((listener == null) ? null : new OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                listener.onColorChanged(colors[progress], fromUser);
+                com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorSeekBar$1.onProgressChanged(android.widget.SeekBar,int,boolean)",this,seekBar,progress,fromUser);try{listener.onColorChanged(colors[progress], fromUser);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorSeekBar$1.onProgressChanged(android.widget.SeekBar,int,boolean)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorSeekBar$1.onProgressChanged(android.widget.SeekBar,int,boolean)",this,throwable);throw throwable;}
             }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorSeekBar$1.onStartTrackingTouch(android.widget.SeekBar)",this,seekBar);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorSeekBar$1.onStartTrackingTouch(android.widget.SeekBar)",this);}
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
+            {com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorSeekBar$1.onStopTrackingTouch(android.widget.SeekBar)",this,seekBar);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorSeekBar$1.onStopTrackingTouch(android.widget.SeekBar)",this);}
+        });com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.setOnColorChangeListener(OnColorChangeListener)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.setOnColorChangeListener(OnColorChangeListener)",this,throwable);throw throwable;}
     }
 
     public void setColorIndex(int colorIndex) {
-        setProgress(colorIndex);
+        com.mijack.Xlog.logMethodEnter("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.setColorIndex(int)",this,colorIndex);try{setProgress(colorIndex);com.mijack.Xlog.logMethodExit("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.setColorIndex(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.android.gallery3d.photoeditor.actions.ColorSeekBar.setColorIndex(int)",this,throwable);throw throwable;}
     }
 
     public int getColor() {
-        return colors[getProgress()];
+        com.mijack.Xlog.logMethodEnter("int com.android.gallery3d.photoeditor.actions.ColorSeekBar.getColor()",this);try{com.mijack.Xlog.logMethodExit("int com.android.gallery3d.photoeditor.actions.ColorSeekBar.getColor()",this);return colors[getProgress()];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.android.gallery3d.photoeditor.actions.ColorSeekBar.getColor()",this,throwable);throw throwable;}
     }
 }

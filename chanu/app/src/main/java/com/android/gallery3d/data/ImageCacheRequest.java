@@ -42,13 +42,13 @@ public abstract class ImageCacheRequest implements Job<Bitmap> {
     }
 
     public Bitmap run(JobContext jc) {
-        String debugTag = mPath + "," +
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,jc);try{String debugTag = mPath + "," +
                  ((mType == MediaItem.TYPE_THUMBNAIL) ? "THUMB" :
                  (mType == MediaItem.TYPE_MICROTHUMBNAIL) ? "MICROTHUMB" : "?");
         ImageCacheService cacheService = mApplication.getImageCacheService();
 
         ImageData data = cacheService.getImageData(mPath, mType);
-        if (jc.isCancelled()) return null;
+        if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}
 
         if (data != null) {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -58,14 +58,14 @@ public abstract class ImageCacheRequest implements Job<Bitmap> {
             if (bitmap == null && !jc.isCancelled()) {
                 Log.w(TAG, "decode cached failed " + debugTag);
             }
-            return bitmap;
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return bitmap;}
         } else {
             Bitmap bitmap = onDecodeOriginal(jc, mType);
-            if (jc.isCancelled()) return null;
+            if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}
 
             if (bitmap == null) {
                 Log.w(TAG, "decode orig failed " + debugTag);
-                return null;
+                {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}
             }
 
             if (mType == MediaItem.TYPE_MICROTHUMBNAIL) {
@@ -75,14 +75,14 @@ public abstract class ImageCacheRequest implements Job<Bitmap> {
                 bitmap = BitmapUtils.resizeDownBySideLength(bitmap,
                         mTargetSize, true);
             }
-            if (jc.isCancelled()) return null;
+            if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}
 
             byte[] array = BitmapUtils.compressBitmap(bitmap);
-            if (jc.isCancelled()) return null;
+            if (jc.isCancelled()) {{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return null;}}
 
             cacheService.putImageData(mPath, mType, array);
-            return bitmap;
-        }
+            {com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this);return bitmap;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.android.gallery3d.data.ImageCacheRequest.run(com.android.gallery3d.util.ThreadPool.JobContext)",this,throwable);throw throwable;}
     }
 
     public abstract Bitmap onDecodeOriginal(JobContext jc, int targetSize);
