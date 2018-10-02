@@ -14,8 +14,8 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.userpreferences);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.SettingsFragment.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.userpreferences);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.SettingsFragment.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.SettingsFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
 }

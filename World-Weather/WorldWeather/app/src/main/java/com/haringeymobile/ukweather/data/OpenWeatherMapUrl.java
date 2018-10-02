@@ -51,7 +51,7 @@ public class OpenWeatherMapUrl {
      * @return web page containing current weather information
      */
     public URL generateCurrentWeatherByCityIdUrl(int cityId) {
-        return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + WEATHER + ID + cityId + getApiKey());
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateCurrentWeatherByCityIdUrl(int)",this,cityId);try{com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateCurrentWeatherByCityIdUrl(int)",this);return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + WEATHER + ID + cityId + getApiKey());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateCurrentWeatherByCityIdUrl(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -60,11 +60,11 @@ public class OpenWeatherMapUrl {
      * @return OWM API key with the required prefix
      */
     private String getApiKey() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getApiKey()",this);try{SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean shouldUsePersonalApiKey = preferences.getBoolean(PREF_PERSONAL_API_KEY, false);
         String key = shouldUsePersonalApiKey ? SharedPrefsHelper.getPersonalApiKeyFromSharedPrefs(
                 context) : DEVELOPER_API_KEY;
-        return OPEN_WEATHER_MAP_API_KEY_PREFIX + key;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getApiKey()",this);return OPEN_WEATHER_MAP_API_KEY_PREFIX + key;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getApiKey()",this,throwable);throw throwable;}
     }
 
     /**
@@ -74,13 +74,13 @@ public class OpenWeatherMapUrl {
      * @return a new URL instance
      */
     private URL getUrl(String urlString) {
-        URL url;
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getUrl(java.lang.String)",this,urlString);try{URL url;
         try {
             url = new URL(urlString);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        return url;
+        {com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getUrl(java.lang.String)",this);return url;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getUrl(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -90,7 +90,7 @@ public class OpenWeatherMapUrl {
      * @return web page with the list of cities
      */
     public URL getAvailableCitiesListUrl(String query) {
-        return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FIND_QUERY + query + LIKE + getApiKey());
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getAvailableCitiesListUrl(java.lang.String)",this,query);try{com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getAvailableCitiesListUrl(java.lang.String)",this);return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FIND_QUERY + query + LIKE + getApiKey());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getAvailableCitiesListUrl(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -103,8 +103,8 @@ public class OpenWeatherMapUrl {
      */
     public URL getAvailableCitiesListUrlByGeographicalCoordinates(String latitude,
                                                                   String longitude) {
-        return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FIND + LATITUDE + latitude + LONGITUDE
-                + longitude + COUNT + RESULT_COUNT + getApiKey());
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getAvailableCitiesListUrlByGeographicalCoordinates(java.lang.String,java.lang.String)",this,latitude,longitude);try{com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getAvailableCitiesListUrlByGeographicalCoordinates(java.lang.String,java.lang.String)",this);return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FIND + LATITUDE + latitude + LONGITUDE
+                + longitude + COUNT + RESULT_COUNT + getApiKey());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.getAvailableCitiesListUrlByGeographicalCoordinates(java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -116,8 +116,8 @@ public class OpenWeatherMapUrl {
      * @return web page containing daily weather forecast
      */
     public URL generateDailyWeatherForecastUrl(int cityId, int days) {
-        return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FORECAST_DAILY + ID + cityId + COUNT + days +
-                getApiKey());
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateDailyWeatherForecastUrl(int,int)",this,cityId,days);try{com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateDailyWeatherForecastUrl(int,int)",this);return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FORECAST_DAILY + ID + cityId + COUNT + days +
+                getApiKey());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateDailyWeatherForecastUrl(int,int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -127,7 +127,7 @@ public class OpenWeatherMapUrl {
      * @return web page containing three hourly weather forecast
      */
     public URL generateThreeHourlyWeatherForecastUrl(int cityId) {
-        return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FORECAST + ID + cityId + getApiKey());
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateThreeHourlyWeatherForecastUrl(int)",this,cityId);try{com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateThreeHourlyWeatherForecastUrl(int)",this);return getUrl(OPEN_WEATHER_MAP_URL_PREFIX + FORECAST + ID + cityId + getApiKey());}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.data.OpenWeatherMapUrl.generateThreeHourlyWeatherForecastUrl(int)",this,throwable);throw throwable;}
     }
 
 }

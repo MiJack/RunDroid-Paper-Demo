@@ -40,44 +40,44 @@ public class DeleteCityDialog extends DialogFragment {
      * @return a new dialog fragment with the specified arguments
      */
     public static DeleteCityDialog newInstance(int cityId, String cityName) {
-        DeleteCityDialog dialogFragment = new DeleteCityDialog();
+        com.mijack.Xlog.logStaticMethodEnter("com.haringeymobile.ukweather.DeleteCityDialog com.haringeymobile.ukweather.DeleteCityDialog.newInstance(int,java.lang.String)",cityId,cityName);try{DeleteCityDialog dialogFragment = new DeleteCityDialog();
         Bundle b = new Bundle();
         b.putInt(CityManagementActivity.CITY_ID, cityId);
         b.putString(CITY_NAME, cityName);
         dialogFragment.setArguments(b);
-        return dialogFragment;
+        {com.mijack.Xlog.logStaticMethodExit("com.haringeymobile.ukweather.DeleteCityDialog com.haringeymobile.ukweather.DeleteCityDialog.newInstance(int,java.lang.String)");return dialogFragment;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.haringeymobile.ukweather.DeleteCityDialog com.haringeymobile.ukweather.DeleteCityDialog.newInstance(int,java.lang.String)",throwable);throw throwable;}
     }
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.DeleteCityDialog.onAttach(android.app.Activity)",this,activity);try{super.onAttach(activity);
         parentActivity = getActivity();
         try {
             onDialogButtonClickedListener = (OnDialogButtonClickedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnDialogButtonClickedListener");
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.DeleteCityDialog.onAttach(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.DeleteCityDialog.onDetach()",this);try{super.onDetach();
         parentActivity = null;
-        onDialogButtonClickedListener = null;
+        onDialogButtonClickedListener = null;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.DeleteCityDialog.onDetach()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.DeleteCityDialog.onDetach()",this,throwable);throw throwable;}
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        String title = getDialogTitle();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.haringeymobile.ukweather.DeleteCityDialog.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{String title = getDialogTitle();
         OnClickListener dialogOnClickListener = getDialogOnClickListener();
         CharSequence positiveButtonText = parentActivity.getResources()
                 .getString(android.R.string.ok);
-        return new AlertDialog.Builder(parentActivity)
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.haringeymobile.ukweather.DeleteCityDialog.onCreateDialog(android.os.Bundle)",this);return new AlertDialog.Builder(parentActivity)
                 .setIcon(R.drawable.ic_delete)
                 .setTitle(title)
                 .setPositiveButton(positiveButtonText, dialogOnClickListener)
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.haringeymobile.ukweather.DeleteCityDialog.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -86,9 +86,9 @@ public class DeleteCityDialog extends DialogFragment {
      * @return text asking for the city deletion confirmation
      */
     private String getDialogTitle() {
-        Resources res = parentActivity.getResources();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.DeleteCityDialog.getDialogTitle()",this);try{Resources res = parentActivity.getResources();
         final String cityName = getArguments().getString(CITY_NAME);
-        return String.format(res.getString(R.string.dialog_title_delete_city), cityName);
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.DeleteCityDialog.getDialogTitle()",this);return String.format(res.getString(R.string.dialog_title_delete_city), cityName);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.DeleteCityDialog.getDialogTitle()",this,throwable);throw throwable;}
     }
 
     /**
@@ -97,15 +97,15 @@ public class DeleteCityDialog extends DialogFragment {
      * @return a listener to handle button clicks
      */
     private OnClickListener getDialogOnClickListener() {
-        OnClickListener dialogOnClickListener = new OnClickListener() {
+        com.mijack.Xlog.logMethodEnter("android.content.DialogInterface.OnClickListener com.haringeymobile.ukweather.DeleteCityDialog.getDialogOnClickListener()",this);try{OnClickListener dialogOnClickListener = new OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                onDialogButtonClickedListener
+                com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.DeleteCityDialog$1.onClick(android.content.DialogInterface,int)",this,dialog,whichButton);try{onDialogButtonClickedListener
                         .onCityRecordDeletionConfirmed(getArguments().getInt(
-                                CityManagementActivity.CITY_ID));
+                                CityManagementActivity.CITY_ID));com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.DeleteCityDialog$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.DeleteCityDialog$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
             }
         };
-        return dialogOnClickListener;
+        {com.mijack.Xlog.logMethodExit("android.content.DialogInterface.OnClickListener com.haringeymobile.ukweather.DeleteCityDialog.getDialogOnClickListener()",this);return dialogOnClickListener;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.DialogInterface.OnClickListener com.haringeymobile.ukweather.DeleteCityDialog.getDialogOnClickListener()",this,throwable);throw throwable;}
     }
 }

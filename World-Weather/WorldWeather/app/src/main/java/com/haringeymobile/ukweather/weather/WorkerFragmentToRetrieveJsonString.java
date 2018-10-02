@@ -67,15 +67,15 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onAttach(android.app.Activity)",this,activity);try{super.onAttach(activity);
         parentActivity = activity;
-        listener = (OnJsonStringRetrievedListener) activity;
+        listener = (OnJsonStringRetrievedListener) activity;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onAttach(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onAttach(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
+        setRetainInstance(true);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -84,12 +84,12 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
      * information.
      */
     public void retrieveLastRequestedWeatherInfo() {
-        int lastCityId = SharedPrefsHelper.getCityIdFromSharedPrefs(parentActivity);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.retrieveLastRequestedWeatherInfo()",this);try{int lastCityId = SharedPrefsHelper.getCityIdFromSharedPrefs(parentActivity);
         if (lastCityId != CityTable.CITY_ID_DOES_NOT_EXIST) {
             WeatherInfoType lastWeatherInfoType = SharedPrefsHelper
                     .getLastWeatherInfoTypeFromSharedPrefs(parentActivity);
             retrieveWeatherInfoJsonString(lastCityId, lastWeatherInfoType);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.retrieveLastRequestedWeatherInfo()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.retrieveLastRequestedWeatherInfo()",this,throwable);throw throwable;}
     }
 
     /**
@@ -99,29 +99,29 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
      * @param weatherInfoType a type of the requested weather data
      */
     public void retrieveWeatherInfoJsonString(int cityId, WeatherInfoType weatherInfoType) {
-        this.cityId = cityId;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.retrieveWeatherInfoJsonString(int,WeatherInfoType)",this,cityId,weatherInfoType);try{this.cityId = cityId;
         this.weatherInfoType = weatherInfoType;
 
         URL openWeatherMapUrl = weatherInfoType.getOpenWeatherMapUrl(parentActivity, cityId);
         retrieveWeatherInformationJsonStringTask =
                 new RetrieveWeatherInformationJsonStringTask();
         retrieveWeatherInformationJsonStringTask.setContext(parentActivity);
-        retrieveWeatherInformationJsonStringTask.execute(openWeatherMapUrl);
+        retrieveWeatherInformationJsonStringTask.execute(openWeatherMapUrl);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.retrieveWeatherInfoJsonString(int,WeatherInfoType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.retrieveWeatherInfoJsonString(int,WeatherInfoType)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onDestroy()",this);try{super.onDestroy();
         if (retrieveWeatherInformationJsonStringTask != null) {
             retrieveWeatherInformationJsonStringTask.cancel(true);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onDestroy()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onDestroy()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onDetach()",this);try{super.onDetach();
         parentActivity = null;
-        listener = null;
+        listener = null;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onDetach()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString.onDetach()",this,throwable);throw throwable;}
     }
 
     /**
@@ -142,32 +142,32 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
 
         @Override
         protected Pair<String, Long> doInBackground(URL... params) {
-            SqlOperation sqlOperation = new SqlOperation(parentActivity, weatherInfoType);
+            com.mijack.Xlog.logMethodEnter("android.support.v4.util.Pair com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.doInBackground([java.net.URL)",this,params);try{SqlOperation sqlOperation = new SqlOperation(parentActivity, weatherInfoType);
             Pair<String, Long> storedWeatherInfo = sqlOperation.getJsonStringForWeatherInfo(cityId);
             long lastQueryTime = storedWeatherInfo.second;
 
             if (!(lastQueryTime == CityTable.CITY_NEVER_QUERIED ||
                     recordNeedsToBeUpdatedForWeatherInfo(lastQueryTime))) {
-                // recent data already stored locally
-                return Pair.create(storedWeatherInfo.first, CURRENT_TIME_SQL);
+                /*// recent data already stored locally*/
+                {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.doInBackground([java.net.URL)",this);return Pair.create(storedWeatherInfo.first, CURRENT_TIME_SQL);}
             } else if (!isCancelled()) {
                 String jsonDataObtainedFromWebService = getJsonStringFromWebService(params[0]);
                 if (jsonDataObtainedFromWebService == null) {
-                    // data from web not available
+                    /*// data from web not available*/
                     if (lastQueryTime == CityTable.CITY_NEVER_QUERIED) {
-                        // no data available at all - should display an error message
-                        return Pair.create(null, null);
+                        /*// no data available at all - should display an error message*/
+                        {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.doInBackground([java.net.URL)",this);return Pair.create(null, null);}
                     } else {
-                        // there is an old record that may be offered to user
-                        return Pair.create(storedWeatherInfo.first, lastQueryTime);
+                        /*// there is an old record that may be offered to user*/
+                        {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.doInBackground([java.net.URL)",this);return Pair.create(storedWeatherInfo.first, lastQueryTime);}
                     }
                 } else {
-                    // show record obtained from the web
-                    return Pair.create(jsonDataObtainedFromWebService, CURRENT_TIME_WEB);
+                    /*// show record obtained from the web*/
+                    {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.doInBackground([java.net.URL)",this);return Pair.create(jsonDataObtainedFromWebService, CURRENT_TIME_WEB);}
                 }
             } else {
-                return null;
-            }
+                {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.doInBackground([java.net.URL)",this);return null;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.support.v4.util.Pair com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.doInBackground([java.net.URL)",this,throwable);throw throwable;}
         }
 
         /**
@@ -177,12 +177,12 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
          * @return true, if current records are too old; false otherwise
          */
         private boolean recordNeedsToBeUpdatedForWeatherInfo(long lastUpdateTime) {
-            if (lastUpdateTime == CityTable.CITY_NEVER_QUERIED) {
-                return true;
+            com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.recordNeedsToBeUpdatedForWeatherInfo(long)",this,lastUpdateTime);try{if (lastUpdateTime == CityTable.CITY_NEVER_QUERIED) {
+                {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.recordNeedsToBeUpdatedForWeatherInfo(long)",this);return true;}
             } else {
                 long currentTime = System.currentTimeMillis();
-                return currentTime - lastUpdateTime > getWeatherDataCachePeriod();
-            }
+                {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.recordNeedsToBeUpdatedForWeatherInfo(long)",this);return currentTime - lastUpdateTime > getWeatherDataCachePeriod();}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.recordNeedsToBeUpdatedForWeatherInfo(long)",this,throwable);throw throwable;}
         }
 
         /**
@@ -192,11 +192,11 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
          * @return a time in milliseconds
          */
         private long getWeatherDataCachePeriod() {
-            String minutesString = PreferenceManager.getDefaultSharedPreferences(parentActivity)
+            com.mijack.Xlog.logMethodEnter("long com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.getWeatherDataCachePeriod()",this);try{String minutesString = PreferenceManager.getDefaultSharedPreferences(parentActivity)
                     .getString(SettingsActivity.PREF_DATA_CACHE_PERIOD, getResources().getString(
                             R.string.pref_data_cache_period_default));
             int minutes = Integer.parseInt(minutesString);
-            return minutes * 60 * 1000;
+            {com.mijack.Xlog.logMethodExit("long com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.getWeatherDataCachePeriod()",this);return minutes * 60 * 1000;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("long com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.getWeatherDataCachePeriod()",this,throwable);throw throwable;}
         }
 
         /**
@@ -207,16 +207,16 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
          * in case of network problems
          */
         private String getJsonStringFromWebService(URL url) {
-            try {
-                return new JsonFetcher().getJsonString(url);
+            com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.getJsonStringFromWebService(java.net.URL)",this,url);try{try {
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.getJsonStringFromWebService(java.net.URL)",this);return new JsonFetcher().getJsonString(url);}
             } catch (IOException e) {
-                return null;
-            }
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.getJsonStringFromWebService(java.net.URL)",this);return null;}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.getJsonStringFromWebService(java.net.URL)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Pair<String, Long> weatherInfo) {
-            super.onPostExecute(weatherInfo);
+            com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.onPostExecute(android.support.v4.util.Pair)",this,weatherInfo);try{super.onPostExecute(weatherInfo);
 
             String jsonString = weatherInfo.first;
             if (jsonString == null) {
@@ -236,7 +236,7 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
             } else if (parentActivity != null) {
                 Toast.makeText(parentActivity, R.string.error_message_no_data,
                         Toast.LENGTH_LONG).show();
-            }
+            }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.onPostExecute(android.support.v4.util.Pair)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.onPostExecute(android.support.v4.util.Pair)",this,throwable);throw throwable;}
         }
 
         /**
@@ -248,18 +248,18 @@ public class WorkerFragmentToRetrieveJsonString extends Fragment {
          * @return true if there are meaningful data to display, false otherwise
          */
         private boolean isWeatherDataAvailable(String jsonString) {
-            try {
+            com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.isWeatherDataAvailable(java.lang.String)",this,jsonString);try{try {
                 JSONObject obj = new JSONObject(jsonString);
                 if (obj.has(OPEN_WEATHER_MAP_API_HTTP_CODE_KEY)) {
                     int httpStatusCode = obj.getInt(OPEN_WEATHER_MAP_API_HTTP_CODE_KEY);
                     if (JsonFetcher.HTTP_STATUS_CODE_OK != httpStatusCode) {
-                        return false;
+                        {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.isWeatherDataAvailable(java.lang.String)",this);return false;}
                     }
                 }
             } catch (JSONException e) {
-                return false;
+                {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.isWeatherDataAvailable(java.lang.String)",this);return false;}
             }
-            return true;
+            {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.isWeatherDataAvailable(java.lang.String)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString$RetrieveWeatherInformationJsonStringTask.isWeatherDataAvailable(java.lang.String)",this,throwable);throw throwable;}
         }
 
     }

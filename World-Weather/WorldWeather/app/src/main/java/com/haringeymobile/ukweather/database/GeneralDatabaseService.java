@@ -28,7 +28,7 @@ public class GeneralDatabaseService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String action = intent.getAction();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.GeneralDatabaseService.onHandleIntent(android.content.Intent)",this,intent);try{String action = intent.getAction();
         switch (action) {
             case ACTION_INSERT_OR_UPDATE_CITY_RECORD: {
                 int cityId = intent.getIntExtra(MainActivity.CITY_ID, CityTable.
@@ -73,7 +73,7 @@ public class GeneralDatabaseService extends IntentService {
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported action: " + action);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.GeneralDatabaseService.onHandleIntent(android.content.Intent)",this,throwable);throw throwable;}
     }
 
 }

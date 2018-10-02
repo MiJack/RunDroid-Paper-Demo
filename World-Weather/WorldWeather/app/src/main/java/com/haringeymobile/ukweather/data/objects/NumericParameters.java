@@ -20,14 +20,14 @@ public class NumericParameters {
     private double minTemperature;
 
     public double getHumidity() {
-        return humidity;
+        com.mijack.Xlog.logMethodEnter("double com.haringeymobile.ukweather.data.objects.NumericParameters.getHumidity()",this);try{com.mijack.Xlog.logMethodExit("double com.haringeymobile.ukweather.data.objects.NumericParameters.getHumidity()",this);return humidity;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("double com.haringeymobile.ukweather.data.objects.NumericParameters.getHumidity()",this,throwable);throw throwable;}
     }
 
     public double getPressure() {
-        return pressure;
+        com.mijack.Xlog.logMethodEnter("double com.haringeymobile.ukweather.data.objects.NumericParameters.getPressure()",this);try{com.mijack.Xlog.logMethodExit("double com.haringeymobile.ukweather.data.objects.NumericParameters.getPressure()",this);return pressure;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("double com.haringeymobile.ukweather.data.objects.NumericParameters.getPressure()",this,throwable);throw throwable;}
     }
 
     public double getTemperature(TemperatureScale temperatureScale) {
-        return temperatureScale.convertTemperature(temperature);
+        com.mijack.Xlog.logMethodEnter("double com.haringeymobile.ukweather.data.objects.NumericParameters.getTemperature(TemperatureScale)",this,temperatureScale);try{com.mijack.Xlog.logMethodExit("double com.haringeymobile.ukweather.data.objects.NumericParameters.getTemperature(TemperatureScale)",this);return temperatureScale.convertTemperature(temperature);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("double com.haringeymobile.ukweather.data.objects.NumericParameters.getTemperature(TemperatureScale)",this,throwable);throw throwable;}
     }
 }

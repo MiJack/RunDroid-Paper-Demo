@@ -57,10 +57,10 @@ public abstract class WeatherInfoFragment extends Fragment {
      */
     public static WeatherInfoFragment newInstance(WeatherInfoType weatherInfoType, String cityName,
                                                   String jsonString) {
-        WeatherInfoFragment weatherInfoFragment = createWeatherInfoFragment(weatherInfoType);
+        com.mijack.Xlog.logStaticMethodEnter("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.newInstance(WeatherInfoType,java.lang.String,java.lang.String)",weatherInfoType,cityName,jsonString);try{WeatherInfoFragment weatherInfoFragment = createWeatherInfoFragment(weatherInfoType);
         Bundle args = getArgumentBundle(cityName, jsonString);
         weatherInfoFragment.setArguments(args);
-        return weatherInfoFragment;
+        {com.mijack.Xlog.logStaticMethodExit("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.newInstance(WeatherInfoType,java.lang.String,java.lang.String)");return weatherInfoFragment;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.newInstance(WeatherInfoType,java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
     /**
@@ -70,16 +70,16 @@ public abstract class WeatherInfoFragment extends Fragment {
      * @return a correct type of weather information fragment
      */
     private static WeatherInfoFragment createWeatherInfoFragment(WeatherInfoType weatherInfoType) {
-        switch (weatherInfoType) {
+        com.mijack.Xlog.logStaticMethodEnter("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.createWeatherInfoFragment(WeatherInfoType)",weatherInfoType);try{switch (weatherInfoType) {
             case CURRENT_WEATHER:
-                return new WeatherCurrentInfoFragment();
+                {com.mijack.Xlog.logStaticMethodExit("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.createWeatherInfoFragment(WeatherInfoType)");return new WeatherCurrentInfoFragment();}
             case DAILY_WEATHER_FORECAST:
-                return new WeatherDailyWeatherForecastChildFragment();
+                {com.mijack.Xlog.logStaticMethodExit("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.createWeatherInfoFragment(WeatherInfoType)");return new WeatherDailyWeatherForecastChildFragment();}
             case THREE_HOURLY_WEATHER_FORECAST:
-                return new WeatherThreeHourlyForecastChildSwipeFragment();
+                {com.mijack.Xlog.logStaticMethodExit("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.createWeatherInfoFragment(WeatherInfoType)");return new WeatherThreeHourlyForecastChildSwipeFragment();}
             default:
                 throw new IllegalWeatherInfoTypeArgumentException(weatherInfoType);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.haringeymobile.ukweather.weather.WeatherInfoFragment com.haringeymobile.ukweather.weather.WeatherInfoFragment.createWeatherInfoFragment(WeatherInfoType)",throwable);throw throwable;}
     }
 
     /**
@@ -92,31 +92,31 @@ public abstract class WeatherInfoFragment extends Fragment {
      * @return an argument bundle
      */
     private static Bundle getArgumentBundle(String cityName, String jsonString) {
-        Bundle args = new Bundle();
+        com.mijack.Xlog.logStaticMethodEnter("android.os.Bundle com.haringeymobile.ukweather.weather.WeatherInfoFragment.getArgumentBundle(java.lang.String,java.lang.String)",cityName,jsonString);try{Bundle args = new Bundle();
         args.putString(CITY_NAME, cityName);
         args.putString(JSON_STRING, jsonString);
-        return args;
+        {com.mijack.Xlog.logStaticMethodExit("android.os.Bundle com.haringeymobile.ukweather.weather.WeatherInfoFragment.getArgumentBundle(java.lang.String,java.lang.String)");return args;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.os.Bundle com.haringeymobile.ukweather.weather.WeatherInfoFragment.getArgumentBundle(java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
     @Override
     public void onAttach(Context context) {
-        super.onAttach(context);
-        iconCacheRequestListener = (IconCacheRequestListener) context;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.onAttach(android.content.Context)",this,context);try{super.onAttach(context);
+        iconCacheRequestListener = (IconCacheRequestListener) context;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.onAttach(android.content.Context)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.onAttach(android.content.Context)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         weatherInformationDisplayer = new WeatherInformationDisplayer(getContext(),
-                iconCacheRequestListener.getIconMemoryCache());
+                iconCacheRequestListener.getIconMemoryCache());com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_common_weather_info, container, false);
+        com.mijack.Xlog.logMethodEnter("android.view.View com.haringeymobile.ukweather.weather.WeatherInfoFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this,inflater,container,savedInstanceState);try{View view = inflater.inflate(R.layout.fragment_common_weather_info, container, false);
         getCommonViews(view);
-        return view;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.haringeymobile.ukweather.weather.WeatherInfoFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this);return view;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.haringeymobile.ukweather.weather.WeatherInfoFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -126,13 +126,13 @@ public abstract class WeatherInfoFragment extends Fragment {
      * @param view the root view for the fragment
      */
     protected void getCommonViews(View view) {
-        extraInfoTextView = (TextView) view.findViewById(R.id.city_extra_info_text_view);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.getCommonViews(android.view.View)",this,view);try{extraInfoTextView = (TextView) view.findViewById(R.id.city_extra_info_text_view);
         conditionsTextView = (TextView) view.findViewById(R.id.weather_conditions_text_view);
         conditionsImageView = (ImageView) view.findViewById(R.id.weather_conditions_image_view);
         temperatureTextView = (TextView) view.findViewById(R.id.temperature_text_view);
         pressureTextView = (TextView) view.findViewById(R.id.atmospheric_pressure_text_view);
         humidityTextView = (TextView) view.findViewById(R.id.humidity_text_view);
-        windTextView = (TextView) view.findViewById(R.id.wind_text_view);
+        windTextView = (TextView) view.findViewById(R.id.wind_text_view);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.getCommonViews(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.getCommonViews(android.view.View)",this,throwable);throw throwable;}
     }
 
     /**
@@ -141,10 +141,10 @@ public abstract class WeatherInfoFragment extends Fragment {
      * @param weatherInformation various parameters describing weather
      */
     public void displayWeather(WeatherInformation weatherInformation) {
-        displayExtraInfo(weatherInformation);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWeather(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,weatherInformation);try{displayExtraInfo(weatherInformation);
         displayConditions(weatherInformation);
         displayWeatherNumericParametersText(weatherInformation);
-        displayWindInfo(weatherInformation);
+        displayWindInfo(weatherInformation);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWeather(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWeather(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,throwable);throw throwable;}
     }
 
     /**
@@ -161,8 +161,8 @@ public abstract class WeatherInfoFragment extends Fragment {
      * @param weatherInformation various parameters describing weather
      */
     private void displayConditions(WeatherInformation weatherInformation) {
-        weatherInformationDisplayer.displayConditions(weatherInformation, conditionsTextView,
-                conditionsImageView);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayConditions(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,weatherInformation);try{weatherInformationDisplayer.displayConditions(weatherInformation, conditionsTextView,
+                conditionsImageView);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayConditions(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayConditions(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,throwable);throw throwable;}
     }
 
     /**
@@ -171,8 +171,8 @@ public abstract class WeatherInfoFragment extends Fragment {
      * @param weatherInformation various parameters describing weather
      */
     private void displayWeatherNumericParametersText(WeatherInformation weatherInformation) {
-        weatherInformationDisplayer.displayWeatherNumericParametersText(weatherInformation,
-                temperatureTextView, pressureTextView, humidityTextView);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWeatherNumericParametersText(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,weatherInformation);try{weatherInformationDisplayer.displayWeatherNumericParametersText(weatherInformation,
+                temperatureTextView, pressureTextView, humidityTextView);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWeatherNumericParametersText(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWeatherNumericParametersText(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,throwable);throw throwable;}
     }
 
     /**
@@ -181,15 +181,15 @@ public abstract class WeatherInfoFragment extends Fragment {
      * @param weatherInformation various parameters describing weather
      */
     private void displayWindInfo(WeatherInformation weatherInformation) {
-        weatherInformationDisplayer.displayWindInfo(weatherInformation, windTextView);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWindInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,weatherInformation);try{weatherInformationDisplayer.displayWindInfo(weatherInformation, windTextView);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWindInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoFragment.displayWindInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,throwable);throw throwable;}
     }
 
     protected String getDateString(Context context, Date date) {
-        return DateFormat.getMediumDateFormat(context).format(date);
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.weather.WeatherInfoFragment.getDateString(android.content.Context,java.util.Date)",this,context,date);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.weather.WeatherInfoFragment.getDateString(android.content.Context,java.util.Date)",this);return DateFormat.getMediumDateFormat(context).format(date);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.weather.WeatherInfoFragment.getDateString(android.content.Context,java.util.Date)",this,throwable);throw throwable;}
     }
 
     protected String getTimeString(Context context, Date date) {
-        return DateFormat.getTimeFormat(context).format(date);
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.weather.WeatherInfoFragment.getTimeString(android.content.Context,java.util.Date)",this,context,date);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.weather.WeatherInfoFragment.getTimeString(android.content.Context,java.util.Date)",this);return DateFormat.getTimeFormat(context).format(date);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.weather.WeatherInfoFragment.getTimeString(android.content.Context,java.util.Date)",this,throwable);throw throwable;}
     }
 
 }

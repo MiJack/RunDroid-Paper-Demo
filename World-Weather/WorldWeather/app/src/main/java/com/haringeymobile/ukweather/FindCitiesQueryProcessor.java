@@ -44,7 +44,7 @@ class FindCitiesQueryProcessor {
      * Obtains the URL to be used to retrieve the cities, satisfying user's query.
      */
     URL getUrlForFindCitiesQuery(Context context) {
-        URL url;
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlForFindCitiesQuery(android.content.Context)",this,context);try{URL url;
         boolean doesQueryContainAnyLetters = doesQueryContainAnyLetters();
         if (doesQueryContainAnyLetters) {
             url = new OpenWeatherMapUrl(context).getAvailableCitiesListUrl(query);
@@ -53,7 +53,7 @@ class FindCitiesQueryProcessor {
         }
 
         invalidQueryListener = null;
-        return url;
+        {com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlForFindCitiesQuery(android.content.Context)",this);return url;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlForFindCitiesQuery(android.content.Context)",this,throwable);throw throwable;}
     }
 
     /**
@@ -62,7 +62,7 @@ class FindCitiesQueryProcessor {
      * @return URL to be used to retrieve the cities, satisfying user's query
      */
     private URL getUrlUsingGeographicalCoordinates(Context context) {
-        // we split the query into latitude and longitude
+        com.mijack.Xlog.logMethodEnter("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlUsingGeographicalCoordinates(android.content.Context)",this,context);try{/*// we split the query into latitude and longitude*/
         String providedLatitude;
         String providedLongitude;
 
@@ -74,17 +74,17 @@ class FindCitiesQueryProcessor {
             String processedLatitude = processProvidedCoordinate(providedLatitude, true);
             String processedLongitude = processProvidedCoordinate(providedLongitude, false);
             if (processedLatitude == null || processedLongitude == null) {
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlUsingGeographicalCoordinates(android.content.Context)",this);return null;}
             } else {
-                return new OpenWeatherMapUrl(context).
+                {com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlUsingGeographicalCoordinates(android.content.Context)",this);return new OpenWeatherMapUrl(context).
                         getAvailableCitiesListUrlByGeographicalCoordinates(providedLatitude,
-                                providedLongitude);
+                                providedLongitude);}
             }
         } else {
             invalidQueryListener.showAlertDialog(
                     R.string.coordinates_error_message_missing_separator);
-            return null;
-        }
+            {com.mijack.Xlog.logMethodExit("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlUsingGeographicalCoordinates(android.content.Context)",this);return null;}
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.net.URL com.haringeymobile.ukweather.FindCitiesQueryProcessor.getUrlUsingGeographicalCoordinates(android.content.Context)",this,throwable);throw throwable;}
 
     }
 
@@ -97,7 +97,7 @@ class FindCitiesQueryProcessor {
      * @return coordinate that can be submitted for the OWM query, or null if it is invalid
      */
     private String processProvidedCoordinate(String providedCoordinate, boolean isLatitude) {
-        // we split the provided number into integer and decimal parts
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.FindCitiesQueryProcessor.processProvidedCoordinate(java.lang.String,boolean)",this,providedCoordinate,isLatitude);try{/*// we split the provided number into integer and decimal parts*/
         String integer;
         String decimal;
         if (providedCoordinate.contains(DECIMAL_MARK)) {
@@ -117,7 +117,7 @@ class FindCitiesQueryProcessor {
         } catch (NumberFormatException e) {
             invalidQueryListener.showAlertDialog(
                     R.string.coordinates_error_message_number_format);
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.FindCitiesQueryProcessor.processProvidedCoordinate(java.lang.String,boolean)",this);return null;}
         }
 
         int minValue = isLatitude ? LATITUDE_MIN_VALUE : LONGITUDE_MIN_VALUE;
@@ -126,11 +126,11 @@ class FindCitiesQueryProcessor {
             invalidQueryListener.showAlertDialog(isLatitude ?
                     R.string.coordinates_error_message_latitude_range :
                     R.string.coordinates_error_message_longitude_range);
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.FindCitiesQueryProcessor.processProvidedCoordinate(java.lang.String,boolean)",this);return null;}
         }
 
         if (decimal != null) {
-            // we leave at most three decimal places, which is approximately 100 meters precision
+            /*// we leave at most three decimal places, which is approximately 100 meters precision*/
             int places = Math.min(decimal.length(), 3);
             decimal = decimal.substring(0, places);
             try {
@@ -138,7 +138,7 @@ class FindCitiesQueryProcessor {
             } catch (NumberFormatException e) {
                 invalidQueryListener.showAlertDialog(
                         R.string.coordinates_error_message_number_format);
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.FindCitiesQueryProcessor.processProvidedCoordinate(java.lang.String,boolean)",this);return null;}
             }
         }
 
@@ -146,16 +146,16 @@ class FindCitiesQueryProcessor {
         if (decimalPart > 0) {
             coordinate += DECIMAL_MARK + decimalPart;
         }
-        return coordinate;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.FindCitiesQueryProcessor.processProvidedCoordinate(java.lang.String,boolean)",this);return coordinate;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.FindCitiesQueryProcessor.processProvidedCoordinate(java.lang.String,boolean)",this,throwable);throw throwable;}
     }
 
     private boolean doesQueryContainAnyLetters() {
-        for (int i = 0; i < query.length(); i++) {
+        com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.FindCitiesQueryProcessor.doesQueryContainAnyLetters()",this);try{for (int i = 0; i < query.length(); i++) {
             if (Character.isLetter(query.charAt(i))) {
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.FindCitiesQueryProcessor.doesQueryContainAnyLetters()",this);return true;}
             }
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.FindCitiesQueryProcessor.doesQueryContainAnyLetters()",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.FindCitiesQueryProcessor.doesQueryContainAnyLetters()",this,throwable);throw throwable;}
     }
 
 }

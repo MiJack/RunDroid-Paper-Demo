@@ -73,26 +73,26 @@ public class WeatherForecastParentFragment extends Fragment {
      */
     public static WeatherForecastParentFragment newInstance(WeatherInfoType weatherInfoType,
                                                             String jsonString) {
-        WeatherForecastParentFragment fragment = new WeatherForecastParentFragment();
+        com.mijack.Xlog.logStaticMethodEnter("com.haringeymobile.ukweather.weather.WeatherForecastParentFragment com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.newInstance(WeatherInfoType,java.lang.String)",weatherInfoType,jsonString);try{WeatherForecastParentFragment fragment = new WeatherForecastParentFragment();
         Bundle args = new Bundle();
         args.putParcelable(WEATHER_INFORMATION_TYPE, weatherInfoType);
         args.putString(WEATHER_INFO_JSON_STRING, jsonString);
         fragment.setArguments(args);
-        return fragment;
+        {com.mijack.Xlog.logStaticMethodExit("com.haringeymobile.ukweather.weather.WeatherForecastParentFragment com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.newInstance(WeatherInfoType,java.lang.String)");return fragment;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.haringeymobile.ukweather.weather.WeatherForecastParentFragment com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.newInstance(WeatherInfoType,java.lang.String)",throwable);throw throwable;}
     }
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        parentActivity = (FragmentActivity) activity;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onAttach(android.app.Activity)",this,activity);try{super.onAttach(activity);
+        parentActivity = (FragmentActivity) activity;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onAttach(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onAttach(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         weatherInfoType = getArguments().getParcelable(WEATHER_INFORMATION_TYPE);
         jsonStringsForChildFragments = new ArrayList<>();
-        extractJsonDataForChildFragments();
+        extractJsonDataForChildFragments();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -100,7 +100,7 @@ public class WeatherForecastParentFragment extends Fragment {
      * and extracts the data required to instantiate nested fragments.
      */
     private void extractJsonDataForChildFragments() {
-        String jsonString = getArguments().getString(WEATHER_INFO_JSON_STRING);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractJsonDataForChildFragments()",this);try{String jsonString = getArguments().getString(WEATHER_INFO_JSON_STRING);
         Gson gson = new Gson();
 
         if (weatherInfoType == WeatherInfoType.DAILY_WEATHER_FORECAST) {
@@ -108,7 +108,7 @@ public class WeatherForecastParentFragment extends Fragment {
         } else if (weatherInfoType == WeatherInfoType.THREE_HOURLY_WEATHER_FORECAST) {
             extractThreeHourlyForecastJsonData(jsonString, gson);
             if (jsonStringsForChildFragments.size() == 0) {
-                return;
+                {com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractJsonDataForChildFragments()",this);return;}
             }
             if (SharedPrefsHelper.getForecastDisplayMode(getContext()) ==
                     ThreeHourlyForecastDisplayMode.LIST) {
@@ -116,7 +116,7 @@ public class WeatherForecastParentFragment extends Fragment {
             }
         } else {
             throw new WeatherInfoType.IllegalWeatherInfoTypeArgumentException(weatherInfoType);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractJsonDataForChildFragments()",this,throwable);throw throwable;}
     }
 
     /**
@@ -127,7 +127,7 @@ public class WeatherForecastParentFragment extends Fragment {
      * @param gson       a converter between JSON strings and Java objects
      */
     private void extractDailyForecastJsonData(String jsonString, Gson gson) {
-        SearchResponseForDailyForecastQuery searchResponseForDailyForecastQuery = gson.fromJson(
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractDailyForecastJsonData(java.lang.String,com.google.gson.Gson)",this,jsonString,gson);try{SearchResponseForDailyForecastQuery searchResponseForDailyForecastQuery = gson.fromJson(
                 jsonString, SearchResponseForDailyForecastQuery.class);
         CityInfo cityInfo = searchResponseForDailyForecastQuery.getCityInfo();
         getCityName(cityInfo);
@@ -136,7 +136,7 @@ public class WeatherForecastParentFragment extends Fragment {
                 .getDailyWeatherForecasts();
         for (CityDailyWeatherForecast forecast : dailyForecasts) {
             jsonStringsForChildFragments.add(gson.toJson(forecast));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractDailyForecastJsonData(java.lang.String,com.google.gson.Gson)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractDailyForecastJsonData(java.lang.String,com.google.gson.Gson)",this,throwable);throw throwable;}
     }
 
     /**
@@ -145,10 +145,10 @@ public class WeatherForecastParentFragment extends Fragment {
      * @param cityInfo information about the queried city
      */
     private void getCityName(CityInfo cityInfo) {
-        // TODO The city can be renamed by a user, so we should query the database for the name
-        // It appears that for some cities the query returns with city information missing, in
-        // which case cityInfo will be null
-        cityName = cityInfo == null ? CITY_NAME_NOT_KNOWN : cityInfo.getCityName();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getCityName(com.haringeymobile.ukweather.data.objects.CityInfo)",this,cityInfo);try{/*// TODO The city can be renamed by a user, so we should query the database for the name*/
+        /*// It appears that for some cities the query returns with city information missing, in*/
+        /*// which case cityInfo will be null*/
+        cityName = cityInfo == null ? CITY_NAME_NOT_KNOWN : cityInfo.getCityName();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getCityName(com.haringeymobile.ukweather.data.objects.CityInfo)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getCityName(com.haringeymobile.ukweather.data.objects.CityInfo)",this,throwable);throw throwable;}
     }
 
     /**
@@ -159,17 +159,17 @@ public class WeatherForecastParentFragment extends Fragment {
      * @param gson       a converter between JSON strings and Java objects
      */
     private void extractThreeHourlyForecastJsonData(String jsonString, Gson gson) {
-        SearchResponseForThreeHourlyForecastQuery searchResponseForThreeHourlyForecastQuery = gson
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractThreeHourlyForecastJsonData(java.lang.String,com.google.gson.Gson)",this,jsonString,gson);try{SearchResponseForThreeHourlyForecastQuery searchResponseForThreeHourlyForecastQuery = gson
                 .fromJson(jsonString, SearchResponseForThreeHourlyForecastQuery.class);
         CityInfo cityInfo = searchResponseForThreeHourlyForecastQuery.getCityInfo();
-        // It appears that for some cities the query returns with city information missing, in
-        // which case cityInfo will be null
+        /*// It appears that for some cities the query returns with city information missing, in*/
+        /*// which case cityInfo will be null*/
         getCityName(cityInfo);
         List<CityThreeHourlyWeatherForecast> threeHourlyForecasts =
                 searchResponseForThreeHourlyForecastQuery.getThreeHourlyWeatherForecasts();
         for (CityThreeHourlyWeatherForecast forecast : threeHourlyForecasts) {
             jsonStringsForChildFragments.add(gson.toJson(forecast));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractThreeHourlyForecastJsonData(java.lang.String,com.google.gson.Gson)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.extractThreeHourlyForecastJsonData(java.lang.String,com.google.gson.Gson)",this,throwable);throw throwable;}
     }
 
     /**
@@ -182,7 +182,7 @@ public class WeatherForecastParentFragment extends Fragment {
      * than eight three-hourly forecasts.
      */
     private void splitThreeHourlyForecastsIntoDailyLists() {
-        int firstForecastHour = getFirstThreeHourlyForecastHour();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.splitThreeHourlyForecastsIntoDailyLists()",this);try{int firstForecastHour = getFirstThreeHourlyForecastHour();
         int morningStartHour = findMorningStartHour(firstForecastHour);
         int unallocatedThreeHourlyForecastCount = jsonStringsForChildFragments.size();
 
@@ -201,7 +201,7 @@ public class WeatherForecastParentFragment extends Fragment {
 
             forecastHour += 3;
             forecastHour %= 24;
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.splitThreeHourlyForecastsIntoDailyLists()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.splitThreeHourlyForecastsIntoDailyLists()",this,throwable);throw throwable;}
     }
 
     /**
@@ -210,13 +210,13 @@ public class WeatherForecastParentFragment extends Fragment {
      * @return the hour in range [0..23]
      */
     private int getFirstThreeHourlyForecastHour() {
-        long firstForecastTime = 1000 * new Gson().fromJson(jsonStringsForChildFragments.get(0),
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getFirstThreeHourlyForecastHour()",this);try{long firstForecastTime = 1000 * new Gson().fromJson(jsonStringsForChildFragments.get(0),
                 CityThreeHourlyWeatherForecast.class).getDate();
         Date date = new Date(firstForecastTime);
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(date);
 
-        return calendar.get(Calendar.HOUR_OF_DAY);
+        {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getFirstThreeHourlyForecastHour()",this);return calendar.get(Calendar.HOUR_OF_DAY);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getFirstThreeHourlyForecastHour()",this,throwable);throw throwable;}
     }
 
     /**
@@ -226,19 +226,19 @@ public class WeatherForecastParentFragment extends Fragment {
      * @return an hour in range [5..7]
      */
     private int findMorningStartHour(int firstForecastHour) {
-        int remainder = (firstForecastHour - EARLIEST_MORNING_HOUR) % 3;
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.findMorningStartHour(int)",this,firstForecastHour);try{int remainder = (firstForecastHour - EARLIEST_MORNING_HOUR) % 3;
         if (remainder < 0) {
             remainder += 3;
         }
         if (remainder == 0) {
-            return EARLIEST_MORNING_HOUR;
+            {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.findMorningStartHour(int)",this);return EARLIEST_MORNING_HOUR;}
         } else if (remainder == 1) {
-            return EARLIEST_MORNING_HOUR + 1;
+            {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.findMorningStartHour(int)",this);return EARLIEST_MORNING_HOUR + 1;}
         } else if (remainder == 2) {
-            return EARLIEST_MORNING_HOUR + 2;
+            {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.findMorningStartHour(int)",this);return EARLIEST_MORNING_HOUR + 2;}
         } else {
             throw new IllegalStateException("Unexpected remainder: " + remainder);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.findMorningStartHour(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -257,26 +257,26 @@ public class WeatherForecastParentFragment extends Fragment {
      * jsonStringListsForChildListFragments
      */
     private boolean shouldStartNewDailyList(int morningStartHour, int forecastHour) {
-        if (jsonStringListsForChildListFragments.size() == 0) {
-            return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.shouldStartNewDailyList(int,int)",this,morningStartHour,forecastHour);try{if (jsonStringListsForChildListFragments.size() == 0) {
+            {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.shouldStartNewDailyList(int,int)",this);return true;}
         }
         if (forecastHour == morningStartHour) {
             int threeHourlyForecastCountInCurrentDailyList =
                     getLatestDailyThreeHourlyForecastList().size();
-            return forecastHour - 3 * threeHourlyForecastCountInCurrentDailyList < 0;
+            {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.shouldStartNewDailyList(int,int)",this);return forecastHour - 3 * threeHourlyForecastCountInCurrentDailyList < 0;}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.shouldStartNewDailyList(int,int)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.shouldStartNewDailyList(int,int)",this,throwable);throw throwable;}
     }
 
     private ArrayList<String> getLatestDailyThreeHourlyForecastList() {
-        int currentDailyListCount = jsonStringListsForChildListFragments.size();
-        return jsonStringListsForChildListFragments.get(currentDailyListCount - 1);
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getLatestDailyThreeHourlyForecastList()",this);try{int currentDailyListCount = jsonStringListsForChildListFragments.size();
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getLatestDailyThreeHourlyForecastList()",this);return jsonStringListsForChildListFragments.get(currentDailyListCount - 1);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.getLatestDailyThreeHourlyForecastList()",this,throwable);throw throwable;}
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (jsonStringsForChildFragments.size() == 0) {
+        com.mijack.Xlog.logMethodEnter("android.view.View com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this,inflater,container,savedInstanceState);try{if (jsonStringsForChildFragments.size() == 0) {
             TextView textView = new TextView(parentActivity);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -284,7 +284,7 @@ public class WeatherForecastParentFragment extends Fragment {
             textView.setGravity(Gravity.CENTER);
             textView.setText(R.string.error_message_no_data);
             textView.setTextSize(getResources().getDimensionPixelSize(R.dimen.text_size_large));
-            return textView;
+            {com.mijack.Xlog.logMethodExit("android.view.View com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this);return textView;}
         }
         View view = inflater.inflate(R.layout.sliding_tab_host, container, false);
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) view.findViewById(
@@ -295,13 +295,13 @@ public class WeatherForecastParentFragment extends Fragment {
         viewPager.setAdapter(pagerAdapter);
         pagerSlidingTabStrip.setViewPager(viewPager);
 
-        return view;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this);return view;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
-        parentActivity = null;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onDetach()",this);try{super.onDetach();
+        parentActivity = null;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onDetach()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherForecastParentFragment.onDetach()",this,throwable);throw throwable;}
     }
 
     /**
@@ -318,13 +318,13 @@ public class WeatherForecastParentFragment extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            if (weatherInfoType == WeatherInfoType.DAILY_WEATHER_FORECAST) {
-                return getPageTitleForDailyWeatherForecast(position);
+            com.mijack.Xlog.logMethodEnter("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitle(int)",this,position);try{if (weatherInfoType == WeatherInfoType.DAILY_WEATHER_FORECAST) {
+                {com.mijack.Xlog.logMethodExit("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitle(int)",this);return getPageTitleForDailyWeatherForecast(position);}
             } else if (weatherInfoType == WeatherInfoType.THREE_HOURLY_WEATHER_FORECAST) {
-                return getPageTitleForThreeHourlyWeatherForecast(position);
+                {com.mijack.Xlog.logMethodExit("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitle(int)",this);return getPageTitleForThreeHourlyWeatherForecast(position);}
             } else {
                 throw new WeatherInfoType.IllegalWeatherInfoTypeArgumentException(weatherInfoType);
-            }
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitle(int)",this,throwable);throw throwable;}
         }
 
         /**
@@ -334,11 +334,11 @@ public class WeatherForecastParentFragment extends Fragment {
          * @return a formatted date string
          */
         private CharSequence getPageTitleForDailyWeatherForecast(int position) {
-            long time = 1000 * new Gson().fromJson(jsonStringsForChildFragments.get(position),
+            com.mijack.Xlog.logMethodEnter("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitleForDailyWeatherForecast(int)",this,position);try{long time = 1000 * new Gson().fromJson(jsonStringsForChildFragments.get(position),
                     CityDailyWeatherForecast.class).getDate();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             simpleDateFormat.applyLocalizedPattern(DAY_TEMPLATE);
-            return simpleDateFormat.format(new Date(time));
+            {com.mijack.Xlog.logMethodExit("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitleForDailyWeatherForecast(int)",this);return simpleDateFormat.format(new Date(time));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitleForDailyWeatherForecast(int)",this,throwable);throw throwable;}
         }
 
         /**
@@ -348,7 +348,7 @@ public class WeatherForecastParentFragment extends Fragment {
          * @return a formatted time or date string
          */
         private CharSequence getPageTitleForThreeHourlyWeatherForecast(int position) {
-            String template = isRequestedThreeHourlyForecastInListForm() ?
+            com.mijack.Xlog.logMethodEnter("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitleForThreeHourlyWeatherForecast(int)",this,position);try{String template = isRequestedThreeHourlyForecastInListForm() ?
                     DAY_TEMPLATE : TIME_TEMPLATE;
             String jsonString = isRequestedThreeHourlyForecastInListForm() ?
                     jsonStringListsForChildListFragments.get(position).get(0) :
@@ -359,14 +359,14 @@ public class WeatherForecastParentFragment extends Fragment {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
 
             simpleDateFormat.applyLocalizedPattern(template);
-            return simpleDateFormat.format(new Date(time));
+            {com.mijack.Xlog.logMethodExit("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitleForThreeHourlyWeatherForecast(int)",this);return simpleDateFormat.format(new Date(time));}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.CharSequence com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getPageTitleForThreeHourlyWeatherForecast(int)",this,throwable);throw throwable;}
         }
 
         @Override
         public int getCount() {
-            return isRequestedThreeHourlyForecastInListForm() ?
+            com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getCount()",this);try{com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getCount()",this);return isRequestedThreeHourlyForecastInListForm() ?
                     jsonStringListsForChildListFragments.size() :
-                    jsonStringsForChildFragments.size();
+                    jsonStringsForChildFragments.size();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getCount()",this,throwable);throw throwable;}
         }
 
         /**
@@ -374,16 +374,16 @@ public class WeatherForecastParentFragment extends Fragment {
          * displayed as several daily lists.
          */
         private boolean isRequestedThreeHourlyForecastInListForm() {
-            return jsonStringListsForChildListFragments != null;
+            com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.isRequestedThreeHourlyForecastInListForm()",this);try{com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.isRequestedThreeHourlyForecastInListForm()",this);return jsonStringListsForChildListFragments != null;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.isRequestedThreeHourlyForecastInListForm()",this,throwable);throw throwable;}
         }
 
         @Override
         public Fragment getItem(int position) {
-            return isRequestedThreeHourlyForecastInListForm() ?
+            com.mijack.Xlog.logMethodEnter("android.support.v4.app.Fragment com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getItem(int)",this,position);try{com.mijack.Xlog.logMethodExit("android.support.v4.app.Fragment com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getItem(int)",this);return isRequestedThreeHourlyForecastInListForm() ?
                     WeatherThreeHourlyForecastChildListFragment.newInstance(
                             jsonStringListsForChildListFragments.get(position)) :
                     WeatherInfoFragment.newInstance(weatherInfoType, cityName,
-                            jsonStringsForChildFragments.get(position));
+                            jsonStringsForChildFragments.get(position));}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.support.v4.app.Fragment com.haringeymobile.ukweather.weather.WeatherForecastParentFragment$WeatherForecastPagerAdapter.getItem(int)",this,throwable);throw throwable;}
         }
     }
 

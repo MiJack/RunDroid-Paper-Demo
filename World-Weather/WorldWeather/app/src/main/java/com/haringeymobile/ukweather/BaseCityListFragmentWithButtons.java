@@ -38,24 +38,24 @@ public abstract class BaseCityListFragmentWithButtons extends ListFragment
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        parentActivity = activity;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onAttach(android.app.Activity)",this,activity);try{super.onAttach(activity);
+        parentActivity = activity;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onAttach(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onAttach(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onActivityCreated(android.os.Bundle)",this,savedInstanceState);try{super.onActivityCreated(savedInstanceState);
         prepareCityList();
-        getLoaderManager().initLoader(LOADER_ALL_CITY_RECORDS, null, this);
+        getLoaderManager().initLoader(LOADER_ALL_CITY_RECORDS, null, this);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
      * Prepares the list view to load and display data.
      */
     private void prepareCityList() {
-        cursorAdapter = getCityCursorAdapter();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.prepareCityList()",this);try{cursorAdapter = getCityCursorAdapter();
         setListAdapter(cursorAdapter);
-        setListViewForClicks();
+        setListViewForClicks();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.prepareCityList()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.prepareCityList()",this,throwable);throw throwable;}
     }
 
     /**
@@ -70,29 +70,29 @@ public abstract class BaseCityListFragmentWithButtons extends ListFragment
      * clicks.
      */
     private void setListViewForClicks() {
-        ListView listView = getListView();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.setListViewForClicks()",this);try{ListView listView = getListView();
         listView.setItemsCanFocus(true);
         listView.setFocusable(false);
         listView.setFocusableInTouchMode(false);
-        listView.setClickable(false);
+        listView.setClickable(false);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.setListViewForClicks()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.setListViewForClicks()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onResume() {
-        super.onResume();
-        // Starts a new or restarts an existing Loader in this manager
-        getLoaderManager().restartLoader(0, null, this);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onResume()",this);try{super.onResume();
+        /*// Starts a new or restarts an existing Loader in this manager*/
+        getLoaderManager().restartLoader(0, null, this);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onResume()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onResume()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
-        parentActivity = null;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onDetach()",this);try{super.onDetach();
+        parentActivity = null;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onDetach()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onDetach()",this,throwable);throw throwable;}
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String[] projection = null;
+        com.mijack.Xlog.logMethodEnter("android.support.v4.content.CursorLoader com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onCreateLoader(int,android.os.Bundle)",this,id,args);try{String[] projection = null;
         String selection = null;
         String[] selectionArgs = null;
         String sortOrder = CityTable.COLUMN_ORDERING_VALUE + " DESC";
@@ -100,27 +100,27 @@ public abstract class BaseCityListFragmentWithButtons extends ListFragment
         CursorLoader cursorLoader = new CursorLoader(parentActivity,
                 WeatherContentProvider.CONTENT_URI_CITY_RECORDS, projection,
                 selection, selectionArgs, sortOrder);
-        return cursorLoader;
+        {com.mijack.Xlog.logMethodExit("android.support.v4.content.CursorLoader com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onCreateLoader(int,android.os.Bundle)",this);return cursorLoader;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.support.v4.content.CursorLoader com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onCreateLoader(int,android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        cursorAdapter.swapCursor(data);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onLoadFinished(android.support.v4.content.CursorLoader,android.database.Cursor)",this,loader,data);try{cursorAdapter.swapCursor(data);
         if (jumpToTheTopOfList()) {
             ListView listView = getListView();
             if (listView != null) {
                 listView.setSelection(0);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onLoadFinished(android.support.v4.content.CursorLoader,android.database.Cursor)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onLoadFinished(android.support.v4.content.CursorLoader,android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     protected boolean jumpToTheTopOfList() {
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.jumpToTheTopOfList()",this);try{com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.jumpToTheTopOfList()",this);return true;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.jumpToTheTopOfList()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        cursorAdapter.swapCursor(null);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onLoaderReset(android.support.v4.content.CursorLoader)",this,loader);try{cursorAdapter.swapCursor(null);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onLoaderReset(android.support.v4.content.CursorLoader)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.BaseCityListFragmentWithButtons.onLoaderReset(android.support.v4.content.CursorLoader)",this,throwable);throw throwable;}
     }
 
 }

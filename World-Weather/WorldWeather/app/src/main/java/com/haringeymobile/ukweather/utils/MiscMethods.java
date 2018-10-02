@@ -28,8 +28,8 @@ public class MiscMethods {
      * A convenience method to send a log message.
      */
     public static void log(String s) {
-        if (LOGS_ON)
-            Log.d(LOGS, s);
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.utils.MiscMethods.log(java.lang.String)",s);try{if (LOGS_ON)
+            {Log.d(LOGS, s);}com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.utils.MiscMethods.log(java.lang.String)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.utils.MiscMethods.log(java.lang.String)",throwable);throw throwable;}
     }
 
     /**
@@ -39,7 +39,7 @@ public class MiscMethods {
      * @return a textual representation of the decimal number with one decimal place
      */
     public static String formatDoubleValue(double d, int decimalPlaces) {
-        String pattern;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.formatDoubleValue(double,int)",d,decimalPlaces);try{String pattern;
         switch (decimalPlaces) {
             case 1:
                 pattern = "##.#";
@@ -52,17 +52,17 @@ public class MiscMethods {
                         " decimal places!");
         }
         DecimalFormat df = new DecimalFormat(pattern);
-        return df.format(d);
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.formatDoubleValue(double,int)");return df.format(d);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.formatDoubleValue(double,int)",throwable);throw throwable;}
     }
 
     /**
      * Determines whether the user's device can connect to network at the moment.
      */
     public static boolean isUserOnline(Context context) {
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(
+        com.mijack.Xlog.logStaticMethodEnter("boolean com.haringeymobile.ukweather.utils.MiscMethods.isUserOnline(android.content.Context)",context);try{ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
+        {com.mijack.Xlog.logStaticMethodExit("boolean com.haringeymobile.ukweather.utils.MiscMethods.isUserOnline(android.content.Context)");return networkInfo != null && networkInfo.isConnected();}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("boolean com.haringeymobile.ukweather.utils.MiscMethods.isUserOnline(android.content.Context)",throwable);throw throwable;}
     }
 
     /**
@@ -71,8 +71,8 @@ public class MiscMethods {
      * @return weekday name in abbreviated form, e.g., Mon, Fri
      */
     public static String getAbbreviatedWeekdayName(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E");
-        return simpleDateFormat.format(date);
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.getAbbreviatedWeekdayName(java.util.Date)",date);try{SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E");
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.getAbbreviatedWeekdayName(java.util.Date)");return simpleDateFormat.format(date);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.getAbbreviatedWeekdayName(java.util.Date)",throwable);throw throwable;}
     }
 
     /**
@@ -83,10 +83,10 @@ public class MiscMethods {
      * whitespace removed
      */
     public static Bitmap trimBitmap(Bitmap originalBitmap) {
-        int originalHeight = originalBitmap.getHeight();
+        com.mijack.Xlog.logStaticMethodEnter("android.graphics.Bitmap com.haringeymobile.ukweather.utils.MiscMethods.trimBitmap(android.graphics.Bitmap)",originalBitmap);try{int originalHeight = originalBitmap.getHeight();
         int originalWidth = originalBitmap.getWidth();
 
-        //trimming width from left
+        /*//trimming width from left*/
         int xCoordinateOfFirstPixel = 0;
         for (int x = 0; x < originalWidth; x++) {
             if (xCoordinateOfFirstPixel == 0) {
@@ -96,10 +96,10 @@ public class MiscMethods {
                         break;
                     }
                 }
-            } else break;
+            } else {break;}
         }
 
-        //trimming width from right
+        /*//trimming width from right*/
         int xCoordinateOfLastPixel = 0;
         for (int x = originalWidth - 1; x >= 0; x--) {
             if (xCoordinateOfLastPixel == 0) {
@@ -109,10 +109,10 @@ public class MiscMethods {
                         break;
                     }
                 }
-            } else break;
+            } else {break;}
         }
 
-        //trimming height from top
+        /*//trimming height from top*/
         int yCoordinateOfFirstPixel = 0;
         for (int y = 0; y < originalHeight; y++) {
             if (yCoordinateOfFirstPixel == 0) {
@@ -122,10 +122,10 @@ public class MiscMethods {
                         break;
                     }
                 }
-            } else break;
+            } else {break;}
         }
 
-        //trimming height from bottom
+        /*//trimming height from bottom*/
         int yCoordinateOfLastPixel = 0;
         for (int y = originalHeight - 1; y >= 0; y--) {
             if (yCoordinateOfLastPixel == 0) {
@@ -135,13 +135,13 @@ public class MiscMethods {
                         break;
                     }
                 }
-            } else break;
+            } else {break;}
         }
 
         int newBitmapWidth = xCoordinateOfLastPixel - xCoordinateOfFirstPixel;
         int newBitmapHeight = yCoordinateOfLastPixel - yCoordinateOfFirstPixel;
-        return Bitmap.createBitmap(originalBitmap, xCoordinateOfFirstPixel,
-                yCoordinateOfFirstPixel, newBitmapWidth, newBitmapHeight);
+        {com.mijack.Xlog.logStaticMethodExit("android.graphics.Bitmap com.haringeymobile.ukweather.utils.MiscMethods.trimBitmap(android.graphics.Bitmap)");return Bitmap.createBitmap(originalBitmap, xCoordinateOfFirstPixel,
+                yCoordinateOfFirstPixel, newBitmapWidth, newBitmapHeight);}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("android.graphics.Bitmap com.haringeymobile.ukweather.utils.MiscMethods.trimBitmap(android.graphics.Bitmap)",throwable);throw throwable;}
     }
 
     /**
@@ -151,7 +151,7 @@ public class MiscMethods {
      * @return formatted text to be displayed in a text view
      */
     public static String getNoCitiesFoundDialogMessage(Resources res) {
-        String dialogMessage = NO_CITIES_FOUND_MESSAGE_PART_PREFIX;
+        com.mijack.Xlog.logStaticMethodEnter("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.getNoCitiesFoundDialogMessage(android.content.res.Resources)",res);try{String dialogMessage = NO_CITIES_FOUND_MESSAGE_PART_PREFIX;
         dialogMessage += res.getString(R.string.message_no_cities_found_part_1);
         dialogMessage += "\n";
         dialogMessage += NO_CITIES_FOUND_MESSAGE_PART_PREFIX;
@@ -160,7 +160,7 @@ public class MiscMethods {
         dialogMessage += NO_CITIES_FOUND_MESSAGE_PART_PREFIX;
         dialogMessage += res.getString(R.string.message_no_cities_found_part_3);
         dialogMessage += NO_CITIES_FOUND_MESSAGE_COORDINATES;
-        return dialogMessage;
+        {com.mijack.Xlog.logStaticMethodExit("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.getNoCitiesFoundDialogMessage(android.content.res.Resources)");return dialogMessage;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.utils.MiscMethods.getNoCitiesFoundDialogMessage(android.content.res.Resources)",throwable);throw throwable;}
     }
 
     /**
@@ -171,7 +171,7 @@ public class MiscMethods {
      * @param res        app resources
      */
     public static void updateLocale(String localeCode, Resources res) {
-        Locale locale;
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.utils.MiscMethods.updateLocale(java.lang.String,android.content.res.Resources)",localeCode,res);try{Locale locale;
         if (localeCode.contains("-r") || localeCode.contains("-")) {
             final String[] language_region = localeCode.split("\\-(r)?");
             locale = new Locale(language_region[0], language_region[1]);
@@ -181,7 +181,7 @@ public class MiscMethods {
         Configuration config = res.getConfiguration();
         config.locale = locale;
         res.updateConfiguration(config, res.getDisplayMetrics());
-        Locale.setDefault(locale);
+        Locale.setDefault(locale);com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.utils.MiscMethods.updateLocale(java.lang.String,android.content.res.Resources)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.utils.MiscMethods.updateLocale(java.lang.String,android.content.res.Resources)",throwable);throw throwable;}
     }
 
 }

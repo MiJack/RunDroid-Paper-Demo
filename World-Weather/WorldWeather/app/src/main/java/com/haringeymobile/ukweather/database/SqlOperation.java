@@ -74,14 +74,14 @@ public class SqlOperation {
      * @param currentWeather Json string for the current city weather
      */
     void updateOrInsertCityWithCurrentWeather(int cityId, String cityName, String currentWeather) {
-        if (!CityTable.COLUMN_CACHED_JSON_CURRENT.equals(columnNameForJsonString)) {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.updateOrInsertCityWithCurrentWeather(int,java.lang.String,java.lang.String)",this,cityId,cityName,currentWeather);try{if (!CityTable.COLUMN_CACHED_JSON_CURRENT.equals(columnNameForJsonString)) {
             throw new IllegalStateException(
                     "This method is expected to deal with current weather information only");
         }
 
         Cursor cursor = getCursorWithCityId(cityId);
         if (cursor == null) {
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.updateOrInsertCityWithCurrentWeather(int,java.lang.String,java.lang.String)",this);return;}
         }
         boolean cityIdExists = cursor.moveToFirst();
         if (cityIdExists) {
@@ -92,7 +92,7 @@ public class SqlOperation {
             cursor.close();
         } else {
             insertNewCityWithCurrentWeather(cityId, cityName, currentWeather);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.updateOrInsertCityWithCurrentWeather(int,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -104,7 +104,7 @@ public class SqlOperation {
      */
     private void insertNewCityWithCurrentWeather(int cityId, String cityName, String
             currentWeather) {
-        ContentValues newValues = new ContentValues();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.insertNewCityWithCurrentWeather(int,java.lang.String,java.lang.String)",this,cityId,cityName,currentWeather);try{ContentValues newValues = new ContentValues();
         newValues.put(CityTable.COLUMN_CITY_ID, cityId);
         newValues.put(CityTable.COLUMN_NAME, cityName);
         long currentTime = System.currentTimeMillis();
@@ -118,7 +118,7 @@ public class SqlOperation {
                 CityTable.CITY_NEVER_QUERIED);
         newValues.putNull(CityTable.COLUMN_CACHED_JSON_THREE_HOURLY_FORECAST);
         context.getContentResolver().insert(WeatherContentProvider.CONTENT_URI_CITY_RECORDS,
-                newValues);
+                newValues);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.insertNewCityWithCurrentWeather(int,java.lang.String,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.insertNewCityWithCurrentWeather(int,java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -128,30 +128,30 @@ public class SqlOperation {
      * @param cityId Open Weather Map city ID
      */
     private Cursor getCursorWithCityId(int cityId) {
-        if (context == null) {
-            return null;
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithCityId(int)",this,cityId);try{if (context == null) {
+            {com.mijack.Xlog.logMethodExit("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithCityId(int)",this);return null;}
         }
-        return context.getContentResolver().query(
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithCityId(int)",this);return context.getContentResolver().query(
                 WeatherContentProvider.CONTENT_URI_CITY_RECORDS,
                 new String[]{CityTable._ID, CityTable.COLUMN_CITY_ID},
                 CityTable.COLUMN_CITY_ID + "=?",
-                new String[]{Integer.toString(cityId)}, null);
+                new String[]{Integer.toString(cityId)}, null);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithCityId(int)",this,throwable);throw throwable;}
     }
 
     /**
      * Obtains the uri of the row pointed to by the provided cursor.
      */
     private Uri getRowUri(Cursor cursor) {
-        int columnIndex = cursor.getColumnIndexOrThrow(CityTable._ID);
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.haringeymobile.ukweather.database.SqlOperation.getRowUri(android.database.Cursor)",this,cursor);try{int columnIndex = cursor.getColumnIndexOrThrow(CityTable._ID);
         long rowId = cursor.getLong(columnIndex);
-        return getRowUri(rowId);
+        {com.mijack.Xlog.logMethodExit("android.net.Uri com.haringeymobile.ukweather.database.SqlOperation.getRowUri(android.database.Cursor)",this);return getRowUri(rowId);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.haringeymobile.ukweather.database.SqlOperation.getRowUri(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     /**
      * Obtains the uri of the row with the given ID.
      */
     private Uri getRowUri(long rowId) {
-        return ContentUris.withAppendedId(WeatherContentProvider.CONTENT_URI_CITY_RECORDS, rowId);
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.haringeymobile.ukweather.database.SqlOperation.getRowUri(long)",this,rowId);try{com.mijack.Xlog.logMethodExit("android.net.Uri com.haringeymobile.ukweather.database.SqlOperation.getRowUri(long)",this);return ContentUris.withAppendedId(WeatherContentProvider.CONTENT_URI_CITY_RECORDS, rowId);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.haringeymobile.ukweather.database.SqlOperation.getRowUri(long)",this,throwable);throw throwable;}
     }
 
     /**
@@ -161,18 +161,18 @@ public class SqlOperation {
      * @param jsonString JSON string for the weather information of some kind
      */
     void updateWeatherInfo(int cityId, String jsonString) {
-        Cursor cursor = getCursorWithWeatherInfo(cityId);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.updateWeatherInfo(int,java.lang.String)",this,cityId,jsonString);try{Cursor cursor = getCursorWithWeatherInfo(cityId);
         if (cursor == null) {
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.updateWeatherInfo(int,java.lang.String)",this);return;}
         }
         if (!cursor.moveToFirst()) {
             cursor.close();
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.updateWeatherInfo(int,java.lang.String)",this);return;}
         }
         Uri rowUri = getRowUri(cursor);
         ContentValues newValues = createContentValuesWithDateAndWeatherJsonString(jsonString);
         context.getContentResolver().update(rowUri, newValues, null, null);
-        cursor.close();
+        cursor.close();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.updateWeatherInfo(int,java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -182,16 +182,16 @@ public class SqlOperation {
      * @param cityId Open Weather Map city ID
      */
     private Cursor getCursorWithWeatherInfo(int cityId) {
-        if (context == null) {
-            return null;
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithWeatherInfo(int)",this,cityId);try{if (context == null) {
+            {com.mijack.Xlog.logMethodExit("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithWeatherInfo(int)",this);return null;}
         }
-        return context.getContentResolver().query(
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithWeatherInfo(int)",this);return context.getContentResolver().query(
                 WeatherContentProvider.CONTENT_URI_CITY_RECORDS,
                 new String[]{CityTable._ID, columnNameForLastQueryTime,
                         columnNameForJsonString,
                         CityTable.COLUMN_ORDERING_VALUE},
                 CityTable.COLUMN_CITY_ID + "=?",
-                new String[]{Integer.toString(cityId)}, null);
+                new String[]{Integer.toString(cityId)}, null);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.haringeymobile.ukweather.database.SqlOperation.getCursorWithWeatherInfo(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -201,12 +201,12 @@ public class SqlOperation {
      * @param jsonString JSON string for the weather information of some kind
      */
     private ContentValues createContentValuesWithDateAndWeatherJsonString(String jsonString) {
-        ContentValues newValues = new ContentValues();
+        com.mijack.Xlog.logMethodEnter("android.content.ContentValues com.haringeymobile.ukweather.database.SqlOperation.createContentValuesWithDateAndWeatherJsonString(java.lang.String)",this,jsonString);try{ContentValues newValues = new ContentValues();
         long currentTime = System.currentTimeMillis();
         newValues.put(columnNameForLastQueryTime, currentTime);
         newValues.put(CityTable.COLUMN_ORDERING_VALUE, currentTime);
         newValues.put(columnNameForJsonString, jsonString);
-        return newValues;
+        {com.mijack.Xlog.logMethodExit("android.content.ContentValues com.haringeymobile.ukweather.database.SqlOperation.createContentValuesWithDateAndWeatherJsonString(java.lang.String)",this);return newValues;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.content.ContentValues com.haringeymobile.ukweather.database.SqlOperation.createContentValuesWithDateAndWeatherJsonString(java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -216,13 +216,13 @@ public class SqlOperation {
      * @return a string, representing JSON weather data, or null, if no cached data is stored
      */
     public Pair<String, Long> getJsonStringForWeatherInfo(int cityId) {
-        Cursor cursor = getCursorWithWeatherInfo(cityId);
+        com.mijack.Xlog.logMethodEnter("android.support.v4.util.Pair com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(int)",this,cityId);try{Cursor cursor = getCursorWithWeatherInfo(cityId);
         if (cursor == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(int)",this);return null;}
         }
         if (!cursor.moveToFirst()) {
             cursor.close();
-            return null;
+            {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(int)",this);return null;}
         }
 
         String weatherInfoJson = getJsonStringForWeatherInfo(cursor);
@@ -239,7 +239,7 @@ public class SqlOperation {
 
         Pair<String, Long> storedWeatherInfo = Pair.create(weatherInfoJson, lastQueryTime);
         cursor.close();
-        return storedWeatherInfo;
+        {com.mijack.Xlog.logMethodExit("android.support.v4.util.Pair com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(int)",this);return storedWeatherInfo;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.support.v4.util.Pair com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -252,8 +252,8 @@ public class SqlOperation {
      * outdated
      */
     private String getJsonStringForWeatherInfo(Cursor cursor) {
-        int columnIndexForWeatherInfo = cursor.getColumnIndexOrThrow(columnNameForJsonString);
-        return cursor.getString(columnIndexForWeatherInfo);
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(android.database.Cursor)",this,cursor);try{int columnIndexForWeatherInfo = cursor.getColumnIndexOrThrow(columnNameForJsonString);
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(android.database.Cursor)",this);return cursor.getString(columnIndexForWeatherInfo);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.getJsonStringForWeatherInfo(android.database.Cursor)",this,throwable);throw throwable;}
     }
 
     /**
@@ -263,10 +263,10 @@ public class SqlOperation {
      * @param cityId Open Weather Map city ID
      */
     void deleteCity(int cityId) {
-        context.getContentResolver().delete(
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.deleteCity(int)",this,cityId);try{context.getContentResolver().delete(
                 WeatherContentProvider.CONTENT_URI_CITY_RECORDS,
                 CityTable.COLUMN_CITY_ID + "=?",
-                new String[]{Integer.toString(cityId)});
+                new String[]{Integer.toString(cityId)});com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.deleteCity(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.deleteCity(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -277,12 +277,12 @@ public class SqlOperation {
      * @param newName the new (user-chosen) name for the city
      */
     void renameCity(int cityId, String newName) {
-        ContentValues newValues = new ContentValues();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.renameCity(int,java.lang.String)",this,cityId,newName);try{ContentValues newValues = new ContentValues();
         newValues.put(CityTable.COLUMN_NAME, newName);
         context.getContentResolver().update(
                 WeatherContentProvider.CONTENT_URI_CITY_RECORDS, newValues,
                 CityTable.COLUMN_CITY_ID + "=?",
-                new String[]{Integer.toString(cityId)});
+                new String[]{Integer.toString(cityId)});com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.renameCity(int,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.renameCity(int,java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -293,8 +293,8 @@ public class SqlOperation {
      * changed by a user)
      */
     public String findCityName(int cityId) {
-        if (context == null) {
-            return null;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.findCityName(int)",this,cityId);try{if (context == null) {
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.findCityName(int)",this);return null;}
         }
         Cursor cursor = context.getContentResolver().query(
                 WeatherContentProvider.CONTENT_URI_CITY_RECORDS,
@@ -302,16 +302,16 @@ public class SqlOperation {
                 CityTable.COLUMN_CITY_ID + "=?",
                 new String[]{Integer.toString(cityId)}, null);
         if (cursor == null) {
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.findCityName(int)",this);return null;}
         }
         if (!cursor.moveToFirst()) {
             cursor.close();
-            return null;
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.findCityName(int)",this);return null;}
         }
         int columnIndexForCityName = cursor.getColumnIndexOrThrow(CityTable.COLUMN_NAME);
         String cityName = cursor.getString(columnIndexForCityName);
         cursor.close();
-        return cityName;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.findCityName(int)",this);return cityName;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.database.SqlOperation.findCityName(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -323,11 +323,11 @@ public class SqlOperation {
      * @param rowId a unique id of a table record
      */
     public void setLastOverallQueryTimeToCurrentTime(long rowId) {
-        long currentTime = System.currentTimeMillis();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.setLastOverallQueryTimeToCurrentTime(long)",this,rowId);try{long currentTime = System.currentTimeMillis();
         ContentValues newValues = new ContentValues();
         newValues.put(CityTable.COLUMN_ORDERING_VALUE, currentTime);
         Uri rowUri = getRowUri(rowId);
-        context.getContentResolver().update(rowUri, newValues, null, null);
+        context.getContentResolver().update(rowUri, newValues, null, null);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.setLastOverallQueryTimeToCurrentTime(long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.setLastOverallQueryTimeToCurrentTime(long)",this,throwable);throw throwable;}
     }
 
     /**
@@ -336,14 +336,14 @@ public class SqlOperation {
      * @param rowIds unique ids of the table records
      */
     public void setLastOverallQueryTimeToCurrentTime(long[] rowIds) {
-        ContentResolver contentResolver = context.getContentResolver();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.setLastOverallQueryTimeToCurrentTime([long)",this,rowIds);try{ContentResolver contentResolver = context.getContentResolver();
         long currentTime = System.currentTimeMillis();
         ContentValues newValues = new ContentValues();
         newValues.put(CityTable.COLUMN_ORDERING_VALUE, currentTime);
         for (long rowId : rowIds) {
             Uri rowUri = getRowUri(rowId);
             contentResolver.update(rowUri, newValues, null, null);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.setLastOverallQueryTimeToCurrentTime([long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.setLastOverallQueryTimeToCurrentTime([long)",this,throwable);throw throwable;}
     }
 
     /**
@@ -353,8 +353,8 @@ public class SqlOperation {
      * @param cityOrderTo   new position of the dragged city
      */
     void dragCity(int cityOrderFrom, int cityOrderTo) {
-        if (cityOrderFrom == cityOrderTo) {
-            return;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.dragCity(int,int)",this,cityOrderFrom,cityOrderTo);try{if (cityOrderFrom == cityOrderTo) {
+            {com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.dragCity(int,int)",this);return;}
         }
         if (cityOrderFrom < 0 || cityOrderTo < 0) {
             throw new IllegalArgumentException("Unexpected city orders: " + cityOrderFrom + ", " +
@@ -368,11 +368,11 @@ public class SqlOperation {
                         CityTable.COLUMN_ORDERING_VALUE},
                 null, null, sortOrder);
         if (cursor == null) {
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.dragCity(int,int)",this);return;}
         }
 
         if (cityOrderFrom == 0 || cityOrderTo == 0) {
-            // if the top city in the table changes, we update shared prefs
+            /*// if the top city in the table changes, we update shared prefs*/
             cursor.moveToPosition(cityOrderFrom == 0 ? 1 : cityOrderFrom);
             int columnIndexForCityOwmId = cursor.getColumnIndexOrThrow(CityTable.COLUMN_CITY_ID);
             int topCityId = cursor.getInt(columnIndexForCityOwmId);
@@ -382,7 +382,7 @@ public class SqlOperation {
         int columnIndexForOrderingValue = cursor.getColumnIndexOrThrow(CityTable.
                 COLUMN_ORDERING_VALUE);
         if (cityOrderFrom < cityOrderTo) {
-            // city dragged down
+            /*// city dragged down*/
             cursor.moveToPosition(cityOrderTo);
             long orderingValueForCityOrderTo = cursor.getLong(columnIndexForOrderingValue);
             long newOrderingValueForCityOrderFrom = orderingValueForCityOrderTo - 1;
@@ -403,7 +403,7 @@ public class SqlOperation {
             cursor.moveToPosition(cityOrderFrom);
             updateLastQueryTime(cursor, newOrderingValueForCityOrderFrom);
         } else {
-            // city dragged up
+            /*// city dragged up*/
             cursor.moveToPosition(cityOrderTo);
             long orderingValueForCityOrderTo = cursor.getLong(columnIndexForOrderingValue);
             long newOrderingValueForCityOrderFrom = orderingValueForCityOrderTo + 1;
@@ -427,17 +427,17 @@ public class SqlOperation {
             updateLastQueryTime(cursor, newOrderingValueForCityOrderFrom);
         }
 
-        cursor.close();
+        cursor.close();}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.dragCity(int,int)",this,throwable);throw throwable;}
     }
 
     private void updateLastQueryTime(Cursor cursor, long lastQueryTime) {
-        ContentValues newValues = new ContentValues();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.SqlOperation.updateLastQueryTime(android.database.Cursor,long)",this,cursor,lastQueryTime);try{ContentValues newValues = new ContentValues();
         newValues.put(CityTable.COLUMN_ORDERING_VALUE, lastQueryTime);
         Uri rowUri = getRowUri(cursor);
         int columnIndexForRowId = cursor.getColumnIndexOrThrow(CityTable._ID);
         int rowId = cursor.getInt(columnIndexForRowId);
         context.getContentResolver().update(rowUri, newValues, CityTable._ID + "=?",
-                new String[]{Integer.toString(rowId)});
+                new String[]{Integer.toString(rowId)});com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.SqlOperation.updateLastQueryTime(android.database.Cursor,long)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.SqlOperation.updateLastQueryTime(android.database.Cursor,long)",this,throwable);throw throwable;}
     }
 
 }

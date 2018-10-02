@@ -20,13 +20,13 @@ public abstract class AsyncTaskWithProgressBar<Params, Progress, Result>
 
     public AsyncTaskWithProgressBar<Params, Progress, Result> setContext(
             Context context) {
-        this.context = context;
-        return this;
+        com.mijack.Xlog.logMethodEnter("AsyncTaskWithProgressBar com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.setContext(android.content.Context)",this,context);try{this.context = context;
+        {com.mijack.Xlog.logMethodExit("AsyncTaskWithProgressBar com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.setContext(android.content.Context)",this);return this;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("AsyncTaskWithProgressBar com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.setContext(android.content.Context)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onPreExecute()",this);try{super.onPreExecute();
         if (context != null) {
             progressDialog = new ProgressDialog(context);
             progressDialog.setMessage(context.getResources().getString(
@@ -38,27 +38,27 @@ public abstract class AsyncTaskWithProgressBar<Params, Progress, Result>
 
                 @Override
                 public void onCancel(DialogInterface arg0) {
-                    progressDialog.dismiss();
+                    com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>$1.onCancel(android.content.DialogInterface)",this,arg0);try{progressDialog.dismiss();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>$1.onCancel(android.content.DialogInterface)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>$1.onCancel(android.content.DialogInterface)",this,throwable);throw throwable;}
                 }
             });
 
             progressDialog.show();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onPreExecute()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onPreExecute()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onCancelled() {
-        super.onCancelled();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onCancelled()",this);try{super.onCancelled();
         if (progressDialog.isShowing()) {
             progressDialog.dismiss();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onCancelled()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onCancelled()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostExecute(Result result) {
-        super.onPostExecute(result);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onPostExecute(Result)",this,result);try{super.onPostExecute(result);
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onPostExecute(Result)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.utils.AsyncTaskWithProgressBar<Params, Progress, Result>.onPostExecute(Result)",this,throwable);throw throwable;}
     }
 }

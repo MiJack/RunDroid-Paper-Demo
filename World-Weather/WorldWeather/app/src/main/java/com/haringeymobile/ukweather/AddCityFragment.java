@@ -50,14 +50,14 @@ public class AddCityFragment extends DialogFragment {
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        cityQueryTextListener = (OnNewCityQueryTextListener) activity;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.AddCityFragment.onAttach(android.app.Activity)",this,activity);try{super.onAttach(activity);
+        cityQueryTextListener = (OnNewCityQueryTextListener) activity;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.AddCityFragment.onAttach(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.AddCityFragment.onAttach(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_add_city, null);
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.haringeymobile.ukweather.AddCityFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_add_city, null);
 
         queryEditText = (EditText) view.findViewById(R.id.ac_search_edit_text);
         TextView infoTextView = (TextView) view.findViewById(R.id.ac_info_text_view);
@@ -71,16 +71,16 @@ public class AddCityFragment extends DialogFragment {
 
             @Override
             public void onClick(View v) {
-                onNewCityQuerySubmitted();
+                com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.AddCityFragment$1.onClick(android.view.View)",this,v);try{onNewCityQuerySubmitted();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.AddCityFragment$1.onClick(android.view.View)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.AddCityFragment$1.onClick(android.view.View)",this,throwable);throw throwable;}
             }
 
         });
 
-        return new AlertDialog.Builder(getActivity())
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.haringeymobile.ukweather.AddCityFragment.onCreateDialog(android.os.Bundle)",this);return new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .setIcon(R.drawable.ic_add_content)
                 .setTitle(R.string.dialog_title_add_city)
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.haringeymobile.ukweather.AddCityFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -88,13 +88,13 @@ public class AddCityFragment extends DialogFragment {
      * processing.
      */
     private void onNewCityQuerySubmitted() {
-        String query = queryEditText.getText().toString();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.AddCityFragment.onNewCityQuerySubmitted()",this);try{String query = queryEditText.getText().toString();
         query = preProcessQueryString(query);
         if (query.length() < MINIMUM_SEARCH_QUERY_STRING_LENGTH) {
             cityQueryTextListener.showAlertDialog(R.string.dialog_title_query_too_short);
         } else {
             cityQueryTextListener.onQueryTextSubmit(query);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.AddCityFragment.onNewCityQuerySubmitted()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.AddCityFragment.onNewCityQuerySubmitted()",this,throwable);throw throwable;}
     }
 
     /**
@@ -104,13 +104,13 @@ public class AddCityFragment extends DialogFragment {
      * @return query that can be submitted to OWM
      */
     private String preProcessQueryString(String query) {
-        return query.replace(" ", "").replace("\n", "").replace("\r", "");
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.AddCityFragment.preProcessQueryString(java.lang.String)",this,query);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.AddCityFragment.preProcessQueryString(java.lang.String)",this);return query.replace(" ", "").replace("\n", "").replace("\r", "");}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.AddCityFragment.preProcessQueryString(java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
-        cityQueryTextListener = null;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.AddCityFragment.onDetach()",this);try{super.onDetach();
+        cityQueryTextListener = null;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.AddCityFragment.onDetach()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.AddCityFragment.onDetach()",this,throwable);throw throwable;}
     }
 
 }

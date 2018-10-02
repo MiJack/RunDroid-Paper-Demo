@@ -17,11 +17,11 @@ public class CityInfo {
 	private String cityName;
 
 	public String getCountry() {
-		return country;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.data.objects.CityInfo.getCountry()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.data.objects.CityInfo.getCountry()",this);return country;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.data.objects.CityInfo.getCountry()",this,throwable);throw throwable;}
 	}
 
 	public String getCityName() {
-		return cityName;
+		com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.data.objects.CityInfo.getCityName()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.data.objects.CityInfo.getCityName()",this);return cityName;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.data.objects.CityInfo.getCityName()",this,throwable);throw throwable;}
 	}
 
 }

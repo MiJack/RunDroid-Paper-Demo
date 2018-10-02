@@ -35,7 +35,7 @@ public class CityWeatherCursorAdapter extends BaseCityCursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View rowView = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE))
+        com.mijack.Xlog.logMethodEnter("android.view.View com.haringeymobile.ukweather.CityWeatherCursorAdapter.newView(android.content.Context,android.database.Cursor,android.view.ViewGroup)",this,context,cursor,parent);try{View rowView = ((LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE))
                 .inflate(R.layout.row_city_list_with_weather_buttons, parent, false);
 
         CityRowWeatherViewHolder holder = new CityRowWeatherViewHolder();
@@ -54,14 +54,14 @@ public class CityWeatherCursorAdapter extends BaseCityCursorAdapter {
 
         rowView.setTag(holder);
 
-        return rowView;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.haringeymobile.ukweather.CityWeatherCursorAdapter.newView(android.content.Context,android.database.Cursor,android.view.ViewGroup)",this);return rowView;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.haringeymobile.ukweather.CityWeatherCursorAdapter.newView(android.content.Context,android.database.Cursor,android.view.ViewGroup)",this,throwable);throw throwable;}
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        CityRowWeatherViewHolder holder = (CityRowWeatherViewHolder) view.getTag();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.CityWeatherCursorAdapter.bindView(android.view.View,android.content.Context,android.database.Cursor)",this,view,context,cursor);try{CityRowWeatherViewHolder holder = (CityRowWeatherViewHolder) view.getTag();
         int nameColumnsIndex = cursor.getColumnIndexOrThrow(CityTable.COLUMN_NAME);
-        holder.cityNameTextView.setText(cursor.getString(nameColumnsIndex));
+        holder.cityNameTextView.setText(cursor.getString(nameColumnsIndex));com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.CityWeatherCursorAdapter.bindView(android.view.View,android.content.Context,android.database.Cursor)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.CityWeatherCursorAdapter.bindView(android.view.View,android.content.Context,android.database.Cursor)",this,throwable);throw throwable;}
     }
 
 }

@@ -40,7 +40,7 @@ public class AppThemeArrayAdapter extends ArrayAdapter<CharSequence> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        PreferenceViewHolder holder;
+        com.mijack.Xlog.logMethodEnter("android.view.View com.haringeymobile.ukweather.settings.AppThemeArrayAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,position,convertView,parent);try{PreferenceViewHolder holder;
         View rowView = convertView;
 
         if (rowView == null) {
@@ -60,7 +60,7 @@ public class AppThemeArrayAdapter extends ArrayAdapter<CharSequence> {
 
         holder.nameTextView.setText(getItem(position));
         holder.nameTextView.setChecked(position == index);
-        return rowView;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.haringeymobile.ukweather.settings.AppThemeArrayAdapter.getView(int,android.view.View,android.view.ViewGroup)",this);return rowView;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.haringeymobile.ukweather.settings.AppThemeArrayAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,throwable);throw throwable;}
     }
 
 }

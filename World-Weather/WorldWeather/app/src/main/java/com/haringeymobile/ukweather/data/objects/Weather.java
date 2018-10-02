@@ -20,19 +20,19 @@ public class Weather {
     private String type;
 
     public String getDescription() {
-        return description;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getDescription()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getDescription()",this);return description;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getDescription()",this,throwable);throw throwable;}
     }
 
     public String getIcon() {
-        return icon;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getIcon()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getIcon()",this);return icon;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getIcon()",this,throwable);throw throwable;}
     }
 
     public String getType() {
-        return type;
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getType()",this);try{com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getType()",this);return type;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.data.objects.Weather.getType()",this,throwable);throw throwable;}
     }
 
     public int getId() {
-        return id;
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.data.objects.Weather.getId()",this);try{com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.data.objects.Weather.getId()",this);return id;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.data.objects.Weather.getId()",this,throwable);throw throwable;}
     }
 
 }

@@ -26,10 +26,10 @@ public class SearchResponseForDailyForecastQuery {
     private String message;
 
     public CityInfo getCityInfo() {
-        return cityInfo;
+        com.mijack.Xlog.logMethodEnter("com.haringeymobile.ukweather.data.objects.CityInfo com.haringeymobile.ukweather.data.objects.SearchResponseForDailyForecastQuery.getCityInfo()",this);try{com.mijack.Xlog.logMethodExit("com.haringeymobile.ukweather.data.objects.CityInfo com.haringeymobile.ukweather.data.objects.SearchResponseForDailyForecastQuery.getCityInfo()",this);return cityInfo;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.haringeymobile.ukweather.data.objects.CityInfo com.haringeymobile.ukweather.data.objects.SearchResponseForDailyForecastQuery.getCityInfo()",this,throwable);throw throwable;}
     }
 
     public List<CityDailyWeatherForecast> getDailyWeatherForecasts() {
-        return dailyWeatherForecasts;
+        com.mijack.Xlog.logMethodEnter("java.util.List com.haringeymobile.ukweather.data.objects.SearchResponseForDailyForecastQuery.getDailyWeatherForecasts()",this);try{com.mijack.Xlog.logMethodExit("java.util.List com.haringeymobile.ukweather.data.objects.SearchResponseForDailyForecastQuery.getDailyWeatherForecasts()",this);return dailyWeatherForecasts;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.List com.haringeymobile.ukweather.data.objects.SearchResponseForDailyForecastQuery.getDailyWeatherForecasts()",this,throwable);throw throwable;}
     }
 }

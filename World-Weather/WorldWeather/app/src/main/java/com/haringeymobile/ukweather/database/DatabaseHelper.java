@@ -15,12 +15,12 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        CityTable.onCreate(database);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,database);try{CityTable.onCreate(database);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-        CityTable.onUpgrade(database, oldVersion, newVersion);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.database.DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,database,oldVersion,newVersion);try{CityTable.onUpgrade(database, oldVersion, newVersion);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.database.DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.database.DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",this,throwable);throw throwable;}
     }
 
 }

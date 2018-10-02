@@ -19,19 +19,19 @@ public class WeatherThreeHourlyForecastChildSwipeFragment extends WeatherInfoFra
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherThreeHourlyForecastChildSwipeFragment.onActivityCreated(android.os.Bundle)",this,savedInstanceState);try{super.onActivityCreated(savedInstanceState);
         Bundle args = getArguments();
         String jsonString = args.getString(WeatherInfoFragment.JSON_STRING);
         Gson gson = new Gson();
         CityThreeHourlyWeatherForecast threeHourlyWeatherForecast = gson.fromJson(jsonString,
                 CityThreeHourlyWeatherForecast.class);
-        displayWeather(threeHourlyWeatherForecast);
+        displayWeather(threeHourlyWeatherForecast);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherThreeHourlyForecastChildSwipeFragment.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherThreeHourlyForecastChildSwipeFragment.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     protected void displayExtraInfo(WeatherInformation weatherInformation) {
-        CityThreeHourlyWeatherForecast threeHourlyWeatherForecast =
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherThreeHourlyForecastChildSwipeFragment.displayExtraInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,weatherInformation);try{CityThreeHourlyWeatherForecast threeHourlyWeatherForecast =
                 (CityThreeHourlyWeatherForecast) weatherInformation;
         Context context = getActivity();
         Date date = new Date(threeHourlyWeatherForecast.getDate() * 1000);
@@ -41,7 +41,7 @@ public class WeatherThreeHourlyForecastChildSwipeFragment extends WeatherInfoFra
         String timeString = getTimeString(context, date);
 
         extraInfoTextView.setText(weekdayName + ", " + dateString + "\n" + timeString + "\n"
-                + getArguments().getString(CITY_NAME));
+                + getArguments().getString(CITY_NAME));com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherThreeHourlyForecastChildSwipeFragment.displayExtraInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherThreeHourlyForecastChildSwipeFragment.displayExtraInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,throwable);throw throwable;}
     }
 
 }

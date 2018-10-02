@@ -68,7 +68,7 @@ public class MainActivity extends RefreshingActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.general_toolbar);
         setSupportActionBar(toolbar);
@@ -96,7 +96,7 @@ public class MainActivity extends RefreshingActivity implements
 
         if (searchView != null) {
             handleIntent(getIntent());
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
@@ -108,11 +108,11 @@ public class MainActivity extends RefreshingActivity implements
      *               performs a search
      */
     private void handleIntent(Intent intent) {
-        final SqlOperation sqlOperation = new SqlOperation(this);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.handleIntent(android.content.Intent)",this,intent);try{final SqlOperation sqlOperation = new SqlOperation(this);
         boolean collapseSearchViewAfterHandlingIntent = true;
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            // Handle the search request
+            /*// Handle the search request*/
             CursorAdapter cursorAdapter = searchView.getSuggestionsAdapter();
             if (cursorAdapter != null) {
                 int cityCount = cursorAdapter.getCount();
@@ -129,13 +129,13 @@ public class MainActivity extends RefreshingActivity implements
 
                         @Override
                         public void run() {
-                            sqlOperation.setLastOverallQueryTimeToCurrentTime(rowIds);
+                            com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity$1.run()",this);try{sqlOperation.setLastOverallQueryTimeToCurrentTime(rowIds);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity$1.run()",this,throwable);throw throwable;}
                         }
                     }).start();
                 }
             }
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            // Handle a suggestions click
+            /*// Handle a suggestions click*/
             final Uri data = intent.getData();
             final long rowId = Long.valueOf(data.getLastPathSegment());
 
@@ -143,7 +143,7 @@ public class MainActivity extends RefreshingActivity implements
 
                 @Override
                 public void run() {
-                    sqlOperation.setLastOverallQueryTimeToCurrentTime(rowId);
+                    com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity$2.run()",this);try{sqlOperation.setLastOverallQueryTimeToCurrentTime(rowId);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity$2.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity$2.run()",this,throwable);throw throwable;}
                 }
             }).start();
         }
@@ -152,48 +152,48 @@ public class MainActivity extends RefreshingActivity implements
             if (searchView != null) {
                 searchView.onActionViewCollapsed();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.handleIntent(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.handleIntent(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        // important - we set a new intent as a default intent, so the search suggestions can
-        // be handled properly
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onNewIntent(android.content.Intent)",this,intent);try{super.onNewIntent(intent);
+        /*// important - we set a new intent as a default intent, so the search suggestions can*/
+        /*// be handled properly*/
         setIntent(intent);
-        handleIntent(getIntent());
+        handleIntent(getIntent());com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onNewIntent(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onNewIntent(android.content.Intent)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onRestoreInstanceState(android.os.Bundle)",this,savedInstanceState);try{super.onRestoreInstanceState(savedInstanceState);
         String jsonString = savedInstanceState.getString(WEATHER_INFO_JSON_STRING);
         if (jsonString != null) {
             searchResponseForFindQuery = new Gson().fromJson(jsonString,
                     SearchResponseForFindQuery.class);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onRestoreInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onRestoreInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onStart()",this);try{super.onStart();
         if (isDualPane) {
             workerFragment.retrieveLastRequestedWeatherInfo();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onStart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onStart()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onSaveInstanceState(android.os.Bundle)",this,outState);try{super.onSaveInstanceState(outState);
         if (searchResponseForFindQuery != null) {
             outState.putString(WEATHER_INFO_JSON_STRING,
                     new Gson().toJson(searchResponseForFindQuery));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onSaveInstanceState(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onSaveInstanceState(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (PREF_APP_THEME.equals(key)) {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onSharedPreferenceChanged(android.content.SharedPreferences,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this,sharedPreferences,key);try{if (PREF_APP_THEME.equals(key)) {
             recreate();
         } else if (PREF_APP_LANGUAGE.equals(key)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -209,14 +209,14 @@ public class MainActivity extends RefreshingActivity implements
 
             recreate();
             resetActionBarTitle();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onSharedPreferenceChanged(android.content.SharedPreferences,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onSharedPreferenceChanged(android.content.SharedPreferences,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.MainActivity.onCreateOptionsMenu(android.view.Menu)",this,menu);try{getMenuInflater().inflate(R.menu.main, menu);
         setCitySearching(menu);
-        return true;
+        {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.MainActivity.onCreateOptionsMenu(android.view.Menu)",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.MainActivity.onCreateOptionsMenu(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     /**
@@ -225,19 +225,19 @@ public class MainActivity extends RefreshingActivity implements
      * @param menu options menu containing the city search view
      */
     private void setCitySearching(Menu menu) {
-        MenuItem searchItem = menu.findItem(R.id.mi_search_cities);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.setCitySearching(android.view.Menu)",this,menu);try{MenuItem searchItem = menu.findItem(R.id.mi_search_cities);
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setSubmitButtonEnabled(true);
-        searchView.setQueryHint(getResources().getString(R.string.city_searchable_hint));
+        searchView.setQueryHint(getResources().getString(R.string.city_searchable_hint));com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.setCitySearching(android.view.Menu)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.setCitySearching(android.view.Menu)",this,throwable);throw throwable;}
     }
 
     @Override
     public void showAlertDialog(final int stringResourceId) {
-        GeneralDialogFragment.newInstance(getResources().getString(stringResourceId), null).
-                show(getSupportFragmentManager(), QUERY_STRING_TOO_SHORT_ALERT_DIALOG_FRAGMENT_TAG);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.showAlertDialog(int)",this,stringResourceId);try{GeneralDialogFragment.newInstance(getResources().getString(stringResourceId), null).
+                show(getSupportFragmentManager(), QUERY_STRING_TOO_SHORT_ALERT_DIALOG_FRAGMENT_TAG);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.showAlertDialog(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.showAlertDialog(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -248,7 +248,7 @@ public class MainActivity extends RefreshingActivity implements
      */
     @Override
     public void onQueryTextSubmit(String query) {
-        if (MiscMethods.isUserOnline(MainActivity.this)) {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onQueryTextSubmit(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this,query);try{if (MiscMethods.isUserOnline(MainActivity.this)) {
             FindCitiesQueryProcessor findCitiesQueryProcessor =
                     new FindCitiesQueryProcessor(this, query);
             URL url = findCitiesQueryProcessor.getUrlForFindCitiesQuery(this);
@@ -258,12 +258,12 @@ public class MainActivity extends RefreshingActivity implements
         } else {
             Toast.makeText(MainActivity.this, R.string.error_message_no_connection,
                     Toast.LENGTH_SHORT).show();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onQueryTextSubmit(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onQueryTextSubmit(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{int id = item.getItemId();
         if (id == R.id.mi_add_city) {
             showAddCityDialog();
         } else if (id == R.id.mi_city_management) {
@@ -278,20 +278,20 @@ public class MainActivity extends RefreshingActivity implements
             Intent aboutIntent = new Intent(this, AboutActivity.class);
             startActivityWithTransitionAnimation(aboutIntent);
         }
-        return super.onOptionsItemSelected(item);
+        {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this);return super.onOptionsItemSelected(item);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.MainActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
     /**
      * Displays a dialog allowing user to search new cities.
      */
     private void showAddCityDialog() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.showAddCityDialog()",this);try{FragmentManager fragmentManager = getSupportFragmentManager();
         AddCityFragment addCityFragment = (AddCityFragment) fragmentManager
                 .findFragmentByTag(ADD_CITY_FRAGMENT_TAG);
         if (addCityFragment == null) {
             addCityFragment = new AddCityFragment();
             addCityFragment.show(fragmentManager, ADD_CITY_FRAGMENT_TAG);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.showAddCityDialog()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.showAddCityDialog()",this,throwable);throw throwable;}
     }
 
     /**
@@ -300,7 +300,7 @@ public class MainActivity extends RefreshingActivity implements
      * the browser.
      */
     private void goToPlayStore() {
-        final String appPackageName = getPackageName();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.goToPlayStore()",this);try{final String appPackageName = getPackageName();
         try {
             startActivityWithTransitionAnimation(new Intent(Intent.ACTION_VIEW,
                     Uri.parse("market://details?id=" + appPackageName)));
@@ -308,18 +308,18 @@ public class MainActivity extends RefreshingActivity implements
             startActivityWithTransitionAnimation(new Intent(Intent.ACTION_VIEW,
                     Uri.parse("http://play.google.com/store/apps/details?id="
                             + appPackageName)));
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.goToPlayStore()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.goToPlayStore()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSearchResponseForFindQueryRetrieved(
             SearchResponseForFindQuery searchResponseForFindQuery) {
-        this.searchResponseForFindQuery = searchResponseForFindQuery;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onSearchResponseForFindQueryRetrieved(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,searchResponseForFindQuery);try{this.searchResponseForFindQuery = searchResponseForFindQuery;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onSearchResponseForFindQueryRetrieved(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onSearchResponseForFindQueryRetrieved(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onFoundCityNamesItemClicked(int position) {
-        AddCityFragment addCityFragment = (AddCityFragment) getSupportFragmentManager()
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onFoundCityNamesItemClicked(int)",this,position);try{AddCityFragment addCityFragment = (AddCityFragment) getSupportFragmentManager()
                 .findFragmentByTag(ADD_CITY_FRAGMENT_TAG);
         if (addCityFragment != null) {
             addCityFragment.dismiss();
@@ -339,15 +339,15 @@ public class MainActivity extends RefreshingActivity implements
                         WeatherInfoType.CURRENT_WEATHER);
             }
 
-            // Since the Open Weather Map search response for the 'find cities' query contains the
-            // current weather information for each found city, we can cache this weather
-            // information for the selected city in the database, just in case the user requests it
-            // shortly (quite likely, given that s/he had just selected the city).
+            /*// Since the Open Weather Map search response for the 'find cities' query contains the*/
+            /*// current weather information for each found city, we can cache this weather*/
+            /*// information for the selected city in the database, just in case the user requests it*/
+            /*// shortly (quite likely, given that s/he had just selected the city).*/
             insertNewRecordOrUpdateCity(selectedCityWeather.getCityId(),
                     selectedCityWeather.getCityName(), currentWeatherJsonString);
             saveWeatherInfoRequest(selectedCityWeather.getCityId(),
                     WeatherInfoType.CURRENT_WEATHER);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onFoundCityNamesItemClicked(int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onFoundCityNamesItemClicked(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -360,12 +360,12 @@ public class MainActivity extends RefreshingActivity implements
      */
     private void insertNewRecordOrUpdateCity(int cityId, String cityName,
                                              String currentWeatherJsonString) {
-        Intent intent = new Intent(this, GeneralDatabaseService.class);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.insertNewRecordOrUpdateCity(int,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this,cityId,cityName,currentWeatherJsonString);try{Intent intent = new Intent(this, GeneralDatabaseService.class);
         intent.setAction(GeneralDatabaseService.ACTION_INSERT_OR_UPDATE_CITY_RECORD);
         intent.putExtra(CITY_ID, cityId);
         intent.putExtra(CITY_NAME, cityName);
         intent.putExtra(WEATHER_INFO_JSON_STRING, currentWeatherJsonString);
-        startService(intent);
+        startService(intent);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.insertNewRecordOrUpdateCity(int,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.insertNewRecordOrUpdateCity(int,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString)",this,throwable);throw throwable;}
     }
 
     /**
@@ -376,23 +376,23 @@ public class MainActivity extends RefreshingActivity implements
      * @param weatherInfoType requested weather information type
      */
     private void saveWeatherInfoRequest(int cityId, WeatherInfoType weatherInfoType) {
-        SharedPrefsHelper.putCityIdIntoSharedPrefs(this, cityId, false);
-        SharedPrefsHelper.putLastWeatherInfoTypeIntoSharedPrefs(this, weatherInfoType);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.saveWeatherInfoRequest(int,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,cityId,weatherInfoType);try{SharedPrefsHelper.putCityIdIntoSharedPrefs(this, cityId, false);
+        SharedPrefsHelper.putLastWeatherInfoTypeIntoSharedPrefs(this, weatherInfoType);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.saveWeatherInfoRequest(int,com.haringeymobile.ukweather.weather.WeatherInfoType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.saveWeatherInfoRequest(int,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCityWeatherInfoRequested(int cityId, WeatherInfoType weatherInfoType) {
-        workerFragment.retrieveWeatherInfoJsonString(cityId, weatherInfoType);
-        saveWeatherInfoRequest(cityId, weatherInfoType);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.onCityWeatherInfoRequested(int,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,cityId,weatherInfoType);try{workerFragment.retrieveWeatherInfoJsonString(cityId, weatherInfoType);
+        saveWeatherInfoRequest(cityId, weatherInfoType);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.onCityWeatherInfoRequested(int,com.haringeymobile.ukweather.weather.WeatherInfoType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.onCityWeatherInfoRequested(int,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,throwable);throw throwable;}
     }
 
     @Override
     public void displayRetrievedData(String jsonString, WeatherInfoType weatherInfoType) {
-        if (isDualPane) {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.displayRetrievedData(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,jsonString,weatherInfoType);try{if (isDualPane) {
             displayRetrievedDataInThisActivity(jsonString, weatherInfoType);
         } else {
             displayRetrievedDataInNewActivity(jsonString, weatherInfoType);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.displayRetrievedData(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.displayRetrievedData(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,throwable);throw throwable;}
     }
 
     /**
@@ -404,14 +404,14 @@ public class MainActivity extends RefreshingActivity implements
      */
     private void displayRetrievedDataInThisActivity(String jsonString,
                                                     WeatherInfoType weatherInfoType) {
-        Fragment fragment;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.displayRetrievedDataInThisActivity(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,jsonString,weatherInfoType);try{Fragment fragment;
         if (weatherInfoType == WeatherInfoType.CURRENT_WEATHER) {
             fragment = WeatherInfoFragment.newInstance(weatherInfoType, null, jsonString);
         } else {
             fragment = WeatherForecastParentFragment.newInstance(weatherInfoType, jsonString);
         }
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.weather_info_container, fragment).commit();
+                .replace(R.id.weather_info_container, fragment).commit();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.displayRetrievedDataInThisActivity(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.displayRetrievedDataInThisActivity(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,throwable);throw throwable;}
     }
 
     /**
@@ -422,15 +422,15 @@ public class MainActivity extends RefreshingActivity implements
      */
     private void displayRetrievedDataInNewActivity(String jsonString,
                                                    WeatherInfoType weatherInfoType) {
-        Intent intent = new Intent(this, WeatherInfoActivity.class);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.displayRetrievedDataInNewActivity(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,jsonString,weatherInfoType);try{Intent intent = new Intent(this, WeatherInfoActivity.class);
         intent.putExtra(WEATHER_INFORMATION_TYPE, (Parcelable) weatherInfoType);
         intent.putExtra(WEATHER_INFO_JSON_STRING, jsonString);
-        startActivityWithTransitionAnimation(intent);
+        startActivityWithTransitionAnimation(intent);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.displayRetrievedDataInNewActivity(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.displayRetrievedDataInNewActivity(com.haringeymobile.ukweather.weather.WorkerFragmentToRetrieveJsonString,com.haringeymobile.ukweather.weather.WeatherInfoType)",this,throwable);throw throwable;}
     }
 
     private void startActivityWithTransitionAnimation(Intent intent) {
-        startActivity(intent);
-        overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_top);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.MainActivity.startActivityWithTransitionAnimation(android.content.Intent)",this,intent);try{startActivity(intent);
+        overridePendingTransition(R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_top);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.MainActivity.startActivityWithTransitionAnimation(android.content.Intent)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.MainActivity.startActivityWithTransitionAnimation(android.content.Intent)",this,throwable);throw throwable;}
     }
 
 }

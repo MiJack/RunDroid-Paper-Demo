@@ -23,14 +23,14 @@ public class EnterPersonalApiKeyFragment extends DialogFragment {
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        listener = (Listener) activity;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onAttach(android.app.Activity)",this,activity);try{super.onAttach(activity);
+        listener = (Listener) activity;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onAttach(android.app.Activity)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onAttach(android.app.Activity)",this,throwable);throw throwable;}
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        final Activity activity = getActivity();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{final Activity activity = getActivity();
 
         final EditText personalKeyEditText = new EditText(activity);
         String currentPersonalApiKey = SharedPrefsHelper.getPersonalApiKeyFromSharedPrefs(activity);
@@ -38,7 +38,7 @@ public class EnterPersonalApiKeyFragment extends DialogFragment {
             personalKeyEditText.append(currentPersonalApiKey);
         }
 
-        return new AlertDialog.Builder(getActivity())
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onCreateDialog(android.os.Bundle)",this);return new AlertDialog.Builder(getActivity())
                 .setView(personalKeyEditText)
                 .setIcon(R.drawable.ic_edit)
                 .setTitle(R.string.dialog_title_enter_personal_key)
@@ -47,8 +47,8 @@ public class EnterPersonalApiKeyFragment extends DialogFragment {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        listener.onCancelUpdatingPersonalApiKey();
-                        dismiss();
+                        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,which);try{listener.onCancelUpdatingPersonalApiKey();
+                        dismiss();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
 
@@ -56,19 +56,19 @@ public class EnterPersonalApiKeyFragment extends DialogFragment {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String newKew = personalKeyEditText.getText().toString();
+                        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment$2.onClick(android.content.DialogInterface,int)",this,dialog,which);try{String newKew = personalKeyEditText.getText().toString();
                         SharedPrefsHelper.putPersonalApiKeyIntoSharedPrefs(activity, newKew);
-                        dismiss();
+                        dismiss();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment$2.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment$2.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
                     }
                 })
 
-                .create();
+                .create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
-        listener = null;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onDetach()",this);try{super.onDetach();
+        listener = null;com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onDetach()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.EnterPersonalApiKeyFragment.onDetach()",this,throwable);throw throwable;}
     }
 
 }

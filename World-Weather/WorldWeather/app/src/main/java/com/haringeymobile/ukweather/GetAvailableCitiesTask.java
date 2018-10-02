@@ -55,50 +55,50 @@ class GetAvailableCitiesTask extends
 
     @Override
     protected SearchResponseForFindQuery doInBackground(URL... params) {
-        String jsonString;
+        com.mijack.Xlog.logMethodEnter("com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery com.haringeymobile.ukweather.GetAvailableCitiesTask.doInBackground([java.net.URL)",this,params);try{String jsonString;
         try {
             jsonString = new JsonFetcher().getJsonString(params[0]);
         } catch (IOException e) {
             MiscMethods.log("IOException in SearchResponseForFindQuery doInBackground()");
-            return null;
+            {com.mijack.Xlog.logMethodExit("com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery com.haringeymobile.ukweather.GetAvailableCitiesTask.doInBackground([java.net.URL)",this);return null;}
         }
-        return jsonString == null ? null : new Gson().fromJson(jsonString,
-                SearchResponseForFindQuery.class);
+        {com.mijack.Xlog.logMethodExit("com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery com.haringeymobile.ukweather.GetAvailableCitiesTask.doInBackground([java.net.URL)",this);return jsonString == null ? null : new Gson().fromJson(jsonString,
+                SearchResponseForFindQuery.class);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery com.haringeymobile.ukweather.GetAvailableCitiesTask.doInBackground([java.net.URL)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostExecute(SearchResponseForFindQuery result) {
-        super.onPostExecute(result);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.GetAvailableCitiesTask.onPostExecute(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,result);try{super.onPostExecute(result);
         if (result == null || result.getCode() != JsonFetcher.HTTP_STATUS_CODE_OK) {
             displayErrorMessage();
         } else if (result.getCount() < 1) {
             showNoCitiesFoundAlertDialog();
         } else {
             dealWithSearchResponseForFindCitiesQuery(result);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.GetAvailableCitiesTask.onPostExecute(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.GetAvailableCitiesTask.onPostExecute(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,throwable);throw throwable;}
     }
 
     /**
      * Displays the network connection error message.
      */
     private void displayErrorMessage() {
-        if (activity != null) {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.GetAvailableCitiesTask.displayErrorMessage()",this);try{if (activity != null) {
             Toast.makeText(activity, R.string.error_message_no_connection, Toast.LENGTH_SHORT)
                     .show();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.GetAvailableCitiesTask.displayErrorMessage()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.GetAvailableCitiesTask.displayErrorMessage()",this,throwable);throw throwable;}
     }
 
     /**
      * Shows an alert dialog informing that no cities were found for the query.
      */
     private void showNoCitiesFoundAlertDialog() {
-        String dialogTitle = activity.getResources().getString(
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.GetAvailableCitiesTask.showNoCitiesFoundAlertDialog()",this);try{String dialogTitle = activity.getResources().getString(
                 R.string.dialog_title_no_cities_found);
         String dialogMessage = MiscMethods.getNoCitiesFoundDialogMessage(activity.getResources());
         DialogFragment dialogFragment = GeneralDialogFragment.newInstance(dialogTitle,
                 dialogMessage);
         dialogFragment.show(activity.getSupportFragmentManager(),
-                NO_CITIES_FOUND_DIALOG_FRAGMENT_TAG);
+                NO_CITIES_FOUND_DIALOG_FRAGMENT_TAG);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.GetAvailableCitiesTask.showNoCitiesFoundAlertDialog()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.GetAvailableCitiesTask.showNoCitiesFoundAlertDialog()",this,throwable);throw throwable;}
     }
 
     /**
@@ -107,8 +107,8 @@ class GetAvailableCitiesTask extends
      * @param result a city search response, containing found cities and related data
      */
     private void dealWithSearchResponseForFindCitiesQuery(SearchResponseForFindQuery result) {
-        informActivityAboutObtainedSearchResponse(result);
-        showDialogWithSearchResults(result);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.GetAvailableCitiesTask.dealWithSearchResponseForFindCitiesQuery(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,result);try{informActivityAboutObtainedSearchResponse(result);
+        showDialogWithSearchResults(result);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.GetAvailableCitiesTask.dealWithSearchResponseForFindCitiesQuery(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.GetAvailableCitiesTask.dealWithSearchResponseForFindCitiesQuery(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,throwable);throw throwable;}
     }
 
     /**
@@ -118,14 +118,14 @@ class GetAvailableCitiesTask extends
      * @param result a city search response, containing found cities and related data
      */
     private void informActivityAboutObtainedSearchResponse(SearchResponseForFindQuery result) {
-        try {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.GetAvailableCitiesTask.informActivityAboutObtainedSearchResponse(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,result);try{com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.GetAvailableCitiesTask.informActivityAboutObtainedSearchResponse(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this);try {
             OnCitySearchResponseRetrievedListener listener =
                     (OnCitySearchResponseRetrievedListener) activity;
             listener.onSearchResponseForFindQueryRetrieved(result);
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() +
                     " must implement OnCitySearchResponseRetrievedListener");
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.GetAvailableCitiesTask.informActivityAboutObtainedSearchResponse(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,throwable);throw throwable;}
     }
 
     /**
@@ -135,11 +135,11 @@ class GetAvailableCitiesTask extends
      * @param result a city search response, containing found cities and related data
      */
     private void showDialogWithSearchResults(SearchResponseForFindQuery result) {
-        ArrayList<String> foundCityNames = getFoundCityNames(result);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.GetAvailableCitiesTask.showDialogWithSearchResults(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,result);try{ArrayList<String> foundCityNames = getFoundCityNames(result);
         CitySearchResultsDialog citySearchResultsDialog = CitySearchResultsDialog
                 .newInstance(foundCityNames);
         citySearchResultsDialog.show(activity.getSupportFragmentManager(),
-                CITY_SEARCH_RESULTS_FRAGMENT_TAG);
+                CITY_SEARCH_RESULTS_FRAGMENT_TAG);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.GetAvailableCitiesTask.showDialogWithSearchResults(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.GetAvailableCitiesTask.showDialogWithSearchResults(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,throwable);throw throwable;}
     }
 
     /**
@@ -149,13 +149,13 @@ class GetAvailableCitiesTask extends
      * @return a list of city names (with coordinates)
      */
     private ArrayList<String> getFoundCityNames(SearchResponseForFindQuery result) {
-        ArrayList<String> foundCityNames = new ArrayList<>();
+        com.mijack.Xlog.logMethodEnter("java.util.ArrayList com.haringeymobile.ukweather.GetAvailableCitiesTask.getFoundCityNames(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,result);try{ArrayList<String> foundCityNames = new ArrayList<>();
         List<CityCurrentWeather> cities = result.getCities();
         for (CityCurrentWeather city : cities) {
             String cityName = getCityName(city);
             foundCityNames.add(cityName);
         }
-        return foundCityNames;
+        {com.mijack.Xlog.logMethodExit("java.util.ArrayList com.haringeymobile.ukweather.GetAvailableCitiesTask.getFoundCityNames(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this);return foundCityNames;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.util.ArrayList com.haringeymobile.ukweather.GetAvailableCitiesTask.getFoundCityNames(com.haringeymobile.ukweather.data.objects.SearchResponseForFindQuery)",this,throwable);throw throwable;}
     }
 
     /**
@@ -165,13 +165,13 @@ class GetAvailableCitiesTask extends
      * @return a city name (with latitude and longitude)
      */
     private String getCityName(CityCurrentWeather cityCurrentWeather) {
-        Coordinates cityCoordinates = cityCurrentWeather.getCoordinates();
-        return cityCurrentWeather.getCityName() + ", "
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.GetAvailableCitiesTask.getCityName(com.haringeymobile.ukweather.data.objects.CityCurrentWeather)",this,cityCurrentWeather);try{Coordinates cityCoordinates = cityCurrentWeather.getCoordinates();
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.GetAvailableCitiesTask.getCityName(com.haringeymobile.ukweather.data.objects.CityCurrentWeather)",this);return cityCurrentWeather.getCityName() + ", "
                 + cityCurrentWeather.getSystemParameters().getCountry() + "\n("
                 + MiscMethods.formatDoubleValue(cityCoordinates.getLatitude(), 2)
                 + ", "
                 + MiscMethods.formatDoubleValue(cityCoordinates.getLongitude(), 2)
-                + ")";
+                + ")";}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.GetAvailableCitiesTask.getCityName(com.haringeymobile.ukweather.data.objects.CityCurrentWeather)",this,throwable);throw throwable;}
     }
 
 }

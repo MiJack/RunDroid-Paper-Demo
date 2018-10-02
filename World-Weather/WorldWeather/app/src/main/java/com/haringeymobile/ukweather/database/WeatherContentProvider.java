@@ -20,7 +20,7 @@ public class WeatherContentProvider extends ContentProvider {
 
     private DatabaseHelper databaseHelper;
 
-    // Used for the UriMatcher
+    /*// Used for the UriMatcher*/
     private static final int CITIES_ALL_ROWS = 1;
     private static final int CITIES_SINGLE_ROW = 2;
     private static final int CITIES_SEARCH = 3;
@@ -68,14 +68,14 @@ public class WeatherContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        databaseHelper = new DatabaseHelper(getContext());
-        return true;
+        com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.database.WeatherContentProvider.onCreate()",this);try{databaseHelper = new DatabaseHelper(getContext());
+        {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.database.WeatherContentProvider.onCreate()",this);return true;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.database.WeatherContentProvider.onCreate()",this,throwable);throw throwable;}
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
-        SQLiteDatabase db;
+        com.mijack.Xlog.logMethodEnter("android.database.Cursor com.haringeymobile.ukweather.database.WeatherContentProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,uri,projection,selection,selectionArgs,sortOrder);try{SQLiteDatabase db;
         try {
             db = databaseHelper.getWritableDatabase();
         } catch (SQLiteException ex) {
@@ -89,7 +89,7 @@ public class WeatherContentProvider extends ContentProvider {
         switch (myURIMatcher.match(uri)) {
             case CITIES_SINGLE_ROW:
                 queryBuilder.appendWhere(CityTable._ID + "=" + uri.getLastPathSegment());
-                // fall through
+                /*// fall through*/
             case CITIES_ALL_ROWS:
                 queryBuilder.setTables(CityTable.TABLE_CITIES);
                 break;
@@ -106,26 +106,26 @@ public class WeatherContentProvider extends ContentProvider {
         Cursor cursor = queryBuilder.query(db, projection, selection, selectionArgs, groupBy,
                 having, sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
-        return cursor;
+        {com.mijack.Xlog.logMethodExit("android.database.Cursor com.haringeymobile.ukweather.database.WeatherContentProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this);return cursor;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.database.Cursor com.haringeymobile.ukweather.database.WeatherContentProvider.query(android.net.Uri,[java.lang.String,java.lang.String,[java.lang.String,java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     public String getType(Uri uri) {
-        switch (myURIMatcher.match(uri)) {
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.database.WeatherContentProvider.getType(android.net.Uri)",this,uri);try{switch (myURIMatcher.match(uri)) {
             case CITIES_SINGLE_ROW:
-                return CONTENT_ITEM_TYPE_CITY_RECORDS;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.WeatherContentProvider.getType(android.net.Uri)",this);return CONTENT_ITEM_TYPE_CITY_RECORDS;}
             case CITIES_ALL_ROWS:
-                return CONTENT_TYPE_CITY_RECORDS;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.WeatherContentProvider.getType(android.net.Uri)",this);return CONTENT_TYPE_CITY_RECORDS;}
             case CITIES_SEARCH:
-                return SearchManager.SUGGEST_MIME_TYPE;
+                {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.database.WeatherContentProvider.getType(android.net.Uri)",this);return SearchManager.SUGGEST_MIME_TYPE;}
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.database.WeatherContentProvider.getType(android.net.Uri)",this,throwable);throw throwable;}
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        com.mijack.Xlog.logMethodEnter("android.net.Uri com.haringeymobile.ukweather.database.WeatherContentProvider.insert(android.net.Uri,android.content.ContentValues)",this,uri,values);try{SQLiteDatabase db = databaseHelper.getWritableDatabase();
         String nullColumnHack = null;
         long id;
         switch (myURIMatcher.match(uri)) {
@@ -139,15 +139,15 @@ public class WeatherContentProvider extends ContentProvider {
         if (id > -1) {
             Uri insertedIdUri = ContentUris.withAppendedId(uri, id);
             getContext().getContentResolver().notifyChange(insertedIdUri, null);
-            return insertedIdUri;
+            {com.mijack.Xlog.logMethodExit("android.net.Uri com.haringeymobile.ukweather.database.WeatherContentProvider.insert(android.net.Uri,android.content.ContentValues)",this);return insertedIdUri;}
         }
 
-        throw new SQLException("Could not insert into table for uri: " + uri);
+        throw new SQLException("Could not insert into table for uri: " + uri);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.net.Uri com.haringeymobile.ukweather.database.WeatherContentProvider.insert(android.net.Uri,android.content.ContentValues)",this,throwable);throw throwable;}
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.database.WeatherContentProvider.delete(android.net.Uri,java.lang.String,[java.lang.String)",this,uri,selection,selectionArgs);try{SQLiteDatabase db = databaseHelper.getWritableDatabase();
         int rowsDeleted = 0;
         switch (myURIMatcher.match(uri)) {
             case CITIES_SINGLE_ROW:
@@ -167,12 +167,12 @@ public class WeatherContentProvider extends ContentProvider {
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
         getContext().getContentResolver().notifyChange(uri, null);
-        return rowsDeleted;
+        {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.database.WeatherContentProvider.delete(android.net.Uri,java.lang.String,[java.lang.String)",this);return rowsDeleted;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.database.WeatherContentProvider.delete(android.net.Uri,java.lang.String,[java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.database.WeatherContentProvider.update(android.net.Uri,android.content.ContentValues,java.lang.String,[java.lang.String)",this,uri,values,selection,selectionArgs);try{SQLiteDatabase db = databaseHelper.getWritableDatabase();
         int rowsUpdated;
         switch (myURIMatcher.match(uri)) {
             case CITIES_SINGLE_ROW:
@@ -192,7 +192,7 @@ public class WeatherContentProvider extends ContentProvider {
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
         getContext().getContentResolver().notifyChange(uri, null);
-        return rowsUpdated;
+        {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.database.WeatherContentProvider.update(android.net.Uri,android.content.ContentValues,java.lang.String,[java.lang.String)",this);return rowsUpdated;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.database.WeatherContentProvider.update(android.net.Uri,android.content.ContentValues,java.lang.String,[java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -204,7 +204,7 @@ public class WeatherContentProvider extends ContentProvider {
      * @return a handle to the database helper object for the provider's data.
      */
     public DatabaseHelper getOpenHelperForTest() {
-        return databaseHelper;
+        com.mijack.Xlog.logMethodEnter("com.haringeymobile.ukweather.database.DatabaseHelper com.haringeymobile.ukweather.database.WeatherContentProvider.getOpenHelperForTest()",this);try{com.mijack.Xlog.logMethodExit("com.haringeymobile.ukweather.database.DatabaseHelper com.haringeymobile.ukweather.database.WeatherContentProvider.getOpenHelperForTest()",this);return databaseHelper;}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.haringeymobile.ukweather.database.DatabaseHelper com.haringeymobile.ukweather.database.WeatherContentProvider.getOpenHelperForTest()",this,throwable);throw throwable;}
     }
 
 }

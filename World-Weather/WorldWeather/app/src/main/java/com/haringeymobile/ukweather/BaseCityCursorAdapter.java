@@ -57,13 +57,13 @@ public abstract class BaseCityCursorAdapter extends SimpleDragSortCursorAdapter 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = super.getView(position, convertView, parent);
+        com.mijack.Xlog.logMethodEnter("android.view.View com.haringeymobile.ukweather.BaseCityCursorAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,position,convertView,parent);try{View view = super.getView(position, convertView, parent);
         if (position % 2 == 1) {
             view.setBackgroundResource(BACKGROUND_RESOURCE_ODD);
         } else {
             view.setBackgroundResource(BACKGROUND_RESOURCE_EVEN);
         }
-        return view;
+        {com.mijack.Xlog.logMethodExit("android.view.View com.haringeymobile.ukweather.BaseCityCursorAdapter.getView(int,android.view.View,android.view.ViewGroup)",this);return view;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.view.View com.haringeymobile.ukweather.BaseCityCursorAdapter.getView(int,android.view.View,android.view.ViewGroup)",this,throwable);throw throwable;}
     }
 
     /**
@@ -74,11 +74,11 @@ public abstract class BaseCityCursorAdapter extends SimpleDragSortCursorAdapter 
      * specified position
      */
     int getCityId(int position) {
-        Cursor cursor = getCursor();
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityId(int)",this,position);try{Cursor cursor = getCursor();
         if (cursor.moveToPosition(position)) {
-            return cursor.getInt(cursor.getColumnIndex(CityTable.COLUMN_CITY_ID));
+            {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityId(int)",this);return cursor.getInt(cursor.getColumnIndex(CityTable.COLUMN_CITY_ID));}
         }
-        return CityTable.CITY_ID_DOES_NOT_EXIST;
+        {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityId(int)",this);return CityTable.CITY_ID_DOES_NOT_EXIST;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityId(int)",this,throwable);throw throwable;}
     }
 
     /**
@@ -88,11 +88,11 @@ public abstract class BaseCityCursorAdapter extends SimpleDragSortCursorAdapter 
      * @return city name, or null if city list does not contain the specified position
      */
     String getCityName(int position) {
-        Cursor cursor = getCursor();
+        com.mijack.Xlog.logMethodEnter("java.lang.String com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityName(int)",this,position);try{Cursor cursor = getCursor();
         if (cursor.moveToPosition(position)) {
-            return cursor.getString(cursor.getColumnIndex(CityTable.COLUMN_NAME));
+            {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityName(int)",this);return cursor.getString(cursor.getColumnIndex(CityTable.COLUMN_NAME));}
         }
-        return null;
+        {com.mijack.Xlog.logMethodExit("java.lang.String com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityName(int)",this);return null;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.lang.String com.haringeymobile.ukweather.BaseCityCursorAdapter.getCityName(int)",this,throwable);throw throwable;}
     }
 
 }

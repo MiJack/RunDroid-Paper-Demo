@@ -19,17 +19,17 @@ public class WeatherCurrentInfoFragment extends WeatherInfoFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherCurrentInfoFragment.onActivityCreated(android.os.Bundle)",this,savedInstanceState);try{super.onActivityCreated(savedInstanceState);
         Bundle args = getArguments();
         String jsonString = args.getString(JSON_STRING);
         Gson gson = new Gson();
         CityCurrentWeather cityCurrentWeather = gson.fromJson(jsonString, CityCurrentWeather.class);
-        displayWeather(cityCurrentWeather);
+        displayWeather(cityCurrentWeather);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherCurrentInfoFragment.onActivityCreated(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherCurrentInfoFragment.onActivityCreated(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void displayExtraInfo(WeatherInformation weatherInformation) {
-        CityCurrentWeather cityCurrentWeather = (CityCurrentWeather) weatherInformation;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherCurrentInfoFragment.displayExtraInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,weatherInformation);try{CityCurrentWeather cityCurrentWeather = (CityCurrentWeather) weatherInformation;
         String extraInfo = cityCurrentWeather.getCityName();
 
         Context context = getContext();
@@ -47,7 +47,7 @@ public class WeatherCurrentInfoFragment extends WeatherInfoFragment {
                     getTimeString(context, new Date(sunsetTime));
         }
 
-        extraInfoTextView.setText(extraInfo);
+        extraInfoTextView.setText(extraInfo);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherCurrentInfoFragment.displayExtraInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherCurrentInfoFragment.displayExtraInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation)",this,throwable);throw throwable;}
     }
 
 }

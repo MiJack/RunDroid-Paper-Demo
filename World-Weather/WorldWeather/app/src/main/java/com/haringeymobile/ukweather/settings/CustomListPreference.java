@@ -20,11 +20,11 @@ public class CustomListPreference extends ListPreference {
 
     @Override
     protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-        ListAdapter listAdapter = new ArrayAdapter(getContext(),
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.CustomListPreference.onPrepareDialogBuilder(AlertDialog.Builder)",this,builder);try{ListAdapter listAdapter = new ArrayAdapter(getContext(),
                 R.layout.row_custom_preference_list, getEntries());
 
         builder.setAdapter(listAdapter, this);
-        super.onPrepareDialogBuilder(builder);
+        super.onPrepareDialogBuilder(builder);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.CustomListPreference.onPrepareDialogBuilder(AlertDialog.Builder)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.CustomListPreference.onPrepareDialogBuilder(AlertDialog.Builder)",this,throwable);throw throwable;}
     }
 
 }

@@ -24,18 +24,18 @@ public class GeneralDialogFragment extends DialogFragment {
      * @return a new dialog
      */
     public static GeneralDialogFragment newInstance(String title, String message) {
-        GeneralDialogFragment fragment = new GeneralDialogFragment();
+        com.mijack.Xlog.logStaticMethodEnter("com.haringeymobile.ukweather.utils.GeneralDialogFragment com.haringeymobile.ukweather.utils.GeneralDialogFragment.newInstance(java.lang.String,java.lang.String)",title,message);try{GeneralDialogFragment fragment = new GeneralDialogFragment();
         Bundle args = new Bundle();
         args.putString(TITLE, title);
         args.putString(MESSAGE, message);
         fragment.setArguments(args);
-        return fragment;
+        {com.mijack.Xlog.logStaticMethodExit("com.haringeymobile.ukweather.utils.GeneralDialogFragment com.haringeymobile.ukweather.utils.GeneralDialogFragment.newInstance(java.lang.String,java.lang.String)");return fragment;}}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("com.haringeymobile.ukweather.utils.GeneralDialogFragment com.haringeymobile.ukweather.utils.GeneralDialogFragment.newInstance(java.lang.String,java.lang.String)",throwable);throw throwable;}
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Bundle args = getArguments();
+        com.mijack.Xlog.logMethodEnter("android.app.AlertDialog com.haringeymobile.ukweather.utils.GeneralDialogFragment.onCreateDialog(android.os.Bundle)",this,savedInstanceState);try{Bundle args = getArguments();
         String title = args.getString(TITLE);
         String message = args.getString(MESSAGE);
 
@@ -46,17 +46,17 @@ public class GeneralDialogFragment extends DialogFragment {
             builder.setMessage(message);
         }
         builder.setPositiveButton(android.R.string.ok, onClickListener);
-        return builder.create();
+        {com.mijack.Xlog.logMethodExit("android.app.AlertDialog com.haringeymobile.ukweather.utils.GeneralDialogFragment.onCreateDialog(android.os.Bundle)",this);return builder.create();}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.app.AlertDialog com.haringeymobile.ukweather.utils.GeneralDialogFragment.onCreateDialog(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     private DialogInterface.OnClickListener getDialogOnClickListener() {
-        return new DialogInterface.OnClickListener() {
+        com.mijack.Xlog.logMethodEnter("DialogInterface.OnClickListener com.haringeymobile.ukweather.utils.GeneralDialogFragment.getDialogOnClickListener()",this);try{com.mijack.Xlog.logMethodExit("DialogInterface.OnClickListener com.haringeymobile.ukweather.utils.GeneralDialogFragment.getDialogOnClickListener()",this);return new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                dismiss();
+                com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.utils.GeneralDialogFragment$1.onClick(android.content.DialogInterface,int)",this,dialog,id);try{dismiss();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.utils.GeneralDialogFragment$1.onClick(android.content.DialogInterface,int)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.utils.GeneralDialogFragment$1.onClick(android.content.DialogInterface,int)",this,throwable);throw throwable;}
             }
 
-        };
+        };}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("DialogInterface.OnClickListener com.haringeymobile.ukweather.utils.GeneralDialogFragment.getDialogOnClickListener()",this,throwable);throw throwable;}
     }
 
 }

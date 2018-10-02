@@ -23,54 +23,54 @@ public abstract class ThemedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setAppTheme();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.ThemedActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{setAppTheme();
         super.onCreate(savedInstanceState);
-        setTitle(getActivityLabelResourceId());
+        setTitle(getActivityLabelResourceId());com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.ThemedActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.ThemedActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     protected int getActivityLabelResourceId() {
-        int labelRes;
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.ThemedActivity.getActivityLabelResourceId()",this);try{int labelRes;
         try {
             labelRes = getPackageManager().getActivityInfo(getComponentName(), 0).labelRes;
         } catch (PackageManager.NameNotFoundException e) {
             throw new RuntimeException();
         }
-        return labelRes;
+        {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.ThemedActivity.getActivityLabelResourceId()",this);return labelRes;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.ThemedActivity.getActivityLabelResourceId()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.ThemedActivity.onPostCreate(@Nullable Bundle)",this,savedInstanceState);try{super.onPostCreate(savedInstanceState);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String appLanguage = preferences.getString(SettingsActivity.
                 PREF_APP_LANGUAGE, LANGUAGE_DEFAULT);
         if (!appLanguage.equals(LANGUAGE_DEFAULT)) {
             MiscMethods.updateLocale(appLanguage, getResources());
             resetActionBarTitle();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.ThemedActivity.onPostCreate(@Nullable Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.ThemedActivity.onPostCreate(@Nullable Bundle)",this,throwable);throw throwable;}
     }
 
     protected void resetActionBarTitle() {
-        ActionBar actionBar = getSupportActionBar();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.ThemedActivity.resetActionBarTitle()",this);try{ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             int labelRes = getActivityLabelResourceId();
             if (labelRes > 0) {
                 actionBar.setTitle(labelRes);
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.ThemedActivity.resetActionBarTitle()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.ThemedActivity.resetActionBarTitle()",this,throwable);throw throwable;}
     }
 
     /**
      * Sets the user preferred (or default, if no preference was set) app theme.
      */
     private void setAppTheme() {
-        Resources res = getResources();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.ThemedActivity.setAppTheme()",this);try{Resources res = getResources();
         String appThemeValue = PreferenceManager.getDefaultSharedPreferences(this).getString(
                 SettingsActivity.PREF_APP_THEME,
                 res.getString(R.string.pref_app_theme_default));
 
         int themeResourceId = getThemeResourceId(appThemeValue);
-        setTheme(themeResourceId);
+        setTheme(themeResourceId);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.ThemedActivity.setAppTheme()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.ThemedActivity.setAppTheme()",this,throwable);throw throwable;}
     }
 
     /**
@@ -80,7 +80,7 @@ public abstract class ThemedActivity extends AppCompatActivity {
      * @return app theme resource id
      */
     private int getThemeResourceId(String appThemeValue) {
-        int theme;
+        com.mijack.Xlog.logMethodEnter("int com.haringeymobile.ukweather.ThemedActivity.getThemeResourceId(java.lang.String)",this,appThemeValue);try{int theme;
         switch (appThemeValue) {
             case "0":
                 theme = R.style.AppThemePink;
@@ -120,13 +120,13 @@ public abstract class ThemedActivity extends AppCompatActivity {
                         "(The " + "value must be defined in xml: res->values" +
                         "->strings_for_settings->pref_theme_values");
         }
-        return theme;
+        {com.mijack.Xlog.logMethodExit("int com.haringeymobile.ukweather.ThemedActivity.getThemeResourceId(java.lang.String)",this);return theme;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("int com.haringeymobile.ukweather.ThemedActivity.getThemeResourceId(java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        playAnimation();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.ThemedActivity.onBackPressed()",this);try{super.onBackPressed();
+        playAnimation();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.ThemedActivity.onBackPressed()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.ThemedActivity.onBackPressed()",this,throwable);throw throwable;}
     }
 
     /**
@@ -134,18 +134,18 @@ public abstract class ThemedActivity extends AppCompatActivity {
      */
     @SuppressLint("PrivateResource")
     protected void playAnimation() {
-        overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_slide_out_bottom);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.ThemedActivity.playAnimation()",this);try{overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_slide_out_bottom);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.ThemedActivity.playAnimation()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.ThemedActivity.playAnimation()",this,throwable);throw throwable;}
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        com.mijack.Xlog.logMethodEnter("boolean com.haringeymobile.ukweather.ThemedActivity.onOptionsItemSelected(android.view.MenuItem)",this,item);try{switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 playAnimation();
-                return true;
+                {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.ThemedActivity.onOptionsItemSelected(android.view.MenuItem)",this);return true;}
         }
-        return false;
+        {com.mijack.Xlog.logMethodExit("boolean com.haringeymobile.ukweather.ThemedActivity.onOptionsItemSelected(android.view.MenuItem)",this);return false;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("boolean com.haringeymobile.ukweather.ThemedActivity.onOptionsItemSelected(android.view.MenuItem)",this,throwable);throw throwable;}
     }
 
 }

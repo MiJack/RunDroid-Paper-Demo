@@ -22,8 +22,8 @@ public class SettingsActivity extends ThemedActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener,
         EnterPersonalApiKeyFragment.Listener {
 
-    // The keys to store preference values. They must be the same as specified
-    // in res/userpreferences.xml.
+    /*// The keys to store preference values. They must be the same as specified*/
+    /*// in res/userpreferences.xml.*/
     public static final String PREF_TEMPERATURE_SCALE = "temperature_scale";
     public static final String PREF_WIND_SPEED_MEASUREMENT_UNIT = "wind_speed_measurement_unit";
     public static final String PREF_WIND_DIRECTION_DISPLAY = "wind_direction_display";
@@ -40,7 +40,7 @@ public class SettingsActivity extends ThemedActivity
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.SettingsActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.general_toolbar);
@@ -55,12 +55,12 @@ public class SettingsActivity extends ThemedActivity
                 R.id.settings_content_frame_layout, new SettingsFragment()).commit();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefs.registerOnSharedPreferenceChangeListener(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.SettingsActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.SettingsActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (PREF_APP_THEME.equals(key)) {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.SettingsActivity.onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)",this,sharedPreferences,key);try{if (PREF_APP_THEME.equals(key)) {
             recreate();
         } else if (PREF_APP_LANGUAGE.equals(key)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -82,32 +82,32 @@ public class SettingsActivity extends ThemedActivity
             if (shouldUsePersonalApiKey) {
                 showEnterPersonalApiKeyDialog();
             }
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.SettingsActivity.onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.SettingsActivity.onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
      * Displays a dialog allowing user to enter personal OWM key.
      */
     private void showEnterPersonalApiKeyDialog() {
-        FragmentManager fragmentManager = getFragmentManager();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.SettingsActivity.showEnterPersonalApiKeyDialog()",this);try{FragmentManager fragmentManager = getFragmentManager();
         EnterPersonalApiKeyFragment personalKeyFragment = (EnterPersonalApiKeyFragment)
                 fragmentManager.findFragmentByTag(PERSONAL_API_KEY_FRAGMENT_TAG);
         if (personalKeyFragment == null) {
             personalKeyFragment = new EnterPersonalApiKeyFragment();
             personalKeyFragment.show(fragmentManager, PERSONAL_API_KEY_FRAGMENT_TAG);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.SettingsActivity.showEnterPersonalApiKeyDialog()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.SettingsActivity.showEnterPersonalApiKeyDialog()",this,throwable);throw throwable;}
     }
 
     @Override
     public void onCancelUpdatingPersonalApiKey() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.settings.SettingsActivity.onCancelUpdatingPersonalApiKey()",this);try{SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.edit().putBoolean(PREF_PERSONAL_API_KEY, false).apply();
 
         PreferenceFragment preferenceFragment = (PreferenceFragment) getFragmentManager().
                 findFragmentById(R.id.settings_content_frame_layout);
         CheckBoxPreference personalApiKeyCheckBoxPreference = (CheckBoxPreference)
                 preferenceFragment.findPreference(PREF_PERSONAL_API_KEY);
-        personalApiKeyCheckBoxPreference.setChecked(false);
+        personalApiKeyCheckBoxPreference.setChecked(false);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.settings.SettingsActivity.onCancelUpdatingPersonalApiKey()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.settings.SettingsActivity.onCancelUpdatingPersonalApiKey()",this,throwable);throw throwable;}
     }
 
 }

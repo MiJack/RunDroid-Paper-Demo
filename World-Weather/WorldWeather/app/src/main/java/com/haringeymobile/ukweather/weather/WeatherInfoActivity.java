@@ -33,7 +33,7 @@ public class WeatherInfoActivity extends RefreshingActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{super.onCreate(savedInstanceState);
 
         boolean isDualPane = DUAL_PANE.equals(getResources().getString(
                 R.string.weather_info_frame_layout_pane_number_tag));
@@ -41,14 +41,14 @@ public class WeatherInfoActivity extends RefreshingActivity {
             finish();
         } else {
             displayContent();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
      * Sets the action bar and adds the required fragment to the layout.
      */
     private void displayContent() {
-        setContentView(R.layout.activity_weather_info);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.displayContent()",this);try{setContentView(R.layout.activity_weather_info);
 
         Intent intent = getIntent();
         WeatherInfoType weatherInfoType = intent.getParcelableExtra(
@@ -63,7 +63,7 @@ public class WeatherInfoActivity extends RefreshingActivity {
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
+        toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.displayContent()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.displayContent()",this,throwable);throw throwable;}
     }
 
     /**
@@ -73,7 +73,7 @@ public class WeatherInfoActivity extends RefreshingActivity {
      * @param jsonString      a string representing the JSON weather data
      */
     private void addRequiredFragment(WeatherInfoType weatherInfoType, String jsonString) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.addRequiredFragment(WeatherInfoType,java.lang.String)",this,weatherInfoType,jsonString);try{FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Fragment fragment = weatherInfoType == WeatherInfoType.CURRENT_WEATHER ?
@@ -88,7 +88,7 @@ public class WeatherInfoActivity extends RefreshingActivity {
             fragmentTransaction.add(workerFragment, MainActivity.WORKER_FRAGMENT_TAG);
         }
 
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.addRequiredFragment(WeatherInfoType,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.addRequiredFragment(WeatherInfoType,java.lang.String)",this,throwable);throw throwable;}
     }
 
     /**
@@ -98,11 +98,11 @@ public class WeatherInfoActivity extends RefreshingActivity {
      * @param toolbar         toolbar for this activity
      */
     private void setToolbarTitle(WeatherInfoType weatherInfoType, Toolbar toolbar) {
-        String title = getResources().getString(weatherInfoType.getLabelResourceId());
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.setToolbarTitle(WeatherInfoType,android.support.v7.widget.Toolbar)",this,weatherInfoType,toolbar);try{String title = getResources().getString(weatherInfoType.getLabelResourceId());
         toolbar.setTitle(title);
         if (weatherInfoType == WeatherInfoType.THREE_HOURLY_WEATHER_FORECAST) {
             updateTitleWithCityNameIfNecessary(toolbar, title);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.setToolbarTitle(WeatherInfoType,android.support.v7.widget.Toolbar)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.setToolbarTitle(WeatherInfoType,android.support.v7.widget.Toolbar)",this,throwable);throw throwable;}
     }
 
     /**
@@ -114,7 +114,7 @@ public class WeatherInfoActivity extends RefreshingActivity {
      */
     private void updateTitleWithCityNameIfNecessary(final Toolbar toolbar,
                                                     final String defaultTitle) {
-        final Context context = this;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.updateTitleWithCityNameIfNecessary(android.support.v7.widget.Toolbar,java.lang.String)",this,toolbar,defaultTitle);try{final Context context = this;
         if (SharedPrefsHelper.getForecastDisplayMode(context) ==
                 ThreeHourlyForecastDisplayMode.LIST) {
             new Thread(new Runnable() {
@@ -122,23 +122,23 @@ public class WeatherInfoActivity extends RefreshingActivity {
                 @Override
                 public void run() {
 
-                    int lastQueriedCityId = SharedPrefsHelper.getCityIdFromSharedPrefs(context);
+                    com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity$1.run()",this);try{int lastQueriedCityId = SharedPrefsHelper.getCityIdFromSharedPrefs(context);
                     if (lastQueriedCityId != CityTable.CITY_ID_DOES_NOT_EXIST) {
                         String queriedCityName = new SqlOperation(context)
                                 .findCityName(lastQueriedCityId);
                         String updatedTitle = defaultTitle + TOOLBAR_TITLE_AND_CITY_NAME_SEPARATOR +
                                 queriedCityName;
                         toolbar.setTitle(updatedTitle);
-                    }
+                    }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity$1.run()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity$1.run()",this,throwable);throw throwable;}
 
                 }
             }).start();
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.updateTitleWithCityNameIfNecessary(android.support.v7.widget.Toolbar,java.lang.String)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.updateTitleWithCityNameIfNecessary(android.support.v7.widget.Toolbar,java.lang.String)",this,throwable);throw throwable;}
     }
 
     @Override
     protected void onRestart() {
-        super.onRestart();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.onRestart()",this);try{super.onRestart();
         FragmentManager fragmentManager = getSupportFragmentManager();
         WorkerFragmentToRetrieveJsonString workerFragment =
                 (WorkerFragmentToRetrieveJsonString) fragmentManager.findFragmentByTag(
@@ -151,12 +151,12 @@ public class WeatherInfoActivity extends RefreshingActivity {
             fragmentManager.executePendingTransactions();
         }
 
-        workerFragment.retrieveLastRequestedWeatherInfo();
+        workerFragment.retrieveLastRequestedWeatherInfo();com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.onRestart()",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.onRestart()",this,throwable);throw throwable;}
     }
 
     @Override
     protected void displayRetrievedData(String jsonString, WeatherInfoType weatherInfoType) {
-        addRequiredFragment(weatherInfoType, jsonString);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.displayRetrievedData(java.lang.String,WeatherInfoType)",this,jsonString,weatherInfoType);try{addRequiredFragment(weatherInfoType, jsonString);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.displayRetrievedData(java.lang.String,WeatherInfoType)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInfoActivity.displayRetrievedData(java.lang.String,WeatherInfoType)",this,throwable);throw throwable;}
     }
 
 }

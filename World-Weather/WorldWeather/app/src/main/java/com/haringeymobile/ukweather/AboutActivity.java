@@ -27,7 +27,7 @@ public class AboutActivity extends ThemedActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.AboutActivity.onCreate(android.os.Bundle)",this,savedInstanceState);try{setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         Toolbar toolbar = (Toolbar) findViewById(R.id.general_toolbar);
@@ -49,14 +49,14 @@ public class AboutActivity extends ThemedActivity {
         TextView aboutTextView_2 = (TextView) findViewById(R.id.about_textview_part_2);
         final SpannableString s2 = new SpannableString(getAboutTextPart_2());
         Linkify.addLinks(s2, Linkify.WEB_URLS);
-        displayTextWithLinks(aboutTextView_2, s2);
+        displayTextWithLinks(aboutTextView_2, s2);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.AboutActivity.onCreate(android.os.Bundle)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.AboutActivity.onCreate(android.os.Bundle)",this,throwable);throw throwable;}
     }
 
     /**
      * Concatenates basic app information string.
      */
     private String getAboutTextPart_1() {
-        Resources res = getResources();
+        com.mijack.Xlog.logMethodEnter("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getAboutTextPart_1()",this);try{Resources res = getResources();
 
         String versionNumber = res.getString(R.string.about_version_number);
         String aboutText_1 = String.format(res.getString(R.string.about_1), versionNumber);
@@ -66,14 +66,14 @@ public class AboutActivity extends ThemedActivity {
         aboutText_1 += res.getString(R.string.about_5);
         aboutText_1 += res.getString(R.string.about_6);
 
-        return aboutText_1;
+        {com.mijack.Xlog.logMethodExit("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getAboutTextPart_1()",this);return aboutText_1;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getAboutTextPart_1()",this,throwable);throw throwable;}
     }
 
     /**
      * Concatenates credits and licenses string.
      */
     private String getAboutTextPart_2() {
-        Resources res = getResources();
+        com.mijack.Xlog.logMethodEnter("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getAboutTextPart_2()",this);try{Resources res = getResources();
 
         int itemCount = 0;
 
@@ -147,22 +147,22 @@ public class AboutActivity extends ThemedActivity {
         aboutText_2 += res.getString(R.string.credits_23);
         aboutText_2 += res.getString(R.string.credits_24);
 
-        return aboutText_2;
+        {com.mijack.Xlog.logMethodExit("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getAboutTextPart_2()",this);return aboutText_2;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getAboutTextPart_2()",this,throwable);throw throwable;}
     }
 
     private String getNextItemNumber(int itemCount) {
-        return "(" + (itemCount + 1) + ") ";
+        com.mijack.Xlog.logMethodEnter("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getNextItemNumber(int)",this,itemCount);try{com.mijack.Xlog.logMethodExit("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getNextItemNumber(int)",this);return "(" + (itemCount + 1) + ") ";}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.text.SpannableString com.haringeymobile.ukweather.AboutActivity.getNextItemNumber(int)",this,throwable);throw throwable;}
     }
 
     /**
      * Sets text with clickable links in the specified TextView.
      */
     private void displayTextWithLinks(TextView textView, final SpannableString spannableString) {
-        MovementMethod m1 = textView.getMovementMethod();
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.AboutActivity.displayTextWithLinks(android.widget.TextView,android.text.SpannableString)",this,textView,spannableString);try{MovementMethod m1 = textView.getMovementMethod();
         if ((m1 == null) || !(m1 instanceof LinkMovementMethod))
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
+            {textView.setMovementMethod(LinkMovementMethod.getInstance());}
         textView.setLinkTextColor(linkTextColour);
-        textView.setText(spannableString);
+        textView.setText(spannableString);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.AboutActivity.displayTextWithLinks(android.widget.TextView,android.text.SpannableString)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.AboutActivity.displayTextWithLinks(android.widget.TextView,android.text.SpannableString)",this,throwable);throw throwable;}
     }
 
 }

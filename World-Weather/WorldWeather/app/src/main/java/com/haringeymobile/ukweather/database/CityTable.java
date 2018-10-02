@@ -32,10 +32,10 @@ public final class CityTable implements BaseColumns {
     private static final String TABLE_TEMP = "tempTable";
     private static final String COLUMN_LAST_QUERY_TIME_FOR_CURRENT_WEATHER_VERSION_1 = "Date";
     private static final String COLUMN_CACHED_JSON_CURRENT_VERSION_1 = "Current";
-    // Not used in version 1:
-    // private static final String COLUMN_LAST_QUERY_TIME_FOR_WEATHER_FORECAST_VERSION_1 =
-    // "DateForecast";
-    // private static final String COLUMN_CACHED_JSON_FORECAST_VERSION_1 = "Forecast";
+    /*// Not used in version 1:*/
+    /*// private static final String COLUMN_LAST_QUERY_TIME_FOR_WEATHER_FORECAST_VERSION_1 =*/
+    /*// "DateForecast";*/
+    /*// private static final String COLUMN_CACHED_JSON_FORECAST_VERSION_1 = "Forecast";*/
 
     private static final String TABLE_CREATE = "CREATE TABLE "
             + TABLE_CITIES
@@ -53,8 +53,8 @@ public final class CityTable implements BaseColumns {
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {
-        database.execSQL(TABLE_CREATE);
-        insertInitialData(database);
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.database.CityTable.onCreate(android.database.sqlite.SQLiteDatabase)",database);try{database.execSQL(TABLE_CREATE);
+        insertInitialData(database);com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.database.CityTable.onCreate(android.database.sqlite.SQLiteDatabase)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.database.CityTable.onCreate(android.database.sqlite.SQLiteDatabase)",throwable);throw throwable;}
     }
 
     /**
@@ -63,7 +63,7 @@ public final class CityTable implements BaseColumns {
      * @see com.haringeymobile.ukweather.data.InitialCity
      */
     private static void insertInitialData(SQLiteDatabase database) {
-        for (InitialCity city : InitialCity.values()) {
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.database.CityTable.insertInitialData(android.database.sqlite.SQLiteDatabase)",database);try{for (InitialCity city : InitialCity.values()) {
             ContentValues newValues = new ContentValues();
             newValues.put(COLUMN_CITY_ID, city.getOpenWeatherMapId());
             newValues.put(COLUMN_NAME, city.getDisplayName());
@@ -72,7 +72,7 @@ public final class CityTable implements BaseColumns {
             newValues.putNull(COLUMN_CACHED_JSON_CURRENT);
             putInitialDataForVersion2(newValues);
             database.insert(TABLE_CITIES, null, newValues);
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.database.CityTable.insertInitialData(android.database.sqlite.SQLiteDatabase)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.database.CityTable.insertInitialData(android.database.sqlite.SQLiteDatabase)",throwable);throw throwable;}
     }
 
     /**
@@ -82,32 +82,32 @@ public final class CityTable implements BaseColumns {
      * @param newValues values for the new record to be inserted into the database
      */
     private static void putInitialDataForVersion2(ContentValues newValues) {
-        newValues.put(COLUMN_LAST_QUERY_TIME_FOR_DAILY_WEATHER_FORECAST,
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.database.CityTable.putInitialDataForVersion2(android.content.ContentValues)",newValues);try{newValues.put(COLUMN_LAST_QUERY_TIME_FOR_DAILY_WEATHER_FORECAST,
                 CITY_NEVER_QUERIED);
         newValues.putNull(COLUMN_CACHED_JSON_DAILY_FORECAST);
         newValues.put(COLUMN_LAST_QUERY_TIME_FOR_THREE_HOURLY_WEATHER_FORECAST,
                 CITY_NEVER_QUERIED);
         newValues.putNull(COLUMN_CACHED_JSON_THREE_HOURLY_FORECAST);
-        newValues.put(COLUMN_ORDERING_VALUE, CITY_NEVER_QUERIED);
+        newValues.put(COLUMN_ORDERING_VALUE, CITY_NEVER_QUERIED);com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.database.CityTable.putInitialDataForVersion2(android.content.ContentValues)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.database.CityTable.putInitialDataForVersion2(android.content.ContentValues)",throwable);throw throwable;}
     }
 
     public static void onUpgrade(SQLiteDatabase database, int oldVersion,
                                  int newVersion) {
-        MiscMethods.log("Upgrading database from version " + oldVersion
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.database.CityTable.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",database,oldVersion,newVersion);try{MiscMethods.log("Upgrading database from version " + oldVersion
                 + " to version " + newVersion);
         if (oldVersion == 1 && newVersion > 1) {
             alterDatabaseVersion_1(database);
         } else {
             database.execSQL("DROP TABLE IF EXISTS " + TABLE_CITIES);
             onCreate(database);
-        }
+        }com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.database.CityTable.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.database.CityTable.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)",throwable);throw throwable;}
     }
 
     /**
      * Performs transactions required to upgrade the database from version 1.
      */
     private static void alterDatabaseVersion_1(SQLiteDatabase database) {
-        database.beginTransaction();
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.database.CityTable.alterDatabaseVersion_1(android.database.sqlite.SQLiteDatabase)",database);try{database.beginTransaction();
         try {
             alterCityTable(database);
             database.setTransactionSuccessful();
@@ -116,7 +116,7 @@ public final class CityTable implements BaseColumns {
                     "Error upgrading database from version 1");
         } finally {
             database.endTransaction();
-        }
+        }}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.database.CityTable.alterDatabaseVersion_1(android.database.sqlite.SQLiteDatabase)",throwable);throw throwable;}
     }
 
     /**
@@ -124,7 +124,7 @@ public final class CityTable implements BaseColumns {
      * this is required to upgrade the database from version 1.
      */
     private static void alterCityTable(SQLiteDatabase database) {
-        String RENAME_ORIGINAL_TABLE = "ALTER TABLE " + TABLE_CITIES
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.database.CityTable.alterCityTable(android.database.sqlite.SQLiteDatabase)",database);try{String RENAME_ORIGINAL_TABLE = "ALTER TABLE " + TABLE_CITIES
                 + " RENAME TO " + TABLE_TEMP;
         String COPY_OLD_TABLE_TO_NEW_TABLE = "INSERT INTO " + TABLE_CITIES
                 + "(" + COLUMN_CITY_ID + ", " + COLUMN_NAME + ", "
@@ -140,7 +140,7 @@ public final class CityTable implements BaseColumns {
         database.execSQL(COPY_OLD_TABLE_TO_NEW_TABLE);
         database.execSQL("DROP TABLE " + TABLE_TEMP);
 
-        insertInitialWeatherForecastValues(database);
+        insertInitialWeatherForecastValues(database);com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.database.CityTable.alterCityTable(android.database.sqlite.SQLiteDatabase)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.database.CityTable.alterCityTable(android.database.sqlite.SQLiteDatabase)",throwable);throw throwable;}
     }
 
     /**
@@ -148,8 +148,8 @@ public final class CityTable implements BaseColumns {
      */
     private static void insertInitialWeatherForecastValues(
             SQLiteDatabase database) {
-        ContentValues initialForecastValues = new ContentValues();
+        com.mijack.Xlog.logStaticMethodEnter("void com.haringeymobile.ukweather.database.CityTable.insertInitialWeatherForecastValues(android.database.sqlite.SQLiteDatabase)",database);try{ContentValues initialForecastValues = new ContentValues();
         putInitialDataForVersion2(initialForecastValues);
-        database.insert(TABLE_CITIES, null, initialForecastValues);
+        database.insert(TABLE_CITIES, null, initialForecastValues);com.mijack.Xlog.logStaticMethodExit("void com.haringeymobile.ukweather.database.CityTable.insertInitialWeatherForecastValues(android.database.sqlite.SQLiteDatabase)");}catch(Throwable throwable){com.mijack.Xlog.logStaticMethodExitWithThrowable("void com.haringeymobile.ukweather.database.CityTable.insertInitialWeatherForecastValues(android.database.sqlite.SQLiteDatabase)",throwable);throw throwable;}
     }
 }

@@ -141,18 +141,18 @@ public enum WeatherInfoType implements Parcelable {
 
         @Override
         public WeatherInfoType createFromParcel(Parcel in) {
-            WeatherInfoType weatherInfoType;
+            com.mijack.Xlog.logMethodEnter("WeatherInfoType com.haringeymobile.ukweather.weather.WeatherInfoType$.createFromParcel(android.os.Parcel)",this,in);try{WeatherInfoType weatherInfoType;
             try {
                 weatherInfoType = valueOf(in.readString());
             } catch (IllegalArgumentException ex) {
                 weatherInfoType = null;
             }
-            return weatherInfoType;
+            {com.mijack.Xlog.logMethodExit("WeatherInfoType com.haringeymobile.ukweather.weather.WeatherInfoType$.createFromParcel(android.os.Parcel)",this);return weatherInfoType;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("WeatherInfoType com.haringeymobile.ukweather.weather.WeatherInfoType$.createFromParcel(android.os.Parcel)",this,throwable);throw throwable;}
         }
 
         @Override
         public WeatherInfoType[] newArray(int size) {
-            return new WeatherInfoType[size];
+            com.mijack.Xlog.logMethodEnter("[WeatherInfoType com.haringeymobile.ukweather.weather.WeatherInfoType$.newArray(int)",this,size);try{com.mijack.Xlog.logMethodExit("[WeatherInfoType com.haringeymobile.ukweather.weather.WeatherInfoType$.newArray(int)",this);return new WeatherInfoType[size];}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("[WeatherInfoType com.haringeymobile.ukweather.weather.WeatherInfoType$.newArray(int)",this,throwable);throw throwable;}
         }
     };
 

@@ -53,7 +53,7 @@ public class WeatherInformationDisplayer {
      */
     void displayConditions(WeatherInformation weatherInformation,
                            TextView conditionsTextView, ImageView conditionsImageView) {
-        String weatherDescription = res.getString(WeatherConditionFinder.
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayConditions(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView,android.widget.ImageView)",this,weatherInformation,conditionsTextView,conditionsImageView);try{String weatherDescription = res.getString(WeatherConditionFinder.
                 findWeatherConditionStringResourceId(weatherInformation.getWeatherConditionsId()));
         String capitalizedWeatherDescription = weatherDescription.substring(0, 1).toUpperCase() +
                 weatherDescription.substring(1);
@@ -65,17 +65,17 @@ public class WeatherInformationDisplayer {
             conditionsImageView.setImageBitmap(bitmap);
         } else {
             new SetIconDrawableTask(conditionsImageView).execute(iconName);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayConditions(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView,android.widget.ImageView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayConditions(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView,android.widget.ImageView)",this,throwable);throw throwable;}
     }
 
     private Bitmap getIconFromMemoryCache(String key) {
-        return iconCache == null ? null : iconCache.get(key);
+        com.mijack.Xlog.logMethodEnter("android.graphics.Bitmap com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getIconFromMemoryCache(java.lang.String)",this,key);try{com.mijack.Xlog.logMethodExit("android.graphics.Bitmap com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getIconFromMemoryCache(java.lang.String)",this);return iconCache == null ? null : iconCache.get(key);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.Bitmap com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getIconFromMemoryCache(java.lang.String)",this,throwable);throw throwable;}
     }
 
     private void addIconToMemoryCache(String key, Bitmap bitmap) {
-        if (iconCache != null && getIconFromMemoryCache(key) == null) {
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.addIconToMemoryCache(java.lang.String,android.graphics.Bitmap)",this,key,bitmap);try{if (iconCache != null && getIconFromMemoryCache(key) == null) {
             iconCache.put(key, bitmap);
-        }
+        }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.addIconToMemoryCache(java.lang.String,android.graphics.Bitmap)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.addIconToMemoryCache(java.lang.String,android.graphics.Bitmap)",this,throwable);throw throwable;}
     }
 
     /**
@@ -90,9 +90,9 @@ public class WeatherInformationDisplayer {
                                              TextView temperatureTextView,
                                              TextView pressureTextView,
                                              TextView humidityTextView) {
-        displayTemperatureText(weatherInformation, temperatureTextView);
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayWeatherNumericParametersText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView,android.widget.TextView,android.widget.TextView)",this,weatherInformation,temperatureTextView,pressureTextView,humidityTextView);try{displayTemperatureText(weatherInformation, temperatureTextView);
         displayAtmosphericPressureText(weatherInformation, pressureTextView);
-        displayHumidity(weatherInformation, humidityTextView);
+        displayHumidity(weatherInformation, humidityTextView);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayWeatherNumericParametersText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView,android.widget.TextView,android.widget.TextView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayWeatherNumericParametersText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView,android.widget.TextView,android.widget.TextView)",this,throwable);throw throwable;}
     }
 
     /**
@@ -103,7 +103,7 @@ public class WeatherInformationDisplayer {
      */
     private void displayTemperatureText(WeatherInformation weatherInformation,
                                         TextView temperatureTextView) {
-        String temperatureInfo;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayTemperatureText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,weatherInformation,temperatureTextView);try{String temperatureInfo;
         boolean isDayTemperatureProvided = weatherInformation.isDayTemperatureProvided();
 
         if (isDayTemperatureProvided) {
@@ -114,7 +114,7 @@ public class WeatherInformationDisplayer {
             temperatureInfo = res.getString(R.string.data_not_available);
         }
 
-        temperatureTextView.setText(temperatureInfo);
+        temperatureTextView.setText(temperatureInfo);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayTemperatureText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayTemperatureText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,throwable);throw throwable;}
     }
 
     /**
@@ -123,12 +123,12 @@ public class WeatherInformationDisplayer {
      * @return the temperature scale preferred by the user
      */
     TemperatureScale getTemperatureScale() {
-        String temperatureScaleIdString = PreferenceManager
+        com.mijack.Xlog.logMethodEnter("com.haringeymobile.ukweather.data.objects.TemperatureScale com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getTemperatureScale()",this);try{String temperatureScaleIdString = PreferenceManager
                 .getDefaultSharedPreferences(context).getString(
                         SettingsActivity.PREF_TEMPERATURE_SCALE, context.getResources().getString(
                                 R.string.pref_temperature_scale_id_default));
         int temperatureScaleId = Integer.parseInt(temperatureScaleIdString);
-        return TemperatureScale.getTemperatureScaleById(temperatureScaleId);
+        {com.mijack.Xlog.logMethodExit("com.haringeymobile.ukweather.data.objects.TemperatureScale com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getTemperatureScale()",this);return TemperatureScale.getTemperatureScaleById(temperatureScaleId);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.haringeymobile.ukweather.data.objects.TemperatureScale com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getTemperatureScale()",this,throwable);throw throwable;}
     }
 
     /**
@@ -139,7 +139,7 @@ public class WeatherInformationDisplayer {
      */
     private void displayAtmosphericPressureText(WeatherInformation weatherInformation,
                                                 TextView pressureTextView) {
-        String pressureInfo = res.getString(R.string.weather_info_atmospheric_pressure) + SEPARATOR;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayAtmosphericPressureText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,weatherInformation,pressureTextView);try{String pressureInfo = res.getString(R.string.weather_info_atmospheric_pressure) + SEPARATOR;
         boolean isPressureProvided = weatherInformation.isPressureProvided();
 
         if (isPressureProvided) {
@@ -149,7 +149,7 @@ public class WeatherInformationDisplayer {
             pressureInfo += res.getString(R.string.data_not_available);
         }
 
-        pressureTextView.setText(pressureInfo);
+        pressureTextView.setText(pressureInfo);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayAtmosphericPressureText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayAtmosphericPressureText(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,throwable);throw throwable;}
     }
 
     /**
@@ -159,7 +159,7 @@ public class WeatherInformationDisplayer {
      * @param humidityTextView   view to display humidity
      */
     private void displayHumidity(WeatherInformation weatherInformation, TextView humidityTextView) {
-        String humidityInfo = res.getString(R.string.weather_info_humidity) + SEPARATOR;
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayHumidity(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,weatherInformation,humidityTextView);try{String humidityInfo = res.getString(R.string.weather_info_humidity) + SEPARATOR;
         boolean isHumidityProvided = weatherInformation.isHumidityProvided();
 
         if (isHumidityProvided) {
@@ -169,7 +169,7 @@ public class WeatherInformationDisplayer {
             humidityInfo += res.getString(R.string.data_not_available);
         }
 
-        humidityTextView.setText(humidityInfo);
+        humidityTextView.setText(humidityInfo);com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayHumidity(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayHumidity(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,throwable);throw throwable;}
     }
 
     /**
@@ -179,10 +179,10 @@ public class WeatherInformationDisplayer {
      * @param windTextView       view to display wind information
      */
     void displayWindInfo(WeatherInformation weatherInformation, final TextView windTextView) {
-        Wind wind = weatherInformation.getWind();
-        // It seems that wind information is not always provided by OWM
+        com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayWindInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,weatherInformation,windTextView);try{Wind wind = weatherInformation.getWind();
+        /*// It seems that wind information is not always provided by OWM*/
         if (wind == null) {
-            return;
+            {com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayWindInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this);return;}
         }
         WindSpeedMeasurementUnit windSpeedMeasurementUnit = getWindSpeedMeasurementUnit();
 
@@ -208,7 +208,7 @@ public class WeatherInformationDisplayer {
             windInfo += "\n(" + res.getString(wind.getCardinalDirectionStringResource()) + ")";
         }
 
-        windTextView.setText(windInfo);
+        windTextView.setText(windInfo);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.displayWindInfo(com.haringeymobile.ukweather.data.objects.WeatherInformation,android.widget.TextView)",this,throwable);throw throwable;}
     }
 
     /**
@@ -217,12 +217,12 @@ public class WeatherInformationDisplayer {
      * @return the wind speed measurement units preferred by a user
      */
     private WindSpeedMeasurementUnit getWindSpeedMeasurementUnit() {
-        String windSpeedMeasurementUnitIdString = PreferenceManager
+        com.mijack.Xlog.logMethodEnter("com.haringeymobile.ukweather.data.objects.WindSpeedMeasurementUnit com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getWindSpeedMeasurementUnit()",this);try{String windSpeedMeasurementUnitIdString = PreferenceManager
                 .getDefaultSharedPreferences(context).getString(
                         SettingsActivity.PREF_WIND_SPEED_MEASUREMENT_UNIT,
                         context.getResources().getString(R.string.pref_wind_speed_unit_id_default));
         int windSpeedMeasurementUnitId = Integer.parseInt(windSpeedMeasurementUnitIdString);
-        return WindSpeedMeasurementUnit.getWindSpeedMeasurementUnitById(windSpeedMeasurementUnitId);
+        {com.mijack.Xlog.logMethodExit("com.haringeymobile.ukweather.data.objects.WindSpeedMeasurementUnit com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getWindSpeedMeasurementUnit()",this);return WindSpeedMeasurementUnit.getWindSpeedMeasurementUnitById(windSpeedMeasurementUnitId);}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("com.haringeymobile.ukweather.data.objects.WindSpeedMeasurementUnit com.haringeymobile.ukweather.weather.WeatherInformationDisplayer.getWindSpeedMeasurementUnit()",this,throwable);throw throwable;}
     }
 
     /**
@@ -237,21 +237,21 @@ public class WeatherInformationDisplayer {
 
         @Override
         protected Drawable doInBackground(String... args) {
-            if (context == null) {
-                return null;
+            com.mijack.Xlog.logMethodEnter("android.graphics.drawable.BitmapDrawable com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.doInBackground([java.lang.String)",this,args);try{if (context == null) {
+                {com.mijack.Xlog.logMethodExit("android.graphics.drawable.BitmapDrawable com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.doInBackground([java.lang.String)",this);return null;}
             }
 
             String iconName = args[0];
             InputStream iconInputStream = getInputStream(iconName);
             if (iconInputStream == null) {
-                // we return some placeholder icon
-                return res.getDrawable(R.drawable.ic_launcher_weather);
+                /*// we return some placeholder icon*/
+                {com.mijack.Xlog.logMethodExit("android.graphics.drawable.BitmapDrawable com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.doInBackground([java.lang.String)",this);return res.getDrawable(R.drawable.ic_launcher_weather);}
             } else {
                 Bitmap iconBitmap = BitmapFactory.decodeStream(iconInputStream);
                 iconBitmap = MiscMethods.trimBitmap(iconBitmap);
                 addIconToMemoryCache(iconName, iconBitmap);
-                return new BitmapDrawable(res, iconBitmap);
-            }
+                {com.mijack.Xlog.logMethodExit("android.graphics.drawable.BitmapDrawable com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.doInBackground([java.lang.String)",this);return new BitmapDrawable(res, iconBitmap);}
+            }}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("android.graphics.drawable.BitmapDrawable com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.doInBackground([java.lang.String)",this,throwable);throw throwable;}
         }
 
         /**
@@ -261,7 +261,7 @@ public class WeatherInformationDisplayer {
          * @return an input stream for the weather icon
          */
         private InputStream getInputStream(String iconCode) {
-            String iconUrl = Weather.ICON_URL_PREFIX + iconCode + Weather.ICON_URL_SUFFIX;
+            com.mijack.Xlog.logMethodEnter("java.io.InputStream com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.getInputStream(java.lang.String)",this,iconCode);try{String iconUrl = Weather.ICON_URL_PREFIX + iconCode + Weather.ICON_URL_SUFFIX;
             InputStream input;
             try {
                 URL url = new URL(iconUrl);
@@ -271,21 +271,21 @@ public class WeatherInformationDisplayer {
                 input = connection.getInputStream();
             } catch (MalformedURLException e) {
                 MiscMethods.log("MalformedURLException during SetIconDrawableTask");
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.io.InputStream com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.getInputStream(java.lang.String)",this);return null;}
             } catch (IOException e) {
                 MiscMethods.log("IOException during SetIconDrawableTask");
-                return null;
+                {com.mijack.Xlog.logMethodExit("java.io.InputStream com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.getInputStream(java.lang.String)",this);return null;}
             }
-            return input;
+            {com.mijack.Xlog.logMethodExit("java.io.InputStream com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.getInputStream(java.lang.String)",this);return input;}}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("java.io.InputStream com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.getInputStream(java.lang.String)",this,throwable);throw throwable;}
         }
 
         @Override
         protected void onPostExecute(Drawable result) {
-            super.onPostExecute(result);
+            com.mijack.Xlog.logMethodEnter("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.onPostExecute(android.graphics.drawable.BitmapDrawable)",this,result);try{super.onPostExecute(result);
             ImageView imageView = imageViewReference.get();
             if (imageView != null) {
                 imageView.setImageDrawable(result);
-            }
+            }com.mijack.Xlog.logMethodExit("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.onPostExecute(android.graphics.drawable.BitmapDrawable)",this);}catch(Throwable throwable){com.mijack.Xlog.logMethodExitWithThrowable("void com.haringeymobile.ukweather.weather.WeatherInformationDisplayer$SetIconDrawableTask.onPostExecute(android.graphics.drawable.BitmapDrawable)",this,throwable);throw throwable;}
         }
 
     }
