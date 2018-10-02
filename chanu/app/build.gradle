@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    compileSdkVersion 28
+    buildToolsVersion "28"
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.chanapps.four.activity"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 28
     }
 
     buildTypes {
